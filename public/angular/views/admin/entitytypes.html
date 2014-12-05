@@ -1,0 +1,22 @@
+<div ng-controller="AdminEntitytypesController">
+    <div ui-view></div>
+    <!--<pre>{{entitytypes | json}}</pre>-->
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+            <th style="width:15%;">Entity Type</th>
+            <th style="width:15%;">Actions</th>
+        </tr>
+        <tr ng-repeat="e in entitytypes">
+            <td>
+                {{ e.entitytype }}
+            </td>
+            <td style="white-space: nowrap">
+                <a class="btn btn-success" ui-sref="admin.entitytypes.edit({entitytypeId:e.id})">edit</a>
+                <button class="btn btn-danger" ng-really-message="This action cannot be undone. Are you sure?" ng-really-click="removeEntitytype($index, e.id)">del</button>
+            </td>
+        </tr>
+    </table>
+
+    <button class="btn btn-default" ng-click="addEntitytype()">Add New Entity Type</button>
+    <br/><br/><br/><br/>
+</div>

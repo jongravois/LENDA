@@ -1,0 +1,15 @@
+<!--<pre>{{user | json}}</pre>-->
+<form class="form-horizontal" loantype="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Insurance Type</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="instype.type" placeholder="Insurance Type"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            <a class="btn btn-success" ng-click="saveInstype(instype.id, instype)" ui-sref="admin.instypes">Submit</a>
+        </div>
+    </div>
+</form>
+<br><br/>

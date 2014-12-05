@@ -1,0 +1,31 @@
+<!--<pre>{{user | json}}</pre>-->
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Report</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="report.report" placeholder="Role"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Path</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="report.rptPath" placeholder="Display Abbreviation"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Is Required</label>
+        <div class="col-sm-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="is_required" ng-model="report.is_required"/>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            <a class="btn btn-success" ng-click="saveReport(report.id, report)" ui-sref="admin.reports">Submit</a>
+        </div>
+    </div>
+</form>
+<br><br/>

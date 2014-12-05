@@ -1,0 +1,60 @@
+<!-- JAVASCRIPT -->
+<script type="text/javascript" src="/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="/scripts/angular.js"></script>
+<script type="text/javascript" src="/scripts/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="/scripts/angular-sanitize.js"></script>
+<script type="text/javascript" src="/scripts/angular-animate.js"></script>
+<script type="text/javascript" src="/scripts/angular-resource.min.js"></script>
+<script type="text/javascript" src="/scripts/angular-filter.min.js"></script>
+<script type="text/javascript" src="/scripts/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="/scripts/ui-utils.min.js"></script>
+<script type="text/javascript" src="/scripts/select.js"></script>
+<script type="text/javascript" src="/scripts/angular-toastr.min.js"></script>
+<script type="text/javascript" src="/scripts/loading-bar.js"></script>
+<script type="text/javascript" src="/scripts/autocomplete.js"></script>
+<script type="text/javascript" src="/scripts/moment.min.js"></script>
+<script type="text/javascript" src="/scripts/angular-moment.js"></script>
+<script type="text/javascript" src="/scripts/checklist-model.js"></script>
+<script type="text/javascript" src="/scripts/xeditable.min.js"></script>
+<script type="text/javascript" src="/scripts/dialogs.min.js"></script>
+<script type="text/javascript" src="/scripts/lodash.min.js"></script>
+<script type="text/javascript" src="/scripts/ng-grid.js"></script>
+<!-- APP SPECIFIC -->
+<script type="text/javascript" src="/ang/app.js"></script>
+<!--CONTROLLERS-->
+<script type="text/javascript" src="/ang/controllers/main.js"></script>
+<script type="text/javascript" src="/ang/controllers/mainApp.js"></script>
+<script type="text/javascript" src="/ang/controllers/newApp.js"></script>
+<script type="text/javascript" src="/ang/controllers/backnext.js"></script>
+<script type="text/javascript" src="/ang/controllers/editApp.js"></script>
+<script type="text/javascript" src="/ang/controllers/library.js"></script>
+<script type="text/javascript" src="/ang/controllers/management.js"></script>
+<script type="text/javascript" src="/ang/controllers/locations.js"></script>
+<script type="text/javascript" src="/ang/controllers/disbursement.js"></script>
+<script type="text/javascript" src="/ang/controllers/admin.js"></script>
+<script type="text/javascript" src="/ang/controllers/reports.js"></script>
+<script type="text/javascript" src="/ang/controllers/loan_budget.js"></script>
+<script type="text/javascript" src="/ang/controllers/systemics.js"></script>
+<script type="text/javascript" src="/ang/controllers/financials.js"></script>
+<!-- FACTORIES AND SERVICES -->
+<script type="text/javascript" src="/ang/services/Apl.js"></script>
+<script type="text/javascript" src="/ang/services/Applicants.js"></script>
+<script type="text/javascript" src="/ang/services/Crops.js"></script>
+<script type="text/javascript" src="/ang/services/Farmers.js"></script>
+<script type="text/javascript" src="/ang/services/Loans.js"></script>
+<script type="text/javascript" src="/ang/services/fctGrader.js"></script>
+<script type="text/javascript" src="/ang/services/Locations.js"></script>
+<script type="text/javascript" src="/ang/services/Reports.js"></script>
+<script type="text/javascript" src="/ang/services/Api.js"></script>
+<script type="text/javascript" src="/ang/services/svcLoan.js"></script>
+<script type="text/javascript" src="/ang/services/svcCrop.js"></script>
+<script type="text/javascript" src="/ang/services/Users.js"></script>
+<!-- FILTERS -->
+<script type="text/javascript" src="/ang/filters/filters.js"></script>
+<!-- DIRECTIVES -->
+<script type="text/javascript" src="/scripts/angular-multi-select.js"></script>
+<script type="text/javascript" src="/ang/directives/directives.js"></script>
+<!-- JAVASCRIPT -->
+</body>
+</html>

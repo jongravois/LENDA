@@ -1,0 +1,71 @@
+<?php namespace Acme\Transformers;
+
+class LoanfinancialsTransformer extends Transformer{
+
+	public function transform($arr)
+	{
+		//return $arr;
+		return [
+			'id' => (integer) $arr['id'],
+			'loan_id' => (integer) $arr['loan_id'],
+			'cpa_financials' => (boolean) $arr['cpa_financials'],
+			'credit_score' => (double) $arr['credit_score'],
+			'grade' => $arr['grade'],
+			'amount_requested' => (double) $arr['amount_requested'],
+			'total_acres' => (double) $arr['total_acres'],
+			'int_percent_arm' => (double) $arr['int_percent_arm'],
+			'int_percent_dist' => (double) $arr['int_percent_dist'],
+			'int_percent_other' => (double) $arr['int_percent_other'],
+			'fee_processing_percent' => (double) $arr['fee_processing'],
+			'fee_processing_onTotal' => (boolean) $arr['fee_processing_onTotal'],
+			'proc_fee' => (double) $arr['proc_fee'],
+			'proc_fee_arm_only' => (double) $arr['proc_fee_arm_only'],
+			'fee_service_percent' => (double) $arr['fee_service'],
+			'fee_service_onTotal' => (boolean) $arr['fee_service_onTotal'],
+			'srvc_fee' => (double) $arr['srvc_fee'],
+			'srvc_fee_arm_only' => (double) $arr['srvc_fee_arm_only'],
+			'total_fsa_payment' => (double) $arr['total_fsa_payment'],
+			'total_claims' => (double) $arr['total_claims'],
+			'total_revenue' => (double) $arr['total_revenue'],
+			'total_balance' => (double) $arr['total_balance'],
+			'remaining_balance' => (double) $arr['remaining_balance'],
+			'cash_flow' => (double) $arr['cash_flow'],
+			'risk' => (double) $arr['risk'],
+			'year_1_revenue' => (double) $arr['year_1_revenue'],
+			'year_1_expenses' => (double) $arr['year_1_expenses'],
+			'year_2_revenue' => (double) $arr['year_2_revenue'],
+			'year_2_expenses' => (double) $arr['year_2_expenses'],
+			'year_3_revenue' => (double) $arr['year_3_revenue'],
+			'year_3_expenses' => (double) $arr['year_3_expenses'],
+			'current_assets' => (double) $arr['current_assets'],
+			'current_asset_factor' => (double) $arr['current_asset_factor'],
+			'current_asset_liability' => (double) $arr['current_asset_liability'],
+			'intermediate_assets' => (double) $arr['intermediate_assets'],
+			'intermediate_asset_factor' => (double) $arr['intermediate_asset_factor'],
+			'intermediate_asset_liability' => (double) $arr['intermediate_asset_liability'],
+			'fixed_assets' => (double) $arr['fixed_assets'],
+			'fixed_asset_factor' => (double) $arr['fixed_asset_factor'],
+			'fixed_asset_liability' => (double) $arr['fixed_asset_liability'],
+			'guaranty' => (double) $arr['guaranty'],
+			'prod' => (double) $arr['prod'],
+			'adj_prod' => (double) $arr['adj_prod'],
+			'disc_prod_percent' => (double) $arr['disc_prod_percent'],
+			'non_rp_percent' => (double) $arr['non_rp_percent'],
+			'disc_adj_prod' => (double) $arr['disc_adj_prod'],
+			'ins_disc_prod' => (double) $arr['ins_disc_prod'],
+			'disc_ins' => (double) $arr['disc_ins'],
+			'disc_ins_percent' => (double) $arr['disc_ins_percent'],
+			'commit_arm' => (double) $arr['commit_arm'],
+			'commit_dist' => (double) $arr['commit_dist'],
+			'commit_other' => (double) $arr['commit_other'],
+			'commit_total' => (double) $arr['commit_total'],
+			'principal_arm' => (double) $arr['principal_arm'],
+			'principal_dist' => (double) $arr['principal_dist'],
+			'principal_other' => (double) $arr['principal_other'],
+			'principal' => (double) $arr['principal'],
+			'arm_and_dist' => (double) $arr['arm_and_dist'],
+			'collateral' => (double) $arr['collateral']
+		];
+	}
+
+}

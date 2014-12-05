@@ -1,0 +1,26 @@
+<div ng-controller="AdminRolesController">
+    <div ui-view></div>
+    <!--<pre>{{locations | json}}</pre>-->
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+            <th style="width:15%;">Role</th>
+            <th style="width:15%;">Abr</th>
+            <th style="width:15%;">Actions</th>
+        </tr>
+        <tr ng-repeat="r in roles">
+            <td>
+                {{ r.role }}
+            </td>
+            <td>
+                {{ r.abr }}
+            </td>
+            <td style="white-space: nowrap">
+                <a class="btn btn-success" ui-sref="admin.roles.edit({roleId:r.id})">edit</a>
+                <button class="btn btn-danger" ng-really-message="This action cannot be undone. Are you sure?" ng-really-click="removeRole($index, r.id)">del</button>
+            </td>
+        </tr>
+    </table>
+
+    <button class="btn btn-default" ng-click="addRole()">Add New Role</button>
+    <br/><br/><br/><br/>
+</div>

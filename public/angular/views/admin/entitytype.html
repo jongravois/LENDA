@@ -1,0 +1,15 @@
+<!--<pre>{{user | json}}</pre>-->
+<form class="form-horizontal" loantype="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Entity Type</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="entitytype.entitytype" placeholder="Entity Type"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            <a class="btn btn-success" ng-click="saveEntitytype(entitytype.id, entitytype)" ui-sref="admin.entitytypes">Submit</a>
+        </div>
+    </div>
+</form>
+<br><br/>

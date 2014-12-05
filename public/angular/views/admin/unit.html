@@ -1,0 +1,21 @@
+<!--<pre>{{user | json}}</pre>-->
+<form class="form-horizontal" unit="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Unit</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="unit.unit" placeholder="Unit"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Display</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="unit.abr" placeholder="Display Abreviation"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            <a class="btn btn-success" ng-click="saveUnit(unit.id, unit)" ui-sref="admin.units">Submit</a>
+        </div>
+    </div>
+</form>
+<br><br/>

@@ -1,0 +1,77 @@
+<!--<pre>{{user | json}}</pre>-->
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Username</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="user.username" placeholder="Username"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Display</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="user.abr" placeholder="Display Abreviation (3 capital letters)"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="user.email" placeholder="Email"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Phone</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" ng-model="user.phone" ui-mask="(999) 999-9999"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Role</label>
+        <div class="col-sm-6">
+            <select name="role_id" class="form-control" ng-model="user.role_id" ng-options="r.id as r.role for r in roles">
+                <option value="">Please select ...</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Location</label>
+        <div class="col-sm-6">
+            <select name="loc_id" class="form-control" ng-model="user.loc_id" ng-options="l.id as l.location for l in locations">
+                <option value="">Please select ...</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Manager</label>
+        <div class="col-sm-6">
+            <select name="manager_id" class="form-control" ng-model="user.manager_id" ng-options="u.id as u.username for u in users">
+                <option value="">Please select ...</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Permissions</label>
+        <div class="col-sm-6">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="is_admin" ng-model="user.is_admin"/> Is Admin?
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="is_approver" ng-model="user.is_approver"/> Is Approver?
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="is_manager" ng-model="user.is_manager"/> Is Manager?
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            <a class="btn btn-success" ng-click="saveUser(user.id, user)" ui-sref="admin.users">Submit</a>
+        </div>
+    </div>
+</form>
+<br><br/>
