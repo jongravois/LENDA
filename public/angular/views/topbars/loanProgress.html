@@ -1,0 +1,169 @@
+<table class="table">
+  <tr>
+    <td>
+      <span ng-if="loan.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#000099;font-size:18px;"></span>
+      <span ng-if="!loan.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#DDDDDD;font-size:18px;"></span>
+      <span ng-if="loan.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#e0a02d;font-size:18px;"></span>
+      <span ng-if="!loan.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#DDDDDD;font-size:18px;"></span>
+      <span ng-if="loan.is_stale" tooltip="Stale Application" class="glyphicon glyphicon-exclamation-sign" style="color:#990000;font-size:18px;"></span>
+      <span ng-if="!loan.is_stale" tooltip="Stale Application" class="glyphicon glyphicon-exclamation-sign" style="color:#DDDDDD;font-size:18px;"></span>
+    </td>
+    <td>
+      <span class="glyphicon glyphicon-plus" tooltip="Addendum" style="font-size:18px;" ng-class="{ clrOn : loan.has_addendum, clrOff: !loan.has_addendum}"></span>
+      <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy History" style="font-size:18px;" ng-class="{ clrOn : quests.bankruptcy, clrOff: !quests.bankruptcy }"></span>
+      <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit Required" style="font-size:18px;" ng-class="{ clrOn : loan.required_3party, clrOff: !loan.required_3party }"></span>
+      <span class="glyphicon glyphicon-flag" tooltip="Added Land in Database" style="font-size:18px;" ng-class="{ clrOn : loan.added_land, clrOff: !loan.added_land }"></span>
+      <span class="glyphicon glyphicon-eye-open" tooltip="Controlled Disbursement" style="font-size:18px;" ng-class="{ clrOn : loan.controlled_disbursement, clrOff: !loan.controlled_disbursement }"></span>
+      <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" style="font-size:18px;" ng-class="{ clrOn : loan.attachments, clrOff: !loan.attachments }"></span>
+    </td>
+
+    <td>
+      <div ng-switch="loan.its_list">
+        <span ng-switch-when="0" class="glyphicon glyphicon-list-alt progicon pIcoPen" tooltip="ITS List Verfified" ng-click="clkProgIcon(1, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-list-alt progicon pIcoComp" tooltip="ITS List Verfified" ng-click="clkProgIcon(1, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-list-alt progicon pIcoOver" tooltip="ITS List Verfified" ng-click="clkProgIcon(1, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.fsa_compliant">
+        <span ng-switch-when="0" class="glyphicon glyphicon-home progicon pIcoPen" tooltip="FSA Eligibility" ng-click="clkProgIcon(2, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-home progicon pIcoComp" tooltip="FSA Eligibility" ng-click="clkProgIcon(2, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-home progicon pIcoOver" tooltip="FSA Eligibility" ng-click="clkProgIcon(2, 2)"></span>
+    </td>
+    <td>
+      <div ng-switch="loan.prev_lien_verified">
+        <span ng-switch-when="0" class="glyphicon glyphicon-star progicon pIcoPen" tooltip="Prior Lien Verfied" ng-click="clkProgIcon(3, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-star progicon pIcoComp" tooltip="Prior Lien Verfied" ng-click="clkProgIcon(3, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-star progicon pIcoOver" tooltip="Prior Lien Verfied" ng-click="clkProgIcon(3, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.leases_valid">
+        <span ng-switch-when="0" class="glyphicon glyphicon-leaf progicon pIcoPen" tooltip="Leases Valid" ng-click="clkProgIcon(4, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-leaf progicon pIcoComp" tooltip="Leases Valid" ng-click="clkProgIcon(4, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-leaf progicon pIcoOver" tooltip="Leases Valid" ng-click="clkProgIcon(4, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.bankruptcy_order_received">
+        <span ng-switch-when="0" class="glyphicon glyphicon-fire progicon pIcoPen" tooltip="Bankruptcy Order Received" ng-click="clkProgIcon(5, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-fire progicon pIcoComp" tooltip="Bankruptcy Order Received" ng-click="clkProgIcon(5, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-fire progicon pIcoOver" tooltip="Bankruptcy Order Received" ng-click="clkProgIcon(5, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.received_3party">
+        <span ng-switch-when="0" class="glyphicon glyphicon-stats progicon pIcoPen" tooltip="Third Party Credit Verified" ng-click="clkProgIcon(6, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-stats progicon pIcoComp" tooltip="Third Party Credit Verified" ng-click="clkProgIcon(6, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-stats progicon pIcoOver" tooltip="Third Party Credit Verified" ng-click="clkProgIcon(6, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.recommended">
+        <span ng-switch-when="0" class="glyphicon glyphicon-share-alt progicon pIcoPen" tooltip="Recommended" ng-click="clkProgIcon(7, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-share-alt progicon pIcoComp" tooltip="Recommended" ng-click="clkProgIcon(7, 0)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-share-alt progicon pIcoOver" tooltip="Recommended" ng-click="clkProgIcon(7, 0)"></span>
+      </div>
+    </td>
+
+    <td>
+      <div ng-switch="loan.arm_approved">
+        <span ng-switch-when="0" class="glyphicon glyphicon-thumbs-up progicon pIcoPen" tooltip="ARM Approved" ng-click="clkProgIcon(8, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-thumbs-up progicon pIcoComp" tooltip="ARM Approved" ng-click="clkProgIcon(8, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-thumbs-up progicon pIcoOver" tooltip="ARM Approved" ng-click="clkProgIcon(8, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.dist_approved">
+        <span ng-switch-when="0" class="glyphicon glyphicon-hand-up progicon pIcoPen" tooltip="Distributor Approved" ng-click="clkProgIcon(9, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-hand-up progicon pIcoComp" tooltip="Distributor Approved" ng-click="clkProgIcon(9, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-hand-up progicon pIcoOver" tooltip="Distributor Approved" ng-click="clkProgIcon(9, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.loan_closed">
+        <span ng-switch-when="0" class="glyphicon glyphicon-folder-close progicon pIcoPen" tooltip="Loan Closed" ng-click="clkProgIcon(10, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-folder-close progicon pIcoComp" tooltip="Loan Closed" ng-click="clkProgIcon(10, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-folder-close progicon pIcoOver" tooltip="Loan Closed" ng-click="clkProgIcon(10, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.added_land_verified">
+        <span ng-switch-when="0" class="glyphicon glyphicon-flag progicon pIcoPen" tooltip="Added Land Verified" ng-click="clkProgIcon(11, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-flag progicon pIcoComp" tooltip="Added Land Verified" ng-click="clkProgIcon(11, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-flag progicon pIcoOver" tooltip="Added Land Verified" ng-click="clkProgIcon(11, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.arm_ucc_received">
+        <span ng-switch-when="0" class="glyphicon glyphicon-log-in progicon pIcoPen" tooltip="ARM UCC Received" ng-click="clkProgIcon(12, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-log-in progicon pIcoComp" tooltip="ARM UCC Received" ng-click="clkProgIcon(12, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-log-in progicon pIcoOver" tooltip="ARM UCC Received" ng-click="clkProgIcon(12, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.dist_ucc_received">
+        <span ng-switch-when="0" class="glyphicon glyphicon-log-in progicon pIcoPen" tooltip="Distributor UCC Received" ng-click="clkProgIcon(13, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-log-in progicon pIcoComp" tooltip="Distributor UCC Received" ng-click="clkProgIcon(13, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-log-in progicon pIcoOver" tooltip="Distributor UCC Received" ng-click="clkProgIcon(13, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.aoi_received">
+        <span ng-switch-when="0" class="glyphicon glyphicon-arrow-right progicon pIcoPen" tooltip="AOI Received" ng-click="clkProgIcon(14, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-arrow-right progicon pIcoComp" tooltip="AOI Received" ng-click="clkProgIcon(14, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-arrow-right progicon pIcoOver" tooltip="AOI Received" ng-click="clkProgIcon(14, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.ccc_received">
+        <span ng-switch-when="0" class="glyphicon glyphicon-link progicon pIcoPen" tooltip="CCC Received" ng-click="clkProgIcon(15, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-link progicon pIcoComp" tooltip="CCC Received" ng-click="clkProgIcon(15, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-link progicon pIcoOver" tooltip="CCC Received" ng-click="clkProgIcon(15, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.rebate_assignment">
+        <span ng-switch-when="0" class="glyphicon glyphicon-cog progicon pIcoPen" tooltip="Rebate Assignment" ng-click="clkProgIcon(16, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-cog progicon pIcoComp" tooltip="Rebate Assignment" ng-click="clkProgIcon(16, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-cog progicon pIcoOver" tooltip="Rebate Assignment" ng-click="clkProgIcon(16, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.crop_inspection">
+        <span ng-switch-when="0" class="glyphicon glyphicon-tree-deciduous progicon pIcoPen" tooltip="Crop Inspection" ng-click="clkProgIcon(17, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-tree-deciduous progicon pIcoComp" tooltip="Crop Inspection" ng-click="clkProgIcon(17, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-tree-deciduous progicon pIcoOver" tooltip="Crop Inspection" ng-click="clkProgIcon(17, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.limit_warning">
+        <span ng-switch-when="0" class="glyphicon glyphicon-warning-sign progicon pIcoPen" tooltip="Limit Warning" ng-click="clkProgIcon(18, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-warning-sign progicon pIcoComp" tooltip="Limit Warning" ng-click="clkProgIcon(18, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-warning-sign progicon pIcoOver" tooltip="Limit Warning" ng-click="clkProgIcon(18, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.reconcilliation">
+        <span ng-switch-when="0" class="glyphicon glyphicon-retweet progicon pIcoPen" tooltip="Account Reconciliation" ng-click="clkProgIcon(19, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-retweet progicon pIcoComp" tooltip="Account Reconciliation" ng-click="clkProgIcon(19, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-retweet progicon pIcoOver" tooltip="Account Reconciliation" ng-click="clkProgIcon(19, 2)"></span>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="loan.account_classification">
+        <span ng-switch-when="0" class="glyphicon glyphicon-sort-by-order-alt progicon pIcoPen" tooltip="Account Classification" ng-click="clkProgIcon(20, 0)"></span>
+        <span ng-switch-when="1" class="glyphicon glyphicon-sort-by-order-alt progicon pIcoComp" tooltip="Account Classification" ng-click="clkProgIcon(20, 1)"></span>
+        <span ng-switch-when="2" class="glyphicon glyphicon-sort-by-order-alt progicon pIcoOver" tooltip="Account Classification" ng-click="clkProgIcon(20, 2)"></span>
+      </div>
+    </td>
+    <td>
+      CF: {{loan.fins.cash_flow | noCentsCurrency}}
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      RM: {{loan.fins.risk | noCentsCurrency}}
+    </td>
+    <td>
+      <span loan-status-icon status="loan.status_id"></span>
+    </td>
+  </tr>
+</table>

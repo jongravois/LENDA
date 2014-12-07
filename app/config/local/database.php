@@ -6,7 +6,7 @@ return array(
     'mysql' => array(
       'driver'    => 'mysql',
       'host'      => 'localhost',
-      'database'  => 'LENDA3',
+      'database'  => 'LENDA',
       'username'  => 'root',
       'password'  => 'secret',
       'charset'   => 'utf8',

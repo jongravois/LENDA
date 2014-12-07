@@ -13,11 +13,15 @@
           ],
           agencies: [],
           distributors: [],
+          entitytypes: [],
           farmers: [],
+          instypes: [],
           loantypes: [],
           locations: [],
           regions: [],
-          reports: []
+          reports: [],
+          roles: [],
+          units: []
         };
 
         function getAgencies(){
@@ -32,9 +36,21 @@
           });
         }
 
+        function getEntityTypes(){
+          return $http.get(API_URL + '/entitytypes').then(function(response){
+            data.entitytypes = response.data.data;
+          });
+        }
+
         function getFarmers(){
           return $http.get(API_URL + '/farmers').then(function(response){
             data.farmers = response.data.data;
+          });
+        }
+
+        function getInsTypes(){
+          return $http.get(API_URL + '/insurancetypes').then(function(response){
+            data.instypes = response.data.data;
           });
         }
 
@@ -62,6 +78,18 @@
           });
         }
 
+        function getRoles(){
+          return $http.get(API_URL + '/roles').then(function(response){
+            data.roles = response.data.data;
+          });
+        }
+
+        function getUnits(){
+          return $http.get(API_URL + '/units').then(function(response){
+            data.units = response.data.data;
+          });
+        }
+
         function getObject(){
           return data;
         }
@@ -70,23 +98,31 @@
           // trigger http calls to get data.
           getAgencies();
           getDistributors();
+          getEntityTypes();
           getFarmers();
+          getInsTypes();
           getLoanTypes();
           getLocations();
           getRegions();
           getReports();
+          getRoles();
+          getUnits();
         }
 
         return {
           init: init,
           getObject: getObject,
+          getRoles: getRoles,
           getReports: getReports,
           getRegions: getRegions,
           getLocations: getLocations,
           getLoanTypes: getLoanTypes,
+          getInsTypes: getInsTypes,
           getFarmers: getFarmers,
+          getEntityTypes: getEntityTypes,
           getDistributors: getDistributors,
-          getAgencies: getAgencies
+          getAgencies: getAgencies,
+          getUnits: getUnits
         }
       });
 })();

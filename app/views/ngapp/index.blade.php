@@ -71,6 +71,7 @@
   <script src="angular/controllers/main.js"></script>
   <script src="angular/controllers/sessions.js"></script>
   <script src="angular/controllers/home.js"></script>
+  <script src="angular/controllers/newapp.js"></script>
   <script src="angular/controllers/management.js"></script>
   <script src="angular/controllers/prefs.js"></script>
   <script src="angular/controllers/reports.js"></script>

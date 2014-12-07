@@ -10,7 +10,7 @@
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <a ui-sref="prefs">My Settings</a>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a ui-sref="logout">Logout</a>
+        <a href="/logout">Logout</a>
     </span>
 </div> <!-- /#header -->
 
@@ -47,13 +47,14 @@
               </li>
             </ul>
           </a>
+        </span>
           &nbsp;&nbsp;|&nbsp;&nbsp;
         <span class="dropdown" dropdown on-toggle="toggled(open)">
             <a href class="dropdown-toggle" dropdown-toggle>
               Library
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a  ui-sref="resources">
+              <li><a ui-sref="resources">
                 Employee Resources</a>
               </li>
               <li>

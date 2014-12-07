@@ -16,18 +16,6 @@
             controller: 'HomeController'
           })
 
-          .state('login',{
-            url: '/login',
-            templateUrl: 'angular/views/login.html',
-            controller: 'SessionsController'
-          })
-
-          .state('logout',{
-            url: '/logout',
-            templateUrl: 'angular/views/logout.html',
-            controller: 'SessionsController'
-          })
-
           .state('management', {
             url: '/management',
             templateUrl: 'angular/views/management.html',
@@ -267,13 +255,58 @@
           .state('new', {
             abstract: true,
             url: '/new',
-            templateUrl: 'angular/views/newApp.html',
+            templateUrl: 'angular/views/NewApp.html',
             controller: 'NewAppController'
           })
 
           .state('new.farmer', {
             url: '/farmer',
-            templateUrl: 'angular/views/farmer.html'
+            templateUrl: 'angular/views/loans/farmer.html'
+          })
+
+          .state('new.applicant', {
+            url: '/applicant',
+            templateUrl: 'angular/views/loans/applicant.html'
+          })
+
+          .state('new.distributor', {
+            url: '/distributor',
+            templateUrl: 'angular/views/loans/distributor.html'
+          })
+
+          .state('new.quests', {
+            url: '/quests',
+            templateUrl: 'angular/views/loans/quests.html'
+          })
+
+          .state('new.crops', {
+            url: '/crops',
+            templateUrl: 'angular/views/loans/crops.html'
+          })
+
+          .state('new.yield', {
+            url: '/yield',
+            templateUrl: 'angular/views/loans/yield.html'
+          })
+
+          .state('new.farms', {
+            url: '/farms',
+            templateUrl: 'angular/views/loans/farms.html'
+          })
+
+          .state('new.insurance', {
+            url: '/insurance',
+            templateUrl: 'angular/views/loans/insurance.html'
+          })
+
+          .state('new.expenses', {
+            url: '/expenses',
+            templateUrl: 'angular/views/loans/expenses.html'
+          })
+
+          .state('new.financials', {
+            url: '/financials',
+            templateUrl: 'angular/views/loans/financials.html'
           })
 
           //EDITS HERE
@@ -285,10 +318,103 @@
 
           .state('edit.summary', {
             url: '/summary',
-            templateUrl: 'angular/views/summary.html'
+            templateUrl: 'angular/views/loans/summary.html'
           })
 
+          .state('edit.underwriting', {
+            url: '/underwriting',
+            templateUrl: 'angular/views/loans/underwriting.html'
+          })
 
+          .state('edit.terms', {
+            url: '/terms',
+            templateUrl: 'angular/views/loans/terms.html'
+          })
+
+          .state('edit.committee', {
+            url: '/committee',
+            templateUrl: 'angular/views/loans/committee.html'
+          })
+
+          .state('edit.comments', {
+            url: '/comments',
+            templateUrl: 'angular/views/loans/comments.html'
+          })
+
+          .state('edit.farmer', {
+            url: '/farmer',
+            templateUrl: 'angular/views/loans/farmer.html'
+          })
+
+          .state('edit.applicant', {
+            url: '/applicant',
+            templateUrl: 'angular/views/loans/applicant.html'
+          })
+
+          .state('edit.distributor', {
+            url: '/distributor',
+            templateUrl: 'angular/views/loans/distributor.html'
+          })
+
+          .state('edit.quests', {
+            url: '/quests',
+            templateUrl: 'angular/views/loans/quests.html'
+          })
+
+          .state('edit.farms', {
+            url: '/farms',
+            templateUrl: 'angular/views/loans/farms.html'
+          })
+
+          .state('edit.crops', {
+            url: '/crops',
+            templateUrl: 'angular/views/loans/crops.html'
+          })
+
+          .state('edit.farmdetails', {
+            url: '/farmdetails',
+            templateUrl: 'angular/views/loans/farmdetails.html'
+          })
+
+          .state('edit.yield', {
+            url: '/yield',
+            templateUrl: 'angular/views/loans/yield.html'
+          })
+
+          .state('edit.optimizer', {
+            url: '/optimizer',
+            templateUrl: 'angular/views/loans/optimizer.html'
+          })
+
+          .state('edit.insurance', {
+            url: '/insurance',
+            templateUrl: 'angular/views/loans/insurance.html'
+          })
+
+          .state('edit.budgets', {
+            url: '/budgets',
+            templateUrl: 'angular/views/loans/budgets.html'
+          })
+
+          .state('edit.financials', {
+            url: '/financials',
+            templateUrl: 'angular/views/loans/financials.html'
+          })
+
+          .state('edit.prerequisites', {
+            url: '/prerequisites',
+            templateUrl: 'angular/views/loans/prerequisites.html'
+          })
+
+          .state('edit.closing', {
+            url: '/closing',
+            templateUrl: 'angular/views/loans/closing.html'
+          })
+
+          .state('edit.audit', {
+            url: '/audit',
+            templateUrl: 'angular/views/loans/audit.html'
+          })
 
         $urlRouterProvider.otherwise('/');
       });

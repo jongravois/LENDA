@@ -1,1 +1,26 @@
-<h1>New App</h1>
+<style>
+  .pIcoPen{ color: #CCCCCC; }
+  .pIcoComp{color: #006837;}
+  .pIcoOver{color: #990000;}
+</style>
+<div class="frmFull_Page"></div>
+  <div class="row frmBarsm clr-black">
+    <h6>{{chosenLT}}</h6>
+  </div>
+
+  <hr style="margin-top: 5px;"/>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="btn-group-vertical" style="padding-top: 10px; width:98%;">
+        <a ui-sref-active="active" ui-sref="new.{{scr.screen}}" class="btn btn-default" ng-repeat="scr in screens">
+          {{scr.screen | capitalize}}
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <div ui-view>
+        <pre>{{screens | json}}</pre>
+      </div>
+    </div>
+  </div>

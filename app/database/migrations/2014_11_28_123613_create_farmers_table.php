@@ -11,8 +11,9 @@ class CreateFarmersTable extends Migration {
 		{
 			$table->increments('id');
       $table->integer('user_id');
-      $table->string('farmer')->unique();
+      $table->string('farmer');
       $table->string('nick')->nullable();
+      $table->integer('loc_id')->default('4');
       $table->string('ssn')->unique();
       $table->string('address')->nullable();
       $table->string('city')->nullable();
