@@ -20,6 +20,7 @@ class CreateLoansTable extends Migration {
       $table->integer('loc_id');
       $table->integer('region_id')->nullable();
       $table->integer('user_id');
+      $table->integer('farmer_id');
       $table->integer('applicant_id');
       $table->boolean('is_active')->default(1);
       $table->boolean('is_cross_collateralized')->default(0);

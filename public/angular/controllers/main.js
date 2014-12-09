@@ -7,6 +7,7 @@
       toastr,
       GlobalsFactory,
       UsersFactory,
+      FarmersFactory,
       FeederFactory,
       LoansFactory
     ){
@@ -38,6 +39,10 @@
 
       FeederFactory.init();
       $scope.feeder = FeederFactory.getObject();
+      
+      FarmersFactory.getFarmers().then(function success(response){
+              $scope.farmers = response.data.data;
+            });
 
       LoansFactory.getLoans().then(function success(response){
         $scope.loans = response.data.data;

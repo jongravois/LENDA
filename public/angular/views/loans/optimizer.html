@@ -1,1 +1,131 @@
-<h1>Optimizer</h1>
+<style>
+  .rowed td {
+    border: 1px solid #dddddd;
+  }
+
+  .totaline td {
+    border-top: 1px solid #333333 !important;
+    border-bottom: 1px solid #333333 !important;
+  }
+</style>
+<fieldset>
+  <!--<pre>{{loan.selectedCrops | json}}</pre>-->
+  <legend>Loan Optimizer</legend>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped rowed">
+        <tr>
+          <th colspan="7">&nbsp;</th>
+          <th style="width: 60px;">
+            Acres
+          </th>
+          <th style="width: 60px;">
+            Cash Flow
+          </th>
+          <th style="width: 60px;">
+            Risk
+          </th>
+        </tr>
+        <tr class="warning">
+          <td colspan="7">
+            <span style="font-size:10px;">
+              <b>Add Crop:</b>
+              &nbsp;
+              <input type="checkbox" ng-model="loan.selectedCrops.corn"/>
+              &nbsp;
+              Corn
+              &nbsp;&nbsp;
+              <input type="checkbox" ng-model="loan.selectedCrops.beans"/>
+              &nbsp;
+              Soybeans
+              &nbsp;&nbsp;
+              <input type="checkbox" ng-model="loan.selectedCrops.sorghum"/>
+              &nbsp;
+              Sorghum
+              &nbsp;&nbsp;
+              <input type="checkbox" ng-model="loan.selectedCrops.wheat"/>
+              &nbsp;
+              Wheat
+              &nbsp;&nbsp;
+              <input type="checkbox" ng-model="loan.selectedCrops.cotton"/>
+              &nbsp;
+              Cotton
+              &nbsp;&nbsp;
+              <input type="checkbox" ng-model="loan.selectedCrops.rice"/>
+              &nbsp;
+              Rice
+              &nbsp;&nbsp;
+              <input type="checkbox" ng-model="loan.selectedCrops.peanuts"/>
+              &nbsp;
+              Peanuts
+              &nbsp;&nbsp;
+              <input type="checkbox" ng-model="loan.selectedCrops.sugarcane"/>
+              &nbsp;
+              Sugarcane
+            </span>
+          </td>
+          <td class="text-right">
+            {{loan.fins.total_acres | number:1}}
+          </td>
+          <td class="text-right">
+            {{loan.fins.cash_flow | noCentsCurrency}}
+          </td>
+          <td class="text-right">
+            {{loan.fins.risk | noCentsCurrency}}
+          </td>
+
+        </tr>
+        <tr>
+          <th style="width:12%;">ST | CO</th>
+          <th style="width:8%;">FSN</th>
+          <th style="width:10%;">Landlord</th>
+          <th style="width:8%;">Share</th>
+          <th style="width:8%;">Practice</th>
+          <th style="width:10%;">Crop</th>
+          <th style="width:10%;">APH</th>
+          <th style="width:8%;">Acres</th>
+          <th style="width:12%;">Cash Flow</th>
+          <th style="width:12%;">Risk</th>
+        </tr>
+        <tr ng-repeat="lp in farmPractices">
+          <!--  | filterBy: ['county']: 1337 -->
+          <td>
+            {{lp.locale}}
+          </td>
+          <td>
+            {{lp.fsn}}
+          </td>
+          <td>
+            {{lp.owner}}
+          </td>
+          <td class="text-right">
+            <input type="text" class="text-right" style="width:100%" ng-model="lp.ins_share"/>
+          </td>
+          <td class="text-center">
+            {{lp.practice}}
+          </td>
+          <td class="text-left">
+            {{lp.crop}}
+          </td>
+          <td class="text-right">
+            {{lp.aph | number:1}}
+          </td>
+          <td class="text-right">
+            <input type="text" class="text-right" style="width:100%;" ng-model="lp.acres"/>
+          </td>
+          <td class="text-right">
+            <!--{{lp.cash_flow | number:1}}-->
+            {{lp.margin | displaynullcurrency}}
+          </td>
+          <td class="text-right">
+            {{lp.risk | displaynullcurrency}}
+          </td>
+        </tr>
+      </table>
+
+      <br/><br/>
+
+    </div>
+  </div>
+</fieldset>
+<!--<pre>{{farmPractices | json}}</pre>-->

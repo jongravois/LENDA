@@ -84,6 +84,8 @@
   <script src="angular/services/UsersFactory.js"></script>
   <script src="angular/services/FeederFactory.js"></script>
   <script src="angular/services/LoansFactory.js"></script>
+  <script src="angular/services/FarmersFactory.js"></script>
+  <script src="angular/services/ApplicantsFactory.js"></script>
     <!-- FACTORIES -->
   <!-- APP SPECIFIC -->
 

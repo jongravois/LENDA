@@ -13,18 +13,7 @@
 
     <div class="row">
         <div class="col-md-2">
-            <div class="btn-group-vertical" style="padding-top: 10px; width:98%;">
-                <a ui-sref-active="active" ui-sref="admin.distributors" class="btn btn-default">DISTRIBUTORS</a>
-                <a ui-sref-active="active" ui-sref="admin.entitytypes" class="btn btn-default">ENTITY TYPES</a>
-                <a ui-sref-active="active" ui-sref="admin.instypes" class="btn btn-default">INS TYPES</a>
-                <a ui-sref-active="active" ui-sref="admin.loantypes" class="btn btn-default">LOAN TYPES</a>
-                <a ui-sref-active="active" ui-sref="admin.locations" class="btn btn-default">LOCATIONS</a>
-                <a ui-sref-active="active" ui-sref="admin.regions" class="btn btn-default">REGIONS</a>
-                <a ui-sref-active="active" ui-sref="admin.reports" class="btn btn-default">REPORTS</a>
-                <a ui-sref-active="active" ui-sref="admin.roles" class="btn btn-default">ROLES</a>
-                <a ui-sref-active="active" ui-sref="admin.units" class="btn btn-default">UNITS</a>
-                <a ui-sref-active="active" ui-sref="admin.users" class="btn btn-default">USERS</a>
-            </div>
+            <div ng-include="'angular/views/sidebars/admin.html'"></div>
         </div>
             <!-- our nested state views will be injected here -->
             <div class="col-md-10" ui-view></div>

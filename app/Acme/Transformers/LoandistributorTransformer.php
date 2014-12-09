@@ -8,6 +8,7 @@ class LoandistributorTransformer extends Transformer{
 		return [
 			'id' =>	$arr['id'],
 			'loan_id' => $arr['loan_id'],
+			'distributor_id' => $arr['distributor']['id'],
 			'distributor' => $arr['distributor']['distributor'],
 			'address' => $arr['distributor']['address'],
 			'city' => $arr['distributor']['city'],

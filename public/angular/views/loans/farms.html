@@ -1,1 +1,86 @@
-<h1>Farms</h1>
+<style>
+  .form-control{ padding: 6px 6px !important; }
+</style>
+<fieldset>
+  <legend>Farms Information</legend>
+
+  <table class="table table-striped">
+    <tr>
+      <th style="width:15%;">State|County</th>
+      <th style="width:10%;">FSN</th>
+      <th style="width:10%;">Landlord</th>
+      <th style="width:7%;">Share</th>
+      <th style="width:7%;">Cash Rent</th>
+      <th style="width:10%;">When Due</th>
+      <th style="width:4%;">Waived</th>
+      <th style="width:9%;">Acres</th>
+      <th style="width:3%;">Irr</th>
+      <th style="width:3%;">NI</th>
+      <th style="width:3%;">FACI</th>
+      <th style="width:3%;">FACNI</th>
+      <th class="text-center" style="width:8%;">FSA</th>
+    </tr>
+    <tr ng-show="farms | isEmpty">
+      <td colspan="12">
+        <b>No Farms Found!</b>
+      </td>
+    </tr>
+    <tr ng-repeat="f in farms">
+      <td>
+        <select name="county_id" ng-model="f.county_id" ng-options=" c.id as c.locale for c in loanCounties" class="form-control">
+          <option value="">Please select ...</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" ng-model="f.fsn" class="form-control"/>
+      </td>
+      <td>
+        <input type="text" ng-model="f.owner" class="form-control"/>
+      </td>
+      <td>
+        <input type="text" ng-model="f.share_rent" class="form-control text-right" style="width:60px;"/>
+      </td>
+      <td>
+        <input type="text" ng-model="f.cash_rent" class="form-control text-right" style="width:70px;"/>
+      </td>
+      <td>
+        <input type="text" ng-model="f.when_due" class="form-control text-right"/>
+      </td>
+      <td>
+        <input type="text" ng-model="f.waived" class="form-control text-right" style="width:70px;"/>
+      </td>
+      <td>
+        <input type="text" ng-model="f.acres" class="form-control text-right"/>
+      </td>
+      <td style="text-align: center;">
+        <input type="checkbox" ng-model="f.irr"/>
+      </td>
+      <td style="text-align: center;">
+        <input type="checkbox" ng-model="f.ni"/>
+      </td>
+      <td style="text-align: center;">
+        <input type="checkbox" ng-model="f.facirr"/>
+      </td>
+      <td style="text-align: center;">
+        <input type="checkbox" ng-model="f.facni"/>
+      </td>
+      <td>
+        <input type="text" ng-model="f.fsa_paid" class="form-control text-right" style="width:70px;"/>
+      </td>
+    </tr>
+    <tr style="max-height:2px; background-color: #333;">
+      <td colspan="13"></td>
+    </tr>
+    <tr>
+      <td colspan="13">
+        <a ng-click="createFarm()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Farm</a>
+      </td>
+    </tr>
+  </table>
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button style="margin-right:10px;" class="btn btn-primary">UPDATE</button>
+    </div>
+  </div>
+</fieldset>
+<!--<pre>{{loanCounties | json}}</pre>-->

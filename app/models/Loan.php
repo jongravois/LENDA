@@ -2,7 +2,7 @@
 
 class Loan extends \Eloquent {
 	protected $dates = array('app_date', 'due_date');
-	protected $fillable = ['app_date', 'due_date', 'loan_type_id', 'status_id', 'crop_year', 'season', 'season_full', 'loc_id', 'region_id', 'user_id', 'applicant_id', 'is_cross_collateralized', 'is_fast_tracked', 'has_distributor', 'distributor', 'is_stale', 'need_vote', 'has_comment', 'has_addendum', 'bankruptcy_history', 'required_3party', 'added_land', 'controlled_disbursement', 'attachments', 'its_list', 'fsa_compliant', 'prev_lien_verified', 'leases_valid', 'bankruptcy_order_received', 'received_3party', 'recommended', 'arm_approved', 'dist_approved', 'loan_closed', 'loan_closed_date', 'added_land_verified', 'arm_ucc_received', 'dist_ucc_received', 'aoi_received', 'ccc_received', 'rebate_assignment', 'limit_warning', 'crop_inspection', 'reconcilliation', 'account_classification'];
+	protected $fillable = ['app_date', 'due_date', 'loan_type_id', 'status_id', 'crop_year', 'season', 'season_full', 'loc_id', 'region_id', 'user_id', 'farmer_id', 'applicant_id', 'is_cross_collateralized', 'is_fast_tracked', 'has_distributor', 'distributor', 'is_stale', 'need_vote', 'has_comment', 'has_addendum', 'bankruptcy_history', 'required_3party', 'added_land', 'controlled_disbursement', 'attachments', 'its_list', 'fsa_compliant', 'prev_lien_verified', 'leases_valid', 'bankruptcy_order_received', 'received_3party', 'recommended', 'arm_approved', 'dist_approved', 'loan_closed', 'loan_closed_date', 'added_land_verified', 'arm_ucc_received', 'dist_ucc_received', 'aoi_received', 'ccc_received', 'rebate_assignment', 'limit_warning', 'crop_inspection', 'reconcilliation', 'account_classification'];
 
 	/* RELATIONSHIPS */
   public function applicants()
@@ -45,7 +45,12 @@ class Loan extends \Eloquent {
 		return $this->belongsTo('Distributor', 'distributor_id');
 	}
 
-	public function farms()
+  public function farmer()
+  {
+    return $this->belongsTo('Farmer', 'farmer_id');
+  }
+
+  public function farms()
 	{
 		return $this->hasMany('Farm');
 	}

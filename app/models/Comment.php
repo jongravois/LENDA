@@ -13,7 +13,12 @@ class Comment extends \Eloquent {
 		return $this->hasMany('responses');
 	}
 
-	public function user()
+  public function staff()
+  {
+    return $this->belongsTo('Staff', 'user_id');
+  }
+
+  public function user()
 	{
 		return $this->belongsTo('User', 'user_id');
 	}

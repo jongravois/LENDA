@@ -1,1 +1,685 @@
-<h1>Underwriting</h1>
+<style>
+  th{ text-align: left; }
+  .uline{ border-botton: 1px solid #333 !Important; }
+  .rowed td{border:1px solid #dddddd; }
+  .lg-text{ font-size: 16px;}
+</style>
+<fieldset>
+<legend>Loan Exceptions</legend>
+<div class="row">
+<div class="form-group col-md-9 col-md-offset-1">
+<div id="One">
+  <p class="lg-text"ng-show="loan.has_distributor">
+    This is an {{loan.loan_type}} loan type where ARM and {{loan.distributor}} are partnering on the total commitment
+  </p>
+  <p class="lg-text" ng-show="!loan.has_distributor">
+    This is an {{loan.loan_type.type}} loan type where ARM is responsible for the total commitment
+  </p>
+</div>
+<div id="Two" ng-if="financials.grade && financials.grade != 'A'">
+  <p class="lg-text">
+    Applicant is rated  "{{financials.grade}}"
+  </p>
+</div>
+<div id="Three">
+  <p class="lg-text">
+    Applicant is repeat customer
+  </p>
+</div>
+<div id="Four">
+  <p class="lg-text">
+    Applicant has outstanding loans at ARM
+  </p>
+</div>
+<div id="Five">
+  <p class="lg-text">
+    Applicant utilized loan addendums in previous year: 114%
+  </p>
+</div>
+<div id="Six">
+  <p class="lg-text">
+    Personal Guarantys are being relied upon by this loan
+  </p>
+</div>
+<div id="Seven" ng-if="loan.is_cross_collateralized">
+  <p class="lg-text">
+    This is a cross-collateralized loan
+  </p>
+</div>
+<div id="Eight" ng-if="loan.controlled_disbursement">
+  <p class="lg-text">
+    This is a controlled disbursements loan
+  </p>
+</div>
+<div id="Nine">
+  <p class="lg-text">
+    Cash Rent waivers were utilized
+  </p>
+</div>
+<div id="Ten" ng-if="loan.required_3party">
+  <p class="lg-text">
+    Third Party Credit other than Interest was utilized
+  </p>
+</div>
+<div id="Eleven">
+  <p class="lg-text">
+    Variable harvesting expenses was utilized
+  </p>
+</div>
+<div id="Twelve" ng-if="farmer.farm_exp < 3">
+  <p class="lg-text">
+    Applicant has less than 3 years of farming history
+  </p>
+</div>
+<div id="Thirteen" ng-if="!quests.plant_own">
+  <p class="lg-text">
+    Applicant does not plant his own crops
+  </p>
+</div>
+<div id="Fourteen" ng-if="!quests.harvest_own">
+  <p class="lg-text">Applicant does not harvest his own crop</p>
+</div>
+<div id="Fifteen" ng-if="!quests.equip_obligations">
+  <p class="lg-text">
+    Applicant does not have all equipment obligations met
+  </p>
+</div>
+<div id="Sixteen" ng-if="!quests.other_cash">
+  <p class="lg-text">
+    Applicant has not made provisions for all cash outlays
+  </p>
+</div>
+<div id="Seventeen" ng-if="!quests.fsa_good">
+  <p class="lg-text">
+    Applicant is not in good standing with FSA
+  </p>
+</div>
+<div id="Eighteen" ng-if="!quests.fci_good">
+  <p class="lg-text">Applicant is not in good standing with Federal Crop Insurance (RMA)</p>
+</div>
+<div id="Nineteen" ng-if="!quests.premiums_past">
+  <p class="lg-text">Applicant has Crop Insurance premiums past due</p>
+</div>
+<div id="Twenty" ng-if="quests.legal_defendant">
+  <p class="lg-text">
+    Applicant is defendant in legal actions
+  </p>
+</div>
+<div id="TwentyOne" ng-if="quests.judgements">
+  <p class="lg-text">
+    Applicant has judgements outstanding
+  </p>
+</div>
+<div id="TwentyTwo" ng-if="quests.bankruptcy">
+  <p class="lg-text">
+    Applicant has been previously involved in a bankruptcy
+  </p>
+</div>
+<div id="TwentyThree" ng-if="quests.bankruptcy_order">
+  <p class="lg-text">
+    This loan requires a Banruptcy Order to incur debt
+  </p>
+</div>
+<div id="TwentyFour" ng-if="quests.liens">
+  <p class="lg-text">
+    There are outstanding liens on the mortgaged crop
+  </p>
+</div>
+<div id="TwentyFive" ng-if="quests.future_liabilities">
+  <p class="lg-text">
+    There are outstanding contractual obligations
+  </p>
+</div>
+<div id="TwentySix">
+  <p class="lg-text">
+    This loan includes the production of peanuts
+  </p>
+</div>
+<div id="TwentySeven">
+  <p class="lg-text">
+    This loan includes the production of sugar cane
+  </p>
+</div>
+<div id="TwentyEight">
+  <p class="lg-text">
+    No actual yield history existed - T-yield was used for corn…
+  </p>
+</div>
+<div id="TwentyNine">
+  <p class="lg-text">
+    Certain farms have no rent expense allocated
+  </p>
+</div>
+<div id="Thirty">
+  <p class="lg-text">
+    Whole farm expenses have been utilized and not directly allocated for each crop
+  </p>
+</div>
+<div id="ThirtyOne">
+  <p class="lg-text">
+    Crop Insurance other than RP is being used
+  </p>
+</div>
+<div id="ThirtyTwo">
+  <p class="lg-text">
+    Crop Insurance share used is greater than the applicants share of operation: corn…
+  </p>
+</div>
+<div id="ThirtyThree">
+  <p class="lg-text">
+    More crop was booked than was insured (acres x APH x level) - corn…
+  </p>
+</div>
+<div id="ThirtyFour">
+  <p class="lg-text">
+    This loan relies upon equipment as collateral
+  </p>
+</div>
+<div id="ThirtyFive">
+  <p class="lg-text">
+    This loan relies upon Real Estate as collateral
+  </p>
+</div>
+<div id="ThirtySix">
+  <p class="lg-text">
+    This loan relies upon outstanding Crop Insurance Claims as collateral
+  </p>
+</div>
+<div id="ThirtySeven">
+  <p class="lg-text">
+    Projected crops discount rate used is non-standard
+  </p>
+</div>
+<div id="ThirtyEight">
+  <p class="lg-text">
+    FSA assignment discount rate used is non standard
+  </p>
+</div>
+<div id="ThirtyNine">
+  <p class="lg-text">
+    Crop Insurance discount rate used is non-standard
+  </p>
+</div>
+<div id="Forty">
+  <p class="lg-text">
+    Equipment discount rate used is non-standard
+  </p>
+</div>
+<div id="FortyOne">
+  <p class="lg-text">
+    Real-Estate discount rate used is non-standard
+  </p>
+</div>
+<div id="FortyTwo">
+  <p class="lg-text">
+    Claims discount rate used is non-standard
+  </p>
+</div>
+<div id="FortyThree">
+  <p class="lg-text">
+    Loan has negative cash flow
+  </p>
+</div>
+<div id="FortyFour">
+  <p class="lg-text">
+    Applicant has yield history that is less than break-even for corn…
+  </p>
+</div>
+<div id="FortyFive">
+  <p class="lg-text">Loan's Risk Margin is less than 5% or Loans Risk Margin is less than 0</p>
+</div>
+<div id="FortySix">
+  <p class="lg-text">
+    The forecasted crop insurance plus FSA payments do not exceed the value of Total Commitment or The forecasted crop insurance plus FSA payments do not exceed the value of ARM Commitment
+  </p>
+</div>
+<div id="FortySeven">
+  <p class="lg-text">
+    The balance sheet shows less Net Worth than the ARM Commitment or The Balance Sheet shows negative net worth
+  </p>
+</div>
+<div id="FortyEight">
+  <p class="lg-text">
+    Service Fee is non-standard (this includes rate and/or is not charged on the total commitment)
+  </p>
+</div>
+<div id="FortyNine">
+  <p class="lg-text">
+    Processing Fee is non-standard (this includes rate and/or is not charged on the total commitment)
+  </p>
+</div>
+<div id="Fifty">
+  <p class="lg-text">
+    ARM Interest Rate is non-standard
+  </p>
+</div>
+<div id="FiftyOne">
+  <p class="lg-text">
+    ARM Interest Rate and Distributor Interest Rate are not the same
+  </p>
+</div>
+<div id="FiftyTwo">
+  <p class="lg-text">
+    Due Date is non-standard
+  </p>
+</div>
+</div>
+</div>
+</fieldset>
+<br/><br/>
+<fieldset>
+  <legend>Collateral Conditions</legend>
+  <!-- TODO See Notes -->
+  <div class="row">
+    <div class="form-group col-md-6 col-md-offset-1">
+      <p style="display:none;"><a ng-click="createCollateralCondition()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Condition</a></p><br>
+      <p class="lg-text" ng-class="{clrOn: loan.conditions_asa, clrOff: !loan.conditions_asa}">
+        <input type="checkbox" class="squaredFour" ng-model="loan.conditions_asa"/>
+        &nbsp;
+        Agricultural Security Agreement on Crops and Equipment
+      </p>
+
+      <p class="lg-text" ng-class="{clrOn: loan.conditions_aci, clrOff: !loan.conditions_aci}">
+        <input type="checkbox" class="squaredFour" ng-model="loan.conditions_aci"/>
+        &nbsp;
+        Assignment of Crop Insurance
+      </p>
+      <p ng-show="loan.conditions_aci" ng-hide="!loan.conditions_aci">
+      <table class="table table-striped" ng-show="loan.conditions_aci" ng-hide="!loan.conditions_aci">
+        <tr>
+          <th>Agency</th>
+          <th>Agent</th>
+          <th>Policy</th>
+        </tr>
+        <tr>
+          <td>State Farm</td>
+          <td>Bilbo Baggins</td>
+          <td>357869</td>
+        </tr>
+        <tr>
+          <td>State Farm</td>
+          <td>Bilbo Baggins</td>
+          <td>357904</td>
+        </tr>
+      </table>
+      </p>
+
+      <p class="lg-text" ng-class="{clrOn: loan.conditions_areb, clrOff: !loan.conditions_areb}">
+        <input type="checkbox" class="squaredFour" ng-model="loan.conditions_areb"/>
+        &nbsp;
+        Assignment of Crop Rebate
+      </p>
+      <p ng-show="loan.conditions_areb" ng-hide="!loan.conditions_areb">
+      <table class="table table-striped" ng-show="loan.conditions_areb" ng-hide="!loan.conditions_areb">
+        <tr>
+          <td style="width:50%;">Crop</td>
+          <td style="width:20%;">Acreage</td>
+          <td style="width:30%;">Total Rebate</td>
+        </tr>
+      </table>
+      </p>
+
+      <p class="lg-text" ng-class="{clrOn: loan.conditions_adis, clrOff: !loan.conditions_adis}">
+        <input type="checkbox" class="squaredFour" ng-model="loan.conditions_adis"/>
+        &nbsp;
+        Approval by Distributor
+      </p>
+      <p ng-show="loan.conditions_adis" ng-hide="!loan.conditions_adis">
+      <table class="table table-striped" ng-show="loan.conditions_adis" ng-hide="!loan.conditions_adis">
+        <tr>
+          <td style="width:50%;">Approval Pending</td>
+          <td style="width:20%;">JSI</td>
+          <td style="width:30%;">Marie Osmond</td>
+        </tr>
+      </table>
+      </p>
+
+      <p class="lg-text" ng-class="{clrOn: loan.conditions_pg, clrOff: !loan.conditions_pg}">
+        <input type="checkbox" class="squaredFour" ng-model="loan.conditions_pg"/>
+        &nbsp;
+        Personal Guarantee
+      </p>
+      <p ng-show="loan.conditions_pg" ng-hide="!loan.conditions_pg">
+      <table class="table table-striped" ng-show="loan.conditions_pg" ng-hide="!loan.conditions_pg">
+        <tr ng-repeat="pg in guarantors">
+          <td>{{pg.guarantor}}</td>
+        </tr>
+        <tr>
+          <td>
+            <form ng-submit="addGuarantor()">
+              <input type="text" ng-model="newGuarantor.guarantor"/>
+              <button type="submit">                         <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </form>
+          </td>
+        </tr>
+      </table>
+      </p>
+
+      <p class="lg-text" ng-class="{clrOn: loan.conditions_ccl, clrOff: !loan.conditions_ccl}">
+        <input type="checkbox" class="squaredFour" ng-model="loan.conditions_ccl"/>
+        &nbsp;
+        Cross-Collateralized Loan
+      </p>
+      <p ng-show="loan.conditions_ccl" ng-hide="!loan.conditions_ccl">
+      <table class="table table-striped" ng-show="loan.conditions_ccl" ng-hide="!loan.conditions_ccl">
+        <tr>
+          <td style="width:60%;">Name</td>
+          <td style="width:20%;">Loan Id</td>
+          <td style="width:20%;">Amount</td>
+        </tr>
+      </table>
+      </p>
+
+      <p class="lg-text" ng-class="{clrOn: loan.conditions_afsa, clrOff: !loan.conditions_afsa}">
+        <input type="checkbox" class="squaredFour" ng-model="loan.conditions_afsa"/>
+        &nbsp;
+        Assignment of FSA Direct and LDP Payment
+      </p>
+      <p ng-show="loan.collateral_conditions.afsa" ng-hide="!loan.conditions_afsa">
+      <table class="table table-striped" ng-show="loan.conditions_afsa" ng-hide="!loan.conditions_afsa">
+        <tr>
+          <td style="width:60%;">Credit Limit Verified</td>
+          <td style="width:20%;">PHI</td>
+          <td style="width:20%;">82K</td>
+        </tr>
+      </table>
+      </p>
+      <p class="lg-text" ng-class="{clrOn: loan.conditions_cd, clrOff: !loan.conditions_cd}">
+        <input type="checkbox" class="squaredFour" ng-model="loan.conditions_cd"/>
+        &nbsp;
+        Controlled Disbursement
+      </p>
+      <p ng-show="loan.conditions_cd" ng-hide="!loan.collateral_conditions.cd">
+      <table class="table table-striped" ng-show="loan.conditions_cd" ng-hide="!loan.conditions_cd">
+        <tr>
+          <td style="width:60%;">Schedule</td>
+          <td style="width:20%;">Amount</td>
+          <td style="width:20%;">Balance</td>
+        </tr>
+      </table>
+      </p>
+    </div>
+  </div>
+</fieldset>
+<br/><br/>
+<fieldset>
+  <!-- TODO: Trigger a LENDA -->
+  <legend>Collateral Summary</legend>
+  <div class="row">
+    <div class="form-group col-md-10 col-md-offset-1">
+      <table class="table table-striped rowed">
+        <tr>
+          <th style="width:37%;">&nbsp;</th>
+          <th style="width:15%;">
+            Prior Lien
+          </th>
+          <th style="width:12%;">
+            Mkt Value
+          </th>
+          <th style="width:12%;">
+            Discount %
+          </th>
+          <th style="width:12%;">
+            Non RP
+          </th>
+          <th style="width:12%;">
+            Value
+          </th>
+        </tr>
+        <tr>
+          <td>Projected Crops</td>
+          <td ng-class=gtZero(loan.prior_lien)>
+            <edit-in-place value="prior_lien.projected_crops"></edit-in-place>
+          </td>
+          <td class="text-right">
+            {{financials.adj_prod | currency}}
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="financials.disc_prod_percent"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            {{financials.non_rp_percent | number:1}}%
+          </td>
+          <td class="text-right">
+            {{financials.pc_value = ((prior_lien.projected_crops * 1 + financials.adj_prod * 1) * ((financials.disc_prod_percent/100) + (financials.non_rp_percent/100))) | currency}}
+          </td>
+        </tr>
+        <tr>
+          <td>Crop Ins Over Discounted Crops</td>
+          <td ng-class=gtZero(loan.prior_lien)>
+            <edit-in-place value="prior_lien.ins_over_disc"></edit-in-place>
+          </td>
+          <td class="text-right">
+            {{financials.ins_disc_prod | currency}}
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="financials.disc_ins_percent"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            {{financials.non_rp_percent | number:1}}%
+          </td>
+          <td class="text-right">
+            {{financials.iod_value = ((prior_lien.ins_over_disc * 1 + financials.ins_disc_prod * 1) * ((financials.disc_ins_percent/100) + (financials.non_rp_percent/100))) | currency}}
+          </td>
+        </tr>
+        <tr>
+          <td>FSA Payments</td>
+          <td ng-class=gtZero(loan.prior_lien)>
+            <edit-in-place value="prior_lien.fsa_payments"></edit-in-place>
+          </td>
+          <td class="text-right">
+            {{financials.total_fsa_payment | currency}}
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="financials.disc_ins_percent"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            {{financials.non_rp_percent | number:1}}%
+          </td>
+          <td class="text-right">
+            {{financials.fsa_value = ((prior_lien.fsa_payments * 1 + financials.total_fsa_payment * 1) * ((financials.disc_ins_percent/100) + (financials.non_rp_percent/100))) | currency}}
+          </td>
+        </tr>
+        <tr>
+          <td>Claims</td>
+          <td ng-class=gtZero(loan.prior_lien)>
+            <edit-in-place value="prior_lien.claims"></edit-in-place>
+          </td>
+          <td class="text-right">
+            {{financials.total_claims | currency}}
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="financials.disc_ins_percent"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            {{financials.non_rp_percent | number:1}}%
+          </td>
+          <td class="text-right">
+            {{financials.claims_value = ((prior_lien.claims * 1 + financials.total_claims * 1) * ((financials.disc_ins_percent/100) + (financials.non_rp_percent/100))) | currency}}
+          </td>
+        </tr>
+        <tr>
+          <td>Equipment</td>
+          <td ng-class=gtZero(loan.prior_lien)>
+            <edit-in-place value="prior_lien.equipment"></edit-in-place>
+          </td>
+          <td class="text-right">
+            {{0 | currency}}
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="20.0"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            {{0 | number:1}}%
+          </td>
+          <td class="text-right">
+            {{0 | currency}}
+          </td>
+        </tr>
+        <tr>
+          <td>Real Estate</td>
+          <td ng-class=gtZero(loan.prior_lien)>
+            <edit-in-place value="prior_lien.real_estate"></edit-in-place>
+          </td>
+          <td class="text-right">
+            {{0 | currency}}
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="40.0"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            {{0 | number:1}}%
+          </td>
+          <td class="text-right">
+            {{0 | currency}}
+          </td>
+        </tr>
+        <tr class="success">
+          <td>Total Value</td>
+          <td ng-class=gtZero(prior_lien.total)>
+            {{prior_lien.total | displaynullcurrency}}
+          </td>
+          <td class="text-right">
+            {{financials.adj_prod * 1 + financials.ins_disc_prod * 1 + financials.total_fsa_payment * 1 + financials.total_claims * 1 | currency}}
+          </td>
+          <td class="text-right">&nbsp;</td>
+          <td class="text-right">&nbsp;</td>
+          <td class="text-right">
+            {{financials.pc_value * 1 + financials.iod_value * 1 + financials.fsa_value * 1 + financials.claims_value * 1 | currency}}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</fieldset>
+<br/><br/>
+<fieldset ng-if="loan.has_addendum">
+  <legend>Loan History (Hardcoded for styling only)</legend>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped rowed">
+        <tr>
+          <th style="width:3%;">&nbsp;</th>
+          <th clas="text-center" style="width:9%;">Date</th>
+          <th clas="text-center" style="width:9%;">Acres</th>
+          <th clas="text-center" style="width:9%;">Revenue</th>
+          <th clas="text-center" style="width:9%;">ARM</th>
+          <th clas="text-center" style="width:9%;">{{loan.distributor}}</th>
+          <th class="text-center" style="width:9%;">Other</th>
+          <th class="text-center" style="width:9%;">CF</th>
+          <th class="text-center" style="width:9%;">Ins</th>
+          <th class="text-center" style="width:9%;">Collateral</th>
+          <th class="text-center" style="width:9%;">RM</th>
+        </tr>
+        <tr>
+          <td>
+            <span class="glyphicon glyphicon-usd"></span>
+          </td>
+          <td>
+            9/15/14
+          </td>
+          <td>
+            2,200
+          </td>
+          <td class="text-right">
+            $1,085,440
+          </td>
+          <td class="text-right">
+            $357,239
+          </td>
+          <td class="text-right">
+            $547,960
+          </td>
+          <td class="text-right">
+            44,000
+          </td>
+          <td class="text-right">
+            $156,000
+          </td>
+          <td class="text-right">
+            $848,560
+          </td>
+          <td class="text-right">
+            $800,000
+          </td>
+          <td class="text-right">
+            $200,000
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="glyphicon glyphicon-plus"></span>
+          </td>
+          <td>
+            9/15/14
+          </td>
+          <td>
+            2,200
+          </td>
+          <td class="text-right">
+            $1,085,440
+          </td>
+          <td class="text-right">
+            $257,239
+          </td>
+          <td class="text-right">
+            $547,960
+          </td>
+          <td class="text-right">
+            44,000
+          </td>
+          <td class="text-right">
+            $198,027
+          </td>
+          <td class="text-right">
+            $848,560
+          </td>
+          <td class="text-right">
+            $809,000
+          </td>
+          <td class="text-right">
+            $3,801
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="glyphicon glyphicon-record"></span>
+          </td>
+          <td>
+            3/14/14
+          </td>
+          <td>
+            2,000
+          </td>
+          <td class="text-right">
+            $971,200
+          </td>
+          <td class="text-right">
+            $233,953
+          </td>
+          <td class="text-right">
+            $481,610
+          </td>
+          <td class="text-right">
+            41,800
+          </td>
+          <td class="text-right">
+            $181,637
+          </td>
+          <td class="text-right">
+            $760,190
+          </td>
+          <td class="text-right">
+            $705,264
+          </td>
+          <td class="text-right">
+            $(10,299)
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</fieldset>
+
+<!--<pre>{{financials | json}}</pre>-->

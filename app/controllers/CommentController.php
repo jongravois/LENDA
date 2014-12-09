@@ -14,7 +14,7 @@ class CommentController extends ApiController {
 
 	public function index()
 	{
-		$comment = Comment::with('loan', 'responses', 'user')->get();
+		$comment = Comment::with('loan', 'staff', 'responses.user.staff', 'user')->get();
 
 		return $this->respond([
 			'data' => $this->commentTransformer->transformCollection($comment->all())
@@ -23,7 +23,7 @@ class CommentController extends ApiController {
 
 	public function show($id)
 	{
-		$comment = Comment::with('loan', 'responses', 'user')->where('id', $id)->get();
+		$comment = Comment::with('loan', 'staff', 'responses.user.staff', 'user')->where('id', $id)->get();
 
 		if( $comment->isEmpty() ){
 			return $this->respondNotFound('Comment does not exist.');
@@ -53,7 +53,7 @@ class CommentController extends ApiController {
 
 	public function byLoan($id)
 	{
-		$comment = Comment::with('loan', 'responses.user', 'user')->where('loan_id', $id)->get();
+		$comment = Comment::with('loan', 'staff', 'responses.user.staff', 'user')->where('loan_id', $id)->get();
 
 		return $this->respond([
 			'data' => $this->commentTransformer->transformCollection($comment->all())

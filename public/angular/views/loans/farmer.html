@@ -1,1 +1,75 @@
-<h1>Farmer</h1>
+<form>
+  <fieldset name="FarmerInformation">
+    <!--<pre>{{farmer | json}}</pre>-->
+    <legend>FARMER INFORMATION</legend>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <!-- FARMER -->
+        <div class="row">
+          <div class="form_group col-md-7">
+            <label>Last Name, First Name or Company Name:</label>
+            <input type="text" ng-model="farmer.farmer" typeahead="f.farmer for f in farmers | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onFarmerSelect($item, $model, $label)"/>
+          </div>
+          <div class="form-group col-md-2">
+            <label>SSN / Tax ID:</label>
+            <input type="text" class="form-control" name="ssn"ui-mask="999-99-9999" ng-model="farmer.ssn" style="width: 160px;"/>
+          </div>
+          <div class="form_group col-md-3">&nbsp;</div>
+        </div>
+        <!-- FARMER -->
+
+        <!-- ADDRESS / PHONE -->
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label>Mailing Address:</label>
+            <input type="text" name="address" ng-model="farmer.address" class="form-control"/>
+          </div>
+          <div class="form-group col-md-3">
+            <label>City:</label>
+            <input type="text" name="city" ng-model="farmer.city" class="form-control"/>
+          </div>
+          <div class="form-group col-md-2">
+            <label>State:</label>
+            <select name="state" ng-model="farmer.state_id" class="form-control" ng-options="s.id as s.state for s in feeder.states">
+              <option value="">Please select ...</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label>Zip:</label>
+            <input type="text" name="zip" ng-model="farmer.zip" class="form-control"/>
+          </div>
+        </div>
+        <!-- ADDRESS / PHONE -->
+
+        <!-- PHONE / EMAIL / DOB -->
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label>Phone:</label>
+            <input type="text" name="phone" ui-mask="(999) 999-9999" ng-model="farmer.phone" class="form-control"/>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Email Address:</label>
+            <input type="text" name="email" ng-model="farmer.email" class="form-control"/>
+          </div>
+          <div class="form-group col-md-2">
+            <label>Yrs Farming:</label>
+            <input type="text" name="farm_exp" ng-model="farmer.farm_exp" class="form-control" style="width:70px;"/>
+          </div>
+          <div class="form-group col-md-1">
+            <label>DOB:</label>
+            <input type="text" name="dob" ui-mask="99/99/9999" ng-model="farmer.dob" class="form-control" style="width: 100px;"/>
+          </div>
+          <div class="form-group col-md-1">
+            <label>Age: {{farmer.age}}</label>
+          </div>
+        </div>
+        <!-- PHONE / EMAIL / DOB -->
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="insertFarmer()" ng-if="newapplication">SAVE</button>
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateFarmer()" ng-if="!newapplication">UPDATE</button>
+        </div>
+      </div>
+  </fieldset>
+</form>

@@ -1,1 +1,630 @@
-<h1>Summary</h1>
+<style>
+  label{ font-weight:normal; color:#AAA; }
+  .rowed td{border:1px solid #dddddd; }
+</style>
+<!--<pre>{{loan | json}}</pre>-->
+<form>
+<fieldset>
+<legend>Loan Summary</legend>
+<!--Analyst/Loan Type/App Date-->
+<div class="row">
+  <div class="form-group col-md-4">
+    <label>Originating Officer:</label>
+    <br/>
+    <p class="display-field">
+      {{loan.analyst.name}}
+    </p>
+  </div>
+  <div class="form-group col-md-4">
+    <label>Loan Type</label>
+    <br/>
+    <p class="display-field">
+      {{loan.loan_type}}
+      <span ng-if="loan.is_addendum"> - Addendum</span>
+    </p>
+  </div>
+  <div class="form-group col-md-4">
+    <label ng-if="!loan.is_addendum">Application Date</label>
+    <label ng-if="loan.is_addendum">Addendum Date</label>
+    <br/>
+    <p class="display-field">
+      {{loan.app_date | date:'M/d/yy'}}
+    </p>
+  </div>
+</div>
+
+<!--Interest Rate/Due Date/Status-->
+<div class="row">
+  <div class="form-group col-md-4">
+    <label>Interest Rate</label>
+    <br/>
+    <table style="width:120px;">
+      <tr>
+        <td style="width:50%;">ARM:</td>
+        <td>{{loan.fins.int_percent_arm | number:1}}%</td>
+      </tr>
+      <tr ng-if="loan.has_distributor">
+        <td>{{loan.distributor}}:</td>
+        <td>{{loan.fins.int_percent_dist | number:1}}%</td>
+      </tr>
+    </table>
+  </div>
+  <div class="form-group col-md-4">
+    <label>Due Date</label>
+    <br/>
+    <p class="display-field">
+      {{loan.due_date | date:'M/d/yy'}}
+    </p>
+  </div>
+  <div class="form-group col-md-4">
+    <label>Application Status</label>
+    <br/>
+    <p class="display-field">
+      {{loan.status}}
+    </p>
+  </div>
+</div>
+
+<!--Entity/Applicant/Stakeholders-->
+<div class="row">
+  <div class="form-group col-md-4">
+    <label>Organization Type</label>
+    <br/>
+    <p class="display-field">
+      {{loan.entity_type}}
+    </p>
+  </div>
+  <div class="form-group col-md-4">
+    <label>Applicant</label>
+    <br/>
+    <p class="display-field">
+      {{applicant.applicant | displayname}}
+      <br/>
+      {{applicant.address}}
+      <br/>
+      {{applicant.city}}, {{applicant.state_abr}} {{applicant.zip}}
+      <br/>
+      {{applicant.phone | phone}}
+      <br/>
+      {{applicant.email}}
+      <br/>
+    </p>
+  </div>
+  <div class="form-group col-md-4">
+    <div ng-switch="loan.entity_type_id">
+      <div ng-switch-when="1">
+        <label>Corporation</label>
+        <br/>
+        <p class="display-field" ng-repeat="c in corps">
+          {{c.corporation}}
+          <br/>
+          {{c.president}}, (President)
+          <br/>
+          {{c.vicepresident}}, (Vice-President)
+          <br/>
+          {{c.secretarytreasurer}}, (Secretary / Treasurer)
+        </p>
+      </div>
+      <div ng-switch-when="3">
+        <label>Joint Venture</label>
+        <br/>
+        <p class="display-field" ng-repeat="j in joints">
+          {{j.partner}}
+          <br/>
+          {{j.address}}
+          <br/>
+          {{j.city}}, {{j.state_abr}} {{j.zip}}
+          <br/>
+          {{j.phone | phone}}
+          <br/>
+          {{j.email}}
+        </p>
+      </div>
+      <div ng-switch-when="4">
+        <label>Partners</label>
+        <br/>
+        <p class="display-field" ng-repeat="p in partners">
+          {{p.partner}}
+          <br/>
+          {{p.address}}
+          <br/>
+          {{p.city}}, {{p.state_abr}} {{p.zip}}
+          <br/>
+          {{p.phone | phone}}
+          <br/>
+          {{p.email}}
+          <br/><br/>
+        </p>
+      </div>
+      <div ng-switch-when="5">
+        <label>Spouse</label>
+        <br/>
+        <p class="display-field">
+          {{applicant.spouse | displayname}}
+          <br/>
+          {{applicant.address}}
+          <br/>
+          {{applicant.city}}, {{applicant.state_abr}} {{applicant.zip}}
+          <br/>
+          {{applicant.spouse_phone | phone}}
+          <br/>
+          {{applicant.spouse_email}}
+          <br/>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Income%/Crops-Irrigation-->
+<div class="row">
+  <div class="form-group col-md-4">
+    <label>Income From Farm</label>
+    <br/>
+    <p class="display-field">
+      {{quests.income_percent | number:1}}%
+    </p>
+  </div>
+  <div class="form-group col-md-8">
+    <label>Crops / Percent Irrigated</label>
+    <br/>
+    <p class="display-field">
+      {{getCropsPercentIrrigated()}}
+    </p>
+  </div>
+</div>
+
+<!--Income% Explanation-->
+<div class="row" ng-if="quests.income_percent < 100">
+  <div class="form-group col-md-12">
+    <label>Additional Income</label>
+    <p>{{quests.income_distribution_details}}</p>
+  </div>
+</div>
+
+<!--Distributor/Pesticide Number-->
+<div class="row" ng-if="loan.has_distributor">
+  <div class="form-group col-md-4">
+    <label>Participating Distributor</label>
+    <br/>
+    <p class="display-field">
+      {{loan.distributor}}
+    </p>
+  </div>
+  <div class="form-group col-md-4">
+    <label>Pesticide Number</label>
+    <br/>
+    <p class="display-field">
+      {{quests.pesticide_number}}
+    </p>
+  </div>
+</div>
+
+<!--LOAN SUMMARY-->
+<div ng-repeat="c in comments | filter:{type:'Loan'}">
+  <div class="alert alert-default" role="alert">
+    <h4><span class="glyphicon glyphicon-pencil" ></span> Loan Summary
+    </h4>
+    <hr/>
+    <p style="font-size:11px;font-weight:bold;"><i>{{c.user}}</i>
+      &nbsp;&nbsp;-&nbsp;&nbsp;
+      <i>{{c.dtCom | date:'MM/dd/yy'}}</i></p>
+    <p>{{c.comment}}</p>
+  </div>
+</div>
+
+<!--Collateral Conditions-->
+<div class="row" style="padding-top: 20px;">
+  <div class="form-group col-md-12 text-left">
+    <b>Collateral Conditions</b>
+    <div class="row">
+      <div class="form-group col-md-6 col-md-offset-1">
+        <p class="lg-text" ng-repeat="c in loanConditions">{{c.condition}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Projected Income-->
+<div class="row" style="padding-top: 20px;">
+  <div class="form-group col-md-12 text-left">
+    <b>Projected Income</b>
+  </div>
+  <div class="row form-group col-md-12" >
+    <table class="table table-striped rowed" style="width:97%;margin:0 auto;">
+      <tr>
+        <th style="width:17%;">Source</th>
+        <th style="width:9%;">Acres</th>
+        <th style="width:9%;">Yield</th>
+        <th style="width:9%;">Price</th>
+        <th style="width:9%;">Bk Qty</th>
+        <th style="width:10%;">Bk Price</th>
+        <th style="width:9%;">Harvest</th>
+        <th style="width:9%;">Rebates</th>
+        <th style="width:9%;">Share</th>
+        <th style="width:12%;">Total</th>
+      </tr>
+      <tr ng-repeat="c in loanCrops" ng-if="c.is_active">
+        <td>{{c.crop | capitalize}}</td>
+        <td class="text-center">
+          {{c.acres | number:1}}
+        </td>
+        <td ng-class=gtZero(c.prod_yield)>
+          {{c.prod_yield | displaynull}}
+        </td>
+        <td ng-class=gtZero(c.prod_price)>
+          {{c.prod_price | displaynullcurrency}}
+        </td>
+        <td ng-class=gtZero(c.bkqty)>
+          {{c.bkqty | displaynull}}
+        </td>
+        <td ng-class=gtZero(c.bkprice)>
+          {{c.bkprice | displaynullcurrency}}
+        </td>
+        <td ng-class=gtZero(c.harvest)>
+          {{c.harvest | displaynullcurrency}}
+        </td>
+        <td ng-class=gtZero(c.rebates)>
+          {{c.rebates | displaynullcurrency}}
+        </td>
+        <td ng-class=gtZero(c.prod_share)>
+          {{c.prod_share | displaynullpercent}}
+        </td>
+        <td ng-class=gtZero(c.adj_prod)>
+          {{c.adj_prod | displaynullcurrency}}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="9">FSA Payment</td>
+        <td ng-class=gtZero(financials.total_fsa_payment)>
+          {{financials.total_fsa_payment | displaynullcurrency}}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="9">Claims</td>
+        <td ng-class=gtZero(financials.total_claims)>
+          {{financials.total_claims | displaynullcurrency}}
+        </td>
+      </tr>
+      <tr class="success">
+        <td class="text-left"><strong>Total Revenue</strong></td>
+        <td class="text-center">{{financials.total_acres | number:1}}</td>
+        <td colspan="7">&nbsp;</td>
+        <td ng-class=gtZero(financials.total_revenue)>
+          {{financials.total_revenue | displaynullcurrency}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!--USE OF FUNDS ANALYSIS-->
+<div class="row" style="padding-top: 20px;">
+<div class="form-group col-md-12 text-left">
+  <b>Use of Funds Analysis</b>
+</div>
+<div class="row form-group col-md-12" >
+<table class="table table-striped rowed" style="width:97%;margin:0 auto;">
+<tbody>
+<tr>
+  <td colspan="5">&nbsp</td>
+  <td class="text-center" style="width:10%;">ARM</td>
+  <td class="text-center" style="width:10%;">{{loan.distributor}}</td>
+  <td class="text-center" style="width:10%;">Other</td>
+  <td class="text-center" style="width:10%;">Total</td>
+</tr>
+<tr>
+  <td colspan="5">Fertilizer</td>
+  <td ng-class=gtZero(loan.totalExpenses.fertilizer.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fertilizer.dist)>
+    {{72688.53 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fertilizer.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fertilizer.total)>
+    {{72688.53 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Seed</td>
+  <td ng-class=gtZero(loan.totalExpenses.seed.arm)>
+    {{0  | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.seed.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.seed.other)>
+    {{74769 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.seed.total)>
+    {{74769 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Fungicide</td>
+  <td ng-class=gtZero(loan.totalExpenses.fungicide.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fungicide.dist)>
+    {{7253.75 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fungicide.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fungicide.total)>
+    {{7253.75 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Herbicide</td>
+  <td ng-class=gtZero(loan.totalExpenses.herbicide.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.herbicide.dist)>
+    {{23084.17 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.herbicide.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.herbicide.total)>
+    {{23084.17 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Insecticide</td>
+  <td ng-class=gtZero(loan.totalExpenses.insecticide.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insecticide.dist)>
+    {{6191.80 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insecticide.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insecticide.total)>
+    {{6191.80 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Custom</td>
+  <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
+    {{19019.80 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.custom.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.custom.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.custom.total)>
+    {{19019.80 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Fuel</td>
+  <td ng-class=gtZero(loan.totalExpenses.fuel.arm)>
+    {{31305.00 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fuel.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fuel.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fuel.total)>
+    {{31305.00 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Labor</td>
+  <td ng-class=gtZero(loan.totalExpenses.labor.arm)>
+    {{18554.00 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.labor.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.labor.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.labor.total)>
+    {{18554.00 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Repairs</td>
+  <td ng-class=gtZero(loan.totalExpenses.repairs.arm)>
+    {{12751.00 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.repairs.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.repairs.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.repairs.total)>
+    {{12751.00 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Insurance</td>
+  <td ng-class=gtZero(loan.totalExpenses.insurance.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insurance.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insurance.other)>
+    {{12454.42 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insurance.total)>
+    {{12454.42 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Harvesting</td>
+  <td ng-class=gtZero(loan.totalExpenses.harvesting.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.harvesting.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.harvesting.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.harvesting.total)>
+    {{0 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Misc_acre</td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.arm)>
+    {{18554 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.total)>
+    {{18554 | displaynullcurrency }}
+  </td>
+</tr>
+<tr ng-repeat="fex in farmExpenses">
+  <td colspan="5">{{fex.expense}}</td>
+  <td class="text-right">
+    {{fex.cost | displaynullcurrency}}
+  </td>
+  <td class="text-center"> - </td>
+  <td class="text-center"> - </td>
+  <td class="text-right">
+    {{fex.cost | displaynullcurrency}}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Fees and Other</td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.arm)>
+    {{5815 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.total)>
+    {{5815 | displaynullcurrency }}
+  </td>
+</tr>
+<tr class="success">
+  <td class="text-left"><strong>Total Expenses</strong></td>
+  <td colspan="4">&nbsp;</td>
+  <td ng-class=gtZero(loanAssets.total_arm)>
+    {{loanAssets.total_arm | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loanAssets.total_dist)>
+    {{loanAssets.total_dist | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loanAssets.total_other)>
+    {{loanAssets.total_other | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loanAssets.total_total)>
+    {{loanAssets.total_total | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Estimated Interest</td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.arm)>
+    {{4360 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.dist)>
+    {{3686 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.other)>
+    {{2944 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.total)>
+    {{10990 | displaynullcurrency }}
+  </td>
+</tr>
+<tr class="warning">
+  <td colspan="5">Cash Flow (Deficit)</td>
+  <td colspan="3">&nbsp;</td>
+  <td class="text-right">
+    {{22718 | displaynullcurrency }}
+  </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!--INSURANCE ANALYSIS-->
+<div class="row" style="padding-top: 20px;">
+  <div class="form-group col-md-12 text-left">
+    <b>Crop Insurance Analysis</b>
+  </div>
+  <div class="row form-group col-md-10 col-md-offset-1" >
+    <table class="table" style="width:80%;">
+      <tr>
+        <td style="width:60%;">ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}} </span>Loan secured by Collateral Conditions</td>
+        <td style="width:40%;" colspan="3" class="text-right">
+          {{financials.arm_and_dist | displaynullcurrency}}
+        </td>
+      </tr>
+      <tr>
+        <td>Applicant's share of crop insurance less premium</td>
+        <td colspan="3" class="text-right">
+          {{financials.guaranty | displaynullcurrency}}
+        </td>
+      </tr>
+      <tr>
+        <td>Crop Insurance coverage in excess of ARM and {{loan.distributor}} Loan</td>
+        <td colspan="3" class="text-right">
+          {{financials.guaranty - financials.arm_and_dist | displaynullcurrency}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!--BREAK-EVEN ANALYSIS-->
+<!-- Need to loop through Selected Crops -->
+<div class="row" style="padding-top: 20px;">
+  <div class="form-group col-md-12 text-left">
+    <b>Break Even Analysis</b>
+  </div>
+  <div class="row form-group col-md-10 col-md-offset-1" >
+    <table class="table" style="width:80%;">
+      <tr>
+        <td style="width:35%;">Loan payback break-even for ARM<span ng-if="loan.has_distributor"> and {{loan.quests.distributor}}</span>:</td>
+        <td style="width:10%;">CORN</td>
+        <td class="text-right" style="width:10%;">
+          {{loanCrops[0].break_even | number:1}}
+        </td>
+      </tr>
+      <tr>
+        <td style="width:35%;">Loan payback break-even for ARM<span ng-if="loan.has_distributor"> and {{loan.quests.distributor}}</span>:</td>
+        <td style="width:10%;">SOYBEANS</td>
+        <td class="text-right" style="width:10%;">
+          {{loanCrops[1].break_even | number:1}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 text-right">
+    <button style="margin-right:10px;" class="btn btn-primary">
+      <span class="glyphicon glyphicon-envelope"></span> EMAIL
+    </button>
+  </div>
+</div>
+</fieldset>
+<!--<pre>{{financials | json}}</pre>-->
+<!--<pre>{{loantypes | json}}</pre>-->
+</form>

@@ -16,6 +16,7 @@ class LoansTableSeeder extends Seeder {
 			'loc_id' => 4,
 			'region_id' => 3,
 			'user_id' => 2,
+      'farmer_id' => 1,
 			'applicant_id' => 2,
 			'is_cross_collateralized' => 0,
 			'is_fast_tracked' => 0,
@@ -62,7 +63,9 @@ class LoansTableSeeder extends Seeder {
 			'crop_year' => '2015',
 			'season' =>	'S',
 			'season_full' => 'Spring',
-			'loan_type_id' =>	3
+			'loan_type_id' =>	3,
+      'farmer_id' => 2,
+
 		]);
 
 		// Steve Rogers (12) @ Shielded Farms (3) | Joint Venture
@@ -76,7 +79,8 @@ class LoansTableSeeder extends Seeder {
 			'crop_year' => '2015',
 			'season' =>	'S',
 			'season_full' => 'Spring',
-			'loan_type_id' => 5
+			'loan_type_id' => 5,
+      'farmer_id' => 12
 		]);
 
 		// Clint Barton (5) @ Nested Row (4) | Corporation
@@ -90,7 +94,8 @@ class LoansTableSeeder extends Seeder {
 			'crop_year' => '2015',
 			'season' =>	'S',
 			'season_full' => 'Spring',
-			'loan_type_id' =>	4
+			'loan_type_id' =>	4,
+      'farmer_id' => 5
 		]);
 
 		// Jack Murdoch (9) @ Dark World (5) | Individual
@@ -104,7 +109,8 @@ class LoansTableSeeder extends Seeder {
 			'crop_year' => '2015',
 			'season' =>	'S',
 			'season_full' => 'Spring',
-			'loan_type_id' =>	1
+			'loan_type_id' =>	1,
+      'farmer_id' => 9
 		]);
 
 		// Tony Stark (1) @ Glass Towers (2) | Spousal (5)
@@ -119,6 +125,7 @@ class LoansTableSeeder extends Seeder {
 			'loc_id' => 4,
 			'region_id' => 3,
 			'user_id' => 2,
+      'farmer_id' => 1,
 			'applicant_id' => 2,
       'is_active' => 0,
 			'is_cross_collateralized' => 0,

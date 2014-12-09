@@ -1,1 +1,33 @@
-<h1>Prerequisites</h1>
+<style>
+  th{ text-align:center; }
+</style>
+<fieldset>
+  <legend>Required Documents</legend>
+  <table class="table table-striped">
+    <tr>
+      <th style="width:30%">Document</th>
+      <th style="width:12%;">Requested</th>
+      <th style="width:12%;">Received</th>
+      <th style="width:20%;">Reason Pending</th>
+    </tr>
+    <tr ng-repeat="d in docs">
+      <td>{{d.document}}</td>
+      <td class="text-center">
+        <span class="glyphicon glyphicon-pushpin" ng-if="!d.date_requested" ></span>
+                <span ng-if="d.date_requested">
+                    {{d.date_requested | date:'M/d/yy'}}
+                </span>
+      </td>
+      <td class="text-center">
+        <span class="glyphicon glyphicon-cloud-upload" ng-if="!d.date_received"></span>
+                <span ng-if="d.date_received">
+                    {{d.date_received | date:'M/d/yy'}}
+                </span>
+      </td>
+      <td>
+        <input type="text" class="form-control" ng-model="d.reason_pending"/>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<!--<pre>{{docs | json}}</pre>-->

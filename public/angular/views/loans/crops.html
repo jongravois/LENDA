@@ -1,1 +1,59 @@
-<h1>Crops</h1>
+<style>
+  th{ text-align: left;}
+</style>
+
+<fieldset>
+  <legend>Crop Options</legend>
+  <table class="table table-striped">
+    <tr>
+      <th style="width:15%;">Crop</th>
+      <th style="width:12%;">Market To Whom</th>
+      <th style="width:10%;">Bk Qty</th>
+      <th style="width:10%;">Bk Price</th>
+      <th style="width:10%;">Harvest</th>
+      <th>UoM</th>
+      <th style="width:12%;">Gin/Mill</th>
+      <th style="width:10%;">Rebate</th>
+      <th>UoM</th>
+    </tr>
+    <tr ng-repeat="c in loanCrops | orderBy: 'id'" ng-if="c.is_active">
+      <td>
+        {{c.crop | capitalize}}
+      </td>
+      <td>
+        <input type="text" class="form-control" ng-model="c.markettowhom"/>
+      </td>
+      <td>
+        <input type="text" class="form-control text-right" ng-model="c.bkqty"/>
+      </td>
+      <td>
+        <input type="text" class="form-control text-right" ng-model="c.bkprice"/>
+      </td>
+      <td>
+        <input type="text" class="form-control text-right" ng-model="c.harvest"/>
+      </td>
+      <td>
+        <select name="uom" ng-model="c.uom" ng-options="s.abr as s.name for s in measurements" ng-change="uomChanged(c.id, c.uom)">
+          <option value="">Unit</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="form-control" ng-model="c.gin_mill"/>
+      </td>
+      <td>
+        <input type="text" class="form-control text-right" ng-model="c.rebates"/>
+      </td>
+      <td>
+        <select name="uom" ng-model="c.uom" ng-options="s.abr as s.name for s in measurements" ng-change="uomChanged(c.id, c.uom)">
+          <option value="">Unit</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="6">
+        <a ng-click="createCrop()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Crop</a>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<!--<pre>{{loanCrops | json}}</pre>-->

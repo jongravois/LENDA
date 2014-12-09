@@ -255,7 +255,7 @@
           .state('new', {
             abstract: true,
             url: '/new',
-            templateUrl: 'angular/views/NewApp.html',
+            templateUrl: 'angular/views/newApp.html',
             controller: 'NewAppController'
           })
 

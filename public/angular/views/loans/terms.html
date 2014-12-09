@@ -1,1 +1,226 @@
-<h1>Terms</h1>
+<style>
+  .rowed td{border:1px solid #dddddd; }
+</style>
+<form>
+<fieldset>
+  <!--<pre>{{loan | json}}</pre>-->
+  <legend>Loan Terms</legend>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Due Date</label>
+      <p class="input-group">
+        <input type="text" class="form-control" datepicker-popup="M/d/yy" ng-model="loan.due_date" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+      </p>
+      <br/><br/>
+    </div>
+    <div class="col-md-4">&nbsp;</div>
+    <div class="col-md-4">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table" style="width: 60%;">
+        <tr>
+          <td colspan="3">&nbsp;</td>
+          <td class="text-center">Fee On Total</td>
+        </tr>
+        <tr>
+          <td style="width:22%;">Loan Processing Fee</td>
+          <td style="width:10%;">
+            <percent-edit-in-place value="loan.fins.fee_processing_percent"></percent-edit-in-place>
+          </td>
+          <td class="text-right" style="width:8%;">
+                            <span ng-if="loan.fins.fee_processing_onTotal">
+                                {{loan.fins.proc_fee | noCentsCurrency}}
+                            </span>
+                            <span ng-if="!loan.fins.fee_processing_onTotal">
+                                {{loan.fins.proc_fee_arm_only | noCentsCurrency}}
+                            </span>
+          </td>
+          <td class="text-center" style="width:20%;">
+            <input type="checkbox" ng-model="loan.fins.fee_processing_onTotal"/>
+          </td>
+        </tr>
+        <tr>
+          <td>Loan Service Fee</td>
+          <td>
+            <percent-edit-in-place value="loan.fins.fee_service_percent"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+                            <span ng-if="loan.fins.fee_service_onTotal">
+                                {{loan.fins.srvc_fee | noCentsCurrency}}
+                            </span>
+                            <span ng-if="!loan.fins.fee_service_onTotal">
+                                {{loan.fins.srvc_fee_arm_only | noCentsCurrency}}
+                            </span>
+          </td>
+          <td class="text-center">
+            <input type="checkbox" ng-model="loan.fins.fee_service_onTotal"/>
+          </td>
+        </tr>
+        <tr>
+          <td>ARM Interest Rate</td>
+          <td>
+            <percent-edit-in-place value="loan.fins.int_percent_arm"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            *{{(loan.loan_days/365)*(loan.fins.int_percent_arm/100)*loan.fins.commit_arm*.5 | noCentsCurrency}}
+          </td>
+          <td class="text-center">&nbsp;</td>
+        </tr>
+        <tr ng-if="loan.has_distributor">
+          <td>Distributor Interest Rate</td>
+          <td>
+            <percent-edit-in-place value="loan.fins.int_percent_dist"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            *{{(loan.loan_days/365)*(loan.fins.int_percent_dist/100)*loan.fins.commit_dist*.5 | noCentsCurrency}}
+          </td>
+          <td class="text-center">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="4"><span class="">* Interest amounts are best estimates</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-right" style="padding-top:25px;">
+      <button style="margin-right:10px;" class="btn btn-primary" ng-click="insertTerms()" ng-if="newapplication">SAVE</button>
+      <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateTerms()" ng-if="!newapplication">UPDATE</button>
+    </div>
+  </div>
+</fieldset>
+<br/><br/>
+<fieldset ng-if="loan.has_addendum">
+  <legend>Loan History (Hardcoded for styling only)</legend>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped rowed">
+        <tr>
+          <th style="width:3%;">&nbsp;</th>
+          <th class="text-center" style="width:10%;">Orig Date</th>
+          <th class="text-center" style="width:10%;">ARM</th>
+          <th class="text-center" style="width:10%;">{{loan.quests.distributor}}</th>
+          <th class="text-center" style="width:10%;">Committment</th>
+          <th class="text-center" style="width:10%;">Change</th>
+          <th class="text-center" style="width:10%;">Change</th>
+          <th class="text-center" style="width:10%;">Other</th>
+          <th class="text-center" style="width:10%;">Total</th>
+          <th class="text-center" style="width:10%;">Proc Fee</th>
+        </tr>
+        <tr>
+          <td class="text-center">
+            <span class="glyphicon glyphicon-usd"></span>
+          </td>
+          <td class="text-right">
+            9/15/14
+          </td>
+          <td class="text-right">
+            $357,239
+          </td>
+          <td class="text-right">
+            $547,960
+          </td>
+          <td class="text-right">
+            $905,199
+          </td>
+          <td class="text-right">
+            $100,000
+          </td>
+          <td class="text-right">
+            127%
+          </td>
+          <td class="text-right">
+            $44,000
+          </td>
+          <td class="text-right">
+            $949,199
+          </td>
+          <td class="text-right">
+            $1,000.00
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center">
+            <span class="glyphicon glyphicon-plus"></span>
+          </td>
+          <td class="text-right">
+            4/14/14
+          </td>
+          <td class="text-right">
+            $257,239
+          </td>
+          <td class="text-right">
+            $547,960
+          </td>
+          <td class="text-right">
+            $805,199
+          </td>
+          <td class="text-right">
+            $89,636
+          </td>
+          <td class="text-right">
+            113%
+          </td>
+          <td class="text-right">
+            $44,000
+          </td>
+          <td class="text-right">
+            $849,199
+          </td>
+          <td class="text-right">
+            $896.36
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center">
+            <span class="glyphicon glyphicon-record"></span>
+          </td>
+          <td class="text-right">
+            3/14/14
+          </td>
+          <td class="text-right">
+            $233,953
+          </td>
+          <td class="text-right">
+            $481,610
+          </td>
+          <td class="text-right">
+            $715,563
+          </td>
+          <td class="text-right">
+            $715,563
+          </td>
+          <td class="text-right">
+            100%
+          </td>
+          <td class="text-right">
+            $41,800
+          </td>
+          <td class="text-right">
+            $757,363
+          </td>
+          <td class="text-right">
+            $7,155.63
+          </td>
+        </tr>
+        <tr class="success">
+          <td>&nbsp;</td>
+          <td>Loan Total</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td class="text-right">$905,199</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td class="text-right">$9,051.99</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</fieldset>
+</form>

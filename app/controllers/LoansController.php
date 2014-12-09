@@ -15,7 +15,7 @@ class LoansController extends ApiController {
 
 	public function index()
 	{
-		$loans = Loan::with('applicants.farmer', 'applicants.entitytype', 'committee.user', 'corporations', 'distributor', 'farms.county', 'financials', 'insurance', 'loancrop', 'loanstatus', 'loantype.reqdocs',  'location', 'partners', 'regions', 'staff', 'ventures', 'user')->get();
+		$loans = Loan::with('applicants.entitytype', 'committee.user', 'corporations', 'distributor', 'farmer', 'farms.county', 'financials', 'insurance', 'loancrop', 'loanstatus', 'loantype.reqdocs',  'location', 'partners', 'regions', 'staff', 'ventures', 'user')->get();
 		//return $loans;  //REMOVE THIS
 
 		return $this->respond([
@@ -25,7 +25,7 @@ class LoansController extends ApiController {
 
 	public function show($id)
 	{
-		$loan = Loan::with('applicants.farmer', 'applicants.entitytype', 'distributor', 'loanstatus', 'loantype', 'location', 'regions', 'user')->where('id', $id)->get();
+		$loan = Loan::with('applicants.entitytype', 'committee.user', 'corporations', 'distributor', 'farmer', 'farms.county', 'financials', 'insurance', 'loancrop', 'loanstatus', 'loantype.reqdocs',  'location', 'partners', 'regions', 'staff', 'ventures', 'user')->where('id', $id)->get();
 		//return $loan;
 
 		if( $loan->isEmpty() ){

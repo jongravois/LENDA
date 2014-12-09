@@ -1,1 +1,621 @@
-<h1>Crop Budgets</h1>
+<style>
+  .rowed td { border: 1px solid #dddddd; }
+  th { text-align: center; }
+</style>
+<div>
+<!--<pre>{{cropExpenses | json}}</pre>-->
+<fieldset>
+<tabset>
+<!-- REPEAT FOR EACH CROP SELECTED-->
+<tab ng-repeat="x in cropExpenses" heading="{{x.crop | capitalize}}">
+<table class="table table-striped rowed">
+<tbody>
+<tr>
+  <th class="text-left" style="width:20%;">&nbsp;</th>
+  <th class="text-left" colspan="4">ACRE</th>
+  <th class="text-left" colspan="4">
+    {{x.crop_acres}} ACRE TOTALS
+  </th>
+</tr>
+<tr>
+  <td style="width:10%;" class="text-right">&nbsp;</td>
+  <td class="text-center" style="width:10%;">ARM</td>
+  <td class="text-center" style="width:10%;">
+    {{loan.distributor}}
+  </td>
+  <td class="text-center" style="width:10%;">Other</td>
+  <td class="text-center" style="width:10%;">Total</td>
+  <td class="text-center" style="width:10%;">ARM</td>
+  <td class="text-center" style="width:10%;">
+    {{loan.distributor}}
+  </td>
+  <td class="text-center" style="width:10%;">Other</td>
+  <td class="text-center" style="width:10%;">Total</td>
+</tr>
+<tr>
+  <td>Fertilizer</td>
+  <td class="text-right">
+    <edit-in-place value="x.fertilizer_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.fertilizer_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.fertilizer_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fertilizer_acre_total)>
+    {{x.fertilizer_acre_total = (x.fertilizer_arm_acre * 1 + x.fertilizer_dist_acre * 1 + x.fertilizer_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fertilizer.loan_arm)>
+    {{x.fertilizer.loan_arm = x.fertilizer_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fertilizer.loan_dist)>
+    {{x.fertilizer.loan_dist = x.fertilizer_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fertilizer.loan_other)>
+    {{x.fertilizer.loan_other = x.fertilizer_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fertilizer.loan_total)>
+    {{x.fertilizer.loan_total = x.fertilizer_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td>Seed</td>
+  <td class="text-right">
+    <edit-in-place value="x.seed_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.seed_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.seed_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.seed_acre_total)>
+    {{x.seed_acre_total = (x.seed_arm_acre * 1 + x.seed_dist_acre * 1 + x.seed_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.seed.loan_arm)>
+    {{x.seed.loan_arm = x.seed_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.seed.loan_dist)>
+    {{x.seed.loan_dist = x.seed_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.seed.loan_other)>
+    {{x.seed.loan_other = x.seed_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.seed.loan_total)>
+    {{x.seed.loan_total = x.seed_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td>Fungicide</td>
+  <td class="text-right">
+    <edit-in-place value="x.fungicide_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.fungicide_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.fungicide_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fungicide_acre_total)>
+    {{x.fungicide_acre_total = (x.fungicide_arm_acre * 1 + x.fungicide_dist_acre * 1 + x.fungicide_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fungicide.loan_arm)>
+    {{x.fungicide.loan_arm = x.fungicide_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fungicide.loan_dist)>
+    {{x.fungicide.loan_dist = x.fungicide_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fungicide.loan_other)>
+    {{x.fungicide.loan_other = x.fungicide_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fungicide.loan_total)>
+    {{x.fungicide.loan_total = x.fungicide_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td>Herbicide</td>
+  <td class="text-right">
+    <edit-in-place value="x.herbicide_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.herbicide_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.herbicide_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.herbicide_acre_total)>
+    {{x.herbicide_acre_total = (x.herbicide_arm_acre * 1 + x.herbicide_dist_acre * 1 + x.herbicide_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.herbicide.loan_arm)>
+    {{x.herbicide.loan_arm = x.herbicide_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.herbicide.loan_dist)>
+    {{x.herbicide.loan_dist = x.herbicide_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.herbicide.loan_other)>
+    {{x.herbicide.loan_other = x.herbicide_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.herbicide.loan_total)>
+    {{x.herbicide.loan_total = x.herbicide_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td>Insecticide</td>
+  <td class="text-right">
+    <edit-in-place value="x.insecticide_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.insecticide_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.insecticide_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.insecticide_acre_total)>
+    {{x.insecticide_acre_total = (x.insecticide_arm_acre * 1 + x.insecticide_dist_acre * 1 + x.insecticide_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.insecticide.loan_arm)>
+    {{x.insecticide.loan_arm = x.insecticide_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.insecticide.loan_dist)>
+    {{x.insecticide.loan_dist = x.insecticide_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.insecticide.loan_other)>
+    {{x.insecticide.loan_other = x.insecticide_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.insecticide.loan_total)>
+    {{x.insecticide.loan_total = x.insecticide_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td>Custom</td>
+  <td class="text-right">
+    <edit-in-place value="x.custom_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.custom_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.custom_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.custom_acre_total)>
+    {{x.custom_acre_total = (x.custom_arm_acre * 1 + x.custom_dist_acre * 1 + x.custom_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.custom.loan_arm)>
+    {{x.custom.loan_arm = x.custom_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.custom.loan_dist)>
+    {{x.custom.loan_dist = x.custom_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.custom.loan_other)>
+    {{x.custom.loan_other = x.custom_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.custom.loan_total)>
+    {{x.custom.loan_total = x.custom_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td>Fuel</td>
+  <td class="text-right">
+    <edit-in-place value="x.fuel_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.fuel_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.fuel_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fuel_acre_total)>
+    {{x.fuel_acre_total = (x.fuel_arm_acre * 1 + x.fuel_dist_acre * 1 + x.fuel_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fuel.loan_arm)>
+    {{x.fuel.loan_arm = x.fuel_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fuel.loan_dist)>
+    {{x.fuel.loan_dist = x.fuel_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fuel.loan_other)>
+    {{x.fuel.loan_other = x.fuel_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.fuel.loan_total)>
+    {{x.fuel.loan_total = x.fuel_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td>Labor</td>
+  <td class="text-right">
+    <edit-in-place value="x.labor_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.labor_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.labor_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.labor_acre_total)>
+    {{x.labor_acre_total = (x.labor_arm_acre * 1 + x.labor_dist_acre * 1 + x.labor_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.labor.loan_arm)>
+    {{x.labor.loan_arm = x.labor_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.labor.loan_dist)>
+    {{x.labor.loan_dist = x.labor_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.labor.loan_other)>
+    {{x.labor.loan_other = x.labor_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.labor.loan_total)>
+    {{x.labor.loan_total = x.labor_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td>Repairs</td>
+  <td class="text-right">
+    <edit-in-place value="x.repairs_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.repairs_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.repairs_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.repairs_acre_total)>
+    {{x.repairs_acre_total = (x.repairs_arm_acre * 1 + x.repairs_dist_acre * 1 + x.repairs_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.repairs.loan_arm)>
+    {{x.repairs.loan_arm = x.repairs_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.repairs.loan_dist)>
+    {{x.repairs.loan_dist = x.repairs_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.repairs.loan_other)>
+    {{x.repairs.loan_other = x.repairs_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.repairs.loan_total)>
+    {{x.repairs.loan_total = x.repairs_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td>Insurance</td>
+  <td class="text-right">
+    <edit-in-place value="x.insurance_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.insurance_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.insurance_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.insurance_acre_total)>
+    {{x.insurance_acre_total = (x.insurance_arm_acre * 1 + x.insurance_dist_acre * 1 + x.insurance_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.insurance.loan_arm)>
+    {{x.insurance.loan_arm = x.insurance_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.insurance.loan_dist)>
+    {{x.insurance.loan_dist = x.insurance_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.insurance.loan_other)>
+    {{x.insurance.loan_other = x.insurance_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.insurance.loan_total)>
+    {{x.insurance.loan_total = x.insurance_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td>Harvesting</td>
+  <td class="text-right">
+    <edit-in-place value="x.harvesting_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.harvesting_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.harvesting_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.harvesting_acre_total)>
+    {{x.harvesting_acre_total = (x.harvesting_arm_acre * 1 + x.harvesting_dist_acre * 1 + x.harvesting_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.harvesting.loan_arm)>
+    {{x.harvesting.loan_arm = x.harvesting_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.harvesting.loan_dist)>
+    {{x.harvesting.loan_dist = x.harvesting_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.harvesting.loan_other)>
+    {{x.harvesting.loan_other = x.harvesting_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.harvesting.loan_total)>
+    {{x.harvesting.loan_total = x.harvesting_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td>Misc_acres</td>
+  <td class="text-right">
+    <edit-in-place value="x.misc_acre_arm_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.misc_acre_dist_acre"></edit-in-place>
+  </td>
+  <td class="text-right">
+    <edit-in-place value="x.misc_acre_other_acre"></edit-in-place>
+  </td>
+  <td class="text-right" ng-class=gtZero(x.misc_acre_acre_total)>
+    {{x.misc_acre_acre_total = (x.misc_acre_arm_acre * 1 + x.misc_acre_dist_acre * 1 + x.misc_acre_other_acre * 1) | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.misc_acre.loan_arm)>
+    {{x.misc_acre.loan_arm = x.misc_acre_arm_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.misc_acre.loan_dist)>
+    {{x.misc_acre.loan_dist = x.misc_acre_dist_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.misc_acre.loan_other)>
+    {{x.misc_acre.loan_other = x.misc_acre_other_acre * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td class="text-right" ng-class=gtZero(x.misc_acre.loan_total)>
+    {{x.misc_acre.loan_total = x.misc_acre_acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+
+<tr class="success">
+  <td>TOTAL</td>
+  <td ng-class=gtZero(x.total.acre_arm)>
+    {{x.total.acre_arm = x.fertilizer_arm_acre + x.seed_arm_acre + x.herbicide_arm_acre + x.fungicide_arm_acre + x.insecticide_arm_acre + x.custom_arm_acre + x.fuel_arm_acre + x.labor_arm_acre + x.repairs_arm_acre + x.insurance_arm_acre + x.harvesting_arm_acre + x.misc_acre_arm_acre  | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(x.total.acre_dist)>
+    {{x.total.acre_dist = x.fertilizer_dist_acre + x.seed_dist_acre + x.herbicide_dist_acre + x.fungicide_dist_acre + x.insecticide_dist_acre + x.custom_dist_acre + x.fuel_dist_acre + x.labor_dist_acre + x.repairs_dist_acre + x.insurance_dist_acre + x.harvesting_dist_acre + x.misc_acre_dist_acre | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(x.total.acre_other)>
+    {{x.total.acre_other = x.fertilizer_other_acre + x.seed_other_acre + x.herbicide_other_acre + x.fungicide_other_acre + x.insecticide_other_acre + x.custom_other_acre + x.fuel_other_acre + x.labor_other_acre + x.repairs_other_acre + x.insurance_other_acre + x.harvesting_other_acre + x.misc_acre_other_acre | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(x.total.acre_total)>
+    {{x.total.acre_total = x.total.acre_arm + x.total.acre_dist + x.total.acre_other | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(x.total.loan_arm)>
+    {{x.total.loan_arm = x.total.acre_arm * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(x.total.loan_dist)>
+    {{x.total.loan_dist = x.total.acre_dist * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(x.total.loan_other)>
+    {{x.total.loan_other = x.total.acre_other * x.crop_acres | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(x.total.loan_total)>
+    {{x.total.loan_total = x.total.acre_total * x.crop_acres | displaynullcurrency }}
+  </td>
+</tr>
+</tbody>
+</table>
+</tab>
+<!-- ALWAYS THERE -->
+<tab heading="Full Farm">
+<table class="table table-striped rowed">
+<tbody>
+<tr>
+  <th class="text-left" style="width:58%;">&nbsp;</th>
+  <th class="text-left" colspan="4">&nbsp;</th>
+  <th class="text-left" colspan="4">
+    {{loan.total_acres | number:1}} ACRE TOTALS
+  </th>
+</tr>
+<tr>
+  <td colspan="5">&nbsp</td>
+  <td class="text-center" style="width:10%;">ARM</td>
+  <td class="text-center" style="width:10%;">{{loan.distributor}}</td>
+  <td class="text-center" style="width:10%;">Other</td>
+  <td class="text-center" style="width:10%;">Total</td>
+</tr>
+<tr>
+  <td colspan="5">Fertilizer</td>
+  <td ng-class=gtZero(loan.totalExpenses.fertilizer.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fertilizer.dist)>
+    {{72688.53 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fertilizer.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fertilizer.total)>
+    {{72688.53 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Seed</td>
+  <td ng-class=gtZero(loan.totalExpenses.seed.arm)>
+    {{0  | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.seed.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.seed.other)>
+    {{74769 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.seed.total)>
+    {{74769 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Fungicide</td>
+  <td ng-class=gtZero(loan.totalExpenses.fungicide.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fungicide.dist)>
+    {{7253.75 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fungicide.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fungicide.total)>
+    {{7253.75 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Herbicide</td>
+  <td ng-class=gtZero(loan.totalExpenses.herbicide.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.herbicide.dist)>
+    {{23084.17 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.herbicide.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.herbicide.total)>
+    {{23084.17 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Insecticide</td>
+  <td ng-class=gtZero(loan.totalExpenses.insecticide.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insecticide.dist)>
+    {{6191.80 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insecticide.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insecticide.total)>
+    {{6191.80 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Custom</td>
+  <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
+    {{19019.80 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.custom.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.custom.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.custom.total)>
+    {{19019.80 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Fuel</td>
+  <td ng-class=gtZero(loan.totalExpenses.fuel.arm)>
+    {{31305.00 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fuel.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fuel.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.fuel.total)>
+    {{31305.00 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Labor</td>
+  <td ng-class=gtZero(loan.totalExpenses.labor.arm)>
+    {{18554.00 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.labor.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.labor.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.labor.total)>
+    {{18554.00 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Repairs</td>
+  <td ng-class=gtZero(loan.totalExpenses.repairs.arm)>
+    {{12751.00 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.repairs.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.repairs.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.repairs.total)>
+    {{12751.00 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Insurance</td>
+  <td ng-class=gtZero(loan.totalExpenses.insurance.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insurance.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insurance.other)>
+    {{12454.42 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.insurance.total)>
+    {{12454.42 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Harvesting</td>
+  <td ng-class=gtZero(loan.totalExpenses.harvesting.arm)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.harvesting.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.harvesting.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.harvesting.total)>
+    {{0 | displaynullcurrency }}
+  </td>
+</tr>
+<tr>
+  <td colspan="5">Misc_acre</td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.arm)>
+    {{18554 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.dist)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.other)>
+    {{0 | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loan.totalExpenses.misc_acre.total)>
+    {{18554 | displaynullcurrency }}
+  </td>
+</tr>
+<tr ng-repeat="fex in farmExpenses">
+  <td colspan="5">{{fex.expense}}</td>
+  <td class="text-right">
+    {{fex.cost | displaynullcurrency}}
+  </td>
+  <td class="text-center"> - </td>
+  <td class="text-center"> - </td>
+  <td class="text-right">
+    {{fex.cost | displaynullcurrency}}
+  </td>
+</tr>
+<tr class="success">
+  <td colspan="5">Total</td>
+  <td ng-class=gtZero(loanAssets.total_arm)>
+    {{loanAssets.total_arm | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loanAssets.total_dist)>
+    {{loanAssets.total_dist | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loanAssets.total_other)>
+    {{loanAssets.total_other | displaynullcurrency }}
+  </td>
+  <td ng-class=gtZero(loanAssets.total_total)>
+    {{loanAssets.total_total | displaynullcurrency }}
+  </td>
+</tr>
+</tbody>
+</table>
+</tab>
+</tabset>
+</fieldset>
+<!--<pre>{{cropExpenses | json}}</pre>-->
+<!--<pre>{{farmExpenses | json}}</pre>-->
+</div>
