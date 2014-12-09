@@ -3,7 +3,8 @@
 </style>
 <fieldset>
   <legend>Insurance Information</legend>
-  <div class="row">
+  <!--<pre>{{loan.insurance | json}}</pre>-->
+  <div class="row" style="display:none;">
     <div class="form-group col-md-3">
       <label>Agency</label>
       <input type="text" class="form-control" ng-model="insurance[0].agency"/>
@@ -39,11 +40,11 @@
         <th style="width:9%;">Value</th>
       </tr>
 
-      <tr ng-repeat="i in insurance">
+      <tr ng-repeat="i in loan.insurance">
         <td>{{i.locale}}</td>
         <td>{{i.practice}}</td>
         <td>
-          <select name="ins_type" ng-model="i.type" ng-options="t.type as t.type for t in instypes">
+          <select name="ins_type" ng-model="i.type" ng-options="t.type as t.type for t in feeder.instypes">
             <option value="">Type</option>
           </select>
         </td>

@@ -37,7 +37,8 @@
     "ng-grid": "~2.0.14",
     "satellizer": "~0.8.6",
     "angular-permission": "~0.1.4",
-    "angular-moment": "~0.8.2"
+    "angular-moment": "~0.8.2",
+    "angular-mass-autocomplete": "*"
   },
   "resolutions": {
     "angular-ui-router": "~0.2.13",

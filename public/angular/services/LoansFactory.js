@@ -1,89 +1,94 @@
 (function(){
-    'use strict';
-    angular.module('ARM')
-      .factory('LoansFactory', function LoansFactory($http, API_URL){
-        return {
-          getComments: getComments,
-          getCommittee: getCommittee,
-          getCropExpenses: getCropExpenses,
-          getDistributor: getDistributor,
-          getFarmPractices: getFarmPractices,
-          getFarms: getFarms,
-          getFinancials: getFinancials,
-          getLoan: getLoan,
-          getLoanCounties: getLoanCounties,
-          getLoanCrops: getLoanCrops,
-          getLoans: getLoans,
-          getPrerequisites: getPrerequisites,
-          getQuests: getQuests,
-          getScreens: getScreens,
-          getSelectedCrops: getSelectedCrops,
-          getSystemics: getSystemics
-        };
+  'use strict';
+  angular.module('ARM')
+    .factory('LoansFactory', function LoansFactory($http, API_URL){
+      return {
+        getComments: getComments,
+        getCommittee: getCommittee,
+        getCropExpenses: getCropExpenses,
+        getDistributor: getDistributor,
+        getFarmPractices: getFarmPractices,
+        getFarms: getFarms,
+        getFinancials: getFinancials,
+        getInsurancePolicies: getInsurancePolicies,
+        getLoan: getLoan,
+        getLoanCounties: getLoanCounties,
+        getLoanCrops: getLoanCrops,
+        getLoans: getLoans,
+        getPrerequisites: getPrerequisites,
+        getQuests: getQuests,
+        getScreens: getScreens,
+        getSelectedCrops: getSelectedCrops,
+        getSystemics: getSystemics
+      };
 
-        function getComments(id){
-          return $http.get(API_URL + '/loans/' + id + '/comments');
-        }
+      function getComments(id){
+        return $http.get(API_URL + '/loans/' + id + '/comments');
+      }
 
-        function getCommittee(id){
-          return $http.get(API_URL + '/loans/' + id + '/committee');
-        }
+      function getCommittee(id){
+        return $http.get(API_URL + '/loans/' + id + '/committee');
+      }
 
-        function getCropExpenses(id){
-          return $http.get(API_URL + '/loans/' + id + '/cropexpenses');
-        }
+      function getCropExpenses(id){
+        return $http.get(API_URL + '/loans/' + id + '/cropexpenses');
+      }
 
-        function getDistributor(id){
-          return $http.get(API_URL + '/loans/' + id + '/distributor');
-        }
+      function getDistributor(id){
+        return $http.get(API_URL + '/loans/' + id + '/distributor');
+      }
 
-        function getFarmPractices(id){
-          return $http.get(API_URL + '/loans/' + id + '/farmpractices');
-        }
+      function getFarmPractices(id){
+        return $http.get(API_URL + '/loans/' + id + '/farmpractices');
+      }
 
-        function getFarms(id){
-          return $http.get(API_URL + '/loans/' + id + '/farms');
-        }
+      function getFarms(id){
+        return $http.get(API_URL + '/loans/' + id + '/farms');
+      }
 
-        function getFinancials(id){
-          return $http.get(API_URL + '/loans/' + id + '/financials');
-        }
+      function getFinancials(id){
+        return $http.get(API_URL + '/loans/' + id + '/financials');
+      }
 
-        function getLoan(id){
-          return $http.get(API_URL + '/loans/' + id);
-        }
+      function getInsurancePolicies(id){
+        return $http.get(API_URL + '/loans/' + id + '/insurance');
+      }
 
-        function getLoanCounties(id){
-          return $http.get(API_URL + '/loans/' + id + '/counties');
-        }
+      function getLoan(id){
+        return $http.get(API_URL + '/loans/' + id);
+      }
 
-        function getLoanCrops(id){
-          return $http.get(API_URL + '/loans/' + id + '/loancrops');
-        }
+      function getLoanCounties(id){
+        return $http.get(API_URL + '/loans/' + id + '/counties');
+      }
 
-        function getLoans(){
-          return $http.get(API_URL + '/loans');
-        }
+      function getLoanCrops(id){
+        return $http.get(API_URL + '/loans/' + id + '/loancrops');
+      }
 
-        function getPrerequisites(id){
-          return $http.get(API_URL + '/loans/' + id + '/prerequisites');
-        }
+      function getLoans(){
+        return $http.get(API_URL + '/loans');
+      }
 
-        function getQuests(id){
-          return $http.get(API_URL + '/loans/' + id + '/quests');
-        }
+      function getPrerequisites(id){
+        return $http.get(API_URL + '/loans/' + id + '/prerequisites');
+      }
 
-        function getScreens(type){
-          return $http.get(API_URL + '/loantypes/' + type + '/screens');
-        }
+      function getQuests(id){
+        return $http.get(API_URL + '/loans/' + id + '/quests');
+      }
 
-        function getSelectedCrops(id){
-          // TODO: create loan.selectedCrops from crops and acres
-          return $http.get('angular/json/selectedCrops.json');
-        }
+      function getScreens(type){
+        return $http.get(API_URL + '/loantypes/' + type + '/screens');
+      }
 
-        function getSystemics(id){
-          return $http.get(API_URL + '/loans/' + id + '/systemics');
-        }
-      });
+      function getSelectedCrops(id){
+        // TODO: create loan.selectedCrops from crops and acres
+        return $http.get('angular/json/selectedCrops.json');
+      }
+
+      function getSystemics(id){
+        return $http.get(API_URL + '/loans/' + id + '/systemics');
+      }
+    });
 })();

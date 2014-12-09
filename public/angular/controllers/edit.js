@@ -49,6 +49,9 @@
       LoansFactory.getFarms($scope.loan_id).then(function success(response){
         $scope.farms = response.data.data;
       });
+        LoansFactory.getInsurancePolicies($scope.loan_id).then(function success(response){
+                $scope.loan.insurance = response.data.data;
+              });
       LoansFactory.getLoanCounties($scope.loan_id).then(function success(response){
         $scope.loanCounties = response.data.data;
       });
@@ -97,12 +100,25 @@
         return 260550 + 261135;
       };
       $scope.calcIncomeConstraints =function(o){
-        $scope.financials.year_1_income = o.year_1_revenue - o.year_1_expenses;
-        $scope.financials.year_2_income = o.year_2_revenue - o.year_2_expenses;
-        $scope.financials.year_3_income = o.year_3_revenue - o.year_3_expenses;
-        $scope.financials.average_revenue = (o.year_1_revenue * 1 + o.year_2_revenue * 1 + o.year_3_revenue * 1)/3;
-        $scope.financials.average_expense = (o.year_1_expenses * 1 + o.year_2_expenses * 1 + o.year_3_expenses * 1)/3;
-        $scope.financials.total_income = $scope.financials.average_revenue - $scope.financials.average_expense;
+        $scope.loan.fins.year_1_income = o.year_1_revenue - o.year_1_expenses;
+        $scope.loan.fins.year_2_income = o.year_2_revenue - o.year_2_expenses;
+        $scope.loan.fins.year_3_income = o.year_3_revenue - o.year_3_expenses;
+        $scope.loan.fins.average_revenue = (o.year_1_revenue * 1 + o.year_2_revenue * 1 + o.year_3_revenue * 1)/3;
+        $scope.loan.fins.average_expense = (o.year_1_expenses * 1 + o.year_2_expenses * 1 + o.year_3_expenses * 1)/3;
+        $scope.loan.fins.total_income = $scope.loan.fins.average_revenue - $scope.loan.fins.average_expense;
+      };
+
+      // TODO: Factor in changing from RP ins_type
+      // TODO: Check value and guaranty calculation
+      $scope.calcGuaranty = function($arr){
+          return (($arr['aph'] * ($arr['level']/100) * $arr['price']) - $arr['premium']) * ($arr['acres'] * ($arr['share']/100));
+        };
+      $scope.calcValue = function($guaranty, $arr) {
+        return ($guaranty - $arr['premium']) * ($arr['share'] / 100) * $arr['acres'];
+      };
+      //  TODO: Create calcTotalValue Function
+      $scope.calcTotalValue = function(){
+        return 39549017.29;
       };
     });
 })();
