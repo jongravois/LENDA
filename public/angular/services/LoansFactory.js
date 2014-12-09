@@ -3,6 +3,7 @@
   angular.module('ARM')
     .factory('LoansFactory', function LoansFactory($http, API_URL){
       return {
+        getAdminGrader: getAdminGrader,
         getComments: getComments,
         getCommittee: getCommittee,
         getCropExpenses: getCropExpenses,
@@ -10,6 +11,7 @@
         getFarmPractices: getFarmPractices,
         getFarms: getFarms,
         getFinancials: getFinancials,
+        getGrader: getGrader,
         getInsurancePolicies: getInsurancePolicies,
         getLoan: getLoan,
         getLoanCounties: getLoanCounties,
@@ -21,6 +23,10 @@
         getSelectedCrops: getSelectedCrops,
         getSystemics: getSystemics
       };
+
+      function getAdminGrader(){
+        return $http.get(API_URL + '/admingrader/');
+      }
 
       function getComments(id){
         return $http.get(API_URL + '/loans/' + id + '/comments');
@@ -48,6 +54,11 @@
 
       function getFinancials(id){
         return $http.get(API_URL + '/loans/' + id + '/financials');
+      }
+
+      function getGrader(id){
+        // TODO: create loan.selectedCrops from crops and acres
+        return $http.get('angular/json/grader.json');
       }
 
       function getInsurancePolicies(id){

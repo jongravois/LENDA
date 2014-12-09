@@ -31,6 +31,9 @@
           });
         });
       });
+      LoansFactory.getAdminGrader().then(function success(response){
+              $scope.grads = response.data.data;
+            });
       LoansFactory.getComments($scope.loan_id).then(function success(response){
         $scope.comments = response.data.data;
       });
@@ -49,6 +52,9 @@
       LoansFactory.getFarms($scope.loan_id).then(function success(response){
         $scope.farms = response.data.data;
       });
+        LoansFactory.getGrader($scope.loan_id).then(function success(response){
+          $scope.loan.grader = response.data[0];
+        });
         LoansFactory.getInsurancePolicies($scope.loan_id).then(function success(response){
                 $scope.loan.insurance = response.data.data;
               });
