@@ -1,0 +1,71 @@
+<fieldset>
+  <!--<pre>{{distributor | json}}</pre>-->
+  <legend>DISTRIBUTOR INFORMATION</legend>
+  <div class="row">
+    <div class="form-group col-md-12">
+      <!-- DISTRIBUTOR -->
+      <div class="row">
+        <div class="form_group col-md-7">
+          <label>Distributor:</label>
+          <br/>
+          <text-edit-in-place value="distributor.distributor"></text-edit-in-place>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Phone:</label>
+          <br/>
+          <phone-edit-in-place value="distributor.phone"></phone-edit-in-place>
+        </div>
+      </div>
+      <!-- Distributor -->
+
+      <!-- ADDRESS / PHONE -->
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label>Mailing Address:</label>
+          <br/>
+          <text-edit-in-place value="distributor.address"></text-edit-in-place>
+        </div>
+        <div class="form-group col-md-3">
+          <label>City:</label>
+          <br/>
+          <text-edit-in-place value="distributor.city"></text-edit-in-place>
+        </div>
+        <div class="form-group col-md-2">
+          <label>State:</label>
+          <br/>
+          <text-edit-in-place value="distributor.state_abr"></text-edit-in-place>
+        </div>
+        <div class="form-group col-md-2">
+          <label>Zip:</label>
+          <br/>
+          <text-edit-in-place value="distributor.zip"></text-edit-in-place>
+        </div>
+      </div>
+      <!-- ADDRESS / PHONE -->
+
+      <!-- PHONE / EMAIL / DOB -->
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label>Loan Contact:</label>
+          <br/>
+          <text-edit-in-place value="distributor.contact"></text-edit-in-place>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Phone:</label>
+          <br/>
+          <phone-edit-in-place value="distributor.phone"></phone-edit-in-place>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Email Address:</label>
+          <br/>
+          <text-edit-in-place value="distributor.email"></text-edit-in-place>
+        </div>
+      </div>
+      <!-- PHONE / EMAIL / DOB -->
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-right">
+        <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateDistributor(distributor)">UPDATE</button>
+      </div>
+    </div>
+</fieldset>

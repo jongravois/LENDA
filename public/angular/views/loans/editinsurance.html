@@ -1,0 +1,87 @@
+<style>
+  td{ font-size: 11px;}
+  input[type=text]{ width: 100%;}
+</style>
+<fieldset>
+  <legend>Insurance Information</legend>
+  <!--<pre>{{loan.insurance | json}}</pre>-->
+  <div class="row" style="display:none;">
+    <div class="form-group col-md-3">
+      <label>Agency</label>
+      <input type="text" class="form-control" ng-model="insurance[0].agency"/>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Agent</label>
+      <input type="text" class="form-control" ng-model="insurance[0].agent"/>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Email</label>
+      <input type="text" class="form-control" ng-model="insurance[0].agent_email"/>
+    </div>
+    <div class="form-group col-md-3">
+      <label>Phone</label>
+      <input type="text" name="phone" ui-mask="(999) 999-9999" ng-model="insurance[0].agent_phone" class="form-control"/>
+    </div>
+  </div>
+  <br/><br/>
+  <div class="row col-md-12">
+    <table class="table table-striped rowed" style="width:100% !important;">
+      <tr>
+        <th style="width:13%;">Locale</th>
+        <th style="width:13%;">Crop</th>
+        <th style="width:9%;">Type</th>
+        <th style="width:9%;">Option</th>
+        <th style="width:7%;">Price</th>
+        <th style="width:6%;">Level</th>
+        <th style="width:7%;">Acres</th>
+        <th style="width:7%;">APH</th>
+        <th style="width:9%;">Guaranty</th>
+        <th style="width:7%;">Premium</th>
+        <th style="width:6%;">Share</th>
+        <th style="width:9%;">Value</th>
+      </tr>
+
+      <tr ng-repeat="i in loan.insurance">
+        <td>{{i.locale}}</td>
+        <td>{{i.practice}}</td>
+        <td>
+          <select name="ins_type" ng-model="i.type" ng-options="t.type as t.type for t in feeder.instypes">
+            <option value="">Type</option>
+          </select>
+        </td>
+        <td class="text-center">
+          <text-edit-in-place value="i.option"></text-edit-in-place>
+        </td>
+        <td ng-class=gtZero(i.price)>
+          {{i.price | displaynullcurrency}}
+        </td>
+        <td ng-class=gtZero(i.level)>
+          <percent-edit-in-place value="i.level"></percent-edit-in-place>
+        </td>
+        <td class="text-center">{{i.acres}}</td>
+        <td class="text-center">{{i.aph}}</td>
+        <td ng-class=gtZero(calcGuaranty(i))>
+          {{calcGuaranty(i) | displaynullcurrency}}
+        </td>
+        <td ng-class=gtZero(i.premium)>
+          <edit-in-place value="i.premium"></edit-in-place>
+        </td>
+        <td ng-class=gtZero(i.share)>
+          <percent-edit-in-place value="i.share"></percent-edit-in-place>
+        </td>
+        <td ng-class=gtZero(i.value)>
+          {{calcValue(calcGuaranty(i), i) | displaynullcurrency}}
+        </td>
+      </tr>
+
+      <tr class="success">
+        <td>Total</td>
+        <td colspan="10">&nbsp;</td>
+        <td class="text-right">
+          {{calcTotalValue() | displaynullcurrency}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</fieldset>
+<!--<pre>{{insurance | json}}</pre>-->

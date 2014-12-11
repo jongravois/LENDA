@@ -20,10 +20,13 @@
         $scope.users = response.data.data;
       });
 
-      //TODO: create UsersFactory.getBadges
+      // TODO: Use notifications to determine NeedsVote
       UsersFactory.getUser($scope.user_id).then(function success(response){
         $scope.user = response.data.data;
-        $scope.user.badged = UsersFactory.getBadges('2');
+        UsersFactory.getNotifications($scope.user_id).then(function success(response){
+          $scope.user.notifications = response.data.data;
+          $scope.user.badged = response.data.data.length;
+        });
       });
 
       GlobalsFactory.getGlobals().then(function success(response){
@@ -52,7 +55,7 @@
 
       LoansFactory.getLoans().then(function success(response){
         $scope.loans = response.data.data;
-        toastr.success('Loaded all loans', 'Success!');
+        //toastr.success('Loaded all loans', 'Success!');
       });
 
       $scope.getColor = function(val){
@@ -103,6 +106,10 @@
 
       $scope.status = {
         isopen: false
+      };
+
+      $scope.clkNotificationBadge = function(id){
+        alert(id);
       };
 
       $scope.toggled = function(open) {

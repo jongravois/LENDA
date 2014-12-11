@@ -11,10 +11,21 @@ body{
 
 .pushed-down{ margin-top: 20px; }
 
-.badge{
-  padding: 5px;
-  background-color: #CC0000;
-  border-radius: 50px;
+#navbar-notifications{
+  background: #EC502A;
+  cursor: pointer;
+  margin-top: -10px;
+  text-align: center;
+  color: #fff;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 14px;
+  min-width: 25px;
+  height: 25px;
+  line-height: 24px;
+  font-weight: bold;
+  position: relative;
+  /*top: 9px;*/
 }
 
 /* MAIN CONTENT CONTAINER */

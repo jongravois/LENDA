@@ -1,3 +1,13 @@
+<style>
+  .ctrlButtons{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    text-align: right;
+    cursor: pointer;
+  }
+</style>
 <!--<pre>{{comments | json}}</pre>-->
 <fieldset>
   <legend>Comments Log</legend>
@@ -23,8 +33,15 @@
     </div>
     <div ng-repeat="c in filtered.lenda = (comments | filter:{type:'LENDA'})" ng-show="user.cbCommentLenda">
       <div class="alert alert-danger" role="alert">
-        <h4><span class="glyphicon glyphicon-wrench"></span> LENDA Comment
-        </h4>
+        <div style="position: relative;">
+          <h4><span class="glyphicon glyphicon-wrench"></span> LENDA Comment
+          </h4>
+          <span class="ctrlButtons">
+            <span class="glyphicon glyphicon-share"></span>
+            <span class="glyphicon glyphicon-unchecked"></span>
+            <span class="glyphicon glyphicon-check"></span>
+          </span>
+        </div>
         <hr/>
         <p style="font-size:11px;font-weight:bold;"><i>{{c.user}}</i>
           &nbsp;&nbsp;-&nbsp;&nbsp;
@@ -36,8 +53,16 @@
 
     <div ng-repeat="c in filtered.committee = (comments | filter:{type:'Committee'})" ng-show="user.cbCommentCommittee">
       <div class="alert alert-info" role="alert">
-        <h4><span class="glyphicon glyphicon-user"></span> Committee Comment
-        </h4>
+        <div style="position: relative;">
+          <h4><span class="glyphicon glyphicon-user"></span>
+            Committee Comment
+          </h4>
+          <span class="ctrlButtons">
+            <span class="glyphicon glyphicon-share"></span>
+            <span class="glyphicon glyphicon-unchecked"></span>
+            <span class="glyphicon glyphicon-check"></span>
+          </span>
+        </div>
         <hr/>
         <p style="font-size:11px;font-weight:bold;"><i>{{c.user}}</i>
           &nbsp;&nbsp;-&nbsp;&nbsp;
@@ -59,8 +84,15 @@
 
     <div ng-repeat="c in filtered.analyst = (comments | filter:{type:'Analyst'})" ng-show="user.cbCommentAnalyst">
       <div class="alert alert-warning" role="alert">
-        <h4><span class="glyphicon glyphicon-user"></span> Analyst Comment
-        </h4>
+        <div style="position: relative;">
+          <h4><span class="glyphicon glyphicon-user"></span> Analyst Comment
+          </h4>
+          <span class="ctrlButtons">
+            <span class="glyphicon glyphicon-share"></span>
+            <span class="glyphicon glyphicon-unchecked"></span>
+            <span class="glyphicon glyphicon-check"></span>
+          </span>
+        </div>
         <hr/>
         <p style="font-size:11px;font-weight:bold;"><i>{{c.user}}</i>
           &nbsp;&nbsp;-&nbsp;&nbsp;
@@ -82,8 +114,15 @@
 
     <div ng-repeat="c in filtered.account = (comments | filter:{type:'Account'})" ng-show="user.cbCommentAccount">
       <div class="alert alert-success" role="alert">
-        <h4><span class="glyphicon glyphicon-usd"></span> Account Comment
-        </h4>
+        <div style="position: relative;">
+          <h4><span class="glyphicon glyphicon-usd"></span> Account Comment
+          </h4>
+          <span class="ctrlButtons">
+            <span class="glyphicon glyphicon-share"></span>
+            <span class="glyphicon glyphicon-unchecked"></span>
+            <span class="glyphicon glyphicon-check"></span>
+          </span>
+        </div>
         <hr/>
         <p style="font-size:11px;font-weight:bold;"><i>{{c.user}}</i>
           &nbsp;&nbsp;-&nbsp;&nbsp;

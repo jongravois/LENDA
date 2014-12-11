@@ -72,6 +72,7 @@
   <script src="angular/controllers/sessions.js"></script>
   <script src="angular/controllers/home.js"></script>
   <script src="angular/controllers/newapp.js"></script>
+  <script src="angular/controllers/edit.js"></script>
   <script src="angular/controllers/management.js"></script>
   <script src="angular/controllers/prefs.js"></script>
   <script src="angular/controllers/calendar.js"></script>
@@ -79,7 +80,7 @@
   <script src="angular/controllers/reports.js"></script>
   <script src="angular/controllers/library.js"></script>
   <script src="angular/controllers/admin.js"></script>
-  <script src="angular/controllers/edit.js"></script>
+  <script src="angular/controllers/disbursement.js"></script>
     <!-- CONTROLLERS -->
     <!-- FACTORIES -->
   <script src="angular/services/AppFactory.js"></script>
@@ -89,6 +90,9 @@
   <script src="angular/services/LoansFactory.js"></script>
   <script src="angular/services/FarmersFactory.js"></script>
   <script src="angular/services/ApplicantsFactory.js"></script>
+  <script src="angular/services/LendaFactory.js"></script>
+  <script src="angular/services/EmailFactory.js"></script>
+  <script src="angular/services/MessagingFactory.js"></script>
     <!-- FACTORIES -->
   <!-- APP SPECIFIC -->
 

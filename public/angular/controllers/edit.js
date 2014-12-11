@@ -11,9 +11,15 @@
       FarmersFactory,
       LoansFactory
     ){
-      $scope.loan = {};
+      $scope.loan = $scope.loan || {};
       $scope.loan_id = $stateParams.id;
       $scope.newapplication = false;
+
+      $scope.farmer = $scope.farmer || {};
+      $scope.applicant = $scope.applicant || {};
+      $scope.partners = $scope.partners || {};
+      $scope.joints = $scope.joints || {};
+      $scope.corps = $scope.corps || {};
         
       LoansFactory.getLoan($stateParams.id).then(function success(response){
         $scope.loan = response.data.data;
@@ -34,35 +40,37 @@
         });
       });
 
-
       LoansFactory.getComments($scope.loan_id).then(function success(response){
         $scope.comments = response.data.data;
       });
       LoansFactory.getCommittee($scope.loan_id).then(function success(response){
         $scope.committee = response.data.data;
       });
-        LoansFactory.getCropExpenses($scope.loan_id).then(function success(response){
+      LoansFactory.getCropExpenses($scope.loan_id).then(function success(response){
           $scope.cropExpenses = response.data.data;
         });
       LoansFactory.getDistributor($scope.loan_id).then(function success(response){
         $scope.distributor = response.data.data[0];
       });
+        LoansFactory.getFarmExpenses($scope.loan_id).then(function success(response){
+          $scope.farmExpenses = response.data.data;
+        });
       LoansFactory.getFarmPractices($scope.loan_id).then(function success(response){
               $scope.farmPractices = response.data.data;
             });
       LoansFactory.getFarms($scope.loan_id).then(function success(response){
         $scope.farms = response.data.data;
       });
-        LoansFactory.getGuarantors($scope.loan_id).then(function success(response){
+      LoansFactory.getGuarantors($scope.loan_id).then(function success(response){
           $scope.loan.guarantors = response.data.data;
           if($scope.loan.guarantors.length > 0){
             $scope.loan.conditions_pg = true;
           }
         });
-        LoansFactory.getGrader($scope.loan_id).then(function success(response){
+      LoansFactory.getGrader($scope.loan_id).then(function success(response){
           $scope.loan.grader = response.data[0];
         });
-        LoansFactory.getInsurancePolicies($scope.loan_id).then(function success(response){
+      LoansFactory.getInsurancePolicies($scope.loan_id).then(function success(response){
                 $scope.loan.insurance = response.data.data;
               });
       LoansFactory.getLoanCounties($scope.loan_id).then(function success(response){
@@ -121,12 +129,35 @@
         $scope.loan.fins.total_income = $scope.loan.fins.average_revenue - $scope.loan.fins.average_expense;
       };
 
-      $scope.updateFarmer = FarmersFactory.updateFarmer;
       $scope.updateFarmer = function(obj) {
         return FarmersFactory.updateFarmer(obj)
           .then(function (res) {
             console.log(res);
           });
+      };
+      $scope.updateApplicant = function(obj){
+        return ApplicantsFactory.updateApplicant(obj)
+          .then(function(res){
+            console.log(res);
+        });
+      };
+      $scope.updateCorporation = function(obj){
+        return ApplicantsFactory.updateCorporation(obj)
+          .then(function(res){
+            console.log(res);
+          });
+      };
+      $scope.updateVenture = function(obj){
+          return ApplicantsFactory.updateVenture(obj)
+            .then(function(res){
+              console.log(res);
+            });
+        };
+      $scope.updatePartner = function(obj){
+        return ApplicantsFactory.updatePartner(obj)
+          .then(function(res){
+            console.log(res);
+        });
       };
 
       // TODO: Factor in changing from RP ins_type
@@ -142,29 +173,5 @@
         return 39549017.29;
       };
 
-        $scope.clkProgIcon = function(ico, state){
-          var icons = ['', 'its.list', 'fsa_compliant', 'prev_lien_verfied', 'leases_valid', 'bankruptcy_order_received', 'received_3party', 'recommended', 'arm_approved', 'dist_approved', 'loan_closed', 'added_land_verified', 'arm_ucc_received', 'dist_ucc_received', 'aoi_received', 'ccc_received', 'rebate_assignment', 'crop_inspection', 'limit_warning', 'Account reconcilliation'];
-
-          var elem = icons[ico];
-
-          if(state == '0'){
-            $timeout(function() {
-              $scope.loan[elem] = 1;
-            }, 0);
-            console.log($scope.loan[elem]);
-          } else if(state == '1'){
-            $timeout(function() {
-              $scope.loan[elem] = 2;
-            }, 0);
-            console.log($scope.loan[elem]);
-          } else if(state == '2'){
-            $timeout(function() {
-              $scope.loan[elem] = 1;
-            }, 0);
-            console.log($scope.loan[elem]);
-          } else {
-            console.log('dunno');
-          }//end if
-        };
       });
 })();

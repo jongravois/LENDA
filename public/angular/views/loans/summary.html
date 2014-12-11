@@ -2,7 +2,7 @@
   label{ font-weight:normal; color:#AAA; }
   .rowed td{border:1px solid #dddddd; }
 </style>
-<!--<pre>{{loan | json}}</pre>-->
+<!--<pre>{{farmExpenses | json}}</pre>-->
 <form>
 <fieldset>
 <legend>Loan Summary</legend>
@@ -572,19 +572,19 @@
       <tr>
         <td style="width:60%;">ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}} </span>Loan secured by Collateral Conditions</td>
         <td style="width:40%;" colspan="3" class="text-right">
-          {{financials.arm_and_dist | displaynullcurrency}}
+          {{loan.fins.arm_and_dist | displaynullcurrency}}
         </td>
       </tr>
       <tr>
         <td>Applicant's share of crop insurance less premium</td>
         <td colspan="3" class="text-right">
-          {{financials.guaranty | displaynullcurrency}}
+          {{loan.fins.guaranty | displaynullcurrency}}
         </td>
       </tr>
       <tr>
         <td>Crop Insurance coverage in excess of ARM and {{loan.distributor}} Loan</td>
         <td colspan="3" class="text-right">
-          {{financials.guaranty - financials.arm_and_dist | displaynullcurrency}}
+          {{loan.fins.guaranty - financials.arm_and_dist | displaynullcurrency}}
         </td>
       </tr>
     </table>

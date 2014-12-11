@@ -1,8 +1,5 @@
-// TODO: Switch to mass-autocomplete
 // TODO: Fixed Headers in tables
-// TODO: ALL use Edit-in-Place instead of inputs!!!
 // TODO: Loan Type Screens???
-// TODO: Icon Bar not working
 // TODO: is_stale calculation
 // TODO: Attachments & Needs Vote calculation
 // TODO: Summary: Collateral Conditions
@@ -21,6 +18,5 @@
 // TODO: Unit of Measurements Switcher
 // TODO: Underwriting: Collateral Conditions (add new feature)
 // TODO: Underwriting: Collateral Summary (edit discount --> LENDA)
-// TODO: Guarantor's Table???
 // TODO: Controlled Disbursement
 // TODO: Insurance -- need agency & contact

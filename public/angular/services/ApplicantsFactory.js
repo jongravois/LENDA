@@ -8,7 +8,11 @@
         getApplicants: getApplicants,
         getCorporations: getCorporations,
         getJointVentures: getJointVentures,
-        getPartners: getPartners
+        getPartners: getPartners,
+        updateApplicant: updateApplicant,
+        updatePartner: updatePartner,
+        updateVenture: updateVenture,
+        updateCorporation: updateCorporation
       };
 
       function getApplicant(id){
@@ -30,5 +34,13 @@
       function getPartners(id){
         return $http.get(API_URL + '/loans/' + id + '/partners');
       }
+
+      function updateApplicant(o){}
+
+      function updateCorporation(o){}
+
+      function updateVenture(o){}
+
+      function updatePartner(o){}
     });
 })();

@@ -15,417 +15,354 @@
             templateUrl: 'angular/views/home.html',
             controller: 'HomeController'
           })
-
           .state('management', {
             url: '/management',
             templateUrl: 'angular/views/management.html',
             controller: 'ManagementController'
           })
-
           .state('prefs', {
             url: '/prefs',
             templateUrl: 'angular/views/prefs.html',
             controller: 'PrefsController'
           })
 
+          // LIBRARY
           .state('calendar', {
             url: '/calendar',
             templateUrl: 'angular/views/calendar.html',
             controller: 'CalendarController'
           })
-
+          .state('legend', {
+            url: '/legend',
+            templateUrl: 'angular/views/legend.html',
+            controller: 'LegendController'
+          })
+          .state('legal_docs', {
+            url: '/legal_docs',
+            templateUrl: 'angular/views/legal_docs.html',
+            controller: 'LegalDocsController'
+          })
+          .state('loan_products', {
+            url: '/loan_products',
+            templateUrl: 'angular/views/loanprods.html',
+            controller: 'LoanProductsController'
+          })
+          .state('matrix', {
+            url: '/matrix',
+            templateUrl: 'angular/views/matrix.html',
+            controller: 'MatrixController'
+          })
+          .state('pdf_apps', {
+            url: '/pdf_apps',
+            templateUrl: 'angular/views/pdf_apps.html',
+            controller: 'PdfAppsController'
+          })
+          .state('pols_procs', {
+            url: '/pols_procs',
+            templateUrl: 'angular/views/pols_procs.html',
+            controller: 'PolsProcsController'
+          })
           .state('resources', {
             url: '/resources',
             templateUrl: 'angular/views/resources.html',
             controller: 'ResourcesController'
           })
 
-          .state('loan_products', {
-            url: '/loan_products',
-            templateUrl: 'angular/views/loanprods.html',
-            controller: 'LoanProductsController'
-          })
-
-          .state('legal_docs', {
-            url: '/legal_docs',
-            templateUrl: 'angular/views/legal_docs.html',
-            controller: 'LegalDocsController'
-          })
-
-          .state('pols_procs', {
-            url: '/pols_procs',
-            templateUrl: 'angular/views/pols_procs.html',
-            controller: 'PolsProcsController'
-          })
-
-          .state('pdf_apps', {
-            url: '/pdf_apps',
-            templateUrl: 'angular/views/pdf_apps.html',
-            controller: 'PdfAppsController'
-          })
-
-          .state('legend', {
-            url: '/legend',
-            templateUrl: 'angular/views/legend.html',
-            controller: 'LegendController'
-          })
-
-          .state('matrix', {
-            url: '/matrix',
-            templateUrl: 'angular/views/matrix.html',
-            controller: 'MatrixController'
-          })
-
+          // REPORTS
           .state('reports', {
             url: '/rpts',
             templateUrl: 'angular/views/reports/home.html',
             controller: 'ReportsController'
           })
-
-          .state('reports.actdet', {
-            url: '/actdet',
-            templateUrl: 'angular/views/reports/activity_detail.html'
-          })
-
-          .state('reports.cusbud', {
-            url: '/cusbud',
-            templateUrl: 'angular/views/reports/customer_budget.html'
-          })
-
           .state('reports.accrecon', {
             url: '/accrecon',
             templateUrl: 'angular/views/reports/account_reconcilliation.html'
           })
-
-          .state('reports.lnman', {
-            url: '/lnman',
-            templateUrl: 'angular/views/reports/loan_management.html'
+          .state('reports.actdet', {
+            url: '/actdet',
+            templateUrl: 'angular/views/reports/activity_detail.html'
           })
-
           .state('reports.actsum', {
             url: '/actsum',
             templateUrl: 'angular/views/reports/activity_summary.html'
           })
-
           .state('reports.avcred', {
             url: '/avcred',
             templateUrl: 'angular/views/reports/available_credit.html'
           })
-
           .state('reports.cfarm', {
             url: '/cfarm',
             templateUrl: 'angular/views/reports/cfarm.html'
           })
-
-          .state('reports.fmrhis', {
-            url: '/fmrhis',
-            templateUrl: 'angular/views/reports/farmer_history.html'
-          })
-
-          .state('reports.crpmix', {
-            url: '/crpmix',
-            templateUrl: 'angular/views/reports/crop_mix.html'
-          })
-
           .state('reports.comapp', {
             url: '/comapp',
             templateUrl: 'angular/views/reports/committee_approval.html'
           })
-
           .state('reports.comcom', {
             url: '/comcom',
             templateUrl: 'angular/views/reports/committee_comment.html'
           })
-
+          .state('reports.crpmix', {
+            url: '/crpmix',
+            templateUrl: 'angular/views/reports/crop_mix.html'
+          })
+          .state('reports.cusbud', {
+            url: '/cusbud',
+            templateUrl: 'angular/views/reports/customer_budget.html'
+          })
+          .state('reports.fmrhis', {
+            url: '/fmrhis',
+            templateUrl: 'angular/views/reports/farmer_history.html'
+          })
+          .state('reports.lnman', {
+            url: '/lnman',
+            templateUrl: 'angular/views/reports/loan_management.html'
+          })
           .state('reports.repcus', {
             url: '/repcus',
             templateUrl: 'angular/views/reports/repeat_customer.html'
           })
-
           .state('reports.usradt', {
             url: '/usradt',
             templateUrl: 'angular/views/reports/user_audit.html'
           })
 
+          // ADMIN
           .state('admin', {
             abstract: true,
             url: '/admin',
             templateUrl: 'angular/views/admin/home.html',
             controller: 'AdminController'
           })
-
+          .state('admin.distributors', {
+            url: '/distributors',
+            templateUrl: 'angular/views/admin/distributors.html'
+          })
+          .state('admin.distributors.edit', {
+            url: '/edit/:distributorId',
+            templateUrl: 'angular/views/admin/distributor.html',
+            controller: 'AdminDistributorsController'
+          })
+          .state('admin.entitytypes', {
+            url: '/entitytypes',
+            templateUrl: 'angular/views/admin/entitytypes.html'
+          })
+          .state('admin.entitytypes.edit', {
+            url: '/edit/:entitytypeId',
+            templateUrl: 'angular/views/admin/entitytype.html',
+            controller: 'AdminEntitytypesController'
+          })
+          .state('admin.instypes', {
+            url: '/instypes',
+            templateUrl: 'angular/views/admin/instypes.html'
+          })
+          .state('admin.instypes.edit', {
+            url: '/edit/:instypeId',
+            templateUrl: 'angular/views/admin/instype.html',
+            controller: 'AdminInstypesController'
+          })
+          .state('admin.loantypes', {
+            url: '/loantypes',
+            templateUrl: 'angular/views/admin/loantypes.html'
+          })
+          .state('admin.loantypes.edit', {
+            url: '/edit/:loantypeId',
+            templateUrl: 'angular/views/admin/loantype.html',
+            controller: 'AdminLoantypesController'
+          })
+          .state('admin.locations', {
+            url: '/locations',
+            templateUrl: 'angular/views/admin/locations.html'
+          })
+          .state('admin.locations.edit', {
+            url: '/edit/:locationId',
+            templateUrl: 'angular/views/admin/location.html',
+            controller: 'AdminLocationsController'
+          })
+          .state('admin.regions', {
+            url: '/regions',
+            templateUrl: 'angular/views/admin/regions.html'
+          })
+          .state('admin.regions.edit', {
+            url: '/edit/:regionId',
+            templateUrl: 'angular/views/admin/region.html',
+            controller: 'AdminRegionsController'
+          })
+          .state('admin.reports', {
+            url: '/reports',
+            templateUrl: 'angular/views/admin/reports.html'
+          })
+          .state('admin.reports.edit', {
+            url: '/edit/:reportId',
+            templateUrl: 'angular/views/admin/report.html',
+            controller: 'AdminReportsController'
+          })
+          .state('admin.roles', {
+            url: '/roles',
+            templateUrl: 'angular/views/admin/roles.html'
+          })
+          .state('admin.roles.edit', {
+            url: '/edit/:roleId',
+            templateUrl: 'angular/views/admin/role.html',
+            controller: 'AdminRolesController'
+          })
+          .state('admin.units', {
+            url: '/units',
+            templateUrl: 'angular/views/admin/units.html'
+          })
+          .state('admin.units.edit', {
+            url: '/edit/:unitId',
+            templateUrl: 'angular/views/admin/unit.html',
+            controller: 'AdminUnitsController'
+          })
           .state('admin.users', {
             url: '/users',
             templateUrl: 'angular/views/admin/users.html'
           })
-
           .state('admin.users.edit', {
             url: '/edit/:userId',
             templateUrl: 'angular/views/admin/user.html',
             controller: 'AdminUsersController'
           })
 
-          .state('admin.distributors', {
-            url: '/distributors',
-            templateUrl: 'angular/views/admin/distributors.html'
-          })
-
-          .state('admin.distributors.edit', {
-            url: '/edit/:distributorId',
-            templateUrl: 'angular/views/admin/distributor.html',
-            controller: 'AdminDistributorsController'
-          })
-
-          .state('admin.entitytypes', {
-            url: '/entitytypes',
-            templateUrl: 'angular/views/admin/entitytypes.html'
-          })
-
-          .state('admin.entitytypes.edit', {
-            url: '/edit/:entitytypeId',
-            templateUrl: 'angular/views/admin/entitytype.html',
-            controller: 'AdminEntitytypesController'
-          })
-
-          .state('admin.instypes', {
-            url: '/instypes',
-            templateUrl: 'angular/views/admin/instypes.html'
-          })
-
-          .state('admin.instypes.edit', {
-            url: '/edit/:instypeId',
-            templateUrl: 'angular/views/admin/instype.html',
-            controller: 'AdminInstypesController'
-          })
-
-          .state('admin.loantypes', {
-            url: '/loantypes',
-            templateUrl: 'angular/views/admin/loantypes.html'
-          })
-
-          .state('admin.loantypes.edit', {
-            url: '/edit/:loantypeId',
-            templateUrl: 'angular/views/admin/loantype.html',
-            controller: 'AdminLoantypesController'
-          })
-
-          .state('admin.locations', {
-            url: '/locations',
-            templateUrl: 'angular/views/admin/locations.html'
-          })
-
-          .state('admin.locations.edit', {
-            url: '/edit/:locationId',
-            templateUrl: 'angular/views/admin/location.html',
-            controller: 'AdminLocationsController'
-          })
-
-          .state('admin.regions', {
-            url: '/regions',
-            templateUrl: 'angular/views/admin/regions.html'
-          })
-
-          .state('admin.regions.edit', {
-            url: '/edit/:regionId',
-            templateUrl: 'angular/views/admin/region.html',
-            controller: 'AdminRegionsController'
-          })
-
-          .state('admin.reports', {
-            url: '/reports',
-            templateUrl: 'angular/views/admin/reports.html'
-          })
-
-          .state('admin.reports.edit', {
-            url: '/edit/:reportId',
-            templateUrl: 'angular/views/admin/report.html',
-            controller: 'AdminReportsController'
-          })
-
-          .state('admin.roles', {
-            url: '/roles',
-            templateUrl: 'angular/views/admin/roles.html'
-          })
-
-          .state('admin.roles.edit', {
-            url: '/edit/:roleId',
-            templateUrl: 'angular/views/admin/role.html',
-            controller: 'AdminRolesController'
-          })
-
-          .state('admin.units', {
-            url: '/units',
-            templateUrl: 'angular/views/admin/units.html'
-          })
-
-          .state('admin.units.edit', {
-            url: '/edit/:unitId',
-            templateUrl: 'angular/views/admin/unit.html',
-            controller: 'AdminUnitsController'
-          })
-
+          // NEW APPLICATIONS
           .state('new', {
             abstract: true,
             url: '/new',
             templateUrl: 'angular/views/newApp.html',
             controller: 'NewAppController'
           })
-
-          .state('new.farmer', {
-            url: '/farmer',
-            templateUrl: 'angular/views/loans/newfarmer.html'
-          })
-
           .state('new.applicant', {
             url: '/applicant',
-            templateUrl: 'angular/views/loans/applicant.html'
+            templateUrl: 'angular/views/loans/newapplicant.html'
           })
-
-          .state('new.distributor', {
-            url: '/distributor',
-            templateUrl: 'angular/views/loans/distributor.html'
-          })
-
-          .state('new.quests', {
-            url: '/quests',
-            templateUrl: 'angular/views/loans/quests.html'
-          })
-
           .state('new.crops', {
             url: '/crops',
-            templateUrl: 'angular/views/loans/crops.html'
+            templateUrl: 'angular/views/loans/newcrops.html'
           })
-
-          .state('new.yield', {
-            url: '/yield',
-            templateUrl: 'angular/views/loans/yield.html'
+          .state('new.distributor', {
+            url: '/distributor',
+            templateUrl: 'angular/views/loans/newdistributor.html'
           })
-
-          .state('new.farms', {
-            url: '/farms',
-            templateUrl: 'angular/views/loans/farms.html'
-          })
-
-          .state('new.insurance', {
-            url: '/insurance',
-            templateUrl: 'angular/views/loans/insurance.html'
-          })
-
           .state('new.expenses', {
             url: '/expenses',
             templateUrl: 'angular/views/loans/expenses.html'
           })
-
+          .state('new.farmer', {
+            url: '/farmer',
+            templateUrl: 'angular/views/loans/newfarmer.html'
+          })
+          .state('new.farms', {
+            url: '/farms',
+            templateUrl: 'angular/views/loans/newfarms.html'
+          })
           .state('new.financials', {
             url: '/financials',
-            templateUrl: 'angular/views/loans/financials.html'
+            templateUrl: 'angular/views/loans/newfinancials.html'
+          })
+          .state('new.insurance', {
+            url: '/insurance',
+            templateUrl: 'angular/views/loans/newinsurance.html'
+          })
+          .state('new.quests', {
+            url: '/quests',
+            templateUrl: 'angular/views/loans/quests.html'
+          })
+          .state('new.yield', {
+            url: '/yield',
+            templateUrl: 'angular/views/loans/newyield.html'
           })
 
-          //EDITS HERE
+          //EDIT APPLICATIONS
           .state('edit',{
             url: '/edit/:id',
             templateUrl: 'angular/views/editapp.html',
             controller: 'EditAppController'
           })
-
-          .state('edit.summary', {
-            url: '/summary',
-            templateUrl: 'angular/views/loans/summary.html'
-          })
-
-          .state('edit.underwriting', {
-            url: '/underwriting',
-            templateUrl: 'angular/views/loans/underwriting.html'
-          })
-
-          .state('edit.terms', {
-            url: '/terms',
-            templateUrl: 'angular/views/loans/terms.html'
-          })
-
-          .state('edit.committee', {
-            url: '/committee',
-            templateUrl: 'angular/views/loans/committee.html'
-          })
-
-          .state('edit.comments', {
-            url: '/comments',
-            templateUrl: 'angular/views/loans/comments.html'
-          })
-
-          .state('edit.farmer', {
-            url: '/farmer',
-            templateUrl: 'angular/views/loans/editfarmer.html'
-          })
-
           .state('edit.applicant', {
             url: '/applicant',
-            templateUrl: 'angular/views/loans/applicant.html'
+            templateUrl: 'angular/views/loans/editapplicant.html'
           })
-
-          .state('edit.distributor', {
-            url: '/distributor',
-            templateUrl: 'angular/views/loans/distributor.html'
+          .state('edit.audit', {
+            url: '/audit',
+            templateUrl: 'angular/views/loans/audit.html'
           })
-
-          .state('edit.quests', {
-            url: '/quests',
-            templateUrl: 'angular/views/loans/quests.html'
-          })
-
-          .state('edit.farms', {
-            url: '/farms',
-            templateUrl: 'angular/views/loans/farms.html'
-          })
-
-          .state('edit.crops', {
-            url: '/crops',
-            templateUrl: 'angular/views/loans/crops.html'
-          })
-
-          .state('edit.farmdetails', {
-            url: '/farmdetails',
-            templateUrl: 'angular/views/loans/farmdetails.html'
-          })
-
-          .state('edit.yield', {
-            url: '/yield',
-            templateUrl: 'angular/views/loans/yield.html'
-          })
-
-          .state('edit.optimizer', {
-            url: '/optimizer',
-            templateUrl: 'angular/views/loans/optimizer.html'
-          })
-
-          .state('edit.insurance', {
-            url: '/insurance',
-            templateUrl: 'angular/views/loans/insurance.html'
-          })
-
           .state('edit.budgets', {
             url: '/budgets',
             templateUrl: 'angular/views/loans/budgets.html'
           })
-
-          .state('edit.financials', {
-            url: '/financials',
-            templateUrl: 'angular/views/loans/financials.html'
-          })
-
-          .state('edit.prerequisites', {
-            url: '/prerequisites',
-            templateUrl: 'angular/views/loans/prerequisites.html'
-          })
-
           .state('edit.closing', {
             url: '/closing',
             templateUrl: 'angular/views/loans/closing.html'
           })
-
-          .state('edit.audit', {
-            url: '/audit',
-            templateUrl: 'angular/views/loans/audit.html'
+          .state('edit.comments', {
+            url: '/comments',
+            templateUrl: 'angular/views/loans/comments.html'
+          })
+          .state('edit.committee', {
+            url: '/committee',
+            templateUrl: 'angular/views/loans/committee.html'
+          })
+          .state('edit.crops', {
+            url: '/crops',
+            templateUrl: 'angular/views/loans/editcrops.html'
+          })
+          .state('edit.disbursement', {
+            url: '/disbursement',
+            templateUrl: 'angular/views/loans/disbursement.html',
+            conroller: 'DisbursementController'
+          })
+          .state('edit.distributor', {
+            url: '/distributor',
+            templateUrl: 'angular/views/loans/editdistributor.html'
+          })
+          .state('edit.farmdetails', {
+            url: '/farmdetails',
+            templateUrl: 'angular/views/loans/farmdetails.html'
+          })
+          .state('edit.farmer', {
+            url: '/farmer',
+            templateUrl: 'angular/views/loans/editfarmer.html'
+          })
+          .state('edit.farms', {
+            url: '/farms',
+            templateUrl: 'angular/views/loans/editfarms.html'
+          })
+          .state('edit.financials', {
+            url: '/financials',
+            templateUrl: 'angular/views/loans/editfinancials.html'
+          })
+          .state('edit.insurance', {
+            url: '/insurance',
+            templateUrl: 'angular/views/loans/editinsurance.html'
+          })
+          .state('edit.optimizer', {
+            url: '/optimizer',
+            templateUrl: 'angular/views/loans/optimizer.html'
+          })
+          .state('edit.prerequisites', {
+            url: '/prerequisites',
+            templateUrl: 'angular/views/loans/prerequisites.html'
+          })
+          .state('edit.quests', {
+            url: '/quests',
+            templateUrl: 'angular/views/loans/quests.html'
+          })
+          .state('edit.summary', {
+            url: '/summary',
+            templateUrl: 'angular/views/loans/summary.html'
+          })
+          .state('edit.terms', {
+            url: '/terms',
+            templateUrl: 'angular/views/loans/terms.html'
+          })
+          .state('edit.underwriting', {
+            url: '/underwriting',
+            templateUrl: 'angular/views/loans/underwriting.html'
+          })
+          .state('edit.yield', {
+            url: '/yield',
+            templateUrl: 'angular/views/loans/edityield.html'
           })
 
         $urlRouterProvider.otherwise('/');

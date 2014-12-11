@@ -10,6 +10,7 @@ class UserTransformer extends Transformer
 
     if($arr['is_staff']){
       return [
+        'id' => $arr['id'],
         'email' => $arr['email'],
         'username' => $arr['staff']['username'],
         'nick' => $arr['staff']['nick'],

@@ -7,6 +7,7 @@
         getCommittee: getCommittee,
         getCropExpenses: getCropExpenses,
         getDistributor: getDistributor,
+        getFarmExpenses: getFarmExpenses,
         getFarmPractices: getFarmPractices,
         getFarms: getFarms,
         getFinancials: getFinancials,
@@ -38,6 +39,10 @@
 
       function getDistributor(id){
         return $http.get(API_URL + '/loans/' + id + '/distributor');
+      }
+
+      function getFarmExpenses(id){
+        return $http.get(API_URL + '/loans/' + id + '/farmexpenses');
       }
 
       function getFarmPractices(id){

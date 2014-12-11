@@ -51,6 +51,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('loanstatus', 'LoanstatusController');
   Route::resource('loantypes', 'LoantypesController');
   Route::resource('locations', 'LocationsController');
+  Route::resource('notifications', 'NotificationController');
   Route::resource('partners', 'PartnersController');
   Route::resource('prerequisites', 'PrerequisitesController');
   Route::resource('ratioconstraints', 'RatioconstraintsController');
@@ -85,6 +86,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/partners', 'PartnersController@byLoan');
   Route::get('loans/{id}/prerequisites', 'PrerequisitesController@byLoan');
   Route::get('loans/{id}/quests', 'LoanquestionsController@byLoan');
+  Route::get('users/{id}/notifications', 'NotificationController@byUser');
   Route::get('loans/{id}/systemics', 'SystemicsController@byLoan');
   Route::get('loantypes/{id}/screens', 'ScreensController@byLoantype');
 });

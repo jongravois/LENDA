@@ -147,17 +147,17 @@
     </tr>
   </table>
 </div>
-
+<!--TODO: Add click funtionality to progress bar-->
 <div class="button_bar" style="margin-top: 20px;">
   &nbsp;
   <!--<img src="/images/Excel_Dump_Icon.gif"/>-->
     <span class="view_control">
-        <select ng-model="landing_view" class="form-control">
+        <!--<select ng-model="landing_view" class="form-control">
           <option value="my_settings_view">My Settings</option>
           <option value="all_loans_view">All Active Loans</option>
           <option value="spring_loans_view">Active Spring Loans</option>
           <option value="fall_loans_view">Active Fall Loans</option>
-        </select>
+        </select>-->
     </span>
 </div> <!-- end .button_bar -->
 
@@ -189,7 +189,7 @@
       <th style="width:5%;" rowspan="2" data-ng-click="sortBy='loan_type';reverse=!reverse">Type</th>
       <th style="width:18px;" rowspan="2" data-ng-click="sortBy='loanStatus';reverse=!reverse">Status</th>
       <th colspan="20" style="text-align: center">Progress</th>
-      <th style="width:5%;" rowspan="2" data-ng-click="sortBy='commit_arm';reverse=!reverse">Commit-ARM</th>
+      <!--<th style="width:5%;" rowspan="2" data-ng-click="sortBy='commit_arm';reverse=!reverse">Commit-ARM</th>-->
     </tr>
     <tr class="landing_header_row">
       <th style="width:8px;">
@@ -334,11 +334,11 @@
         <img ng-src="images/dot_{{getColor(l.reconcilliation)}}.png" alt=""/>
       </td>
       <td class="cents">
-        {{l.account_classification}}
+        {{l.fins.grade}}
       </td>
-      <td class="text-center" ng-class=gtZero(l.fins.commit_arm)>
+      <!--<td class="text-center" ng-class=gtZero(l.fins.commit_arm)>
         {{l.fins.commit_arm | noCentsCurrency}}
-      </td>
+      </td>-->
     </tr>
   </table>
 </div>

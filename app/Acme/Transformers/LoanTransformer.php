@@ -67,7 +67,7 @@ public function transform($arr)
 		'limit_warning' => (integer) $arr['limit_warning'],
 		'crop_inspection' => (integer) $arr['crop_inspection'],
 		'reconcilliation' => (integer) $arr['reconcilliation'],
-		'account_classification' => $arr['applicants']['grade'],
+		'account_classification' => (integer) $arr['account_classification'],
     'last_activity' => $arr['updated_at'],
     'insurance' => $arr['insurance'],
     'fins' => [
