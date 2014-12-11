@@ -66,10 +66,9 @@
         return 'No';
       };
     })
-    .filter('noCentsCurrency',
-    [ '$filter', '$locale', function(filter, locale) {
-      var currencyFilter = filter('currency');
-      var formats = locale.NUMBER_FORMATS;
+    .filter('noCentsCurrency',function($filter, $locale) {
+      var currencyFilter = $filter('currency');
+      var formats = $locale.NUMBER_FORMATS;
       return function(amount, currencySymbol) {
         var value = currencyFilter(amount, currencySymbol);
         var sep = value.indexOf(formats.DECIMAL_SEP);
@@ -80,7 +79,7 @@
         }
         return value.substring(0, sep) + ')';
       };
-    } ])
+    })
     .filter('phone', function(){
       return function(input){
         if(!input) { return ''; }

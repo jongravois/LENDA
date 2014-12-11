@@ -14,6 +14,8 @@
       $scope.user_id = $('#user_id').data('id');
       $scope.landing_view = 'my_settings_view';
 
+      $scope.loan = $scope.loan || {};
+
       UsersFactory.getUsers().then(function success(response){
         $scope.users = response.data.data;
       });

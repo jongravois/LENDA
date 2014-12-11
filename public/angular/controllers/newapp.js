@@ -13,7 +13,7 @@
         $scope.newapplication = true; //flag for screen buttons
 
         // TODO: call AppFactory.getDefaultDueDate('2', '2015) -- loan type and crop_year
-        
+
         $scope.farmer = $scope.farmer || {};
         $scope.loan = {
           app_date: $scope.globals.today,

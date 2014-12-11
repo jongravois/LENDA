@@ -6,6 +6,7 @@
       $state,
       $stateParams,
       $filter,
+      $timeout,
       ApplicantsFactory,
       FarmersFactory,
       LoansFactory
@@ -140,5 +141,30 @@
       $scope.calcTotalValue = function(){
         return 39549017.29;
       };
-    });
+
+        $scope.clkProgIcon = function(ico, state){
+          var icons = ['', 'its.list', 'fsa_compliant', 'prev_lien_verfied', 'leases_valid', 'bankruptcy_order_received', 'received_3party', 'recommended', 'arm_approved', 'dist_approved', 'loan_closed', 'added_land_verified', 'arm_ucc_received', 'dist_ucc_received', 'aoi_received', 'ccc_received', 'rebate_assignment', 'crop_inspection', 'limit_warning', 'Account reconcilliation'];
+
+          var elem = icons[ico];
+
+          if(state == '0'){
+            $timeout(function() {
+              $scope.loan[elem] = 1;
+            }, 0);
+            console.log($scope.loan[elem]);
+          } else if(state == '1'){
+            $timeout(function() {
+              $scope.loan[elem] = 2;
+            }, 0);
+            console.log($scope.loan[elem]);
+          } else if(state == '2'){
+            $timeout(function() {
+              $scope.loan[elem] = 1;
+            }, 0);
+            console.log($scope.loan[elem]);
+          } else {
+            console.log('dunno');
+          }//end if
+        };
+      });
 })();
