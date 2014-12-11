@@ -9,6 +9,10 @@ Route::get('app', [
   'uses' => 'AppController@index'
 ])->before('auth');
 
+Route::get('test', function(){
+  return User::where('email', 'jongravois@gmail.com')->get();
+});
+
 Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('admingrader', 'AdmingraderController');
   Route::resource('agencies', 'AgenciesController');
@@ -30,6 +34,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('farmcrops', 'FarmcropsController');
   Route::resource('farmexpenses', 'FarmexpensesController');
   Route::resource('globals', 'GlobalsController');
+  Route::resource('guarantors', 'GuarantorController');
   Route::resource('insurance', 'InsuranceController');
   Route::resource('insurancetypes', 'InsurancetypesController');
   Route::resource('jointventures', 'JointventuresController');
@@ -71,6 +76,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/farmexpenses', 'FarmexpensesController@byLoan');
   Route::get('loans/{id}/farmpractices', 'FarmpracticesController@byLoan');
   Route::get('loans/{id}/financials', 'LoanfinancialsController@byLoan');
+  Route::get('loans/{id}/guarantors', 'GuarantorController@byLoan');
   Route::get('loans/{id}/insurance', 'InsuranceController@byLoan');
   Route::get('loans/{id}/jointventures', 'JointventuresController@byLoan');
   Route::get('loans/{id}/loanassets', 'LoanassetsController@byLoan');

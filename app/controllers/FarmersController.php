@@ -15,7 +15,7 @@ class FarmersController extends ApiController {
 
   public function index()
   {
-    $farmers = Farmer::orderBy('farmer')->get();
+    $farmers = Farmer::with('state')->orderBy('farmer')->get();
 
     return $this->respond([
       'data' => $this->farmerTransformer->transformCollection($farmers->all())
@@ -24,7 +24,7 @@ class FarmersController extends ApiController {
 
   public function show($id)
   {
-    $farmer = Farmer::where('id', $id)->get();
+    $farmer = Farmer::with('state')->where('id', $id)->get();
 
     if( $farmer->isEmpty() ){
       return $this->respondNotFound('Farmer does not exist.');
@@ -37,11 +37,24 @@ class FarmersController extends ApiController {
 
   public function store()
   {
-    if( ! Input::get('farmer')){
+    if( ! Input::get('email')){
       return $this->respondCreationDenied('Failed Validation');
     } // end if
 
-    $farmer = Farmer::create(Input::all());
+    // Insert into user table and get insert_id
+    $user = User::firstOrCreate(
+      [
+        'email' => Input::get('email'),
+        'password' => 'changeme'
+      ]
+    );
+
+    // Add id to Input
+    $arr = Input::all();
+    $arr['user_id'] = $user->id;
+
+    // Insert into farmer table
+    $farmer = Farmer::create($arr);
 
     return $this->respondCreated($farmer->id);
   }

@@ -3,7 +3,6 @@
   angular.module('ARM')
     .factory('LoansFactory', function LoansFactory($http, API_URL){
       return {
-        getAdminGrader: getAdminGrader,
         getComments: getComments,
         getCommittee: getCommittee,
         getCropExpenses: getCropExpenses,
@@ -11,6 +10,7 @@
         getFarmPractices: getFarmPractices,
         getFarms: getFarms,
         getFinancials: getFinancials,
+        getGuarantors: getGuarantors,
         getGrader: getGrader,
         getInsurancePolicies: getInsurancePolicies,
         getLoan: getLoan,
@@ -23,10 +23,6 @@
         getSelectedCrops: getSelectedCrops,
         getSystemics: getSystemics
       };
-
-      function getAdminGrader(){
-        return $http.get(API_URL + '/admingrader/');
-      }
 
       function getComments(id){
         return $http.get(API_URL + '/loans/' + id + '/comments');
@@ -54,6 +50,10 @@
 
       function getFinancials(id){
         return $http.get(API_URL + '/loans/' + id + '/financials');
+      }
+
+      function getGuarantors(id){
+        return $http.get(API_URL + '/loans/' + id + '/guarantors');
       }
 
       function getGrader(id){

@@ -28,6 +28,12 @@
             controller: 'PrefsController'
           })
 
+          .state('calendar', {
+            url: '/calendar',
+            templateUrl: 'angular/views/calendar.html',
+            controller: 'CalendarController'
+          })
+
           .state('resources', {
             url: '/resources',
             templateUrl: 'angular/views/resources.html',
@@ -62,6 +68,12 @@
             url: '/legend',
             templateUrl: 'angular/views/legend.html',
             controller: 'LegendController'
+          })
+
+          .state('matrix', {
+            url: '/matrix',
+            templateUrl: 'angular/views/matrix.html',
+            controller: 'MatrixController'
           })
 
           .state('reports', {
@@ -261,7 +273,7 @@
 
           .state('new.farmer', {
             url: '/farmer',
-            templateUrl: 'angular/views/loans/farmer.html'
+            templateUrl: 'angular/views/loans/newfarmer.html'
           })
 
           .state('new.applicant', {
@@ -343,7 +355,7 @@
 
           .state('edit.farmer', {
             url: '/farmer',
-            templateUrl: 'angular/views/loans/farmer.html'
+            templateUrl: 'angular/views/loans/editfarmer.html'
           })
 
           .state('edit.applicant', {

@@ -22,15 +22,18 @@ class LoantypesTableSeeder extends Seeder {
     ]);
     Loantype::create([
       'loantype' => 'Capital Bridge',
-      'ltPath'   => 'cbr'
+      'ltPath'   => 'cbr',
+      'default_due_date' => '-3-15'
     ]);
     Loantype::create([
       'loantype' => 'Ag-Vest',
-      'ltPath'   => 'agv'
+      'ltPath'   => 'agv',
+      'default_due_date' => '-3-15'
     ]);
     Loantype::create([
       'loantype' => 'Grain Storage',
-      'ltPath'   => 'grs'
+      'ltPath'   => 'grs',
+      'default_due_date' => '-3-15'
     ]);
   }
 

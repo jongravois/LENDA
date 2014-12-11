@@ -16,7 +16,8 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'ironman@marvel.com',
       'phone'	=>	'9995550001',
       'dob'	=>	'1960-07-15',
-      'farm_exp' => 36
+      'farm_exp' => 36,
+      'is_repeat' => 1
     ]);
 
     Farmer::create([

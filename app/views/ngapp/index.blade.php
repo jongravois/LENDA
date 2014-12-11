@@ -74,12 +74,15 @@
   <script src="angular/controllers/newapp.js"></script>
   <script src="angular/controllers/management.js"></script>
   <script src="angular/controllers/prefs.js"></script>
+  <script src="angular/controllers/calendar.js"></script>
+  <script src="angular/controllers/matrix.js"></script>
   <script src="angular/controllers/reports.js"></script>
   <script src="angular/controllers/library.js"></script>
   <script src="angular/controllers/admin.js"></script>
   <script src="angular/controllers/edit.js"></script>
     <!-- CONTROLLERS -->
     <!-- FACTORIES -->
+  <script src="angular/services/AppFactory.js"></script>
   <script src="angular/services/GlobalsFactory.js"></script>
   <script src="angular/services/UsersFactory.js"></script>
   <script src="angular/services/FeederFactory.js"></script>

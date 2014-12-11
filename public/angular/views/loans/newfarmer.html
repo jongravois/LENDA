@@ -1,17 +1,22 @@
-<form>
-  <fieldset name="FarmerInformation">
-    <!--<pre>{{farmer | json}}</pre>-->
-    <legend>FARMER INFORMATION</legend>
+<fieldset name="FarmerInformation">
+  <legend>FARMER INFORMATION</legend>
+  <form novalidate>
+    <h6 class="text-right small pulled-up">
+      <span class="req">*</span> indicates Required Field
+    </h6>
     <div class="row">
       <div class="form-group col-md-12">
         <!-- FARMER -->
         <div class="row">
-          <div class="form_group col-md-7">
-            <label>Last Name, First Name or Company Name:</label>
-            <input type="text" ng-model="farmer.farmer" typeahead="f.farmer for f in farmers | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onFarmerSelect($item, $model, $label)"/>
+          <div class="form_group col-md-7 required">
+            <label><span class="req">*</span>
+              Last Name, First Name or Company Name:
+            </label>
+            <input type="text" id="farmer" ng-model="farmer.farmer" typeahead="f.farmer for f in farmers | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onFarmerSelect($item, $model, $label)"/>
           </div>
           <div class="form-group col-md-2">
-            <label>SSN / Tax ID:</label>
+            <label><span class="req">*</span>
+              SSN / Tax ID:</label>
             <input type="text" class="form-control" name="ssn"ui-mask="999-99-9999" ng-model="farmer.ssn" style="width: 160px;"/>
           </div>
           <div class="form_group col-md-3">&nbsp;</div>
@@ -67,9 +72,11 @@
       </div>
       <div class="row">
         <div class="col-md-12 text-right">
-          <button style="margin-right:10px;" class="btn btn-primary" ng-click="insertFarmer()" ng-if="newapplication">SAVE</button>
-          <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateFarmer()" ng-if="!newapplication">UPDATE</button>
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="createFarmer(farmer)">SAVE</button>
         </div>
       </div>
-  </fieldset>
-</form>
+    </div>
+  </form>
+  <!--<pre>{{farmer | json}}</pre>-->
+  <!--<pre>{{loan | json}}</pre>-->
+</fieldset>

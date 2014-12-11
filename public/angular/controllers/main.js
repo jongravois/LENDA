@@ -37,6 +37,10 @@
         ];
       });
 
+      GlobalsFactory.getAdminGrader().then(function success(response){
+              $scope.grads = response.data.data;
+            });
+
       FeederFactory.init();
       $scope.feeder = FeederFactory.getObject();
       

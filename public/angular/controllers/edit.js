@@ -12,6 +12,7 @@
     ){
       $scope.loan = {};
       $scope.loan_id = $stateParams.id;
+      $scope.newapplication = false;
         
       LoansFactory.getLoan($stateParams.id).then(function success(response){
         $scope.loan = response.data.data;
@@ -31,9 +32,8 @@
           });
         });
       });
-      LoansFactory.getAdminGrader().then(function success(response){
-              $scope.grads = response.data.data;
-            });
+
+
       LoansFactory.getComments($scope.loan_id).then(function success(response){
         $scope.comments = response.data.data;
       });
@@ -52,6 +52,12 @@
       LoansFactory.getFarms($scope.loan_id).then(function success(response){
         $scope.farms = response.data.data;
       });
+        LoansFactory.getGuarantors($scope.loan_id).then(function success(response){
+          $scope.loan.guarantors = response.data.data;
+          if($scope.loan.guarantors.length > 0){
+            $scope.loan.conditions_pg = true;
+          }
+        });
         LoansFactory.getGrader($scope.loan_id).then(function success(response){
           $scope.loan.grader = response.data[0];
         });
@@ -112,6 +118,14 @@
         $scope.loan.fins.average_revenue = (o.year_1_revenue * 1 + o.year_2_revenue * 1 + o.year_3_revenue * 1)/3;
         $scope.loan.fins.average_expense = (o.year_1_expenses * 1 + o.year_2_expenses * 1 + o.year_3_expenses * 1)/3;
         $scope.loan.fins.total_income = $scope.loan.fins.average_revenue - $scope.loan.fins.average_expense;
+      };
+
+      $scope.updateFarmer = FarmersFactory.updateFarmer;
+      $scope.updateFarmer = function(obj) {
+        return FarmersFactory.updateFarmer(obj)
+          .then(function (res) {
+            console.log(res);
+          });
       };
 
       // TODO: Factor in changing from RP ins_type

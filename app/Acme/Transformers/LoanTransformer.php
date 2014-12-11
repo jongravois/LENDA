@@ -40,7 +40,6 @@ public function transform($arr)
 		'distributor' => $arr['distributor']['distributor'],
 		'need_vote' => (boolean) $arr['need_vote'],
 		'has_comment' => (boolean) $arr['has_comment'],
-		'is_stale' => (boolean) $arr['is_stale'],
 		'has_addendum' => (boolean) $arr['has_addendum'],
 		'bankruptcy_history' =>	(boolean) $arr['bankruptcy_history'],
 		'required_3party' => (boolean) $arr['required_3party'],
@@ -69,6 +68,7 @@ public function transform($arr)
 		'crop_inspection' => (integer) $arr['crop_inspection'],
 		'reconcilliation' => (integer) $arr['reconcilliation'],
 		'account_classification' => $arr['applicants']['grade'],
+    'last_activity' => $arr['updated_at'],
     'insurance' => $arr['insurance'],
     'fins' => [
       'cpa_financials' => (boolean) $arr['financials']['cpa_financials'],

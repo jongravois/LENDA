@@ -51,7 +51,7 @@ class LoansTableSeeder extends Seeder {
 			'crop_inspection' => 0,
 			'reconcilliation' => 0
 		]);
-/*
+
 		// Bruce Wayne (2) @ Secret Cave (1) | Partnership
 		Loan::create([
 			'applicant_id' =>  1,
@@ -65,9 +65,8 @@ class LoansTableSeeder extends Seeder {
 			'season_full' => 'Spring',
 			'loan_type_id' =>	3,
       'farmer_id' => 2,
-
 		]);
-
+/*
 		// Steve Rogers (12) @ Shielded Farms (3) | Joint Venture
 		Loan::create([
 			'applicant_id' => 3,

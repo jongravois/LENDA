@@ -16,29 +16,29 @@
     This is an {{loan.loan_type.type}} loan type where ARM is responsible for the total commitment
   </p>
 </div>
-<div id="Two" ng-if="financials.grade && financials.grade != 'A'">
+<div id="Two" ng-if="loan.fins.grade && loan.fins.grade != 'A'">
   <p class="lg-text">
-    Applicant is rated  "{{financials.grade}}"
+    Applicant is rated  "{{loan.fins.grade}}"
   </p>
 </div>
-<div id="Three">
+<div id="Three" ng-if="farmer.is_repeat">
   <p class="lg-text">
     Applicant is repeat customer
   </p>
 </div>
-<div id="Four">
+<div id="Four" ng-if="applicant.loans_outstanding">
   <p class="lg-text">
     Applicant has outstanding loans at ARM
   </p>
 </div>
-<div id="Five">
+<div id="Five" ng-if="applicant.previous_addendum">
   <p class="lg-text">
     Applicant utilized loan addendums in previous year: 114%
   </p>
 </div>
-<div id="Six">
+<div id="Six" ng-if="!loan.guarantors || loan.guarantors.length == 0">
   <p class="lg-text">
-    Personal Guarantys are being relied upon by this loan
+    No personal guarantees were utilized in this loan
   </p>
 </div>
 <div id="Seven" ng-if="loan.is_cross_collateralized">
@@ -51,7 +51,7 @@
     This is a controlled disbursements loan
   </p>
 </div>
-<div id="Nine">
+<div id="Nine" ng-if="farms.totals.cash_rent && farms.totals.cash_rent > 0">
   <p class="lg-text">
     Cash Rent waivers were utilized
   </p>
@@ -61,7 +61,7 @@
     Third Party Credit other than Interest was utilized
   </p>
 </div>
-<div id="Eleven">
+<div id="Eleven" ng-if="farms.totals.harvest && farms.totals.harvest > 0">
   <p class="lg-text">
     Variable harvesting expenses was utilized
   </p>
@@ -130,12 +130,12 @@
     There are outstanding contractual obligations
   </p>
 </div>
-<div id="TwentySix">
+<div id="TwentySix" ng-if="loan.crops[6].acres > 0">
   <p class="lg-text">
     This loan includes the production of peanuts
   </p>
 </div>
-<div id="TwentySeven">
+<div id="TwentySeven" ng-if="loan.crops[7].acres > 0">
   <p class="lg-text">
     This loan includes the production of sugar cane
   </p>
@@ -333,7 +333,6 @@
         </tr>
       </table>
       </p>
-
       <p class="lg-text" ng-class="{clrOn: loan.conditions_pg, clrOff: !loan.conditions_pg}">
         <input type="checkbox" class="squaredFour" ng-model="loan.conditions_pg"/>
         &nbsp;
@@ -341,7 +340,7 @@
       </p>
       <p ng-show="loan.conditions_pg" ng-hide="!loan.conditions_pg">
       <table class="table table-striped" ng-show="loan.conditions_pg" ng-hide="!loan.conditions_pg">
-        <tr ng-repeat="pg in guarantors">
+        <tr ng-repeat="pg in loan.guarantors">
           <td>{{pg.guarantor}}</td>
         </tr>
         <tr>
@@ -390,15 +389,6 @@
         &nbsp;
         Controlled Disbursement
       </p>
-      <p ng-show="loan.conditions_cd" ng-hide="!loan.collateral_conditions.cd">
-      <table class="table table-striped" ng-show="loan.conditions_cd" ng-hide="!loan.conditions_cd">
-        <tr>
-          <td style="width:60%;">Schedule</td>
-          <td style="width:20%;">Amount</td>
-          <td style="width:20%;">Balance</td>
-        </tr>
-      </table>
-      </p>
     </div>
   </div>
 </fieldset>
@@ -418,7 +408,7 @@
             Mkt Value
           </th>
           <th style="width:12%;">
-            Discount %
+            Disc. %
           </th>
           <th style="width:12%;">
             Non RP
@@ -681,5 +671,3 @@
     </div>
   </div>
 </fieldset>
-
-<!--<pre>{{financials | json}}</pre>-->

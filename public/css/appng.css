@@ -5,6 +5,11 @@ body{
   position: relative;
   z-index: 1;
 }
+.req{ color: #CC0000; }
+
+.pulled-up{ margin-top: -10px; }
+
+.pushed-down{ margin-top: 20px; }
 
 .badge{
   padding: 5px;
@@ -64,7 +69,7 @@ select {
 .centered{ margin: 0 auto; }
 .inlined{ display: inline; }
 .reqIndicator{ margin-bottom: 20px;}
-.required{ color: #DD0000; }
+/*.required{ color: #DD0000; }*/
 .bordered-left{ border-left:1px solid #CCCCCC; }
 .bordered-right{ border-right:1px solid #CCCCCC; }
 .element_over{margin-left: -20px; z-index: 10;}

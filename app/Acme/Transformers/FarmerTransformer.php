@@ -3,27 +3,30 @@
 use Carbon\Carbon;
 class FarmerTransformer extends Transformer{
 
-  public function transform($farmer)
+  public function transform($arr)
   {
+    //return $arr;
+
     $dtToday = Carbon::now();
-    $dtDOB = $farmer['dob'];
+    $dtDOB = $arr['dob'];
     $age_of_farmer = $dtToday->diffInYears($dtDOB);
 
     return [
-      'id'			=>	$farmer['id'],
-      'farmer'		=>	$farmer['farmer'],
-      'nick'			=>	$farmer['nick'],
-      'address'		=>	$farmer['address'],
-      'city'			=>	$farmer['city'],
-      'state_id'		=>	$farmer['state_id'],
-      'state'			=>	$farmer['state']['abr'],
-      'zip'			=>	$farmer['zip'],
-      'email'			=>	$farmer['email'],
-      'phone'			=>	$farmer['phone'],
-      'ssn'			=>	$farmer['ssn'],
-      'dob'			=>	$farmer['dob']->format('m/d/Y'),
+      'id'			=>	$arr['id'],
+      'farmer'		=>	$arr['farmer'],
+      'nick'			=>	$arr['nick'],
+      'address'		=>	$arr['address'],
+      'city'			=>	$arr['city'],
+      'state_id'		=>	$arr['state_id'],
+      'state'			=>	$arr['state']['abr'],
+      'zip'			=>	$arr['zip'],
+      'email'			=>	$arr['email'],
+      'phone'			=>	$arr['phone'],
+      'ssn'			=>	$arr['ssn'],
+      'dob'			=>	$arr['dob']->format('m/d/Y'),
       'age'		=>	$age_of_farmer,
-      'farm_exp'	=>	$farmer['farm_exp']
+      'farm_exp'	=>	$arr['farm_exp'],
+      'is_repeat' => (boolean) $arr['is_repeat']
     ];
   }
 }

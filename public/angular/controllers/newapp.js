@@ -4,11 +4,17 @@
       .controller('NewAppController', function(
         $scope,
         $http,
+        API_URL,
+        AppFactory,
+        FarmersFactory,
         LoansFactory
       ){
         var obj = {};
         $scope.newapplication = true; //flag for screen buttons
 
+        // TODO: call AppFactory.getDefaultDueDate('2', '2015) -- loan type and crop_year
+        
+        $scope.farmer = $scope.farmer || {};
         $scope.loan = {
           app_date: $scope.globals.today,
           entity_type_id: 2
@@ -30,14 +36,15 @@
 
         /* SCOPE METHODS */
         $scope.onFarmerSelect = function($item,$model,$label){
-          $http.get('/api/farmers/' + $item)
-            .success(function(farmer){
-              //debugger
-              angular.forEach(farmer.data, function(object, index){
-                if(object.farmer == $item){
-                  $scope.farmer = object;
-                } // end if
-              });
+          if($item){
+            $scope.farmer = $item;
+          }
+        };
+
+        $scope.createFarmer = function(obj) {
+          return FarmersFactory.createFarmer(obj)
+            .then(function(res){
+              $scope.loan.farmer_id = res.data.message;
             });
         };
       });

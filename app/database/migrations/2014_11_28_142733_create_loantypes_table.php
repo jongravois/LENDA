@@ -12,6 +12,7 @@ class CreateLoantypesTable extends Migration {
 			$table->increments('id');
       $table->string('loantype');
       $table->string('ltPath');
+      $table->string('default_due_date')->default('-12-15');
 		});
 	}
 
