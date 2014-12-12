@@ -17,8 +17,6 @@
       $scope.user_id = $('#user_id').data('id');
       $scope.landing_view = 'my_settings_view';
 
-      $scope.loan = $scope.loan || {};
-
       UsersFactory.getUsers().then(function success(response){
         $scope.users = response.data.data;
       });
@@ -85,21 +83,21 @@
       $scope.newLoan = function(val){
         var obj = {};
         for(var l=0; l<$scope.feeder.loantypes.length; l++){
-         if( val === $scope.feeder.loantypes[l].ltPath){
-           $scope.chosenLT = $scope.feeder.loantypes[l].loantype;
-           $scope.chosenLT_id = parseInt($scope.feeder.loantypes[l].id);
-           LoansFactory.getScreens($scope.feeder.loantypes[l].id).then(function success(response){
-             $scope.screens = response.data.data;
-             angular.forEach(response.data.data, function(obj, index){
-               if(obj.screen == 'farmer'){
-                 obj.status = 1;
-               } else {
-                 obj.status = 0;
-               }
-             });
-             return obj;
-           });
-           $state.go('new.farmer');
+          if( val === $scope.feeder.loantypes[l].ltPath){
+            $scope.chosenLT = $scope.feeder.loantypes[l].loantype;
+            $scope.chosenLT_id = parseInt($scope.feeder.loantypes[l].id);
+            LoansFactory.getScreens($scope.feeder.loantypes[l].id).then(function success(response){
+              $scope.screens = response.data.data;
+              angular.forEach(response.data.data, function(obj, index){
+                if(obj.screen == 'farmer'){
+                  obj.status = 1;
+                } else {
+                  obj.status = 0;
+                }
+              });
+              return obj;
+            });
+            $state.go('new.farmer');
           } // end if
         } // end for
       }; // end newLoan fn

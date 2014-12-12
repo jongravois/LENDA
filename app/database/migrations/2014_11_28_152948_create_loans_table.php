@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Carbon\Carbon;
 
 class CreateLoansTable extends Migration {
 
@@ -11,7 +12,7 @@ class CreateLoansTable extends Migration {
 		{
 			$table->increments('id');
       $table->date('app_date');
-      $table->date('due_date')->nullable();
+      $table->date('due_date');
       $table->integer('loan_type_id');
       $table->integer('status_id')->default(1);
       $table->string('crop_year');
@@ -20,8 +21,8 @@ class CreateLoansTable extends Migration {
       $table->integer('loc_id');
       $table->integer('region_id')->nullable();
       $table->integer('user_id');
-      $table->integer('farmer_id');
-      $table->integer('applicant_id');
+      $table->integer('farmer_id')->nullable();
+      $table->integer('applicant_id')->nullable();
       $table->boolean('is_active')->default(1);
       $table->boolean('is_cross_collateralized')->default(0);
       $table->boolean('is_fast_tracked')->default(0);
@@ -56,16 +57,15 @@ class CreateLoansTable extends Migration {
       $table->integer('account_classification')->default(0);
       $table->boolean('conditions_asa')->default(1);
       $table->boolean('conditions_aci')->default(1);
-      $table->boolean('conditions_areb')->default(0);
+      $table->boolean('conditions_areb')->default(1);
       $table->boolean('conditions_adis')->default(1);
       $table->boolean('conditions_pg')->default(1);
-      $table->boolean('conditions_ccl')->default(0);
-      $table->boolean('conditions_afsa')->default(0);
-      $table->boolean('conditions_cd')->default(0);
+      $table->boolean('conditions_ccl')->default(1);
+      $table->boolean('conditions_afsa')->default(1);
+      $table->boolean('conditions_cd')->default(1);
 			$table->timestamps();
 		});
 	}
-
 
 	public function down()
 	{

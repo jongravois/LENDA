@@ -4,21 +4,33 @@
       .controller('NewAppController', function(
         $scope,
         $http,
+        $state,
         API_URL,
         AppFactory,
         FarmersFactory,
+        GlobalsFactory,
         LoansFactory
       ){
-        var obj = {};
         $scope.newapplication = true; //flag for screen buttons
 
-        // TODO: call AppFactory.getDefaultDueDate('2', '2015) -- loan type and crop_year
+        var obj = {
+          app_date: '2014-12-12',
+          due_date: '2014-12-12',
+          loan_type_id: '2',
+          crop_year: '2015',
+          season: 'S',
+          season_full: 'Spring',
+          loc_id: '4',
+          region_id: '2',
+          user_id: '2'
+        };
+
+        LoansFactory.insertLoan(obj).then(function success(response){
+          console.log(response);
+          $scope.loan = response.data;
+        });
 
         $scope.farmer = $scope.farmer || {};
-        $scope.loan = {
-          app_date: $scope.globals.today,
-          entity_type_id: 2
-        };
 
         if(!$scope.screens){
             LoansFactory.getScreens('2').then(function success(response){

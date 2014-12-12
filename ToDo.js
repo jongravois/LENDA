@@ -1,5 +1,6 @@
 // TODO: Fixed Header??? Table Fixed Headers
 // TODO: Ensure removing Angular-Select didn't break anything
+// TODO: ***Move Home and Management views to ng-grid***
 // TODO: Loan Type Screens???
 // TODO: is_stale calculation
 // TODO: has_comments calculation (use need_vote as example)

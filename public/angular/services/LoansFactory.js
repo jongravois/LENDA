@@ -1,8 +1,14 @@
 (function(){
   'use strict';
   angular.module('ARM')
-    .factory('LoansFactory', function LoansFactory($http, API_URL){
+    .factory('LoansFactory', function LoansFactory(
+      $http,
+      $q,
+      API_URL,
+      GlobalsFactory
+    ){
       return {
+        createLoan: createLoan,
         getComments: getComments,
         getCommittee: getCommittee,
         getCropExpenses: getCropExpenses,
@@ -24,8 +30,26 @@
         getScreens: getScreens,
         getSelectedCrops: getSelectedCrops,
         getSystemics: getSystemics,
+        insertLoan: insertLoan,
         staleCheck: staleCheck
       };
+
+      function createLoan(type){
+        var globals = {};
+        var obj = {};
+
+        GlobalsFactory.getGlobals().then(function success(response){
+          console.log(response.data.data[0]);
+          globals = response.data.data[0];
+
+          obj = {
+            loan_type_id: type,
+            crop_year: globals.crop_year
+          };
+        });
+
+        return obj;
+      }
 
       function getComments(id){
         return $http.get(API_URL + '/loans/' + id + '/comments');
@@ -111,6 +135,10 @@
 
       function getSystemics(id){
         return $http.get(API_URL + '/loans/' + id + '/systemics');
+      }
+
+      function insertLoan(obj){
+        return $http.post(API_URL + '/loans', obj);
       }
 
       //TODO: Create staleCheck function
