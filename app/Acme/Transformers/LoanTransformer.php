@@ -38,8 +38,6 @@ public function transform($arr)
 		'has_distributor' => (boolean) $arr['has_distributor'],
 		'distributor_id' => $arr['distributor_id'],
 		'distributor' => $arr['distributor']['distributor'],
-		'need_vote' => (boolean) $arr['need_vote'],
-		'has_comment' => (boolean) $arr['has_comment'],
 		'has_addendum' => (boolean) $arr['has_addendum'],
 		'bankruptcy_history' =>	(boolean) $arr['bankruptcy_history'],
 		'required_3party' => (boolean) $arr['required_3party'],

@@ -52,7 +52,6 @@
   <script src="vendor/angular/angular.min.js"></script>
   <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="vendor/angular-moment/angular-moment.min.js"></script>
-  <script src="vendor/angular-filter/dist/angular-filter.min.js"></script>
   <script src="vendor/angular-toastr/dist/angular-toastr.min.js"></script>
   <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="vendor/angular-ui-utils/ui-utils.min.js"></script>
@@ -90,9 +89,11 @@
   <script src="angular/services/LoansFactory.js"></script>
   <script src="angular/services/FarmersFactory.js"></script>
   <script src="angular/services/ApplicantsFactory.js"></script>
+  <script src="angular/services/CommentsFactory.js"></script>
   <script src="angular/services/LendaFactory.js"></script>
   <script src="angular/services/EmailFactory.js"></script>
   <script src="angular/services/MessagingFactory.js"></script>
+  <script src="angular/services/LoggingFactory.js"></script>
     <!-- FACTORIES -->
   <!-- APP SPECIFIC -->
 

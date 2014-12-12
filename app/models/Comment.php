@@ -1,7 +1,7 @@
 <?php
 
 class Comment extends \Eloquent {
-	protected $fillable = ['loan_id', 'type', 'user', 'comment'];
+	protected $fillable = ['loan_id', 'type', 'user_id', 'comment'];
 
 	public function loan()
 	{

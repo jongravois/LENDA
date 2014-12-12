@@ -10,7 +10,7 @@ Route::get('app', [
 ])->before('auth');
 
 Route::get('test', function(){
-  return User::where('email', 'jongravois@gmail.com')->get();
+  return Notification::where('user_id', '2')->where('notification_type', 'vote')->where('loan_id', '1')->where('status', 'pending')->get();
 });
 
 Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
@@ -84,6 +84,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/loancrops', 'LoancropsController@byLoan');
   Route::get('loans/{id}/distributor', 'LoandistributorController@byLoan');
   Route::get('loans/{id}/partners', 'PartnersController@byLoan');
+  Route::get('loans/{id}/pendingvotes', 'LoansController@pendingVotes');
   Route::get('loans/{id}/prerequisites', 'PrerequisitesController@byLoan');
   Route::get('loans/{id}/quests', 'LoanquestionsController@byLoan');
   Route::get('users/{id}/notifications', 'NotificationController@byUser');

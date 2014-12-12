@@ -1,6 +1,6 @@
 (function(){
     'use strict';
-    angular.module('ARM', ['ui.router', 'ui.bootstrap', 'ui.utils', 'ngSanitize', 'ngAnimate', 'ngResource', 'angularMoment', 'angular-loading-bar', 'angular.filter', 'toastr', 'ngGrid'])
+    angular.module('ARM', ['ui.router', 'ui.bootstrap', 'ui.utils', 'ngSanitize', 'ngAnimate', 'ngResource', 'angularMoment', 'angular-loading-bar', 'toastr', 'ngGrid'])
       .constant('_', window._)
       .constant('API_URL', 'http://www.lenda.local:6500/api')
       .config(function(toastrConfig) {

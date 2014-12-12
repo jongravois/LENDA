@@ -1,16 +1,15 @@
-// TODO: Fixed Headers in tables
+// TODO: Fixed Header??? Table Fixed Headers
+// TODO: Ensure removing Angular-Select didn't break anything
 // TODO: Loan Type Screens???
 // TODO: is_stale calculation
-// TODO: Attachments & Needs Vote calculation
+// TODO: has_comments calculation (use need_vote as example)
 // TODO: Summary: Collateral Conditions
 // TODO: Committee Assignment and Comment Status/Colors
 // TODO: Applicant History table -- repeat, addendums & amounts, open loans
-// TODO: Email Service
+// TODO: Email Service -- Angular or Laravel???
 // TODO: SMS Service
 // TODO: Monitoring/logging Service -- monitor_reports table or systemics
 // TODO: Uploads
-// TODO: LENDA Service
-// TODO: Systemics Service
 // TODO: Addendums???
 // TODO: Loan History Table on Terms & Underwriting
 // TODO: Analyst Controls on Committee

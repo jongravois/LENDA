@@ -24,6 +24,7 @@ class NotificationTableSeeder extends Seeder {
 
     Notification::create([
       'user_id' => 2,
+      'loan_id' => 1,
       'notification_type' => 'vote',
       'task' => 'Tony Stark - Glass Towers'
     ]);

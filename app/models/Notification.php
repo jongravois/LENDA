@@ -1,7 +1,7 @@
 <?php
 
 class Notification extends \Eloquent {
-	protected $fillable = ['user_id', 'notification_type', 'task', 'status'];
+	protected $fillable = ['user_id', 'loan_id', 'notification_type', 'task', 'status'];
 
   public function user()
   {

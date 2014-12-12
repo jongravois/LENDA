@@ -11,6 +11,7 @@ class CreateNotificationsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id');
+			$table->integer('loan_id')->nullable();
 			$table->string('notification_type');
 			$table->string('task');
 			$table->string('status')->default('pending');

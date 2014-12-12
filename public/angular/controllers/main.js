@@ -4,13 +4,16 @@
     .controller('MainController', function(
       $scope,
       $state,
+      $q,
       toastr,
-      GlobalsFactory,
-      UsersFactory,
+      CommentsFactory,
       FarmersFactory,
       FeederFactory,
-      LoansFactory
-    ){
+      GlobalsFactory,
+      LendaFactory,
+      LoansFactory,
+      UsersFactory
+      ){
       $scope.user_id = $('#user_id').data('id');
       $scope.landing_view = 'my_settings_view';
 
@@ -54,9 +57,25 @@
             });
 
       LoansFactory.getLoans().then(function success(response){
-        $scope.loans = response.data.data;
-        //toastr.success('Loaded all loans', 'Success!');
+        var allLoans = response.data.data;
+        $q.all(
+          _.map(allLoans, function(obj){
+            //true if
+            return LoansFactory.getPendingVotes(obj.id)
+              .then(function(pvs){
+                if(pvs.data.data.length == 0){
+                  obj.need_vote = false;
+                } else {
+                  obj.need_vote = true;
+                } // end if
+                return obj;
+              })
+          })
+        ).then(function(loans){
+            $scope.loans = loans;
+          })
       });
+      //toastr.success('Loaded all loans', 'Success!');
 
       $scope.getColor = function(val){
         var colors = ['gray', 'green', 'yellow', 'red', 'blue', 'green_off', 'yellow_off'];
@@ -120,6 +139,15 @@
         $event.preventDefault();
         $event.stopPropagation();
         $scope.status.isopen = !$scope.status.isopen;
+      };
+
+      $scope.createLenda = function(){
+        return LendaFactory.createLenda({
+          loan_id: 1,
+          type: 'LENDA',
+          user_id: 2,
+          comment: 'This is a test LENDA comment generated in Main.js'
+        });
       };
 
       /* FOR PENDING SORT */

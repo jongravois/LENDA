@@ -20,9 +20,11 @@
         getLoans: getLoans,
         getPrerequisites: getPrerequisites,
         getQuests: getQuests,
+        getPendingVotes: getPendingVotes,
         getScreens: getScreens,
         getSelectedCrops: getSelectedCrops,
-        getSystemics: getSystemics
+        getSystemics: getSystemics,
+        staleCheck: staleCheck
       };
 
       function getComments(id){
@@ -86,6 +88,10 @@
         return $http.get(API_URL + '/loans');
       }
 
+      function getPendingVotes(id){
+        return $http.get(API_URL + '/loans/' + id + '/pendingvotes');
+      }
+
       function getPrerequisites(id){
         return $http.get(API_URL + '/loans/' + id + '/prerequisites');
       }
@@ -105,6 +111,11 @@
 
       function getSystemics(id){
         return $http.get(API_URL + '/loans/' + id + '/systemics');
+      }
+
+      //TODO: Create staleCheck function
+      function staleCheck(id){
+        return false;
       }
     });
 })();
