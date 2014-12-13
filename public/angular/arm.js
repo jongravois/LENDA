@@ -340,6 +340,10 @@
             url: '/optimizer',
             templateUrl: 'angular/views/loans/optimizer.html'
           })
+          .state('edit.plannedcrops', {
+            url: '/plannedcrops',
+            templateUrl: 'angular/views/loans/editplannedcrops.html'
+          })
           .state('edit.prerequisites', {
             url: '/prerequisites',
             templateUrl: 'angular/views/loans/prerequisites.html'
@@ -347,6 +351,10 @@
           .state('edit.quests', {
             url: '/quests',
             templateUrl: 'angular/views/loans/quests.html'
+          })
+          .state('edit.storage', {
+            url: '/storage',
+            templateUrl: 'angular/views/loans/editstorage.html'
           })
           .state('edit.summary', {
             url: '/summary',

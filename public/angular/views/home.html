@@ -16,8 +16,6 @@
     </div>
   </div> <!-- end .button_bar -->
 
-  <!--TODO: Code Table Selector (ng-grid+)-->
-
   <div data-tbl="tblApplications" class="landing_header_bar clr-darkgreen">
     <h3 class="divider_title inlined" style="padding-left:20px;">LOANS</h3>
     <span class="filterQueue">
@@ -36,19 +34,19 @@
           <span ng-show="!pending_view" ng-click="pending_view = 1; nextOrder()" class="glyphicon glyphicon-exclamation-sign" style="color:#FFFFFF;"></span>
         </th>
         <th style="width:6%;">&nbsp;</th>
-        <th style="width:8%;text-align:left;" data-ng-click="sortBy='farmer';reverse=!reverse">Farmer</th>
-        <th style="width:8%;text-align:left;" data-ng-click="sortBy='applicant';reverse=!reverse">Applicant</th>
-        <th style="width:6%;text-align:center   ;" data-ng-click="sortBy='loan_type';reverse=!reverse">Type</th>
-        <th style="width:4%;" data-ng-click="sortBy='analyst';reverse=!reverse">Analyst</th>
-        <th style="width:4%;" data-ng-click="sortBy='location';reverse=!reverse">Loc</th>
-        <th style="width:4%;" data-ng-click="sortBy='crop_year';reverse=!reverse">Crop Yr</th>
-        <th style="width:4%;text-align:left;" data-ng-click="sortBy='app_date';reverse=!reverse">App Date</th>
-        <th style="width:4%;" data-ng-click="sortBy='status';reverse=!reverse">Status</th>
-        <th style="width:8%;" data-ng-click="sortBy='commit_total';reverse=!reverse">ARM Commit</th>
+        <th style="width:8%;text-align:left;" ng-click="sortBy='farmer';reverse=!reverse">Farmer</th>
+        <th style="width:8%;text-align:left;" ng-click="sortBy='applicant';reverse=!reverse">Applicant</th>
+        <th style="width:6%;text-align:center   ;" ng-click="sortBy='loan_type';reverse=!reverse">Type</th>
+        <th style="width:4%;" ng-click="sortBy='analyst';reverse=!reverse">Analyst</th>
+        <th style="width:4%;" ng-click="sortBy='location';reverse=!reverse">Loc</th>
+        <th style="width:4%;" ng-click="sortBy='crop_year';reverse=!reverse">Crop Yr</th>
+        <th style="width:4%;text-align:left;" ng-click="sortBy='app_date';reverse=!reverse">App Date</th>
+        <th style="width:4%;" ng-click="sortBy='status';reverse=!reverse">Status</th>
+        <th style="width:8%;" ng-click="sortBy='commit_total';reverse=!reverse">ARM Commit</th>
       </tr>
       <tbody>
       <tr ng-if="landing_view == 'my_settings_view'" class="landing_data_row"
-          data-ng-repeat="l in loans | filter: loanFilter | orderBy:[myOrder, 'applicant']">
+          ng-repeat="l in loans | filter: loanFilter | orderBy:[myOrder, 'applicant']">
         <td>
           <span ng-if="l.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#000099;"></span>
           <span ng-if="l.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#e0a02d;"></span>

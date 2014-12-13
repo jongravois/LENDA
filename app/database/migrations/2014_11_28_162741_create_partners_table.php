@@ -12,6 +12,8 @@ class CreatePartnersTable extends Migration {
 			$table->increments('id');
       $table->integer('loan_id');
       $table->string('partner');
+      $table->string('title');
+      $table->double('percent_owned');
       $table->string('ssn');
       $table->string('address');
       $table->string('city');
@@ -19,6 +21,7 @@ class CreatePartnersTable extends Migration {
       $table->string('zip');
       $table->string('email');
       $table->string('phone');
+      $table->integer('age');
 			$table->timestamps();
 		});
 	}

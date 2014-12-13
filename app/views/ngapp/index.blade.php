@@ -30,16 +30,21 @@
         <link rel="icon" type="image/png" href="/ico/favicon-32x32.png" sizes="32x32">
 </head>
 <body ng-controller="MainController">
-    <div id="main_container" class="container" style="min-height:800px;">
-        <span style="display:none;" id="user_id" data-id="{{Auth::user()->id}}"> 
-            {{Auth::user()->username}} 
-    	</span>
-        <div class="row">
-          <div class="col-xs-12">
-            <div ng-include="'angular/views/topbars/logobar.html'"></div>
-          </div>
+    <div id="main_container" style="min-height:800px;">
+        <div id="main_top">
+            <div class="col-xs-12" style="z-index:1;">
+                <span style="display:none;" id="user_id" data-id="{{Auth::user()->id}}"> 
+                    {{Auth::user()->username}} 
+                </span>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div ng-include="'angular/views/topbars/logobar.html'"></div>
+                  </div>
+                </div>
+            </div>
+
         </div>
-        <div ui-view></div>
+        <div ui-view class="container" style="margin:100px 0 0 -10px;" ></div>
       </div><!-- /.container -->
 
 <!--JAVASCRIPT-->

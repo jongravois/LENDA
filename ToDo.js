@@ -1,22 +1,33 @@
+//TODO: OVERALL APP
 // TODO: Fixed Header??? Table Fixed Headers
 // TODO: Ensure removing Angular-Select didn't break anything
-// TODO: ***Move Home and Management views to ng-grid***
-// TODO: Loan Type Screens???
 // TODO: is_stale calculation
 // TODO: has_comments calculation (use need_vote as example)
-// TODO: Summary: Collateral Conditions
-// TODO: Committee Assignment and Comment Status/Colors
-// TODO: Applicant History table -- repeat, addendums & amounts, open loans
+// TODO: Unit of Measurements Switcher
 // TODO: Email Service -- Angular or Laravel???
 // TODO: SMS Service
 // TODO: Monitoring/logging Service -- monitor_reports table or systemics
 // TODO: Uploads
-// TODO: Addendums???
-// TODO: Loan History Table on Terms & Underwriting
-// TODO: Analyst Controls on Committee
-// TODO: Comment Functionality (respond, acknowledge, etc)
-// TODO: Unit of Measurements Switcher
+//TODO: I. LOAN LISTING
+// TODO: Move Home view to ng-grid & incorporate Preferences
+// TODO: table content switcher
+//TODO: II. LOAN MANAGEMENT
+// TODO: ***Move Home and Management views to ng-grid***
+//TODO: III. NEW LOAN
+// TODO: Loan Type Screens???
+//TODO: IV. EDIT LOAN
+// TODO: Applicant History table -- repeat, addendums & amounts, open loans
+// TODO: Summary: Collateral Conditions
 // TODO: Underwriting: Collateral Conditions (add new feature)
 // TODO: Underwriting: Collateral Summary (edit discount --> LENDA)
-// TODO: Controlled Disbursement
+// TODO: Comments: Functionality (respond, acknowledge, etc)
+// TODO: Committee: Assignment and Comment Status/Colors
+// TODO: Committee: Analyst Controls
+// TODO: Farmer: DOB wrong format for update
 // TODO: Insurance -- need agency & contact
+// TODO: Controlled Disbursement
+// TODO: Addendums???
+// TODO: Loan History Table on Terms & Underwriting
+//TODO: V. REPORTS
+//TODO: VI. LIBRARY
+//TODO: VII. ADMIN

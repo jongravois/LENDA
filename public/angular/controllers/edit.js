@@ -7,6 +7,7 @@
       $stateParams,
       $filter,
       $timeout,
+      toastr,
       ApplicantsFactory,
       FarmersFactory,
       LoansFactory
@@ -130,9 +131,13 @@
       };
 
       $scope.updateFarmer = function(obj) {
+        //TODO: DOB is wrong format for update
+        //console.log(obj);
+        obj.dob = new Date(obj.dob);
+        //console.log(obj);
         return FarmersFactory.updateFarmer(obj)
           .then(function (res) {
-            console.log(res);
+            toastr.success('Farmer Updated.', 'Success')
           });
       };
       $scope.updateApplicant = function(obj){

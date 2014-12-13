@@ -6,26 +6,32 @@ class PartnersTableSeeder extends Seeder {
 	{
 		Partners::create([
 			'loan_id' => 1,
-			'partner' => 'Dick Grayson',
+			'partner' => 'Pepper Potts',
+      'title' => 'CFO',
+      'percent_owned' => 28,
 			'ssn' => '918273645',
-			'address' => '1 Bat Cave',
+			'address' => '1 Tower Road',
 			'city' => 'Natural',
 			'state_id' => 4,
 			'zip' => '77631',
-			'email' => 'robin@dccomics.com',
-			'phone' => '5125551020'
+			'email' => 'ppotts@marvel.com',
+			'phone' => '5125551020',
+      'age' => 34
 		]);
 
 		Partners::create([
 			'loan_id' => 1,
-			'partner' => 'Alfred Pennyworth',
-			'ssn' => '991827364',
-			'address' => '1 Wayne Mansion',
+			'partner' => 'James Rhodes',
+      'title' => 'Colonel',
+      'percent_owned' => 20,
+      'ssn' => '991827364',
+			'address' => '1 Patriot Blvd',
 			'city' => 'Natural',
 			'state_id' => 4,
 			'zip' => '77631',
-			'email' => 'alfred@dccomics.com',
-			'phone' => '5125559999'
+			'email' => 'warmachine@marvel.com',
+			'phone' => '5125559999',
+      'age' => 44
 		]);
 	}
 }

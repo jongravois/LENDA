@@ -82,14 +82,14 @@ class FarmersTableSeeder extends Seeder{
 
     Farmer::create([
       'user_id' => 13,
-      'farmer' => 'Romanoff, Natasha',
-      'nick'	=>	'Black Widow',
+      'farmer' => 'Roth, Rachel',
+      'nick'	=>	'Raven',
       'ssn'	=>	'123456794',
-      'address'	=>	'1 Shield',
+      'address'	=>	'1 Teen Titan Way',
       'city'	=> 'Natural',
       'state_id'	=>	4,
       'zip'	=>	'10401',
-      'email'	=>	'blackwidow@marvel.com',
+      'email'	=>	'raven@dccomics.com',
       'phone'	=>	'9995550006',
       'dob'	=>	'1965-07-15',
       'farm_exp' => 11

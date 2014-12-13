@@ -1,9 +1,20 @@
 *{ margin:0; padding:0; font-family: Arial; }
 
 body{
+  margin: 0;
+  padding: 0;
   background-color: #DDDDDD;
   position: relative;
   z-index: 1;
+}
+
+#main_top{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 100;
 }
 .req{ color: #CC0000; }
 
@@ -30,16 +41,16 @@ body{
 
 /* MAIN CONTENT CONTAINER */
 #main_container{
-  width:96%;
+  width:98%;
   background-color: #FFFFFF;
   margin: 0px auto;
-  padding:0 20px 50px 20px;
+  padding:20px 10px 50px 10px;
   z-index: 3;
 }
 
 #main_inner_container{
-  width:96%;
-  margin: -100px auto 0 auto;
+  width:98%;
+  margin: 40px auto 0 auto;
   padding:0 0 50px 0;
   z-index: 3;
 }
@@ -499,7 +510,7 @@ h3.divider_title{
 /* ~~~FORM PAGES~~~ */
 .frmFull_Page{
   background-color: white;
-  padding: 5px 20px;
+  padding: 10px 10px;
 }
 
 h1.frmTitle{

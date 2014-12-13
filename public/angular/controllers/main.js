@@ -140,7 +140,7 @@
       };
 
       $scope.createLenda = function(){
-        return LendaFactory.createLenda({
+        return LendaFactory.create({
           loan_id: 1,
           type: 'LENDA',
           user_id: 2,

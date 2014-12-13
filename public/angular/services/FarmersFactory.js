@@ -22,7 +22,7 @@
           }
 
           function updateFarmer(o){
-            return $http.put(API_URL + '/farmers', o);
+            return $http.put(API_URL + '/farmers/' + o.id, o);
           }
         });
 })();

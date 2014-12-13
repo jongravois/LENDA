@@ -5,7 +5,7 @@ class CorporationTableSeeder extends Seeder {
 	public function run()
 	{
 		Corporation::create([
-			'loan_id' => 1,
+			'loan_id' => 3,
 			'corporation' => 'SHIELD',
 			'ssn' => '929293393',
 			'address' => 'Communications Department',

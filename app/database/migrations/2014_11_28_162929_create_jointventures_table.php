@@ -12,6 +12,7 @@ class CreateJointventuresTable extends Migration {
 			$table->increments('id');
       $table->integer('loan_id');
       $table->string('partner');
+      $table->double('percent_owned');
       $table->string('ssn');
       $table->string('address');
       $table->string('city');
@@ -19,6 +20,7 @@ class CreateJointventuresTable extends Migration {
       $table->string('zip');
       $table->string('email');
       $table->string('phone');
+      $table->integer('age');
 			$table->timestamps();
 		});
 	}
