@@ -43,7 +43,7 @@ class CreateLoanquestionsTable extends Migration {
       $table->boolean('future_liabilities')->default(0);
       $table->boolean('credit_3p_available')->default(0);
       $table->string('credit_3p_details')->nullable();
-      $table->float('income_percent')->nullable();
+      $table->float('income_percent')->default(100);
       $table->text('income_distribution_details')->nullable();
       $table->string('distributor')->nullable();
       $table->integer('agency')->nullable();

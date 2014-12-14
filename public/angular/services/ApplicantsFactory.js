@@ -4,6 +4,7 @@
     .factory('ApplicantsFactory', function ApplicantsFactory($http, API_URL){
       /*TODO: is_repeat | loans_outstanding | previous_addendum | previous_addendum_amount */
       return {
+        createApplicant: createApplicant,
         getApplicant: getApplicant,
         getApplicants: getApplicants,
         getCorporations: getCorporations,
@@ -14,6 +15,10 @@
         updateVenture: updateVenture,
         updateCorporation: updateCorporation
       };
+
+      function createApplicant(o) {
+        return $http.post(API_URL + '/applicant', o);
+      }
 
       function getApplicant(id){
         return $http.get(API_URL + '/applicants/' + id);
@@ -35,7 +40,9 @@
         return $http.get(API_URL + '/loans/' + id + '/partners');
       }
 
-      function updateApplicant(o){}
+      function updateApplicant(o){
+        return $http.put(API_URL + '/applicants', o);
+      }
 
       function updateCorporation(o){}
 

@@ -1,9 +1,10 @@
 (function(){
     'use strict';
   angular.module('ARM')
-    .factory('AppFactory', function GlobalsFactory($http, API_URL){
+    .factory('AppFactory', function GlobalsFactory($http, API_URL, $state){
       return {
-        getDefaultDueDate: getDefaultDueDate
+        getDefaultDueDate: getDefaultDueDate,
+        moveToNextNewLoanScreen: moveToNextNewLoanScreen
       };
 
       function getDefaultDueDate(type, year){
@@ -18,5 +19,9 @@
             break;
         } // end switch
       }
+      function moveToNextNewLoanScreen(screenName, $stateParams) {
+        $state.go('new.' + screenName, $stateParams);
+      }
+
     });
 })();

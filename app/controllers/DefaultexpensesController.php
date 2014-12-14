@@ -1,86 +1,70 @@
 <?php
 
-class DefaultexpensesController extends \BaseController {
+use Acme\Transformers\DefaultexpensesTransformer;
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /defaultexpenses
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+class DefaultexpensesController extends ApiController {
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /defaultexpenses/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+  protected $defaultexpensesTransformer;
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /defaultexpenses
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+  function __construct(DefaultexpensesTransformer $defaultexpensesTransformer)
+  {
+    $this->defaultexpensesTransformer = $defaultexpensesTransformer;
+  }
 
-	/**
-	 * Display the specified resource.
-	 * GET /defaultexpenses/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+  public function index()
+  {
+    $defaultexpenses = Defaultexpenses::all();
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /defaultexpenses/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    return $this->respond([
+      'data' => $this->defaultexpensesTransformer->transformCollection($defaultexpenses->all())
+    ]);
+  }
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /defaultexpenses/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+  public function show($id)
+  {
+    $defaultexpense = Defaultexpenses::where('id', $id)->get();
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /defaultexpenses/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    if( $defaultexpense->isEmpty() ){
+      return $this->respondNotFound('Default Expense does not exist.');
+    } // end if
 
+    return $this->respond([
+      'data' => $this->defaultexpensesTransformer->transform($defaultexpense[0])
+    ]);
+  }
+
+  public function store()
+  {
+    Defaultexpenses::create(Input::all());
+
+    return $this->respondCreated('Default Expense created.');
+  }
+
+  public function update($id)
+  {
+    $defaultexpense = Defaultexpenses::find($id);
+
+    if(!$defaultexpense){
+      Defaultexpenses::create(Input::all());
+      return $this->respondCreated('Default Expense created.');
+    }
+
+    $defaultexpense->fill(Input::all())->save();
+
+    return $this->respondCreated('Default Expense updated.');
+  }
+
+  public function destroy($id)
+  {
+    return Defaultexpenses::where('id', $id)->delete();
+  }
+
+  public function byCrop($id)
+  {
+    $defaultexpenses = Defaultexpenses::where('crop_id', $id)->get();
+
+    return $this->respond([
+      'data' => $this->defaultexpensesTransformer->transformCollection($defaultexpenses->all())
+    ]);
+  }
 }

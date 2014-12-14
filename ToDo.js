@@ -1,20 +1,20 @@
 //TODO: OVERALL APP
 // TODO: Fixed Header??? Table Fixed Headers
-// TODO: Ensure removing Angular-Select didn't break anything
 // TODO: is_stale calculation
 // TODO: has_comments calculation (use need_vote as example)
 // TODO: Unit of Measurements Switcher
-// TODO: Email Service -- Angular or Laravel???
+// TODO: Email Service -- Laravel
 // TODO: SMS Service
 // TODO: Monitoring/logging Service -- monitor_reports table or systemics
 // TODO: Uploads
 //TODO: I. LOAN LISTING
 // TODO: Move Home view to ng-grid & incorporate Preferences
 // TODO: table content switcher
+// TODO: Make API endpoint for ng-grid preferences (columnDefs)
 //TODO: II. LOAN MANAGEMENT
 // TODO: ***Move Home and Management views to ng-grid***
 //TODO: III. NEW LOAN
-// TODO: Loan Type Screens???
+// TODO: Loan Type Screens - add new/edit filter???
 //TODO: IV. EDIT LOAN
 // TODO: Applicant History table -- repeat, addendums & amounts, open loans
 // TODO: Summary: Collateral Conditions

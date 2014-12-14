@@ -26,6 +26,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('cropexpenses', 'CropexpensesController');
   Route::resource('cropdetails', 'CropdetailsController');
   Route::resource('croppractices', 'CroppracticesController');
+  Route::resource('defaultexpenses', 'DefaultexpensesController');
   Route::resource('distributors', 'DistributorsController');
   Route::resource('entitytypes', 'EntitytypesController');
   Route::resource('expenses', 'ExpensesController');
@@ -67,6 +68,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('units', 'UnitsController');
   Route::resource('users', 'UsersController');
 
+  Route::get('defaultexpenses/{id}/bycrop', 'DefaultexpensesController@byCrop');
   Route::get('loans/{id}/comments', 'CommentController@byLoan');
   Route::get('loans/{id}/committee', 'CommitteeController@byLoan');
   Route::get('loans/{id}/conditions', 'LoanConditionsController@byLoan');

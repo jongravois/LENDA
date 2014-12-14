@@ -11,8 +11,8 @@ class CreateCropsTable extends Migration {
 		{
 			$table->increments('id');
       $table->string('crop');
-      $table->string('measurement')->nullable();
-      $table->string('rebate_measurement')->nullable();
+      $table->string('measurement')->default('bu');
+      $table->string('rebate_measurement')->default('bu');
 			$table->timestamps();
 		});
 	}

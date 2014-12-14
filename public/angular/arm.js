@@ -228,13 +228,14 @@
           // NEW APPLICATIONS
           .state('new', {
             abstract: true,
-            url: '/new',
+            url: '/new/{loantypeID:\\d+}/{loanID:\\d+}',
             templateUrl: 'angular/views/newApp.html',
             controller: 'NewAppController'
           })
           .state('new.applicant', {
             url: '/applicant',
-            templateUrl: 'angular/views/loans/newapplicant.html'
+            templateUrl: 'angular/views/loans/newapplicant.html',
+            controller: 'NewApplicantController'
           })
           .state('new.crops', {
             url: '/crops',

@@ -131,10 +131,8 @@
       };
 
       $scope.updateFarmer = function(obj) {
-        //TODO: DOB is wrong format for update
-        //console.log(obj);
-        obj.dob = new Date(obj.dob);
-        //console.log(obj);
+        var mdob = moment(obj.dob, "MM/DD/YYYY");
+        obj.dob = mdob.format("YYYY-MM-DD");
         return FarmersFactory.updateFarmer(obj)
           .then(function (res) {
             toastr.success('Farmer Updated.', 'Success')

@@ -19,11 +19,11 @@ class CreateFarmsTable extends Migration {
       $table->double('waived')->default(0);
       $table->string('when_due')->nullable();
       $table->double('acres')->default(0);
-      $table->boolean('irr')->nullable();
-      $table->boolean('ni')->nullable();
-      $table->boolean('facirr')->nullable();
-      $table->boolean('facni')->nullable();
-      $table->double('fsa_paid')->nullable();
+      $table->boolean('irr')->default(0);
+      $table->boolean('ni')->default(0);
+      $table->boolean('facirr')->default(0);
+      $table->boolean('facni')->default(0);
+      $table->double('fsa_paid')->default(0);
       $table->double('percent_irrigated')->default(0);
 			$table->timestamps();
 		});

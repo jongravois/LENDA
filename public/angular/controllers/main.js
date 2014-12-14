@@ -97,7 +97,21 @@
               });
               return obj;
             });
-            $state.go('new.farmer');
+            var obj = {
+              app_date: '2014-12-12',
+              due_date: '2014-12-12',
+              loan_type_id: $scope.chosenLT_id,
+              crop_year: '2015',
+              season: 'S',
+              season_full: 'Spring',
+              loc_id: '4',
+              region_id: '2',
+              user_id: '2'
+            };
+
+            LoansFactory.insertLoan(obj).then(function success(response){
+              $state.go('new.farmer', {loantypeID: $scope.chosenLT_id, loanID: response.data.message.id});
+            });
           } // end if
         } // end for
       }; // end newLoan fn

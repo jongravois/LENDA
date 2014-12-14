@@ -1,6 +1,6 @@
 <fieldset name="FarmerInformation">
   <legend>FARMER INFORMATION</legend>
-  <pre>{{loan | json}}</pre>
+  <!--<pre>{{loan | json}}</pre>-->
   <form novalidate>
     <h6 class="text-right small pulled-up">
       <span class="req">*</span> indicates Required Field
@@ -13,7 +13,7 @@
             <label><span class="req">*</span>
               Last Name, First Name or Company Name:
             </label>
-            <input type="text" id="farmer" ng-model="farmer.farmer" typeahead="f.farmer for f in farmers | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onFarmerSelect($item, $model, $label)"/>
+            <input type="text" id="farmer" ng-model="farmer.farmer" typeahead="f.farmer for f in farmers | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onFarmerSelect($item, $model, $label)" autocomplete="false"/>
           </div>
           <div class="form-group col-md-2">
             <label><span class="req">*</span>

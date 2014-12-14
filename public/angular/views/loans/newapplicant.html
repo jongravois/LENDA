@@ -86,9 +86,10 @@
   <!-- SPOUSE / SSN -->
 
   <!-- UPDATE BUTTON -->
+  <!--TODO: Move below partner, joint & corporation -->
   <div class="row">
     <div class="col-md-12 text-right">
-      <button style="margin-right:10px;" class="btn btn-primary" ng-click="updApplicant()">UPDATE</button>
+      <button style="margin-right:10px;" class="btn btn-primary" ng-click="createApplicant(applicant)">UPDATE</button>
     </div>
   </div>
 </fieldset>
@@ -154,7 +155,7 @@
                 </span>
       </td>
     </tr>
-    <tr ng-if="(loan.joints | isEmpty" class="landing_data_row">
+    <tr ng-if="loan.joints.length == 0" class="landing_data_row">
       <td colspan="6"><b>No joint ventures found!</b></td>
     </tr>
   </table>
@@ -189,7 +190,7 @@
                 </span>
       </td>
     </tr>
-    <tr ng-if="(loan.partners | isEmpty" class="landing_data_row">
+    <tr ng-if="loan.partners | isEmpty" class="landing_data_row">
       <td colspan="6"><b>No partners found!</b></td>
     </tr>
   </table>
