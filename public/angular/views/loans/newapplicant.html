@@ -190,7 +190,7 @@
                 </span>
       </td>
     </tr>
-    <tr ng-if="loan.partners | isEmpty" class="landing_data_row">
+    <tr ng-if="loan.partners.length == 0" class="landing_data_row">
       <td colspan="6"><b>No partners found!</b></td>
     </tr>
   </table>

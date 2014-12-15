@@ -12,20 +12,21 @@ class FarmerTransformer extends Transformer{
     $age_of_farmer = $dtToday->diffInYears($dtDOB);
 
     return [
-      'id'			=>	$arr['id'],
-      'farmer'		=>	$arr['farmer'],
-      'nick'			=>	$arr['nick'],
-      'address'		=>	$arr['address'],
-      'city'			=>	$arr['city'],
-      'state_id'		=>	$arr['state_id'],
-      'state'			=>	$arr['state']['abr'],
-      'zip'			=>	$arr['zip'],
-      'email'			=>	$arr['email'],
-      'phone'			=>	$arr['phone'],
-      'ssn'			=>	$arr['ssn'],
-      'dob'			=>	$arr['dob']->format('m/d/Y'),
-      'age'		=>	$age_of_farmer,
-      'farm_exp'	=>	$arr['farm_exp'],
+      'id' =>	$arr['id'],
+      'farmer' => $arr['farmer'],
+      'nick' => $arr['nick'],
+      'address' => $arr['address'],
+      'city' =>	$arr['city'],
+      'state_id' =>	$arr['state_id'],
+      'state' => $arr['state']['abr'],
+      'zip' => $arr['zip'],
+      'email' => $arr['email'],
+      'phone' => $arr['phone'],
+      'ssn' => $arr['ssn'],
+      'dob' => $arr['dob']->format('m/d/Y'),
+      'age' => $age_of_farmer,
+      'first_year_farmer' => $arr['first_year_farmer'],
+      'farm_exp' =>	$arr['farm_exp'],
       'is_repeat' => (boolean) $arr['is_repeat']
     ];
   }

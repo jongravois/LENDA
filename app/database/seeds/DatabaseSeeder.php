@@ -4,6 +4,7 @@ class DatabaseSeeder extends Seeder {
 
   protected $tables = [
     'admingrader',
+    'affiliates',
     'agencies',
     'applicants',
     'comments',
@@ -48,6 +49,7 @@ class DatabaseSeeder extends Seeder {
     'partners',
     'prerequisites',
     'ratioconstraints',
+    'references',
     'regions',
     'reports',
     'requireddocuments',
@@ -67,6 +69,7 @@ class DatabaseSeeder extends Seeder {
 
   protected $seeders = [
     'AdmingraderTableSeeder',
+    'AffiliateTableSeeder',
     'AgenciesTableSeeder',
     'ApplicantsTableSeeder',
     'CommentsTableSeeder',
@@ -111,6 +114,7 @@ class DatabaseSeeder extends Seeder {
     'PartnersTableSeeder',
     'PrerequisitesTableSeeder',
     'RatioconstraintsTableSeeder',
+    'ReferencesTableSeeder',
     'RegionsTableSeeder',
     'ReportsTableSeeder',
     'RequireddocumentsTableSeeder',

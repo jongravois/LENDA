@@ -125,6 +125,11 @@ class Loan extends \Eloquent {
 		return $this->hasMany('Prerequisites');
 	}
 
+	public function priorliens()
+	{
+		return $this->hasOne('Priorlien');
+	}
+
 	public function regions()
 	{
 		return $this->belongsTo('Region', 'region_id');

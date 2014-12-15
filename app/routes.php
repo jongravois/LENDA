@@ -15,6 +15,7 @@ Route::get('test', function(){
 
 Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('admingrader', 'AdmingraderController');
+  Route::resource('affiliates', 'AffiliatesController');
   Route::resource('agencies', 'AgenciesController');
   Route::resource('applicants', 'ApplicantsController');
   Route::resource('committees', 'CommitteeController');
@@ -55,7 +56,9 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('notifications', 'NotificationController');
   Route::resource('partners', 'PartnersController');
   Route::resource('prerequisites', 'PrerequisitesController');
+  Route::resource('priorliens', 'PriorliensController');
   Route::resource('ratioconstraints', 'RatioconstraintsController');
+  Route::resource('references', 'ReferencesController');
   Route::resource('regions', 'RegionsController');
   Route::resource('reports', 'ReportsController');
   Route::resource('requireddocuments', 'RequireddocumentsController');
@@ -69,6 +72,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('users', 'UsersController');
 
   Route::get('defaultexpenses/{id}/bycrop', 'DefaultexpensesController@byCrop');
+  Route::get('loans/{id}/affiliates', 'AffiliatesController@byLoan');
   Route::get('loans/{id}/comments', 'CommentController@byLoan');
   Route::get('loans/{id}/committee', 'CommitteeController@byLoan');
   Route::get('loans/{id}/conditions', 'LoanConditionsController@byLoan');
@@ -90,6 +94,8 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/prerequisites', 'PrerequisitesController@byLoan');
   Route::get('loans/{id}/quests', 'LoanquestionsController@byLoan');
   Route::get('users/{id}/notifications', 'NotificationController@byUser');
+  Route::get('loans/{id}/priorliens', 'PriorliensController@byLoan');
+  Route::get('loans/{id}/references', 'ReferencesController@byLoan');
   Route::get('loans/{id}/systemics', 'SystemicsController@byLoan');
   Route::get('loantypes/{id}/screens', 'ScreensController@byLoantype');
 });

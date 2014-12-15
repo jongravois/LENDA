@@ -16,6 +16,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'ironman@marvel.com',
       'phone'	=>	'9995550001',
       'dob'	=>	'1960-07-15',
+      'first_year_farmer' => 1979,
       'farm_exp' => 36,
       'is_repeat' => 1
     ]);
@@ -32,6 +33,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'batman@dccomics.com',
       'phone'	=>	'9995550002',
       'dob'	=>	'1961-07-15',
+      'first_year_farmer' => 1976,
       'farm_exp' => 39
     ]);
 
@@ -47,6 +49,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'superman@dccomics.com',
       'phone'	=>	'9995550003',
       'dob'	=>	'1962-07-15',
+      'first_year_farmer' => 2006,
       'farm_exp' => 9
     ]);
 
@@ -62,6 +65,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'spiderman@marvel.com',
       'phone'	=>	'9995550004',
       'dob'	=>	'1963-07-15',
+      'first_year_farmer' => 2001,
       'farm_exp' => 14
     ]);
 
@@ -77,6 +81,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'hawkeye@marvel.com',
       'phone'	=>	'9995550005',
       'dob'	=>	'1964-07-15',
+      'first_year_farmer' => 2012,
       'farm_exp' => 3
     ]);
 
@@ -92,6 +97,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'raven@dccomics.com',
       'phone'	=>	'9995550006',
       'dob'	=>	'1965-07-15',
+      'first_year_farmer' => 2004,
       'farm_exp' => 11
     ]);
 
@@ -107,6 +113,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'wonderwoman@marvel.com',
       'phone'	=>	'9995550007',
       'dob'	=>	'1966-07-15',
+      'first_year_farmer' => 1984,
       'farm_exp' => 31
     ]);
 
@@ -122,6 +129,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'flash@dccomics.com',
       'phone'	=>	'9995550008',
       'dob'	=>	'1967-07-15',
+      'first_year_farmer' => 2001,
       'farm_exp' => 14
     ]);
 
@@ -137,6 +145,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'daredevil@marvel.com',
       'phone'	=>	'9995550009',
       'dob'	=>	'1968-07-15',
+      'first_year_farmer' => 2009,
       'farm_exp' => 6
     ]);
 
@@ -152,6 +161,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'thor@marvel.com',
       'phone'	=>	'9995550010',
       'dob'	=>	'1969-07-15',
+      'first_year_farmer' => 2013,
       'farm_exp' => 2
     ]);
 
@@ -167,6 +177,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'hulk@marvel.com',
       'phone'	=>	'9995550011',
       'dob'	=>	'1970-07-15',
+      'first_year_farmer' => 1996,
       'farm_exp' => 19
     ]);
 
@@ -182,6 +193,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'cptam@marvel.com',
       'phone'	=>	'9995550012',
       'dob'	=>	'1971-07-15',
+      'first_year_farmer' => 2001,
       'farm_exp' => 14
     ]);
 
@@ -197,6 +209,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'shazam@dccomics.com',
       'phone'	=>	'9995550013',
       'dob'	=>	'1972-07-15',
+      'first_year_farmer' => 1999,
       'farm_exp' => 16
     ]);
 
@@ -212,6 +225,7 @@ class FarmersTableSeeder extends Seeder{
       'email'	=>	'hawkgirl@dccomics.com',
       'phone'	=>	'9995550014',
       'dob'	=>	'1973-07-15',
+      'first_year_farmer' => 2010,
       'farm_exp' => 4
     ]);
   }

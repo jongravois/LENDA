@@ -80,6 +80,20 @@
       LoansFactory.getLoanCrops($scope.loan_id).then(function success(response){
         $scope.loanCrops = response.data.data;
       });
+        LoansFactory.getPriorLiens($scope.loan_id).then(function success(response){
+          if(response.data.data.length < 1){
+            $scope.prior_lien = {
+              projected_crops: 0,
+              ins_over_discount: 0,
+              fsa_payments: 0,
+              claims: 0,
+              other: 0,
+              total: 0
+            };
+          } else {
+            $scope.prior_lien = response.data.data;
+          }
+        });
       LoansFactory.getPrerequisites($scope.loan_id).then(function success(response){
         $scope.docs = response.data.data;
       });

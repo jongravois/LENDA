@@ -23,6 +23,7 @@ class CreateFarmersTable extends Migration {
       $table->string('email')->nullable();
       $table->string('phone')->nullable();
       $table->date('dob')->nullable();
+      $table->integer('first_year_farmer')->default(0);
       $table->integer('farm_exp')->default(0);
 			$table->timestamps();
 		});

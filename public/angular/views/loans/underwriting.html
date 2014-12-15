@@ -419,80 +419,80 @@
         </tr>
         <tr>
           <td>Projected Crops</td>
-          <td ng-class=gtZero(loan.prior_lien)>
-            <edit-in-place value="prior_lien.projected_crops"></edit-in-place>
+          <td ng-class=gtZero(prior_lien.projected_crops)>
+            <null-edit-in-place value="prior_lien.projected_crops"></null-edit-in-place>
           </td>
           <td class="text-right">
-            {{financials.adj_prod | currency}}
+            {{loan.fins.adj_prod | currency}}
           </td>
           <td class="text-right">
-            <percent-edit-in-place value="financials.disc_prod_percent"></percent-edit-in-place>
+            <percent-edit-in-place value="loan.fins.disc_prod_percent"></percent-edit-in-place>
           </td>
           <td class="text-right">
-            {{financials.non_rp_percent | number:1}}%
+            {{loan.fins.non_rp_percent | number:1}}%
           </td>
           <td class="text-right">
-            {{financials.pc_value = ((prior_lien.projected_crops * 1 + financials.adj_prod * 1) * ((financials.disc_prod_percent/100) + (financials.non_rp_percent/100))) | currency}}
+            {{loan.fins.pc_value = ((prior_lien.projected_crops * 1 + loan.fins.adj_prod * 1) * ((loan.fins.disc_prod_percent/100) + (loan.fins.non_rp_percent/100))) | displaynullcurrency}}
           </td>
         </tr>
         <tr>
           <td>Crop Ins Over Discounted Crops</td>
-          <td ng-class=gtZero(loan.prior_lien)>
-            <edit-in-place value="prior_lien.ins_over_disc"></edit-in-place>
+          <td ng-class=gtZero(prior_lien.ins_over_discount)>
+            <null-edit-in-place value="prior_lien.ins_over_discount"></null-edit-in-place>
           </td>
           <td class="text-right">
-            {{financials.ins_disc_prod | currency}}
+            {{loan.fins.ins_disc_prod | currency}}
           </td>
           <td class="text-right">
-            <percent-edit-in-place value="financials.disc_ins_percent"></percent-edit-in-place>
+            <percent-edit-in-place value="loan.fins.disc_ins_percent"></percent-edit-in-place>
           </td>
           <td class="text-right">
-            {{financials.non_rp_percent | number:1}}%
+            {{loan.fins.non_rp_percent | number:1}}%
           </td>
           <td class="text-right">
-            {{financials.iod_value = ((prior_lien.ins_over_disc * 1 + financials.ins_disc_prod * 1) * ((financials.disc_ins_percent/100) + (financials.non_rp_percent/100))) | currency}}
+            {{loan.fins.iod_value = ((prior_lien.ins_over_discount * 1 + loan.fins.ins_disc_prod * 1) * ((loan.fins.disc_ins_percent/100) + (loan.fins.non_rp_percent/100))) | displaynullcurrency}}
           </td>
         </tr>
         <tr>
           <td>FSA Payments</td>
-          <td ng-class=gtZero(loan.prior_lien)>
-            <edit-in-place value="prior_lien.fsa_payments"></edit-in-place>
+          <td ng-class=gtZero(prior_lien.fsa_payments)>
+            <null-edit-in-place value="prior_lien.fsa_payments"></null-edit-in-place>
           </td>
           <td class="text-right">
-            {{financials.total_fsa_payment | currency}}
+            {{loan.fins.total_fsa_payment | currency}}
           </td>
           <td class="text-right">
-            <percent-edit-in-place value="financials.disc_ins_percent"></percent-edit-in-place>
+            <percent-edit-in-place value="loan.fins.disc_ins_percent"></percent-edit-in-place>
           </td>
           <td class="text-right">
-            {{financials.non_rp_percent | number:1}}%
+            {{loan.fins.non_rp_percent | number:1}}%
           </td>
           <td class="text-right">
-            {{financials.fsa_value = ((prior_lien.fsa_payments * 1 + financials.total_fsa_payment * 1) * ((financials.disc_ins_percent/100) + (financials.non_rp_percent/100))) | currency}}
+            {{loan.fins.fsa_value = ((prior_lien.fsa_payments * 1 + loan.fins.total_fsa_payment * 1) * ((loan.fins.disc_ins_percent/100) + (loan.fins.non_rp_percent/100))) | currency}}
           </td>
         </tr>
         <tr>
           <td>Claims</td>
-          <td ng-class=gtZero(loan.prior_lien)>
-            <edit-in-place value="prior_lien.claims"></edit-in-place>
+          <td ng-class=gtZero(prior_lien.claims)>
+            <null-edit-in-place value="prior_lien.claims"></null-edit-in-place>
           </td>
           <td class="text-right">
-            {{financials.total_claims | currency}}
+            {{loan.fins.total_claims | currency}}
           </td>
           <td class="text-right">
-            <percent-edit-in-place value="financials.disc_ins_percent"></percent-edit-in-place>
+            <percent-edit-in-place value="loan.fins.disc_ins_percent"></percent-edit-in-place>
           </td>
           <td class="text-right">
-            {{financials.non_rp_percent | number:1}}%
+            {{loan.fins.non_rp_percent | number:1}}%
           </td>
           <td class="text-right">
-            {{financials.claims_value = ((prior_lien.claims * 1 + financials.total_claims * 1) * ((financials.disc_ins_percent/100) + (financials.non_rp_percent/100))) | currency}}
+            {{loan.fins.claims_value = ((prior_lien.claims * 1 + loan.fins.total_claims * 1) * ((loan.fins.disc_ins_percent/100) + (loan.fins.non_rp_percent/100))) | currency}}
           </td>
         </tr>
         <tr>
           <td>Equipment</td>
-          <td ng-class=gtZero(loan.prior_lien)>
-            <edit-in-place value="prior_lien.equipment"></edit-in-place>
+          <td class="text-center">
+            <null-edit-in-place value="0.00"></null-edit-in-place>
           </td>
           <td class="text-right">
             {{0 | currency}}
@@ -509,8 +509,8 @@
         </tr>
         <tr>
           <td>Real Estate</td>
-          <td ng-class=gtZero(loan.prior_lien)>
-            <edit-in-place value="prior_lien.real_estate"></edit-in-place>
+          <td class="text-center">
+            <null-edit-in-place value="0.00"></null-edit-in-place>
           </td>
           <td class="text-right">
             {{0 | currency}}
@@ -531,12 +531,12 @@
             {{prior_lien.total | displaynullcurrency}}
           </td>
           <td class="text-right">
-            {{financials.adj_prod * 1 + financials.ins_disc_prod * 1 + financials.total_fsa_payment * 1 + financials.total_claims * 1 | currency}}
+            {{loan.fins.adj_prod * 1 + loan.fins.ins_disc_prod * 1 + loan.fins.total_fsa_payment * 1 + loan.fins.total_claims * 1 | currency}}
           </td>
           <td class="text-right">&nbsp;</td>
           <td class="text-right">&nbsp;</td>
           <td class="text-right">
-            {{financials.pc_value * 1 + financials.iod_value * 1 + financials.fsa_value * 1 + financials.claims_value * 1 | currency}}
+            {{loan.fins.pc_value * 1 + loan.fins.iod_value * 1 + loan.fins.fsa_value * 1 + loan.fins.claims_value * 1 | currency}}
           </td>
         </tr>
       </table>

@@ -25,6 +25,7 @@
         getLoanCrops: getLoanCrops,
         getLoans: getLoans,
         getPrerequisites: getPrerequisites,
+        getPriorLiens: getPriorLiens,
         getQuests: getQuests,
         getPendingVotes: getPendingVotes,
         getScreens: getScreens,
@@ -118,6 +119,10 @@
 
       function getPrerequisites(id){
         return $http.get(API_URL + '/loans/' + id + '/prerequisites');
+      }
+
+      function getPriorLiens(id){
+        return $http.get(API_URL + '/loans/' + id + '/priorliens');
       }
 
       function getQuests(id){
