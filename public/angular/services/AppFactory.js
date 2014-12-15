@@ -28,10 +28,10 @@
           case '5':
           case '6':
           case '7':
-            return '3/15/' + yr;
+            return '3/15/' + year;
             break;
           default:
-            return '12/15/' + yr;
+            return '12/15/' + year;
             break;
         } // end switch
       }

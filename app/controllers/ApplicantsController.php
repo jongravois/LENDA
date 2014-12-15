@@ -39,9 +39,10 @@ class ApplicantsController extends ApiController {
 
 	public function store()
 	{
-		if( ! Input::get('applicant')){
+		//TODO: Validation
+		/*if( ! Input::get('applicant')){
 			return $this->respondCreationDenied('Failed Validation');
-		} // end if
+		} // end if*/
 
 		$applicant = Applicant::create(Input::all());
 

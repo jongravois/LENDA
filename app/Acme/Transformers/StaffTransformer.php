@@ -20,7 +20,7 @@ class StaffTransformer extends Transformer
       'loc_id' => $arr['loc_id'],
       //'location' => $arr['location']['location'],
       //'loc_abr' => $arr['location']['loc_abr'],
-      //'region_id' => $arr['location']['region_id'],
+      'region_id' => $arr['region_id'],
       'is_admin' => (boolean) $arr['is_admin'],
       'is_approver' => (boolean) $arr['is_approver'],
       'is_manager' => (boolean) $arr['is_manager']

@@ -12,7 +12,6 @@ class LoansTableSeeder extends Seeder {
 			'status_id' => 1,
 			'crop_year' => '2015',
 			'season' => 'S',
-			'season_full' => 'Spring',
 			'loc_id' => 4,
 			'region_id' => 3,
 			'user_id' => 2,
@@ -59,7 +58,6 @@ class LoansTableSeeder extends Seeder {
 			'region_id' => 3,
 			'crop_year' => '2015',
 			'season' =>	'S',
-			'season_full' => 'Spring',
 			'loan_type_id' =>	4,
       'farmer_id' => 2,
 		]);
@@ -74,7 +72,6 @@ class LoansTableSeeder extends Seeder {
 			'region_id' => 3,
 			'crop_year' => '2015',
 			'season' =>	'S',
-			'season_full' => 'Spring',
 			'loan_type_id' => 6,
       'farmer_id' => 12
 		]);
@@ -89,7 +86,6 @@ class LoansTableSeeder extends Seeder {
 			'region_id' => 3,
 			'crop_year' => '2015',
 			'season' =>	'S',
-			'season_full' => 'Spring',
 			'loan_type_id' =>	3,
       'farmer_id' => 5
 		]);
@@ -104,7 +100,6 @@ class LoansTableSeeder extends Seeder {
 			'region_id' => 3,
 			'crop_year' => '2015',
 			'season' =>	'S',
-			'season_full' => 'Spring',
 			'loan_type_id' =>	1,
       'farmer_id' => 9
 		]);
@@ -119,7 +114,6 @@ class LoansTableSeeder extends Seeder {
       'region_id' => 3,
       'crop_year' => '2015',
       'season' =>	'S',
-      'season_full' => 'Spring',
       'loan_type_id' =>	5,
       'farmer_id' => 10
     ]);
@@ -134,7 +128,6 @@ class LoansTableSeeder extends Seeder {
       'region_id' => 3,
       'crop_year' => '2015',
       'season' =>	'S',
-      'season_full' => 'Spring',
       'loan_type_id' =>	7,
       'farmer_id' => 7
     ]);
@@ -147,7 +140,6 @@ class LoansTableSeeder extends Seeder {
 			'status_id' => 2,
 			'crop_year' => '2014',
 			'season' => 'S',
-			'season_full' => 'Spring',
 			'loc_id' => 4,
 			'region_id' => 3,
 			'user_id' => 2,

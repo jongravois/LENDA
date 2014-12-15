@@ -1,0 +1,43 @@
+<fieldset>
+  <legend>REFERENCES INFORMATION</legend>
+
+  <div class="row form-group">
+    <table class="table table-striped rowed" style="width:90%;margin: 0 auto;">
+      <tr>
+        <th>Creditor</th>
+        <th>City, State</th>
+        <th>Contact</th>
+        <th>Phone</th>
+        <th>Email</th>
+      </tr>
+      <tr ng-if="!references">
+        <td colspan="5">
+          <b>No references found!</b>
+        </td>
+      </tr>
+      <tr ng-repeat="r in references">
+        <td>
+          <text-edit-in-place value="r.creditor"></text-edit-in-place>
+        </td>
+        <td>
+          <text-edit-in-place value="r.city_state"></text-edit-in-place>
+        </td>
+        <td>
+          <text-edit-in-place value="r.contact"></text-edit-in-place>
+        </td>
+        <td>
+          <phone-edit-in-place value="r.phone"></phone-edit-in-place>
+        </td>
+        <td>
+          <text-edit-in-place value="r.email"></text-edit-in-place>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <a ng-click="createReference()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Reference</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</fieldset>
+<!--<pre>{{quests | json}}</pre>-->

@@ -8,6 +8,12 @@ public function transform($arr)
 	$dueDate = $arr['due_date'];
 	$diff = $dueDate->diffInDays($appDate);
 
+  if($arr['season'] == 'S'){
+    $fullSeason = 'Spring';
+  } else {
+    $fullSeason = 'Fall';
+  } // end if
+
 	//return $arr;
 	return array(
 		'id'		=>	$arr['id'],
@@ -18,7 +24,7 @@ public function transform($arr)
 		'loan_type' => $arr['loantype']['loantype'],
 		'crop_year'	=>	$arr['crop_year'],
 		'season'	=>	$arr['season'],
-		'season_full' => $arr['season_full'],
+		'season_full' => $fullSeason,
 		'status_id' =>	$arr['status_id'],
 		'status' => $arr['loanstatus']['status'],
 		'user_id' => $arr['user_id'],

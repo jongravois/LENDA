@@ -17,7 +17,6 @@ class CreateLoansTable extends Migration {
       $table->integer('status_id')->default(1);
       $table->string('crop_year');
       $table->string('season', 3);
-      $table->string('season_full');
       $table->integer('loc_id');
       $table->integer('region_id')->nullable();
       $table->integer('user_id');

@@ -5,7 +5,9 @@
 </style>
 <div class="frmFull_Page"></div>
   <div class="row frmBarsm clr-black">
-    <h6>{{chosenLT}}</h6>
+    <h6>{{chosenLT}}
+      <span ng-if="farmer">- {{farmer.farmer}}</span></h6>
+      <span ng-if="applicant">- {{applicant.applicant}}</span></h6>
   </div>
 
   <hr style="margin-top: 5px;"/>

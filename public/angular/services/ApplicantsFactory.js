@@ -5,6 +5,9 @@
       /*TODO: is_repeat | loans_outstanding | previous_addendum | previous_addendum_amount */
       return {
         createApplicant: createApplicant,
+        createCorporation: createCorporation,
+        createPartner: createPartner,
+        createVenture: createVenture,
         getApplicant: getApplicant,
         getApplicants: getApplicants,
         getCorporations: getCorporations,
@@ -17,7 +20,19 @@
       };
 
       function createApplicant(o) {
-        return $http.post(API_URL + '/applicant', o);
+        return $http.post(API_URL + '/applicants', o);
+      }
+
+      function createCorporation(o){
+        return $http.post(API_URL + '/corporations', o);
+      }
+
+      function createPartner(o){
+        return $http.post(API_URL + '/partners', o);
+      }
+
+      function createVenture(o){
+        return $http.post(API_URL + '/jointventures', o);
       }
 
       function getApplicant(id){

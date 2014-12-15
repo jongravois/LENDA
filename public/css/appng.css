@@ -144,7 +144,7 @@ select {
 .make-red{ color: #990000; }
 .make-yellow{ color: #e0a02d; }
 
-.progicon{cursor: pointer;}
+.progicon, .indicon{cursor: pointer;}
 
 .pIcoPen{ color: #DDDDDD; }
 .pIcoComp{ color: #006837; }

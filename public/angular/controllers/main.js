@@ -6,6 +6,7 @@
       $state,
       $q,
       toastr,
+      AppFactory,
       CommentsFactory,
       FarmersFactory,
       FeederFactory,
@@ -97,24 +98,24 @@
               });
               return obj;
             });
+            //TODO: Calculation to get season_full
             var obj = {
-              app_date: '2014-12-12',
-              due_date: '2014-12-12',
+              app_date: moment(new Date()).format('YYYY-MM-DD'),
+              due_date: moment(new Date(AppFactory.getDefaultDueDate($scope.chosenLT_id, $scope.globals.crop_year))).format('YYYY-MM-DD'),
               loan_type_id: $scope.chosenLT_id,
-              crop_year: '2015',
-              season: 'S',
-              season_full: 'Spring',
-              loc_id: '4',
-              region_id: '2',
-              user_id: '2'
+              crop_year: $scope.globals.crop_year,
+              season: $scope.globals.season,
+              loc_id: $scope.user.loc_id,
+              region_id: $scope.user.region_id,
+              user_id: $scope.user.id
             };
-
             LoansFactory.insertLoan(obj).then(function success(response){
               $state.go('new.farmer', {loantypeID: $scope.chosenLT_id, loanID: response.data.message.id});
             });
           } // end if
         } // end for
       }; // end newLoan fn
+
 
       $scope.getReport = function(val){
         var url = '';

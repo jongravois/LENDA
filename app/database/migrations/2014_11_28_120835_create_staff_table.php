@@ -16,6 +16,7 @@ class CreateStaffTable extends Migration {
       $table->string('email')->unique();
       $table->string('phone')->nullable();
       $table->integer('loc_id')->nullable();
+      $table->integer('region_id')->nullable();
       $table->integer('manager_id');
       $table->boolean('is_admin')->default(0);
       $table->boolean('is_approver')->default(0);

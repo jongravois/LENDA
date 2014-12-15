@@ -232,6 +232,10 @@
             templateUrl: 'angular/views/newApp.html',
             controller: 'NewAppController'
           })
+          .state('new.affiliates', {
+            url: '/affiliates',
+            templateUrl: 'angular/views/loans/newaffiliates.html'
+          })
           .state('new.applicant', {
             url: '/applicant',
             templateUrl: 'angular/views/loans/newapplicant.html',
@@ -267,7 +271,12 @@
           })
           .state('new.quests', {
             url: '/quests',
-            templateUrl: 'angular/views/loans/quests.html'
+            templateUrl: 'angular/views/loans/quests.html',
+            controller: 'NewQuestsController'
+          })
+          .state('new.references', {
+            url: '/references',
+            templateUrl: 'angular/views/loans/newreferences.html'
           })
           .state('new.yield', {
             url: '/yield',
@@ -279,6 +288,10 @@
             url: '/edit/:id',
             templateUrl: 'angular/views/editapp.html',
             controller: 'EditAppController'
+          })
+          .state('edit.affiliates', {
+            url: '/affiliates',
+            templateUrl: 'angular/views/loans/editaffiliates.html'
           })
           .state('edit.applicant', {
             url: '/applicant',
@@ -352,6 +365,10 @@
           .state('edit.quests', {
             url: '/quests',
             templateUrl: 'angular/views/loans/quests.html'
+          })
+          .state('edit.references', {
+            url: '/references',
+            templateUrl: 'angular/views/loans/editreferences.html'
           })
           .state('edit.storage', {
             url: '/storage',

@@ -11,11 +11,11 @@ class CreateApplicantsTable extends Migration {
 		{
 			$table->increments('id');
       $table->string('applicant')->nullable();
-      $table->string('grade')->nullable();
+      $table->string('grade')->default('F');
       $table->integer('loc_id')->nullable();
       $table->integer('entity_id')->default(2);
       $table->integer('farmer_id')->nullable();
-      $table->string('ssn')->unique();
+      $table->string('ssn')->nullable()->unique();
       $table->string('email')->nullable();
       $table->date('dob')->nullable();
       $table->string('address')->nullable();

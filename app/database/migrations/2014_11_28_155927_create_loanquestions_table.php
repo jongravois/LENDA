@@ -10,7 +10,7 @@ class CreateLoanquestionsTable extends Migration {
 		Schema::create('loanquestions', function(Blueprint $table)
 		{
 			$table->increments('id');
-      $table->integer('loan_id');
+      $table->integer('loan_id')->unique();
       //QUESTS
       $table->double('amount_requested')->default(0);
       $table->boolean('plant_own')->default(1);
@@ -27,7 +27,7 @@ class CreateLoanquestionsTable extends Migration {
       $table->string('fsa_good_details')->nullable();
       $table->boolean('fci_good')->default(1);
       $table->string('fci_good_details')->nullable();
-      $table->boolean('premiums_past')->default(0);
+      $table->boolean('premiums_past')->default(1);
       $table->string('premiums_details')->nullable();
       $table->boolean('legal_defendant')->default(0);
       $table->string('defendant_details')->nullable();

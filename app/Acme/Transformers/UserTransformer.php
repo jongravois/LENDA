@@ -15,6 +15,7 @@ class UserTransformer extends Transformer
         'username' => $arr['staff']['username'],
         'nick' => $arr['staff']['nick'],
         'phone' => $arr['staff']['phone'],
+        'region_id' => $arr['staff']['region_id'],
         'loc_id' => $arr['staff']['loc_id'],
         'loc_abr' => $arr['staff']['location']['loc_abr'],
         'location' => $arr['staff']['location']['location'],

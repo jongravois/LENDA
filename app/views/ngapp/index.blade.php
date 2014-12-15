@@ -94,6 +94,7 @@
 <script src="angular/services/LoansFactory.js"></script>
 <script src="angular/services/FarmersFactory.js"></script>
 <script src="angular/services/ApplicantsFactory.js"></script>
+<script src="angular/services/QuestsFactory.js"></script>
 <script src="angular/services/CommentsFactory.js"></script>
 <script src="angular/services/LendaFactory.js"></script>
 <script src="angular/services/EmailFactory.js"></script>

@@ -1,6 +1,6 @@
 <fieldset>
 <legend>LOAN INFORMATION</legend>
-
+<!--<pre>{{quests | json}}</pre>-->
 <!-- PLANT OWN CROPS [plantOwn] {APPLICANT or FARMER} -->
 <div class="row form-group">
   <div class="col-md-8 col-lg-offset-2">
@@ -399,6 +399,7 @@
 <!-- INCOME PERCENTAGE [income_percent] {LOAN}-->
 
 <!-- RESTRICTED USE PESTICIDE [pesticide_number] {} -->
+  <!--TODO: Move to Distributors??-->
 <div class="row form-group" ng-if="chosenLT == 'Ag-Input' || chosenLT == 'Ag-Vest'">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-9">
@@ -412,30 +413,30 @@
 <!-- RESTRICTED USE PESTICIDE [pesticide_number] {} -->
 
 <!--AFFILIATED ENTITIES [affiliated entities] {}-->
-<div class="row form-group">
+<!--<div class="row form-group">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-12">
       <label>Please list any affiliated entities.</label>
       <textarea name="affiliated_entities" ng-model="quests.affiliated_entities" class="form-control"></textarea>
     </div>
   </div>
-</div>
+</div>-->
 <!--AFFILIATED ENTITIES [affiliated entities] {}-->
 
 <!-- FARM SUPPIER CREDITORS [farm_supplier_creditors] {} -->
-<div class="row form-group">
+<!--<div class="row form-group">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-12">
       <label>Please list any Farm Supplier Creditor references.</label>
       <textarea name="farm_supplier_creditors" ng-model="quests.farm_supplier_creditors" class="form-control"></textarea>
     </div>
   </div>
-</div>
+</div>-->
 <!-- FARM SUPPLIER CREDITORS [farm_supplier_creditors] {} -->
 <div class="row">
   <div class="col-md-12 text-right">
-    <button style="margin-right:10px;" class="btn btn-primary" ng-click="insertQuestions()" ng-if="newapplication">SAVE</button>
-    <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateQuestions()" ng-if="newapplication">UPDATE</button>
+    <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateQuestions()" ng-if="newapplication">SAVE</button>
+    <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateQuestions()" ng-if="!newapplication">UPDATE</button>
   </div>
 </div>
 </fieldset>

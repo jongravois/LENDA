@@ -5,7 +5,7 @@
 // TODO: Unit of Measurements Switcher
 // TODO: Email Service -- Laravel
 // TODO: SMS Service
-// TODO: Monitoring/logging Service -- monitor_reports table or systemics
+// TODO: Monitoring/logging Service -- ALL systemics handled by Laravel
 // TODO: Uploads
 //TODO: I. LOAN LISTING
 // TODO: Move Home view to ng-grid & incorporate Preferences

@@ -41,6 +41,9 @@
         });
       });
 
+      LoansFactory.getAffiliates($scope.loan_id).then(function success(response){
+        $scope.affiliates = response.data.data;
+      });
       LoansFactory.getComments($scope.loan_id).then(function success(response){
         $scope.comments = response.data.data;
       });
@@ -99,6 +102,9 @@
       });
       LoansFactory.getQuests($scope.loan_id).then(function success(response){
         $scope.quests = response.data.data[0];
+      });
+        LoansFactory.getReferences($scope.loan_id).then(function success(response){
+        $scope.references = response.data.data;
       });
       LoansFactory.getSelectedCrops($scope.loan_id).then(function success(response){
               $scope.loan.selectedCrops = response.data[0];

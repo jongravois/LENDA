@@ -9,6 +9,7 @@
     ){
       return {
         createLoan: createLoan,
+        getAffiliates: getAffiliates,
         getComments: getComments,
         getCommittee: getCommittee,
         getCropExpenses: getCropExpenses,
@@ -28,6 +29,7 @@
         getPriorLiens: getPriorLiens,
         getQuests: getQuests,
         getPendingVotes: getPendingVotes,
+        getReferences: getReferences,
         getScreens: getScreens,
         getSelectedCrops: getSelectedCrops,
         getSystemics: getSystemics,
@@ -50,6 +52,10 @@
         });
 
         return obj;
+      }
+
+      function getAffiliates(id){
+        return $http.get(API_URL + '/loans/' + id + '/affiliates');
       }
 
       function getComments(id){
@@ -127,6 +133,10 @@
 
       function getQuests(id){
         return $http.get(API_URL + '/loans/' + id + '/quests');
+      }
+
+      function getReferences(id){
+        return $http.get(API_URL + '/loans/' + id + '/references');
       }
 
       function getScreens(type){
