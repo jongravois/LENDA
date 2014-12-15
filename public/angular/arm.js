@@ -230,7 +230,7 @@
             abstract: true,
             url: '/new/{loantypeID:\\d+}/{loanID:\\d+}',
             templateUrl: 'angular/views/newApp.html',
-            controller: 'NewAppController'
+            controller: 'NewLoanController'
           })
           .state('new.affiliates', {
             url: '/affiliates',
@@ -244,31 +244,38 @@
           })
           .state('new.crops', {
             url: '/crops',
-            templateUrl: 'angular/views/loans/newcrops.html'
+            templateUrl: 'angular/views/loans/newcrops.html',
+            controller: 'NewCropsController'
           })
           .state('new.distributor', {
             url: '/distributor',
-            templateUrl: 'angular/views/loans/newdistributor.html'
+            templateUrl: 'angular/views/loans/newdistributor.html',
+            controller: 'NewDistributorController'
           })
           .state('new.expenses', {
             url: '/expenses',
-            templateUrl: 'angular/views/loans/expenses.html'
+            templateUrl: 'angular/views/loans/expenses.html',
+            controller: 'NewBudgetsController'
           })
           .state('new.farmer', {
             url: '/farmer',
-            templateUrl: 'angular/views/loans/newfarmer.html'
+            templateUrl: 'angular/views/loans/newfarmer.html',
+            controller: 'NewFarmerController'
           })
           .state('new.farms', {
             url: '/farms',
-            templateUrl: 'angular/views/loans/newfarms.html'
+            templateUrl: 'angular/views/loans/newfarms.html',
+            controller: 'NewFarmsController'
           })
           .state('new.financials', {
             url: '/financials',
-            templateUrl: 'angular/views/loans/newfinancials.html'
+            templateUrl: 'angular/views/loans/newfinancials.html',
+            controller: 'NewFinancialsController'
           })
           .state('new.insurance', {
             url: '/insurance',
-            templateUrl: 'angular/views/loans/newinsurance.html'
+            templateUrl: 'angular/views/loans/newinsurance.html',
+            controller: 'NewInsuranceController'
           })
           .state('new.quests', {
             url: '/quests',
@@ -282,7 +289,8 @@
           })
           .state('new.yield', {
             url: '/yield',
-            templateUrl: 'angular/views/loans/newyield.html'
+            templateUrl: 'angular/views/loans/newyield.html',
+            controller: 'NewYieldController'
           })
 
           //EDIT APPLICATIONS

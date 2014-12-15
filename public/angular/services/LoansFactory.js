@@ -39,7 +39,8 @@
       };
 
       function createDistributor(o){
-        return $http.post(API_URL + '/distributors', o);
+        //TODO: distributor or loandistributor???
+        //return $http.post(API_URL + '/loandistributors', o);
       }
 
       function createLoan(type){

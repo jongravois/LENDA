@@ -8,7 +8,7 @@
             };
 
             function create(o){
-              return $http.post(API_URL + '/loanquestions', o);
+              //return $http.post(API_URL + '/loanquestions', o);
             }
 
             function update(id, o){
