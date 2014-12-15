@@ -8,8 +8,10 @@
       GlobalsFactory
     ){
       return {
+        createAffiliate: createAffilate,
         createDistributor: createDistributor,
         createLoan: createLoan,
+        createReference: createReference,
         getAffiliates: getAffiliates,
         getComments: getComments,
         getCommittee: getCommittee,
@@ -38,6 +40,10 @@
         staleCheck: staleCheck
       };
 
+      function createAffilate(o){
+        return $http.post(API_URL + '/affiliates', o);
+      }
+
       function createDistributor(o){
         //TODO: distributor or loandistributor???
         //return $http.post(API_URL + '/loandistributors', o);
@@ -58,6 +64,10 @@
         });
 
         return obj;
+      }
+
+      function createReference(o){
+        return $http.post(API_URL + '/references', o);
       }
 
       function getAffiliates(id){

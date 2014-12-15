@@ -5,7 +5,6 @@
         $scope,
         $stateParams,
         toastr,
-        AffiliatesFactory,
         AppFactory,
         LoansFactory
       ){
@@ -24,7 +23,7 @@
         $scope.newAffilate = function(){
           if(!$scope.affiliates){ $scope.affiliates = []; }
           $scope.newAffiliate.loan_id = $stateParams.loanID;
-          AffiliatesFactory.create($scope.newAffiliate)
+          LoansFactory.createAffiliate($scope.newAffiliate)
             .then(function(res){});
           $scope.affiliates.push($scope.newAffiliate);
           $scope.newAffiliate = {};
