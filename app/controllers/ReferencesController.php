@@ -21,10 +21,10 @@ class ReferencesController extends ApiController {
 
 	public function store()
 	{
-		if( ! Input::get('reference')){
+		/*if( ! Input::get('reference')){
 			return $this->respondCreationDenied('Failed Validation');
 		} // end if
-
+		*/
 		Reference::create(Input::all());
 
 		return $this->respondCreated('Reference created');

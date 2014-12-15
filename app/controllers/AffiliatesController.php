@@ -21,9 +21,10 @@ class AffiliatesController extends ApiController {
 
 	public function store()
 	{
-		if( ! Input::get('affiliate')){
+		/*if( ! Input::get('affiliate')){
 			return $this->respondCreationDenied('Failed Validation');
 		} // end if
+		*/
 
 		Affiliate::create(Input::all());
 

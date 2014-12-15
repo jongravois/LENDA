@@ -8,6 +8,7 @@
       GlobalsFactory
     ){
       return {
+        createDistributor: createDistributor,
         createLoan: createLoan,
         getAffiliates: getAffiliates,
         getComments: getComments,
@@ -36,6 +37,10 @@
         insertLoan: insertLoan,
         staleCheck: staleCheck
       };
+
+      function createDistributor(o){
+        return $http.post(API_URL + '/distributors', o);
+      }
 
       function createLoan(type){
         var globals = {};

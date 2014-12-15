@@ -234,7 +234,8 @@
           })
           .state('new.affiliates', {
             url: '/affiliates',
-            templateUrl: 'angular/views/loans/newaffiliates.html'
+            templateUrl: 'angular/views/loans/newaffiliates.html',
+            controller: 'NewAffiliatesController'
           })
           .state('new.applicant', {
             url: '/applicant',
@@ -276,7 +277,8 @@
           })
           .state('new.references', {
             url: '/references',
-            templateUrl: 'angular/views/loans/newreferences.html'
+            templateUrl: 'angular/views/loans/newreferences.html',
+            controller: 'NewReferencesController'
           })
           .state('new.yield', {
             url: '/yield',
