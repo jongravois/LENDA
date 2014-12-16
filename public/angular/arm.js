@@ -356,7 +356,8 @@
           })
           .state('edit.financials', {
             url: '/financials',
-            templateUrl: 'angular/views/loans/editfinancials.html'
+            templateUrl: 'angular/views/loans/editfinancials.html',
+            controller: 'FinancialsController'
           })
           .state('edit.insurance', {
             url: '/insurance',

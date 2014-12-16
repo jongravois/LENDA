@@ -10,7 +10,7 @@
         <th>Phone</th>
         <th>Email</th>
       </tr>
-      <tr ng-if="!references">
+      <tr ng-if="!references || references.length == 0">
         <td colspan="5">
           <b>No references found!</b>
         </td>

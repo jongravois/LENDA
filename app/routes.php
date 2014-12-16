@@ -97,5 +97,6 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/priorliens', 'PriorliensController@byLoan');
   Route::get('loans/{id}/references', 'ReferencesController@byLoan');
   Route::get('loans/{id}/systemics', 'SystemicsController@byLoan');
+  Route::get('loans/{id}/totalacres', 'LoanCropsController@totalAcres');
   Route::get('loantypes/{id}/screens', 'ScreensController@byLoantype');
 });

@@ -8,6 +8,7 @@
       $filter,
       $timeout,
       toastr,
+      AppFactory,
       ApplicantsFactory,
       FarmersFactory,
       LoansFactory
@@ -25,6 +26,9 @@
         
       LoansFactory.getLoan($stateParams.id).then(function success(response){
         $scope.loan = response.data.data;
+        LoansFactory.getFinancials($stateParams.id).then(function success(response){
+          $scope.loan.fins = response.data.data[0];
+        });
         FarmersFactory.getFarmer($scope.loan.farmer_id).then(function success(response){
           $scope.farmer = response.data.data;
         });
@@ -83,6 +87,10 @@
       });
       LoansFactory.getLoanCrops($scope.loan_id).then(function success(response){
         $scope.loanCrops = response.data.data;
+        LoansFactory.getTotalAcres($scope.loan_id)
+          .then(function(res){
+            $scope.loan.total_acres = parseFloat(res);
+          });
       });
         LoansFactory.getPriorLiens($scope.loan_id).then(function success(response){
           if(response.data.data.length < 1){
@@ -133,9 +141,6 @@
         } // end for
         return tot/cnt;
       };
-      $scope.getTotalAcres = function(){
-        return 927.7;
-      };
       $scope.getCropsPercentIrrigated = function(id){
         switch(id){
           case '1':
@@ -148,17 +153,6 @@
             return "Percent not determined.";
             break;
         } // end switch
-      };
-      $scope.getTotalPCC_AgPro = function(){
-        return 260550 + 261135;
-      };
-      $scope.calcIncomeConstraints =function(o){
-        $scope.loan.fins.year_1_income = o.year_1_revenue - o.year_1_expenses;
-        $scope.loan.fins.year_2_income = o.year_2_revenue - o.year_2_expenses;
-        $scope.loan.fins.year_3_income = o.year_3_revenue - o.year_3_expenses;
-        $scope.loan.fins.average_revenue = (o.year_1_revenue * 1 + o.year_2_revenue * 1 + o.year_3_revenue * 1)/3;
-        $scope.loan.fins.average_expense = (o.year_1_expenses * 1 + o.year_2_expenses * 1 + o.year_3_expenses * 1)/3;
-        $scope.loan.fins.total_income = $scope.loan.fins.average_revenue - $scope.loan.fins.average_expense;
       };
 
       $scope.updateFarmer = function(obj) {

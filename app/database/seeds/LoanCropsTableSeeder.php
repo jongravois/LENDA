@@ -141,7 +141,7 @@ class LoanCropsTableSeeder extends Seeder {
 			'loan_id' => 2,
 			'crop_id' => 8,
 			'is_active' => 1,
-			'acres' => 2000
+			'acres' => 4500
 		]);
 
 	}

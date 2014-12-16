@@ -75,6 +75,7 @@
 <script src="angular/controllers/main.js"></script>
 <script src="angular/controllers/sessions.js"></script>
 <script src="angular/controllers/home.js"></script>
+<script src="angular/controllers/financials.js"></script>
 <script src="angular/controllers/newloan.js"></script>
 <script src="angular/controllers/newaffiliates.js"></script>
 <script src="angular/controllers/newapplicant.js"></script>

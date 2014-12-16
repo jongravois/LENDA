@@ -38,6 +38,7 @@
         getScreens: getScreens,
         getSelectedCrops: getSelectedCrops,
         getSystemics: getSystemics,
+        getTotalAcres: getTotalAcres,
         insertLoan: insertLoan,
         staleCheck: staleCheck
       };
@@ -176,6 +177,13 @@
 
       function getSystemics(id){
         return $http.get(API_URL + '/loans/' + id + '/systemics');
+      }
+
+      function getTotalAcres(id){
+        return $http.get(API_URL + '/loans/' + id + '/totalacres')
+          .then(function(res){
+            return res.data;
+          });
       }
 
       function insertLoan(obj){

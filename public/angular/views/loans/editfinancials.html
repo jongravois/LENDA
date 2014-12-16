@@ -18,6 +18,7 @@
 </style>
 <fieldset>
 <legend>Financial Information</legend>
+
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <table class="table table-striped">
@@ -70,7 +71,9 @@
       </tr>
       <tr ng-repeat="c in loanCrops" ng-if="c.acres > 0">
         <td>{{c.name}}</td>
-        <td class="text-center">{{c.acres | number: 1}}</td>
+        <td class="text-right">
+          {{c.acres | number: 1}}
+        </td>
         <td class="text-right">
           {{c.tea | displaynullcurrency}}
         </td>
@@ -88,18 +91,18 @@
         <td class="text-left">
           Total
         </td>
-        <td class="text-center" ng-class=gtZero(getTotalAcres())>
-          {{getTotalAcres() | displaynull}}
+        <td class="text-right" ng-class=gtZero(loan.total_acres)>
+          {{loan.total_acres | displaynullsingle}}
         </td>
         <td class="text-center"> - </td>
-        <td ng-class=gtZero(getTotalPCC_AgPro())>
-          {{getTotalPCC_AgPro() | displaynullcurrency}}
+        <td ng-class=gtZero(loan.fins.totalPCC)>
+          {{loan.fins.totalPCC | displaynullcurrency}}
         </td>
-        <td ng-class=gtZero(getTotalPCC_AgPro())>
-          {{getTotalPCC_AgPro() * .35 | displaynullcurrency}}
+        <td ng-class=gtZero(loan.fins.totalPCC)>
+          {{loan.fins.totalPCC * .35 | displaynullcurrency}}
         </td>
-        <td ng-class=gtZero(getTotalPCC_AgPro())>
-          {{getTotalPCC_AgPro() * .35 | displaynullcurrency}}
+        <td ng-class=gtZero(loan.fins.totalPCC)>
+          {{loan.fins.totalPCC * .35 | displaynullcurrency}}
         </td>
       </tr>
     </table>
@@ -602,5 +605,7 @@
 </div>
 <!-- SUMMARY PANEL-->
 </fieldset>
+<pre>{{loan.fins | json}}</pre>
+<pre>{{loanCrops | json}}</pre>
 <!--<pre>{{loan.grader | json}}</pre>-->
 <!--<pre>{{grads | json}}</pre>-->

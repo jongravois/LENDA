@@ -7,17 +7,17 @@
         <th>Affiliated Entity</th>
         <th>Percent Owned</th>
       </tr>
-      <tr ng-if="!affiliates">
+      <tr ng-if="!affiliates || affiliates.length == 0">
         <td colspan="2">
           <b>No affiliated entities found!</b>
         </td>
       </tr>
       <tr ng-repeat="a in affiliates">
         <td>
-          <text-edit-in-place value="a.entity_name"></text-edit-in-place>
+          <text-eip value="a.entity_name"></text-eip>
         </td>
         <td class="text-center">
-          <percent-edit-in-place value="a.percent_owned"></percent-edit-in-place>
+          <percent-eip value="a.percent_owned"></percent-eip>
         </td>
       </tr>
       <tr>
