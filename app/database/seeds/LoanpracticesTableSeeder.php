@@ -85,7 +85,7 @@ class LoanpracticesTableSeeder extends Seeder {
 		Loanpractice::create([
 			'crop_year' => 2015,
 			'loan_id' => 1,
-			'crop_id' => 7,
+			'crop_id' => 8,
 			'is_active' => 0,
 			'crop' => 'sugarcane',
 			'ins_price' => 0.160

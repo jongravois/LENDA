@@ -18,7 +18,7 @@ class LoansController extends ApiController {
 
 	public function index()
 	{
-		$loans = Loan::with('applicants.entitytype', 'committee.user', 'corporations', 'distributor', 'farmer', 'farms.county', 'financials', 'insurance', 'loancrop', 'loanstatus', 'loantype.reqdocs',  'location', 'partners', 'regions', 'staff', 'ventures', 'user')->where('applicant_id', '!=', 'null')->get();
+		$loans = Loan::with('applicants.entitytype', 'committee.user', 'corporations', 'distributor', 'farmer', 'farms.county', 'financials', 'insurance', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs',  'location', 'partners', 'regions', 'staff', 'ventures', 'user')->where('applicant_id', '!=', 'null')->get();
 		//return $loans;  //REMOVE THIS
 
 		return $this->respond([
@@ -28,7 +28,7 @@ class LoansController extends ApiController {
 
 	public function show($id)
 	{
-		$loan = Loan::with('applicants.entitytype', 'committee.user', 'corporations', 'distributor', 'farmer', 'farms.county', 'financials', 'insurance', 'loancrop', 'loanstatus', 'loantype.reqdocs',  'location', 'partners', 'regions', 'staff', 'ventures', 'user')->where('id', $id)->get();
+		$loan = Loan::with('applicants.entitytype', 'committee.user', 'corporations', 'distributor', 'farmer', 'farms.county', 'financials', 'insurance', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs',  'location', 'partners', 'regions', 'staff', 'ventures', 'user')->where('id', $id)->get();
 		//return $loan;
 
 		if( $loan->isEmpty() ){

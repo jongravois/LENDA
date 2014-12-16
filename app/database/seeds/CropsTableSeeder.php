@@ -5,51 +5,59 @@ class CropsTableSeeder extends Seeder{
 	public function run()
 	{
 		Crop::create([
-			'crop'  				=>  'corn',
-			'measurement'			=>	'bu',
-			'rebate_measurement'	=>	'bu'
+			'crop' => 'corn',
+			'tea' => 750,
+			'measurement' => 'bu',
+			'rebate_measurement' => 'bu'
 		]);
 
 		Crop::create([
-			'crop'  				=>  'soybeans',
-			'measurement'			=>	'bu',
-			'rebate_measurement'	=>	'bu'
+			'crop' => 'soybeans',
+			'tea' => 450,
+			'measurement' => 'bu',
+			'rebate_measurement' => 'bu'
 		]);
 
 		Crop::create([
-			'crop'  				=>  'sorghum',
-			'measurement'			=>	'bu',
-			'rebate_measurement'	=>	'bu'
+			'crop' => 'sorghum',
+			'tea' => 375,
+			'measurement' => 'bu',
+			'rebate_measurement' => 'bu'
 		]);
 
 		Crop::create([
-			'crop'  				=>  'wheat',
-			'measurement'			=>	'bu',
-			'rebate_measurement'	=>	'bu'
+			'crop' => 'wheat',
+			'tea' => 360,
+			'measurement' => 'bu',
+			'rebate_measurement' => 'bu'
 		]);
 
 		Crop::create([
-			'crop'  				=>  'cotton',
-			'measurement'			=>	'lb',
-			'rebate_measurement'	=>	'lb'
+			'crop' => 'cotton',
+			'tea' => 540,
+			'measurement' => 'lb',
+			'rebate_measurement' => 'lb'
 		]);
 
 		Crop::create([
-			'crop'  				=>  'rice',
-			'measurement'			=>	'lb',
-			'rebate_measurement'	=>	'bu'
+			'crop' => 'rice',
+			'tea' => 750,
+			'measurement' => 'lb',
+			'rebate_measurement' => 'bu'
 		]);
 
 		Crop::create([
-			'crop'  				=>  'peanuts',
-			'measurement'			=>	'bu',
-			'rebate_measurement'	=>	'bu'
+			'crop' => 'peanuts',
+			'tea' => 750,
+			'measurement' => 'bu',
+			'rebate_measurement' => 'bu'
 		]);
 
 		Crop::create([
-			'crop'  				=>  'sugar cane',
-			'measurement'			=>	'ton',
-			'rebate_measurement'	=>	'ton'
+			'crop' => 'sugar cane',
+			'tea' => 750,
+			'measurement' => 'ton',
+			'rebate_measurement' => 'ton'
 		]);
 	}
 

@@ -10,7 +10,8 @@
         diffInDates: diffInDates,
         getDefaultDueDate: getDefaultDueDate,
         moveToNextNewLoanScreen: moveToNextNewLoanScreen,
-        patchIt: patchIt
+        patchIt: patchIt,
+        putIt: putIt
       };
 
       function diffInDates(first,second){
@@ -40,6 +41,9 @@
       }
       function patchIt(end, id, data){
         return $http.patch(API_URL + end + id, data);
+      }
+      function putIt(end, id, data){
+        return $http.put(API_URL + end + id, data);
       }
     });
 })();

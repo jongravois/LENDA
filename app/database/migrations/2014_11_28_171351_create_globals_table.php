@@ -12,6 +12,10 @@ class CreateGlobalsTable extends Migration {
 			$table->increments('id');
       $table->integer('crop_year')->default(2015);
       $table->string('season')->default('S');
+			$table->double('arm_interest_rate')->default(9);
+			$table->double('dist_interest_rate')->default(7.5);
+			$table->double('proc_fee_rate')->default(1);
+			$table->double('svc_fee_rate')->default(1.5);
 		});
 	}
 

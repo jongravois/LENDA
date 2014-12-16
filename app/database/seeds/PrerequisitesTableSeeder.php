@@ -56,5 +56,15 @@ class PrerequisitesTableSeeder extends Seeder {
 			'document' => "Grain Contracts"
 		]);
 
+		Prerequisites::create([
+			'loan_id'	=>	6,
+			'document' => "Signed Application"
+		]);
+
+		Prerequisites::create([
+			'loan_id'	=>	6,
+			'document' => "Driver's License"
+		]);
+
 	}
 }

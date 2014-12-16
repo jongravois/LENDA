@@ -3,16 +3,20 @@
     .controller('AdminController', function($scope){
       $scope.today = new Date();
     })
-    .controller('AdminDistributorsController', function($scope, $http, $state, $stateParams){
+    .controller('AdminCropsController',function($scope, $http, $state, $stateParams, AppFactory){
+      $scope.adminUpdateCrop = function(o){
+        AppFactory.putIt('/crops/', o.id, o).then(function success(response){});
+      };
+    })
+    .controller('AdminDistributorsController', function($scope, $http, $state, $stateParams, AppFactory){
       $scope.distributor_id = $stateParams.distributorId;
       $scope.distributor = _.find($scope.distributors, function(i) {
         return i.id == $scope.distributor_id;
       });
 
       // edit distributor
-      $scope.saveDistributor = function(id, data) {
-        angular.extend(data, {id: id});
-        return $http.put('/api/distributors/' + id, data);
+      $scope.updateDistributor = function(o) {
+        AppFactory.putIt('/distributors/', o.id, o).then(function success(response){});
       };
 
       // remove distributor

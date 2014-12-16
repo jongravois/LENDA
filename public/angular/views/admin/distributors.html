@@ -1,29 +1,34 @@
-<div ng-controller="AdminDistributorsController">
+<div>
     <div ui-view></div>
+    <!--TODO: Create mechanism to save/edit address-->
     <!--<pre>{{distributors[0] | json}}</pre>-->
     <table class="table table-striped table-bordered table-hover table-condensed">
         <tr>
-            <th style="width:15%;">Distributor</th>
+            <th style="width:25%;">Distributor</th>
             <th style="width:15%;">Display</th>
             <th style="width:15%;">Location</th>
             <th style="width:15%;">Phone</th>
+            <th style="width:15%;">Email</th>
             <th style="width:15%;">Actions</th>
         </tr>
         <tr ng-repeat="d in feeder.distributors">
             <td>
-                {{ d.name }}
+                <text-eip value="d.name"></text-eip>
             </td>
             <td>
-                {{ d.distributor }}
+                <text-eip value="d.distributor"></text-eip>
             </td>
             <td>
-                {{ d.city }}, {{ d.state }}
+                <text-eip value="d.locale"></text-eip>
             </td>
             <td>
-                {{ d.phone | phone }}
+                <phone-eip value="d.phone"></phone-eip>
+            </td>
+            <td>
+                <text-eip value="d.email"></text-eip>
             </td>
             <td style="white-space: nowrap">
-                <a class="btn btn-success" ui-sref="admin.distributors.edit({distributorId:d.id})">edit</a>
+                <a class="btn btn-success" ng-click="updateDistributor(d)">save</a>
                 <button class="btn btn-danger" ng-really-message="This action cannot be undone. Are you sure?" ng-really-click="removeDistributor($index, d.id)">del</button>
             </td>
         </tr>

@@ -13,6 +13,7 @@ class CropTransformer extends Transformer{
 			'crop' =>	$arr['croppractice']['crop'],
 			'fsn' => $arr['farm']['fsn'],
 			'practice' =>	$arr['croppractice']['practice'],
+			'tea' => $arr['tea'],
 			'yield_uom'	=>	$arr['yield_uom'],
 			'ins_type' => $arr['ins_type'],
 			'acres'	=>	(double) $arr['acres'],

@@ -68,7 +68,7 @@ class PrerequisitesController extends ApiController {
 		$notes = Prerequisites::where('loan_id', $id)->get();
 
 		if( $notes->isEmpty() ){
-			return $this->respondNotFound('Notes do not exist.');
+			return [];
 		} // end if
 
 		return $this->respond([

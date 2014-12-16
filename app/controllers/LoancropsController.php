@@ -13,7 +13,7 @@ class LoancropsController extends ApiController {
 
 	public function index()
 	{
-		$loancrops = Loancrop::all();
+		$loancrops = Loancrop::with('crop')->get();
 		return $this->respond([
 			'data' => $this->loancropTransformer->transformCollection($loancrops->all())
 		]);

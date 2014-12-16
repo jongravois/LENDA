@@ -14,6 +14,7 @@ class DistributorTransformer extends Transformer{
       'state_id' => $arr['state_id'],
       'state' => $arr['state'],
       'zip' => $arr['zip'],
+      'locale' => $arr['locale'],
       'phone' => $arr['phone'],
       'email' => $arr['email']
     ];

@@ -2,11 +2,19 @@
 
   angular.module('ARM')
     .directive('editInPlace', EditInPlaceDirective)
+    .directive('eip', EditInPlaceDirective)
     .directive('nullEditInPlace', NullEditInPlaceDirective)
+    .directive('nullEip', NullEditInPlaceDirective)
+    .directive('nullIntEditInPlace', NullIntEditInPlaceDirective)
+    .directive('nullIntEip', NullIntEditInPlaceDirective)
     .directive('percentEditInPlace', PercentEditInPlaceDirective)
+    .directive('percentEip', PercentEditInPlaceDirective)
     .directive('phoneEditInPlace', PhoneEditInPlaceDirective)
+    .directive('phoneEip', PhoneEditInPlaceDirective)
     .directive('socialEditInPlace', SocialEditInPlaceDirective)
+    .directive('socialEip', SocialEditInPlaceDirective)
     .directive('textEditInPlace', TextEditInPlaceDirective)
+    .directive('textEip', TextEditInPlaceDirective)
     .directive('sglclick', SglClickDirective)
     .directive('ngReallyClick', NgReallyClickDirective)
     .directive('loanStatusIcon', LoanStatusIconDirective)
@@ -58,6 +66,40 @@
         value: '='
       },
       template: '<span ng-click="edit()" ng-show="!editing">{{ value | displaynullcurrency }}</span><input ng-model="value" ng-blur="onBlur()" ng-show="editing"/>',
+      link: function ($scope, element, attrs) {
+        var inputElement = element.find('input');
+
+        // reference the input element
+        element.addClass('edit-in-place');
+
+        // Initially, we're not editing.
+        $scope.editing = false;
+
+        // ng-click handler to activate edit-in-place
+        $scope.edit = function () {
+          $scope.editing = true;
+
+          // element not visible until digest complete
+          // timeout causes this to run after digest
+          setTimeout(function() {
+            inputElement[0].focus();
+          });
+        };
+
+        $scope.onBlur = function() {
+          $scope.editing = false;
+        };
+      }
+    };
+  }
+
+  function NullIntEditInPlaceDirective() {
+    return {
+      restrict: 'E',
+      scope: {
+        value: '='
+      },
+      template: '<span ng-click="edit()" ng-show="!editing">{{ value | displaynullsingle }}</span><input ng-model="value" ng-blur="onBlur()" ng-show="editing"/>',
       link: function ($scope, element, attrs) {
         var inputElement = element.find('input');
 

@@ -10,12 +10,14 @@
       return {
         createAffiliate: createAffilate,
         createDistributor: createDistributor,
+        createFinancials: createFinancials,
         createLoan: createLoan,
         createReference: createReference,
         getAffiliates: getAffiliates,
         getComments: getComments,
         getCommittee: getCommittee,
         getCropExpenses: getCropExpenses,
+        getCrops: getCrops,
         getDistributor: getDistributor,
         getFarmExpenses: getFarmExpenses,
         getFarmPractices: getFarmPractices,
@@ -47,6 +49,10 @@
       function createDistributor(o){
         //TODO: distributor or loandistributor???
         //return $http.post(API_URL + '/loandistributors', o);
+      }
+
+      function createFinancials(o){
+        return $http.post(API_URL + '/loanfinancials', o);
       }
 
       function createLoan(type){
@@ -84,6 +90,10 @@
 
       function getCropExpenses(id){
         return $http.get(API_URL + '/loans/' + id + '/cropexpenses');
+      }
+
+      function getCrops(){
+        return $http.get(API_URL + '/crops');
       }
 
       function getDistributor(id){

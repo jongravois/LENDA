@@ -35,6 +35,15 @@
         return ' - ';
       };
     })
+    .filter('displaynullcurrency', function($filter){
+      return function(input){
+        if(!input){ return ' - '; }
+        if(parseFloat(input) != 0){
+          return $filter('currency')(input);
+        }
+        return ' - ';
+      };
+    })
     .filter('displaynullpercent', function($filter){
       return function(input){
         if(!input){ return ' - '; }
@@ -44,11 +53,11 @@
         return ' - ';
       };
     })
-    .filter('displaynullcurrency', function($filter){
+    .filter('displaynullsingle', function($filter){
       return function(input){
         if(!input){ return ' - '; }
         if(parseFloat(input) != 0){
-          return $filter('currency')(input);
+          return $filter('number')(input, 1);
         }
         return ' - ';
       };

@@ -5,6 +5,8 @@
         <tr>
             <th style="width:15%;">Unit</th>
             <th style="width:15%;">Abr</th>
+            <th style="width:15%;">Convert to Pounds</th>
+            <th style="width:15%;">Convert from Pounds</th>
             <th style="width:15%;">Actions</th>
         </tr>
         <tr ng-repeat="u in feeder.units">
@@ -13,6 +15,12 @@
             </td>
             <td>
                 {{ u.abr }}
+            </td>
+            <td>
+                {{u.toPounds | number:2}}
+            </td>
+            <td>
+                {{u.fromPounds | number:2}}
             </td>
             <td style="white-space: nowrap">
                 <a class="btn btn-success" ui-sref="admin.units.edit({unitId:u.id})">edit</a>

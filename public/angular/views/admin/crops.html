@@ -1,0 +1,34 @@
+<div>
+  <div ui-view></div>
+  <!--<pre>{{crops | json}}</pre>-->
+  <table class="table table-striped table-bordered table-hover table-condensed">
+    <tr>
+      <th style="width:15%;">Crop</th>
+      <th style="width:15%;">TEA</th>
+      <th style="width:15%;">Unit of Measure</th>
+      <th style="width:15%;">Rebate Unit of Measure</th>
+      <th style="width:15%;">Actions</th>
+    </tr>
+    <tr ng-repeat="c in crops">
+      <td>
+        <text-eip value="c.crop"></text-eip>
+      </td>
+      <td class="text-right">
+        <edit-in-place value="c.tea"></edit-in-place>
+      </td>
+      <td class="text-center">
+        <text-eip value="c.measurement"></text-eip>
+      </td>
+      <td class="text-center">
+        <text-eip value="c.rebate_measurement"></text-eip>
+      </td>
+      <td style="white-space: nowrap">
+        <button class="btn btn-success" ng-click="adminUpdateCrop(c)">save</button>
+        <button class="btn btn-danger" ng-really-message="This action cannot be undone. Are you sure?" ng-really-click="removeCrop($index, c.id)">del</button>
+      </td>
+    </tr>
+  </table>
+
+  <button class="btn btn-default" ng-click="addCrop()">Add New Crop</button>
+  <br/><br/><br/><br/>
+</div>

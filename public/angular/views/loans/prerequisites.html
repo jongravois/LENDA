@@ -11,6 +11,11 @@
       <th style="width:12%;">Received</th>
       <th style="width:20%;">Reason Pending</th>
     </tr>
+    <tr>
+      <td colspan="4" ng-if="!docs || docs.length == 0">
+        <strong>No Documents Found.</strong>
+      </td>
+    </tr>
     <tr ng-repeat="d in docs">
       <td>{{d.document}}</td>
       <td class="text-center">

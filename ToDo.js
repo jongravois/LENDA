@@ -3,6 +3,7 @@
 // TODO: is_stale calculation
 // TODO: has_comments calculation (use need_vote as example)
 // TODO: Unit of Measurements Switcher
+// TODO:
 // TODO: Email Service -- Laravel
 // TODO: SMS Service
 // TODO: Monitoring/logging Service -- ALL systemics handled by Laravel
@@ -18,12 +19,12 @@
 //TODO: IV. EDIT LOAN
 // TODO: Applicant History table -- repeat, addendums & amounts, open loans
 // TODO: Summary: Collateral Conditions
+// TODO: Code Crops:Percent Irrigated Function
 // TODO: Underwriting: Collateral Conditions (add new feature)
 // TODO: Underwriting: Collateral Summary (edit discount --> LENDA)
 // TODO: Comments: Functionality (respond, acknowledge, etc)
 // TODO: Committee: Assignment and Comment Status/Colors
 // TODO: Committee: Analyst Controls
-// TODO: Farmer: DOB wrong format for update
 // TODO: Insurance -- need agency & contact
 // TODO: Controlled Disbursement
 // TODO: Addendums???

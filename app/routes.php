@@ -10,7 +10,7 @@ Route::get('app', [
 ])->before('auth');
 
 Route::get('test', function(){
-  return Notification::where('user_id', '2')->where('notification_type', 'vote')->where('loan_id', '1')->where('status', 'pending')->get();
+  return Loanpractice::where('loan_id', '1')->where('is_active', '1')->get();
 });
 
 Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
@@ -23,7 +23,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('conditions', 'ConditionsController');
   Route::resource('corporations', 'CorporationsController');
   Route::resource('counties', 'CountiesController');
-  Route::resource('crops', 'CropsController');
+  Route::resource('crops', 'CropController');
   Route::resource('cropexpenses', 'CropexpensesController');
   Route::resource('cropdetails', 'CropdetailsController');
   Route::resource('croppractices', 'CroppracticesController');

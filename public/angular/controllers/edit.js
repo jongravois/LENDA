@@ -16,6 +16,7 @@
       $scope.loan_id = $stateParams.id;
       $scope.newapplication = false;
 
+      //TODO: Verify that existing objects should be kept
       $scope.farmer = $scope.farmer || {};
       $scope.applicant = $scope.applicant || {};
       $scope.partners = $scope.partners || {};
@@ -135,8 +136,18 @@
       $scope.getTotalAcres = function(){
         return 927.7;
       };
-      $scope.getCropsPercentIrrigated = function(){
-        return "Corn: 90.5%, Soybeans: 92.3%";
+      $scope.getCropsPercentIrrigated = function(id){
+        switch(id){
+          case '1':
+            return "Corn: 90.5%, Soybeans: 92.3%";
+            break;
+          case '2':
+            return "Sorghum: 52.7%, Sugar Cane: 0%";
+            break;
+          default:
+            return "Percent not determined.";
+            break;
+        } // end switch
       };
       $scope.getTotalPCC_AgPro = function(){
         return 260550 + 261135;

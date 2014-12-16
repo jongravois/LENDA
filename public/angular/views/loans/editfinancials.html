@@ -69,7 +69,7 @@
         <th style="width:15%;">35% Ag-Vest</th>
       </tr>
       <tr ng-repeat="c in loanCrops" ng-if="c.acres > 0">
-        <td>{{c.crop}}</td>
+        <td>{{c.name}}</td>
         <td class="text-center">{{c.acres | number: 1}}</td>
         <td class="text-right">
           {{c.tea | displaynullcurrency}}

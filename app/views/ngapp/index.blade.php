@@ -93,6 +93,7 @@
 <script src="angular/controllers/newuploads.js"></script>
 <script src="angular/controllers/newyield.js"></script>
 <script src="angular/controllers/edit.js"></script>
+<script src="angular/controllers/editplannedcrops.js"></script>
 <script src="angular/controllers/management.js"></script>
 <script src="angular/controllers/prefs.js"></script>
 <script src="angular/controllers/calendar.js"></script>

@@ -80,6 +80,13 @@ class SystemicsTableSeeder extends Seeder{
 			"created_at" => "2014-07-05 09:01:02",
 			"action" => "Sent loan to distributor for approval"
 		]);
+
+		Systemics::create([
+			"loan_id"	=>	"2",
+			"user"		=>	"Jonathan Gravois",
+			"action"	=>	"Created loan",
+			"created_at"	=>	"2014-12-10 09:10:00"
+		]);
 	}
 
 }

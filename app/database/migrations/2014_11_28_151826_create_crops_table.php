@@ -11,6 +11,7 @@ class CreateCropsTable extends Migration {
 		{
 			$table->increments('id');
       $table->string('crop');
+      $table->double('tea');
       $table->string('measurement')->default('bu');
       $table->string('rebate_measurement')->default('bu');
 			$table->timestamps();

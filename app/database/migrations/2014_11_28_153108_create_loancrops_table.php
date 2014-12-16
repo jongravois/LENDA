@@ -13,9 +13,6 @@ class CreateLoancropsTable extends Migration {
       $table->integer('crop_year');
       $table->integer('loan_id');
       $table->integer('crop_id');
-      $table->string('name');
-      $table->double('tea')->default(0);
-      $table->string('uom')->default('bu');
       $table->double('acres')->default(0);
       $table->boolean('is_active')->default(0);
       $table->string('markettowhom')->nullable();

@@ -1,5 +1,5 @@
 (function(){
-    'use strict';
+  'use strict';
   angular.module('ARM')
     .controller('MainController', function(
       $scope,
@@ -50,6 +50,10 @@
 
       FeederFactory.init();
       $scope.feeder = FeederFactory.getObject();
+      
+      LoansFactory.getCrops().then(function success(response){
+              $scope.crops = response.data.data;
+            });
       
       FarmersFactory.getFarmers().then(function success(response){
               $scope.farmers = response.data.data;

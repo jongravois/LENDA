@@ -3,6 +3,7 @@
     angular.module('ARM', ['ui.router', 'ui.bootstrap', 'ui.utils', 'ngSanitize', 'ngAnimate', 'ngResource', 'angularMoment', 'angular-loading-bar', 'toastr', 'ngGrid'])
       .constant('_', window._)
       .constant('API_URL', 'http://www.lenda.local:6500/api')
+      .constant('LEGAL_NAME', 'Ag Resource Management')
       .config(function(toastrConfig) {
         angular.extend(toastrConfig, {
           closeButton: true
@@ -134,13 +135,14 @@
             templateUrl: 'angular/views/admin/home.html',
             controller: 'AdminController'
           })
+          .state('admin.crops', {
+            url: '/crops',
+            templateUrl: 'angular/views/admin/crops.html',
+            controller: 'AdminCropsController'
+          })
           .state('admin.distributors', {
             url: '/distributors',
-            templateUrl: 'angular/views/admin/distributors.html'
-          })
-          .state('admin.distributors.edit', {
-            url: '/edit/:distributorId',
-            templateUrl: 'angular/views/admin/distributor.html',
+            templateUrl: 'angular/views/admin/distributors.html',
             controller: 'AdminDistributorsController'
           })
           .state('admin.entitytypes', {
@@ -366,7 +368,8 @@
           })
           .state('edit.plannedcrops', {
             url: '/plannedcrops',
-            templateUrl: 'angular/views/loans/editplannedcrops.html'
+            templateUrl: 'angular/views/loans/editplannedcrops.html',
+            controller: 'EditPlannedCropsController'
           })
           .state('edit.prerequisites', {
             url: '/prerequisites',

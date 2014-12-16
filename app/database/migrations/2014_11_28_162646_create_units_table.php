@@ -12,6 +12,8 @@ class CreateUnitsTable extends Migration {
 			$table->increments('id');
       $table->string('unit');
       $table->string('abr');
+			$table->double('toPounds');
+			$table->double('fromPounds');
 		});
 	}
 

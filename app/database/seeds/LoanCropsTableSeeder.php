@@ -3,13 +3,12 @@
 class LoanCropsTableSeeder extends Seeder {
 	public function run()
 	{
+		// LOAN #1
 		Loancrop::create([
 			'crop_year' => 2015,
 			'loan_id' => 1,
 			'crop_id' => 1,
-			'name' => 'corn',
 			'acres' => 347.4,
-			'tea' => 750,
 			'is_active' => 1,
 			'markettowhom' => 'CropsRUs',
 			'prod_price' => 4.20,
@@ -35,9 +34,7 @@ class LoanCropsTableSeeder extends Seeder {
 			'crop_year' => 2015,
 			'loan_id' => 1,
 			'crop_id' => 2,
-			'name' => 'soybeans',
 			'acres' => 580.3,
-			'tea' => 450,
 			'is_active' => 1,
 			'markettowhom' => 'CropsRUs',
 			'prod_price' => 10.0,
@@ -61,49 +58,90 @@ class LoanCropsTableSeeder extends Seeder {
 		Loancrop::create([
 			'crop_year' => 2015,
 			'loan_id' => 1,
+			'crop_id' => 3
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 1,
+			'crop_id' => 4
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 1,
+			'crop_id' => 5
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 1,
+			'crop_id' => 6
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 1,
+			'crop_id' => 7
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 1,
+			'crop_id' => 8
+		]);
+
+		//LOAN #2
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 2,
+			'crop_id' => 1
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 2,
+			'crop_id' => 2
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 2,
 			'crop_id' => 3,
-			'name' => 'sorghum',
-			'tea' => 375
+			'is_active' => 1,
+			'acres' => 435
 		]);
 
 		Loancrop::create([
 			'crop_year' => 2015,
-			'loan_id' => 1,
-			'crop_id' => 4,
-			'name' => 'wheat',
-			'tea' => 360
+			'loan_id' => 2,
+			'crop_id' => 4
 		]);
 
 		Loancrop::create([
 			'crop_year' => 2015,
-			'loan_id' => 1,
-			'crop_id' => 5,
-			'name' => 'cotton',
-			'tea' => 540
+			'loan_id' => 2,
+			'crop_id' => 5
 		]);
 
 		Loancrop::create([
 			'crop_year' => 2015,
-			'loan_id' => 1,
-			'crop_id' => 6,
-			'name' => 'rice',
-			'tea' => 750
+			'loan_id' => 2,
+			'crop_id' => 6
 		]);
 
 		Loancrop::create([
 			'crop_year' => 2015,
-			'loan_id' => 1,
-			'crop_id' => 7,
-			'name' => 'peanuts',
-			'tea' => 750
+			'loan_id' => 2,
+			'crop_id' => 7
 		]);
 
 		Loancrop::create([
 			'crop_year' => 2015,
-			'loan_id' => 1,
+			'loan_id' => 2,
 			'crop_id' => 8,
-			'name' => 'sugarcane',
-			'tea' => 750
+			'is_active' => 1,
+			'acres' => 2000
 		]);
 
 	}

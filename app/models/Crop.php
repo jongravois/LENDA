@@ -2,7 +2,7 @@
 
 class Crop extends \Eloquent {
 	protected $hidden = ['created_at', 'updated_at'];
-	protected $fillable = ['crop', 'measurement', 'rebate_measurement'];
+	protected $fillable = ['crop', 'tea', 'measurement', 'rebate_measurement'];
 
 	public function cropdetails()
 	{
