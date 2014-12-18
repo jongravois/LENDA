@@ -6,23 +6,30 @@
   <!-- APPLICATIONS -->
   <div class="row button_bar">
     <div class="col-md-9 form_group text-right">&nbsp;</div>
-    <div class="col-md-3 form_group">
-      <select ng-model="landing_view" class="form-control">
-        <option value="my_settings_view">My Settings</option>
-        <option value="all_loans_view">All Active Loans</option>
-        <option value="spring_loans_view">Active Spring Loans</option>
-        <option value="fall_loans_view">Active Fall Loans</option>
+    <div class="col-md-3 form_group" style="z-index: 1250;">
+      <form>
+        <select class="form-control" name="landing_view" ng-model="landing_view" ng-change="changeLandingView(landing_view)">
+        <option value="settings">My Settings</option>
+        <option value="all">All Loans</option>
+        <option value="spring">Active Spring Loans</option>
+        <option value="fall">Active Fall Loans</option>
       </select>
+    </form>
     </div>
   </div> <!-- end .button_bar -->
 
-  <div data-tbl="tblApplications" class="landing_header_bar clr-darkgreen">
+  <div data-tbl="tblApplications" class="landing_header_bar clr-darkgreen" style="z-index: 3000;">
     <h3 class="divider_title inlined" style="padding-left:20px;">LOANS</h3>
     <span class="filterQueue">
         Filter List:&nbsp;<input type="text" ng-model="loanFilter" />
     </span>
   </div> <!-- end .landing_header_bar -->
 
+  <!--nggrid-->
+  <div class="gridStyle tblLanding" ng-grid="gridOptions" style="display:none;"></div>
+
+  <!--<pre>{{landing_view | json}}</pre>-->
+  <!--<pre>{{loanList | json}}</pre>-->
   <div>
     <table id="tblProjects" class="tblLanding">
       <tr class="landing_header_row">
@@ -45,8 +52,8 @@
         <th style="width:8%;" ng-click="sortBy='commit_total';reverse=!reverse">ARM Commit</th>
       </tr>
       <tbody>
-      <tr ng-if="landing_view == 'my_settings_view'" class="landing_data_row"
-          ng-repeat="l in loans | filter: loanFilter | orderBy:[myOrder, 'applicant']">
+      <tr class="landing_data_row"
+          ng-repeat="l in loanList | filter: loanFilter | orderBy:[myOrder, 'applicant']">
         <td>
           <span ng-if="l.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#000099;"></span>
           <span ng-if="l.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#e0a02d;"></span>
@@ -59,90 +66,6 @@
           <span class="glyphicon glyphicon-flag indicon" tooltip="Added Land in Database" ng-class="{ clrOn : l.added_land, clrOff: !l.added_land }"></span>
           <span class="glyphicon glyphicon-tower indicon" tooltip="Controlled Disbursement" ng-class="{ clrOn : l.controlled_disbursement, clrOff: !l.controlled_disbursement }"></span>
           <span class="glyphicon glyphicon-paperclip indicon" tooltip="Attachments" ng-class="{ clrOn : l.attachments, clrOff: !l.attachments }"></span>
-
-        </td>
-        <td>{{l.farmer}}</td>
-        <td><a href="#/edit/{{l.id}}/summary">{{l.applicant}}</a></td>
-        <td>{{l.loan_type}}</td>
-        <td style="text-align:center;">{{l.analyst.nick}}</td>
-        <td style="text-align:center;">{{l.loc_abr}}</td>
-        <td style="text-align:center;">{{l.crop_year}}</td>
-        <td>{{l.app_date | date:'MM/dd/yy'}}</td>
-        <td style="text-align:center;">
-          <span loan-status-icon status="{{l.status_id}}"></span>
-        </td>
-        <td style="text-align:right;">{{l.fins.commit_arm | noCentsCurrency}}</td>
-      </tr>
-      <tr ng-if="landing_view == 'all_loans_view'" class="landing_data_row"
-          data-ng-repeat="l in loans | filter: loanFilter | orderBy:[myOrder, 'applicant']">
-        <td>
-          <span ng-if="l.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#000099;"></span>
-          <span ng-if="l.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#e0a02d;"></span>
-          <span ng-if="l.is_stale" tooltip="Stale Application" class="glyphicon glyphicon-exclamation-sign" style="color:#990000;"></span>
-        </td>
-        <td>
-          <span class="glyphicon glyphicon-plus" tooltip="Addendum" ng-class="{ clrOn : l.has_addendum, clrOff: !l.has_addendum }"></span>
-          <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy History" ng-class="{ clrOn : l.bankruptcy_history, clrOff: !l.bankruptcy_history }"></span>
-          <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit Required" ng-class="{ clrOn : l.required_3party, clrOff: !l.required_3party }"></span>
-          <span class="glyphicon glyphicon-flag" tooltip="Added Land in Database" ng-class="{ clrOn : l.added_land, clrOff: !l.added_land }"></span>
-          <span class="glyphicon glyphicon-tower" tooltip="Controlled Disbursement" ng-class="{ clrOn : l.controlled_disbursement, clrOff: !l.controlled_disbursement }"></span>
-          <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" ng-class="{ clrOn : l.attachments, clrOff: !l.attachments }"></span>
-
-        </td>
-        <td>{{l.farmer}}</td>
-        <td><a href="#/edit/{{l.id}}/summary">{{l.applicant}}</a></td>
-        <td>{{l.loan_type}}</td>
-        <td style="text-align:center;">{{l.analyst.nick}}</td>
-        <td style="text-align:center;">{{l.loc_abr}}</td>
-        <td style="text-align:center;">{{l.crop_year}}</td>
-        <td>{{l.app_date | date:'MM/dd/yy'}}</td>
-        <td style="text-align:center;">
-          <span loan-status-icon status="{{l.status_id}}"></span>
-        </td>
-        <td style="text-align:right;">{{l.fins.commit_arm | noCentsCurrency}}</td>
-      </tr>
-      <tr ng-if="landing_view == 'spring_loans_view'" class="landing_data_row"
-          data-ng-repeat="l in loans | filter: loanFilter | orderBy:[myOrder, 'applicant']">
-        <td>
-          <span ng-if="l.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#000099;"></span>
-          <span ng-if="l.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#e0a02d;"></span>
-          <span ng-if="l.is_stale" tooltip="Stale Application" class="glyphicon glyphicon-exclamation-sign" style="color:#990000;"></span>
-        </td>
-        <td>
-          <span class="glyphicon glyphicon-plus" tooltip="Addendum" ng-class="{ clrOn : l.has_addendum, clrOff: !l.has_addendum }"></span>
-          <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy History" ng-class="{ clrOn : l.bankruptcy_history, clrOff: !l.bankruptcy_history }"></span>
-          <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit Required" ng-class="{ clrOn : l.required_3party, clrOff: !l.required_3party }"></span>
-          <span class="glyphicon glyphicon-flag" tooltip="Added Land in Database" ng-class="{ clrOn : l.added_land, clrOff: !l.added_land }"></span>
-          <span class="glyphicon glyphicon-tower" tooltip="Controlled Disbursement" ng-class="{ clrOn : l.controlled_disbursement, clrOff: !l.controlled_disbursement }"></span>
-          <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" ng-class="{ clrOn : l.attachments, clrOff: !l.attachments }"></span>
-
-        </td>
-        <td>{{l.farmer}}</td>
-        <td><a href="#/edit/{{l.id}}/summary">{{l.applicant}}</a></td>
-        <td>{{l.loan_type}}</td>
-        <td style="text-align:center;">{{l.analyst.nick}}</td>
-        <td style="text-align:center;">{{l.loc_abr}}</td>
-        <td style="text-align:center;">{{l.crop_year}}</td>
-        <td>{{l.app_date | date:'MM/dd/yy'}}</td>
-        <td style="text-align:center;">
-          <span loan-status-icon status="{{l.status_id}}"></span>
-        </td>
-        <td style="text-align:right;">{{l.fins.commit_arm | noCentsCurrency}}</td>
-      </tr>
-      <tr ng-if="landing_view == 'fall_loans_view'" class="landing_data_row"
-          data-ng-repeat="l in loans | filter: loanFilter | orderBy:[myOrder, 'applicant']">
-        <td>
-          <span ng-if="l.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#000099;"></span>
-          <span ng-if="l.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#e0a02d;"></span>
-          <span ng-if="l.is_stale" tooltip="Stale Application" class="glyphicon glyphicon-exclamation-sign" style="color:#990000;"></span>
-        </td>
-        <td>
-          <span class="glyphicon glyphicon-plus" tooltip="Addendum" ng-class="{ clrOn : l.has_addendum, clrOff: !l.has_addendum }"></span>
-          <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy History" ng-class="{ clrOn : l.bankruptcy_history, clrOff: !l.bankruptcy_history }"></span>
-          <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit Required" ng-class="{ clrOn : l.required_3party, clrOff: !l.required_3party }"></span>
-          <span class="glyphicon glyphicon-flag" tooltip="Added Land in Database" ng-class="{ clrOn : l.added_land, clrOff: !l.added_land }"></span>
-          <span class="glyphicon glyphicon-tower" tooltip="Controlled Disbursement" ng-class="{ clrOn : l.controlled_disbursement, clrOff: !l.controlled_disbursement }"></span>
-          <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" ng-class="{ clrOn : l.attachments, clrOff: !l.attachments }"></span>
 
         </td>
         <td>{{l.farmer}}</td>

@@ -24,6 +24,8 @@ class LoanfinancialsTransformer extends Transformer{
 			'fee_service_onTotal' => (boolean) $arr['fee_service_onTotal'],
 			'srvc_fee' => (double) $arr['srvc_fee'],
 			'srvc_fee_arm_only' => (double) $arr['srvc_fee_arm_only'],
+			'total_fee_percent' => (double) $arr['total_fee_percent'],
+			'fee_total' => (double) $arr['fee_total'],
 			'total_fsa_payment' => (double) $arr['total_fsa_payment'],
 			'total_claims' => (double) $arr['total_claims'],
 			'total_revenue' => (double) $arr['total_revenue'],

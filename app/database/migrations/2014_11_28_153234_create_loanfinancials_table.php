@@ -53,6 +53,8 @@ class CreateLoanfinancialsTable extends Migration {
       $table->double('srvc_fee')->default(0);
       $table->double('srvc_fee_arm_only')->default(0);
       $table->boolean('fee_service_onTotal')->default(1);
+      $table->double('total_fee_percent')->default(0);
+      $table->double('fee_total')->default(0);
       $table->double('total_fsa_payment')->default(0);
       $table->double('total_claims')->default(0);
       $table->double('principal_arm')->default(0);

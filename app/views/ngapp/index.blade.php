@@ -12,6 +12,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.min.css"/>
+    <link rel="stylesheet" href="vendor/ng-grid/ng-grid.min.css"/>
     <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.min.css"/>
     <link rel="stylesheet" href="css/appng.css"/>
 
@@ -64,7 +65,7 @@
 <script src="vendor/angular-animate/angular-animate.min.js"></script>
 <script src="vendor/angular-resource/angular-resource.min.js"></script>
 <script src="vendor/angular-loading-bar/build/loading-bar.min.js"></script>
-<script src="vendor/ng-grid/build/ng-grid.min.js"></script>
+<script src="vendor/ng-grid/build/ng-grid.debug.js"></script>
 <!-- ANGULAR CORE -->
 
 <!-- APP SPECIFIC -->

@@ -4,6 +4,12 @@
       .constant('_', window._)
       .constant('API_URL', 'http://www.lenda.local:6500/api')
       .constant('LEGAL_NAME', 'Ag Resource Management')
+      .run(function($rootScope) {
+        function message(to, toP, from, fromP) { return from.name  + angular.toJson(fromP) + " -> " + to.name + angular.toJson(toP); }
+        $rootScope.$on("$stateChangeStart", function(evt, to, toP, from, fromP) { console.log("Start:   " + message(to, toP, from, fromP)); });
+        $rootScope.$on("$stateChangeSuccess", function(evt, to, toP, from, fromP) { console.log("Success: " + message(to, toP, from, fromP)); });
+        $rootScope.$on("$stateChangeError", function(evt, to, toP, from, fromP, err) { console.log("Error:   " + message(to, toP, from, fromP), err); });
+      })
       .config(function(toastrConfig) {
         angular.extend(toastrConfig, {
           closeButton: true
@@ -14,7 +20,16 @@
           .state('home', {
             url: '/',
             templateUrl: 'angular/views/home.html',
-            controller: 'HomeController'
+            controller: 'HomeController',
+            resolve: {
+              armed: function($q, $timeout){
+                var defer = $q.defer();
+                $timeout(function(){
+                  defer.resolve();
+                }, 1000);
+                return defer.promise;
+              }
+            }
           })
           .state('management', {
             url: '/management',

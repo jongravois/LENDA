@@ -5,6 +5,7 @@
       $scope,
       $state,
       $q,
+      _,
       toastr,
       AppFactory,
       CommentsFactory,
@@ -16,7 +17,30 @@
       UsersFactory
       ){
       $scope.user_id = $('#user_id').data('id');
-      $scope.landing_view = 'my_settings_view';
+      $scope.landing_view = 'settings';
+
+      $scope.changeLandingView = function(val){
+        switch(val){
+          case 'all':
+            $scope.loanList = $scope.loans;
+            break;
+          case 'settings':
+            $scope.loanList = _.filter(_.filter($scope.loans,
+              function(i) { return i.status_id == '1'; }
+            ), function(i){ return i.crop_year == $scope.globals.crop_year});
+            break;
+          case 'fall':
+            $scope.loanList = _.filter(_.filter($scope.loans,
+              function(i) { return i.status_id == '1'; }
+            ), function(i){ return i.season == 'F';});
+            break;
+          case 'spring':
+            $scope.loanList = _.filter(_.filter($scope.loans,
+              function(i) { return i.status_id == '1'; }
+            ), function(i){ return i.season == 'S';});
+            break;
+        } // end switch
+      }
 
       UsersFactory.getUsers().then(function success(response){
         $scope.users = response.data.data;
@@ -42,6 +66,29 @@
           {id: $scope.globals.PY5, year: $scope.globals.PY5},
           {id: $scope.globals.PY6, year: $scope.globals.PY6},
         ];
+        LoansFactory.getLoans().then(function success(response){
+          var allLoans = response.data.data;
+          $q.all(
+            _.map(allLoans, function(obj){
+              //true if
+              return LoansFactory.getPendingVotes(obj.id)
+                .then(function(pvs){
+                  if(pvs.data.data.length == 0){
+                    obj.need_vote = false;
+                  } else {
+                    obj.need_vote = true;
+                  } // end if
+                  return obj;
+                })
+            })
+          ).then(function(loans){
+              $scope.loans = loans;
+              $scope.loanList = _.filter(_.filter(loans,
+                function(i) { return i.status_id == '1'; }
+              ), function(i){ return i.crop_year == $scope.globals.crop_year});
+          })
+        });
+        //toastr.success('Loaded all loans', 'Success!');
       });
 
       GlobalsFactory.getAdminGrader().then(function success(response){
@@ -58,27 +105,6 @@
       FarmersFactory.getFarmers().then(function success(response){
               $scope.farmers = response.data.data;
             });
-
-      LoansFactory.getLoans().then(function success(response){
-        var allLoans = response.data.data;
-        $q.all(
-          _.map(allLoans, function(obj){
-            //true if
-            return LoansFactory.getPendingVotes(obj.id)
-              .then(function(pvs){
-                if(pvs.data.data.length == 0){
-                  obj.need_vote = false;
-                } else {
-                  obj.need_vote = true;
-                } // end if
-                return obj;
-              })
-          })
-        ).then(function(loans){
-            $scope.loans = loans;
-          })
-      });
-      //toastr.success('Loaded all loans', 'Success!');
 
       $scope.getColor = function(val){
         var colors = ['gray', 'green', 'yellow', 'red', 'blue', 'green_off', 'yellow_off'];

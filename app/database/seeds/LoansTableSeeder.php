@@ -4,7 +4,7 @@ class LoansTableSeeder extends Seeder {
 
 	public function run()
 	{
-		// Tony Stark (1) @ Glass Towers (2) | Partnership (4) -- Ag-Input
+		// Tony Stark(1) @ Glass Towers(2) | Partnership(4)--Ag-Input 2015
 		Loan::create([
 			'app_date' => '2014-01-01',
 			'due_date' => '2014-12-15',
@@ -48,7 +48,7 @@ class LoansTableSeeder extends Seeder {
 			'reconcilliation' => 0
 		]);
 
-		// Blake Donald (10) @ Rainbow Bridge (6) | Individual -- Capital Bridge
+		// Blake Donald(10) @ Rainbow Bridge(6) | Individual--Capital Bridge 2015
 		Loan::create([
 			'applicant_id' => 6,
 			'app_date' => '2014-09-22',
@@ -62,8 +62,8 @@ class LoansTableSeeder extends Seeder {
 			'farmer_id' => 10
 		]);
 
-		// Bruce Wayne (2) @ Secret Cave (3) | Joint Venture (1) - Ag-Pro Fasttrack
-		/*Loan::create([
+		// Bruce Wayne(2) @ Secret Cave(3) | Joint Venture (1)--Ag-Pro Fasttrack 2015
+		Loan::create([
 			'applicant_id' =>  3,
 			'app_date' => '2014-10-19',
 			'due_date' => '2014-12-15',
@@ -74,10 +74,10 @@ class LoansTableSeeder extends Seeder {
 			'season' =>	'S',
 			'loan_type_id' =>	4,
       'farmer_id' => 2,
-		]);*/
+		]);
 
-		// Steve Rogers (12) @ Shielded Farms (4) | Corporation
-		/*Loan::create([
+		// Steve Rogers(12) @ Shielded Farms(4) | Corporation -- Ag-Vest 2015
+		Loan::create([
 			'applicant_id' => 4,
 			'app_date' => '2014-10-21',
 			'due_date' => '2014-12-15',
@@ -88,10 +88,10 @@ class LoansTableSeeder extends Seeder {
 			'season' =>	'S',
 			'loan_type_id' => 6,
       'farmer_id' => 12
-		]);*/
+		]);
 
-		// Clint Barton (5) @ Nested Row (2) | Spousal Ag-Pro
-		/*Loan::create([
+		// Clint Barton(5) @ Nested Row(2) | Spousal--Ag-Pro 2015
+		Loan::create([
 			'applicant_id' => 2,
 			'app_date' => '2014-10-19',
 			'due_date' => '2014-12-15',
@@ -102,10 +102,10 @@ class LoansTableSeeder extends Seeder {
 			'season' =>	'S',
 			'loan_type_id' =>	3,
       'farmer_id' => 5
-		]);*/
+		]);
 
-		// Jack Murdoch (9) @ Dark World (5) | Individual -- All-in
-		/*Loan::create([
+		// Jack Murdoch(9) @ Dark World(5) | Individual -- All-in 2015
+		Loan::create([
 			'applicant_id' => 5,
 			'app_date' => '2014-10-22',
 			'due_date' => '2014-12-15',
@@ -113,13 +113,13 @@ class LoansTableSeeder extends Seeder {
 			'user_id' => 2,
 			'region_id' => 3,
 			'crop_year' => '2015',
-			'season' =>	'S',
+			'season' =>	'F',
 			'loan_type_id' =>	1,
       'farmer_id' => 9
-		]);*/
+		]);
 
-    // Diana Prince (7) @ Kingdom Plains (7) | Spousal -- Grain Storage
-    /*Loan::create([
+    // Diana Prince(7) @ Kingdom Plains(7) | Spousal -- Grain Storage 2015
+    Loan::create([
       'applicant_id' => 7,
       'app_date' => '2014-02-14',
       'due_date' => '2014-12-15',
@@ -130,16 +130,16 @@ class LoansTableSeeder extends Seeder {
       'season' =>	'S',
       'loan_type_id' =>	7,
       'farmer_id' => 7
-    ]);*/
-/*
-		// Tony Stark (1) @ Glass Towers (1) | Partnership (4)
+    ]);
+
+		// Tony Stark(1) @ Glass Towers(1) | Partnership | Ag-Input 2014
 		Loan::create([
 			'app_date' => '2013-01-01',
 			'due_date' => '2013-12-15',
 			'loan_type_id' => 2,
 			'status_id' => 2,
 			'crop_year' => '2014',
-			'season' => 'S',
+			'season' => 'F',
 			'loc_id' => 4,
 			'region_id' => 3,
 			'user_id' => 2,
@@ -151,6 +151,6 @@ class LoansTableSeeder extends Seeder {
 			'has_distributor' => 1,
 			'distributor_id' => 6
 		]);
-*/
+
 	}
 }

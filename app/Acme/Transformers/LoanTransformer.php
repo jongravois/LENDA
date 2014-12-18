@@ -94,6 +94,8 @@ public function transform($arr)
       'fee_service_onTotal' => (boolean) $arr['financials']['fee_service_onTotal'],
       'srvc_fee' => (double) $arr['financials']['srvc_fee'],
       'srvc_fee_arm_only' => (double) $arr['financials']['srvc_fee_arm_only'],
+      'total_fee_percent' => (double) $arr['financials']['total_fee_percent'],
+      'fee_total' => (double) $arr['financials']['fee_total'],
       'total_fsa_payment' => (double) $arr['financials']['total_fsa_payment'],
       'total_claims' => (double) $arr['financials']['total_claims'],
       'total_revenue' => (double) $arr['financials']['total_revenue'],

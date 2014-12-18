@@ -37,6 +37,8 @@ class FarmersController extends ApiController {
 
   public function store()
   {
+    //TODO: Send Email
+
     if( ! Input::get('email')){
       return $this->respondCreationDenied('Failed Validation');
     } // end if
