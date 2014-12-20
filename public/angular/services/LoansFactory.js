@@ -39,8 +39,7 @@
         getSelectedCrops: getSelectedCrops,
         getSystemics: getSystemics,
         getTotalAcres: getTotalAcres,
-        insertLoan: insertLoan,
-        staleCheck: staleCheck
+        insertLoan: insertLoan
       };
 
       function createAffilate(o){

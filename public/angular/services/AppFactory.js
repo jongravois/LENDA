@@ -7,6 +7,7 @@
       $state
     ){
       return {
+        averageArray: averageArray,
         diffInDates: diffInDates,
         getDefaultDueDate: getDefaultDueDate,
         moveToNextNewLoanScreen: moveToNextNewLoanScreen,
@@ -14,6 +15,11 @@
         putIt: putIt
       };
 
+      function averageArray(arr){
+        var sum = arr.reduce(function(a,b) {return a+b;},0);
+        var avg = sum / arr.length;
+        return avg;
+      }
       function diffInDates(first,second){
         var intFirst = parseInt(first);
         var intSecond = parseInt(second);

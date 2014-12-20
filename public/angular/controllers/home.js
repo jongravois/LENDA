@@ -18,7 +18,17 @@
             field: 'is_stale',
             displayName: 'i_s',
             headerClass: 'text-center',
-            width: 120
+            width: 50
+          },{
+            field: 'need_vote',
+            displayName: 'n_v',
+            headerClass: 'text-center',
+            width: 50
+          },{
+            field: 'has_comment',
+            displayName: 'h_c',
+            headerClass: 'text-center',
+            width: 50
           },{
             field: 'farmer',
             displayName: 'Farmer',

@@ -1,4 +1,7 @@
 //TODO: OVERALL APP
+//TODO: [1] Break app into modules and lazy-load as needed
+//TODO: [2] Move calculations to client
+//TODO: [3] Create Laravel Listeners
 // TODO: Fixed Header??? Table Fixed Headers
 // TODO: has_comments calculation (use need_vote as example)
 // TODO: Unit of Measurements Switcher

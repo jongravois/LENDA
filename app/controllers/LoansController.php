@@ -1,5 +1,6 @@
 <?php
 
+use Acme\Transformers\CommentTransformer;
 use Acme\Transformers\LoanTransformer;
 use Acme\Transformers\NotificationTransformer;
 
@@ -7,11 +8,13 @@ class LoansController extends ApiController {
 
 	protected $loanTransformer;
   protected $notificationTransformer;
+	protected $commentTransformer;
 
-	function __construct(LoanTransformer $loanTransformer, NotificationTransformer $notificationTransformer)
+	function __construct(LoanTransformer $loanTransformer, NotificationTransformer $notificationTransformer, CommentTransformer $commentTransformer)
 	{
 		$this->loanTransformer = $loanTransformer;
     $this->notificationTransformer = $notificationTransformer;
+		$this->commentTransformer = $commentTransformer;
 
 		//$this->beforeFilter('auth.basic', ['on'=>'post']);
 	}

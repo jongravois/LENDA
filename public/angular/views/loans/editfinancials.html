@@ -58,7 +58,8 @@
 <br/><br/>
 
 <!-- PLANNED CROP CONSTRAINTS -->
-<div class="row" ng-hide="loan.loan_type_id == 2">
+  <!--TODO: add into line 62: ng-hide="loan.loan_type_id == 2"-->
+<div class="row" >
   <div class="col-md-12">
     <table class="table table-striped rowed">
       <tr>
@@ -113,12 +114,12 @@
 <!-- INCOME CONSTRAINTS-->
 <div class="row">
   <div class="col-md-12">
-    <table class="table table-striped">
+    <table class="table table-striped rowed">
       <tr>
-        <th style="width:50%;">Income Constraints</th>
-        <th style="width:15%;">Revenue</th>
-        <th style="width:15%;">Expenses</th>
-        <th style="width:20%;">Income</th>
+        <th style="width:34%;">Income Constraints</th>
+        <th style="width:22%;">Revenue</th>
+        <th style="width:22%;">Expenses</th>
+        <th style="width:22%;">Income</th>
       </tr>
       <tr>
         <td>Year 1</td>
@@ -129,7 +130,7 @@
           <edit-in-place value="loan.fins.year_1_expenses"></edit-in-place>
         </td>
         <td class="text-right">
-          {{loan.fins.year_1_income | displaynullcurrency}}
+          {{year1Income = getIncome(loan.fins.year_1_revenue*1, loan.fins.year_1_expenses*1) | displaynullcurrency}}
         </td>
       </tr>
       <tr>
@@ -141,7 +142,7 @@
           <edit-in-place value="loan.fins.year_2_expenses"></edit-in-place>
         </td>
         <td class="text-right">
-          {{loan.fins.year_2_income | displaynullcurrency}}
+          {{year2Income = getIncome(loan.fins.year_2_revenue*1, loan.fins.year_2_expenses*1) | displaynullcurrency}}
         </td>
       </tr>
       <tr>
@@ -153,19 +154,19 @@
           <edit-in-place value="loan.fins.year_3_expenses"></edit-in-place>
         </td>
         <td class="text-right">
-          {{loan.fins.year_3_income | displaynullcurrency}}
+          {{year3Income = getIncome(loan.fins.year_3_revenue*1, loan.fins.year_3_expenses*1) | displaynullcurrency}}
         </td>
       </tr>
       <tr class="success">
         <td>Average</td>
         <td class="text-right">
-          {{loan.fins.average_revenue | displaynullcurrency}}
+          {{averageArray([loan.fins.year_1_revenue*1, loan.fins.year_2_revenue*1, loan.fins.year_3_revenue*1]) | displaynullcurrency}}
         </td>
         <td class="text-right">
-          {{loan.fins.average_expense | displaynullcurrency}}
+          {{averageArray([loan.fins.year_1_expenses*1, loan.fins.year_2_expenses*1, loan.fins.year_3_expenses*1]) | displaynullcurrency}}
         </td>
         <td class="text-right">
-          {{loan.fins.total_income | displaynullcurrency}}
+          {{averageArray([year1Income*1, year2Income*1, year3Income*1]) | displaynullcurrency}}
         </td>
       </tr>
     </table>
