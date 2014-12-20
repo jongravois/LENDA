@@ -45,7 +45,7 @@
         </div>
 
     </div>
-    <div ui-view style="margin-top:100px;" ></div>
+    <div ui-view style="margin-top:120px;" ></div>
 </div><!-- /.container -->
 
 <!--JAVASCRIPT-->
@@ -75,6 +75,7 @@
 <!-- CONTROLLERS -->
 <script src="angular/controllers/main.js"></script>
 <script src="angular/controllers/sessions.js"></script>
+<script src="angular/controllers/prefs.js"></script>
 <script src="angular/controllers/home.js"></script>
 <script src="angular/controllers/financials.js"></script>
 <script src="angular/controllers/newloan.js"></script>

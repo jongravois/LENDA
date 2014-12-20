@@ -189,10 +189,5 @@
       function insertLoan(obj){
         return $http.post(API_URL + '/loans', obj);
       }
-
-      //TODO: Create staleCheck function
-      function staleCheck(id){
-        return false;
-      }
     });
 })();

@@ -47,6 +47,7 @@
       });
 
       // TODO: Use notifications to determine NeedsVote
+      // TODO: has_comment & need_vote is per user/per-loan
       UsersFactory.getUser($scope.user_id).then(function success(response){
         $scope.user = response.data.data;
         UsersFactory.getNotifications($scope.user_id).then(function success(response){
@@ -106,11 +107,11 @@
               $scope.farmers = response.data.data;
             });
 
+      //SCOPE FUNCTIONS
       $scope.getColor = function(val){
         var colors = ['gray', 'green', 'yellow', 'red', 'blue', 'green_off', 'yellow_off'];
         return colors[val] || 'gray';
       };
-
       $scope.newLoan = function(val){
         var obj = {};
         for(var l=0; l<$scope.feeder.loantypes.length; l++){
@@ -145,8 +146,6 @@
           } // end if
         } // end for
       }; // end newLoan fn
-
-
       $scope.getReport = function(val){
         var url = '';
         for(var r=0; r<$scope.reports.length; r++){
@@ -156,7 +155,6 @@
           } // end if
         } // end for
       }; // end getReport fn
-
       $scope.gtZero = function(value){
         if(value <= 0) {
           return 'text-center';
@@ -165,25 +163,9 @@
           return 'text-right';
         }
       }; // end gtZero fn
-
-      $scope.status = {
-        isopen: false
-      };
-
       $scope.clkNotificationBadge = function(id){
         alert(id);
       };
-
-      $scope.toggled = function(open) {
-        //$log.log('Dropdown is now: ', open);
-      };
-
-      $scope.toggleDropdown = function($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        $scope.status.isopen = !$scope.status.isopen;
-      };
-
       $scope.createLenda = function(){
         return LendaFactory.create({
           loan_id: 1,
@@ -191,6 +173,27 @@
           user_id: 2,
           comment: 'This is a test LENDA comment generated in Main.js'
         });
+      };
+      $scope.updateUserInfo = function(){
+        alert('Updating User Info');
+      };
+      $scope.updateFilterPrefs = function(){
+        alert('Updating Filters');
+      };
+      $scope.updateViewPrefs = function(o){
+        AppFactory.putIt('/viewoptions/', $scope.user.id, o);
+      };
+
+      $scope.toggled = function(open) {
+        //$log.log('Dropdown is now: ', open);
+      };
+      $scope.toggleDropdown = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.status.isopen = !$scope.status.isopen;
+      };
+      $scope.status = {
+        isopen: false
       };
 
       /* FOR PENDING SORT */

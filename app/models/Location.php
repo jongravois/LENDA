@@ -4,9 +4,9 @@ class Location extends Eloquent {
   protected $hidden = ['created_at', 'updated_at'];
   protected $fillable = ['location', 'loc_abr', 'region_id', 'address', 'city', 'state', 'zip', 'phone', 'manager_id'];
 
-  public function staff()
+  public function user()
   {
-    return $this->belongsTo('Staff');
+    return $this->belongsTo('User');
   }
 
   /*
@@ -17,7 +17,7 @@ class Location extends Eloquent {
 */
   public function manager()
   {
-    return $this->belongsTo('Staff', 'manager_id');
+    return $this->belongsTo('User', 'manager_id');
   }
 
   public function region()

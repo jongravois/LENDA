@@ -65,11 +65,11 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('roles', 'RolesController');
   Route::resource('screens', 'ScreensController');
   Route::resource('spendcats', 'SpendcatController');
-  Route::resource('staff', 'StaffController');
   Route::resource('states', 'StatesController');
   Route::resource('systemics', 'SystemicsController');
   Route::resource('units', 'UnitsController');
   Route::resource('users', 'UsersController');
+  Route::resource('viewoptions', 'ViewoptionsController');
 
   Route::get('defaultexpenses/{id}/bycrop', 'DefaultexpensesController@byCrop');
   Route::get('loans/{id}/affiliates', 'AffiliatesController@byLoan');

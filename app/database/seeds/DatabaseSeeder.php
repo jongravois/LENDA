@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder {
     'notifications',
     'partners',
     'prerequisites',
+    'profiles',
     'ratioconstraints',
     'references',
     'regions',
@@ -57,12 +58,11 @@ class DatabaseSeeder extends Seeder {
     'roles',
     'screens',
     'spendcats',
-    'staff',
-    'staffprofiles',
     'states',
     'systemics',
     'units',
     'users',
+    'viewoptions',
     'vote',
     'votestatus'
   ];
@@ -113,6 +113,7 @@ class DatabaseSeeder extends Seeder {
     'NotificationTableSeeder',
     'PartnersTableSeeder',
     'PrerequisitesTableSeeder',
+    'ProfilesTableSeeder',
     'RatioconstraintsTableSeeder',
     'ReferencesTableSeeder',
     'RegionsTableSeeder',
@@ -122,12 +123,11 @@ class DatabaseSeeder extends Seeder {
     'RolesTableSeeder',
     'ScreensTableSeeder',
     'SpendcatsTableSeeder',
-    'StaffTableSeeder',
-    'StaffprofilesTableSeeder',
     'StatesTableSeeder',
     'SystemicsTableSeeder',
     'UnitsTableSeeder',
     'UsersTableSeeder',
+    'ViewoptionsTableSeeder',
     'VotesTableSeeder',
     'VotestatusTableSeeder'
   ];

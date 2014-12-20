@@ -11,21 +11,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $table = 'users';
 	protected $hidden = ['password', 'remember_token'];
-  protected $fillable = ['email', 'password', 'active', 'is_staff', 'remember_token'];
+  protected $fillable = ['username', 'nick', 'email', 'password', 'phone', 'loc_id', 'region_id', 'manager_id', 'is_admin', 'is_approver', 'is_manager', 'role_id', 'active', 'remember_token'];
 
-  public function client()
+  public function location()
   {
-    return $this->hasOne('farmer');
-  }
-
-  public function clientprofile()
-  {
-    return $this->hasOne('clientprofile');
-  }
-
-  public function farmer()
-  {
-    return $this->hasOne('Farmer');
+    return $this->belongsTo('location', 'loc_id');
   }
 
   public function notifications()
@@ -33,14 +23,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     return $this->hasMany('Notification');
   }
 
-  public function staff()
+  public function profile()
   {
-    return $this->hasOne('staff');
+    return $this->hasOne('profile');
   }
 
-  public function staffprofile()
+  public function role()
   {
-    return $this->hasOne('staffprofile');
+    return $this->belongsTo('role', 'role_id');
+  }
+
+  public function viewoptions()
+  {
+    return $this->belongsTo('viewoptions', 'id', 'user_id');
   }
 
   /* METHODS */

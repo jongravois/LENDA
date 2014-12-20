@@ -8,11 +8,6 @@ class Responses extends \Eloquent {
 		return $this->belongsTo('comments', 'comment_id');
 	}
 
-  public function staff()
-  {
-    return $this->belongsTo('Staff', 'user_id');
-  }
-
   public function user()
 	{
 		return $this->belongsTo('User', 'user_id');

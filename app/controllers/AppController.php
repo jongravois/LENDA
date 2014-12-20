@@ -8,7 +8,7 @@
               return Redirect::to("/login");
           }
 
-			    return View::make('ngapp.index');
+			    return View::make('portal_employee.index');
         }
     }
 

@@ -1,6 +1,5 @@
 //TODO: OVERALL APP
 // TODO: Fixed Header??? Table Fixed Headers
-// TODO: is_stale calculation
 // TODO: has_comments calculation (use need_vote as example)
 // TODO: Unit of Measurements Switcher
 // TODO:

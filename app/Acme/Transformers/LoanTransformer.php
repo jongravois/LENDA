@@ -1,12 +1,29 @@
 <?php namespace Acme\Transformers;
 
+use Carbon\Carbon;
+
 class LoanTransformer extends Transformer{
 
 public function transform($arr)
 {
+  $dtToday = Carbon::now();
 	$appDate = $arr['app_date'];
 	$dueDate = $arr['due_date'];
 	$diff = $dueDate->diffInDays($appDate);
+  $staleDiff = $appDate->diffInDays($dtToday);
+
+  if(!$arr['decision_date']){
+    $decision = null;
+
+    if($staleDiff > 3 && $arr['status_id'] == 1){
+      $isStale = true;
+    } else {
+      $isStale = false;
+    } // end if
+  } else {
+    $decision = $arr['decision_date']->format('m/d/Y');
+    $isStale = false;
+  } // end if
 
   if($arr['season'] == 'S'){
     $fullSeason = 'Spring';
@@ -18,7 +35,9 @@ public function transform($arr)
 	return array(
 		'id'		=>	$arr['id'],
 		'app_date'	=> 	$arr['app_date']->format('m/d/Y'),
+		'decision_date'	=> 	$decision,
 		'due_date'	=>	$arr['due_date']->format('m/d/Y'),
+    'is_stale' => $isStale,
 		'loan_days' =>	$diff,
 		'loan_type_id' => $arr['loan_type_id'],
 		'loan_type' => $arr['loantype']['loantype'],
@@ -150,8 +169,8 @@ public function transform($arr)
       'cd' => (boolean) $arr['conditions_cd']
     ],
     'analyst' => [
-      'nick' => $arr['staff']['nick'],
-      'name' => $arr['staff']['username'],
+      'nick' => $arr['user']['nick'],
+      'name' => $arr['user']['username'],
       'email' => $arr['user']['email']
     ],
     'committee' => $arr['committee'],

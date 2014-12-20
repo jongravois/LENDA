@@ -1,6 +1,7 @@
 <table class="table">
   <tr>
     <td>
+      <!--TODO: need_vote is loan AND user specific-->
       <span ng-if="loan.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#000099;font-size:18px;"></span>
       <span ng-if="!loan.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#DDDDDD;font-size:18px;"></span>
       <span ng-if="loan.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#e0a02d;font-size:18px;"></span>
