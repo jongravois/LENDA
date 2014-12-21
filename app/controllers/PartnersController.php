@@ -13,7 +13,7 @@ class PartnersController extends ApiController {
 
 	public function index()
 	{
-		$ps = Partners::all();
+		$ps = Partners::with('states')->get();
 		return $this->respond([
 			'data' => $this->partnerTransformer->transformCollection($ps->all())
 		]);
@@ -28,7 +28,7 @@ class PartnersController extends ApiController {
 
 	public function show($id)
 	{
-		$p = Partners::where('id', $id)->get();
+		$p = Partners::with('states')->where('id', $id)->get();
 
 		if( $p->isEmpty() ){
 			return $this->respondNotFound('Partner does not exist.');
@@ -65,7 +65,7 @@ class PartnersController extends ApiController {
 
 	public function byLoan($id)
 	{
-		$ps = Partners::where('loan_id', $id)->get();
+		$ps = Partners::with('states')->where('loan_id', $id)->get();
 		return $this->respond([
 			'data' => $this->partnerTransformer->transformCollection($ps->all())
 		]);

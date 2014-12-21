@@ -37,7 +37,7 @@
                 <span style="display:none;" id="user_id" data-id="{{Auth::user()->id}}"> 
                     {{Auth::user()->username}} 
                 </span>
-            <div class="row">
+            <div class="row" style="z-index: 10000;">
                 <div class="col-xs-12">
                     <div ng-include="'angular/views/topbars/logobar.html'"></div>
                 </div>
@@ -45,7 +45,7 @@
         </div>
 
     </div>
-    <div ui-view style="margin-top:120px;" ></div>
+    <div ui-view style="margin-top:120px; z-index: 5000;" ></div>
 </div><!-- /.container -->
 
 <!--JAVASCRIPT-->

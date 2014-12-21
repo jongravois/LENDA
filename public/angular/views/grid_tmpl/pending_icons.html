@@ -1,26 +1,21 @@
-<!--TODO: row.getProperty() causes Error: [$parse:syntax]-->
-<!--
+<!--TODO: Configure has_comment-->
 <span tooltip="Vote Needed"
       class="glyphicon glyphicon-exclamation-sign"
-      style="color:#009;" ng-if="{{row.getProperty('need_vote')}}"></span>
+      style="color:#009;" ng-if="row.getProperty('need_vote')"></span>
 <span tooltip="Vote Needed"
       class="glyphicon glyphicon-exclamation-sign"
-      style="color:#ddd;" ng-if="!{{row.getProperty('need_vote')}}"></span>
+      style="color:#ddd;" ng-if="!row.getProperty('need_vote')"></span>
 
 <span tooltip="Comments"
       class="glyphicon glyphicon-exclamation-sign"
-      style="color:#e0a02d;" ng-if="{{row.getProperty('has_comment')}}"></span>
+      style="color:#e0a02d;" ng-if="row.getProperty('has_comment')"></span>
 <span tooltip="Comments"
       class="glyphicon glyphicon-exclamation-sign"
-      style="color:#ddd;" ng-if="!{{row.getProperty('has_comment')}}"></span>
+      style="color:#ddd;" ng-if="!row.getProperty('has_comment')"></span>
 
 <span tooltip="Stale Application"
       class="glyphicon glyphicon-exclamation-sign"
-      style="color:#900;" ng-if="{{row.getProperty('is_stale')}}"></span>
+      style="color:#900;" ng-if="row.getProperty('is_stale')"></span>
 <span tooltip="Stale Application"
       class="glyphicon glyphicon-exclamation-sign"
-      style="color:#ddd;" ng-if="!{{row.getProperty('is_stale')}}"></span>
--->
-<span tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#000099;"></span>
-<span tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#e0a02d;"></span>
-<span tooltip="Stale Application" class="glyphicon glyphicon-exclamation-sign" style="color:#990000;"></span>
+      style="color:#ddd;" ng-if="!row.getProperty('is_stale')"></span>

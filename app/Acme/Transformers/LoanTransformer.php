@@ -11,6 +11,7 @@ public function transform($arr)
 	$dueDate = $arr['due_date'];
 	$diff = $dueDate->diffInDays($appDate);
   $staleDiff = $appDate->diffInDays($dtToday);
+  //dd($staleDiff);
 
   if(!$arr['decision_date']){
     $decision = null;

@@ -10,21 +10,6 @@
             cellTemplate: 'angular/views/grid_tmpl/pending_icons.html',
             width: 52
           },{
-            field: 'states',
-            displayName: ' ',
-            cellTemplate: 'angular/views/grid_tmpl/indicators.html',
-            width: 60
-          },{
-            field: 'is_stale',
-            displayName: 'i_s',
-            headerClass: 'text-center',
-            width: 50
-          },{
-            field: 'need_vote',
-            displayName: 'n_v',
-            headerClass: 'text-center',
-            width: 50
-          },{
             field: 'has_comment',
             displayName: 'h_c',
             headerClass: 'text-center',

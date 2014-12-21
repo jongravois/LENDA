@@ -45,12 +45,23 @@ class LoansController extends ApiController {
 
 	public function store()
 	{
+		//TODO: Add authentication
 		/*if( ! Input::get('loantype_id')){
 			return $this->respondCreationDenied('Failed Validation');
 		} // end if*/
 
 		$loan = Loan::create(Input::all());
 		$newLoan = Loan::find($loan->id);
+
+		//Add systemic
+		$newInfo = [
+			'loan_id'	=>	$loan->id,
+			'user'		=>	Auth::user()->username,
+			'action'	=>	'Created loan'
+		];
+		Systemics::create($newInfo);
+
+		//TODO: Create needed related tables based on loan_id
 
 		return $this->respondCreated($newLoan);
 	}

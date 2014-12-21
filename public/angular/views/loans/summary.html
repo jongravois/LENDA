@@ -245,7 +245,7 @@
         <th style="width:12%;">Total</th>
       </tr>
       <tr ng-repeat="c in loanCrops" ng-if="c.is_active">
-        <td>{{c.crop | capitalize}}</td>
+        <td>{{c.name | capitalize}}</td>
         <td class="text-center">
           {{c.acres | number:1}}
         </td>
@@ -276,22 +276,22 @@
       </tr>
       <tr>
         <td colspan="9">FSA Payment</td>
-        <td ng-class=gtZero(financials.total_fsa_payment)>
-          {{financials.total_fsa_payment | displaynullcurrency}}
+        <td ng-class=gtZero(loan.fins.total_fsa_payment)>
+          {{loan.fins.total_fsa_payment | displaynullcurrency}}
         </td>
       </tr>
       <tr>
         <td colspan="9">Claims</td>
-        <td ng-class=gtZero(financials.total_claims)>
-          {{financials.total_claims | displaynullcurrency}}
+        <td ng-class=gtZero(loan.fins.total_claims)>
+          {{loan.fins.total_claims | displaynullcurrency}}
         </td>
       </tr>
       <tr class="success">
         <td class="text-left"><strong>Total Revenue</strong></td>
-        <td class="text-center">{{financials.total_acres | number:1}}</td>
+        <td class="text-center">{{loan.total_acres | number:1}}</td>
         <td colspan="7">&nbsp;</td>
-        <td ng-class=gtZero(financials.total_revenue)>
-          {{financials.total_revenue | displaynullcurrency}}
+        <td ng-class=gtZero(loan.fins.total_revenue)>
+          {{loan.fins.total_revenue | displaynullcurrency}}
         </td>
       </tr>
     </table>

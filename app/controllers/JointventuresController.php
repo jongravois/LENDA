@@ -13,7 +13,7 @@ class JointventuresController extends ApiController {
 
 	public function index()
 	{
-		$jvs = Jointventure::all();
+		$jvs = Jointventure::with('states')->get();
 		return $this->respond([
 			'data' => $this->jointventureTransformer->transformCollection($jvs->all())
 		]);
@@ -28,7 +28,7 @@ class JointventuresController extends ApiController {
 
 	public function show($id)
 	{
-		$jv = Jointventure::where('id', $id)->get();
+		$jv = Jointventure::with('states')->where('id', $id)->get();
 
 		if( $jv->isEmpty() ){
 			return $this->respondNotFound('Joint Venture does not exist.');
@@ -65,7 +65,7 @@ class JointventuresController extends ApiController {
 
 	public function byLoan($id)
 	{
-		$ps = Jointventure::where('loan_id', $id)->get();
+		$ps = Jointventure::with('states')->where('loan_id', $id)->get();
 		return $this->respond([
 			'data' => $this->jointventureTransformer->transformCollection($ps->all())
 		]);

@@ -2,10 +2,12 @@
 //TODO: [1] Break app into modules and lazy-load as needed
 //TODO: [2] Move calculations to client
 //TODO: [3] Create Laravel Listeners
+//TODO: [4] Combine Comments & Responses (distinguish using type) and add nullable comment_id (for responses)
 // TODO: Fixed Header??? Table Fixed Headers
 // TODO: has_comments calculation (use need_vote as example)
 // TODO: Unit of Measurements Switcher
-// TODO:
+// TODO: Redirect to ChangePassword if pw = 'changeme' & never logged in
+// TODO: User Reset Password
 // TODO: Email Service -- Laravel
 // TODO: SMS Service
 // TODO: Monitoring/logging Service -- ALL systemics handled by Laravel
