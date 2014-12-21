@@ -8,6 +8,11 @@ class Comment extends \Eloquent {
 		return $this->belongsTo('Loan', 'loan_id');
 	}
 
+	public function status()
+	{
+		return $this->hasMany('Commentstatus');
+	}
+
 	public function responses()
 	{
 		return $this->hasMany('responses');

@@ -20,6 +20,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('applicants', 'ApplicantsController');
   Route::resource('committees', 'CommitteeController');
   Route::resource('comments', 'CommentController');
+  Route::resource('commentstatus', 'CommentStatusController');
   Route::resource('conditions', 'ConditionsController');
   Route::resource('corporations', 'CorporationsController');
   Route::resource('counties', 'CountiesController');
@@ -74,6 +75,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('defaultexpenses/{id}/bycrop', 'DefaultexpensesController@byCrop');
   Route::get('loans/{id}/affiliates', 'AffiliatesController@byLoan');
   Route::get('loans/{id}/comments', 'CommentController@byLoan');
+  Route::get('loans/{id}/commentstatus', 'CommentStatusController@pendingComments');
   Route::get('loans/{id}/committee', 'CommitteeController@byLoan');
   Route::get('loans/{id}/conditions', 'LoanConditionsController@byLoan');
   Route::get('loans/{id}/corporations', 'CorporationsController@byLoan');

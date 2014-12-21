@@ -61,7 +61,23 @@ class LoansController extends ApiController {
 		];
 		Systemics::create($newInfo);
 
-		//TODO: Create needed related tables based on loan_id
+		Loanfinancials::create(['loan_id' => $loan->id]);
+		//Add systemic
+		$newInfo = [
+			'loan_id'	=>	$loan->id,
+			'user'		=>	Auth::user()->username,
+			'action'	=>	'Created loan financials'
+		];
+		Systemics::create($newInfo);
+
+		Loanquestions::create(['loan_id' => $loan->id]);
+		//Add systemic
+		$newInfo = [
+			'loan_id'	=>	$loan->id,
+			'user'		=>	Auth::user()->username,
+			'action'	=>	'Created loan questions'
+		];
+		Systemics::create($newInfo);
 
 		return $this->respondCreated($newLoan);
 	}

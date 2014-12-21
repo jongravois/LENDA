@@ -1,5 +1,7 @@
 <style>
   td{ border:1px solid #efefef; }
+  .ngGrid { z-index: 1 !important; }
+  #main_top{z-index: 10;}
 </style>
 <div style="margin-top: -30px;">
   <!--<pre>{{user.notifications | json}}</pre>-->
@@ -27,7 +29,7 @@
 
   <!--TODO: ng-grid header bar cover main nav dropdowns-->
   <!--ng-grid-->
-  <div class="gridStyle tblLanding" ng-grid="gridOptions" s></div>
+  <div class="gridStyle tblLanding" ng-grid="gridOptions" style="height:480px;"></div>
 
   <br/>
   <div class="row" style="display:none;">

@@ -12,7 +12,8 @@ class CommentTransformer extends Transformer{
 			'user' => $arr['user']['username'],
 			'dtCom' => $arr['created_at']->format('m/d/Y'),
 			'comment' => $arr['comment'],
-			'responses' => $arr['responses']
+			'responses' => $arr['responses'],
+			'status' => $arr['status']
 		];
 	}
 }

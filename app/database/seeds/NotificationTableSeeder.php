@@ -31,6 +31,13 @@ class NotificationTableSeeder extends Seeder {
 
     Notification::create([
       'user_id' => 2,
+      'loan_id' => 5,
+      'notification_type' => 'vote',
+      'task' => 'Clint Barton - Nested Row'
+    ]);
+
+    Notification::create([
+      'user_id' => 2,
       'notification_type' => 'office',
       'task' => 'Staff Meeting on Wednesday, Dec. 10, 2014',
       'status' => 'acknowledged'

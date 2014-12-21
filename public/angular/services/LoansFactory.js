@@ -33,6 +33,7 @@
         getPrerequisites: getPrerequisites,
         getPriorLiens: getPriorLiens,
         getQuests: getQuests,
+        getPendingComments: getPendingComments,
         getPendingVotes: getPendingVotes,
         getReferences: getReferences,
         getScreens: getScreens,
@@ -143,6 +144,10 @@
 
       function getLoans(){
         return $http.get(API_URL + '/loans');
+      }
+
+      function getPendingComments(id){
+        return $http.get(API_URL + '/loans/' + id + '/commentstatus');
       }
 
       function getPendingVotes(id){

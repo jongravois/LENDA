@@ -4,7 +4,6 @@
 //TODO: [3] Create Laravel Listeners
 //TODO: [4] Combine Comments & Responses (distinguish using type) and add nullable comment_id (for responses)
 // TODO: Fixed Header??? Table Fixed Headers
-// TODO: has_comments calculation (use need_vote as example)
 // TODO: Unit of Measurements Switcher
 // TODO: Redirect to ChangePassword if pw = 'changeme' & never logged in
 // TODO: User Reset Password
@@ -17,7 +16,7 @@
 // TODO: table content switcher
 // TODO: Make API endpoint for ng-grid preferences (columnDefs)
 //TODO: II. LOAN MANAGEMENT
-// TODO: ***Move Home and Management views to ng-grid***
+// TODO: ***Move Management view to ng-grid***
 //TODO: III. NEW LOAN
 // TODO: Loan Type Screens - add new/edit filter???
 //TODO: IV. EDIT LOAN
