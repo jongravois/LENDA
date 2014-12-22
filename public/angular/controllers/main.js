@@ -79,7 +79,7 @@
                 } // end if
                 return loan;
               }));
-            promises.push(LoansFactory.getPendingComments(loan.id)
+            /*promises.push(LoansFactory.getPendingComments(loan.id)
               .then(function(pcs){
                 if(pcs.data.data.length == 0){
                   loan.has_comment = false;
@@ -87,7 +87,7 @@
                   loan.has_comment = true;
                 } // end if
                 return loan;
-              }));
+              }));*/
           });
           //TODO: this creates duplicates in loans and loanList
           $q.all(promises).then(function(loans) {
@@ -116,10 +116,7 @@
             });
 
       //SCOPE FUNCTIONS
-      $scope.getColor = function(val){
-        var colors = ['gray', 'green', 'yellow', 'red', 'blue', 'green_off', 'yellow_off'];
-        return colors[val] || 'gray';
-      };
+      $scope.getColor = AppFactory.returnColor;
       $scope.newLoan = function(val){
         var obj = {};
         for(var l=0; l<$scope.feeder.loantypes.length; l++){
@@ -137,7 +134,6 @@
               });
               return obj;
             });
-            //TODO: Calculation to get season_full
             var obj = {
               app_date: moment(new Date()).format('YYYY-MM-DD'),
               due_date: moment(new Date(AppFactory.getDefaultDueDate($scope.chosenLT_id, $scope.globals.crop_year))).format('YYYY-MM-DD'),
@@ -163,14 +159,7 @@
           } // end if
         } // end for
       }; // end getReport fn
-      $scope.gtZero = function(value){
-        if(value <= 0) {
-          return 'text-center';
-        }
-        else {
-          return 'text-right';
-        }
-      }; // end gtZero fn
+      $scope.gtZero = AppFactory.gtZero;
       $scope.clkNotificationBadge = function(id){
         alert(id);
       };

@@ -26,9 +26,9 @@
 
           $scope.applicant.loc_id = $scope.user.loc_id;
           $scope.applicant.farmer_id = $scope.farmer.id;
+          $scope.applicant.loan_id = $scope.loan.id;
           ApplicantsFactory.createApplicant($scope.applicant)
             .then(function(res){
-              AppFactory.patchIt('/loans/', $scope.loan.id, {applicant_id: res.data.message});
               toastr.success('Applicant has been created successfully.', 'Success: Applicant Created');
               if ($scope.screens[$scope.currentScreen + 1] !== undefined) {
                 $scope.screens[$scope.currentScreen + 1].status = 1;

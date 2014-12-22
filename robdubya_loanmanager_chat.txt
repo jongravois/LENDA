@@ -1,0 +1,63 @@
+19:28 https://gist.github.com/anonymous/e6b475c59c611610b961 <-- I can't seem to stop this creating duplicates of each loan. Is there someway maybe to store the return value to a .then() so then I would only have to loop once?
+19:30 BahamutWC|Laptop: jaydubya: you can create a model that saves the loan to a class instance
+19:36 jaawerth: hrm.. anyone got a nice gulp setup that automatically wraps each module in its own self-invoking function?
+19:38 jaawerth: ahh here we go, gulp-wrap
+19:39 jaawerth: can wrap stuff with a lodash template, nice
+19:42 robdubya: jaydubya you should try using map as well, tends to make this kind of thing a lot easier to read
+19:44 jaydubya: jaawerth: I was using map until this morning but it was creating an error and someone helped me and changed it to this but it is creating double entries
+19:44 robdubya: jaydubya also do all that shit before you get to your ocntroller
+19:47 jaydubya: robdubya: this is what I had using _.map but it triggered a a "Uncaught SyntaxError: Unexpected token return."  https://gist.github.com/anonymous/4b6ba8ed5faa1a160f7b
+19:54 jumpstracks: jayduba, looks like should create duplicates
+19:54 jumpstracks: both promises execute serially
+19:55 jumpstracks: appears you’re grabbing pending votes and comments 2x into promises
+19:57 jaydubya: what I am trying to do is to return the entire loans table and then loop through each loan, use some of its attributes to test if a condition should or should not exist and then add a flag to the loan and do it again for a second attribute. I obviously don't want to duplicate each loan.
+19:58 jaydubya: Maybe an alternative for me would be to not loop at all and use a $scope function which would trigger a db query to check if each condition is applicable.
+19:59 jaydubya: so in the view, I do an ng-if to trigger that $scope function
+20:00 robdubya: jaydubya https://gist.github.com/robwormald/035598400ba80431ab71
+20:03 robdubya: smaller pieces > ubermethods
+20:03 robdubya: always
+20:05 jaydubya: robdubya: that is beautiful code -- let me verify, this is the entire controller where is use this. (see call at line 70). Since you call getLoans on line 32, I am just checking to make sure I can incorporate your code -- https://gist.github.com/anonymous/9c73b4cb2cd979f34b4b
+20:05 robdubya: jaydubya i'd do ALL of that in a service
+20:06 robdubya: and just call the //do it function from the controller
+20:06 jaydubya: robdubya: so, a controller calls a service that calls a factory?
+20:07 robdubya: service === factory, for all practical purposes
+20:07 BahamutWC: when in doubt, use .factory and never .service
+20:07 BahamutWC: the difference between the two are subtle
+20:07 robdubya: jaydubya the point of doing all that jazz inside a service would be a) its reusable and b) it keeps your controllers lightweight
+20:07 robdubya: but in either case
+20:08 robdubya: LoansFactory.getLoans().then(updateLoansData).then(function(arrayOfLoansWithUpdatedData){ //do whatever
+20:09 jaydubya: you guys make angular sound so elegant but learning it is like dropping silverware
+20:09 BahamutWC: jaydubya: we just went through the pains earlier than you :P
+20:10 robdubya: jaydubya so assuming you have a LoansFactory, i'd just stick all those methods inside of it
+20:11 jaydubya: robdubya: no assuming ... here is my LoansFactory --> https://gist.github.com/anonymous/5d324e7821b3899cfe7a
+20:11 robdubya: jaydubya lol, ok.
+20:11 robdubya: jaydubya one thing that would immediately improve your life 100%
+20:11 robdubya: it appears that all your API calls return something like { data: [theActualRecordsYouWant] }
+20:12 robdubya: (nested)
+20:12 robdubya: so you're constantly doing response.data.data
+20:12 robdubya: function parseResponse(response){ return response.data.data }
+20:12 robdubya: return $http.get(API_URL + '/loans/' + id + '/references').then(parseResponse);
+20:13 robdubya: and then when you do
+20:14 robdubya: LoanFactory.getReferences).then(function(references){ ...//now you can refer to references, not res.data.data
+20:14 robdubya: which for me just makes it easier to keep track of wtf i'm doing :D
+20:16 robdubya: i always want my services to expose a semantically understandable "public" API - that is, LoanFactory.getLoans() -> should return an array of loans, not a response.data with loans embedded somewhere within
+20:17 jaawerth: ah, that is a good approach, yeah
+20:21 jaydubya: so, if I am creating a factory method that will only be called internally, I don't return it?
+20:21 robdubya: yep. it's "private"
+20:21 jaydubya: so all of your methods would be private?
+20:22 robdubya: in the gist i linked? yeah, with the exception of the last one (//do it) which you'd probably wrap in a function which you would return / expose
+20:24 jaawerth: hrm.. if I auto-wrap all my modules in an IFFE, I won't be able to try out my app pre-compilation without concating, but concating early would make it more annoying to debug
+20:26 robdubya: jaydubya https://gist.github.com/robwormald/035598400ba80431ab71
+20:27 robdubya: (note that that's a new factory that injects the LoanFactory - which is a decent compromise between pure "Models" and uber-controllers
+20:27 robdubya: CRUD -> Business Logic -> Controller
+20:27 robdubya: ymmv.
+20:30 jaydubya: robdubya: will take me a few to digest but it is readable and beautiful
+20:33 robdubya: from the ctrl you'd just do LoanManager. getLoansWithExtraData().then(...
+20:34 jaydubya: robdubya: LoanManager. getLoansWithExtraData().then(function(allLoans){ $scope.loans = allLoans; }, right?
+20:34 robdubya: yup
+21:08 jaydubya: robdubya: where do I put the parseResponse method so that it is available to all of my factories?
+21:08 robdubya: in a factory :)
+21:09 robdubya: or if you're sure that ALL of your APi calls do that, you could use an $http interceptor
+21:10 jaydubya: my API wraps every response in data so I'll google $http interceptor (sounds like something I should learn)
+21:18 robdubya: jaydubya http://plnkr.co/edit/rRHOldMRUEl7l0ZepMGM?p=preview similar concept
+21:18 robdubya: instead of using $http everywhere, use a MyAPI factory - that way you can centralize all that logic.

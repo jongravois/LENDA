@@ -10,9 +10,12 @@
         averageArray: averageArray,
         diffInDates: diffInDates,
         getDefaultDueDate: getDefaultDueDate,
+        getFullSeason: getFullSeason,
+        gtZero: gtZero,
         moveToNextNewLoanScreen: moveToNextNewLoanScreen,
         patchIt: patchIt,
-        putIt: putIt
+        putIt: putIt,
+        returnColor: returnColor
       };
 
       function averageArray(arr){
@@ -42,6 +45,24 @@
             break;
         } // end switch
       }
+      function getFullSeason(initial){
+        switch(initial){
+          case 'F':
+            return 'Fall';
+            break;
+          case 'S':
+            return 'Spring';
+            break;
+        } // end switch
+      }
+      function gtZero(value){
+        if(value <= 0) {
+          return 'text-center';
+        }
+        else {
+          return 'text-right';
+        }
+      }
       function moveToNextNewLoanScreen(screenName, $stateParams) {
         $state.go('new.' + screenName, $stateParams);
       }
@@ -50,6 +71,10 @@
       }
       function putIt(end, id, data){
         return $http.put(API_URL + end + id, data);
+      }
+      function returnColor(val){
+        var colors = ['gray', 'green', 'yellow', 'red', 'blue', 'green_off', 'yellow_off'];
+        return colors[val] || 'gray';
       }
     });
 })();
