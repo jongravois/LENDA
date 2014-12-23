@@ -34,13 +34,7 @@
       } // end if
 
       /* SCOPE METHODS */
-      $scope.onFarmerSelect = function($item,$model,$label){
-        if($item){
-          $scope.farmerID = $item.id;
-          $scope.farmer = $item;
-        }
-      };
-
+      //TODO: NewFarmer should be consistent (like NewApplicant)
       $scope.createFarmer = function(obj) {
         if (angular.isDefined($scope.farmerID) && obj.id === $scope.farmerID) {
           AppFactory.patchIt('/loans/', $scope.loan.id, {farmer_id: $scope.farmerID});

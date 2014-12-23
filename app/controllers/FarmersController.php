@@ -37,27 +37,23 @@ class FarmersController extends ApiController {
 
   public function store()
   {
-    //TODO: Send Email
-
-    if( ! Input::get('email')){
-      return $this->respondCreationDenied('Failed Validation');
+    //TODO: Add validation
+    $farmer = Farmer::where('email', Input::get('email'))->first();
+    if($farmer){
+      return $this->respondCreated($farmer->id);
     } // end if
 
-    // Insert into user table and get insert_id
-    $user = User::firstOrCreate(
-      [
-        'email' => Input::get('email'),
-        'password' => 'changeme'
-      ]
-    );
-
-    // Add id to Input
     $arr = Input::all();
-    $arr['user_id'] = $user->id;
-
-    // Insert into farmer table
+    $DOB = date("Y-m-d", strtotime($arr['dob']));
+    $arr['dob'] = $DOB;
     $farmer = Farmer::create($arr);
-
+    //Add systemic
+    $newInfo = [
+      'loan_id'	=>	Input::get('loan_id'),
+      'user'		=>	Auth::user()->username,
+      'action'	=>	'Created loan farmer'
+    ];
+    Systemics::create($newInfo);
     return $this->respondCreated($farmer->id);
   }
 

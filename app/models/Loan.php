@@ -10,7 +10,7 @@ class Loan extends \Eloquent {
         return $this->belongsTo('Applicant', 'applicant_id');
     }
 
-	public function comment()
+	public function comments()
 	{
 		return $this->hasMany('Comment');
 	}

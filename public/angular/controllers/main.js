@@ -14,40 +14,16 @@
       GlobalsFactory,
       LendaFactory,
       LoansFactory,
+      LoanProcessor,
       UsersFactory
       ){
       $scope.user_id = $('#user_id').data('id');
       $scope.landing_view = 'settings';
 
-      $scope.changeLandingView = function(val){
-        switch(val){
-          case 'all':
-            $scope.loanList = $scope.loans;
-            break;
-          case 'settings':
-            $scope.loanList = _.filter(_.filter($scope.loans,
-              function(i) { return i.status_id == '1'; }
-            ), function(i){ return i.crop_year == $scope.globals.crop_year});
-            break;
-          case 'fall':
-            $scope.loanList = _.filter(_.filter($scope.loans,
-              function(i) { return i.status_id == '1'; }
-            ), function(i){ return i.season == 'F';});
-            break;
-          case 'spring':
-            $scope.loanList = _.filter(_.filter($scope.loans,
-              function(i) { return i.status_id == '1'; }
-            ), function(i){ return i.season == 'S';});
-            break;
-        } // end switch
-      }
-
       UsersFactory.getUsers().then(function success(response){
         $scope.users = response.data.data;
       });
 
-      // TODO: Use notifications to determine NeedsVote
-      // TODO: has_comment & need_vote is per user/per-loan
       UsersFactory.getUser($scope.user_id).then(function success(response){
         $scope.user = response.data.data;
         UsersFactory.getNotifications($scope.user_id).then(function success(response){
@@ -67,42 +43,17 @@
           {id: $scope.globals.PY5, year: $scope.globals.PY5},
           {id: $scope.globals.PY6, year: $scope.globals.PY6},
         ];
-        LoansFactory.getLoans().then(function success(response){
-          var promises = [];
-          angular.forEach(response.data.data, function(loan) {
-            promises.push(LoansFactory.getPendingVotes(loan.id)
-              .then(function(pvs){
-                if(pvs.data.data.length == 0){
-                  loan.need_vote = false;
-                } else {
-                  loan.need_vote = true;
-                } // end if
-                return loan;
-              }));
-            /*promises.push(LoansFactory.getPendingComments(loan.id)
-              .then(function(pcs){
-                if(pcs.data.data.length == 0){
-                  loan.has_comment = false;
-                } else {
-                  loan.has_comment = true;
-                } // end if
-                return loan;
-              }));*/
+        LoanProcessor.getLoansWithExtraData()
+          .then(function(allLoans){
+            $scope.loans = allLoans;
+            $scope.loanList = _.filter(allLoans, function(i) { return i.status_id == '1' && i.crop_year == $scope.globals.crop_year; });
           });
-          //TODO: this creates duplicates in loans and loanList
-          $q.all(promises).then(function(loans) {
-            $scope.loans = loans;
-            $scope.loanList = _.filter(_.filter(loans,
-              function(i) { return i.status_id == '1'; }
-            ), function(i){ return i.crop_year == $scope.globals.crop_year});
-          });
-        });
         //toastr.success('Loaded all loans', 'Success!');
       });
 
       GlobalsFactory.getAdminGrader().then(function success(response){
-              $scope.grads = response.data.data;
-            });
+        $scope.grads = response.data.data;
+      });
 
       FeederFactory.init();
       $scope.feeder = FeederFactory.getObject();
@@ -192,6 +143,28 @@
       $scope.status = {
         isopen: false
       };
+
+      $scope.changeLandingView = function(val){
+        switch(val){
+          case 'all':
+            $scope.loanList = $scope.loans;
+            break;
+          case 'settings':
+            $scope.loanList = _.filter($scope.loans, function(i) { return i.status_id == '1' && i.crop_year == $scope.globals.crop_year; });
+            break;
+          case 'fall':
+            $scope.loanList = _.filter($scope.loans, function(i) { return i.status_id == '1' && i.crop_year == $scope.globals.crop_year; });
+            $scope.loanList = _.filter(_.filter($scope.loans,
+              function(i) { return i.status_id == '1'; }
+            ), function(i){ return i.season == 'F';});
+            break;
+          case 'spring':
+            $scope.loanList = _.filter(_.filter($scope.loans,
+              function(i) { return i.status_id == '1'; }
+            ), function(i){ return i.season == 'S';});
+            break;
+        } // end switch
+      }
 
       /* FOR PENDING SORT */
       // compoundSort = 4 * need_vote + 2 * has_comment + is_stale

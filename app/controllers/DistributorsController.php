@@ -11,7 +11,7 @@ class DistributorsController extends ApiController {
 
   public function index()
   {
-    $distributors = Distributor::all();
+    $distributors = Distributor::with('state')->get();
     return $this->respond([
       'data' => $this->distributorTransformer->transformCollection($distributors->all())
     ]);
@@ -19,14 +19,28 @@ class DistributorsController extends ApiController {
 
   public function store()
   {
-    Distributor::create(Input::all());
+    //TODO: Add validation
+    $distributor = Distributor::where('distributor', Input::get('distributor'))->first();
+    if($distributor){
+      return $this->respondCreated($distributor->id);
+    } // end if
 
-    return $this->respondCreated('Distributor created');
+    $distributor = Distributor::create(Input::all());
+
+    //Add systemic
+    $newInfo = [
+      'loan_id'	=>	Input::get('loan_id'),
+      'user'		=>	Auth::user()->username,
+      'action'	=>	'Created distributor'
+    ];
+    Systemics::create($newInfo);
+
+    return $this->respondCreated($distributor->id);
   }
 
   public function show($id)
   {
-    $distributor = Distributor::where('id', $id)->get();
+    $distributor = Distributor::with('state')->where('id', $id)->get();
 
     if( $distributor->isEmpty() ){
       return $this->respondNotFound('Distributor does not exist.');
@@ -63,7 +77,7 @@ class DistributorsController extends ApiController {
 
   public function byLoan($id)
   {
-    $distributors = Distributor::where('loan_id', $id)->get();
+    $distributors = Distributor::with('state')->where('loan_id', $id)->get();
     return $this->respond([
       'data' => $this->distributorTransformer->transformCollection($distributors->all())
     ]);

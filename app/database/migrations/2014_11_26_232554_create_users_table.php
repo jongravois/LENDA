@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration {
 			$table->boolean('is_manager')->default(0);
 			$table->integer('role_id')->default(5);
       $table->boolean('active')->default(1);
-      $table->string('remember_token', 60)->nullable();
+      $table->string('remember_token', 100)->nullable();
 			$table->timestamps();
 		});
 	}

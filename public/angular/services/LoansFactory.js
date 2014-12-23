@@ -4,7 +4,9 @@
     .factory('LoansFactory', function LoansFactory(
       $http,
       $q,
+      $stateParams,
       API_URL,
+      AppFactory,
       GlobalsFactory
     ){
       return {
@@ -48,8 +50,30 @@
       }
 
       function createDistributor(o){
-        //TODO: distributor or loandistributor???
-        //return $http.post(API_URL + '/loandistributors', o);
+        var dist = {
+          'distributor': o.distributor,
+          'name': o.distributor,
+          'address': o.address,
+          'city': o.city,
+          'state_id': o.state_id,
+          'zip': o.zip,
+          'phone': o.phone,
+          'email': o.email,
+          'loan_id': $stateParams.loanID
+        };
+        var lDist = {
+          'loan_id': o.loan_id,
+          'contact': o.contact,
+          'phone': o.contact_phone,
+          'email': o.contact_email
+        };
+        //insert in distributor unless exists
+        return $http.post(API_URL + '/distributors', dist).then(function success(response){
+
+          //insert into loanDistributor
+          lDist.distributor_id = response.data.message;
+          return $http.post(API_URL + '/loandistributor', lDist);
+        });;
       }
 
       function createFinancials(o){
@@ -193,5 +217,6 @@
       function insertLoan(obj){
         return $http.post(API_URL + '/loans', obj);
       }
+
     });
 })();

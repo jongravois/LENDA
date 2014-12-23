@@ -13,6 +13,13 @@ public function transform($arr)
   $staleDiff = $appDate->diffInDays($dtToday);
   //dd($staleDiff);
 
+  if($arr['season'] == 'S'){
+    $fullSeason = 'Spring';
+  } else {
+    $fullSeason = 'Fall';
+  } // end if
+
+  //is_stale
   if(!$arr['decision_date']){
     $decision = null;
 
@@ -24,12 +31,6 @@ public function transform($arr)
   } else {
     $decision = $arr['decision_date']->format('m/d/Y');
     $isStale = false;
-  } // end if
-
-  if($arr['season'] == 'S'){
-    $fullSeason = 'Spring';
-  } else {
-    $fullSeason = 'Fall';
   } // end if
 
 	//return $arr;
@@ -177,7 +178,8 @@ public function transform($arr)
     'committee' => $arr['committee'],
     'corporations' => $arr['corporations'],
     'partners' => $arr['partners'],
-    'ventures' => $arr['ventures']
+    'ventures' => $arr['ventures'],
+    'comments' => $arr['comments']
   );
 }
 

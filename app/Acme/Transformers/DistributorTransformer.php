@@ -12,9 +12,9 @@ class DistributorTransformer extends Transformer{
       'address' => $arr['address'],
       'city' => $arr['city'],
       'state_id' => $arr['state_id'],
-      'state' => $arr['state'],
+      'state' => $arr['state']['abr'],
       'zip' => $arr['zip'],
-      'locale' => $arr['locale'],
+      'locale' => $arr['city'] . ', ' . $arr['state']['abr'],
       'phone' => $arr['phone'],
       'email' => $arr['email']
     ];

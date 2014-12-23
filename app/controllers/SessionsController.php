@@ -11,6 +11,9 @@ class SessionsController extends BaseController{
   {
     if(Auth::attempt(Input::only('email', 'password'))){
       //dd(Auth::user());
+      if(Input::get('password') == 'changeme'){
+        return View::make('sessions.change');
+      } // end if
       return Redirect::to('/app');
     } // end if
     return Redirect::back()->withInput();
@@ -20,5 +23,10 @@ class SessionsController extends BaseController{
   {
     Auth::logout();
     return Redirect::route('sessions.create');
+  }
+
+  public function password_change()
+  {
+    dd(Input::all());
   }
 }

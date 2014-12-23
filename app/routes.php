@@ -3,7 +3,9 @@
 Route::get('/', 'AppController@index')->before('auth');
 Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
+Route::get('password', 'SessionsController@password_change');
 Route::resource('sessions', 'SessionsController');
+
 Route::get('app', [
   'as' => 'home',
   'uses' => 'AppController@index'
