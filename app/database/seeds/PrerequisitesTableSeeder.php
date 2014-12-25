@@ -5,16 +5,11 @@ class PrerequisitesTableSeeder extends Seeder {
 	{
 		Prerequisites::create([
 			'loan_id'	=>	1,
-			'document' => "Signed Application",
-			'date_requested' => '2014-09-02',
-			'date_received' => '2014-09-02'
-		]);
-
-		Prerequisites::create([
-			'loan_id'	=>	1,
 			'document' => "Driver's License",
 			'date_requested' => '2014-09-02',
-			'date_received' => '2014-09-02'
+			'date_received' => '2014-09-02',
+			'path' => '2015_1_allGlassTowers/',
+			'filename' => 'driversLicense.pdf'
 		]);
 
 		Prerequisites::create([
@@ -28,7 +23,9 @@ class PrerequisitesTableSeeder extends Seeder {
 			'loan_id'	=>	1,
 			'document' => "Equipment List",
 			'date_requested' => '2014-09-02',
-			'date_received' => '2014-09-02'
+			'date_received' => '2014-09-02',
+			'path' => '2015_1_allGlassTowers/',
+			'filename' => 'equipmentList.pdf'
 		]);
 
 		Prerequisites::create([
@@ -54,16 +51,6 @@ class PrerequisitesTableSeeder extends Seeder {
 		Prerequisites::create([
 			'loan_id'	=>	1,
 			'document' => "Grain Contracts"
-		]);
-
-		Prerequisites::create([
-			'loan_id'	=>	6,
-			'document' => "Signed Application"
-		]);
-
-		Prerequisites::create([
-			'loan_id'	=>	6,
-			'document' => "Driver's License"
 		]);
 
 	}

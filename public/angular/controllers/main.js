@@ -7,6 +7,7 @@
       $q,
       _,
       toastr,
+      FILE_URL,
       AppFactory,
       CommentsFactory,
       FarmersFactory,
@@ -19,6 +20,7 @@
       ){
       $scope.user_id = $('#user_id').data('id');
       $scope.landing_view = 'settings';
+      $scope.file_url = FILE_URL;
 
       UsersFactory.getUsers().then(function success(response){
         $scope.users = response.data.data;

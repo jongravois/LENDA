@@ -643,7 +643,10 @@ label{font-size:11px;}
   color: #FFFFFF !important;
   position: absolute;
   top: 0;
+  z-index: 0 !important;
 }
+
+.ngHeaderContainer{ z-index: 0 !important;}
 
 /*.gridStyle {
   border: 1px solid rgb(212,212,212);
@@ -818,3 +821,23 @@ label{font-size:11px;}
 .libraryFull_Page{
   background-color: white;
 }
+
+/*FINANCIALS*/
+.totaline td{
+  border-top:1px solid #333333 !important;
+  border-bottom:1px solid #333333 !important;
+}
+.pc_gridStyle {
+  border: 1px solid rgb(212,212,212);
+  width: 100%;
+  height: 300px;
+}
+.ngHeaderContainer .ngHeaderCell{
+  text-align: center;
+}
+.bright{ border-right: 1px solid #333 !important; }
+.bleft{ border-left: 1px solid #333 !important; }
+.red{ color: red; }
+/*FINANCIALS*/
+
+.ngTopPanel{ z-index: inherit;}

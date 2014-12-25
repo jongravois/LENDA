@@ -26,9 +26,11 @@
       </td>
       <td class="text-center">
         <span class="glyphicon glyphicon-cloud-upload" ng-if="!d.date_received"></span>
-                <span ng-if="d.date_received">
-                    {{d.date_received | date:'M/d/yy'}}
-                </span>
+        <span ng-if="d.date_received">
+          <a target="_blank" href="{{file_url + d.path + d.filename}}" downloan="{{d.filename}}">
+            {{d.date_received | date:'M/d/yy'}}
+          </a>
+        </span>
       </td>
       <td>
         <input type="text" class="form-control" ng-model="d.reason_pending"/>

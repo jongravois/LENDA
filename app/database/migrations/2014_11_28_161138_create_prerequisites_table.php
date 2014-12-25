@@ -12,9 +12,10 @@ class CreatePrerequisitesTable extends Migration {
 			$table->increments('id');
       $table->integer('loan_id');
       $table->string('document');
-      $table->string('path')->nullable();
       $table->date('date_requested')->nullable();
       $table->date('date_received')->nullable();
+      $table->string('path')->nullable();
+      $table->string('filename')->nullable();
       $table->string('reason_pending')->nullable();
 			$table->timestamps();
 		});

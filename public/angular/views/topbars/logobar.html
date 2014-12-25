@@ -30,8 +30,7 @@
             <a href class="dropdown-toggle" dropdown-toggle>
               New Loan Application
             </a>
-            <!--TODO: adding padding-top due to ng-grid header-->
-            <ul class="dropdown-menu" role="menu" style="padding-top: 60px;">
+            <ul class="dropdown-menu" role="menu">
               <li ng-repeat="l in feeder.loantypes">
                 <a ng-click="newLoan(l.ltPath)">
                   {{l.loantype}}

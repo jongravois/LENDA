@@ -14,10 +14,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-      'host'      => getenv('DB_HOST'),
-      'database'  => getenv('DB_NAME'),
-      'username'  => getenv('DB_USERNAME'),
-      'password'  => getenv('DB_PASSWORD'),
+      'host'      => 'localhost',
+      'database'  => 'lenda',
+      'username'  => 'lenda',
+      'password'  => 'admin@lenda',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

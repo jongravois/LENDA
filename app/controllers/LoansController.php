@@ -53,6 +53,9 @@ class LoansController extends ApiController {
 		$loan = Loan::create(Input::all());
 		$newLoan = Loan::find($loan->id);
 
+		//TODO: Create folder in files_loans (crop_year . loan_id . applicant) -- need applicant
+		//TODO: Add file_url to $scope.loans (remove path from prerequisites?)
+
 		//Add systemic
 		$newInfo = [
 			'loan_id'	=>	$loan->id,
@@ -78,6 +81,15 @@ class LoansController extends ApiController {
 			'action'	=>	'Created loan questions'
 		];
 		Systemics::create($newInfo);
+
+		for($l=1; $l<9; $l++){
+			$newCrop = [
+				'crop_year' => getCropYear(),
+				'loan_id' => $loan->id,
+				'crop_id' => $l
+			];
+			Loancrop::create($newCrop);
+		} // end for
 
 		return $this->respondCreated($newLoan);
 	}
