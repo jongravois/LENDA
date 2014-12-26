@@ -7,6 +7,6 @@ class Screen extends \Eloquent {
   /* RELATIONSHIPS */
   public function loantypes()
   {
-    return $this->belongsTo('loantypes', 'loantype_id');
+    return $this->belongsTo('Loantypes', 'loantype_id');
   }
 }

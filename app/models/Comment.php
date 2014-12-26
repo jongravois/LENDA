@@ -15,7 +15,7 @@ class Comment extends \Eloquent {
 
 	public function responses()
 	{
-		return $this->hasMany('responses');
+		return $this->hasMany('Responses');
 	}
 
   public function user()

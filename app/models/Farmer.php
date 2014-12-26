@@ -9,12 +9,12 @@ class Farmer extends \Eloquent {
   /* RELATIONSHIPS */
   public function location()
   {
-    return $this->belongsTo('location', 'loc_id');
+    return $this->belongsTo('Location', 'loc_id');
   }
 
   public function state()
   {
-    return $this->belongsTo('state', 'state_id');
+    return $this->belongsTo('State', 'state_id');
   }
 
   public function user()

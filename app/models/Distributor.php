@@ -7,6 +7,6 @@ class Distributor extends \Eloquent {
   //Relationships
   public function state()
   {
-    return $this->belongsTo('state', 'state_id');
+    return $this->belongsTo('State', 'state_id');
   }
 }

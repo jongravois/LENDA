@@ -15,7 +15,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
   public function location()
   {
-    return $this->belongsTo('location', 'loc_id');
+    return $this->belongsTo('Location', 'loc_id');
   }
 
   public function notifications()
@@ -25,17 +25,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
   public function profile()
   {
-    return $this->hasOne('profile');
+    return $this->hasOne('Profile');
   }
 
   public function role()
   {
-    return $this->belongsTo('role', 'role_id');
+    return $this->belongsTo('Role', 'role_id');
   }
 
   public function viewoptions()
   {
-    return $this->belongsTo('viewoptions', 'id', 'user_id');
+    return $this->belongsTo('Viewoptions', 'id', 'user_id');
   }
 
   /* METHODS */

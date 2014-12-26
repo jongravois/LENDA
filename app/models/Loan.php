@@ -62,7 +62,7 @@ class Loan extends \Eloquent {
 
   public function financials()
   {
-    return $this->hasOne('loanfinancials');
+    return $this->hasOne('Loanfinancials');
   }
 
 	public function funduses()
@@ -72,7 +72,7 @@ class Loan extends \Eloquent {
 
   public function insurance()
   {
-    return $this->hasOne('insurance');
+    return $this->hasOne('Insurance');
   }
 
   public function loanconditions()
@@ -142,7 +142,7 @@ class Loan extends \Eloquent {
 
   public function systemics()
 	{
-		return $this->hasMany('systemics');
+		return $this->hasMany('Systemics');
 	}
 
   public function ventures()

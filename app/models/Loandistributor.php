@@ -6,6 +6,6 @@ class Loandistributor extends \Eloquent {
 
 	public function distributor()
 	{
-		return $this->belongsTo('distributor', 'distributor_id');
+		return $this->belongsTo('Distributor', 'distributor_id');
 	}
 }

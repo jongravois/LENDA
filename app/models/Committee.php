@@ -7,21 +7,21 @@ class Committee extends \Eloquent {
 	// RELATIONSHIPS //
 	public function role()
 	{
-		return $this->belongsTo('role', 'role_id');
+		return $this->belongsTo('Role', 'role_id');
 	}
 
 	public function user()
 	{
-		return $this->belongsTo('user', 'user_id');
+		return $this->belongsTo('User', 'user_id');
 	}
 
 	public function vote()
 	{
-		return $this->belongsTo('votes', 'vote_id');
+		return $this->belongsTo('Votes', 'vote_id');
 	}
 
 	public function vote_status()
 	{
-		return $this->belongsTo('votestatus', 'vote_status_id');
+		return $this->belongsTo('Votestatus', 'vote_status_id');
 	}
 }

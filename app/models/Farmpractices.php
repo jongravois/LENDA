@@ -5,11 +5,11 @@ class Farmpractices extends \Eloquent {
 
 	public function farm()
 	{
-		return $this->belongsTo('farm', 'farm_id');
+		return $this->belongsTo('Farm', 'farm_id');
 	}
 
 	public function crop()
 	{
-		return $this->belongsTo('crop', 'crop_id');
+		return $this->belongsTo('Crop', 'crop_id');
 	}
 }

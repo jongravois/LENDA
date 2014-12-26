@@ -8,16 +8,16 @@ class Insurance extends \Eloquent {
 	// Relationships
 	public function county()
 	{
-		return $this->belongsTo('county', 'loancounty_id');
+		return $this->belongsTo('County', 'loancounty_id');
 	}
 
 	public function crop()
 	{
-		return $this->belongsTo('crop', 'loancrop_id');
+		return $this->belongsTo('Crop', 'loancrop_id');
 	}
 
 	public function practice()
 	{
-		return $this->belongsTo('croppractice', 'croppractice_id');
+		return $this->belongsTo('Croppractice', 'croppractice_id');
 	}
 }

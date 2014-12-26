@@ -9,7 +9,7 @@ class Farmcrops extends \Eloquent {
 	}
 
 	public function crop(){
-		return $this->belongsTo('crop', 'crop_id');
+		return $this->belongsTo('Crop', 'crop_id');
 	}
 	/* METHODS */
 

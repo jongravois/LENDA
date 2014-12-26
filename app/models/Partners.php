@@ -5,6 +5,6 @@ class Partners extends \Eloquent {
 
 	public function states()
 	{
-		return $this->belongsTo('state', 'state_id');
+		return $this->belongsTo('State', 'state_id');
 	}
 }
