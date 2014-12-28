@@ -11,8 +11,14 @@ Route::get('app', [
   'uses' => 'AppController@index'
 ])->before('auth');
 
+Route::get('env', function(){
+  return App::environment();
+});
+
 Route::get('test', function(){
-  return Loanpractice::where('loan_id', '1')->where('is_active', '1')->get();
+  Mail::send('emails.welcome', [], function($message){
+    $message->to('jongravois@gmail.com')->subject('welcome');
+  });
 });
 
 Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){

@@ -2,6 +2,8 @@
 
 $app = new Illuminate\Foundation\Application;
 
+//putenv('APP_ENV=staging');
+//putenv('APP_ENV=production');
 $env = $app->detectEnvironment(function(){
   return getenv('APP_ENV') ?: 'local';
 });
