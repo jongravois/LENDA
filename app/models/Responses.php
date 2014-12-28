@@ -5,7 +5,7 @@ class Responses extends \Eloquent {
 
 	public function comments()
 	{
-		return $this->belongsTo('comments', 'comment_id');
+		return $this->belongsTo('Comments', 'comment_id');
 	}
 
   public function user()

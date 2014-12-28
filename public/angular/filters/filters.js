@@ -79,10 +79,10 @@
       var currencyFilter = $filter('currency');
       var formats = $locale.NUMBER_FORMATS;
       return function(amount, currencySymbol) {
+        if(!amount){ return ' - '; }
         var value = currencyFilter(amount, currencySymbol);
         var sep = value.indexOf(formats.DECIMAL_SEP);
         //console.log(amount, value);
-        if(!amount){ return ' - '; }
         if(amount >= 0) {
           return value.substring(0, sep);
         }
