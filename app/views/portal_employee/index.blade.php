@@ -34,16 +34,15 @@
 <div id="main_container" style="min-height:800px;" ng-cloak>
     <div id="main_top">
         <div class="col-xs-12" style="z-index:1;">
-                <span style="display:none;" id="user_id" data-id="{{Auth::user()->id}}"> 
-                    {{Auth::user()->username}} 
-                </span>
+            <span style="display:none;" id="user_id" data-id="{{Auth::user()->id}}"> 
+                {{Auth::user()->username}} 
+            </span>
             <div class="row" style="z-index: 32000;">
                 <div class="col-xs-12">
                     <div ng-include="'angular/views/topbars/logobar.html'"></div>
                 </div>
             </div>
         </div>
-
     </div>
     <div ui-view style="margin-top:120px; z-index: 10;" ></div>
 </div><!-- /.container -->
