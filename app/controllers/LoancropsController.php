@@ -3,6 +3,9 @@
 use Acme\Transformers\LoancropTransformer;
 
 class LoancropsController extends ApiController {
+	/*
+	 * TODO: get ins_price and aph from counties
+	 */
 
 	protected $loancropTransformer;
 
@@ -21,9 +24,11 @@ class LoancropsController extends ApiController {
 
 	public function store()
 	{
-		if( ! Input::get('loancrop')){
+		//TODO: Add Validation
+		/*if( ! Input::get('loancrop')){
 			return $this->respondCreationDenied('Failed Validation');
 		} // end if
+		*/
 
 		Loancrop::create(Input::all());
 

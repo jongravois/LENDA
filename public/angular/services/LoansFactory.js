@@ -42,7 +42,8 @@
         getSelectedCrops: getSelectedCrops,
         getSystemics: getSystemics,
         getTotalAcres: getTotalAcres,
-        insertLoan: insertLoan
+        insertLoan: insertLoan,
+        insertLoanCrop: insertLoanCrop
       };
 
       function createAffilate(o){
@@ -215,6 +216,10 @@
 
       function insertLoan(obj){
         return $http.post(API_URL + '/loans', obj);
+      }
+
+      function insertLoanCrop(obj){
+        return $http.post(API_URL + '/loancrops', obj);
       }
 
     });

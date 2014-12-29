@@ -20,8 +20,13 @@
           <th style="width:10%;">{{globals.PY6}}</th>
           <th style="width:10%;">6yr Avg</th>
         </tr>
-        <tr ng-repeat="c in loanCrops" ng-if="c.is_active">
-          <td>{{c.crop | capitalize}}</td>
+        <tr ng-if="loan.loanCrops.length == 0">
+          <td colspan="10">
+            <strong>No Crops Selected. Please go back to 'Crops' to select the crops you are considering.</strong>
+          </td>
+        </tr>
+        <tr ng-repeat="c in loan.loanCrops" ng-if="c.is_active">
+          <td>{{c.name | capitalize}}</td>
           <td class="text-center">
             <select name="uom" ng-model="c.uom" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom)">
               <option value="">Please select ...</option>
@@ -37,7 +42,7 @@
             <input type="text" class="form-control text-right" ng-model="c.p3_yield"/>
           </td>
           <td class="text-right">
-            {{getAverage([c.p1_yield, c.p2_yield, c.p3_yield])| number:1}}
+            {{averageArray([c.p1_yield, c.p2_yield, c.p3_yield])| number:1}}
           </td>
           <td style="text-align: center;">
             <input type="text" class="form-control text-right" ng-model="c.p4_yield"/>
@@ -49,16 +54,18 @@
             <input type="text" class="form-control text-right" ng-model="c.p6_yield"/>
           </td>
           <td class="text-right">
-            {{getAverage([c.p1_yield, c.p2_yield, c.p3_yield, c.p4_yield, c.p5_yield, c.p6_yield])| number:1}}
+            {{averageArray([c.p1_yield, c.p2_yield, c.p3_yield, c.p4_yield, c.p5_yield, c.p6_yield])| number:1}}
           </td>
         </tr>
       </table>
     </div>
   </div>
-  <!--<pre>{{loan.loancrops | json}}</pre>-->
+  <!--<pre>{{loan.loanCrops | json}}</pre>-->
   <div class="row">
     <div class="col-md-12 text-right">
-      <button style="margin-right:10px;" class="btn btn-primary">UPDATE</button>
+      <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateYield()">
+        NEXT
+      </button>
     </div>
   </div>
 </fieldset>
