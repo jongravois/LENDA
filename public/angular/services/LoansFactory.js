@@ -85,7 +85,6 @@
         var obj = {};
 
         GlobalsFactory.getGlobals().then(function success(response){
-          console.log(response.data.data[0]);
           globals = response.data.data[0];
 
           obj = {

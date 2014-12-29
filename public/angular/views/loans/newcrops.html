@@ -3,57 +3,491 @@
 </style>
 
 <fieldset>
-  <legend>Crop Options</legend>
+  <legend>Crops</legend>
   <table class="table table-striped">
     <tr>
-      <th style="width:15%;">Crop</th>
-      <th style="width:12%;">Market To Whom</th>
+      <th style="width:3%;">&nbsp;</th>
+      <th style="width:10%;">Crop</th>
+      <th style="width:15%;">Market To Whom</th>
       <th style="width:10%;">Bk Qty</th>
       <th style="width:10%;">Bk Price</th>
-      <th style="width:10%;">Variable Harvest</th>
-      <th>UoM</th>
-      <th style="width:12%;">Gin/Mill</th>
+      <th style="width:15%;">Variable Harvest</th>
+      <th style="width:7%;">UoM</th>
+      <th style="width:10%;">Gin/Mill</th>
       <th style="width:10%;">Rebate</th>
-      <th>UoM</th>
+      <th style="width:7%;">UoM</th>
     </tr>
-    <tr ng-repeat="c in loanCrops | orderBy: 'id'" ng-if="c.is_active">
+    <tr>
       <td>
-        {{c.crop | capitalize}}
+        <input type="checkbox" ng-model="corn.is_active"/>
+      </td>
+      <td>Corn</td>
+      <td>
+        <input type="text" class="form-control"
+               name="corn_markettowhom"
+               ng-model="corn.markettowhom"
+               ng-if="corn.is_active"/>
       </td>
       <td>
-        <input type="text" class="form-control" ng-model="c.markettowhom"/>
+        <input type="text" class="form-control"
+               name="corn_bkqty"
+               ng-model="corn.bkqty"
+               ng-if="corn.is_active"/>
       </td>
       <td>
-        <input type="text" class="form-control text-right" ng-model="c.bkqty"/>
+        <input type="text" class="form-control"
+               name="corn_bkprice"
+               ng-model="corn.bkprice"
+               ng-if="corn.is_active"/>
       </td>
       <td>
-        <input type="text" class="form-control text-right" ng-model="c.bkprice"/>
+        <input type="text" class="form-control"
+               name="corn_harvest"
+               ng-model="corn.harvest"
+               ng-if="corn.is_active"/>
       </td>
       <td>
-        <input type="text" class="form-control text-right" ng-model="c.harvest"/>
-      </td>
-      <td>
-        <select name="uom" ng-model="c.uom" ng-options="s.abr as s.name for s in measurements" ng-change="uomChanged(c.id, c.uom)">
-          <option value="">Unit</option>
+        <select name="corn_uom"
+                ng-model="corn.uom"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="corn.is_active">
+          <option value="">Choose...</option>
         </select>
       </td>
       <td>
-        <input type="text" class="form-control" ng-model="c.gin_mill"/>
+        <input type="text" class="form-control"
+               name="corn_gin_mill"
+               ng-model="corn.gin_mill"
+               ng-if="corn.is_active"/>
       </td>
       <td>
-        <input type="text" class="form-control text-right" ng-model="c.rebates"/>
+        <input type="text" class="form-control"
+               name="corn_rebate"
+               ng-model="corn.rebate"
+               ng-if="corn.is_active"/>
       </td>
       <td>
-        <select name="uom" ng-model="c.uom" ng-options="s.abr as s.name for s in measurements" ng-change="uomChanged(c.id, c.uom)">
-          <option value="">Unit</option>
+        <select name="corn_uom_rebate"
+                ng-model="corn.uom_rebate"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="corn.is_active">
+          <option value="">Choose...</option>
         </select>
       </td>
     </tr>
     <tr>
-      <td colspan="6">
-        <a ng-click="createCrop()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Crop</a>
+      <td>
+        <input type="checkbox" ng-model="soybeans.is_active"/>
+      </td>
+      <td>Soybeans</td>
+      <td>
+        <input type="text" class="form-control"
+               name="soybeans_markettowhom"
+               ng-model="soybeans.markettowhom"
+               ng-if="soybeans.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="soybeans_bkqty"
+               ng-model="soybeans.bkqty"
+               ng-if="soybeans.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="soybeans_bkprice"
+               ng-model="soybeans.bkprice"
+               ng-if="soybeans.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="soybeans_harvest"
+               ng-model="soybeans.harvest"
+               ng-if="soybeans.is_active"/>
+      </td>
+      <td>
+        <select name="soybeans_uom"
+                ng-model="soybeans.uom"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="soybeans.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="soybeans_gin_mill"
+               ng-model="soybeans.gin_mill"
+               ng-if="soybeans.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="soybeans_rebate"
+               ng-model="soybeans.rebate"
+               ng-if="soybeans.is_active"/>
+      </td>
+      <td>
+        <select name="soybeans_uom_rebate"
+                ng-model="soybeans.uom_rebate"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="soybeans.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="checkbox" ng-model="sorghum.is_active"/>
+      </td>
+      <td>Sorghum</td>
+      <td>
+        <input type="text" class="form-control"
+               name="sorghum_markettowhom"
+               ng-model="sorghum.markettowhom"
+               ng-if="sorghum.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="sorghum_bkqty"
+               ng-model="sorghum.bkqty"
+               ng-if="sorghum.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="sorghum_bkprice"
+               ng-model="sorghum.bkprice"
+               ng-if="sorghum.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="sorghum_harvest"
+               ng-model="sorghum.harvest"
+               ng-if="sorghum.is_active"/>
+      </td>
+      <td>
+        <select name="sorghum_uom"
+                ng-model="sorghum.uom"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="sorghum.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="sorghum_gin_mill"
+               ng-model="sorghum.gin_mill"
+               ng-if="sorghum.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="sorghum_rebate"
+               ng-model="sorghum.rebate"
+               ng-if="sorghum.is_active"/>
+      </td>
+      <td>
+        <select name="sorghum_uom_rebate"
+                ng-model="sorghum.uom_rebate"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="sorghum.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="checkbox" ng-model="wheat.is_active"/>
+      </td>
+      <td>Wheat</td>
+      <td>
+        <input type="text" class="form-control"
+               name="wheat_markettowhom"
+               ng-model="wheat.markettowhom"
+               ng-if="wheat.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="wheat_bkqty"
+               ng-model="wheat.bkqty"
+               ng-if="wheat.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="wheat_bkprice"
+               ng-model="wheat.bkprice"
+               ng-if="wheat.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="wheat_harvest"
+               ng-model="wheat.harvest"
+               ng-if="wheat.is_active"/>
+      </td>
+      <td>
+        <select name="wheat_uom"
+                ng-model="wheat.uom"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="wheat.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="wheat_gin_mill"
+               ng-model="wheat.gin_mill"
+               ng-if="wheat.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="wheat_rebate"
+               ng-model="wheat.rebate"
+               ng-if="wheat.is_active"/>
+      </td>
+      <td>
+        <select name="wheat_uom_rebate"
+                ng-model="wheat.uom_rebate"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="wheat.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="checkbox" ng-model="cotton.is_active"/>
+      </td>
+      <td>Cotton</td>
+      <td>
+        <input type="text" class="form-control"
+               name="cotton_markettowhom"
+               ng-model="cotton.markettowhom"
+               ng-if="cotton.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="cotton_bkqty"
+               ng-model="cotton.bkqty"
+               ng-if="cotton.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="cotton_bkprice"
+               ng-model="cotton.bkprice"
+               ng-if="cotton.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="cotton_harvest"
+               ng-model="cotton.harvest"
+               ng-if="cotton.is_active"/>
+      </td>
+      <td>
+        <select name="cotton_uom"
+                ng-model="cotton.uom"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="cotton.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="cotton_gin_mill"
+               ng-model="cotton.gin_mill"
+               ng-if="cotton.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="cotton_rebate"
+               ng-model="cotton.rebate"
+               ng-if="cotton.is_active"/>
+      </td>
+      <td>
+        <select name="cotton_uom_rebate"
+                ng-model="cotton.uom_rebate"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="cotton.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="checkbox" ng-model="rice.is_active"/>
+      </td>
+      <td>Rice</td>
+      <td>
+        <input type="text" class="form-control"
+               name="rice_markettowhom"
+               ng-model="rice.markettowhom"
+               ng-if="rice.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="rice_bkqty"
+               ng-model="rice.bkqty"
+               ng-if="rice.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="rice_bkprice"
+               ng-model="rice.bkprice"
+               ng-if="rice.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="rice_harvest"
+               ng-model="rice.harvest"
+               ng-if="rice.is_active"/>
+      </td>
+      <td>
+        <select name="rice_uom"
+                ng-model="rice.uom"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="rice.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="rice_gin_mill"
+               ng-model="rice.gin_mill"
+               ng-if="rice.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="rice_rebate"
+               ng-model="rice.rebate"
+               ng-if="rice.is_active"/>
+      </td>
+      <td>
+        <select name="rice_uom_rebate"
+                ng-model="rice.uom_rebate"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="rice.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="checkbox" ng-model="peanuts.is_active"/>
+      </td>
+      <td>Peanuts</td>
+      <td>
+        <input type="text" class="form-control"
+               name="peanuts_markettowhom"
+               ng-model="peanuts.markettowhom"
+               ng-if="peanuts.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="peanuts_bkqty"
+               ng-model="peanuts.bkqty"
+               ng-if="peanuts.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="peanuts_bkprice"
+               ng-model="peanuts.bkprice"
+               ng-if="peanuts.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="peanuts_harvest"
+               ng-model="peanuts.harvest"
+               ng-if="peanuts.is_active"/>
+      </td>
+      <td>
+        <select name="peanuts_uom"
+                ng-model="peanuts.uom"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="peanuts.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="peanuts_gin_mill"
+               ng-model="peanuts.gin_mill"
+               ng-if="peanuts.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="peanuts_rebate"
+               ng-model="peanuts.rebate"
+               ng-if="peanuts.is_active"/>
+      </td>
+      <td>
+        <select name="peanuts_uom_rebate"
+                ng-model="peanuts.uom_rebate"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="peanuts.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="checkbox" ng-model="sugarcane.is_active"/>
+      </td>
+      <td>Sugarcane</td>
+      <td>
+        <input type="text" class="form-control"
+               name="sugarcane_markettowhom"
+               ng-model="sugarcane.markettowhom"
+               ng-if="sugarcane.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="sugarcane_bkqty"
+               ng-model="sugarcane.bkqty"
+               ng-if="sugarcane.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="sugarcane_bkprice"
+               ng-model="sugarcane.bkprice"
+               ng-if="sugarcane.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="sugarcane_harvest"
+               ng-model="sugarcane.harvest"
+               ng-if="sugarcane.is_active"/>
+      </td>
+      <td>
+        <select name="sugarcane_uom"
+                ng-model="sugarcane.uom"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="sugarcane.is_active">
+          <option value="">Choose...</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="sugarcane_gin_mill"
+               ng-model="sugarcane.gin_mill"
+               ng-if="sugarcane.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
+               name="sugarcane_rebate"
+               ng-model="sugarcane.rebate"
+               ng-if="sugarcane.is_active"/>
+      </td>
+      <td>
+        <select name="sugarcane_uom_rebate"
+                ng-model="sugarcane.uom_rebate"
+                ng-options="u.abr as u.abr for u in feeder.units"
+                ng-if="sugarcane.is_active">
+          <option value="">Choose...</option>
+        </select>
       </td>
     </tr>
   </table>
+  <br/><br/>
+  <div class="row">
+    <div class="col-sm-12 text-right">
+      <button style="margin-right:10px;" class="btn btn-primary" ng-click="createLoanCrops()">NEXT</button>
+    </div>
+  </div>
+
 </fieldset>
 <!--<pre>{{loanCrops | json}}</pre>-->

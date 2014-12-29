@@ -64,6 +64,8 @@
         }
       }
       function moveToNextNewLoanScreen(screenName, $stateParams) {
+        //TODO: REMOVE DEBUGGER
+        //debugger;
         $state.go('new.' + screenName, $stateParams);
       }
       function patchIt(end, id, data){

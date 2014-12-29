@@ -13,14 +13,17 @@ class CreateLoancropsTable extends Migration {
       $table->integer('crop_year');
       $table->integer('loan_id');
       $table->integer('crop_id');
-      $table->double('acres')->default(0);
       $table->boolean('is_active')->default(0);
+      $table->string('uom')->nullable();
+      $table->string('uom_rebate')->nullable();
+      $table->double('acres')->default(0);
       $table->string('markettowhom')->nullable();
       $table->double('prod_price')->default(0);
       $table->double('prod_yield')->default(0);
       $table->double('prod_share')->default(0);
       $table->double('mill_share')->default(0);
       $table->double('ins_share')->default(0);
+      $table->double('ins_price')->default(0);
       $table->double('bkqty')->default(0);
       $table->double('bkprice')->default(0);
       $table->string('gin_mill')->nullable();
@@ -30,6 +33,7 @@ class CreateLoancropsTable extends Migration {
       $table->double('fsa_payment')->default(0);
       $table->double('percent_irrigated')->default(0);
       $table->double('break_even')->default(0);
+      $table->double('aph')->nullable();
       $table->double('p1_yield')->nullable();
       $table->double('p2_yield')->nullable();
       $table->double('p3_yield')->nullable();
@@ -39,7 +43,6 @@ class CreateLoancropsTable extends Migration {
 			$table->timestamps();
 		});
 	}
-
 
 	public function down()
 	{

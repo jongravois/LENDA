@@ -54,7 +54,7 @@ class LoansController extends ApiController {
 		$newLoan = Loan::find($loan->id);
 
 		//TODO: Create folder in files_loans (crop_year . loan_id . applicant) -- need applicant
-		//TODO: Add file_url to $scope.loans (remove path from prerequisites?)
+		//TODO: Add file_url to $scope.loans
 
 		//Add systemic
 		$newInfo = [
