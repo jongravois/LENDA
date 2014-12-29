@@ -50,12 +50,21 @@ class LoansController extends ApiController {
 			return $this->respondCreationDenied('Failed Validation');
 		} // end if*/
 
+		//TODO: Create folder not working
+
+		$crop_year = Globals::pluck('crop_year');
+
 		$loan = Loan::create(Input::all());
 		$newLoan = Loan::find($loan->id);
+		$path = '/files_loans/' . $crop_year . '_' . $loan->id;
 
-		//TODO: Create folder in files_loans (crop_year . loan_id . applicant) -- need applicant
+		//TODO: Create folder in files_loans (crop_year . loan_id )
+		if(!File::exists($path)){
+			File::makeDirectory($path, $mode= 0777, true, true);
+		}
+
+
 		//TODO: Add file_url to $scope.loans
-
 		//Add systemic
 		$newInfo = [
 			'loan_id'	=>	$loan->id,

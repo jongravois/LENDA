@@ -15,7 +15,9 @@ Route::get('env', function(){
   return App::environment();
 });
 
-Route::get('test', function(){
+Route::get('test', function(){});
+
+Route::get('emailtest', function(){
   Mail::send('emails.welcome', [], function($message){
     $message->to('jongravois@gmail.com')->subject('welcome');
   });

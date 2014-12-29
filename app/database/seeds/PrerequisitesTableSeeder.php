@@ -8,7 +8,7 @@ class PrerequisitesTableSeeder extends Seeder {
 			'document' => "Driver's License",
 			'date_requested' => '2014-09-02',
 			'date_received' => '2014-09-02',
-			'path' => '2015_1_allGlassTowers/',
+			'path' => '2015_1/',
 			'filename' => 'driversLicense.pdf'
 		]);
 
@@ -24,7 +24,7 @@ class PrerequisitesTableSeeder extends Seeder {
 			'document' => "Equipment List",
 			'date_requested' => '2014-09-02',
 			'date_received' => '2014-09-02',
-			'path' => '2015_1_allGlassTowers/',
+			'path' => '2015_1/',
 			'filename' => 'equipmentList.pdf'
 		]);
 
