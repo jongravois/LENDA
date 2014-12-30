@@ -36,9 +36,12 @@ class FarmController extends ApiController {
 
 	public function store()
 	{
+		//TODO: Add validation
+		/*
 		if( ! Input::get('farm')){
 			return $this->respondCreationDenied('Failed Validation');
 		} // end if
+		*/
 
 		$farm = Farm::create(Input::all());
 

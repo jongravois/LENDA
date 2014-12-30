@@ -34,6 +34,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('conditions', 'ConditionsController');
   Route::resource('corporations', 'CorporationsController');
   Route::resource('counties', 'CountiesController');
+  Route::resource('countiescropdefaults', 'CountycropdfaultController');
   Route::resource('crops', 'CropController');
   Route::resource('cropexpenses', 'CropexpensesController');
   Route::resource('cropdetails', 'CropdetailsController');
@@ -111,4 +112,5 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/systemics', 'SystemicsController@byLoan');
   Route::get('loans/{id}/totalacres', 'LoanCropsController@totalAcres');
   Route::get('loantypes/{id}/screens', 'ScreensController@byLoantype');
+  Route::get('states/{id}/counties', 'CountiesController@byState');
 });

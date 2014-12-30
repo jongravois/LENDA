@@ -53,6 +53,22 @@ class CountiesController extends ApiController {
 		return Response::json(['data' => $this->tform($counties)], 200);
 	}
 
+	public function byState($stateID)
+	{
+		$counties = County::where('state_id', $stateID)->get();
+		$res = ['data' => $counties];
+		return $res;
+/*
+		if( $counties->isEmpty()){
+			return $this->respondNotFound('County does not exist.');
+		} // end if
+
+		return $this->respond([
+			'data' => $this->countyTransformer->transform($counties->all())
+		]);
+*/
+	}
+
 	private function tform($county)
 	{
 		return array_map(function($county)
@@ -120,5 +136,4 @@ class CountiesController extends ApiController {
 			];
 		}, $county);
 	}
-
 }

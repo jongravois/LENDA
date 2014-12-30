@@ -14,17 +14,17 @@ class CreateFarmsTable extends Migration {
       $table->integer('county_id');
       $table->string('fsn')->nullable();
       $table->string('owner')->nullable();
+      $table->double('acres')->default(0);
+      $table->double('percent_irrigated')->default(0);
       $table->double('share_rent')->default(0);
       $table->double('cash_rent')->default(0);
       $table->double('waived')->default(0);
       $table->string('when_due')->nullable();
-      $table->double('acres')->default(0);
+      $table->double('fsa_paid')->default(0);
       $table->boolean('irr')->default(0);
       $table->boolean('ni')->default(0);
       $table->boolean('facirr')->default(0);
       $table->boolean('facni')->default(0);
-      $table->double('fsa_paid')->default(0);
-      $table->double('percent_irrigated')->default(0);
 			$table->timestamps();
 		});
 	}

@@ -42,6 +42,7 @@
         getSelectedCrops: getSelectedCrops,
         getSystemics: getSystemics,
         getTotalAcres: getTotalAcres,
+        insertFarm: insertFarm,
         insertLoan: insertLoan,
         insertLoanCrop: insertLoanCrop
       };
@@ -212,6 +213,10 @@
           .then(function(res){
             return res.data;
           });
+      }
+
+      function insertFarm(obj){
+        return $http.post(API_URL + '/farms', obj);
       }
 
       function insertLoan(obj){

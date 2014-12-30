@@ -8,6 +8,7 @@
     ){
       return {
         averageArray: averageArray,
+        countiesInState: countiesInState,
         diffInDates: diffInDates,
         getDefaultDueDate: getDefaultDueDate,
         getFullSeason: getFullSeason,
@@ -23,6 +24,11 @@
         var avg = sum / arr.length;
         return avg;
       }
+
+      function countiesInState(id){
+        return $http.get(API_URL + '/states/' + id + '/counties');
+      }
+
       function diffInDates(first,second){
         var intFirst = parseInt(first);
         var intSecond = parseInt(second);
