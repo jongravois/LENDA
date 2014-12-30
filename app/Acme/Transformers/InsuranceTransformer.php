@@ -8,8 +8,8 @@ class InsuranceTransformer extends Transformer{
 		return [
 			'id' =>	$arr['id'],
 			'loan_id' => $arr['loan_id'],
-			'crop_year' => $arr['crop_year'],
-			'agency' => $arr['agency'],
+			'agency_id' => $arr['agency_id'],
+			'agency' => $arr['agency']['agency'],
 			'agent' => $arr['agent'],
 			'agent_phone' => $arr['agent_phone'],
 			'agent_email' => $arr['agent_email'],

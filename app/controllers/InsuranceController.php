@@ -13,7 +13,7 @@ class InsuranceController extends ApiController {
 
 	public function index()
 	{
-		$insurances = Insurance::with('county', 'crop', 'practice')->get();
+		$insurances = Insurance::with('agency', 'county', 'crop', 'practice')->get();
 
 		return $this->respond([
 			'data' => $this->insuranceTransformer->transformCollection($insurances->all())
@@ -22,7 +22,7 @@ class InsuranceController extends ApiController {
 
 	public function show($id)
 	{
-		$insurance = Insurance::where('id', $id)->get();
+		$insurance = Insurance::with('agency', 'county', 'crop', 'practice')->where('id', $id)->get();
 
 		if( $insurance->isEmpty() ){
 			return $this->respondNotFound('Insurance does not exist.');
@@ -61,7 +61,7 @@ class InsuranceController extends ApiController {
 
 	public function byLoan($id)
 	{
-		$insurances = Insurance::with('county', 'crop', 'practice')->where('loan_id', $id)->get();
+		$insurances = Insurance::with('agency', 'county', 'crop', 'practice')->where('loan_id', $id)->get();
 
 		return $this->respond([
 			'data' => $this->insuranceTransformer->transformCollection($insurances->all())

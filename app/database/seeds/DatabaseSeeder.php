@@ -6,6 +6,7 @@ class DatabaseSeeder extends Seeder {
     'admingrader',
     'affiliates',
     'agencies',
+    'agents',
     'applicants',
     'comments',
     'commentstatus',
@@ -71,6 +72,7 @@ class DatabaseSeeder extends Seeder {
 
   protected $seeders = [
     'AdmingraderTableSeeder',
+    'AgentTableSeeder',
     'AffiliateTableSeeder',
     'AgenciesTableSeeder',
     'ApplicantsTableSeeder',

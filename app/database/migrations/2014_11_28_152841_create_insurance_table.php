@@ -10,12 +10,9 @@ class CreateInsuranceTable extends Migration {
 		Schema::create('insurance', function(Blueprint $table)
 		{
 			$table->increments('id');
-      $table->integer('crop_year');
       $table->integer('loan_id');
-      $table->string('agency')->nullable();
-      $table->string('agent')->nullable();
-      $table->string('agent_phone')->nullable();
-      $table->string('agent_email')->nullable();
+      $table->string('agency_id')->nullable();
+      $table->string('agent_id')->nullable();
       $table->string('policy')->nullable();
       $table->integer('loancounty_id')->nullable();
       $table->integer('loancrop_id')->nullable();

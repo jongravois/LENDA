@@ -3,44 +3,48 @@
 </style>
 <fieldset>
   <legend>Insurance Information</legend>
-  <!--<pre>{{loan.insurance | json}}</pre>-->
+  <!--<pre>{{feeder.agencies | json}}</pre>-->
   <div class="row" style="display:none;">
-    <div class="form-group col-md-3">
+    <div class="form-group col-xs-3">
       <label>Agency</label>
       <input type="text" class="form-control" ng-model="insurance[0].agency"/>
     </div>
-    <div class="form-group col-md-3">
+    <div class="form-group col-xs-3">
       <label>Agent</label>
       <input type="text" class="form-control" ng-model="insurance[0].agent"/>
     </div>
-    <div class="form-group col-md-3">
+    <div class="form-group col-xs-3">
       <label>Email</label>
       <input type="text" class="form-control" ng-model="insurance[0].agent_email"/>
     </div>
-    <div class="form-group col-md-3">
+    <div class="form-group col-xs-3">
       <label>Phone</label>
       <input type="text" name="phone" ui-mask="(999) 999-9999" ng-model="insurance[0].agent_phone" class="form-control"/>
     </div>
   </div>
   <br/><br/>
-  <div class="row col-md-12">
+  <div class="row col-xs-12">
     <table class="table table-striped rowed" style="width:100% !important;">
       <tr>
+        <th style="width:10%;">Agency</th>
         <th style="width:13%;">Locale</th>
-        <th style="width:13%;">Crop</th>
-        <th style="width:9%;">Type</th>
-        <th style="width:9%;">Option</th>
+        <th style="width:9%;">Crop</th>
+        <th style="width:7%;">Type</th>
+        <th style="width:7%;">Option</th>
         <th style="width:7%;">Price</th>
         <th style="width:6%;">Level</th>
         <th style="width:7%;">Acres</th>
         <th style="width:7%;">APH</th>
-        <th style="width:9%;">Guaranty</th>
+        <th style="width:8%;">Guaranty</th>
         <th style="width:7%;">Premium</th>
         <th style="width:6%;">Share</th>
-        <th style="width:9%;">Value</th>
+        <th style="width:8%;">Value</th>
       </tr>
-
-      <tr ng-repeat="i in loan.insurance">
+      <tr ng-if="insurance.length == 0">
+        <td colspan="13"><strong>No insurance policies found.</strong></td>
+      </tr>
+      <tr ng-repeat="i in insurance">
+        <td>{{i.agency}}</td>
         <td>{{i.locale}}</td>
         <td>{{i.practice}}</td>
         <td>
@@ -75,12 +79,137 @@
 
       <tr class="success">
         <td>Total</td>
-        <td colspan="10">&nbsp;</td>
+        <td colspan="11">&nbsp;</td>
         <td class="text-right">
           {{calcTotalValue() | displaynullcurrency}}
         </td>
       </tr>
     </table>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-1">&nbsp;</div>
+        <div class="col-xs-10">
+          <form>
+            <div class="row form-group">
+              <div class="col-xs-2">
+                <label>Agency</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" id="agency" ng-model="newInsurance.agency" typeahead="a.agency for a in feeder.agencies | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onAgencySelect($item, $model, $label)" autocomplete="false"/>
+              </div>
+              <div class="col-xs-2">
+                <label>Locale</label>
+              </div>
+              <div class="col-xs-3">
+                <!--TODO: HARD CODED!-->
+                <select name="locale" class="form-control" ng-model="newInsurance.loancounty_id">
+                  <option value="">Please select ...</option>
+                  <option value="1">LA - Madison</option>
+                  <option value="2">LA - Richland</option>
+                  <option value="3">LA - West Carroll</option>
+                  <option value="4">MS - Warren</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-2">
+                <label>Agent</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" id="agency" ng-model="newInsurance.agent" typeahead="a.agent for a in agencyAgents | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onAgentySelect($item, $model, $label)" autocomplete="false"/>
+              </div>
+              <div class="col-xs-2">
+                <label>Landlord</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" ng-model="newFarm.owner"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-2">
+                <label>Acres</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" ng-model="newFarm.acres"/>
+              </div>
+              <div class="col-xs-2">
+                <label>Percent Irrigated</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" ng-model="newFarm.percent_irrigated"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-2">
+                <label>Cash Rent</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" ng-model="newFarm.cash_rent"/>
+              </div>
+              <div class="col-xs-2">
+                <label>When Due?</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" ng-model="newFarm.when_due"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-2">
+                <label>Waived</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" ng-model="newFarm.waived"/>
+              </div>
+              <div class="col-xs-2">
+                <label>Share</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" ng-model="newFarm.share_rent"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-2">
+                <label>FSA Direct Payment</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" ng-model="newFarm.fsa_paid"/>
+              </div>
+              <div class="col-xs-2">
+                <label>Crop Practices</label>
+              </div>
+              <div class="col-xs-3">
+                <label>
+                  <input type="checkbox" name="irr" ng-model="newFarm.irr"/>&nbsp;IRR
+                  &nbsp;
+                  <input type="checkbox" name="ni" ng-model="newFarm.ni"/>&nbsp;NI
+                  &nbsp;
+                  <input type="checkbox" name="facirr" ng-model="newFarm.facirr"/>&nbsp;FACIR
+                  &nbsp;
+                  <input type="checkbox" name="facni" ng-model="newFarm.facni"/>&nbsp;FACNI
+                </label>
+              </div>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="row">
+              <div class="col-xs-10 form-group text-leftt">
+                <input type="submit" class="btn btn-xs btn-default" value="Add Farm" ng-click="addNewFarm(newFarm)"/>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-xs-1">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+  <br/><br/>
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateYield()">
+        NEXT
+      </button>
+    </div>
   </div>
 </fieldset>
 <!--<pre>{{insurance | json}}</pre>-->

@@ -7,6 +7,7 @@
       $state
     ){
       return {
+        agentsInAgency: agentsInAgency,
         averageArray: averageArray,
         countiesInState: countiesInState,
         diffInDates: diffInDates,
@@ -18,6 +19,10 @@
         putIt: putIt,
         returnColor: returnColor
       };
+
+      function agentsInAgency(id){
+        return $http.get(API_URL + '/agencies/' + id + '/agents');
+      }
 
       function averageArray(arr){
         var sum = arr.reduce(function(a,b) {return a+b;},0);

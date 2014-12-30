@@ -27,6 +27,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('admingrader', 'AdmingraderController');
   Route::resource('affiliates', 'AffiliatesController');
   Route::resource('agencies', 'AgenciesController');
+  Route::resource('agents', 'AgentsController');
   Route::resource('applicants', 'ApplicantsController');
   Route::resource('committees', 'CommitteeController');
   Route::resource('comments', 'CommentController');
@@ -84,6 +85,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('viewoptions', 'ViewoptionsController');
 
   Route::get('defaultexpenses/{id}/bycrop', 'DefaultexpensesController@byCrop');
+  Route::get('agencies/{id}/agents', 'AgentsController@byAgency');
   Route::get('loans/{id}/affiliates', 'AffiliatesController@byLoan');
   Route::get('loans/{id}/comments', 'CommentController@byLoan');
   Route::get('loans/{id}/commentstatus', 'CommentStatusController@pendingComments');
