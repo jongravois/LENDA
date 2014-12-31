@@ -93,18 +93,20 @@
         <div class="col-xs-10">
           <form>
             <div class="row form-group">
+              <!--AGENCY-->
               <div class="col-xs-2">
                 <label>Agency</label>
               </div>
               <div class="col-xs-3">
-                <input type="text" id="agency" ng-model="newInsurance.agency" typeahead="a.agency for a in feeder.agencies | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onAgencySelect($item, $model, $label)" autocomplete="false"/>
+                <input type="text" id="agency" ng-model="newPolicy.agency" typeahead="a.agency for a in feeder.agencies | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onAgencySelect($item, $model, $label)" autocomplete="false"/>
               </div>
+              <!--LOCALE-->
               <div class="col-xs-2">
                 <label>Locale</label>
               </div>
               <div class="col-xs-3">
-                <!--TODO: HARD CODED!-->
-                <select name="locale" class="form-control" ng-model="newInsurance.loancounty_id">
+                <!--TODO: HARD CODED! (get from farms)-->
+                <select name="locale" class="form-control" ng-model="newPolicy.loancounty_id">
                   <option value="">Please select ...</option>
                   <option value="1">LA - Madison</option>
                   <option value="2">LA - Richland</option>
@@ -113,88 +115,145 @@
                 </select>
               </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
+              <!--AGENT-->
               <div class="col-xs-2">
                 <label>Agent</label>
               </div>
               <div class="col-xs-3">
-                <input type="text" id="agency" ng-model="newInsurance.agent" typeahead="a.agent for a in agencyAgents | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onAgentySelect($item, $model, $label)" autocomplete="false"/>
+                <input type="text" id="agent" ng-model="newPolicy.agent" typeahead="a.agent for a in agencyAgents | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onAgentSelect($item, $model, $label)" autocomplete="false"/>
               </div>
+              <!--POLICY-->
               <div class="col-xs-2">
-                <label>Landlord</label>
+                <label>Policy</label>
               </div>
               <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="newFarm.owner"/>
+                <input type="text" class="form-control" ng-model="newPolicy.policy"/>
               </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
+              <!--AGENT_PHONE-->
+              <!--TODO: Autofill if Agent matches-->
+              <div class="col-xs-2">
+                <label>Agent's Phone</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" name="agents_phone" ng-model="newPolicy.agent_phone" ui-mask="(999) 999-9999"/>
+              </div>
+              <!--TYPE-->
+              <div class="col-xs-2">
+                <label>Type</label>
+              </div>
+              <div class="col-xs-3">
+                <select name="type" class="form-control" ng-model="newPolicy.type" ng-options="t.type as t.type for t in feeder.instypes">
+                  <option value="">Please select ...</option>
+                </select>
+              </div>
+            </div>
+            <div class="row form-group">
+              <!--AGENT_EMAIL-->
+              <!--TODO: Autofill if Agent matches-->
+              <div class="col-xs-2">
+                <label>Agent's Email</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" name="agent_email" ng-model="newPolicy.agent_email"/>
+              </div>
+              <!--OPTION-->
+              <div class="col-xs-2">
+                <label>Option</label>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" ng-model="newPolicy.option"/>
+              </div>
+            </div>
+            <div class="row form-group">
+              <!--CROP SELECT-->
+              <div class="col-xs-2">
+                <label>Crop</label>
+              </div>
+              <div class="col-xs-3">
+                <select name="loancrop_id" class="form-control" ng-model="newPolicy.loancrop_id" ng-options="c.id as c.crop for c in feeder.crops">
+                  <option value="">Please select...</option>
+                </select>
+              </div>
+              <!--CROP PRACTICE-->
+              <div class="col-xs-2">
+                <label>Crop Practice</label>
+              </div>
+              <div class="col-xs-3">
+                <span ng-if="newPolicy.loancrop_id != 2">
+                  <select name="croppractice_id" class="form-control" ng-model="newPolicy.croppractice_id">
+                    <option value="">Please select...</option>
+                    <option value="1">IRR</option>
+                    <option value="2">NI</option>
+                  </select>
+                </span>
+                <span ng-if="newPolicy.loancrop_id == 2">
+                  <select name="croppractice_id" class="form-control" ng-model="newPolicy.croppractice_id">
+                    <option value="">Please select...</option>
+                    <option value="1">IRR</option>
+                    <option value="2">NI</option>
+                    <option value="3">FACIR</option>
+                    <option value="4">FACNI</option>
+                  </select>
+                </span>
+              </div>
+            </div>
+            <div class="row form-group">
+              <!--ACRES-->
               <div class="col-xs-2">
                 <label>Acres</label>
               </div>
               <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="newFarm.acres"/>
+                <input type="text" class="form-control" ng-model="newPolicy.acres"/>
               </div>
+              <!--LEVEL-->
               <div class="col-xs-2">
-                <label>Percent Irrigated</label>
+                <label>Level</label>
               </div>
               <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="newFarm.percent_irrigated"/>
+                <input type="text" class="form-control" ng-model="newPolicy.level"/>
               </div>
             </div>
-            <div class="row">
+            <!--TODO: when practice, insert defaults-->
+            <div class="row form-group">
+              <!--PRICE-->
               <div class="col-xs-2">
-                <label>Cash Rent</label>
+                <label>Price</label>
               </div>
               <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="newFarm.cash_rent"/>
+                <input type="text" class="form-control" ng-model="newPolicy.price"/>
               </div>
+              <!--APH-->
               <div class="col-xs-2">
-                <label>When Due?</label>
+                <label>APH</label>
               </div>
               <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="newFarm.when_due"/>
+                <input type="text" class="form-control" ng-model="newPolicy.aph"/>
               </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
+              <!--PREMIUM-->
               <div class="col-xs-2">
-                <label>Waived</label>
+                <label>Premium</label>
               </div>
               <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="newFarm.waived"/>
+                <input type="text" class="form-control" ng-model="newPolicy.premium"/>
               </div>
+              <!--SHARE-->
               <div class="col-xs-2">
-                <label>Share</label>
+                <label>Share %</label>
               </div>
               <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="newFarm.share_rent"/>
+                <input type="text" class="form-control" ng-model="newPolicy.share"/>
               </div>
             </div>
-            <div class="row">
-              <div class="col-xs-2">
-                <label>FSA Direct Payment</label>
-              </div>
-              <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="newFarm.fsa_paid"/>
-              </div>
-              <div class="col-xs-2">
-                <label>Crop Practices</label>
-              </div>
-              <div class="col-xs-3">
-                <label>
-                  <input type="checkbox" name="irr" ng-model="newFarm.irr"/>&nbsp;IRR
-                  &nbsp;
-                  <input type="checkbox" name="ni" ng-model="newFarm.ni"/>&nbsp;NI
-                  &nbsp;
-                  <input type="checkbox" name="facirr" ng-model="newFarm.facirr"/>&nbsp;FACIR
-                  &nbsp;
-                  <input type="checkbox" name="facni" ng-model="newFarm.facni"/>&nbsp;FACNI
-                </label>
-              </div>
-            </div>
+
             <div class="row">&nbsp;</div>
             <div class="row">
-              <div class="col-xs-10 form-group text-leftt">
-                <input type="submit" class="btn btn-xs btn-default" value="Add Farm" ng-click="addNewFarm(newFarm)"/>
+              <div class="col-xs-10 form-group text-left">
+                <input type="submit" class="btn btn-xs btn-default" value="Add Policy" ng-click="addNewPolicy(newPolicy)"/>
               </div>
             </div>
           </form>

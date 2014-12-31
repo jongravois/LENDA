@@ -1,4 +1,5 @@
 //TODO: OVERALL APP
+//TODO: -- Return USER or ERROR for login and register
 //TODO: [1] Break app into modules and lazy-load as needed
 //TODO: [2] Move calculations to client
 //TODO: [3] Create Laravel Listeners

@@ -30,6 +30,11 @@
             data.agencies = response.data.data;
           });
         }
+        function getCrops(){
+          return $http.get(API_URL + '/crops').then(function success(response){
+            data.crops = response.data.data;
+          });
+        }
         function getCounties(){
           return $http.get(API_URL + '/counties').then(function(response){
             data.counties = response.data.data;
@@ -94,6 +99,7 @@
           // trigger http calls to get data.
           getAgencies();
           getCounties();
+          getCrops();
           getDistributors();
           getEntityTypes();
           getInsTypes();

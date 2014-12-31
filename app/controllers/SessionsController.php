@@ -15,6 +15,7 @@ class SessionsController extends BaseController{
         return View::make('sessions.change');
       } // end if
       return Redirect::to('/app');
+      // TODO: RETURN CURRENT USER JSON or ERROR VIA API
     } // end if
     return Redirect::back()->withInput();
   }

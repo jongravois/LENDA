@@ -1,9 +1,28 @@
 <?php
 
+//TODO: All non-Laravel routes should be prefixed with 'api'
 Route::get('/', 'AppController@index')->before('auth');
 Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
 Route::get('password', 'SessionsController@password_change');
+Route::get('api/login', function(){
+  if(Auth::attempt(Input::only('email', 'password'))){
+    //dd(Auth::user());
+    if(Input::get('password') == 'changeme'){
+      return View::make('sessions.change');
+    } // end if
+    return 'a token'; //TODO: JWT or some other token
+  } // end if
+  return Redirect::back()->withInput();
+});
+Route::get('api/user/current', function(){
+  if(Auth::check()){
+    //TODO: if password == changeme, change_password is true
+    return Auth::user();
+  } else {
+    return ('401'); //TODO: // return this with error code and message
+  } // end if
+});
 Route::resource('sessions', 'SessionsController');
 
 Route::get('app', [
@@ -15,7 +34,9 @@ Route::get('env', function(){
   return App::environment();
 });
 
-Route::get('test', function(){});
+Route::get('test', function(){
+  return View::make('sessions.change');
+});
 
 Route::get('emailtest', function(){
   Mail::send('emails.welcome', [], function($message){
@@ -24,6 +45,7 @@ Route::get('emailtest', function(){
 });
 
 Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
+  //TODO: Move authentication here
   Route::resource('admingrader', 'AdmingraderController');
   Route::resource('affiliates', 'AffiliatesController');
   Route::resource('agencies', 'AgenciesController');
@@ -68,6 +90,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('locations', 'LocationsController');
   Route::resource('notifications', 'NotificationController');
   Route::resource('partners', 'PartnersController');
+  Route::resource('practices', 'PracticesController');
   Route::resource('prerequisites', 'PrerequisitesController');
   Route::resource('priorliens', 'PriorliensController');
   Route::resource('ratioconstraints', 'RatioconstraintsController');

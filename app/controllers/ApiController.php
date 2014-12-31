@@ -18,6 +18,11 @@ class ApiController extends BaseController {
     return $this;
   }
 
+  public function respondNotAuthorized($message = 'Not Authorized')
+  {
+    return $this->setStatusCode('401')->respondWithError($message);
+  }
+
   public function respondNotFound($message = 'Not Found!')
   {
     return $this->setStatusCode(IlluminateResponse::HTTP_NOT_FOUND)->respondWithError($message);
