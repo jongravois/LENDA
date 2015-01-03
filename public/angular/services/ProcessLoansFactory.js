@@ -1,42 +1,55 @@
 (function(){
     'use strict';
     angular.module('ARM')
-      .factory('LoanProcessor', function LoanProcessor($q, LoansFactory){
-          function updateLoansData(response){
-              var allLoans = response.data.data;
-              return $q.all(allLoans.map(updateLoanData));
-          }
+      .factory('LoansProcessor', function LoansProcessor(
+        $q,
+        LoansFactory
+      ){
+        function getLoansWithExtraData(){
+          return LoansFactory.getLoans().then(updateLoansData);
+        }
 
-          function updateLoanData(loan){
-              return $q.all({
-                  need_vote: getPendingVotes(loan),
-                  has_comment: getPendingComments(loan)
-              })
-                .then(function(updatedData){
-                    angular.extend(loan,updatedData);
-                    return loan;
-                })
-          }
+        function getPendingComments(loan){
+          return LoansFactory.getPendingComments(loan.id)
+            .then(function(response){
+              return (response.data.data.length === 0);
+            });
+        }
 
-          function getPendingVotes(loan){
-              return LoansFactory.getPendingVotes(loan.id)
-                .then(function(response){
-                    return (response.data.data.length === 0);
-                });
-          }
+        function getPendingVotes(loan){
+          return LoansFactory.getPendingVotes(loan.id)
+            .then(function(response){
+                return (response.data.data.length === 0);
+            });
+        }
 
-          function getPendingComments(loan){
-              return LoansFactory.getPendingComments(loan.id)
-                .then(function(response){
-                    return (response.data.data.length === 0);
-                });
-          }
+        function getTotalInsValue(loan){
+          return LoansFactory.getInsuranceTotal(loan.id)
+            .then(function(response){
+              return response.data;
+            });
+        }
+
+        function updateLoanData(loan){
+          return $q.all({
+            need_vote: getPendingVotes(loan),
+            has_comment: getPendingComments(loan),
+            total_ins_value: getTotalInsValue(loan)
+          })
+            .then(function(updatedData){
+              angular.extend(loan,updatedData);
+              return loan;
+            })
+        }
+
+        function updateLoansData(response){
+          var allLoans = response.data.data;
+          return $q.all(allLoans.map(updateLoanData));
+        }
 
           //PUBLIC API
           return {
-              getLoansWithExtraData: function(){
-                  return LoansFactory.getLoans().then(updateLoansData);
-              }
+              getLoansWithExtraData: getLoansWithExtraData
           }
 
         });

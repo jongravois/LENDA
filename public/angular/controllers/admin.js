@@ -1,5 +1,6 @@
 (function(){
-  angular.module('ARM')
+  angular
+    .module('ARM')
     .controller('AdminController', function($scope){
       $scope.today = new Date();
     })

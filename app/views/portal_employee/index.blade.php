@@ -80,8 +80,7 @@
 <script src="angular/controllers/newloan.js"></script>
 <script src="angular/controllers/newaffiliates.js"></script>
 <script src="angular/controllers/newapplicant.js"></script>
-<script src="angular/controllers/newbudgets.js"></script>
-<script src="angular/controllers/newclosing.js"></script>
+<script src="angular/controllers/newbudget.js"></script>
 <script src="angular/controllers/newcrops.js"></script>
 <script src="angular/controllers/newdistributor.js"></script>
 <script src="angular/controllers/newfarmer.js"></script>
@@ -91,7 +90,9 @@
 <script src="angular/controllers/newinsurance.js"></script>
 <script src="angular/controllers/newplannedcrops.js"></script>
 <script src="angular/controllers/newquests.js"></script>
+<script src="angular/controllers/newprerequisites.js"></script>
 <script src="angular/controllers/newreferences.js"></script>
+<script src="angular/controllers/newterms.js"></script>
 <script src="angular/controllers/newuploads.js"></script>
 <script src="angular/controllers/newyield.js"></script>
 <script src="angular/controllers/edit.js"></script>
@@ -111,6 +112,7 @@
 <script src="angular/services/UsersFactory.js"></script>
 <script src="angular/services/FeederFactory.js"></script>
 <script src="angular/services/LoansFactory.js"></script>
+<script src="angular/services/ProcessLoanFactory.js"></script>
 <script src="angular/services/ProcessLoansFactory.js"></script>
 <script src="angular/services/FarmersFactory.js"></script>
 <script src="angular/services/ApplicantsFactory.js"></script>
@@ -121,6 +123,8 @@
 <script src="angular/services/MessagingFactory.js"></script>
 <script src="angular/services/LoggingFactory.js"></script>
 <!-- FACTORIES -->
+<!--SERVICES-->
+<!--SERVICES-->
 <!-- APP SPECIFIC -->
 
 <script type="text/javascript"> 

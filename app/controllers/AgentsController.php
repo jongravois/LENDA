@@ -35,9 +35,9 @@ class AgentsController extends ApiController {
 
 	public function store()
 	{
-		Agents::create(Input::all());
+		$agent = Agents::create(Input::all());
 
-		return $this->respondCreated('Agent created.');
+		return $this->respondCreated($agent->id);
 	}
 
 	public function update($id)

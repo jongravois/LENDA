@@ -1,6 +1,7 @@
 (function(){
   'use strict';
-  angular.module('ARM')
+  angular
+    .module('ARM')
     .controller('NewLoanController', function(
       $scope,
       $http,
@@ -10,14 +11,21 @@
       AppFactory,
       FarmersFactory,
       GlobalsFactory,
-      LoansFactory
+      LoansFactory,
+      LoanProcessor
     ){
       $scope.newapplication = true; //flag for screen buttons
       $scope.currentScreen = 0;
-      LoansFactory.getLoan($stateParams.loanID).then(function(response) {
-        $scope.loan = response.data.data;
-      });
-
+      //TODO: Copy in newinsurance.js -- refactor for DRY
+      LoansFactory.getLoan($stateParams.loanID)
+        .then(function success(response){
+          var loan = response.data.data;
+          LoansFactory.getInsuranceTotal(loan.id)
+            .then(function(response){
+              loan.total_ins_value = response.data;
+            });
+          $scope.loan = loan;
+        });
       $scope.farmer = $scope.farmer || {};
 
       if(!$scope.screens){

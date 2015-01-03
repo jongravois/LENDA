@@ -1,22 +1,12 @@
 (function(){
   'use strict';
-  angular.module('ARM')
+  angular
+    .module('ARM')
     .controller('MainController', function(
-      $scope,
-      $state,
-      $q,
-      _,
-      toastr,
-      FILE_URL,
-      AppFactory,
-      CommentsFactory,
-      FarmersFactory,
-      FeederFactory,
-      GlobalsFactory,
-      LendaFactory,
-      LoansFactory,
-      LoanProcessor,
-      UsersFactory
+      $scope, $state, $q, _, toastr, FILE_URL,
+      AppFactory, CommentsFactory, FarmersFactory,
+      FeederFactory, GlobalsFactory, LendaFactory,
+      LoansFactory, LoansProcessor, UsersFactory
       ){
       $scope.user_id = $('#user_id').data('id');
       $scope.landing_view = 'settings';
@@ -45,7 +35,7 @@
           {id: $scope.globals.PY5, year: $scope.globals.PY5},
           {id: $scope.globals.PY6, year: $scope.globals.PY6},
         ];
-        LoanProcessor.getLoansWithExtraData()
+        LoansProcessor.getLoansWithExtraData()
           .then(function(allLoans){
             $scope.loans = allLoans;
             $scope.loanList = _.filter(allLoans, function(i) { return i.status_id == '1' && i.crop_year == $scope.globals.crop_year; });
@@ -61,12 +51,12 @@
       $scope.feeder = FeederFactory.getObject();
       
       LoansFactory.getCrops().then(function success(response){
-              $scope.crops = response.data.data;
-            });
+        $scope.crops = response.data.data;
+      });
       
       FarmersFactory.getFarmers().then(function success(response){
-              $scope.farmers = response.data.data;
-            });
+        $scope.farmers = response.data.data;
+      });
 
       //SCOPE FUNCTIONS
       $scope.getColor = AppFactory.returnColor;

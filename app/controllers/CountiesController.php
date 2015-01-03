@@ -38,6 +38,159 @@ class CountiesController extends ApiController {
 			return $co;
 		}
 
+	public function getDefaults($id)
+	{
+		$defs = Countycropdefault::where('county_id', $id)->get();
+		//return $defs;
+		return array_map(function($defs)
+		{
+			return [
+				[],
+				[
+					[
+						'price' => 0,
+						'ins_price' => 0,
+						'aph' => (double) 0
+					],
+					[
+						'price' => (double) $defs->price_corn_irr,
+						'ins_price' => (double) $defs->insured_price_corn_irr,
+						'aph' => (double) $defs->yield_corn_irr
+					],
+					[
+						'price' => (double) $defs->price_corn_ni,
+						'ins_price' => (double) $defs->insured_price_corn_ni,
+						'aph' => (double) $defs->yield_corn_ni
+					]
+				],
+				[
+					[
+						'price' => 0,
+						'ins_price' => 0,
+						'aph' => 0
+					],
+					[
+						'price' => (double) $defs->price_soybeans_irr,
+						'ins_price' => (double) $defs->insured_price_soybeans_irr,
+						'aph' => (double) $defs->yield_soybeans_irr
+					],
+					[
+						'price' => (double) $defs->price_soybeans_ni,
+						'ins_price' => (double) $defs->insured_price_soybeans_ni,
+						'aph' => (double) $defs->yield_soybeans_ni
+					]
+				],
+				[
+					[
+						'price' => 0,
+						'ins_price' => 0,
+						'aph' => 0
+					],
+					[
+						'price' => (double) $defs->price_sorghum_irr,
+						'ins_price' => (double) $defs->insured_price_sorghum_irr,
+						'aph' => (double) $defs->yield_sorghum_irr
+					],
+					[
+						'price' => (double) $defs->price_sorghum_ni,
+						'ins_price' => (double) $defs->insured_price_sorghum_ni,
+						'aph' => (double) $defs->yield_sorghum_ni
+					]
+				],
+				[
+					[
+						'price' => 0,
+						'ins_price' => 0,
+						'aph' => 0
+					],
+					[
+						'price' => (double) $defs->price_wheat_irr,
+						'ins_price' => (double) $defs->insured_price_wheat_irr,
+						'aph' => (double) $defs->yield_wheat_irr
+					],
+					[
+						'price' => (double) $defs->price_wheat_ni,
+						'ins_price' => (double) $defs->insured_price_wheat_ni,
+						'aph' => (double) $defs->yield_wheat_ni
+					]
+				],
+				[
+					[
+						'price' => 0,
+						'ins_price' => 0,
+						'aph' => 0
+					],
+					[
+						'price' => (double) $defs->price_cotton_irr,
+						'ins_price' => (double) $defs->insured_price_cotton_irr,
+						'aph' => (double) $defs->yield_cotton_irr
+					],
+					[
+						'price' => (double) $defs->price_cotton_ni,
+						'ins_price' => (double) $defs->insured_price_cotton_ni,
+						'aph' => (double) $defs->yield_cotton_ni
+					]
+				],
+				[
+					[
+						'price' => 0,
+						'ins_price' => 0,
+						'aph' => 0
+					],
+					[
+						'price' => (double) $defs->price_rice_irr,
+						'ins_price' => (double) $defs->insured_price_rice_irr,
+						'aph' => (double) $defs->yield_rice_irr
+					],
+					[
+						'price' => (double) $defs->price_rice_ni,
+						'ins_price' => (double) $defs->insured_price_rice_ni,
+						'aph' => (double) $defs->yield_rice_ni
+					]
+				],
+				[
+					[
+						'price' => 0,
+						'ins_price' => 0,
+						'aph' => 0
+					],
+					[
+						'price' => (double) $defs->price_peanuts_irr,
+						'ins_price' => (double) $defs->insured_price_peanuts_irr,
+						'aph' => (double) $defs->yield_peanuts_irr
+					],
+					[
+						'price' => (double) $defs->price_peanuts_ni,
+						'ins_price' => (double) $defs->insured_price_peanuts_ni,
+						'aph' => (double) $defs->yield_peanuts_ni
+					]
+				],
+				[
+					[
+						'price' => 0,
+						'ins_price' => 0,
+						'aph' => 0
+					],
+					[
+						'price' => (double) $defs->price_sugarcane_irr,
+						'ins_price' => (double) $defs->insured_price_sugarcane_irr,
+						'aph' => (double) $defs->yield_sugarcane_irr
+					],
+					[
+						'price' => (double) $defs->price_sugarcane_ni,
+						'ins_price' => (double) $defs->insured_price_sugarcane_ni,
+						'aph' => (double) $defs->yield_sugarcane_ni
+					]
+				]
+			];
+		}, $defs->all());
+	}
+
+	public function getLocale($id)
+	{
+		return County::where('id', $id)->get(['locale']);
+	}
+
 	public function byLoan($id)
 	{
 		/*
@@ -58,15 +211,6 @@ class CountiesController extends ApiController {
 		$counties = County::where('state_id', $stateID)->get();
 		$res = ['data' => $counties];
 		return $res;
-/*
-		if( $counties->isEmpty()){
-			return $this->respondNotFound('County does not exist.');
-		} // end if
-
-		return $this->respond([
-			'data' => $this->countyTransformer->transform($counties->all())
-		]);
-*/
 	}
 
 	private function tform($county)

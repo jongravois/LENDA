@@ -1,6 +1,7 @@
 (function(){
   'use strict';
-  angular.module('ARM')
+  angular
+    .module('ARM')
     .controller('NewFarmsController', function(
       $scope,
       $stateParams,
@@ -29,6 +30,7 @@
       };
 
       //TODO: Prevent empty records from being submitted
+      //TODO: On Screen Move - $scope.loan.farms = $scope.farms???
       $scope.addNewFarm = function(obj){
         obj.loan_id = idLoan;
         LoansFactory.insertFarm(obj).then(function success(response){

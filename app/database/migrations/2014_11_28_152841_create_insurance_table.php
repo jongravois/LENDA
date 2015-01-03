@@ -23,10 +23,11 @@ class CreateInsuranceTable extends Migration {
       $table->double('price')->nullable();
       $table->double('aph')->nullable();
       $table->double('level')->nullable();
-      $table->double('guaranty')->nullable();
       $table->double('premium')->nullable();
       $table->double('share')->nullable();
-			$table->timestamps();
+      $table->double('guaranty')->nullable();
+      $table->double('value')->nullable();
+      $table->timestamps();
 		});
 	}
 

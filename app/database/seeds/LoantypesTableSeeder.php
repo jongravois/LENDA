@@ -17,7 +17,7 @@ class LoantypesTableSeeder extends Seeder {
       'ltPath'   => 'agp'
     ]);
     Loantype::create([
-      'loantype' => 'Ag-Pro fasttrack',
+      'loantype' => 'Ag-Pro Fasttrack',
       'ltPath'   => 'apf'
     ]);
     Loantype::create([

@@ -1,6 +1,6 @@
 (function(){
     'use strict';
-    angular.module('SessionsController', function($scope){
-
-    });
+    angular
+      .module('ARM')
+      .controller('SessionsController', function($scope){});
 })();

@@ -77,7 +77,7 @@ class ScreensTableSeeder extends Seeder {
 
     Screen::create([
       'loantype_id' => 1,
-      'screen' => 'closing',
+      'screen' => 'terms',
       'sort_order' => 13
     ]);
 
@@ -161,7 +161,7 @@ class ScreensTableSeeder extends Seeder {
 
     Screen::create([
       'loantype_id' => 2,
-      'screen' => 'closing',
+      'screen' => 'terms',
       'sort_order' => 14
     ]);
 
@@ -239,7 +239,7 @@ class ScreensTableSeeder extends Seeder {
 
     Screen::create([
       'loantype_id' => 3,
-      'screen' => 'closing',
+      'screen' => 'terms',
       'sort_order' => 13
     ]);
 
@@ -293,7 +293,7 @@ class ScreensTableSeeder extends Seeder {
 
     Screen::create([
       'loantype_id' => 4,
-      'screen' => 'closing',
+      'screen' => 'terms',
       'sort_order' => 9
     ]);
 
@@ -347,7 +347,7 @@ class ScreensTableSeeder extends Seeder {
 
     Screen::create([
       'loantype_id' => 5,
-      'screen' => 'closing',
+      'screen' => 'terms',
       'sort_order' => 9
     ]);
 
@@ -407,7 +407,7 @@ class ScreensTableSeeder extends Seeder {
 
     Screen::create([
       'loantype_id' => 6,
-      'screen' => 'closing',
+      'screen' => 'terms',
       'sort_order' => 10
     ]);
 
@@ -455,7 +455,7 @@ class ScreensTableSeeder extends Seeder {
 
     Screen::create([
       'loantype_id' => 7,
-      'screen' => 'closing',
+      'screen' => 'terms',
       'sort_order' => 8
     ]);
   }

@@ -1,6 +1,7 @@
 (function(){
   'use strict';
-  angular.module('ARM')
+  angular
+    .module('ARM')
     .controller('NewFinancialsController', function($scope, $stateParams, LoansFactory){
       //TODO: There are no crops for Planned Crop Constraints
       if(!$scope.loan){

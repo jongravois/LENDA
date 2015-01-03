@@ -1,5 +1,6 @@
 (function(){
   'use strict';
-  angular.module('ARM')
+  angular
+    .module('ARM')
     .controller('NewPlannedCropsController', function($scope){});
 })();

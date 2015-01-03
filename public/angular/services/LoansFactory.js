@@ -27,24 +27,31 @@
         getFinancials: getFinancials,
         getGuarantors: getGuarantors,
         getGrader: getGrader,
+        getInsuranceDefaults: getInsuranceDefaults,
         getInsurancePolicies: getInsurancePolicies,
+        getInsuranceTotal: getInsuranceTotal,
         getLoan: getLoan,
         getLoanCounties: getLoanCounties,
         getLoanCrops: getLoanCrops,
         getLoans: getLoans,
+        //getLocale: getLocale,
         getPrerequisites: getPrerequisites,
         getPriorLiens: getPriorLiens,
         getQuests: getQuests,
         getPendingComments: getPendingComments,
         getPendingVotes: getPendingVotes,
+        getPracticeLabel: getPracticeLabel,
         getReferences: getReferences,
         getScreens: getScreens,
         getSelectedCrops: getSelectedCrops,
         getSystemics: getSystemics,
         getTotalAcres: getTotalAcres,
+        insertAgent: insertAgent,
         insertFarm: insertFarm,
         insertLoan: insertLoan,
-        insertLoanCrop: insertLoanCrop
+        insertLoanCrop: insertLoanCrop,
+        insertPolicy: insertPolicy,
+        localeFromCounty: localeFromCounty
       };
 
       function createAffilate(o){
@@ -151,8 +158,16 @@
         return $http.get('angular/json/grader.json');
       }
 
+      function getInsuranceDefaults(id){
+        return $http.get(API_URL + '/counties/' + id + '/defaults');
+      }
+
       function getInsurancePolicies(id){
         return $http.get(API_URL + '/loans/' + id + '/insurance');
+      }
+
+      function getInsuranceTotal(id){
+        return $http.get(API_URL + '/insurance/' + id + '/value');
       }
 
       function getLoan(id){
@@ -177,6 +192,12 @@
 
       function getPendingVotes(id){
         return $http.get(API_URL + '/loans/' + id + '/pendingvotes');
+      }
+
+      function getPracticeLabel(cropID, practiceID){
+        var crops = ['Corn', 'Soybeans', 'Sorghum', 'Wheat', 'Cotton', 'Rice', 'Peanuts', 'Sugar Cane'];
+        var practs = ['IRR', 'NI', 'FACIR', 'FACNI'];
+        return crops[cropID] + ' ' + practs[practiceID];
       }
 
       function getPrerequisites(id){
@@ -215,6 +236,10 @@
           });
       }
 
+      function insertAgent(obj){
+        return $http.post(API_URL + '/agents', obj);
+      }
+
       function insertFarm(obj){
         return $http.post(API_URL + '/farms', obj);
       }
@@ -225,6 +250,19 @@
 
       function insertLoanCrop(obj){
         return $http.post(API_URL + '/loancrops', obj);
+      }
+
+      function insertPolicy(obj){
+        return $http.post(API_URL + '/insurance', obj);
+      }
+
+      function localeFromCounty(id){
+        $http.get(API_URL + '/counties/' + id + '/locale')
+          .then(function success(rsp){
+            //console.log(rsp);
+            return rsp.data[0].locale;
+          });
+
       }
 
     });

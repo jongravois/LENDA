@@ -1,9 +1,10 @@
 //TODO: OVERALL APP
 //TODO: -- Return USER or ERROR for login and register
 //TODO: [1] Break app into modules and lazy-load as needed
-//TODO: [2] Move calculations to client
+//TODO: [2] Move calculations to client or to server -- not both
 //TODO: [3] Create Laravel Listeners
 //TODO: [4] Combine Comments & Responses (distinguish using type) and add nullable comment_id (for responses)
+//TODO: [5] Need function to delete loan and all related records
 // TODO: Fixed Header??? Table Fixed Headers
 // TODO: Unit of Measurements Switcher
 // TODO: Redirect to ChangePassword if pw = 'changeme' & never logged in

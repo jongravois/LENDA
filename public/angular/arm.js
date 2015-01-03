@@ -261,6 +261,11 @@
             templateUrl: 'angular/views/loans/newapplicant.html',
             controller: 'NewApplicantController'
           })
+          .state('new.budget', {
+            url: '/budget',
+            templateUrl: 'angular/views/loans/newbudget.html',
+            controller: 'NewBudgetController'
+          })
           .state('new.crops', {
             url: '/crops',
             templateUrl: 'angular/views/loans/newcrops.html',
@@ -301,10 +306,20 @@
             templateUrl: 'angular/views/loans/quests.html',
             controller: 'NewQuestsController'
           })
+          .state('new.prerequisites', {
+            url: '/prerequisites',
+            templateUrl: 'angular/views/loans/newprerequisites.html',
+            controller: 'NewPrerequisitesController'
+          })
           .state('new.references', {
             url: '/references',
             templateUrl: 'angular/views/loans/newreferences.html',
             controller: 'NewReferencesController'
+          })
+          .state('new.terms', {
+            url: '/terms',
+            templateUrl: 'angular/views/loans/newterms.html',
+            controller: 'NewTermsController'
           })
           .state('new.yield', {
             url: '/yield',

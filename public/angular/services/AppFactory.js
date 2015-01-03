@@ -9,6 +9,8 @@
       return {
         agentsInAgency: agentsInAgency,
         averageArray: averageArray,
+        calcInsuranceGuaranty: calcInsuranceGuaranty,
+        calcInsuranceValue: calcInsuranceValue,
         countiesInState: countiesInState,
         diffInDates: diffInDates,
         getDefaultDueDate: getDefaultDueDate,
@@ -23,17 +25,20 @@
       function agentsInAgency(id){
         return $http.get(API_URL + '/agencies/' + id + '/agents');
       }
-
       function averageArray(arr){
         var sum = arr.reduce(function(a,b) {return a+b;},0);
         var avg = sum / arr.length;
         return avg;
       }
-
+      function calcInsuranceGuaranty(obj){
+        return ((obj.aph*1 * obj.level/100 * obj.price) - obj.premium) * (obj.acres * obj.share/100);
+      }
+      function calcInsuranceValue(obj){
+        return (obj.guaranty - obj.premium) * obj.share/100 * obj.acres;
+      }
       function countiesInState(id){
         return $http.get(API_URL + '/states/' + id + '/counties');
       }
-
       function diffInDates(first,second){
         var intFirst = parseInt(first);
         var intSecond = parseInt(second);
@@ -75,7 +80,6 @@
         }
       }
       function moveToNextNewLoanScreen(screenName, $stateParams) {
-        //TODO: REMOVE DEBUGGER
         //debugger;
         $state.go('new.' + screenName, $stateParams);
       }

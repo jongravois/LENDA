@@ -61,10 +61,17 @@ class InsuranceController extends ApiController {
 
 	public function byLoan($id)
 	{
-		$insurances = Insurance::with('agency', 'county', 'crop', 'practice')->where('loan_id', $id)->get();
+		$insurances = Insurance::with('agency', 'agent', 'county', 'crop', 'practice')->where('loan_id', $id)->get();
 
 		return $this->respond([
 			'data' => $this->insuranceTransformer->transformCollection($insurances->all())
 		]);
+	}
+
+	public function	totalValueByLoan($id)
+	{
+		$val = Insurance::where('loan_id',$id)->sum('value');
+		if(!$val){ return 0;}
+		return $val;
 	}
 }

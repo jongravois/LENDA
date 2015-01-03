@@ -1,6 +1,7 @@
 (function(){
     'use strict';
-    angular.module('ARM')
+    angular
+      .module('ARM')
     .controller('EditAppController', function(
       $scope,
       $state,
@@ -13,8 +14,8 @@
       FarmersFactory,
       LoansFactory
     ){
-      $scope.loan = $scope.loan || {};
       $scope.loan_id = $stateParams.id;
+      $scope.loan = $scope.loan || {};
       $scope.newapplication = false;
 
       //TODO: Verify that existing objects should be kept
@@ -24,26 +25,27 @@
       $scope.joints = $scope.joints || {};
       $scope.corps = $scope.corps || {};
         
-      LoansFactory.getLoan($stateParams.id).then(function success(response){
-        $scope.loan = response.data.data;
-        LoansFactory.getFinancials($stateParams.id).then(function success(response){
-          $scope.loan.fins = response.data.data[0];
-        });
-        FarmersFactory.getFarmer($scope.loan.farmer_id).then(function success(response){
-          $scope.farmer = response.data.data;
-        });
-        ApplicantsFactory.getApplicant($scope.loan.applicant_id).then(function success(response){
-          $scope.applicant = response.data.data;
-          ApplicantsFactory.getPartners($scope.loan_id).then(function success(response){
-            $scope.partners = response.data.data;
+      LoansFactory.getLoan($stateParams.id)
+        .then(function success(response){
+          $scope.loan = response.data.data;
+          LoansFactory.getFinancials($stateParams.id).then(function success(response){
+            $scope.loan.fins = response.data.data[0];
           });
-          ApplicantsFactory.getJointVentures($scope.loan_id).then(function success(response){
-            $scope.joints = response.data.data;
+          FarmersFactory.getFarmer($scope.loan.farmer_id).then(function success(response){
+            $scope.farmer = response.data.data;
           });
-          ApplicantsFactory.getCorporations($scope.loan_id).then(function success(response){
-            $scope.corps = response.data.data;
+          ApplicantsFactory.getApplicant($scope.loan.applicant_id).then(function success(response){
+            $scope.applicant = response.data.data;
+            ApplicantsFactory.getPartners($scope.loan_id).then(function success(response){
+              $scope.partners = response.data.data;
+            });
+            ApplicantsFactory.getJointVentures($scope.loan_id).then(function success(response){
+              $scope.joints = response.data.data;
+            });
+            ApplicantsFactory.getCorporations($scope.loan_id).then(function success(response){
+              $scope.corps = response.data.data;
+            });
           });
-        });
       });
 
       LoansFactory.getAffiliates($scope.loan_id).then(function success(response){
@@ -79,9 +81,15 @@
       LoansFactory.getGrader($scope.loan_id).then(function success(response){
           $scope.loan.grader = response.data[0];
         });
-      LoansFactory.getInsurancePolicies($scope.loan_id).then(function success(response){
-                $scope.loan.insurance = response.data.data;
-              });
+
+      LoansFactory.getInsurancePolicies($scope.loan_id)
+        .then(function success(rsp){
+          var pols = rsp.data.data;
+          angular.forEach(pols, function(value, key){
+            this.push('guaranty:' + AppFactory.calcInsuranceGuaranty(this));
+        });
+        $scope.insurance = pols;
+      });
       LoansFactory.getLoanCounties($scope.loan_id).then(function success(response){
         $scope.loanCounties = response.data.data;
       });

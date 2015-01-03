@@ -94,7 +94,7 @@ public function transform($arr)
 		'reconcilliation' => (integer) $arr['reconcilliation'],
 		'account_classification' => (integer) $arr['account_classification'],
     'last_activity' => $arr['updated_at'],
-    'insurance' => $arr['insurance'],
+    //'insurance' => $arr['insurance'],
     'fins' => [
       'cpa_financials' => (boolean) $arr['financials']['cpa_financials'],
       'credit_score' => (double) $arr['financials']['credit_score'],

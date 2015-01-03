@@ -1,6 +1,7 @@
 (function(){
     'use strict';
-    angular.module('ARM')
+    angular
+      .module('ARM')
       .controller('LegalDocsController', function($scope){})
       .controller('LegendController', function($scope){})
       .controller('LibraryController', function($scope){

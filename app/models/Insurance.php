@@ -3,7 +3,7 @@
 class Insurance extends \Eloquent {
 	protected $table = 'insurance';
 
-	protected $fillable = ['loan_id', 'agency_id', 'agent_id', 'policy', 'loancounty_id', 'loancrop_id', 'croppractice_id', 'type', 'option', 'acres', 'price', 'aph', 'level', 'guaranty', 'premium', 'share'];
+	protected $fillable = ['loan_id', 'agency_id', 'agent_id', 'policy', 'loancounty_id', 'loancrop_id', 'croppractice_id', 'type', 'option', 'acres', 'price', 'aph', 'level', 'premium', 'share', 'guaranty', 'value'];
 
 	// Relationships
 	public function county()
@@ -24,5 +24,10 @@ class Insurance extends \Eloquent {
 	public function agency()
 	{
 		return $this->belongsTo('Agency', 'agency_id');
+	}
+
+	public function agent()
+	{
+		return $this->belongsTo('Agents', 'agent_id');
 	}
 }

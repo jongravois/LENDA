@@ -1,9 +1,9 @@
 <style>
-  td{ font-size: 11px;}
+  td{ font-size: 10px;}
 </style>
 <fieldset>
   <legend>Insurance Information</legend>
-  <!--<pre>{{feeder.agencies | json}}</pre>-->
+  <!--<pre>{{loan | json}}</pre>-->
   <div class="row" style="display:none;">
     <div class="form-group col-xs-3">
       <label>Agency</label>
@@ -24,64 +24,68 @@
   </div>
   <br/><br/>
   <div class="row col-xs-12">
-    <table class="table table-striped rowed" style="width:100% !important;">
+    <table class="table table-striped rowed">
       <tr>
+        <th style="width:6%;">Policy</th>
         <th style="width:10%;">Agency</th>
         <th style="width:13%;">Locale</th>
-        <th style="width:9%;">Crop</th>
-        <th style="width:7%;">Type</th>
-        <th style="width:7%;">Option</th>
-        <th style="width:7%;">Price</th>
+        <th style="width:12%;">Crop</th>
+        <th style="width:2%;">T</th>
+        <th style="width:2%;">O</th>
+        <th style="width:6%;">Price</th>
         <th style="width:6%;">Level</th>
-        <th style="width:7%;">Acres</th>
-        <th style="width:7%;">APH</th>
-        <th style="width:8%;">Guaranty</th>
-        <th style="width:7%;">Premium</th>
+        <th style="width:5%;">Acres</th>
+        <th style="width:5%;">APH</th>
         <th style="width:6%;">Share</th>
+        <th style="width:5%;">Prem</th>
+        <th style="width:8%;">Guar</th>
         <th style="width:8%;">Value</th>
       </tr>
       <tr ng-if="insurance.length == 0">
-        <td colspan="13"><strong>No insurance policies found.</strong></td>
+        <td colspan="14"><strong>No insurance policies found.</strong></td>
       </tr>
+      <!--<tr>
+        <td colspan="13"><pre>{{insurance | json}}</pre></td>
+      </tr>-->
       <tr ng-repeat="i in insurance">
+        <td>{{i.policy}}</td>
+        <!--TODO: Add Agent Info in hover-->
         <td>{{i.agency}}</td>
         <td>{{i.locale}}</td>
         <td>{{i.practice}}</td>
-        <td>
-          <select name="ins_type" ng-model="i.type" ng-options="t.type as t.type for t in feeder.instypes">
-            <option value="">Type</option>
-          </select>
-        </td>
-        <td class="text-center">
-          <input type="text" classs="form-control" ng-model="i.option" style="width:50px;" />
-        </td>
+        <td class="text-center">{{i.type}}</td>
+        <td class="text-center">{{i.option}}</td>
         <td ng-class=gtZero(i.price)>
           {{i.price | displaynullcurrency}}
         </td>
-        <td ng-class=gtZero(i.level)>
-          <input type="text" classs="form-control" ng-model="i.level" style="width:40px;text-align:right;" />
+        <td class="text-right">
+          {{i.level | displaynullpercent}}
         </td>
-        <td class="text-center">{{i.acres}}</td>
-        <td class="text-center">{{i.aph}}</td>
-        <td ng-class=gtZero(calcGuaranty(i))>
-          {{calcGuaranty(i) | displaynullcurrency}}
+        <td class="text-right">
+          {{i.acres | number:1}}
         </td>
-        <td ng-class=gtZero(i.premium)>
-          <input type="text" classs="form-control" ng-model="i.premium" style="width:60px;text-align:right;" />
+        <td class="text-right">
+          {{i.aph | number:1}}
         </td>
         <td ng-class=gtZero(i.share)>
-          <input type="text" classs="form-control" ng-model="i.share" style="width:42px;text-align:right;" />
+          {{i.share | displaynullpercent}}
+        </td>
+        <td ng-class=gtZero(i.premium)>
+          {{i.premium | displaynullcurrency}}
+        </td>
+        <td ng-class=gtZero(calcGuaranty(i))>
+          {{i.guaranty | displaynullcurrency}}
         </td>
         <td ng-class=gtZero(i.value)>
-          {{calcValue(calcGuaranty(i), i) | displaynullcurrency}}
+          {{i.value | displaynullcurrency}}
         </td>
       </tr>
 
       <tr class="success">
         <td>Total</td>
-        <td colspan="11">&nbsp;</td>
-        <td class="text-right">
-          {{calcTotalValue() | displaynullcurrency}}
+        <td colspan="12">&nbsp;</td>
+        <td  ng-class=gtZero(loan.total_ins_value)>
+          {{loan.total_ins_value | displaynullcurrency}}
         </td>
       </tr>
     </table>
@@ -94,6 +98,7 @@
           <form>
             <div class="row form-group">
               <!--AGENCY-->
+              <!--TODO: Typeahead must describe branches-->
               <div class="col-xs-2">
                 <label>Agency</label>
               </div>
@@ -105,13 +110,13 @@
                 <label>Locale</label>
               </div>
               <div class="col-xs-3">
-                <!--TODO: HARD CODED! (get from farms)-->
+                <!--TODO: HARD CODED! (get from loan.farms)-->
                 <select name="locale" class="form-control" ng-model="newPolicy.loancounty_id">
                   <option value="">Please select ...</option>
-                  <option value="1">LA - Madison</option>
-                  <option value="2">LA - Richland</option>
-                  <option value="3">LA - West Carroll</option>
-                  <option value="4">MS - Warren</option>
+                  <option value="1309">LA - Madison</option>
+                  <option value="1317">LA - Richland</option>
+                  <option value="1337">LA - West Carroll</option>
+                  <option value="1628">MS - Warren</option>
                 </select>
               </div>
             </div>
@@ -133,7 +138,6 @@
             </div>
             <div class="row form-group">
               <!--AGENT_PHONE-->
-              <!--TODO: Autofill if Agent matches-->
               <div class="col-xs-2">
                 <label>Agent's Phone</label>
               </div>
@@ -152,7 +156,6 @@
             </div>
             <div class="row form-group">
               <!--AGENT_EMAIL-->
-              <!--TODO: Autofill if Agent matches-->
               <div class="col-xs-2">
                 <label>Agent's Email</label>
               </div>
@@ -170,7 +173,7 @@
             <div class="row form-group">
               <!--CROP SELECT-->
               <div class="col-xs-2">
-                <label>Crop</label>
+                <label>Crop / Practice</label>
               </div>
               <div class="col-xs-3">
                 <select name="loancrop_id" class="form-control" ng-model="newPolicy.loancrop_id" ng-options="c.id as c.crop for c in feeder.crops">
@@ -181,16 +184,23 @@
               <div class="col-xs-2">
                 <label>Crop Practice</label>
               </div>
+              <!--TODO: HARD CODED!-->
               <div class="col-xs-3">
                 <span ng-if="newPolicy.loancrop_id != 2">
-                  <select name="croppractice_id" class="form-control" ng-model="newPolicy.croppractice_id">
+                  <select name="croppractice_id"
+                          class="form-control"
+                          ng-model="newPolicy.croppractice_id"
+                          ng-change="getPracticeDefaults(newPolicy.loancounty_id, newPolicy.loancrop_id, newPolicy.croppractice_id)">
                     <option value="">Please select...</option>
                     <option value="1">IRR</option>
                     <option value="2">NI</option>
                   </select>
                 </span>
                 <span ng-if="newPolicy.loancrop_id == 2">
-                  <select name="croppractice_id" class="form-control" ng-model="newPolicy.croppractice_id">
+                  <select name="croppractice_id"
+                          class="form-control"
+                          ng-model="newPolicy.croppractice_id"
+                          ng-change="getPracticeDefaults(newPolicy.loancounty_id, newPolicy.loancrop_id, newPolicy.croppractice_id)">
                     <option value="">Please select...</option>
                     <option value="1">IRR</option>
                     <option value="2">NI</option>
@@ -216,7 +226,6 @@
                 <input type="text" class="form-control" ng-model="newPolicy.level"/>
               </div>
             </div>
-            <!--TODO: when practice, insert defaults-->
             <div class="row form-group">
               <!--PRICE-->
               <div class="col-xs-2">
@@ -253,7 +262,7 @@
             <div class="row">&nbsp;</div>
             <div class="row">
               <div class="col-xs-10 form-group text-left">
-                <input type="submit" class="btn btn-xs btn-default" value="Add Policy" ng-click="addNewPolicy(newPolicy)"/>
+                <input type="submit" class="btn btn-xs btn-danger" value="Add Policy" ng-click="addNewPolicy(newPolicy)"/>
               </div>
             </div>
           </form>
@@ -265,7 +274,7 @@
   <br/><br/>
   <div class="row">
     <div class="col-md-12 text-right">
-      <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateYield()">
+      <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateinsurance()">
         NEXT
       </button>
     </div>

@@ -59,10 +59,10 @@ class LoansController extends ApiController {
 		$path = '/files_loans/' . $crop_year . '_' . $loan->id;
 
 		//TODO: Create folder in files_loans (crop_year . loan_id )
-		if(!File::exists($path)){
+		/*if(!File::exists($path)){
 			File::makeDirectory($path, $mode= 0777, true, true);
 		}
-
+		*/
 
 		//TODO: Add file_url to $scope.loans
 		//Add systemic

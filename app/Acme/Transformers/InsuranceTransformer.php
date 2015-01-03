@@ -4,15 +4,22 @@ class InsuranceTransformer extends Transformer{
 
 	public function transform($arr)
 	{
+		//TODO: Factor in RP and non-RP
 		//return $arr;
+/*
+		$guaranty = (((double) $arr['aph'] * ((double) $arr['level']/100) * (double) $arr['price']) - (double) $arr['premium']) * ((double) $arr['acres'] * ((double) $arr['share']/100));
+
+		$value = ($guaranty - (double) $arr['premium']) * ((double) $arr['acres'] * ((double) $arr['share']/100));
+*/
 		return [
 			'id' =>	$arr['id'],
 			'loan_id' => $arr['loan_id'],
 			'agency_id' => $arr['agency_id'],
 			'agency' => $arr['agency']['agency'],
-			'agent' => $arr['agent'],
-			'agent_phone' => $arr['agent_phone'],
-			'agent_email' => $arr['agent_email'],
+			'agent_id' => $arr['agent_id'],
+			'agent' => $arr['agent']['agent'],
+			'agent_phone' => $arr['agent']['agent_phone'],
+			'agent_email' => $arr['agent']['agent_email'],
 			'policy' => $arr['policy'],
 			'loancounty_id' => $arr['loancounty_id'],
 			'locale' => $arr['county']['locale'],
@@ -27,7 +34,9 @@ class InsuranceTransformer extends Transformer{
 			'aph' => (double) $arr['aph'],
 			'level' => (double) $arr['level'],
 			'premium' => (double) $arr['premium'],
-			'share' => (double) $arr['share']
+			'share' => (double) $arr['share'],
+			'guaranty' => (double) $arr['guaranty'],
+			'value' => (double) $arr['value']
 		];
 	}
 }

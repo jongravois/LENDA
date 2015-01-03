@@ -1,6 +1,7 @@
 (function(){
     'use strict';
-    angular.module('ARM')
+    angular
+      .module('ARM')
       .controller('DisbursementController', function($scope){
 
         $scope.requestDisbursement = function(data){
