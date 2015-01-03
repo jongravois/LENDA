@@ -1,6 +1,7 @@
 /bootstrap/compiled.php
 /vendor
 /.idea
+/angular/logs
 composer.phar
 composer.lock
 .env.*.php
@@ -8,4 +9,3 @@ composer.lock
 .DS_Store
 Thumbs.db
 .idea
-robdubya_loanmanager_chat.txt
