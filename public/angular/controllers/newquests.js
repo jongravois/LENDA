@@ -18,7 +18,7 @@
         $scope.updateQuestions = function(){
           QuestsFactory.update($scope.quests.id, $scope.quests)
             .then(function success(rsp){
-              $state.go('new.affiliates', $stateParams);
+              AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
             });
           }
       });

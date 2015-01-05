@@ -7,6 +7,10 @@
       $stateParams,
       LoansFactory
     ){
+      var curr = $state.current.url;
+      var currScreen = curr.substring(1,curr.length);
+      //alert(currScreen);
+
       init();
 
       $scope.createLoanCrops = function(){
@@ -202,6 +206,10 @@
           uom: 'bu',
           uom_rebate: 'ton'
         };
+      }
+
+      $scope.moveFromCrops = function(){
+        AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
       }
     });
 })();

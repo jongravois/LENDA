@@ -13,7 +13,7 @@
         $scope.references = [];
 
         $scope.moveFromReferences = function(){
-          //TODO: Use $stateParams.loantypeID to determine next screen
+          AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
         }
         $scope.createNewReference = function(o){
           o.loan_id = $stateParams.loanID;

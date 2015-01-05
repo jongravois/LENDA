@@ -8,5 +8,9 @@
       var curr = $state.current.url;
       var currScreen = curr.substring(1,curr.length);
       //alert(currScreen);
+
+      $scope.moveFromDocs = function(){
+        AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
+      }
     });
 })();

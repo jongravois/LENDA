@@ -80,23 +80,22 @@
         }
       }
       function moveToNextNewLoanScreen(screenName, $stateParams) {
-        //TODO: Screen Nav not working!!!
         //debugger;
         $http.get(API_URL + '/loantypes/' + $stateParams.loantypeID + '/screens')
           .then(function success(response) {
             var screens = response.data.data;
             //find screenName in screens
-            var current = _.find(screens, function(i) { return i.screen == screenName });
-            var maxScreens = screens.length;
-            var currId = parseInt(current.id);
-            //if next in undefined, go edit summary
-            if(currId == maxScreens){
+            var cScreenId = _.findIndex(screens, function(i) {
+              return i.screen == screenName;
+            });
+            if(screens[parseInt(cScreenId) + 1] !== undefined){
+               var cScreen = screens[parseInt(cScreenId) + 1];
+              var nextScr = screens[parseInt(cScreenId) + 1].screen;
+              $state.go('new.' + nextScr, $stateParams)
+            } else {
               $state.go('edit.summary', $stateParams);
             }
-            //get next screen and go
-            var nextScreen = screens[currId + 1].screen;
-            $state.go('new.' + nextScreen, $stateParams);
-        });
+          });
       }
       function patchIt(end, id, data){
         return $http.patch(API_URL + end + id, data);

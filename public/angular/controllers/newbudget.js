@@ -11,9 +11,12 @@
       AppFactory,
       LoansFactory
     ){
+      var curr = $state.current.url;
+      var currScreen = curr.substring(1,curr.length);
+      //alert(currScreen);
+
       $scope.insertBudget = function(){
-        var curr = $state.current.url;
-        alert(curr.substring(1,curr.length));
+        AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
       }
     });
 })();

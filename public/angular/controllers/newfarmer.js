@@ -29,7 +29,7 @@
       $scope.createFarmer = function(obj) {
         if (angular.isDefined($scope.farmerID) && obj.id === $scope.farmerID) {
           AppFactory.patchIt('/loans/', $scope.loan.id, {farmer_id: $scope.farmerID});
-          $state.go('new.applicant', $stateParams);
+          AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
         } else {
           var thisYear = new Date().getFullYear();
           var exp = AppFactory.diffInDates(thisYear, parseInt(obj.first_year_farmer));
@@ -37,7 +37,7 @@
           return FarmersFactory.createFarmer(obj)
             .then(function(res){
               AppFactory.patchIt('/loans/', $scope.loan.id, {farmer_id: res.data.message});
-              $state.go('new.applicant', $stateParams);
+              AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
         });
         } // end if
       }; // end createFarmer function

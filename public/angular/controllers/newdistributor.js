@@ -20,7 +20,7 @@
           obj.loan_id = $stateParams.loanID;
 
           LoansFactory.createDistributor(obj);
-          //TODO: Use $stateParams.loantypeID to determine next screen
+          AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
         }
 
           $scope.onDistributorSelect = function($item,$model,$label){

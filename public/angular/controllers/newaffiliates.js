@@ -11,7 +11,7 @@
         //alert(currScreen);
 
         $scope.moveFromAffiliates = function(){
-          $state.go('new.references', $stateParams);
+          AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
         }
         $scope.newAffiliate = function(){
           if(!$scope.affiliates){ $scope.affiliates = []; }

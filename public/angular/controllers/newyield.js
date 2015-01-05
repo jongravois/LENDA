@@ -26,5 +26,9 @@
         //TODO: Create function
         alert('Updating');
       }
+
+      $scope.moveFromYields = function(){
+        AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
+      }
     });
 })();

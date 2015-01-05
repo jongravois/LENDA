@@ -16,6 +16,10 @@
       $scope.newFarm = {};
       $scope.stateCounties = [];
 
+      $scope.moveFromFarms = function(){
+        AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
+      }
+
       $scope.onStateChange = function(id){
         //alert(id);
         AppFactory.countiesInState(id)

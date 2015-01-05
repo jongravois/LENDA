@@ -44,7 +44,7 @@
           ApplicantsFactory.createApplicant($scope.applicant)
             .then(function(rsp){
               AppFactory.patchIt('/loans/', $scope.loan.id, {applicant_id: rsp.data.message});
-              $state.go('new.quests', $stateParams);
+              AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
             });
         };
 
