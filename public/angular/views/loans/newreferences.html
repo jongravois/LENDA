@@ -10,7 +10,7 @@
         <th>Phone</th>
         <th>Email</th>
       </tr>
-      <tr ng-if="!references">
+      <tr ng-if="references.length == 0">
         <td colspan="5">
           <b>No references found!</b>
         </td>
@@ -25,48 +25,44 @@
     </table>
   </div>
   <br/><br/>
+
   <div class="row form-group">
-    <div class="col-md-12">
-      <div class="col-md-4">
+    <div class="col-sm-10 col-sm-offset-1">
+      <div class="col-sm-4">
         <label>Creditor:</label>
         <input type="text" class="form-control" name="creditor" ng-model="newReference.creditor"/>
       </div>
-      <div class="col-md-4">
+      <div class="col-sm-4">
         <label>City, State:</label>
         <input type="text" class="form-control" name="city_state" ng-model="newReference.city_state"/>
       </div>
-      <div class="col-md-4">&nbsp;</div>
+      <div class="col-sm-4">&nbsp;</div>
     </div>
   </div>
   <div class="row form-group">
-    <div class="col-md-12">
-      <div class="col-md-4">
+    <div class="col-sm-10 col-sm-offset-1">
+      <div class="col-sm-3">
         <label>Contact:</label>
         <input type="text" class="form-control" name="contact" ng-model="newReference.contact"/>
       </div>
-      <div class="col-md-4">
+      <div class="col-sm-3">
         <label>Phone:</label>
         <input type="text" class="form-control" name="phone" ng-model="newReference.phone" ui-mask="(999) 999-9999"/>
       </div>
-      <div class="col-md-4">
+      <div class="col-sm-3">
         <label>Email:</label>
         <input type="text" class="form-control" name="email" ng-model="newReference.email"/>
       </div>
-    </div>
-  </div>
-  <div class="row form-group">
-    <div class="col-md-12">
-      <div class="col-md-4">
+      <div class="col-sm-3" style="padding-top: 24px;">
         <button class="btn btn-sm btn-success" ng-click="createNewReference(newReference)">Add</button>
       </div>
     </div>
   </div>
   <br/><br/>
   <div class="row">
-    <div class="col-sm-10 col-sm-offset-1">
+    <div class="col-sm-11 col-sm-offset-1 text-right">
       <button class="btn btn-success" ng-click="moveFromReferences()">NEXT</button>
     </div>
   </div>
-  <br/><br/>
 </fieldset>
 <!--<pre>{{quests | json}}</pre>-->

@@ -44,7 +44,15 @@ class ApplicantsController extends ApiController {
 			return $this->respondCreationDenied('Failed Validation');
 		} // end if*/
 
-		$applicant = Applicant::create(Input::all());
+		$applicant = Applicant::where('ssn', Input::get('ssn'))->first();
+		if($applicant){
+			return $this->respondCreated($applicant->id);
+		} // end if
+
+		$arr = Input::all();
+		$DOB = date("Y-m-d", strtotime($arr['dob']));
+		$arr['dob'] = $DOB;
+		$applicant = Applicant::create($arr);
 
 		return $this->respondCreated($applicant->id);
 	}

@@ -3,20 +3,32 @@
     angular
       .module('ARM')
       .controller('NewApplicantController', function(
-        $scope,
-        $stateParams,
-        toastr,
-        AppFactory,
-        ApplicantsFactory
+        $scope, $state, $stateParams,
+        AppFactory, ApplicantsFactory, LoansFactory
       ){
-        $scope.applicant = {};
-        $scope.applicant.entity_type_id = '2';
-        $scope.partners = [];
-        $scope.newPartner = {};
-        $scope.joints = [];
-        $scope.newJoint = {};
-        $scope.corps = [];
-        $scope.newCorp = {};
+        var curr = $state.current.url;
+        var currScreen = curr.substring(1,curr.length);
+        //alert(currScreen);
+
+        LoansFactory.getLoan($stateParams.loanID)
+          .then(function success(rsp){
+            $scope.loan = rsp.data.data;
+            if($scope.loan.applicant_id) {
+              ApplicantsFactory.getApplicant($scope.loan.applicant_id)
+                .then(function success(rsp) {
+                  $scope.applicant = rsp.data.data;
+                  $scope.applicant.entity_type_id = '2';
+                });
+            } else {
+              $scope.applicant = { entity_type_id: '2' };
+            } // end if
+          });
+        $scope.partners = $scope.partners || [];
+        $scope.newPartner = $scope.newPartner || {};
+        $scope.joints = $scope.joints || [];
+        $scope.newJoint = $scope.newJoint || {};
+        $scope.corps = $scope.corps || [];
+        $scope.newCorp = $scope.newCorp || {};
 
         $scope.createApplicant = function() {
           //Have to create a corporation, if applicable
@@ -28,18 +40,11 @@
           $scope.applicant.loc_id = $scope.user.loc_id;
           $scope.applicant.farmer_id = $scope.farmer.id;
           $scope.applicant.loan_id = $scope.loan.id;
+
           ApplicantsFactory.createApplicant($scope.applicant)
-            .then(function(res){
-              AppFactory.patchIt('/loans/', $scope.loan.id, {applicant_id: res.data.message});
-              //TODO: Not moving to quests
-              if ($scope.screens[$scope.currentScreen + 1] !== undefined) {
-                $scope.screens[$scope.currentScreen + 1].status = 1;
-                AppFactory.moveToNextNewLoanScreen($scope.screens[$scope.currentScreen + 1].screen, $stateParams);
-                $scope.currentScreen++;
-              } else {
-                //TODO: Move to edit.summary
-                console.log('End of Screens');
-              }
+            .then(function(rsp){
+              AppFactory.patchIt('/loans/', $scope.loan.id, {applicant_id: rsp.data.message});
+              $state.go('new.quests', $stateParams);
             });
         };
 

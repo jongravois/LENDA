@@ -3,38 +3,33 @@
     angular
       .module('ARM')
       .controller('NewDistributorController', function(
-        $scope,
-        $stateParams,
-        toastr,
-        AppFactory,
-        LoansFactory
+        $scope, $state, $stateParams,
+        AppFactory, LoansFactory
       ){
-       $scope.newDistributor = {};
+        var curr = $state.current.url;
+        var currScreen = curr.substring(1,curr.length);
+        //alert(currScreen);
 
-        $scope.insertDistributor = function(o){
-          o.loan_id = $stateParams.loanID;
-
-          LoansFactory.createDistributor(o);
-          toastr.success('Distributor added.', 'Success: Added distributor information.');
-          //TODO: Advances to applicant - wrong!
-          if ($scope.screens[$scope.currentScreen + 1] !== undefined) {
-            $scope.screens[$scope.currentScreen + 1].status = 1;
-            AppFactory.moveToNextNewLoanScreen($scope.screens[$scope.currentScreen + 1].screen, $stateParams);
-            $scope.currentScreen++;
-          } else {
-            //TODO: Move to edit.summary
-            console.log('End of Screens');
-          }
+        if(!$scope.newDistributor){
+          LoansFactory.getDistributor($stateParams.loanID).then(function success(rsp){
+            $scope.newDistributor = rsp.data.data[0];
+          });
         }
-        $scope.onDistributorSelect = function($item,$model,$label){
-          //alert($item.distributor);
+
+        $scope.insertDistributor = function(obj) {
+          obj.loan_id = $stateParams.loanID;
+
+          LoansFactory.createDistributor(obj);
+          //TODO: Use $stateParams.loantypeID to determine next screen
+        }
+
+          $scope.onDistributorSelect = function($item,$model,$label){
           if($item){
             $scope.distributorID = $item.id;
             $scope.newDistributor = $item;
             $scope.$apply();
           }
         };
-
 
       });
 })();

@@ -31,7 +31,13 @@ class LoanquestionsController extends ApiController {
     $question = Loanquestions::where('id', $id)->get();
 
     if( $question->isEmpty() ){
-      return $this->respondNotFound('Loan Question does not exist.');
+      //create it
+      $quests = new Loanquestions;
+      $quests->loan_id = $id;
+      $quests->save();
+      return $this->respond([
+        'data' => $this->loanquestionTransformer->transform($quests[0])
+      ]);
     } // end if
 
     return $this->respond([
@@ -65,9 +71,17 @@ class LoanquestionsController extends ApiController {
 
   public function byLoan($id)
   {
-    $questions = Loanquestions::where('loan_id', $id)->get();
+    $quests = Loanquestions::where('loan_id', $id)->get();
+
+    if( $quests->isEmpty() ){
+      //create it
+      $quests = new Loanquestions;
+      $quests->loan_id = $id;
+      $quests->save();
+    } // end if
+
     return $this->respond([
-      'data' => $this->loanquestionTransformer->transformCollection($questions->all())
+      'data' => $this->loanquestionTransformer->transformCollection($quests->all())
     ]);
   }
 

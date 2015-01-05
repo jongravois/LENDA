@@ -8,6 +8,7 @@
     <tr>
       <th style="width:3%;">&nbsp;</th>
       <th style="width:10%;">Crop</th>
+      <th style="width:10%;">Acres</th>
       <th style="width:15%;">Market To Whom</th>
       <th style="width:10%;">Bk Qty</th>
       <th style="width:10%;">Bk Price</th>
@@ -22,6 +23,12 @@
         <input type="checkbox" ng-model="corn.is_active"/>
       </td>
       <td>Corn</td>
+      <td>
+        <input type="text" class="form-control"
+               name="corn_acres"
+               ng-model="corn.acres"
+               ng-if="corn.is_active"/>
+      </td>
       <td>
         <input type="text" class="form-control"
                name="corn_markettowhom"
@@ -82,6 +89,12 @@
       <td>Soybeans</td>
       <td>
         <input type="text" class="form-control"
+               name="soybeans_acres"
+               ng-model="soybeans.acres"
+               ng-if="soybeans.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
                name="soybeans_markettowhom"
                ng-model="soybeans.markettowhom"
                ng-if="soybeans.is_active"/>
@@ -138,6 +151,12 @@
         <input type="checkbox" ng-model="sorghum.is_active"/>
       </td>
       <td>Sorghum</td>
+      <td>
+        <input type="text" class="form-control"
+               name="sorghum_acres"
+               ng-model="sorghum.acres"
+               ng-if="sorghum.is_active"/>
+      </td>
       <td>
         <input type="text" class="form-control"
                name="sorghum_markettowhom"
@@ -198,6 +217,12 @@
       <td>Wheat</td>
       <td>
         <input type="text" class="form-control"
+               name="wheat_acres"
+               ng-model="wheat.acres"
+               ng-if="wheat.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
                name="wheat_markettowhom"
                ng-model="wheat.markettowhom"
                ng-if="wheat.is_active"/>
@@ -254,6 +279,12 @@
         <input type="checkbox" ng-model="cotton.is_active"/>
       </td>
       <td>Cotton</td>
+      <td>
+        <input type="text" class="form-control"
+               name="cotton_acres"
+               ng-model="cotton.acres"
+               ng-if="cotton.is_active"/>
+      </td>
       <td>
         <input type="text" class="form-control"
                name="cotton_markettowhom"
@@ -314,6 +345,12 @@
       <td>Rice</td>
       <td>
         <input type="text" class="form-control"
+               name="rice_acres"
+               ng-model="rice.acres"
+               ng-if="rice.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
                name="rice_markettowhom"
                ng-model="rice.markettowhom"
                ng-if="rice.is_active"/>
@@ -372,6 +409,12 @@
       <td>Peanuts</td>
       <td>
         <input type="text" class="form-control"
+               name="peanuts_acres"
+               ng-model="peanuts.acres"
+               ng-if="peanuts.is_active"/>
+      </td>
+      <td>
+        <input type="text" class="form-control"
                name="peanuts_markettowhom"
                ng-model="peanuts.markettowhom"
                ng-if="peanuts.is_active"/>
@@ -428,6 +471,12 @@
         <input type="checkbox" ng-model="sugarcane.is_active"/>
       </td>
       <td>Sugarcane</td>
+      <td>
+        <input type="text" class="form-control"
+               name="sugarcane_acres"
+               ng-model="sugarcane.acres"
+               ng-if="sugarcane.is_active"/>
+      </td>
       <td>
         <input type="text" class="form-control"
                name="sugarcane_markettowhom"

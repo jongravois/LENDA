@@ -1,3 +1,90 @@
 <fieldset>
   <legend>Loan Terms</legend>
+  <table class="table table-striped">
+    <tr>
+      <td style="width:30%;"><label>Due Date</label></td>
+      <td style="width:30%;">
+        <p class="input-group" style="width: 240px;">
+          <input type="text" class="form-control"
+                 datepicker-popup="M/d/yy"
+                 ng-model="loan.due_date" is-open="opened"
+                 datepicker-options="dateOptions"
+                 date-disabled="disabled(date, mode)"
+                 ng-required="true"
+                 close-text="Close"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+        </p>
+      </td>
+      <th style="width:40%;">&nbsp;</th>
+    </tr>
+    <tr>
+      <td><label>Processing Fee Percent</label></td>
+      <td>
+        <input type="text" class="form-control" style="width: 240px;" ng-model="loan.fins.proc_fee"/>
+      </td>
+      <td>
+        <label>
+          Is Processing Fee on total loan?
+          <br/>
+          <input type="radio" name="fee_processing_onTotal" value="1" ng-model="loan.fins.fee_processing_onTotal"/>&nbsp;Yes
+          &nbsp;&nbsp;
+          <input type="radio" name="fee_processing_onTotal" value="0" ng-model="loan.fins.fee_processing_onTotal"/>&nbsp;No
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Service Fee Percent</label></td>
+      <td>
+        <input type="text" class="form-control" style="width: 240px;" ng-model="loan.fins.fee_service_percent"/>
+      </td>
+      <td>
+        <label>
+          Is Service Fee on total loan?
+          <br/>
+          <input type="radio" name="fee_service_onTotal" value="1" ng-model="loan.fins.fee_service_onTotal"/>&nbsp;Yes
+          &nbsp;&nbsp;
+          <input type="radio" name="fee_service_onTotal" value="0" ng-model="loan.fins.fee_service_onTotal"/>&nbsp;No
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>ARM Interest Rate</label>
+      </td>
+      <td>
+        <input type="text" class="form-control" style="width: 240px;" ng-model="loan.fins.int_percent_arm"/>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+        <label>Distributor Interest Rate</label>
+      </td>
+      <td>
+        <input type="text" class="form-control" style="width: 240px;" ng-model="loan.fins.int_percent_dist"/>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+        <label>Other Interest Rate</label>
+      </td>
+      <td>
+        <input type="text" class="form-control" style="width: 240px;" ng-model="loan.fins.int_percent_other"/>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
 </fieldset>
+
+<div class="row">
+  <div class="col-md-12 text-right" style="padding-top:25px;">
+    <button style="margin-right:10px;" class="btn btn-primary" ng-click="insertTerms()">
+      NEXT
+    </button>
+  </div>
+</div>

@@ -3,12 +3,13 @@
   angular
     .module('ARM')
     .controller('NewYieldController', function(
-      $scope,
-      $stateParams,
-      toastr,
-      AppFactory,
-      LoansFactory
+      $scope, $state, $stateParams,
+      AppFactory, LoansFactory
     ) {
+      var curr = $state.current.url;
+      var currScreen = curr.substring(1,curr.length);
+      //alert(currScreen);
+
       var idLoan = $stateParams.loanID;
       $scope.loan = $scope.loan || {};
 
@@ -22,6 +23,7 @@
       }
 
       $scope.updateYield = function () {
+        //TODO: Create function
         alert('Updating');
       }
     });

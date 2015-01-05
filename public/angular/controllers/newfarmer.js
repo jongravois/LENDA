@@ -3,26 +3,33 @@
   angular
     .module('ARM')
     .controller('NewFarmerController', function(
-      $scope,
-      $stateParams,
-      toastr,
-      AppFactory,
-      FarmersFactory
+      $scope, $state, $stateParams,
+      Loan, AppFactory, FarmersFactory, LoansFactory
     ){
-      $scope.farmer = $scope.farmer || {};
-      $scope.farmer.loan_id = $stateParams.loanID;
+      //TODO: Use Resolve to prevent empty form
+      /*$scope.loan = Loan;
+      console.log(Loan);
+      */
+      var curr = $state.current.url;
+      var currScreen = curr.substring(1,curr.length);
+
+      LoansFactory.getLoan($stateParams.loanID)
+        .then(function success(rsp){
+          $scope.loan = rsp.data.data;
+          if($scope.loan.farmer_id) {
+            FarmersFactory.getFarmer($scope.loan.farmer_id)
+              .then(function success(rsp) {
+                $scope.farmer = rsp.data.data;
+              });
+          } else {
+            $scope.farmer = {};
+          } // end if
+        });
 
       $scope.createFarmer = function(obj) {
         if (angular.isDefined($scope.farmerID) && obj.id === $scope.farmerID) {
           AppFactory.patchIt('/loans/', $scope.loan.id, {farmer_id: $scope.farmerID});
-          if ($scope.screens[$scope.currentScreen + 1] !== undefined) {
-            $scope.screens[$scope.currentScreen + 1].status = 1;
-            AppFactory.moveToNextNewLoanScreen($scope.screens[$scope.currentScreen + 1].screen, $stateParams);
-            $scope.currentScreen++;
-          } else {
-            //TODO: Move to edit.summary
-            console.log('End of Screens');
-          }
+          $state.go('new.applicant', $stateParams);
         } else {
           var thisYear = new Date().getFullYear();
           var exp = AppFactory.diffInDates(thisYear, parseInt(obj.first_year_farmer));
@@ -30,17 +37,10 @@
           return FarmersFactory.createFarmer(obj)
             .then(function(res){
               AppFactory.patchIt('/loans/', $scope.loan.id, {farmer_id: res.data.message});
-              if ($scope.screens[$scope.currentScreen + 1] !== undefined) {
-                $scope.screens[$scope.currentScreen + 1].status = 1;
-                AppFactory.moveToNextNewLoanScreen($scope.screens[$scope.currentScreen + 1].screen, $stateParams);
-                $scope.currentScreen++;
-              } else {
-                //TODO: Move to edit.summary
-                console.log('End of Screens');
-              }
-            });
-        }
-      };
+              $state.go('new.applicant', $stateParams);
+        });
+        } // end if
+      }; // end createFarmer function
 
       $scope.onFarmerSelect = function($item,$model,$label){
         if($item){

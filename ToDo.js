@@ -21,6 +21,15 @@
 // TODO: ***Move Management view to ng-grid***
 //TODO: III. NEW LOAN
 // TODO: Loan Type Screens - add new/edit filter???
+// TODO: *** keeping track of screens:
+/*
+ $scope.changeGender = function(direction, whichPerson) {
+ var genders = ['Male', 'Female'];
+ var genderIndex = genders.indexOf($scope.users[whichPerson])
+
+ $scope.users[whichPerson] = genders[genderIndex + (direction % 2)]
+ };
+ */
 //TODO: IV. EDIT LOAN
 // TODO: Applicant History table -- repeat, addendums & amounts, open loans
 // TODO: Summary: Collateral Conditions

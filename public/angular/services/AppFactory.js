@@ -1,7 +1,7 @@
 (function(){
     'use strict';
   angular.module('ARM')
-    .factory('AppFactory', function GlobalsFactory(
+    .factory('AppFactory', function AppFactory(
       $http,
       API_URL,
       $state
@@ -80,8 +80,23 @@
         }
       }
       function moveToNextNewLoanScreen(screenName, $stateParams) {
+        //TODO: Screen Nav not working!!!
         //debugger;
-        $state.go('new.' + screenName, $stateParams);
+        $http.get(API_URL + '/loantypes/' + $stateParams.loantypeID + '/screens')
+          .then(function success(response) {
+            var screens = response.data.data;
+            //find screenName in screens
+            var current = _.find(screens, function(i) { return i.screen == screenName });
+            var maxScreens = screens.length;
+            var currId = parseInt(current.id);
+            //if next in undefined, go edit summary
+            if(currId == maxScreens){
+              $state.go('edit.summary', $stateParams);
+            }
+            //get next screen and go
+            var nextScreen = screens[currId + 1].screen;
+            $state.go('new.' + nextScreen, $stateParams);
+        });
       }
       function patchIt(end, id, data){
         return $http.patch(API_URL + end + id, data);

@@ -83,7 +83,7 @@ class DefaultExpensesTableSeeder extends Seeder {
 
     //rice
     Defaultexpenses::create([
-      'crop_id' => 3,
+      'crop_id' => 6,
       'fertilizer_dist_acre' => 104.50,
       'seed_dist_acre' => 75.00,
       'fungicide_dist_acre' => 13.23,
@@ -96,6 +96,16 @@ class DefaultExpensesTableSeeder extends Seeder {
       'insurance_other_acre' => 20.00,
       'harvesting_arm_acre' => 60.00,
       'misc_arm_acre' => 90.00
+    ]);
+
+    //peanuts
+    Defaultexpenses::create([
+      'crop_id' => 7
+    ]);
+
+    //cane
+    Defaultexpenses::create([
+      'crop_id' => 8
     ]);
   }
 

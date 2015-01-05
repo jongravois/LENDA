@@ -3,29 +3,21 @@
     angular
       .module('ARM')
       .controller('NewAffiliatesController', function(
-        $scope,
-        $stateParams,
-        toastr,
-        AppFactory,
-        LoansFactory
+        $scope, $state, $stateParams,
+        AppFactory, LoansFactory
       ){
+        var curr = $state.current.url;
+        var currScreen = curr.substring(1,curr.length);
+        //alert(currScreen);
+
         $scope.moveFromAffiliates = function(){
-          //TODO: Refactor like references
-          //TODO: Advances to applicant - wrong!
-          if ($scope.screens[$scope.currentScreen + 1] !== undefined) {
-            $scope.screens[$scope.currentScreen + 1].status = 1;
-            AppFactory.moveToNextNewLoanScreen($scope.screens[$scope.currentScreen + 1].screen, $stateParams);
-            $scope.currentScreen++;
-          } else {
-            //TODO: Move to edit.summary
-            console.log('End of Screens');
-          }
+          $state.go('new.references', $stateParams);
         }
-        $scope.newAffilate = function(){
+        $scope.newAffiliate = function(){
           if(!$scope.affiliates){ $scope.affiliates = []; }
           $scope.newAffiliate.loan_id = $stateParams.loanID;
           LoansFactory.createAffiliate($scope.newAffiliate)
-            .then(function(res){});
+            .then(function(rsp){});
           $scope.affiliates.push($scope.newAffiliate);
           $scope.newAffiliate = {};
         }

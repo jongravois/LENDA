@@ -15,9 +15,11 @@ class LoandistributorTransformer extends Transformer{
 			'state_id' => $arr['distributor']['state_id'],
 			'state' => $arr['distributor']['state'],
 			'zip' => $arr['distributor']['zip'],
+			'phone' => $arr['distributor']['phone'],
+			'email' => $arr['distributor']['email'],
 			'contact' => $arr['contact'],
-			'phone' => $arr['phone'],
-			'email' => $arr['email']
+			'contact_phone' => $arr['phone'],
+			'contact_email' => $arr['email']
 		];
 	}
 }

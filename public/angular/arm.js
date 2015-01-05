@@ -249,7 +249,12 @@
             abstract: true,
             url: '/new/{loantypeID:\\d+}/{loanID:\\d+}',
             templateUrl: 'angular/views/newApp.html',
-            controller: 'NewLoanController'
+            controller: 'NewLoanController',
+            resolve: {
+              Loan: function(LoansFactory, $stateParams){
+                return LoansFactory.getLoan($stateParams.loanID).$promise;
+              }
+            }
           })
           .state('new.affiliates', {
             url: '/affiliates',

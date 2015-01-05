@@ -3,17 +3,21 @@
   angular
     .module('ARM')
     .controller('NewInsuranceController', function(
-      $scope, $stateParams, toastr,
+      $scope, $state, $stateParams,
       AppFactory, LoansFactory
     ){
+      var curr = $state.current.url;
+      var currScreen = curr.substring(1,curr.length);
+      //alert(currScreen);
+
       var idLoan = $stateParams.loanID;
       if(!$scope.loan){
         LoansFactory.getLoan(idLoan)
-          .then(function success(response){
-            var loan = response.data.data;
+          .then(function success(rsp){
+            var loan = rsp.data.data;
             LoansFactory.getInsuranceTotal(loan.id)
-              .then(function(response){
-                loan.total_ins_value = response.data;
+              .then(function(rsp){
+                loan.total_ins_value = rsp.data;
               });
             $scope.loan = loan;
           });
@@ -63,11 +67,12 @@
 
       $scope.onAgencySelect = function($item,$model,$label){
         if($item){
-          AppFactory.agentsInAgency($item.id).then(function success(response){
-            $scope.newPolicy.agency_id = $item.id;
-            $scope.agencyAgents = response.data.data;
-          });
-        }
+          AppFactory.agentsInAgency($item.id)
+            .then(function success(response){
+              $scope.newPolicy.agency_id = $item.id;
+              $scope.agencyAgents = response.data.data;
+            });
+        } // end if
       }; // end onAgencySelect
 
       $scope.onAgentSelect = function($item,$model,$label){
@@ -79,10 +84,11 @@
       }; // end onAgentSelect
 
       $scope.getPracticeDefaults = function(county, crop, practice){
-        LoansFactory.getInsuranceDefaults(county).then(function success(response){
-          var res = response.data[0];
-          $scope.newPolicy.aph = res[crop][practice]['aph'];
-          $scope.newPolicy.price = res[crop][practice]['ins_price'];
+        LoansFactory.getInsuranceDefaults(county)
+          .then(function success(rsp){
+            var res = rsp.data[0];
+            $scope.newPolicy.aph = res[crop][practice]['aph'];
+            $scope.newPolicy.price = res[crop][practice]['ins_price'];
         });
       }; // end getPracticeDefaults
 
@@ -98,10 +104,11 @@
             agent_phone: obj.agent_phone,
             agent_email: obj.agent_email
           };
-          LoansFactory.insertAgent(newAgent).then(function success(response){
-            //TODO: agent_id is not set when inserting new agent
-            obj.agent_id = response.data.message;
-          });
+          LoansFactory.insertAgent(newAgent)
+            .then(function success(rsp){
+              //TODO: agent_id is not set when inserting new agent
+              obj.agent_id = rsp.data.message;
+            });
         } // end if
 
         obj.practice = LoansFactory.getPracticeLabel(obj.loancrop_id, obj.croppractice_id);
@@ -112,9 +119,10 @@
         $scope.loan.total_ins_value = $scope.loan.total_ins_value + obj.value;
         console.log(obj);
 
-        LoansFactory.insertPolicy(obj).then(function success(response){});
-        $scope.insurance.push(obj);
-        $scope.newPolicy = {
+        LoansFactory.insertPolicy(obj)
+          .then(function success(rsp){});
+            $scope.insurance.push(obj);
+            $scope.newPolicy = {
           acres: 0,
           agency: '',
           agent: '',
@@ -130,6 +138,6 @@
           share: 100,
           type: 'RP'
         };
-      }; //end addNewPolicy
+        }; //end addNewPolicy
     });
 })();
