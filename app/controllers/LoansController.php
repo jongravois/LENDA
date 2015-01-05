@@ -107,6 +107,13 @@ class LoansController extends ApiController {
 	{
 		$loan = Loan::find($id);
 		$loan->fill(Input::all())->save();
+
+		$newInfo = [
+			'loan_id'	=>	$loan->id,
+			'user'		=>	Auth::user()->username,
+			'action'	=>	'Updated loan'
+		];
+		Systemics::create($newInfo);
 	}
 
 	public function getAcreTotals($id)
