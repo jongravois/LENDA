@@ -10,7 +10,8 @@
     	"laracasts/utilities": "~1.0",
     	"barryvdh/laravel-cors": "0.2.x",
     	"itsgoingd/clockwork": "dev-master",
-		"guzzlehttp/guzzle": "~5.1"
+		"guzzlehttp/guzzle": "~5.1",
+	  	"anchu/ftp": "dev-master"
 	},
 	"require-dev": {
 	  "fzaninotto/faker": "~1.4"

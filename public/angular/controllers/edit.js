@@ -3,16 +3,9 @@
     angular
       .module('ARM')
     .controller('EditAppController', function(
-      $scope,
-      $state,
-      $stateParams,
-      $filter,
-      $timeout,
-      toastr,
-      AppFactory,
-      ApplicantsFactory,
-      FarmersFactory,
-      LoansFactory
+      $scope, $state, $stateParams, $filter,
+      $timeout, toastr,
+      AppFactory, ApplicantsFactory, FarmersFactory, LoansFactory
     ){
       $scope.loan_id = $stateParams.id;
       $scope.loan = $scope.loan || {};
@@ -85,9 +78,12 @@
       LoansFactory.getInsurancePolicies($scope.loan_id)
         .then(function success(rsp){
           var pols = rsp.data.data;
-          angular.forEach(pols, function(value, key){
-            this.push('guaranty:' + AppFactory.calcInsuranceGuaranty(this));
-        });
+          //TODO: Refactor
+          /*if(pols){
+            angular.forEach(pols, function(value, key){
+              this.push('guaranty:' + AppFactory.calcInsuranceGuaranty(this));
+            });
+          }*/
         $scope.insurance = pols;
       });
       LoansFactory.getLoanCounties($scope.loan_id).then(function success(response){

@@ -50,21 +50,16 @@ class LoansController extends ApiController {
 			return $this->respondCreationDenied('Failed Validation');
 		} // end if*/
 
-		//TODO: Create folder not working
-
 		$crop_year = Globals::pluck('crop_year');
 
 		$loan = Loan::create(Input::all());
 		$newLoan = Loan::find($loan->id);
-		$path = '/files_loans/' . $crop_year . '_' . $loan->id;
-
-		//TODO: Create folder in files_loans (crop_year . loan_id )
-		/*if(!File::exists($path)){
-			File::makeDirectory($path, $mode= 0777, true, true);
+		$path = 'code/LENDA/public/files_loans/' . $crop_year . '_' . $loan->id;
+		if(!File::exists($path)) {
+			FTP::connection()->makeDir($path);
 		}
-		*/
 
-		//TODO: Add file_url to $scope.loans
+		//TODO: Add file_url to $scope.loans -- LOOK AT STAPLER
 		//Add systemic
 		$newInfo = [
 			'loan_id'	=>	$loan->id,

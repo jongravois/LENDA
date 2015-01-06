@@ -58,7 +58,6 @@
 <br/><br/>
 
 <!-- PLANNED CROP CONSTRAINTS -->
-  <!--TODO: add into line 62: ng-hide="loan.loan_type_id == 2"-->
 <div class="row" ng-hide="loan.loan_type_id == 2">
   <div class="col-md-12">
     <table class="table table-striped rowed">
@@ -427,7 +426,7 @@
     {{grads[2].bankruptcy | boolean}}
   </td>
   <td class="text-center" ng-class="{red: !quests.bankruptcy }">
-    {{grads[3].bankruptcy | boolean}}
+    <!--{{grads[3].bankruptcy | boolean}}-->
   </td>
 </tr>
 <tr>
@@ -446,7 +445,7 @@
     {{grads[2].judgement | boolean}}
   </td>
   <td class="text-center" ng-class="{red: !quests.judgements }">
-    {{grads[3].judgement | boolean}}
+    <!--{{grads[3].judgement | boolean}}-->
   </td>
 </tr>
 <tr>
@@ -606,7 +605,7 @@
 </div>
 <!-- SUMMARY PANEL-->
 </fieldset>
-<pre>{{loan.fins | json}}</pre>
-<pre>{{loanCrops | json}}</pre>
+<!--<pre>{{loan.fins | json}}</pre>-->
+<!--<pre>{{loanCrops | json}}</pre>-->
 <!--<pre>{{loan.grader | json}}</pre>-->
 <!--<pre>{{grads | json}}</pre>-->

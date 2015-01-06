@@ -34,8 +34,10 @@ Route::get('env', function(){
   return App::environment();
 });
 
-Route::get('test', function(){
-  return View::make('sessions.change');
+Route::get('test', function() {
+  FTP::connection()->makeDir('code/LENDA/public/files_loans/2015_2/');
+  return 'Completed';
+//return View::make('sessions.change');
 });
 
 Route::get('emailtest', function(){

@@ -38,7 +38,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
     'Way\Generators\GeneratorsServiceProvider',
     'Laracasts\Utilities\UtilitiesServiceProvider',
-    'Clockwork\Support\Laravel\ClockworkServiceProvider'
+    'Clockwork\Support\Laravel\ClockworkServiceProvider',
+		'Anchu\Ftp\FtpServiceProvider'
 	),
 	'manifest' => storage_path().'/meta',
 	'aliases' => array(

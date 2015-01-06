@@ -5,7 +5,7 @@ class PracticesTableSeeder extends Seeder {
   public function run()
   {
     Practices::create([
-      'practice' => 'IRR'
+      'practice' => 'IR'
     ]);
 
     Practices::create([

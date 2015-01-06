@@ -316,6 +316,11 @@
             templateUrl: 'angular/views/loans/newprerequisites.html',
             controller: 'NewPrerequisitesController'
           })
+          .state('new.plannedcrops', {
+            url: '/plannedcrops',
+            templateUrl: 'angular/views/loans/newplannedcrops.html',
+            controller: 'NewPlannedCropsController'
+          })
           .state('new.references', {
             url: '/references',
             templateUrl: 'angular/views/loans/newreferences.html',
