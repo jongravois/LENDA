@@ -252,7 +252,7 @@
             controller: 'NewLoanController',
             resolve: {
               Loan: function(LoansFactory, $stateParams){
-                return LoansFactory.getLoan($stateParams.loanID).$promise;
+                return LoansFactory.getLoan($stateParams.loanID);
               }
             }
           })

@@ -107,5 +107,20 @@ class UsersTableSeeder extends Seeder{
       'is_manager' => 0,
       'role_id' => 6
     ]);
+
+    User::create([
+      'username' => 'Kenn Thompson',
+      'nick' => 'KET',
+      'email' => 'kennthompson@gmail.com',
+      'password' => 'chessmaster',
+      'phone' => '9991235648',
+      'loc_id' => '5',
+      'region_id' => '1',
+      'manager_id' => 2,
+      'is_admin' => 1,
+      'is_approver' => 1,
+      'is_manager' => 1,
+      'role_id' => 7
+    ]);
   }
 }

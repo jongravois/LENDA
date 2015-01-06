@@ -6,25 +6,19 @@
       $scope, $state, $stateParams,
       Loan, AppFactory, FarmersFactory, LoansFactory
     ){
-      //TODO: Use Resolve to prevent empty form
-      /*$scope.loan = Loan;
-      console.log(Loan);
-      */
+      $scope.loan = Loan.data.data;
+
       var curr = $state.current.url;
       var currScreen = curr.substring(1,curr.length);
 
-      LoansFactory.getLoan($stateParams.loanID)
-        .then(function success(rsp){
-          $scope.loan = rsp.data.data;
-          if($scope.loan.farmer_id) {
-            FarmersFactory.getFarmer($scope.loan.farmer_id)
-              .then(function success(rsp) {
-                $scope.farmer = rsp.data.data;
-              });
-          } else {
-            $scope.farmer = {};
-          } // end if
-        });
+      if($scope.loan.farmer_id) {
+        FarmersFactory.getFarmer($scope.loan.farmer_id)
+          .then(function success(rsp) {
+            $scope.farmer = rsp.data.data;
+          });
+      } else {
+        $scope.farmer = {};
+      } // end if
 
       $scope.createFarmer = function(obj) {
         if (angular.isDefined($scope.farmerID) && obj.id === $scope.farmerID) {

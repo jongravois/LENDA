@@ -4,6 +4,7 @@ class AdmingraderTableSeeder extends Seeder {
 
 	public function run()
 	{
+		//create it
 		Admingrader::create([
 			'grade' => 'A',
 			'debt2asset' => 50,

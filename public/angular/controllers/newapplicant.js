@@ -3,26 +3,25 @@
     angular
       .module('ARM')
       .controller('NewApplicantController', function(
-        $scope, $state, $stateParams,
-        AppFactory, ApplicantsFactory, LoansFactory
+        $scope, $state, $stateParams, Loan,
+        AppFactory, ApplicantsFactory
       ){
         var curr = $state.current.url;
         var currScreen = curr.substring(1,curr.length);
         //alert(currScreen);
 
-        LoansFactory.getLoan($stateParams.loanID)
-          .then(function success(rsp){
-            $scope.loan = rsp.data.data;
-            if($scope.loan.applicant_id) {
-              ApplicantsFactory.getApplicant($scope.loan.applicant_id)
-                .then(function success(rsp) {
-                  $scope.applicant = rsp.data.data;
-                  $scope.applicant.entity_type_id = '2';
-                });
-            } else {
-              $scope.applicant = { entity_type_id: '2' };
-            } // end if
-          });
+        $scope.loan = Loan.data.data;
+
+        if($scope.loan.applicant_id) {
+          ApplicantsFactory.getApplicant($scope.loan.applicant_id)
+            .then(function success(rsp) {
+              $scope.applicant = rsp.data.data;
+              $scope.applicant.entity_type_id = '2';
+            });
+        } else {
+          $scope.applicant = { entity_type_id: '2' };
+        } // end if
+
         $scope.partners = $scope.partners || [];
         $scope.newPartner = $scope.newPartner || {};
         $scope.joints = $scope.joints || [];

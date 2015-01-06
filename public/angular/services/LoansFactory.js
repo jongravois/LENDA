@@ -2,12 +2,8 @@
   'use strict';
   angular.module('ARM')
     .factory('LoansFactory', function LoansFactory(
-      $http,
-      $q,
-      $stateParams,
-      API_URL,
-      AppFactory,
-      GlobalsFactory
+      $http, $q, $stateParams,
+      API_URL, AppFactory, GlobalsFactory
     ){
       return {
         createAffiliate: createAffilate,
@@ -82,7 +78,7 @@
           //insert into loanDistributor
           lDist.distributor_id = response.data.message;
           return $http.post(API_URL + '/loandistributor', lDist);
-        });;
+        });
       }
 
       function createFinancials(o){
