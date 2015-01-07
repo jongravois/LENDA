@@ -18,9 +18,12 @@
       $scope.insertPlan = function(obj) {
         angular.forEach(obj, function(item){
           item.loan_id = $stateParams.loanID;
+          AppFactory.putIt('/loancrops/',item.id, item);
         });
-        console.log(obj);
-        //AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
+
+        $scope.loan.crops = obj;
+
+        AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
       }
     });
 })();

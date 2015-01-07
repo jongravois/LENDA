@@ -24,12 +24,12 @@
           {{loan.fins.grade}}
         </td>
       </tr>
-      <tr ng-if="loan.is_fast_tracked || loan.loan_type_id == 4 || loan.loan_type_id == 5">
+      <tr ng-if="loan.is_fast_tracked || loan.loan_type_id == 4 || loan.loan_type_id == 5" style="display: none;">
         <td>
           <label>Amount Requested</label>
         </td>
         <td>
-          <input type="text" class="form-control" ng-model="loan.fins.amount_requested"/>
+          <edit-in-place value="loan.fins.amount_requested"></edit-in-place>
         </td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -39,7 +39,7 @@
 </div>
 
 <br/><br/>
-
+<!--<pre>{{loan.crops | json}}</pre>-->
 <!-- PLANNED CROP CONSTRAINTS -->
 <div class="row" ng-hide="loan.loan_type_id == 2">
   <div class="col-md-12">
@@ -47,25 +47,28 @@
       <tr>
         <th style="width:20%;">Planned Crop Constraints</th>
         <th style="width:15%;">Acres</th>
-        <th style="width:15%;">Total Exp/Ac</th>
-        <th style="width:15%;">100% Ag-Pro</th>
-        <th style="width:15%;">35% Cap-Bridge</th>
-        <th style="width:15%;">35% Ag-Vest</th>
+        <th style="width:15%;">TEA</th>
+        <th style="width:15%;">Ag-Pro</th>
+        <th style="width:15%;">Cap-Bridge</th>
+        <th style="width:15%;">Ag-Vest</th>
       </tr>
-      <tr ng-repeat="c in loanCrops" ng-if="c.acres > 0">
-        <td>{{c.crop}}</td>
+      <tr ng-if="loan.crops.length == 0">
+        <td colspan="6"><strong>No crops were selected.</strong></td>
+      </tr>
+      <tr ng-repeat="c in loan.crops" ng-if="c.acres > 0">
+        <td>{{c.crop.crop}}</td>
         <td class="text-center">{{c.acres | number: 1}}</td>
         <td class="text-right">
-          {{c.tea | displaynullcurrency}}
+          {{c.crop.tea | displaynullcurrency}}
         </td>
         <td class="text-right">
-          {{ c.tea * c.acres | displaynullcurrency }}
+          {{ c.crop.tea * c.acres | displaynullcurrency }}
         </td>
         <td class="text-right">
-          {{ c.tea * c.acres * 0.35 | displaynullcurrency}}
+          {{ c.crop.tea * c.acres * 0.35 | displaynullcurrency}}
         </td>
         <td class="text-right">
-          {{ c.tea * c.acres * 0.35 | displaynullcurrency}}
+          {{ c.crop.tea * c.acres * 0.35 | displaynullcurrency}}
         </td>
       </tr>
       <tr class="success">
@@ -73,17 +76,17 @@
           Total
         </td>
         <td class="text-center" ng-class=gtZero(getTotalAcres())>
-          {{getTotalAcres() | displaynull}}
+          {{getTotalAcres(loan.crops) | number:1}}
         </td>
         <td class="text-center"> - </td>
-        <td ng-class=gtZero(getTotalPCC_AgPro())>
-          {{getTotalPCC_AgPro() | displaynullcurrency}}
+        <td ng-class=gtZero(getTotalPCC_AgPro(loan.crops))>
+          {{getTotalPCC_AgPro(loan.crops) | displaynullcurrency}}
         </td>
-        <td ng-class=gtZero(getTotalPCC_AgPro())>
-          {{getTotalPCC_AgPro() * .35 | displaynullcurrency}}
+        <td ng-class=gtZero(getTotalPCC_AgPro(loan.crops))>
+          {{getTotalPCC_AgPro(loan.crops) * .35 | displaynullcurrency}}
         </td>
-        <td ng-class=gtZero(getTotalPCC_AgPro())>
-          {{getTotalPCC_AgPro() * .35 | displaynullcurrency}}
+        <td ng-class=gtZero(getTotalPCC_AgPro(loan.crops))>
+          {{getTotalPCC_AgPro(loan.crops) * .35 | displaynullcurrency}}
         </td>
       </tr>
     </table>
@@ -116,7 +119,7 @@
           </div>
         </td>
         <td class="text-right">
-          {{loan.fins.year_1_income | displaynullcurrency}}
+          {{loan.fins.year_1_income = loan.fins.year_1_revenue - loan.fins.year_1_expenses | displaynullcurrency}}
         </td>
       </tr>
       <tr>
@@ -134,7 +137,7 @@
           </div>
         </td>
         <td class="text-right">
-          {{loan.fins.year_2_income | displaynullcurrency}}
+          {{loan.fins.year_2_income = loan.fins.year_2_revenue - loan.fins.year_2_expenses | displaynullcurrency}}
         </td>
       </tr>
       <tr>
@@ -152,19 +155,19 @@
           </div>
         </td>
         <td class="text-right">
-          {{loan.fins.year_3_income | displaynullcurrency}}
+          {{loan.fins.year_3_income = loan.fins.year_3_revenue - loan.fins.year_3_expenses | displaynullcurrency}}
         </td>
       </tr>
       <tr>
         <td>Average</td>
         <td class="text-right">
-          {{loan.fins.average_revenue | displaynullcurrency}}
+          {{ loan.fins.average_revenue | displaynullcurrency}}
         </td>
         <td class="text-right">
           {{loan.fins.average_expense | displaynullcurrency}}
         </td>
         <td class="text-right">
-          {{loan.fins.total_income | displaynullcurrency}}
+          {{loan.fins.average_income | displaynullcurrency}}
         </td>
       </tr>
     </table>
@@ -189,26 +192,26 @@
         <td class="text-right">
           <div class="input-group" style="width:120px;">
             <span class="input-group-addon">$</span>
-            <input type="text" class="form-control text-right" ng-model="loan.fins.current_assets" style="width:120px;"/>
+            <input type="text" class="form-control text-right" ng-model="loan.fins.current_assets" ng-change="calcIncomeConstraints(loan.fins)" style="width:120px;"/>
           </div>
         </td>
         <td class="text-right">
           <div class="input-group" style="width:120px;">
-            <input type="text" class="form-control text-right" ng-model="loan.fins.current_asset_factor"/>
+            <input type="text" class="form-control text-right" ng-model="loan.fins.current_assets_factor" ng-change="calcIncomeConstraints(loan.fins)"/>
             <span class="input-group-addon">%</span>
           </div>
         </td>
         <td class="text-right">
-          {{ loan.fins.current_asset_adj = loan.fins.current_assets * ((100 - loan.fins.current_assets_factor) / 100) | noCentsCurrency}}
+          {{ loan.fins.current_assets_adj = loan.fins.current_assets * (loan.fins.current_assets_factor / 100) | noCentsCurrency}}
         </td>
         <td class="text-right">
           <div class="input-group" style="width:120px;">
             <span class="input-group-addon">$</span>
-            <input type="text" class="form-control text-right" ng-model="loan.fins.current_asset_liability"/>
+            <input type="text" class="form-control text-right" ng-model="loan.fins.current_assets_liability" ng-change="calcIncomeConstraints(loan.fins)"/>
           </div>
         </td>
         <td class="text-right">
-          {{ loan.fins.current_asset_reserve = (loan.fins.current_assets * ((100 - loan.fins.current_asset_factor) / 100)) - loan.fins.current_asset_liability | noCentsCurrency}}
+          {{ loan.fins.current_assets_reserve = loan.fins.current_assets_adj - loan.fins.current_assets_liability | noCentsCurrency}}
         </td>
       </tr>
       <tr>
@@ -216,26 +219,26 @@
         <td class="text-right">
           <div class="input-group" style="width:120px;">
             <span class="input-group-addon">$</span>
-            <input type="text" class="form-control text-right" ng-model="loan.fins.intermediate_assets" style="width:120px;"/>
+            <input type="text" class="form-control text-right" ng-model="loan.fins.intermediate_assets" ng-change="calcIncomeConstraints(loan.fins)" style="width:120px;"/>
           </div>
         </td>
         <td class="text-right">
           <div class="input-group" style="width:120px;">
-            <input type="text" class="form-control text-right" ng-model="loan.fins.intermediate_asset_factor"/>
+            <input type="text" class="form-control text-right" ng-model="loan.fins.intermediate_assets_factor"/>
             <span class="input-group-addon">%</span>
           </div>
         </td>
         <td class="text-right">
-          {{ loan.fins.intermediate_asset_adj = loan.fins.intermediate_assets * ((100 - loan.fins.intermediate_assets_factor) / 100) | noCentsCurrency}}
+          {{ loan.fins.intermediate_assets_adj = loan.fins.intermediate_assets * (loan.fins.intermediate_assets_factor / 100) | noCentsCurrency}}
         </td>
         <td class="text-right">
           <div class="input-group" style="width:120px;">
             <span class="input-group-addon">$</span>
-            <input type="text" class="form-control text-right" ng-model="loan.fins.intermediate_asset_liability"/>
+            <input type="text" class="form-control text-right" ng-model="loan.fins.intermediate_assets_liability" ng-change="calcIncomeConstraints(loan.fins)"/>
           </div>
         </td>
         <td class="text-right">
-          {{ loan.fins.intermediate_asset_reserve = (loan.fins.intermediate_assets * ((100 - loan.fins.intermediate_asset_factor) / 100)) - loan.fins.intermediate_asset_liability | noCentsCurrency}}
+          {{ loan.fins.intermediate_assets_reserve = loan.fins.intermediate_assets_adj - loan.fins.intermediate_assets_liability | noCentsCurrency}}
         </td>
       </tr>
       <tr>
@@ -243,26 +246,26 @@
         <td class="text-right">
           <div class="input-group" style="width:120px;">
             <span class="input-group-addon">$</span>
-            <input type="text" class="form-control text-right" ng-model="loan.fins.fixed_assets" style="width:120px;"/>
+            <input type="text" class="form-control text-right" ng-model="loan.fins.fixed_assets" ng-change="calcIncomeConstraints(loan.fins)" style="width:120px;"/>
           </div>
         </td>
         <td class="text-right">
           <div class="input-group" style="width:120px;">
-            <input type="text" class="form-control text-right" ng-model="loan.fins.fixed_asset_factor"/>
+            <input type="text" class="form-control text-right" ng-model="loan.fins.fixed_assets_factor"/>
             <span class="input-group-addon">%</span>
           </div>
         </td>
         <td class="text-right">
-          {{ loan.fins.fixed_asset_adj = loan.fins.fixed_assets * ((100 - loan.fins.fixed_assets_factor) / 100) | noCentsCurrency}}
+          {{ loan.fins.fixed_assets_adj = loan.fins.fixed_assets * (loan.fins.fixed_assets_factor / 100) | noCentsCurrency}}
         </td>
         <td class="text-right">
           <div class="input-group" style="width:120px;">
             <span class="input-group-addon">$</span>
-            <input type="text" class="form-control text-right" ng-model="loan.fins.fixed_asset_liability"/>
+            <input type="text" class="form-control text-right" ng-model="loan.fins.fixed_assets_liability" ng-change="calcIncomeConstraints(loan.fins)"/>
           </div>
         </td>
         <td class="text-right">
-          {{ loan.fins.fixed_asset_reserve = (loan.fins.fixed_assets * ((100 - loan.fins.fixed_asset_factor) / 100)) - loan.fins.fixed_asset_liability | noCentsCurrency}}
+          {{ loan.fins.fixed_assets_reserve = loan.fins.fixed_assets_adj - loan.fins.fixed_assets_liability | noCentsCurrency}}
         </td>
       </tr>
       <tr>
@@ -270,22 +273,22 @@
         <td class="text-right">
           {{loan.fins.total_assets = (loan.fins.current_assets * 1) + (loan.fins.intermediate_assets * 1) + (loan.fins.fixed_assets * 1)  | noCentsCurrency}}
         </td>
-        <td class="text-right">&nbsp;</td>
+        <td class="text-center"> - </td>
         <td class="text-right">
-          {{ loan.fins.total_asset_adj = (loan.fins.current_asset_adj * 1) + (loan.fins.intermediate_asset_adj * 1) + (loan.fins.fixed_asset_adj * 1) | noCentsCurrency}}
+          {{ loan.fins.total_assets_adj = (loan.fins.current_assets_adj * 1) + (loan.fins.intermediate_assets_adj * 1) + (loan.fins.fixed_assets_adj * 1) | noCentsCurrency}}
         </td>
         <td class="text-right">
-          {{ loan.fins.total_liability = (loan.fins.current_asset_liability * 1) + (loan.fins.intermediate_asset_liability * 1) + (loan.fins.fixed_asset_liability * 1) | noCentsCurrency}}
+          {{ loan.fins.total_liability = (loan.fins.current_assets_liability * 1) + (loan.fins.intermediate_assets_liability * 1) + (loan.fins.fixed_assets_liability * 1) | noCentsCurrency}}
         </td>
         <td class="text-right">
-          {{ loan.fins.total_reserve = (loan.fins.current_asset_reserve * 1) + (loan.fins.intermediate_asset_reserve * 1) + (loan.fins.fixed_asset_reserve * 1) | noCentsCurrency}}
+          {{ loan.fins.total_reserve = (loan.fins.current_assets_reserve * 1) + (loan.fins.intermediate_assets_reserve * 1) + (loan.fins.fixed_assets_reserve * 1) | noCentsCurrency}}
         </td>
       </tr>
     </table>
   </div>
 </div>
 <!-- BALANCE SHEET CONSTRAINTS-->
-<!--<pre>{{loan.grader | json}}</pre>-->
+
 <!-- RATIO CONSTRAINTS -->
 <div class="row">
 <div class="col-md-12">
@@ -306,7 +309,7 @@
   <td ng-class=gtZero(loan.grader.debt2asset_ratio)>
     {{loan.grader.debt2asset_ratio | displaynullpercent}}
   </td>
-  <td class="bright"  ng-class=gtZero(loan.grader.debt2asset_ratio_adj)>
+  <td class="bright" ng-class=gtZero(loan.grader.debt2asset_ratio_adj)>
     {{loan.grader.debt2asset_ratio_adj | displaynullpercent}}
   </td>
   <td class="text-right" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[0].debt2asset }">
@@ -391,16 +394,16 @@
   <td class="bright text-center">
     {{loan.fins.credit_score | displaynull}}
   </td>
-  <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[0].credit_score }">
+  <td class="text-right" ng-class="{red: loan.fins.credit_score < grads[0].credit_score }">
     {{grads[0].credit_score}}
   </td>
-  <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[1].credit_score }">
+  <td class="text-right" ng-class="{red: loan.fins.credit_score < grads[1].credit_score }">
     {{grads[1].credit_score}}
   </td>
-  <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[2].credit_score }">
+  <td class="text-right" ng-class="{red: loan.fins.credit_score < grads[2].credit_score }">
     {{grads[2].credit_score}}
   </td>
-  <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[3].credit_score }">
+  <td class="text-right" ng-class="{red: loan.fins.credit_score < grads[3].credit_score }">
     {{grads[3].credit_score}}
   </td>
 </tr>
@@ -410,16 +413,16 @@
   <td class="text-center bright">
     {{farmer.farm_exp | displaynull}}
   </td>
-  <td class="text-center" ng-class="{red: farmer.farm_exp < grads[0].years_farming }">
+  <td class="text-right" ng-class="{red: farmer.farm_exp < grads[0].years_farming }">
     {{grads[0].years_farming}}
   </td>
-  <td class="text-center" ng-class="{red: farmer.farm_exp < grads[1].years_farming }">
+  <td class="text-right" ng-class="{red: farmer.farm_exp < grads[1].years_farming }">
     {{grads[1].years_farming}}
   </td>
-  <td class="text-center" ng-class="{red: farmer.farm_exp < grads[2].years_farming }">
+  <td class="text-right" ng-class="{red: farmer.farm_exp < grads[2].years_farming }">
     {{grads[2].years_farming}}
   </td>
-  <td class="text-center" ng-class="{red: farmer.farm_exp < grads[3].years_farming }">
+  <td class="text-right" ng-class="{red: farmer.farm_exp < grads[3].years_farming }">
     {{grads[3].years_farming}}
   </td>
 </tr>
@@ -452,7 +455,7 @@
     {{grads[2].bankruptcy | boolean}}
   </td>
   <td class="text-center" ng-class="{red: !quests.bankruptcy }">
-    {{grads[3].bankruptcy | boolean}}
+    <!--{{grads[3].bankruptcy | boolean}}-->
   </td>
 </tr>
 <tr>
@@ -471,7 +474,7 @@
     {{grads[2].judgement | boolean}}
   </td>
   <td class="text-center" ng-class="{red: !quests.judgements }">
-    {{grads[3].judgement | boolean}}
+    <!--{{grads[3].judgement | boolean}}-->
   </td>
 </tr>
 <tr>
@@ -639,6 +642,7 @@
   </div>
 
 </fieldset>
-<pre>{{loan.fins | json}}</pre>
+<!--<pre>{{loan | json}}</pre>-->
+<!--<pre>{{loan.fins | json}}</pre>-->
 <!--<pre>{{loan.grader | json}}</pre>-->
 <!--<pre>{{grads | json}}</pre>-->

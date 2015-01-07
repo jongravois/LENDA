@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div ui-view style="margin-top:120px; z-index: 10;" ></div>
+    <div ui-view style="margin-top:120px; z-index: 10;" autoscroll="true"></div>
 </div><!-- /.container -->
 
 <!--JAVASCRIPT-->

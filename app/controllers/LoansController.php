@@ -54,6 +54,7 @@ class LoansController extends ApiController {
 
 		$loan = Loan::create(Input::all());
 		$newLoan = Loan::find($loan->id);
+		//TODO: hardcoded path -- make env variable
 		$path = 'code/LENDA/public/files_loans/' . $crop_year . '_' . $loan->id;
 		if(!File::exists($path)) {
 			FTP::connection()->makeDir($path);

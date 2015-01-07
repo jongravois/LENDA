@@ -48,6 +48,7 @@ public function transform($arr)
 		'season_full' => $fullSeason,
 		'status_id' =>	$arr['status_id'],
 		'status' => $arr['loanstatus']['status'],
+    'grade' => $arr['grade'],
 		'user_id' => $arr['user_id'],
     'loc_id' => $arr['loc_id'],
 		'loc_abr' => $arr['location']['loc_abr'],

@@ -12,14 +12,15 @@
         function getPendingComments(loan){
           return LoansFactory.getPendingComments(loan.id)
             .then(function(response){
-              return (response.data.data.length === 0);
+              return (response.data.data.length !== 0);
             });
         }
 
         function getPendingVotes(loan){
           return LoansFactory.getPendingVotes(loan.id)
             .then(function(response){
-                return (response.data.data.length === 0);
+              //TODO: return this to ===
+                return (response.data.data.length !== 0);
             });
         }
 

@@ -28,6 +28,7 @@ class CreateLoansTable extends Migration {
       $table->boolean('is_fast_tracked')->default(0);
       $table->boolean('has_distributor')->default(0);
       $table->string('distributor_id')->nullable();
+      $table->string('grade')->default('F');
       $table->boolean('has_addendum')->default(0);
       $table->boolean('bankruptcy_history')->default(0);
       $table->boolean('required_3party')->default(0);

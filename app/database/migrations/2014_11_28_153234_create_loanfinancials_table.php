@@ -13,7 +13,7 @@ class CreateLoanfinancialsTable extends Migration {
       $table->integer('loan_id');
       $table->boolean('cpa_financials')->default(0);
       $table->double('credit_score')->default(0);
-      $table->string('grade')->nullable();
+      $table->string('grade')->default('F');
       $table->double('amount_requested')->default(0);
       $table->double('total_acres')->default(0);
       $table->double('year_1_revenue')->default(0);
