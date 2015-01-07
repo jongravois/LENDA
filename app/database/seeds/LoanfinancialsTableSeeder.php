@@ -9,8 +9,9 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
+			'experience' => 36,
 			'grade' => 'B',
-			'amount_requested' 	=> 25000000,
+			'amount_requested' => 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
 			'adj_prod' => 359237.87,
@@ -58,14 +59,22 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'year_3_revenue' => 2845790,
 			'year_3_expenses' => 800000,
 			'current_assets' => 1555079,
-			'current_asset_factor' => 15,
-			'current_asset_liability' => 410285,
+			'current_assets_factor' => 15,
+			'current_assets_liability' => 410285,
 			'intermediate_assets' => 2831750,
-			'intermediate_asset_factor' => 40,
-			'intermediate_asset_liability' => 776456,
+			'intermediate_assets_factor' => 40,
+			'intermediate_assets_liability' => 776456,
 			'fixed_assets' => 3590675,
-			'fixed_asset_factor' => 25,
-			'fixed_asset_liability' => 1246794
+			'fixed_assets_factor' => 25,
+			'fixed_assets_liability' => 1246794,
+			'debt2asset_ratio' => 31,
+      'debt2asset_ratio_adj' => 43,
+      'ratio_current' => 379,
+      'ratio_current_adj' => 322,
+      'capWork' => 114,
+      'capWork_adj' => 91,
+      'capBorrow' => 69,
+      'capBorrow_adj' => 57
 		]);
 
 		Loanfinancials::create([
@@ -73,7 +82,8 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
-			'grade' => 'B',
+			'experience' => 2,
+			'grade' => 'D',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
@@ -122,14 +132,14 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'year_3_revenue' => 2845790,
 			'year_3_expenses' => 800000,
 			'current_assets' => 1555079,
-			'current_asset_factor' => 15,
-			'current_asset_liability' => 410285,
+			'current_assets_factor' => 15,
+			'current_assets_liability' => 410285,
 			'intermediate_assets' => 2831750,
-			'intermediate_asset_factor' => 40,
-			'intermediate_asset_liability' => 776456,
+			'intermediate_assets_factor' => 40,
+			'intermediate_assets_liability' => 776456,
 			'fixed_assets' => 3590675,
-			'fixed_asset_factor' => 25,
-			'fixed_asset_liability' => 1246794
+			'fixed_assets_factor' => 25,
+			'fixed_assets_liability' => 1246794
 		]);
 
 		Loanfinancials::create([
@@ -137,7 +147,8 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
-			'grade' => 'B',
+			'experience' => 3,
+			'grade' => 'C',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
@@ -186,14 +197,14 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'year_3_revenue' => 2845790,
 			'year_3_expenses' => 800000,
 			'current_assets' => 1555079,
-			'current_asset_factor' => 15,
-			'current_asset_liability' => 410285,
+			'current_assets_factor' => 15,
+			'current_assets_liability' => 410285,
 			'intermediate_assets' => 2831750,
-			'intermediate_asset_factor' => 40,
-			'intermediate_asset_liability' => 776456,
+			'intermediate_assets_factor' => 40,
+			'intermediate_assets_liability' => 776456,
 			'fixed_assets' => 3590675,
-			'fixed_asset_factor' => 25,
-			'fixed_asset_liability' => 1246794
+			'fixed_assets_factor' => 25,
+			'fixed_assets_liability' => 1246794
 		]);
 
 		Loanfinancials::create([
@@ -201,6 +212,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
+			'experience' => 36,
 			'grade' => 'B',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
@@ -250,22 +262,23 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'year_3_revenue' => 2845790,
 			'year_3_expenses' => 800000,
 			'current_assets' => 1555079,
-			'current_asset_factor' => 15,
-			'current_asset_liability' => 410285,
+			'current_assets_factor' => 15,
+			'current_assets_liability' => 410285,
 			'intermediate_assets' => 2831750,
-			'intermediate_asset_factor' => 40,
-			'intermediate_asset_liability' => 776456,
+			'intermediate_assets_factor' => 40,
+			'intermediate_assets_liability' => 776456,
 			'fixed_assets' => 3590675,
-			'fixed_asset_factor' => 25,
-			'fixed_asset_liability' => 1246794
+			'fixed_assets_factor' => 25,
+			'fixed_assets_liability' => 1246794
 		]);
 
 		Loanfinancials::create([
 			'loan_id' => 5,
 			'total_acres' => 927.7,
 			'cpa_financials' => 1,
-			'credit_score' => 730,
-			'grade' => 'B',
+			'credit_score' => 770,
+			'experience' => 25,
+			'grade' => 'A',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
@@ -314,14 +327,14 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'year_3_revenue' => 2845790,
 			'year_3_expenses' => 800000,
 			'current_assets' => 1555079,
-			'current_asset_factor' => 15,
-			'current_asset_liability' => 410285,
+			'current_assets_factor' => 15,
+			'current_assets_liability' => 410285,
 			'intermediate_assets' => 2831750,
-			'intermediate_asset_factor' => 40,
-			'intermediate_asset_liability' => 776456,
+			'intermediate_assets_factor' => 40,
+			'intermediate_assets_liability' => 776456,
 			'fixed_assets' => 3590675,
-			'fixed_asset_factor' => 25,
-			'fixed_asset_liability' => 1246794
+			'fixed_assets_factor' => 25,
+			'fixed_assets_liability' => 1246794
 		]);
 
 		Loanfinancials::create([
@@ -329,6 +342,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
+			'experience' => 36,
 			'grade' => 'B',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
@@ -378,14 +392,14 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'year_3_revenue' => 2845790,
 			'year_3_expenses' => 800000,
 			'current_assets' => 1555079,
-			'current_asset_factor' => 15,
-			'current_asset_liability' => 410285,
+			'current_assets_factor' => 15,
+			'current_assets_liability' => 410285,
 			'intermediate_assets' => 2831750,
-			'intermediate_asset_factor' => 40,
-			'intermediate_asset_liability' => 776456,
+			'intermediate_assets_factor' => 40,
+			'intermediate_assets_liability' => 776456,
 			'fixed_assets' => 3590675,
-			'fixed_asset_factor' => 25,
-			'fixed_asset_liability' => 1246794
+			'fixed_assets_factor' => 25,
+			'fixed_assets_liability' => 1246794
 		]);
 
 		Loanfinancials::create([
@@ -393,7 +407,8 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
-			'grade' => 'B',
+			'grade' => 'C',
+			'experience' => 16,
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
@@ -442,14 +457,14 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'year_3_revenue' => 2845790,
 			'year_3_expenses' => 800000,
 			'current_assets' => 1555079,
-			'current_asset_factor' => 15,
-			'current_asset_liability' => 410285,
+			'current_assets_factor' => 15,
+			'current_assets_liability' => 410285,
 			'intermediate_assets' => 2831750,
-			'intermediate_asset_factor' => 40,
-			'intermediate_asset_liability' => 776456,
+			'intermediate_assets_factor' => 40,
+			'intermediate_assets_liability' => 776456,
 			'fixed_assets' => 3590675,
-			'fixed_asset_factor' => 25,
-			'fixed_asset_liability' => 1246794
+			'fixed_assets_factor' => 25,
+			'fixed_assets_liability' => 1246794
 		]);
 
 		Loanfinancials::create([
@@ -457,7 +472,8 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
-			'grade' => 'B',
+			'experience' => 9,
+			'grade' => 'D',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
@@ -506,14 +522,14 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'year_3_revenue' => 2845790,
 			'year_3_expenses' => 800000,
 			'current_assets' => 1555079,
-			'current_asset_factor' => 15,
-			'current_asset_liability' => 410285,
+			'current_assets_factor' => 15,
+			'current_assets_liability' => 410285,
 			'intermediate_assets' => 2831750,
-			'intermediate_asset_factor' => 40,
-			'intermediate_asset_liability' => 776456,
+			'intermediate_assets_factor' => 40,
+			'intermediate_assets_liability' => 776456,
 			'fixed_assets' => 3590675,
-			'fixed_asset_factor' => 25,
-			'fixed_asset_liability' => 1246794
+			'fixed_assets_factor' => 25,
+			'fixed_assets_liability' => 1246794
 		]);
 	}
 }

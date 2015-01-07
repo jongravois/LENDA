@@ -1,7 +1,9 @@
 (function(){
     'use strict';
     angular.module('ARM')
-        .factory('FarmersFactory', function FarmersFactory($http, API_URL){
+      .factory('FarmersFactory', function FarmersFactory(
+        $http, API_URL
+      ){
           return {
             getFarmer: getFarmer,
             getFarmers: getFarmers,

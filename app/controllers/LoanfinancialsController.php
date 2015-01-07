@@ -21,11 +21,14 @@ class LoanfinancialsController extends ApiController {
 
 	public function store()
 	{
-		if( ! Input::get('loanfinancial')){
+		//TODO: Validation
+		/*
+		 * if( ! Input::get('loanfinancial')){
 			return $this->respondCreationDenied('Failed Validation');
 		} // end if
+		*/
 
-		Loanfinancial::create(Input::all());
+		Loanfinancials::create(Input::all());
 
 		return $this->respondCreated('Loanfinancial created');
 	}

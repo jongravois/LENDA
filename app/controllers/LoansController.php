@@ -31,16 +31,15 @@ class LoansController extends ApiController {
 
 	public function show($id)
 	{
-		$loan = Loan::with('applicants.entitytype', 'committee.user', 'corporations', 'comments.responses', 'comments.status', 'distributor', 'farmer', 'farms.county', 'financials', 'insurance', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs',  'location', 'partners', 'regions', 'ventures', 'user')->where('id', $id)->get();
+		//USED BY LoansFactory
+		$loan = Loan::with('loanstatus', 'loantype', 'location', 'regions', 'user')->where('id', $id)->get();
 		//return $loan;
 
 		if( $loan->isEmpty() ){
 			return $this->respondNotFound('Loan does not exist.');
 		} // end if
 
-		return $this->respond([
-			'data' => $this->loanTransformer->transform($loan[0])
-		]);
+		return Response::json(['data' => $this->tform($loan)], 200);
 	}
 
 	public function store()
@@ -132,4 +131,73 @@ class LoansController extends ApiController {
       'data' => $this->notificationTransformer->transformCollection($pens->all())
     ]);
   }
+
+	private function tform($arr)
+	{
+		return array_map(function($arr)
+		{
+			return [
+				'id'		=>	$arr['id'],
+				'app_date'	=> 	$arr['app_date']->format('m/d/Y'),
+				'decision_date'	=> 	($arr['decision_date'] ? $arr['decision_date']->format('m/d/Y') : null),
+				'due_date'	=>	$arr['due_date']->format('m/d/Y'),
+				//'loan_days' =>	$diff,
+				'loan_type_id' => $arr['loan_type_id'],
+				'loan_type' => $arr['loantype']['loantype'],
+				'crop_year'	=>	$arr['crop_year'],
+				'season'	=>	$arr['season'],
+				//'season_full' => $fullSeason,
+				'status_id' =>	$arr['status_id'],
+				'status' => $arr['loanstatus']['status'],
+				'grade' => $arr['grade'],
+				'user_id' => $arr['user_id'],
+				'loc_id' => $arr['loc_id'],
+				'loc_abr' => $arr['location']['loc_abr'],
+				'region_id'	=> $arr['region_id'],
+				'region' =>	$arr['regions']['region'],
+				'applicant_id'	=>	$arr['applicant_id'],
+				'farmer_id'	=>	(integer) $arr['farmer_id'],
+				'is_active' => (boolean) $arr['is_active'],
+				'is_cross_collateralized' => (boolean) $arr['is_cross_collateralized'],
+				'is_fast_tracked' => (boolean) $arr['is_fast_tracked'],
+				'has_distributor' => (boolean) $arr['has_distributor'],
+				'distributor_id' => $arr['distributor_id'],
+				'distributor' => $arr['distributor']['distributor'],
+				'has_addendum' => (boolean) $arr['has_addendum'],
+				'bankruptcy_history' =>	(boolean) $arr['bankruptcy_history'],
+				'required_3party' => (boolean) $arr['required_3party'],
+				'added_land' => (boolean) $arr['added_land'],
+				'controlled_disbursement' => (boolean) $arr['controlled_disbursement'],
+				'attachments' => (boolean) $arr['attachments'],
+				'its_list' => (integer) $arr['its_list'],
+				'fsa_compliant' => (integer) $arr['fsa_compliant'],
+				'prev_lien_verified' => (integer) $arr['prev_lien_verified'],
+				'leases_valid' => (integer) $arr['leases_valid'],
+				'bankruptcy_order_received' => (integer) $arr['bankruptcy_order_received'],
+				'received_3party' =>	(integer) $arr['received_3party'],
+				'recommended' => (integer) $arr['recommended'],
+				'arm_approved' => (integer) $arr['arm_approved'],
+				'dist_approved' => (integer) $arr['dist_approved'],
+				'loan_closed' => (integer) $arr['loan_closed'],
+				'loan_closed_date' => $arr['loan_closed_date'],
+				'arm_balance' => (integer) $arr['arm_balance'],
+				'added_land_verified' => (integer) $arr['added_land_verified'],
+				'arm_ucc_received' => (integer) $arr['arm_ucc_received'],
+				'dist_ucc_received' => (integer) $arr['dist_ucc_received'],
+				'aoi_received' => (integer) $arr['aoi_received'],
+				'ccc_received' => (integer) $arr['ccc_received'],
+				'rebate_assignment' => (integer) $arr['rebate_assignment'],
+				'limit_warning' => (integer) $arr['limit_warning'],
+				'crop_inspection' => (integer) $arr['crop_inspection'],
+				'reconcilliation' => (integer) $arr['reconcilliation'],
+				'account_classification' => (integer) $arr['account_classification'],
+				'last_activity' => $arr['updated_at'],
+				'analyst' => [
+					'nick' => $arr['user']['nick'],
+					'name' => $arr['user']['username'],
+					'email' => $arr['user']['email']
+				]
+			];
+		}, $arr->all());
+	}
 }

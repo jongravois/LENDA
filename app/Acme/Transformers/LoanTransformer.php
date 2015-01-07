@@ -95,9 +95,16 @@ public function transform($arr)
 		'reconcilliation' => (integer) $arr['reconcilliation'],
 		'account_classification' => (integer) $arr['account_classification'],
     'last_activity' => $arr['updated_at'],
-    //'insurance' => $arr['insurance'],
+    'analyst' => [
+      'nick' => $arr['user']['nick'],
+      'name' => $arr['user']['username'],
+      'email' => $arr['user']['email']
+    ],
     'fins' => [
+      'bankruptcy' => (boolean) $arr['financials']['bankruptcy'],
+      'judgements' => (boolean) $arr['financials']['judgements'],
       'cpa_financials' => (boolean) $arr['financials']['cpa_financials'],
+      'experience' => (double) $arr['financials']['experience'],
       'credit_score' => (double) $arr['financials']['credit_score'],
       'grade' => $arr['financials']['grade'],
       'amount_requested' => (double) $arr['financials']['amount_requested'],
@@ -160,6 +167,7 @@ public function transform($arr)
       'arm_and_dist' => (double) $arr['financials']['arm_and_dist'],
       'collateral' => (double) $arr['financials']['collateral']
     ],
+    'insurance' => $arr['insurance'],
     'crops' => $arr['loancrop'],
     'conditions' => [
       'asa' => (boolean) $arr['conditions_asa'],
@@ -170,11 +178,6 @@ public function transform($arr)
       'ccl' => (boolean) $arr['conditions_ccl'],
       'afsa' => (boolean) $arr['conditions_afsa'],
       'cd' => (boolean) $arr['conditions_cd']
-    ],
-    'analyst' => [
-      'nick' => $arr['user']['nick'],
-      'name' => $arr['user']['username'],
-      'email' => $arr['user']['email']
     ],
     'committee' => $arr['committee'],
     'corporations' => $arr['corporations'],

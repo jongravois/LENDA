@@ -18,594 +18,899 @@
 </style>
 <fieldset>
 <legend>Financial Information</legend>
-
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <!--loan.fins.summary-->
+  <div style="display:none;">
     <table class="table table-striped">
       <tr>
-        <td style="width:16%;">
-          <label>Credit Score</label>
-        </td>
-        <td style="width:24%;">
-          <text-edit-in-place value="loan.fins.credit_score"></text-edit-in-place>
-        </td>
-        <td style="width:20%;">
-          <input type="checkbox" name="cpa_financials" ng-value="true" ng-model="loan.fins.cpa_financials"/>&nbsp;
-          CPA Financials
-        </td>
-        <td style="width:20%">&nbsp;</td>
-        <td style="width:10%;">
-          Grade
-        </td>
-        <td style="width:20%;">
-          {{loan.fins.grade}}
-        </td>
+        <td style="width:30%;">Loan ID</td>
+        <td style="width:70%;">{{loan.id}}</td>
       </tr>
-      <tr ng-if="loan.is_fast_tracked || loan.loan_type_id == 4 || loan.loan_type_id == 5">
-        <td>
-          <label>Amount Requested</label>
-        </td>
-        <td>
-          <edit-in-place value="loan.fins.amount_requested"></edit-in-place>
-        </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+      <tr>
+        <td>CPA Financials</td>
+        <td>{{loan.fins.cpa_financials | boolean}}</td>
+      </tr>
+      <tr>
+        <td>Bankruptcy</td>
+        <td>{{loan.fins.bankruptcy | boolean}}</td>
+      </tr>
+      <tr>
+        <td>Judgements</td>
+        <td>{{loan.fins.judgements | boolean}}</td>
+      </tr>
+      <tr>
+        <td>Experience</td>
+        <td>{{loan.fins.experience}}</td>
+      </tr>
+      <tr>
+        <td>Credit Score</td>
+        <td>{{loan.fins.credit_score}}</td>
+      </tr>
+      <tr>
+        <td>Grade</td>
+        <td>{{loan.fins.grade}}</td>
+      </tr>
+      <tr>
+        <td>Request</td>
+        <td>{{loan.fins.amount_requested}}</td>
+      </tr>
+      <tr>
+        <td>Total Acres</td>
+        <td>{{loan.fins.total_acres}}</td>
+      </tr>
+      <tr>
+        <td>Year 1 Revenue</td>
+        <td>{{loan.fins.year_1_revenue | currency}}</td>
+      </tr>
+      <tr>
+        <td>Year 1 Expenses</td>
+        <td>{{loan.fins.year_1_expenses | currency}}</td>
+      </tr>
+      <tr>
+        <td>Year 2 Revenue</td>
+        <td>{{loan.fins.year_2_revenue | currency}}</td>
+      </tr>
+      <tr>
+        <td>Year 2 Expenses</td>
+        <td>{{loan.fins.year_2_expenses | currency}}</td>
+      </tr>
+      <tr>
+        <td>Year 3 Revenue</td>
+        <td>{{loan.fins.year_3_revenue | currency}}</td>
+      </tr>
+      <tr>
+        <td>Year 3 Expenses</td>
+        <td>{{loan.fins.year_3_expenses | currency}}</td>
+      </tr>
+      <tr>
+        <td>Current Assets</td>
+        <td>{{loan.fins.current_assets | currency}}</td>
+      </tr>
+      <tr>
+        <td>Current Assets Factor</td>
+        <td>{{loan.fins.current_assets_factor | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Current Assets Liability</td>
+        <td>{{loan.fins.current_assets_liability | number:1}}</td>
+      </tr>
+      <tr>
+        <td>intermediate Assets</td>
+        <td>{{loan.fins.intermediate_assets | currency}}</td>
+      </tr>
+      <tr>
+        <td>intermediate Assets Factor</td>
+        <td>{{loan.fins.intermediate_assets_factor | number:1}}</td>
+      </tr>
+      <tr>
+        <td>intermediate Assets Liability</td>
+        <td>{{loan.fins.intermediate_assets_liability | number:1}}</td>
+      </tr>
+      <tr>
+        <td>fixed Assets</td>
+        <td>{{loan.fins.fixed_assets | currency}}</td>
+      </tr>
+      <tr>
+        <td>fixed Assets Factor</td>
+        <td>{{loan.fins.fixed_assets_factor | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Fixed Assets Liability</td>
+        <td>{{loan.fins.fixed_assets_liability | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Debt to Asset Ratio</td>
+        <td>{{loan.fins.debt2asset_ratio | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Adjusted Debt to Asset Ratio</td>
+        <td>{{loan.fins.debt2asset_ratio_adj | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Current Debt to Asset Ratio</td>
+        <td>{{loan.fins.ratio_current | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Adjusted Current Debt to Asset Ratio</td>
+        <td>{{loan.fins.ratio_current_adj | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Working Capital Capacity</td>
+        <td>{{loan.fins.capWork | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Adjusted Working Capital Capacity</td>
+        <td>{{loan.fins.capWork_adj | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Borrowing Capital Capacity</td>
+        <td>{{loan.fins.capBorrow | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Adjusted Borrowing Capital Capacity</td>
+        <td>{{loan.fins.capBorrow_adj | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Guarantee</td>
+        <td>{{loan.fins.guaranty | currency}}</td>
+      </tr>
+      <tr>
+        <td>Prod</td>
+        <td>{{loan.fins.prod | currency}}</td>
+      </tr>
+      <tr>
+        <td>Prod Adj</td>
+        <td>{{loan.fins.adj_prod | currency}}</td>
+      </tr>
+      <tr>
+        <td>Disc Prod Percent</td>
+        <td>{{loan.fins.disc_prod_percent | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Non RP</td>
+        <td>{{loan.fins.non_rp_percent | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Disc Prod</td>
+        <td>{{loan.fins.disc_prod | currency}}</td>
+      </tr>
+      <tr>
+        <td>Disc Prod Adj</td>
+        <td>{{loan.fins.disc_adj_prod | currency}}</td>
+      </tr>
+      <tr>
+        <td>Ins Disc Prod</td>
+        <td>{{loan.fins.ins_disc_prod | currency}}</td>
+      </tr>
+      <tr>
+        <td>Disc Ins Percent</td>
+        <td>{{loan.fins.disc_ins_percent | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Disc Ins</td>
+        <td>{{loan.fins.disc_ins | currency}}</td>
+      </tr>
+      <tr>
+        <td>Commit Arm</td>
+        <td>{{loan.fins.commit_arm | currency}}</td>
+      </tr>
+      <tr>
+        <td>Commit Dist</td>
+        <td>{{loan.fins.commit_dist | currency}}</td>
+      </tr>
+      <tr>
+        <td>Commit Other</td>
+        <td>{{loan.fins.commit_other | currency}}</td>
+      </tr>
+      <tr>
+        <td>Commit Total</td>
+        <td>{{loan.fins.commit_total | currency}}</td>
+      </tr>
+      <tr>
+        <td>Processing Fee Percent</td>
+        <td>{{loan.fins.fee_processing_percent | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Processing Fee</td>
+        <td>{{loan.fins.proc_fee | currency}}</td>
+      </tr>
+      <tr>
+        <td>Processing Fee (ARM ONLY)</td>
+        <td>{{loan.fins.proc_fee_arm_only | currency}}</td>
+      </tr>
+      <tr>
+        <td>Service Fee Percent</td>
+        <td>{{loan.fins.fee_service_percent | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Service Fee</td>
+        <td>{{loan.fins.srvc_fee | currency}}</td>
+      </tr>
+      <tr>
+        <td>Service Fee (ARM ONLY)</td>
+        <td>{{loan.fins.srvc_fee_arm_only | currency}}</td>
+      </tr>
+      <tr>
+        <td>Total Fee Percent</td>
+        <td>{{loan.fins.total_fee_percent | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Fee Total</td>
+        <td>{{loan.fins.fee_total | currency}}</td>
+      </tr>
+      <tr>
+        <td>Total FSA</td>
+        <td>{{loan.fins.total_fsa_payment | currency}}</td>
+      </tr>
+      <tr>
+        <td>Total Claims</td>
+        <td>{{loan.fins.total_claims | currency}}</td>
+      </tr>
+      <tr>
+        <td>Principal - ARM</td>
+        <td>{{loan.fins.principal_arm | currency}}</td>
+      </tr>
+      <tr>
+        <td>Principal - Dist</td>
+        <td>{{loan.fins.principal_dist | currency}}</td>
+      </tr>
+      <tr>
+        <td>Principal - Other</td>
+        <td>{{loan.fins.principal_other | currency}}</td>
+      </tr>
+      <tr>
+        <td>Principal - Total</td>
+        <td>{{loan.fins.principal | currency}}</td>
+      </tr>
+      <tr>
+        <td>Interest Percent - ARM</td>
+        <td>{{loan.fins.int_percent_arm | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Interest - ARM</td>
+        <td>{{loan.fins.int_arm | currency}}</td>
+      </tr>
+      <tr>
+        <td>Interest Percent - Dist</td>
+        <td>{{loan.fins.int_percent_dist | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Interest - Dist</td>
+        <td>{{loan.fins.int_dist | currency}}</td>
+      </tr>
+      <tr>
+        <td>Interest Percent - Other</td>
+        <td>{{loan.fins.int_percent_other | number:1}}</td>
+      </tr>
+      <tr>
+        <td>Interest - Other</td>
+        <td>{{loan.fins.int_other | currency}}</td>
+      </tr>
+      <tr>
+        <td>Total Interest</td>
+        <td>{{loan.fins.interest | currency}}</td>
+      </tr>
+      <tr>
+        <td>Total Revenue</td>
+        <td>{{loan.fins.total_revenue | currency}}</td>
+      </tr>
+      <tr>
+        <td>Revenue - ARM &amp; Dist</td>
+        <td>{{loan.fins.arm_and_dist | currency}}</td>
+      </tr>
+      <tr>
+        <td>Collateral</td>
+        <td>{{loan.fins.collateral | currency}}</td>
+      </tr>
+      <tr>
+        <td>Total Balance</td>
+        <td>{{loan.fins.total_balance | currency}}</td>
+      </tr>
+      <tr>
+        <td>Remaining Balance</td>
+        <td>{{loan.fins.remaining_balance | currency}}</td>
+      </tr>
+      <tr>
+        <td>Paid Balance</td>
+        <td>{{loan.fins.balance_paid | currency}}</td>
+      </tr>
+      <tr>
+        <td>Cash Flow</td>
+        <td>{{loan.fins.cash_flow | currency}}</td>
+      </tr>
+      <tr>
+        <td>Risk</td>
+        <td>{{loan.fins.risk | currency}}</td>
       </tr>
     </table>
   </div>
-</div>
-
-<br/><br/>
-
-<!-- PLANNED CROP CONSTRAINTS -->
-<div class="row" ng-hide="loan.loan_type_id == 2">
-  <div class="col-md-12">
-    <table class="table table-striped rowed">
-      <tr>
-        <th style="width:25%;">Planned Crop Constraints</th>
-        <th style="width:15%;">Acres</th>
-        <th style="width:15%;">Total Exp/Ac</th>
-        <th style="width:15%;">100% Ag-Pro</th>
-        <th style="width:15%;">35% Cap-Bridge</th>
-        <th style="width:15%;">35% Ag-Vest</th>
-      </tr>
-      <tr ng-repeat="c in loanCrops" ng-if="c.acres > 0">
-        <td>{{c.name}}</td>
-        <td class="text-right">
-          {{c.acres | number: 1}}
-        </td>
-        <td class="text-right">
-          {{c.tea | displaynullcurrency}}
-        </td>
-        <td class="text-right">
-          {{ c.tea * c.acres | displaynullcurrency }}
-        </td>
-        <td class="text-right">
-          {{ c.tea * c.acres * 0.35 | displaynullcurrency}}
-        </td>
-        <td class="text-right">
-          {{ c.tea * c.acres * 0.35 | displaynullcurrency}}
-        </td>
-      </tr>
-      <tr class="success">
-        <td class="text-left">
-          Total
-        </td>
-        <td class="text-right" ng-class=gtZero(loan.total_acres)>
-          {{loan.total_acres | displaynullsingle}}
-        </td>
-        <td class="text-center"> - </td>
-        <td ng-class=gtZero(loan.fins.totalPCC)>
-          {{loan.fins.totalPCC | displaynullcurrency}}
-        </td>
-        <td ng-class=gtZero(loan.fins.totalPCC)>
-          {{loan.fins.totalPCC * .35 | displaynullcurrency}}
-        </td>
-        <td ng-class=gtZero(loan.fins.totalPCC)>
-          {{loan.fins.totalPCC * .35 | displaynullcurrency}}
-        </td>
-      </tr>
-    </table>
+  
+  <!--ACTUAL PAGE-->
+  <div>
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <table class="table table-striped">
+          <tr>
+            <td style="width:16%;">
+              <label>Credit Score</label>
+            </td>
+            <td style="width:24%;">
+              <text-edit-in-place value="loan.fins.credit_score"></text-edit-in-place>
+            </td>
+            <td style="width:20%;">
+              <input type="checkbox" name="cpa_financials" ng-value="true" ng-model="loan.fins.cpa_financials"/>&nbsp;
+              CPA Financials
+            </td>
+            <td style="width:20%">&nbsp;</td>
+            <td style="width:10%;">
+              Grade
+            </td>
+            <td style="width:20%;">
+              {{loan.fins.grade}}
+            </td>
+          </tr>
+          <tr ng-if="loan.is_fast_tracked || loan.loan_type_id == 4 || loan.loan_type_id == 5">
+            <td>
+              <label>Amount Requested</label>
+            </td>
+            <td>
+              <edit-in-place value="loan.fins.amount_requested"></edit-in-place>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <br/><br/>
+    <!-- PLANNED CROP CONSTRAINTS -->
+    <div class="row" ng-hide="loan.loan_type_id == 2">
+      <div class="col-md-12">
+        <table class="table table-striped rowed">
+          <tr>
+            <th style="width:25%;">Planned Crop Constraints</th>
+            <th style="width:15%;">Acres</th>
+            <th style="width:15%;">Total Exp/Ac</th>
+            <th style="width:15%;">100% Ag-Pro</th>
+            <th style="width:15%;">35% Cap-Bridge</th>
+            <th style="width:15%;">35% Ag-Vest</th>
+          </tr>
+          <tr ng-repeat="c in loanCrops" ng-if="c.acres > 0">
+            <td>{{c.name}}</td>
+            <td class="text-right">
+              {{c.acres | number: 1}}
+            </td>
+            <td class="text-right">
+              {{c.tea | displaynullcurrency}}
+            </td>
+            <td class="text-right">
+              {{ c.tea * c.acres | displaynullcurrency }}
+            </td>
+            <td class="text-right">
+              {{ c.tea * c.acres * 0.35 | displaynullcurrency}}
+            </td>
+            <td class="text-right">
+              {{ c.tea * c.acres * 0.35 | displaynullcurrency}}
+            </td>
+          </tr>
+          <tr class="success">
+            <td class="text-left">
+              Total
+            </td>
+            <td class="text-right" ng-class=gtZero(loan.total_acres)>
+              {{loan.total_acres | displaynullsingle}}
+            </td>
+            <td class="text-center"> - </td>
+            <td ng-class=gtZero(loan.fins.totalPCC)>
+              {{loan.fins.totalPCC | displaynullcurrency}}
+            </td>
+            <td ng-class=gtZero(loan.fins.totalPCC)>
+              {{loan.fins.totalPCC * .35 | displaynullcurrency}}
+            </td>
+            <td ng-class=gtZero(loan.fins.totalPCC)>
+              {{loan.fins.totalPCC * .35 | displaynullcurrency}}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- PLANNED CROP CONSTRAINTS -->
+  
+    <!-- INCOME CONSTRAINTS-->
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped rowed">
+          <tr>
+            <th style="width:34%;">Income Constraints</th>
+            <th style="width:22%;">Revenue</th>
+            <th style="width:22%;">Expenses</th>
+            <th style="width:22%;">Income</th>
+          </tr>
+          <tr>
+            <td>Year 1</td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.year_1_revenue"></edit-in-place>
+            </td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.year_1_expenses"></edit-in-place>
+            </td>
+            <td class="text-right">
+              {{year1Income = getIncome(loan.fins.year_1_revenue*1, loan.fins.year_1_expenses*1) | displaynullcurrency}}
+            </td>
+          </tr>
+          <tr>
+            <td>Year 2</td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.year_2_revenue"></edit-in-place>
+            </td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.year_2_expenses"></edit-in-place>
+            </td>
+            <td class="text-right">
+              {{year2Income = getIncome(loan.fins.year_2_revenue*1, loan.fins.year_2_expenses*1) | displaynullcurrency}}
+            </td>
+          </tr>
+          <tr>
+            <td>Year 3</td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.year_3_revenue"></edit-in-place>
+            </td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.year_3_expenses"></edit-in-place>
+            </td>
+            <td class="text-right">
+              {{year3Income = getIncome(loan.fins.year_3_revenue*1, loan.fins.year_3_expenses*1) | displaynullcurrency}}
+            </td>
+          </tr>
+          <tr class="success">
+            <td>Average</td>
+            <td class="text-right">
+              {{averageArray([loan.fins.year_1_revenue*1, loan.fins.year_2_revenue*1, loan.fins.year_3_revenue*1]) | displaynullcurrency}}
+            </td>
+            <td class="text-right">
+              {{averageArray([loan.fins.year_1_expenses*1, loan.fins.year_2_expenses*1, loan.fins.year_3_expenses*1]) | displaynullcurrency}}
+            </td>
+            <td class="text-right">
+              {{averageArray([year1Income*1, year2Income*1, year3Income*1]) | displaynullcurrency}}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- INCOME CONSTRAINTS-->
+  
+    <!-- BALANCE SHEET CONSTRAINTS-->
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped rowed">
+          <tr>
+            <th>Balance Sheet Constraint</th>
+            <th style="width:140px;">Asset</th>
+            <th style="width:100px;">Discount</th>
+            <th style="width:140px;">Adj Value</th>
+            <th style="width:140px;">Liability</th>
+            <th>Reserve</th>
+          </tr>
+          <tr>
+            <td>Current</td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.current_assets"></edit-in-place>
+            </td>
+            <td class="text-right">
+              <percent-edit-in-place value="loan.fins.current_asset_factor"></percent-edit-in-place>
+            </td>
+            <td class="text-right">
+              {{ loan.fins.current_asset_adj = loan.fins.current_assets * ((100 - loan.fins.current_assets_factor) / 100) | noCentsCurrency}}
+            </td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.current_asset_liability"></edit-in-place>
+            </td>
+            <td class="text-right">
+              {{ loan.fins.current_asset_reserve = (loan.fins.current_assets * ((100 - loan.fins.current_asset_factor) / 100)) - loan.fins.current_asset_liability | noCentsCurrency}}
+            </td>
+          </tr>
+          <tr>
+            <td>Intermediate</td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.intermediate_assets"></edit-in-place>
+            </td>
+            <td class="text-right">
+              <percent-edit-in-place value="loan.fins.intermediate_asset_factor"></percent-edit-in-place>
+            </td>
+            <td class="text-right">
+              {{ loan.fins.intermediate_asset_adj = loan.fins.intermediate_assets * ((100 - loan.fins.intermediate_assets_factor) / 100) | noCentsCurrency}}
+            </td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.intermediate_asset_liability"></edit-in-place>
+            </td>
+            <td class="text-right">
+              {{ loan.fins.intermediate_asset_reserve = (loan.fins.intermediate_assets * ((100 - loan.fins.intermediate_asset_factor) / 100)) - loan.fins.intermediate_asset_liability | noCentsCurrency}}
+            </td>
+          </tr>
+          <tr>
+            <td>Fixed</td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.fixed_assets"></edit-in-place>
+            </td>
+            <td class="text-right">
+              <percent-edit-in-place value="loan.fins.fixed_asset_factor"></percent-edit-in-place>
+            </td>
+            <td class="text-right">
+              {{ loan.fins.fixed_asset_adj = loan.fins.fixed_assets * ((100 - loan.fins.fixed_assets_factor) / 100) | noCentsCurrency}}
+            </td>
+            <td class="text-right">
+              <edit-in-place value="loan.fins.fixed_asset_liability"></edit-in-place>
+            </td>
+            <td class="text-right">
+              {{ loan.fins.fixed_asset_reserve = (loan.fins.fixed_assets * ((100 - loan.fins.fixed_asset_factor) / 100)) - loan.fins.fixed_asset_liability | noCentsCurrency}}
+            </td>
+          </tr>
+          <tr class="success">
+            <td>Total</td>
+            <td class="text-right">
+              {{loan.fins.total_assets = (loan.fins.current_assets * 1) + (loan.fins.intermediate_assets * 1) + (loan.fins.fixed_assets * 1)  | noCentsCurrency}}
+            </td>
+            <td class="text-center"> - </td>
+            <td class="text-right">
+              {{ loan.fins.total_asset_adj = (loan.fins.current_asset_adj * 1) + (loan.fins.intermediate_asset_adj * 1) + (loan.fins.fixed_asset_adj * 1) | noCentsCurrency}}
+            </td>
+            <td class="text-right">
+              {{ loan.fins.total_liability = (loan.fins.current_asset_liability * 1) + (loan.fins.intermediate_asset_liability * 1) + (loan.fins.fixed_asset_liability * 1) | noCentsCurrency}}
+            </td>
+            <td class="text-right">
+              {{ loan.fins.total_reserve = (loan.fins.current_asset_reserve * 1) + (loan.fins.intermediate_asset_reserve * 1) + (loan.fins.fixed_asset_reserve * 1) | noCentsCurrency}}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- BALANCE SHEET CONSTRAINTS-->
+  
+    <!-- RATIO CONSTRAINTS -->
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped rowed">
+        <tr>
+          <th style="width: 35%;">Ratio Constraints</th>
+          <th style="width: 12%;">Ratios</th>
+          <th class="bright" style="width: 12%;">
+            Res Adj
+          </th>
+          <th style="width: 10%;">A</th>
+          <th style="width: 10%;">B</th>
+          <th style="width: 10%;">C</th>
+          <th style="width: 10%;">D</th>
+        </tr>
+        <tr>
+          <td>Debt to Asset [<=]</td>
+          <td class="text-center" ng-class=gtZero(loan.grader.debt2asset_ratio)>
+            {{loan.grader.debt2asset_ratio | displaynullpercent}}
+          </td>
+          <td class="bright text-center" ng-class=gtZero(loan.grader.debt2asset_ratio_adj)>
+            {{loan.grader.debt2asset_ratio_adj | displaynullpercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[0].debt2asset }">
+            {{grads[0].debt2asset | displaynullpercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[1].debt2asset }">
+            {{grads[1].debt2asset | displaynullpercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[2].debt2asset }">
+            {{grads[2].debt2asset | displaynullpercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[3].debt2asset }">
+            {{grads[3].debt2asset | displaynullpercent}}
+          </td>
+        </tr>
+        <tr>
+          <td>Current Ratio [>=]</td>
+          <td class="text-center" ng-class=gtZero(loan.grader.ratio_current)>
+            {{loan.grader.ratio_current | displaynullpercent}}
+          </td>
+          <td class="bright text-center" ng-class=gtZero(loan.grader.ratio_current_adj)>
+            {{loan.grader.ratio_current_adj | displaynullpercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[0].current_ratio }">
+            {{grads[0].current_ratio | displaynullpercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[1].current_ratio }">
+            {{grads[1].current_ratio | displaynullpercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[2].current_ratio }">
+            {{grads[2].current_ratio | displaynullpercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[3].current_ratio }">
+            {{grads[3].current_ratio | displaynullpercent}}
+          </td>
+        </tr>
+        <tr>
+          <td>Working Capital [>=]</td>
+          <td class="text-center" ng-class=gtZero(loan.grader.capWork)>
+            {{loan.grader.capWork | displaynullpercent}}
+          </td>
+          <td class="bright text-center" ng-class=gtZero(loan.grader.capWork_adj)>
+            {{loan.grader.capWork_adj | displaynullpercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[0].working_capital }">
+            {{grads[0].working_capital | displaypercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[1].working_capital }">
+            {{grads[1].working_capital | displaypercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[2].working_capital }">
+            {{grads[2].working_capital | displaypercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[3].working_capital }">
+            {{grads[3].working_capital | displaypercent}}
+          </td>
+        </tr>
+        <tr>
+          <td>Borrowing Capacity [>=]</td>
+          <td class="text-center" ng-class=gtZero(loan.grader.capBorrow)>
+            {{loan.grader.capBorrow | displaynullpercent}}
+          </td>
+          <td class="bright text-center" ng-class=gtZero(loan.grader.capBorrow_adj)>
+            {{loan.grader.capBorrow_adj | displaynullpercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[0].borrowing_capacity }">
+            {{grads[0].borrowing_capacity | displaypercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[1].borrowing_capacity }">
+            {{grads[1].borrowing_capacity | displaypercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[2].borrowing_capacity }">
+            {{grads[2].borrowing_capacity | displaypercent}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[3].borrowing_capacity }">
+            {{grads[3].borrowing_capacity | displaypercent}}
+          </td>
+        </tr>
+        <tr>
+          <td>Credit Score [>=]</td>
+          <td></td>
+          <td class="bright text-center">
+            {{loan.fins.credit_score | displaynull}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[0].credit_score }">
+            {{grads[0].credit_score}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[1].credit_score }">
+            {{grads[1].credit_score}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[2].credit_score }">
+            {{grads[2].credit_score}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[3].credit_score }">
+            {{grads[3].credit_score}}
+          </td>
+        </tr>
+        <tr>
+          <td>Years Farming [>=]</td>
+          <td></td>
+          <td class="text-center bright">
+            {{farmer.farm_exp | displaynull}}
+          </td>
+          <td class="text-center" ng-class="{red: farmer.farm_exp < grads[0].years_farming }">
+            {{grads[0].years_farming}}
+          </td>
+          <td class="text-center" ng-class="{red: farmer.farm_exp < grads[1].years_farming }">
+            {{grads[1].years_farming}}
+          </td>
+          <td class="text-center" ng-class="{red: farmer.farm_exp < grads[2].years_farming }">
+            {{grads[2].years_farming}}
+          </td>
+          <td class="text-center" ng-class="{red: farmer.farm_exp < grads[3].years_farming }">
+            {{grads[3].years_farming}}
+          </td>
+        </tr>
+        <tr>
+          <td>CPA Financials</td>
+          <td></td>
+          <td class="bright text-center">
+            {{loan.fins.cpa_financials | boolean}}
+          </td>
+          <td class="text-center" ng-class="{red: !grads[0].cpa_financials }">
+            {{grads[0].cpa_financials | boolean}}
+          </td>
+          <td class="text-center">&nbsp;</td>
+          <td class="text-center">&nbsp;</td>
+          <td class="text-center">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Bankruptcy</td>
+          <td></td>
+          <td class="text-center bright">
+            {{ quests.bankruptcy | boolean}}
+          </td>
+          <td class="text-center" ng-class="{red: quests.bankruptcy }">
+            {{grads[0].bankruptcy | boolean}}
+          </td>
+          <td class="text-center" ng-class="{red: quests.bankruptcy }">
+            {{grads[1].bankruptcy | boolean}}
+          </td>
+          <td class="text-center" ng-class="{red: quests.bankruptcy }">
+            {{grads[2].bankruptcy | boolean}}
+          </td>
+          <td class="text-center" ng-class="{red: !quests.bankruptcy }">
+            <!--{{grads[3].bankruptcy | boolean}}-->
+          </td>
+        </tr>
+        <tr>
+          <td>Judgement</td>
+          <td></td>
+          <td class="text-center bright">
+            {{ quests.judgements | boolean}}
+          </td>
+          <td class="text-center" ng-class="{red: quests.judgements }">
+            {{grads[0].judgement| boolean}}
+          </td>
+          <td class="text-center" ng-class="{red: loan.quests.judgements }">
+            {{grads[1].judgement | boolean}}
+          </td>
+          <td class="text-center" ng-class="{red: quests.judgements }">
+            {{grads[2].judgement | boolean}}
+          </td>
+          <td class="text-center" ng-class="{red: !quests.judgements }">
+            <!--{{grads[3].judgement | boolean}}-->
+          </td>
+        </tr>
+        <tr>
+          <td>Any Type Max Loan Constraint</td>
+          <td></td>
+          <td class="bright"></td>
+          <td class="text-right" ng-class=gtZero(grads[0].all_max_loan)>
+            {{grads[0].all_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[1].all_max_loan)>
+            {{grads[1].all_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[2].all_max_loan)>
+            {{grads[2].all_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[3].all_max_loan)>
+            {{grads[3].all_max_loan | displaynullcurrency}}
+          </td>
+        </tr>
+        <tr ng-if="loan.loan_type_id == 3">
+          <td>Ag-Pro Max Loan Constraint</td>
+          <td></td>
+          <td class="bright"></td>
+          <td class="text-right" ng-class=gtZero(grads[0].ag_pro_max_loan)>
+            {{grads[0].ag_pro_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right"ng-class=gtZero(grads[1].ag_pro_max_loan)>
+            {{grads[1].ag_pro_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right"ng-class=gtZero(grads[2].ag_pro_max_loan)>
+            {{grads[2].ag_pro_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right"ng-class=gtZero(grads[3].ag_pro_max_loan)>
+            {{grads[3].ag_pro_max_loan | displaynullcurrency}}
+          </td>
+        </tr>
+        <tr ng-if="loan.loan_type_id == 4">
+          <td>Capital Bridge Max Loan Constraint</td>
+          <td></td>
+          <td class="bright"></td>
+          <td class="text-right" ng-class=gtZero(grads[0].capital_bridge_max_loan)>
+            {{grads[0].capital_bridge_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[1].capital_bridge_max_loan)>
+            {{grads[1].capital_bridge_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[2].capital_bridge_max_loan)>
+            {{grads[2].capital_bridge_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[3].capital_bridge_max_loan)>
+            {{grads[3].capital_bridge_max_loan | displaynullcurrency}}
+          </td>
+        </tr>
+        <tr ng-if="loan.loan_type_id == 5">
+          <td>Ag-Vest Max Loan Constraint</td>
+          <td></td>
+          <td class="class-right bright"></td>
+          <td class="text-right" ng-class=gtZero(grads[0].ag_vest_max_loan)>
+            {{grads[0].ag_vest_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[1].ag_vest_max_loan)>
+            {{grads[1].ag_vest_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[2].ag_vest_max_loan)>
+            {{grads[2].ag_vest_max_loan | displaynullcurrency}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[3].ag_vest_max_loan)>
+            {{grads[3].ag_vest_max_loan | displaynullcurrency}}
+          </td>
+        </tr>
+        <tr ng-if="loan.loan_type_id == 3">
+          <td>Ag-Pro Max Rate of Avg Expenses</td>
+          <td></td>
+          <td class="class-right bright"></td>
+          <td class="text-right" ng-class=gtZero(grads[0].ag_pro_max_rate)>
+            {{grads[0].ag_pro_max_rate | displaynullpercent}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[1].ag_pro_max_rate)>
+            {{grads[1].ag_pro_max_rate | displaynullpercent}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[2].ag_pro_max_rate)>
+            {{grads[2].ag_pro_max_rate | displaynullpercent}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[3].ag_pro_max_rate)>
+            {{grads[3].ag_pro_max_rate | displaynullpercent}}
+          </td>
+        </tr>
+        <tr ng-if="loan.loan_type_id == 4">
+          <td>Capital Bridge Max Rate of Avg Expenses</td>
+          <td></td>
+          <td class="class-right bright"></td>
+          <td class="text-right" ng-class=gtZero(grads[0].capital_bridge_max_rate)>
+            {{grads[0].capital_bridge_max_rate | displaynullpercent}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[1].capital_bridge_max_rate)>
+            {{grads[1].capital_bridge_max_rate | displaynullpercent}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[2].capital_bridge_max_rate)>
+            {{grads[2].capital_bridge_max_rate | displaynullpercent}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[3].capital_bridge_max_rate)>
+            {{grads[3].capital_bridge_max_rate | displaynullpercent}}
+          </td>
+        </tr>
+        <tr ng-if="loan.loan_type_id == 5">
+          <td>Ag-Vest Max Rate of Avg Expenses</td>
+          <td></td>
+          <td class="class-right bright"></td>
+          <td class="text-right" ng-class=gtZero(grads[0].ag_vest_max_rate)>
+            {{grads[0].ag_vest_max_rate | displaynullpercent}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[1].ag_vest_max_rate)>
+            {{grads[1].ag_vest_max_rate | displaynullpercent}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[2].ag_vest_max_rate)>
+            {{grads[2].ag_vest_max_rate | displaynullpercent}}
+          </td>
+          <td class="text-right" ng-class=gtZero(grads[3].ag_vest_max_rate)>
+            {{grads[3].ag_vest_max_rate | displaynullpercent}}
+          </td>
+        </tr>
+        </table>
+      </div>
+    </div>
+    <!-- RATIO CONSTRAINTS -->
+  
+    <!-- SUMMARY PANEL-->
+    <div class="row" style="display:none;">
+      <div class="col-md-12">
+        <table class="table table-striped rowed" style="width:40%">
+          <tr>
+            <th>Borrower Rating</th>
+            <th>
+              {{loan.grade.grade}}
+            </th>
+          </tr>
+          <tr ng-if="loan.loan_type_id == 3">
+            <td>Ag-Pro Max Loan Addition</td>
+            <td class="text-right" ng-class=gtZero(loan.grade.ag_pro_max)>
+              {{loan.grade.ag_pro_max | displaynullcurrency}}
+            </td>
+          </tr>
+          <tr ng-if="loan.loan_type_id == 4">
+            <td>Capital Bridge Max Loan</td>
+            <td class="text-right" ng-class=gtZero(loan.grade.cap_bridge_max)>
+              {{loan.grade.cap_bridge_max | displaynullcurrency}}
+            </td>
+          </tr>
+          <tr ng-if="loan.loan_type_id == 5">
+            <td>Ag-Vest Max Loan</td>
+            <td class="text-right" ng-class=gtZero(loan.grade.ag_vest_max)>
+              {{loan.grade.ag_vest_max | displaynullcurrency}}
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- SUMMARY PANEL-->
   </div>
-</div>
-<!-- PLANNED CROP CONSTRAINTS -->
-
-<!-- INCOME CONSTRAINTS-->
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped rowed">
-      <tr>
-        <th style="width:34%;">Income Constraints</th>
-        <th style="width:22%;">Revenue</th>
-        <th style="width:22%;">Expenses</th>
-        <th style="width:22%;">Income</th>
-      </tr>
-      <tr>
-        <td>Year 1</td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.year_1_revenue"></edit-in-place>
-        </td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.year_1_expenses"></edit-in-place>
-        </td>
-        <td class="text-right">
-          {{year1Income = getIncome(loan.fins.year_1_revenue*1, loan.fins.year_1_expenses*1) | displaynullcurrency}}
-        </td>
-      </tr>
-      <tr>
-        <td>Year 2</td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.year_2_revenue"></edit-in-place>
-        </td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.year_2_expenses"></edit-in-place>
-        </td>
-        <td class="text-right">
-          {{year2Income = getIncome(loan.fins.year_2_revenue*1, loan.fins.year_2_expenses*1) | displaynullcurrency}}
-        </td>
-      </tr>
-      <tr>
-        <td>Year 3</td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.year_3_revenue"></edit-in-place>
-        </td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.year_3_expenses"></edit-in-place>
-        </td>
-        <td class="text-right">
-          {{year3Income = getIncome(loan.fins.year_3_revenue*1, loan.fins.year_3_expenses*1) | displaynullcurrency}}
-        </td>
-      </tr>
-      <tr class="success">
-        <td>Average</td>
-        <td class="text-right">
-          {{averageArray([loan.fins.year_1_revenue*1, loan.fins.year_2_revenue*1, loan.fins.year_3_revenue*1]) | displaynullcurrency}}
-        </td>
-        <td class="text-right">
-          {{averageArray([loan.fins.year_1_expenses*1, loan.fins.year_2_expenses*1, loan.fins.year_3_expenses*1]) | displaynullcurrency}}
-        </td>
-        <td class="text-right">
-          {{averageArray([year1Income*1, year2Income*1, year3Income*1]) | displaynullcurrency}}
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-<!-- INCOME CONSTRAINTS-->
-
-<!-- BALANCE SHEET CONSTRAINTS-->
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped rowed">
-      <tr>
-        <th>Balance Sheet Constraint</th>
-        <th style="width:140px;">Asset</th>
-        <th style="width:100px;">Discount</th>
-        <th style="width:140px;">Adj Value</th>
-        <th style="width:140px;">Liability</th>
-        <th>Reserve</th>
-      </tr>
-      <tr>
-        <td>Current</td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.current_assets"></edit-in-place>
-        </td>
-        <td class="text-right">
-          <percent-edit-in-place value="loan.fins.current_asset_factor"></percent-edit-in-place>
-        </td>
-        <td class="text-right">
-          {{ loan.fins.current_asset_adj = loan.fins.current_assets * ((100 - loan.fins.current_assets_factor) / 100) | noCentsCurrency}}
-        </td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.current_asset_liability"></edit-in-place>
-        </td>
-        <td class="text-right">
-          {{ loan.fins.current_asset_reserve = (loan.fins.current_assets * ((100 - loan.fins.current_asset_factor) / 100)) - loan.fins.current_asset_liability | noCentsCurrency}}
-        </td>
-      </tr>
-      <tr>
-        <td>Intermediate</td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.intermediate_assets"></edit-in-place>
-        </td>
-        <td class="text-right">
-          <percent-edit-in-place value="loan.fins.intermediate_asset_factor"></percent-edit-in-place>
-        </td>
-        <td class="text-right">
-          {{ loan.fins.intermediate_asset_adj = loan.fins.intermediate_assets * ((100 - loan.fins.intermediate_assets_factor) / 100) | noCentsCurrency}}
-        </td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.intermediate_asset_liability"></edit-in-place>
-        </td>
-        <td class="text-right">
-          {{ loan.fins.intermediate_asset_reserve = (loan.fins.intermediate_assets * ((100 - loan.fins.intermediate_asset_factor) / 100)) - loan.fins.intermediate_asset_liability | noCentsCurrency}}
-        </td>
-      </tr>
-      <tr>
-        <td>Fixed</td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.fixed_assets"></edit-in-place>
-        </td>
-        <td class="text-right">
-          <percent-edit-in-place value="loan.fins.fixed_asset_factor"></percent-edit-in-place>
-        </td>
-        <td class="text-right">
-          {{ loan.fins.fixed_asset_adj = loan.fins.fixed_assets * ((100 - loan.fins.fixed_assets_factor) / 100) | noCentsCurrency}}
-        </td>
-        <td class="text-right">
-          <edit-in-place value="loan.fins.fixed_asset_liability"></edit-in-place>
-        </td>
-        <td class="text-right">
-          {{ loan.fins.fixed_asset_reserve = (loan.fins.fixed_assets * ((100 - loan.fins.fixed_asset_factor) / 100)) - loan.fins.fixed_asset_liability | noCentsCurrency}}
-        </td>
-      </tr>
-      <tr class="success">
-        <td>Total</td>
-        <td class="text-right">
-          {{loan.fins.total_assets = (loan.fins.current_assets * 1) + (loan.fins.intermediate_assets * 1) + (loan.fins.fixed_assets * 1)  | noCentsCurrency}}
-        </td>
-        <td class="text-center"> - </td>
-        <td class="text-right">
-          {{ loan.fins.total_asset_adj = (loan.fins.current_asset_adj * 1) + (loan.fins.intermediate_asset_adj * 1) + (loan.fins.fixed_asset_adj * 1) | noCentsCurrency}}
-        </td>
-        <td class="text-right">
-          {{ loan.fins.total_liability = (loan.fins.current_asset_liability * 1) + (loan.fins.intermediate_asset_liability * 1) + (loan.fins.fixed_asset_liability * 1) | noCentsCurrency}}
-        </td>
-        <td class="text-right">
-          {{ loan.fins.total_reserve = (loan.fins.current_asset_reserve * 1) + (loan.fins.intermediate_asset_reserve * 1) + (loan.fins.fixed_asset_reserve * 1) | noCentsCurrency}}
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-<!-- BALANCE SHEET CONSTRAINTS-->
-<!--<pre>{{loan.grader | json}}</pre>-->
-<!-- RATIO CONSTRAINTS -->
-<div class="row">
-<div class="col-md-12">
-<table class="table table-striped rowed">
-<tr>
-  <th style="width: 35%;">Ratio Constraints</th>
-  <th style="width: 12%;">Ratios</th>
-  <th class="bright" style="width: 12%;">
-    Res Adj
-  </th>
-  <th style="width: 10%;">A</th>
-  <th style="width: 10%;">B</th>
-  <th style="width: 10%;">C</th>
-  <th style="width: 10%;">D</th>
-</tr>
-<tr>
-  <td>Debt to Asset [<=]</td>
-  <td class="text-center" ng-class=gtZero(loan.grader.debt2asset_ratio)>
-    {{loan.grader.debt2asset_ratio | displaynullpercent}}
-  </td>
-  <td class="bright text-center" ng-class=gtZero(loan.grader.debt2asset_ratio_adj)>
-    {{loan.grader.debt2asset_ratio_adj | displaynullpercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[0].debt2asset }">
-    {{grads[0].debt2asset | displaynullpercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[1].debt2asset }">
-    {{grads[1].debt2asset | displaynullpercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[2].debt2asset }">
-    {{grads[2].debt2asset | displaynullpercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[3].debt2asset }">
-    {{grads[3].debt2asset | displaynullpercent}}
-  </td>
-</tr>
-<tr>
-  <td>Current Ratio [>=]</td>
-  <td class="text-center" ng-class=gtZero(loan.grader.ratio_current)>
-    {{loan.grader.ratio_current | displaynullpercent}}
-  </td>
-  <td class="bright text-center" ng-class=gtZero(loan.grader.ratio_current_adj)>
-    {{loan.grader.ratio_current_adj | displaynullpercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[0].current_ratio }">
-    {{grads[0].current_ratio | displaynullpercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[1].current_ratio }">
-    {{grads[1].current_ratio | displaynullpercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[2].current_ratio }">
-    {{grads[2].current_ratio | displaynullpercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[3].current_ratio }">
-    {{grads[3].current_ratio | displaynullpercent}}
-  </td>
-</tr>
-<tr>
-  <td>Working Capital [>=]</td>
-  <td class="text-center" ng-class=gtZero(loan.grader.capWork)>
-    {{loan.grader.capWork | displaynullpercent}}
-  </td>
-  <td class="bright text-center" ng-class=gtZero(loan.grader.capWork_adj)>
-    {{loan.grader.capWork_adj | displaynullpercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[0].working_capital }">
-    {{grads[0].working_capital | displaypercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[1].working_capital }">
-    {{grads[1].working_capital | displaypercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[2].working_capital }">
-    {{grads[2].working_capital | displaypercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[3].working_capital }">
-    {{grads[3].working_capital | displaypercent}}
-  </td>
-</tr>
-<tr>
-  <td>Borrowing Capacity [>=]</td>
-  <td class="text-center" ng-class=gtZero(loan.grader.capBorrow)>
-    {{loan.grader.capBorrow | displaynullpercent}}
-  </td>
-  <td class="bright text-center" ng-class=gtZero(loan.grader.capBorrow_adj)>
-    {{loan.grader.capBorrow_adj | displaynullpercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[0].borrowing_capacity }">
-    {{grads[0].borrowing_capacity | displaypercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[1].borrowing_capacity }">
-    {{grads[1].borrowing_capacity | displaypercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[2].borrowing_capacity }">
-    {{grads[2].borrowing_capacity | displaypercent}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[3].borrowing_capacity }">
-    {{grads[3].borrowing_capacity | displaypercent}}
-  </td>
-</tr>
-<tr>
-  <td>Credit Score [>=]</td>
-  <td></td>
-  <td class="bright text-center">
-    {{loan.fins.credit_score | displaynull}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[0].credit_score }">
-    {{grads[0].credit_score}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[1].credit_score }">
-    {{grads[1].credit_score}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[2].credit_score }">
-    {{grads[2].credit_score}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[3].credit_score }">
-    {{grads[3].credit_score}}
-  </td>
-</tr>
-<tr>
-  <td>Years Farming [>=]</td>
-  <td></td>
-  <td class="text-center bright">
-    {{farmer.farm_exp | displaynull}}
-  </td>
-  <td class="text-center" ng-class="{red: farmer.farm_exp < grads[0].years_farming }">
-    {{grads[0].years_farming}}
-  </td>
-  <td class="text-center" ng-class="{red: farmer.farm_exp < grads[1].years_farming }">
-    {{grads[1].years_farming}}
-  </td>
-  <td class="text-center" ng-class="{red: farmer.farm_exp < grads[2].years_farming }">
-    {{grads[2].years_farming}}
-  </td>
-  <td class="text-center" ng-class="{red: farmer.farm_exp < grads[3].years_farming }">
-    {{grads[3].years_farming}}
-  </td>
-</tr>
-<tr>
-  <td>CPA Financials</td>
-  <td></td>
-  <td class="bright text-center">
-    {{loan.fins.cpa_financials | boolean}}
-  </td>
-  <td class="text-center" ng-class="{red: !grads[0].cpa_financials }">
-    {{grads[0].cpa_financials | boolean}}
-  </td>
-  <td class="text-center">&nbsp;</td>
-  <td class="text-center">&nbsp;</td>
-  <td class="text-center">&nbsp;</td>
-</tr>
-<tr>
-  <td>Bankruptcy</td>
-  <td></td>
-  <td class="text-center bright">
-    {{ quests.bankruptcy | boolean}}
-  </td>
-  <td class="text-center" ng-class="{red: quests.bankruptcy }">
-    {{grads[0].bankruptcy | boolean}}
-  </td>
-  <td class="text-center" ng-class="{red: quests.bankruptcy }">
-    {{grads[1].bankruptcy | boolean}}
-  </td>
-  <td class="text-center" ng-class="{red: quests.bankruptcy }">
-    {{grads[2].bankruptcy | boolean}}
-  </td>
-  <td class="text-center" ng-class="{red: !quests.bankruptcy }">
-    <!--{{grads[3].bankruptcy | boolean}}-->
-  </td>
-</tr>
-<tr>
-  <td>Judgement</td>
-  <td></td>
-  <td class="text-center bright">
-    {{ quests.judgements | boolean}}
-  </td>
-  <td class="text-center" ng-class="{red: quests.judgements }">
-    {{grads[0].judgement| boolean}}
-  </td>
-  <td class="text-center" ng-class="{red: loan.quests.judgements }">
-    {{grads[1].judgement | boolean}}
-  </td>
-  <td class="text-center" ng-class="{red: quests.judgements }">
-    {{grads[2].judgement | boolean}}
-  </td>
-  <td class="text-center" ng-class="{red: !quests.judgements }">
-    <!--{{grads[3].judgement | boolean}}-->
-  </td>
-</tr>
-<tr>
-  <td>Any Type Max Loan Constraint</td>
-  <td></td>
-  <td class="bright"></td>
-  <td class="text-right" ng-class=gtZero(grads[0].all_max_loan)>
-    {{grads[0].all_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[1].all_max_loan)>
-    {{grads[1].all_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[2].all_max_loan)>
-    {{grads[2].all_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[3].all_max_loan)>
-    {{grads[3].all_max_loan | displaynullcurrency}}
-  </td>
-</tr>
-<tr ng-if="loan.loan_type_id == 3">
-  <td>Ag-Pro Max Loan Constraint</td>
-  <td></td>
-  <td class="bright"></td>
-  <td class="text-right" ng-class=gtZero(grads[0].ag_pro_max_loan)>
-    {{grads[0].ag_pro_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right"ng-class=gtZero(grads[1].ag_pro_max_loan)>
-    {{grads[1].ag_pro_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right"ng-class=gtZero(grads[2].ag_pro_max_loan)>
-    {{grads[2].ag_pro_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right"ng-class=gtZero(grads[3].ag_pro_max_loan)>
-    {{grads[3].ag_pro_max_loan | displaynullcurrency}}
-  </td>
-</tr>
-<tr ng-if="loan.loan_type_id == 4">
-  <td>Capital Bridge Max Loan Constraint</td>
-  <td></td>
-  <td class="bright"></td>
-  <td class="text-right" ng-class=gtZero(grads[0].capital_bridge_max_loan)>
-    {{grads[0].capital_bridge_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[1].capital_bridge_max_loan)>
-    {{grads[1].capital_bridge_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[2].capital_bridge_max_loan)>
-    {{grads[2].capital_bridge_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[3].capital_bridge_max_loan)>
-    {{grads[3].capital_bridge_max_loan | displaynullcurrency}}
-  </td>
-</tr>
-<tr ng-if="loan.loan_type_id == 5">
-  <td>Ag-Vest Max Loan Constraint</td>
-  <td></td>
-  <td class="class-right bright"></td>
-  <td class="text-right" ng-class=gtZero(grads[0].ag_vest_max_loan)>
-    {{grads[0].ag_vest_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[1].ag_vest_max_loan)>
-    {{grads[1].ag_vest_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[2].ag_vest_max_loan)>
-    {{grads[2].ag_vest_max_loan | displaynullcurrency}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[3].ag_vest_max_loan)>
-    {{grads[3].ag_vest_max_loan | displaynullcurrency}}
-  </td>
-</tr>
-<tr ng-if="loan.loan_type_id == 3">
-  <td>Ag-Pro Max Rate of Avg Expenses</td>
-  <td></td>
-  <td class="class-right bright"></td>
-  <td class="text-right" ng-class=gtZero(grads[0].ag_pro_max_rate)>
-    {{grads[0].ag_pro_max_rate | displaynullpercent}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[1].ag_pro_max_rate)>
-    {{grads[1].ag_pro_max_rate | displaynullpercent}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[2].ag_pro_max_rate)>
-    {{grads[2].ag_pro_max_rate | displaynullpercent}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[3].ag_pro_max_rate)>
-    {{grads[3].ag_pro_max_rate | displaynullpercent}}
-  </td>
-</tr>
-<tr ng-if="loan.loan_type_id == 4">
-  <td>Capital Bridge Max Rate of Avg Expenses</td>
-  <td></td>
-  <td class="class-right bright"></td>
-  <td class="text-right" ng-class=gtZero(grads[0].capital_bridge_max_rate)>
-    {{grads[0].capital_bridge_max_rate | displaynullpercent}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[1].capital_bridge_max_rate)>
-    {{grads[1].capital_bridge_max_rate | displaynullpercent}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[2].capital_bridge_max_rate)>
-    {{grads[2].capital_bridge_max_rate | displaynullpercent}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[3].capital_bridge_max_rate)>
-    {{grads[3].capital_bridge_max_rate | displaynullpercent}}
-  </td>
-</tr>
-<tr ng-if="loan.loan_type_id == 5">
-  <td>Ag-Vest Max Rate of Avg Expenses</td>
-  <td></td>
-  <td class="class-right bright"></td>
-  <td class="text-right" ng-class=gtZero(grads[0].ag_vest_max_rate)>
-    {{grads[0].ag_vest_max_rate | displaynullpercent}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[1].ag_vest_max_rate)>
-    {{grads[1].ag_vest_max_rate | displaynullpercent}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[2].ag_vest_max_rate)>
-    {{grads[2].ag_vest_max_rate | displaynullpercent}}
-  </td>
-  <td class="text-right" ng-class=gtZero(grads[3].ag_vest_max_rate)>
-    {{grads[3].ag_vest_max_rate | displaynullpercent}}
-  </td>
-</tr>
-</table>
-</div>
-</div>
-<!-- RATIO CONSTRAINTS -->
-
-<!-- SUMMARY PANEL-->
-<div class="row" style="display:none;">
-  <div class="col-md-12">
-    <table class="table table-striped rowed" style="width:40%">
-      <tr>
-        <th>Borrower Rating</th>
-        <th>
-          {{loan.grade.grade}}
-        </th>
-      </tr>
-      <tr ng-if="loan.loan_type_id == 3">
-        <td>Ag-Pro Max Loan Addition</td>
-        <td class="text-right" ng-class=gtZero(loan.grade.ag_pro_max)>
-          {{loan.grade.ag_pro_max | displaynullcurrency}}
-        </td>
-      </tr>
-      <tr ng-if="loan.loan_type_id == 4">
-        <td>Capital Bridge Max Loan</td>
-        <td class="text-right" ng-class=gtZero(loan.grade.cap_bridge_max)>
-          {{loan.grade.cap_bridge_max | displaynullcurrency}}
-        </td>
-      </tr>
-      <tr ng-if="loan.loan_type_id == 5">
-        <td>Ag-Vest Max Loan</td>
-        <td class="text-right" ng-class=gtZero(loan.grade.ag_vest_max)>
-          {{loan.grade.ag_vest_max | displaynullcurrency}}
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-<!-- SUMMARY PANEL-->
 </fieldset>
 <!--<pre>{{loan.fins | json}}</pre>-->
 <!--<pre>{{loanCrops | json}}</pre>-->
-<!--<pre>{{loan.grader | json}}</pre>-->
 <!--<pre>{{grads | json}}</pre>-->

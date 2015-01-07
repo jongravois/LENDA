@@ -191,7 +191,7 @@ class CountiesController extends ApiController {
 		return County::where('id', $id)->get(['locale']);
 	}
 
-	//TODO: Refactor to deal with moving county defauts out of counties table
+	//TODO: Refactor to deal with moving county defaults out of counties table
 	public function byLoan($id)
 	{
 		/*

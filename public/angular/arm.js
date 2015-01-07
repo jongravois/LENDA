@@ -339,62 +339,80 @@
 
           //EDIT APPLICATIONS
           .state('edit',{
-            url: '/edit/:id',
+            abstract: true,
+            url: '/edit/{loanID:\\d+}',
             templateUrl: 'angular/views/editapp.html',
-            controller: 'EditAppController'
+            controller: 'EditAppController',
+            resolve: {
+              Loan: function(LoansFactory, $stateParams){
+                return LoansFactory.getLoan($stateParams.loanID);
+              }
+            }
           })
           .state('edit.affiliates', {
             url: '/affiliates',
-            templateUrl: 'angular/views/loans/editaffiliates.html'
+            templateUrl: 'angular/views/loans/editaffiliates.html',
+            controller: 'AffiliatesController'
           })
           .state('edit.applicant', {
             url: '/applicant',
-            templateUrl: 'angular/views/loans/editapplicant.html'
+            templateUrl: 'angular/views/loans/editapplicant.html',
+            controller: 'EditApplicantsController'
           })
           .state('edit.audit', {
             url: '/audit',
-            templateUrl: 'angular/views/loans/audit.html'
+            templateUrl: 'angular/views/loans/audit.html',
+            controller: 'AuditsController'
           })
           .state('edit.budgets', {
             url: '/budgets',
-            templateUrl: 'angular/views/loans/budgets.html'
+            templateUrl: 'angular/views/loans/budgets.html',
+            controller: 'BudgetsController'
           })
           .state('edit.closing', {
             url: '/closing',
-            templateUrl: 'angular/views/loans/closing.html'
+            templateUrl: 'angular/views/loans/closing.html',
+            controller: 'ClosingController'
           })
           .state('edit.comments', {
             url: '/comments',
-            templateUrl: 'angular/views/loans/comments.html'
+            templateUrl: 'angular/views/loans/comments.html',
+            controller: 'CommentsController'
           })
           .state('edit.committee', {
             url: '/committee',
-            templateUrl: 'angular/views/loans/committee.html'
+            templateUrl: 'angular/views/loans/committee.html',
+            controller: 'CommitteeController'
           })
           .state('edit.crops', {
             url: '/crops',
-            templateUrl: 'angular/views/loans/editcrops.html'
+            templateUrl: 'angular/views/loans/editcrops.html',
+            controller: 'EditCropsController'
           })
           .state('edit.disbursement', {
             url: '/disbursement',
             templateUrl: 'angular/views/loans/disbursement.html',
-            conroller: 'DisbursementController'
+            controller: 'DisbursementController'
           })
           .state('edit.distributor', {
             url: '/distributor',
-            templateUrl: 'angular/views/loans/editdistributor.html'
+            templateUrl: 'angular/views/loans/editdistributor.html',
+            controller: 'EditDistributorController'
           })
           .state('edit.farmdetails', {
             url: '/farmdetails',
-            templateUrl: 'angular/views/loans/farmdetails.html'
+            templateUrl: 'angular/views/loans/farmdetails.html',
+            controller: 'EditFarmDetailsController'
           })
           .state('edit.farmer', {
             url: '/farmer',
-            templateUrl: 'angular/views/loans/editfarmer.html'
+            templateUrl: 'angular/views/loans/editfarmer.html',
+            controller: 'EditFarmerController'
           })
           .state('edit.farms', {
             url: '/farms',
-            templateUrl: 'angular/views/loans/editfarms.html'
+            templateUrl: 'angular/views/loans/editfarms.html',
+            controller: 'EditFarmsController'
           })
           .state('edit.financials', {
             url: '/financials',
@@ -403,11 +421,13 @@
           })
           .state('edit.insurance', {
             url: '/insurance',
-            templateUrl: 'angular/views/loans/editinsurance.html'
+            templateUrl: 'angular/views/loans/editinsurance.html',
+            controller: 'EditInsuranceController'
           })
           .state('edit.optimizer', {
             url: '/optimizer',
-            templateUrl: 'angular/views/loans/optimizer.html'
+            templateUrl: 'angular/views/loans/optimizer.html',
+            controller: 'EditOptimizerController'
           })
           .state('edit.plannedcrops', {
             url: '/plannedcrops',
@@ -416,35 +436,43 @@
           })
           .state('edit.prerequisites', {
             url: '/prerequisites',
-            templateUrl: 'angular/views/loans/prerequisites.html'
+            templateUrl: 'angular/views/loans/prerequisites.html',
+            controller: 'EditPrerequisitesController'
           })
           .state('edit.quests', {
             url: '/quests',
-            templateUrl: 'angular/views/loans/quests.html'
+            templateUrl: 'angular/views/loans/quests.html',
+            controller: 'EditQuestsController'
           })
           .state('edit.references', {
             url: '/references',
-            templateUrl: 'angular/views/loans/editreferences.html'
+            templateUrl: 'angular/views/loans/editreferences.html',
+            controller: 'ReferencesController'
           })
           .state('edit.storage', {
             url: '/storage',
-            templateUrl: 'angular/views/loans/editstorage.html'
+            templateUrl: 'angular/views/loans/editstorage.html',
+            controller: 'EditStorageController'
           })
           .state('edit.summary', {
             url: '/summary',
-            templateUrl: 'angular/views/loans/summary.html'
+            templateUrl: 'angular/views/loans/summary.html',
+            controller: 'EditSummaryController'
           })
           .state('edit.terms', {
             url: '/terms',
-            templateUrl: 'angular/views/loans/terms.html'
+            templateUrl: 'angular/views/loans/terms.html',
+            controller: 'EditTermsController'
           })
           .state('edit.underwriting', {
             url: '/underwriting',
-            templateUrl: 'angular/views/loans/underwriting.html'
+            templateUrl: 'angular/views/loans/underwriting.html',
+            controller: 'EditUnderwritingController'
           })
           .state('edit.yield', {
             url: '/yield',
-            templateUrl: 'angular/views/loans/edityield.html'
+            templateUrl: 'angular/views/loans/edityield.html',
+            controller: 'EditYieldController'
           })
 
         $urlRouterProvider.otherwise('/');

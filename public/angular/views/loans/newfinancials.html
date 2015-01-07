@@ -306,85 +306,85 @@
 </tr>
 <tr>
   <td>Debt to Asset [<=]</td>
-  <td ng-class=gtZero(loan.grader.debt2asset_ratio)>
-    {{loan.grader.debt2asset_ratio | displaynullpercent}}
+  <td ng-class=gtZero(loan.fins.debt2asset_ratio)>
+    {{loan.fins.debt2asset_ratio | displaynullpercent}}
   </td>
-  <td class="bright" ng-class=gtZero(loan.grader.debt2asset_ratio_adj)>
-    {{loan.grader.debt2asset_ratio_adj | displaynullpercent}}
+  <td class="bright" ng-class=gtZero(loan.fins.debt2asset_ratio_adj)>
+    {{loan.fins.debt2asset_ratio_adj | displaynullpercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[0].debt2asset }">
+  <td class="text-right" ng-class="{red: loan.fins.debt2asset_ratio_adj > grads[0].debt2asset }">
     {{grads[0].debt2asset | displaynullpercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[1].debt2asset }">
+  <td class="text-right" ng-class="{red: loan.fins.debt2asset_ratio_adj > grads[1].debt2asset }">
     {{grads[1].debt2asset | displaynullpercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[2].debt2asset }">
+  <td class="text-right" ng-class="{red: loan.fins.debt2asset_ratio_adj > grads[2].debt2asset }">
     {{grads[2].debt2asset | displaynullpercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[3].debt2asset }">
+  <td class="text-right" ng-class="{red: loan.fins.debt2asset_ratio_adj > grads[3].debt2asset }">
     {{grads[3].debt2asset | displaynullpercent}}
   </td>
 </tr>
 <tr>
   <td>Current Ratio [>=]</td>
-  <td ng-class=gtZero(loan.grader.ratio_current)>
-    {{loan.grader.ratio_current | displaynullpercent}}
+  <td ng-class=gtZero(loan.fins.ratio_current)>
+    {{loan.fins.ratio_current | displaynullpercent}}
   </td>
-  <td class="bright" ng-class=gtZero(loan.grader.ratio_current_adj)>
-    {{loan.grader.ratio_current_adj | displaynullpercent}}
+  <td class="bright" ng-class=gtZero(loan.fins.ratio_current_adj)>
+    {{loan.fins.ratio_current_adj | displaynullpercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.ratio_current_adj < grads[0].current_ratio }">
+  <td class="text-right" ng-class="{red: loan.fins.ratio_current_adj < grads[0].current_ratio }">
     {{grads[0].current_ratio | displaynullpercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.ratio_current_adj < grads[1].current_ratio }">
+  <td class="text-right" ng-class="{red: loan.fins.ratio_current_adj < grads[1].current_ratio }">
     {{grads[1].current_ratio | displaynullpercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.ratio_current_adj < grads[2].current_ratio }">
+  <td class="text-right" ng-class="{red: loan.fins.ratio_current_adj < grads[2].current_ratio }">
     {{grads[2].current_ratio | displaynullpercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.ratio_current_adj < grads[3].current_ratio }">
+  <td class="text-right" ng-class="{red: loan.fins.ratio_current_adj < grads[3].current_ratio }">
     {{grads[3].current_ratio | displaynullpercent}}
   </td>
 </tr>
 <tr>
   <td>Working Capital [>=]</td>
-  <td ng-class=gtZero(loan.grader.capWork)>
-    {{loan.grader.capWork | displaynullpercent}}
+  <td ng-class=gtZero(loan.fins.capWork)>
+    {{loan.fins.capWork | displaynullpercent}}
   </td>
-  <td class="bright" ng-class=gtZero(loan.grader.capWork_adj)>
-    {{loan.grader.capWork_adj | displaynullpercent}}
+  <td class="bright" ng-class=gtZero(loan.fins.capWork_adj)>
+    {{loan.fins.capWork_adj | displaynullpercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.capWork_adj < grads[0].working_capital }">
+  <td class="text-right" ng-class="{red: loan.fins.capWork_adj < grads[0].working_capital }">
     {{grads[0].working_capital | displaypercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.capWork_adj < grads[1].working_capital }">
+  <td class="text-right" ng-class="{red: loan.fins.capWork_adj < grads[1].working_capital }">
     {{grads[1].working_capital | displaypercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.capWork_adj < grads[2].working_capital }">
+  <td class="text-right" ng-class="{red: loan.fins.capWork_adj < grads[2].working_capital }">
     {{grads[2].working_capital | displaypercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.capWork_adj < grads[3].working_capital }">
+  <td class="text-right" ng-class="{red: loan.fins.capWork_adj < grads[3].working_capital }">
     {{grads[3].working_capital | displaypercent}}
   </td>
 </tr>
 <tr>
   <td>Borrowing Capacity [>=]</td>
-  <td ng-class=gtZero(loan.grader.capBorrow)>
-    {{loan.grader.capBorrow | displaynullpercent}}
+  <td ng-class=gtZero(loan.fins.capBorrow)>
+    {{loan.fins.capBorrow | displaynullpercent}}
   </td>
-  <td class="bright" ng-class=gtZero(loan.grader.capBorrow_adj)>
-    {{loan.grader.capBorrow_adj | displaynullpercent}}
+  <td class="bright" ng-class=gtZero(loan.fins.capBorrow_adj)>
+    {{loan.fins.capBorrow_adj | displaynullpercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.capBorrow_adj <= grads[0].borrowing_capacity }">
+  <td class="text-right" ng-class="{red: loan.fins.capBorrow_adj <= grads[0].borrowing_capacity }">
     {{grads[0].borrowing_capacity | displaypercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.capBorrow_adj <= grads[1].borrowing_capacity }">
+  <td class="text-right" ng-class="{red: loan.fins.capBorrow_adj <= grads[1].borrowing_capacity }">
     {{grads[1].borrowing_capacity | displaypercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.capBorrow_adj <= grads[2].borrowing_capacity }">
+  <td class="text-right" ng-class="{red: loan.fins.capBorrow_adj <= grads[2].borrowing_capacity }">
     {{grads[2].borrowing_capacity | displaypercent}}
   </td>
-  <td class="text-right" ng-class="{red: loan.grader.capBorrow_adj <= grads[3].borrowing_capacity }">
+  <td class="text-right" ng-class="{red: loan.fins.capBorrow_adj <= grads[3].borrowing_capacity }">
     {{grads[3].borrowing_capacity | displaypercent}}
   </td>
 </tr>
@@ -411,18 +411,19 @@
   <td>Years Farming [>=]</td>
   <td></td>
   <td class="text-center bright">
-    {{farmer.farm_exp | displaynull}}
+    <!--TODO: Patch experience to loanfinancials on Farmer insert/update-->
+    {{loan.fins.experience | displaynull}}
   </td>
-  <td class="text-right" ng-class="{red: farmer.farm_exp < grads[0].years_farming }">
+  <td class="text-right" ng-class="{red: loan.fins.experience < grads[0].years_farming }">
     {{grads[0].years_farming}}
   </td>
-  <td class="text-right" ng-class="{red: farmer.farm_exp < grads[1].years_farming }">
+  <td class="text-right" ng-class="{red: loan.fins.experience < grads[1].years_farming }">
     {{grads[1].years_farming}}
   </td>
-  <td class="text-right" ng-class="{red: farmer.farm_exp < grads[2].years_farming }">
+  <td class="text-right" ng-class="{red: loan.fins.experience < grads[2].years_farming }">
     {{grads[2].years_farming}}
   </td>
-  <td class="text-right" ng-class="{red: farmer.farm_exp < grads[3].years_farming }">
+  <td class="text-right" ng-class="{red: loan.fins.experience < grads[3].years_farming }">
     {{grads[3].years_farming}}
   </td>
 </tr>
@@ -443,18 +444,19 @@
   <td>Bankruptcy</td>
   <td></td>
   <td class="text-center bright">
-    {{ quests.bankruptcy | boolean}}
+    <!--TODO: Patch bankruptcy to loanfinancials on Quests insert/update-->
+    {{ loan.fins.bankruptcy | boolean}}
   </td>
-  <td class="text-center" ng-class="{red: quests.bankruptcy }">
+  <td class="text-center" ng-class="{red: loan.fins.bankruptcy }">
     {{grads[0].bankruptcy | boolean}}
   </td>
-  <td class="text-center" ng-class="{red: quests.bankruptcy }">
+  <td class="text-center" ng-class="{red: loan.fins.bankruptcy }">
     {{grads[1].bankruptcy | boolean}}
   </td>
-  <td class="text-center" ng-class="{red: quests.bankruptcy }">
+  <td class="text-center" ng-class="{red: loan.fins.bankruptcy }">
     {{grads[2].bankruptcy | boolean}}
   </td>
-  <td class="text-center" ng-class="{red: !quests.bankruptcy }">
+  <td class="text-center" ng-class="{red: !loan.fins.bankruptcy }">
     <!--{{grads[3].bankruptcy | boolean}}-->
   </td>
 </tr>
@@ -462,18 +464,19 @@
   <td>Judgement</td>
   <td></td>
   <td class="text-center bright">
-    {{ quests.judgements | boolean}}
+    <!--TODO: Patch judgements to loanFinancials on Quests insert/update-->
+    {{ loan.fins.judgements | boolean}}
   </td>
-  <td class="text-center" ng-class="{red: quests.judgements }">
+  <td class="text-center" ng-class="{red: loan.fins.judgements }">
     {{grads[0].judgement| boolean}}
   </td>
-  <td class="text-center" ng-class="{red: loan.quests.judgements }">
+  <td class="text-center" ng-class="{red: loan.fins.judgements }">
     {{grads[1].judgement | boolean}}
   </td>
-  <td class="text-center" ng-class="{red: quests.judgements }">
+  <td class="text-center" ng-class="{red: loan.fins.judgements }">
     {{grads[2].judgement | boolean}}
   </td>
-  <td class="text-center" ng-class="{red: !quests.judgements }">
+  <td class="text-center" ng-class="{red: !loan.fins.judgements }">
     <!--{{grads[3].judgement | boolean}}-->
   </td>
 </tr>
@@ -644,5 +647,4 @@
 </fieldset>
 <!--<pre>{{loan | json}}</pre>-->
 <!--<pre>{{loan.fins | json}}</pre>-->
-<!--<pre>{{loan.grader | json}}</pre>-->
 <!--<pre>{{grads | json}}</pre>-->
