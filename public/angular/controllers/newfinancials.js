@@ -17,7 +17,7 @@
         });
 
       if(!$scope.loan.fins){
-        //TODO: Check and return if exists else make it
+        //TODO: Check and return if exists else make record
         var newone = {
         loan_id: $stateParams.loanID
       };
