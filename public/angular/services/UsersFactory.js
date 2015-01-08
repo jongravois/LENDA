@@ -9,6 +9,7 @@
           getUsers: getUsers
         };
 
+        //TODO: HARD CODED -- USED???
         function getBadges(id){
           return '6';
         };

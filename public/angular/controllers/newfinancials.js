@@ -17,13 +17,10 @@
         });
 
       if(!$scope.loan.fins){
-        //TODO: Check and return if exists else make record
-        var newone = {
-        loan_id: $stateParams.loanID
-      };
-        LoansFactory.createFinancials(newone)
+        LoansFactory.getFinancials($stateParams.loanID)
           .then(function success(rsp){
             $scope.loan.fins = rsp.data.data;
+            console.log($scope.loan.fins);
           });
       } // end if
 
@@ -64,7 +61,7 @@
         $scope.loan.fins.capBorrow = ((($scope.loan.fins.total_assets * 1) - ($scope.loan.fins.total_liability * 1)) / $scope.loan.fins.total_assets) * 100;
         //total reserve / total assets/adj
         $scope.loan.fins.capBorrow_adj = (($scope.loan.fins.total_reserve * 1) / ($scope.loan.fins.total_assets_adj * 1)) * 100;
-        $scope.loan.fins.grade = calcGrade();
+        $scope.loan.fins.grade = LoansFactory.calcGrade($scope.loan.fins, $scope.loans.grads);
       }
 
       $scope.getTotalAcres = function(obj){
@@ -79,9 +76,9 @@
         }, 0);
       }
 
-      $scope.getGrade = function(){
+      /*$scope.getGrade = function(){
         return calcGrade();
-      }
+      }*/
 
       $scope.insertFin = function(obj) {
         //TODO: persist data
@@ -90,9 +87,9 @@
         AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
       }
 
-      var calcGrade = function(){
+      /*var calcGrade = function(){
         return 'F';
-      }
+      }*/
 
     });
 })();

@@ -1,5 +1,6 @@
 /bootstrap/compiled.php
 /vendor
+/public/vendor
 /.idea
 /angular/logs
 composer.phar

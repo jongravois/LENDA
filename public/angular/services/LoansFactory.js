@@ -6,6 +6,7 @@
       API_URL, AppFactory, GlobalsFactory
     ){
       return {
+        calcGrade: calcGrade,
         createAffiliate: createAffilate,
         createDistributor: createDistributor,
         createFinancials: createFinancials,
@@ -49,6 +50,10 @@
         insertPolicy: insertPolicy,
         localeFromCounty: localeFromCounty
       };
+
+      function calcGrade(fins, grads){
+        return 'A';
+      }
 
       function createAffilate(o){
         return $http.post(API_URL + '/affiliates', o);
