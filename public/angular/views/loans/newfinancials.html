@@ -34,6 +34,22 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
+      <tr>
+        <td>
+            <label>
+            <input type="checkbox" name="bankruptcy" ng-model="loan.fins.bankruptcy"/>&nbsp; Bankruptcy
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="checkbox" name="judgements" ng-model="loan.fins.judgements"/>&nbsp; Judgements
+          </label>
+        </td>
+        <td>
+          <label>Experience</label>&nbsp;
+          <input type="text" class="form-control" name="experience" ng-model="loan.fins.experience"/>
+        </td>
+      </tr>
     </table>
   </div>
 </div>
@@ -271,7 +287,7 @@
       <tr>
         <td>Total</td>
         <td class="text-right">
-          {{loan.fins.total_assets = (loan.fins.current_assets * 1) + (loan.fins.intermediate_assets * 1) + (loan.fins.fixed_assets * 1)  | noCentsCurrency}}
+          {{loan.fins.total_assets = (+loan.fins.current_assets) + (+loan.fins.intermediate_assets) + (+loan.fins.fixed_assets)  | noCentsCurrency}}
         </td>
         <td class="text-center"> - </td>
         <td class="text-right">

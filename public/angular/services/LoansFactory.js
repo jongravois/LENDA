@@ -52,7 +52,51 @@
       };
 
       function calcGrade(fins, grads){
-        return 'A';
+        //console.log(fins);
+        //console.log(grads);
+        var grade = 'F';
+        _(grads).find(function(grad) {
+          //debt to asset
+          if (grad.debt2asset >= fins.debt2asset_ratio_adj) {
+            return false;
+          }
+          //current ratio
+          if (grad.current_ratio <= fins.current_assets_adj) {
+            return false;
+          }
+          //working capital
+          if (grad.working_capital <= fins.capWork_adj) {
+            return false;
+          }
+          //borrowing capital
+          if (grad.borrowing_capacity <= fins.capBorrow_adj) {
+            return false;
+          }
+          //credit_score
+          if (grad.credit_score <= fins.credit_score) {
+            return false;
+          }
+          //experience
+          if (grad.years_farming < fins.experience) {
+            return false;
+          }
+          //cpa_financials
+          if (grad.cpa_financials !== fins.cpa_financials) {
+            return false;
+          }
+          //bankruptcy
+          if (grad.bankruptcy !== fins.bankruptcy) {
+            return false;
+          }
+          //judgements
+          if (grad.judgements !== fins.judgements) {
+            return false;
+          }
+
+          grade = grad.grade;
+          return true;
+        });
+        return grade;
       }
 
       function createAffilate(o){

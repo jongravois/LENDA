@@ -10,6 +10,11 @@
       var currScreen = curr.substring(1,curr.length);
 
       $scope.loan = Loan.data.data[0];
+      
+      LoansFactory.getLoanCrops($stateParams.loanID)
+        .then(function success(rsp){
+            $scope.loanCrops = rsp.data.data;
+        });
 
       FarmersFactory.getFarmer($scope.loan.farmer_id)
         .then(function success(rsp){
@@ -20,27 +25,31 @@
         LoansFactory.getFinancials($stateParams.loanID)
           .then(function success(rsp){
             $scope.loan.fins = rsp.data.data;
-            console.log($scope.loan.fins);
+            //console.log($scope.loan.fins);
           });
       } // end if
 
       $scope.calcIncomeConstraints = function(arr){
+        //console.log('calIncomeContraints');
+        //console.log(arr);
         var rev = [
-          parseFloat(arr.year_1_revenue),
-          parseFloat(arr.year_2_revenue),
-          parseFloat(arr.year_3_revenue)
+          parseFloat(arr.year_1_revenue) || 0,
+          parseFloat(arr.year_2_revenue) || 0,
+          parseFloat(arr.year_3_revenue) || 0
         ];
+        //console.log(rev, rev[0], rev[1], rev[2])
         var sumRev = rev[0] + rev[1] + rev[2];
         var cntRev = _.compact(rev).length;
 
         var exp = [
-          parseFloat(arr.year_1_expenses),
-          parseFloat(arr.year_2_expenses),
-          parseFloat(arr.year_3_expenses)
+          parseFloat(arr.year_1_expenses) || 0,
+          parseFloat(arr.year_2_expenses) || 0,
+          parseFloat(arr.year_3_expenses) || 0
         ];
         var sumExp = exp[0] + exp[1] + exp[2];
         var cntExp = _.compact(exp).length;
 
+        //console.log(sumRev, cntRev, sumRev/cntRev);
         $scope.loan.fins.average_revenue = sumRev/cntRev;
         $scope.loan.fins.average_expense = sumExp/cntExp;
         $scope.loan.fins.average_income = $scope.loan.fins.average_revenue - $scope.loan.fins.average_expense;
@@ -61,7 +70,7 @@
         $scope.loan.fins.capBorrow = ((($scope.loan.fins.total_assets * 1) - ($scope.loan.fins.total_liability * 1)) / $scope.loan.fins.total_assets) * 100;
         //total reserve / total assets/adj
         $scope.loan.fins.capBorrow_adj = (($scope.loan.fins.total_reserve * 1) / ($scope.loan.fins.total_assets_adj * 1)) * 100;
-        $scope.loan.fins.grade = LoansFactory.calcGrade($scope.loan.fins, $scope.loans.grads);
+        $scope.loan.fins.grade = LoansFactory.calcGrade($scope.loan.fins, $scope.grads);
       }
 
       $scope.getTotalAcres = function(obj){
@@ -76,20 +85,11 @@
         }, 0);
       }
 
-      /*$scope.getGrade = function(){
-        return calcGrade();
-      }*/
-
       $scope.insertFin = function(obj) {
         //TODO: persist data
         //TODO: Use Toastr to announce grade before transition
         //obj.loan_id = $stateParams.loanID;
         AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
       }
-
-      /*var calcGrade = function(){
-        return 'F';
-      }*/
-
     });
 })();
