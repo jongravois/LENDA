@@ -70,6 +70,7 @@
 <!-- APP SPECIFIC -->
 <script src="angular/arm.js"></script>
 <script src="angular/constants.js"></script>
+<script src="angular/routes.js"></script>
 <script src="angular/filters/filters.js"></script>
 <script src="angular/directives/directives.js"></script>
 <!-- CONTROLLERS -->

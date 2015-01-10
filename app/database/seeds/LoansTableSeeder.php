@@ -1,12 +1,14 @@
 <?php
 
+use Carbon\Carbon;
 class LoansTableSeeder extends Seeder {
 
 	public function run()
 	{
 		// Tony Stark(1) @ Glass Towers(2) | Partnership(4)--Ag-Input 2015
 		Loan::create([
-			'app_date' => '2015-01-04',
+			'applicant_id' => 1,
+			'app_date' => Carbon::now()->subDays(4),
 			'due_date' => '2015-12-15',
 			'loan_type_id' => 2,
 			'status_id' => 1,
@@ -16,7 +18,6 @@ class LoansTableSeeder extends Seeder {
 			'region_id' => 3,
 			'user_id' => 2,
       'farmer_id' => 1,
-			'applicant_id' => 1,
 			'is_cross_collateralized' => 0,
 			'is_fast_tracked' => 0,
 			'has_distributor' => 1,
@@ -51,7 +52,7 @@ class LoansTableSeeder extends Seeder {
 		// Blake Donald(10) @ Rainbow Bridge(6) | Individual--Capital Bridge 2015
 		Loan::create([
 			'applicant_id' => 6,
-			'app_date' => '2015-01-05',
+			'app_date' => Carbon::now()->subDays(1),
 			'due_date' => '2015-12-15',
 			'loc_id' =>	4,
 			'user_id' => 2,
@@ -65,7 +66,7 @@ class LoansTableSeeder extends Seeder {
 		// Bruce Wayne(2) @ Secret Cave(3) | Joint Venture (1)--Ag-Pro Fasttrack 2015
 		Loan::create([
 			'applicant_id' =>  3,
-			'app_date' => '2015-01-02',
+			'app_date' => Carbon::now()->subDays(2),
 			'due_date' => '2015-12-15',
 			'loc_id' =>	4,
 			'user_id' => 2,
@@ -79,7 +80,7 @@ class LoansTableSeeder extends Seeder {
 		// Steve Rogers(12) @ Shielded Farms(4) | Corporation -- Ag-Vest 2015
 		Loan::create([
 			'applicant_id' => 4,
-			'app_date' => '2015-01-01',
+			'app_date' => Carbon::now(),
 			'due_date' => '2015-12-15',
 			'loc_id' => 4,
 			'user_id' => 2,
@@ -93,7 +94,7 @@ class LoansTableSeeder extends Seeder {
 		// Clint Barton(5) @ Nested Row(2) | Spousal--Ag-Pro 2015
 		Loan::create([
 			'applicant_id' => 2,
-			'app_date' => '2015-01-01',
+			'app_date' => Carbon::now()->subDays(3),
 			'due_date' => '2015-12-15',
 			'loc_id' =>	4,
 			'user_id' => 2,
@@ -107,7 +108,7 @@ class LoansTableSeeder extends Seeder {
 		// Jack Murdoch(9) @ Dark World(5) | Individual -- All-in 2015
 		Loan::create([
 			'applicant_id' => 5,
-			'app_date' => '2015-01-06',
+			'app_date' => Carbon::now()->subDays(2),
 			'due_date' => '2015-12-15',
 			'loc_id' =>	4,
 			'user_id' => 2,
@@ -121,7 +122,7 @@ class LoansTableSeeder extends Seeder {
     // Diana Prince(7) @ Kingdom Plains(7) | Spousal -- Grain Storage 2015
     Loan::create([
       'applicant_id' => 7,
-      'app_date' => '2015-01-03',
+      'app_date' => Carbon::now()->subDays(4),
       'due_date' => '2015-12-15',
       'loc_id' =>	4,
       'user_id' => 2,
