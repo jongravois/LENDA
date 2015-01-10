@@ -1,11 +1,6 @@
 (function(){
     'use strict';
     angular.module('ARM', ['ui.router', 'ui.bootstrap', 'ui.utils', 'ngSanitize', 'ngAnimate', 'ngResource', 'angularMoment', 'angular-loading-bar', 'toastr', 'ngGrid'])
-      .constant('_', window._)
-      //.constant('API_URL', 'http://www.arm-lenda.com/api')
-      .constant('API_URL', 'http://www.lenda.local:6500/api')
-      .constant('FILE_URL', 'http://www.arm-lenda.com/files_loans/')
-      .constant('LEGAL_NAME', 'Ag Resource Management')
       /*.run(function($rootScope) {
         function message(to, toP, from, fromP) { return from.name  + angular.toJson(fromP) + " -> " + to.name + angular.toJson(toP); }
         $rootScope.$on("$stateChangeStart", function(evt, to, toP, from, fromP) { console.log("Start:   " + message(to, toP, from, fromP)); });

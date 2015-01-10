@@ -2,10 +2,17 @@
 
 $app = new Illuminate\Foundation\Application;
 
-//putenv('APP_ENV=staging');
-//putenv('APP_ENV=production');
-$env = $app->detectEnvironment(function(){
-  return getenv('APP_ENV') ?: 'local';
+$env = $app->detectEnvironment( function () {
+
+  // Defined in the server configuration
+  if ( isset( $_SERVER['APP_ENVIRONMENT'] ) ) {
+    return $_SERVER['APP_ENVIRONMENT'];
+
+    // Look for ./environment.php
+  } elseif ( file_exists( __DIR__ . '/environment.php' ) ) {
+    return include __DIR__ . '/environment.php';
+  }
+
 });
 
 $app->bindInstallPaths(require __DIR__.'/paths.php');

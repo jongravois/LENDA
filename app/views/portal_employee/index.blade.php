@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.min.css"/>
     <link rel="stylesheet" href="vendor/ng-grid/ng-grid.min.css"/>
     <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.min.css"/>
@@ -69,6 +69,7 @@
 
 <!-- APP SPECIFIC -->
 <script src="angular/arm.js"></script>
+<script src="angular/constants.js"></script>
 <script src="angular/filters/filters.js"></script>
 <script src="angular/directives/directives.js"></script>
 <!-- CONTROLLERS -->
