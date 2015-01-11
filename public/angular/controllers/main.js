@@ -7,7 +7,7 @@
       AppFactory, CommentsFactory, FarmersFactory,
       FeederFactory, GlobalsFactory, LendaFactory,
       LoansFactory, LoansProcessor, UsersFactory
-      ){
+    ){
       $scope.user_id = $('#user_id').data('id');
       $scope.landing_view = 'settings';
       $scope.file_url = FILE_URL;

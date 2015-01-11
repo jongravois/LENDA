@@ -70,7 +70,7 @@
     <label>Organization Type</label>
     <br/>
     <p class="display-field">
-      {{loan.entity_type}}
+      {{applicant.entity}}
     </p>
   </div>
   <div class="form-group col-md-4">
@@ -91,7 +91,7 @@
   </div>
   <!--<pre>{{corps | json}}</pre>-->
   <div class="form-group col-md-4">
-    <div ng-switch="loan.entity_type_id">
+    <div ng-switch="applicant.entity_id">
       <div ng-switch-when="1">
         <label>Corporation</label>
         <br/>
@@ -169,7 +169,7 @@
     <label>Crops / Percent Irrigated</label>
     <br/>
     <p class="display-field">
-      {{getCropsPercentIrrigated(loan.id)}}
+      {{getCropsPercentIrrigated($stateParams.loanID)}}
     </p>
   </div>
 </div>

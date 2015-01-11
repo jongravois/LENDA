@@ -1,17 +1,18 @@
 (function(){
-    'use strict';
-    angular
-      .module('ARM')
+  'use strict';
+  angular
+    .module('ARM')
     .controller('EditAppController', function(
       $scope, $state, $stateParams, $filter,
       $timeout, toastr,
       Loan, AppFactory, ApplicantsFactory, FarmersFactory,
       LoansFactory
     ) {
-        $scope.loan = Loan.data.data;
+        $scope.loan = Loan.data.data[0];
+        $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
         $scope.newapplication = false;
 
-        LoansFactory.getFinancials($scope.loan.id)
+        LoansFactory.getFinancials($stateParams.loanID)
           .then(function success(response) {
             $scope.loan.fins = response.data.data[0];
           });
@@ -24,31 +25,31 @@
         ApplicantsFactory.getApplicant($scope.loan.applicant_id)
           .then(function success(response) {
             $scope.applicant = response.data.data;
-            ApplicantsFactory.getPartners($scope.loan.id)
+            ApplicantsFactory.getPartners($stateParams.loanID)
               .then(function success(response) {
                 $scope.partners = response.data.data;
               });
-            ApplicantsFactory.getJointVentures($scope.loan.id)
+            ApplicantsFactory.getJointVentures($stateParams.loanID)
               .then(function success(response) {
                 $scope.joints = response.data.data;
               });
-            ApplicantsFactory.getCorporations($scope.loan.id)
+            ApplicantsFactory.getCorporations($stateParams.loanID)
               .then(function success(response) {
                 $scope.corps = response.data.data;
               });
           });
 
-        LoansFactory.getQuests($scope.loan.id)
+        LoansFactory.getQuests($stateParams.loanID)
           .then(function success(response) {
             $scope.quests = response.data.data[0];
           });
 
-        LoansFactory.getComments($scope.loan.id)
+        LoansFactory.getComments($stateParams.loanID)
           .then(function success(response) {
             $scope.comments = response.data.data;
           });
 
-        LoansFactory.getLoanCrops($scope.loan.id)
+        LoansFactory.getLoanCrops($stateParams.loanID)
           .then(function success(response) {
             $scope.loanCrops = response.data.data;
             LoansFactory.getTotalAcres($scope.loan.id)
@@ -57,25 +58,18 @@
               });
           });
 
-        LoansFactory.getFarmExpenses($scope.loan.id)
+        LoansFactory.getFarmExpenses($stateParams.loanID)
           .then(function success(response) {
             $scope.farmExpenses = response.data.data;
           });
 
 
-        $scope.getCropsPercentIrrigated = function (id) {
-          //TODO: HARDCODED!!!
-          switch (id) {
-            case '1':
-              return "Corn: 90.5%, Soybeans: 92.3%";
-              break;
-            case '2':
-              return "Sorghum: 52.7%, Sugar Cane: 0%";
-              break;
-            default:
-              return "Percent not determined.";
-              break;
-          } // end switch
+        $scope.getCropsPercentIrrigated = function(id) {
+          var lcIrrPer = '';
+          //TODO: Loop through $scope.loanCrops and if acres > 0, add name: acres% and add a pipe between if necessary
+          lcIrrPer = $scope.loanCrops[0].name + ': ' + $scope.loanCrops[0].acres + '% | ' + $scope.loanCrops[1].name + ': ' + $scope.loanCrops[1].acres + '% | ' + $scope.loanCrops[2].name + ': ' + $scope.loanCrops[2].acres + '% | ' + $scope.loanCrops[3].name + ': ' + $scope.loanCrops[3].acres + '% | ' + $scope.loanCrops[4].name + ': ' + $scope.loanCrops[4].acres + '% | ' + $scope.loanCrops[5].name + ': ' + $scope.loanCrops[5].acres + '% | ' + $scope.loanCrops[6].name + ': ' + $scope.loanCrops[6].acres + '% | ' + $scope.loanCrops[7].name + ': ' + $scope.loanCrops[7].acres + '%';
+
+          return lcIrrPer;
         };
         $scope.uomChanged = function (id, uom) {
           alert('Crop ID: ' + id + ' has been changed to ' + uom);

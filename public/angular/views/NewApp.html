@@ -5,12 +5,19 @@
 </style>
 <div class="frmFull_Page"></div>
   <div class="row frmBarsm clr-black">
-    <h6>{{chosenLT}}
-      <span ng-if="farmer">- {{farmer.farmer}}</span></h6>
-      <span ng-if="applicant">- {{applicant.applicant}}</span></h6>
+    <h6>{{chosenLT}} - {{loan.crop_year}} - {{loan.season_full}}:
+      <span ng-if="applicant"> - {{applicant.applicant}}</span>
+      <span ng-if="farmer"> - {{farmer.farmer | displayname}}</span></h6>
+    </h6>
   </div>
 
   <hr style="margin-top: 5px;"/>
+
+  <div class="row">
+    <div class="form-group col-md-12" style="margin-bottom: -20px;">
+      <div ng-include="'angular/views/topbars/loanProgress.html'"></div>
+    </div>
+  </div>
 
   <div class="row">
     <div class="col-sm-2">
@@ -35,7 +42,8 @@
       <pre>{{feeder.farmers | json}}</pre>
     </div>
   </div>
-
+-->
+<!--
   <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-10">
