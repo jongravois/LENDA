@@ -6,17 +6,18 @@
   <div class="col-md-10 col-md-offset-1">
     <table class="table table-striped">
       <tr>
+        <td style="width:20%;">
+          <input type="checkbox" name="cpa_financials" ng-value="true" ng-model="loan.fins.cpa_financials"/>&nbsp;
+          CPA Financials
+        </td>
+        <td style="width:20%">&nbsp;</td>
         <td style="width:16%;">
           <label>Credit Score</label>
         </td>
         <td style="width:24%;">
           <input type="text" class="form-control" ng-model="loan.fins.credit_score" style="width:80px;"/>
         </td>
-        <td style="width:20%;">
-          <input type="checkbox" name="cpa_financials" ng-value="true" ng-model="loan.fins.cpa_financials"/>&nbsp;
-          CPA Financials
-        </td>
-        <td style="width:20%">&nbsp;</td>
+
         <td style="width:10%;">
           Grade
         </td>
@@ -56,59 +57,6 @@
 
 <br/><br/>
 <!--<pre>{{loan.crops | json}}</pre>-->
-<!-- PLANNED CROP CONSTRAINTS -->
-<div class="row" ng-hide="loan.loan_type_id == 2">
-  <div class="col-md-12">
-    <table class="table table-striped rowed">
-      <tr>
-        <th style="width:20%;">Planned Crop Constraints</th>
-        <th style="width:15%;">Acres</th>
-        <th style="width:15%;">TEA</th>
-        <th style="width:15%;">Ag-Pro</th>
-        <th style="width:15%;">Cap-Bridge</th>
-        <th style="width:15%;">Ag-Vest</th>
-      </tr>
-      <tr ng-if="loan.crops.length == 0">
-        <td colspan="6"><strong>No crops were selected.</strong></td>
-      </tr>
-      <tr ng-repeat="c in loan.crops" ng-if="c.acres > 0">
-        <td>{{c.crop.crop}}</td>
-        <td class="text-center">{{c.acres | number: 1}}</td>
-        <td class="text-right">
-          {{c.crop.tea | displaynullcurrency}}
-        </td>
-        <td class="text-right">
-          {{ c.crop.tea * c.acres | displaynullcurrency }}
-        </td>
-        <td class="text-right">
-          {{ c.crop.tea * c.acres * 0.35 | displaynullcurrency}}
-        </td>
-        <td class="text-right">
-          {{ c.crop.tea * c.acres * 0.35 | displaynullcurrency}}
-        </td>
-      </tr>
-      <tr class="success">
-        <td class="text-left">
-          Total
-        </td>
-        <td class="text-center" ng-class=gtZero(getTotalAcres())>
-          {{getTotalAcres(loan.crops) | number:1}}
-        </td>
-        <td class="text-center"> - </td>
-        <td ng-class=gtZero(getTotalPCC_AgPro(loan.crops))>
-          {{getTotalPCC_AgPro(loan.crops) | displaynullcurrency}}
-        </td>
-        <td ng-class=gtZero(getTotalPCC_AgPro(loan.crops))>
-          {{getTotalPCC_AgPro(loan.crops) * .35 | displaynullcurrency}}
-        </td>
-        <td ng-class=gtZero(getTotalPCC_AgPro(loan.crops))>
-          {{getTotalPCC_AgPro(loan.crops) * .35 | displaynullcurrency}}
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-<!-- PLANNED CROP CONSTRAINTS -->
 
 <!-- INCOME CONSTRAINTS-->
 <div class="row">
@@ -620,6 +568,72 @@
 </div>
 <!-- RATIO CONSTRAINTS -->
 
+  <br/><br/>
+  <div class="row">
+    <div class="col-sm-12 text-right">
+      <button style="margin-right:10px;" class="btn btn-primary" ng-click="createFarmer(farmer)">NEXT</button>
+    </div>
+  </div>
+
+</fieldset>
+<!--<pre>{{loan | json}}</pre>-->
+<!--<pre>{{loan.fins | json}}</pre>-->
+<!--<pre>{{grads | json}}</pre>-->
+
+<!-- PLANNED CROP CONSTRAINTS -->
+<div class="row" style="display:none;">
+  <div class="col-md-12">
+    <table class="table table-striped rowed">
+      <tr>
+        <th style="width:20%;">Planned Crop Constraints</th>
+        <th style="width:15%;">Acres</th>
+        <th style="width:15%;">TEA</th>
+        <th style="width:15%;">Ag-Pro</th>
+        <th style="width:15%;">Cap-Bridge</th>
+        <th style="width:15%;">Ag-Vest</th>
+      </tr>
+      <tr ng-if="loan.crops.length == 0">
+        <td colspan="6"><strong>No crops were selected.</strong></td>
+      </tr>
+      <tr ng-repeat="c in loan.crops" ng-if="c.acres > 0">
+        <td>{{c.crop.crop}}</td>
+        <td class="text-center">{{c.acres | number: 1}}</td>
+        <td class="text-right">
+          {{c.crop.tea | displaynullcurrency}}
+        </td>
+        <td class="text-right">
+          {{ c.crop.tea * c.acres | displaynullcurrency }}
+        </td>
+        <td class="text-right">
+          {{ c.crop.tea * c.acres * 0.35 | displaynullcurrency}}
+        </td>
+        <td class="text-right">
+          {{ c.crop.tea * c.acres * 0.35 | displaynullcurrency}}
+        </td>
+      </tr>
+      <tr class="success">
+        <td class="text-left">
+          Total
+        </td>
+        <td class="text-center" ng-class=gtZero(getTotalAcres())>
+          {{getTotalAcres(loan.crops) | number:1}}
+        </td>
+        <td class="text-center"> - </td>
+        <td ng-class=gtZero(getTotalPCC_AgPro(loan.crops))>
+          {{getTotalPCC_AgPro(loan.crops) | displaynullcurrency}}
+        </td>
+        <td ng-class=gtZero(getTotalPCC_AgPro(loan.crops))>
+          {{getTotalPCC_AgPro(loan.crops) * .35 | displaynullcurrency}}
+        </td>
+        <td ng-class=gtZero(getTotalPCC_AgPro(loan.crops))>
+          {{getTotalPCC_AgPro(loan.crops) * .35 | displaynullcurrency}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!-- PLANNED CROP CONSTRAINTS -->
+
 <!-- SUMMARY PANEL-->
 <div class="row" style="display:none;">
   <div class="col-md-12">
@@ -652,15 +666,3 @@
   </div>
 </div>
 <!-- SUMMARY PANEL-->
-
-  <br/><br/>
-  <div class="row">
-    <div class="col-sm-12 text-right">
-      <button style="margin-right:10px;" class="btn btn-primary" ng-click="createFarmer(farmer)">NEXT</button>
-    </div>
-  </div>
-
-</fieldset>
-<!--<pre>{{loan | json}}</pre>-->
-<!--<pre>{{loan.fins | json}}</pre>-->
-<!--<pre>{{grads | json}}</pre>-->
