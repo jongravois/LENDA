@@ -12,16 +12,19 @@
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
         $scope.newapplication = false;
 
+        //FINS
         LoansFactory.getFinancials($stateParams.loanID)
           .then(function success(response) {
             $scope.loan.fins = response.data.data[0];
           });
 
+        //FARMER
         FarmersFactory.getFarmer($scope.loan.farmer_id)
           .then(function success(response) {
             $scope.farmer = response.data.data;
           });
 
+        //APPLICANT, PARTNERS, JOINTS & CORPORATION
         ApplicantsFactory.getApplicant($scope.loan.applicant_id)
           .then(function success(response) {
             $scope.applicant = response.data.data;
@@ -39,38 +42,45 @@
               });
           });
 
+        //QUESTS
         LoansFactory.getQuests($stateParams.loanID)
           .then(function success(response) {
             $scope.quests = response.data.data[0];
           });
 
+        //COMMENTS
         LoansFactory.getComments($stateParams.loanID)
           .then(function success(response) {
             $scope.comments = response.data.data;
           });
 
+        //LOANCROPS & PERCENT IRRIGATED
         LoansFactory.getLoanCrops($stateParams.loanID)
           .then(function success(response) {
             $scope.loanCrops = response.data.data;
+            $scope.getCropsPercentIrrigated = function(id) {
+              var lcIrrPer = '';
+              for(var c=0;c<$scope.loanCrops.length; c++){
+                if(parseInt($scope.loanCrops[c].acres) != 0){
+                  lcIrrPer += $scope.loanCrops[c].name + ': ' + $scope.loanCrops[c].percent_irrigated + '% | ';
+                } //end if
+              } // end for
+
+              return lcIrrPer.slice(0, -2);
+            };
+
             LoansFactory.getTotalAcres($scope.loan.id)
               .then(function (res) {
                 $scope.loan.total_acres = parseFloat(res);
               });
           });
 
+        //FARM EXPENSES
         LoansFactory.getFarmExpenses($stateParams.loanID)
           .then(function success(response) {
             $scope.farmExpenses = response.data.data;
           });
 
-
-        $scope.getCropsPercentIrrigated = function(id) {
-          var lcIrrPer = '';
-          //TODO: Loop through $scope.loanCrops and if acres > 0, add name: acres% and add a pipe between if necessary
-          lcIrrPer = $scope.loanCrops[0].name + ': ' + $scope.loanCrops[0].acres + '% | ' + $scope.loanCrops[1].name + ': ' + $scope.loanCrops[1].acres + '% | ' + $scope.loanCrops[2].name + ': ' + $scope.loanCrops[2].acres + '% | ' + $scope.loanCrops[3].name + ': ' + $scope.loanCrops[3].acres + '% | ' + $scope.loanCrops[4].name + ': ' + $scope.loanCrops[4].acres + '% | ' + $scope.loanCrops[5].name + ': ' + $scope.loanCrops[5].acres + '% | ' + $scope.loanCrops[6].name + ': ' + $scope.loanCrops[6].acres + '% | ' + $scope.loanCrops[7].name + ': ' + $scope.loanCrops[7].acres + '%';
-
-          return lcIrrPer;
-        };
         $scope.uomChanged = function (id, uom) {
           alert('Crop ID: ' + id + ' has been changed to ' + uom);
         };
