@@ -26,7 +26,6 @@ class LoanquestionsTableSeeder extends Seeder {
 			'agency'			=>	'State Farm of Monroe',
 			'pesticide_number'	=>	'2T23765',
 			'credit_score'	=>	730,
-			'cpa_financials'	=>	1,
 			'affiliated_entities'	=>	'Rutrum mi libero hymenaeos dolor posuere montes tristique litora cubilia.',
 			'farm_supplier_creditors'	=>	'Rutrum mi libero hymenaeos dolor posuere montes tristique litora cubilia.'
 		]);
