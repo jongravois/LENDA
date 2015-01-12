@@ -2,9 +2,9 @@ vendor
 public/vendor
 public/angular/logs
 composer.phar
-composer.lock
 bootstrap/start.php
 bootstrap/compiled.php
+bootstrap/environment.php
 .env.*.php
 .env.php
 public/angular/constants.js
