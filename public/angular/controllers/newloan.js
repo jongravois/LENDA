@@ -12,20 +12,14 @@
       FarmersFactory,
       GlobalsFactory,
       LoansFactory,
-      LoanProcessor
+      LoanProcessor,
+      Loan
     ){
       $scope.newapplication = true; //flag for screen buttons
       $scope.currentScreen = 0;
-      //TODO: Copy in newinsurance.js -- refactor for DRY
-      LoansFactory.getLoan($stateParams.loanID)
-        .then(function success(response){
-          var loan = response.data.data;
-          LoansFactory.getInsuranceTotal(loan.id)
-            .then(function(response){
-              loan.total_ins_value = response.data;
-            });
-          $scope.loan = loan;
-        });
+
+      $scope.loan = Loan.data.data[0];
+      $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
       $scope.farmer = $scope.farmer || {};
 
       if(!$scope.screens){

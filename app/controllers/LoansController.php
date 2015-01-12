@@ -53,10 +53,13 @@ class LoansController extends ApiController {
 
 		$loan = Loan::create(Input::all());
 		$newLoan = Loan::find($loan->id);
-		$path = getenv('FTP_BASE') . 'files_loans/' . $crop_year . '_' . $loan->id;
+
+		//TODO: Create directory for new loan's uploadables
+		/*$path = getenv('FTP_BASE') . 'files_loans/' . $crop_year . '_' . $loan->id;
 		if(!File::exists($path)) {
 			FTP::connection()->makeDir($path);
 		}
+		*/
 
 		//TODO: Add file_url to $scope.loans -- LOOK AT STAPLER
 		//Add systemic

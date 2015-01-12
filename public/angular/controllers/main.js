@@ -66,17 +66,18 @@
           if( val === $scope.feeder.loantypes[l].ltPath){
             $scope.chosenLT = $scope.feeder.loantypes[l].loantype;
             $scope.chosenLT_id = parseInt($scope.feeder.loantypes[l].id);
-            LoansFactory.getScreens($scope.feeder.loantypes[l].id).then(function success(response){
-              $scope.screens = response.data.data;
-              angular.forEach(response.data.data, function(obj, index){
-                if(obj.screen == 'farmer'){
-                  obj.status = 1;
-                } else {
-                  obj.status = 0;
-                }
+            LoansFactory.getScreens($scope.feeder.loantypes[l].id)
+              .then(function success(response){
+                $scope.screens = response.data.data;
+                angular.forEach(response.data.data, function(obj, index){
+                  if(obj.screen == 'farmer'){
+                    obj.status = 1;
+                  } else {
+                    obj.status = 0;
+                  }
+                });
+                return obj;
               });
-              return obj;
-            });
             var obj = {
               app_date: moment(new Date()).format('YYYY-MM-DD'),
               due_date: moment(new Date(AppFactory.getDefaultDueDate($scope.chosenLT_id, $scope.globals.crop_year))).format('YYYY-MM-DD'),
@@ -87,8 +88,9 @@
               region_id: $scope.user.region_id,
               user_id: $scope.user.id
             };
-            LoansFactory.insertLoan(obj).then(function success(response){
-              $state.go('new.farmer', {loantypeID: $scope.chosenLT_id, loanID: response.data.message.id});
+            LoansFactory.insertLoan(obj)
+              .then(function success(response){
+                $state.go('new.farmer', {loantypeID: $scope.chosenLT_id, loanID: response.data.message.id});
             });
           } // end if
         } // end for

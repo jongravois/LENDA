@@ -236,7 +236,7 @@
             templateUrl: 'angular/views/newApp.html',
             controller: 'NewLoanController',
             resolve: {
-              Loan: function(LoansFactory, $stateParams){
+              Loan: function($stateParams, LoansFactory){
                 return LoansFactory.getLoan($stateParams.loanID);
               }
             }
@@ -274,7 +274,12 @@
           .state('new.farmer', {
             url: '/farmer',
             templateUrl: 'angular/views/loans/newfarmer.html',
-            controller: 'NewFarmerController'
+            controller: 'NewFarmerController',
+            resolve: {
+              Loan: function($stateParams, LoansFactory){
+                return LoansFactory.getLoan($stateParams.loanID);
+              }
+            }
           })
           .state('new.farms', {
             url: '/farms',

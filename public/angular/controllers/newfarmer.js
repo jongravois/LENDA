@@ -6,7 +6,7 @@
       $scope, $state, $stateParams,
       Loan, AppFactory, FarmersFactory, LoansFactory
     ){
-      $scope.loan = Loan.data.data;
+      $scope.loan = $scope.loan || Loan.data.data[0];
 
       var curr = $state.current.url;
       var currScreen = curr.substring(1,curr.length);
@@ -21,8 +21,14 @@
       } // end if
 
       $scope.createFarmer = function(obj) {
+        // SAVE FARMING EXPERIENCE TO LOAN FINANCIALS
+        var thisYear = new Date().getFullYear();
+        var exp = AppFactory.diffInDates(thisYear, parseInt(obj.first_year_farmer));
+        AppFactory.patchIt('/loanfinancials', $scope.loan.id, {experience: exp});
+
+        // HANDLE CREATING/UPDATING FARMER
         if (angular.isDefined($scope.farmerID) && obj.id === $scope.farmerID) {
-          AppFactory.patchIt('/loans/', $scope.loan.id, {farmer_id: $scope.farmerID});
+          AppFactory.patchIt('/loans/', $stateParams.loanID, {farmer_id: $scope.farmerID});
           AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
         } else {
           var thisYear = new Date().getFullYear();
