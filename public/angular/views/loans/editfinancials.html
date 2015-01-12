@@ -18,6 +18,7 @@
 </style>
 <fieldset>
 <legend>Financial Information</legend>
+  <!--TODO: REFACTOR to Financials from new and edit-->
   <!--loan.fins.summary-->
   <div style="display:none;">
     <table class="table table-striped">
@@ -330,33 +331,29 @@
       <div class="col-md-10 col-md-offset-1">
         <table class="table table-striped">
           <tr>
-            <td style="width:16%;">
+            <td style="width:20%;">
               <label>Credit Score</label>
-            </td>
-            <td style="width:24%;">
+              &nbsp;&nbsp;&nbsp;
               <text-edit-in-place value="loan.fins.credit_score"></text-edit-in-place>
             </td>
             <td style="width:20%;">
-              <input type="checkbox" name="cpa_financials" ng-value="true" ng-model="loan.fins.cpa_financials"/>&nbsp;
-              CPA Financials
+              <label>
+                <input type="checkbox" name="cpa_financials" ng-value="true" ng-model="loan.fins.cpa_financials"/>&nbsp;
+                CPA Financials
+              </label>
             </td>
-            <td style="width:20%">&nbsp;</td>
-            <td style="width:10%;">
-              Grade
+            <td style="width:40%">
+              <span ng-if="loan.is_fast_tracked || loan.loan_type_id == 4 || loan.loan_type_id == 5">
+                <label>Amount Requested</label>
+                &nbsp;&nbsp;&nbsp;
+                <edit-in-place value="loan.fins.amount_requested"></edit-in-place>
+              </span>
             </td>
             <td style="width:20%;">
-              {{loan.fins.grade}}
+              <label>Grade</label>
+              &nbsp;&nbsp;&nbsp;
+              <label>{{loan.fins.grade}}</label>
             </td>
-          </tr>
-          <tr ng-if="loan.is_fast_tracked || loan.loan_type_id == 4 || loan.loan_type_id == 5">
-            <td>
-              <label>Amount Requested</label>
-            </td>
-            <td>
-              <edit-in-place value="loan.fins.amount_requested"></edit-in-place>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
           </tr>
         </table>
       </div>

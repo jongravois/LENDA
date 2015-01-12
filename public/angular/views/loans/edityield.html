@@ -21,7 +21,7 @@
           <th style="width:10%;">6yr Avg</th>
         </tr>
         <tr ng-repeat="c in loanCrops" ng-if="c.is_active">
-          <td>{{c.crop | capitalize}}</td>
+          <td>{{c.name | capitalize}}</td>
           <td class="text-center">
             <select name="uom" ng-model="c.uom" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom)">
               <option value="">Please select ...</option>

@@ -6,7 +6,7 @@ This is an AngularJS/Laravel 4.2 application
 
 * Clone repo to local environment
 * From root, run ```composer install```
-* Run ```touch /bootstrap/environment.php```
+* Run ```touch bootstrap/environment.php```
 * Run ```touch .env.local.php```
 * Navigate to public folder
 * Run ```bower install```

@@ -1,6 +1,14 @@
 (function(){
   'use strict';
   angular
-    .module('ARM')
-    .controller('EditYieldController', function($scope){});
+      .module('Arm')
+      .controller('EditYieldController', EditYieldController);
+
+      EditYieldController.$inject = ['$scope'];
+
+      function EditYieldController(
+          $scope
+      ){
+
+      } // end function
 })();

@@ -45,7 +45,7 @@ class LoanquestionTransformer extends Transformer{
       'agency'	=>	(integer) $arr['agency'],
       'pesticide_number'	=>	$arr['pesticide_number'],
       'credit_score'	=>	(double) $arr['credit_score'],
-      'cpa_financials'	=>	(boolean) $arr['cpa_financials'],
+      'affiliates'	=>	(boolean) $arr['affiliates'],
       'affiliated_entities'	=>	$arr['affiliated_entities'],
       'farm_supplier_creditors'	=>	$arr['farm_supplier_creditors']
     ];

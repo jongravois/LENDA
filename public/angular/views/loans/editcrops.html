@@ -18,7 +18,7 @@
     </tr>
     <tr ng-repeat="c in loanCrops | orderBy: 'id'" ng-if="c.is_active">
       <td>
-        {{c.crop | capitalize}}
+        {{c.name | capitalize}}
       </td>
       <td>
         <text-edit-in-place value="c.markettowhom"></text-edit-in-place>

@@ -105,7 +105,7 @@ class DatabaseSeeder extends Seeder {
     'InsurancetypesTableSeeder',
     'JointventuresTableSeeder',
     'LoanassetsTableSeeder',
-    'LoancropsTableSeeder',
+    'LoanCropsTableSeeder',
     'LoandistributorTableSeeder',
     'LoancapacityTableSeeder',
     'LoanconditionsTableSeeder',

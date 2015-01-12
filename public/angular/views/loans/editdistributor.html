@@ -1,5 +1,4 @@
 <fieldset>
-  <!--<pre>{{distributor | json}}</pre>-->
   <legend>DISTRIBUTOR INFORMATION</legend>
   <div class="row">
     <div class="form-group col-md-12">
@@ -33,7 +32,7 @@
         <div class="form-group col-md-2">
           <label>State:</label>
           <br/>
-          <text-edit-in-place value="distributor.state"></text-edit-in-place>
+          <text-edit-in-place value="distributor.state.abr"></text-edit-in-place>
         </div>
         <div class="form-group col-md-2">
           <label>Zip:</label>
@@ -50,7 +49,7 @@
           <br/>
           <text-edit-in-place value="distributor.contact"></text-edit-in-place>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
           <label>Phone:</label>
           <br/>
           <phone-edit-in-place value="distributor.phone"></phone-edit-in-place>
@@ -62,10 +61,13 @@
         </div>
       </div>
       <!-- PHONE / EMAIL / DOB -->
-    </div>
-    <div class="row">
-      <div class="col-md-12 text-right">
-        <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateDistributor(distributor)">UPDATE</button>
+
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateDistributor(distributor)">UPDATE</button>
+        </div>
       </div>
     </div>
+  </div>
 </fieldset>
+<!--<pre>{{distributor | json}}</pre>-->

@@ -356,10 +356,10 @@
       <label>Do you have any third-party credit available (PHI, Monsanto, FarmPlan, etc.)?</label>
     </div>
     <div class="col-md-3">
-      <input type="radio" name="third_party_credit_available" value="1" ng-model="quests.credit_3p_available"/>
+      <input type="radio" name="third_party_credit_available"  ng-value="true" ng-model="quests.credit_3p_available"/>
       &nbsp;<label>Yes</label>
       &nbsp;&nbsp;&nbsp;
-      <input type="radio" name="third_party_credit_available" value="0" ng-model="quests.credit_3p_available"/>
+      <input type="radio" name="third_party_credit_available"  ng-value="false" ng-model="quests.credit_3p_available"/>
       &nbsp;<label>No</label>
     </div>
   </div>
@@ -398,20 +398,6 @@
 </div>
 <!-- INCOME PERCENTAGE [income_percent] {LOAN}-->
 
-<!-- RESTRICTED USE PESTICIDE [pesticide_number] {} -->
-  <!--TODO: Move to Distributors??-->
-<div class="row form-group" ng-if="chosenLT == 'Ag-Input' || chosenLT == 'Ag-Vest'">
-  <div class="col-md-8 col-lg-offset-2">
-    <div class="col-md-9">
-      <label>Restricted Use Pesticide Number?</label>
-    </div>
-    <div class="col-md-3">
-      <input type="text" name="pesticide_number" ng_model="quests.pesticide_number" class="form-control"/>
-    </div>
-  </div>
-</div>
-<!-- RESTRICTED USE PESTICIDE [pesticide_number] {} -->
-
 <!--AFFILIATED ENTITIES [affiliated entities] {}-->
   <div class="row form-group">
     <div class="col-md-8 col-lg-offset-2">
@@ -419,10 +405,10 @@
         <label>Are the additional affiliated entities to report?</label>
       </div>
       <div class="col-md-3">
-        <input type="radio" name="affiliates" value="1" ng-model="quests.affiliates"/>
+        <input type="radio" name="affiliates"  ng-value="true" ng-model="quests.affiliates"/>
         &nbsp;<label>Yes</label>
         &nbsp;&nbsp;&nbsp;
-        <input type="radio" name="affiliates" value="0" ng-model="quests.affiliates"/>
+        <input type="radio" name="affiliates"  ng-value="false" ng-model="quests.affiliates"/>
         &nbsp;<label>No</label>
       </div>
     </div>
@@ -430,14 +416,28 @@
   <div class="row form-group" ng-if="quests.affiliates">
     <div class="col-md-8 col-lg-offset-2">
       <div class="col-md-12">
-        <!--TODO: Doesn't show boolean and won't close-->
         <label>Please list affiliated entities and their ownership percentage</label>
         <textarea name="affiliated_entities" ng-model="quests.affiliated_entities" class="form-control"></textarea>
       </div>
     </div>
   </div>
 <!--AFFILIATED ENTITIES [affiliated entities] {}-->
-<div class="row">
+
+  <!-- RESTRICTED USE PESTICIDE [pesticide_number] {} -->
+  <!--TODO: Move to Distributors??-->
+  <div class="row form-group" ng-if="chosenLT == 'Ag-Input' || chosenLT == 'Ag-Vest'">
+    <div class="col-md-8 col-lg-offset-2">
+      <div class="col-md-9">
+        <label>Restricted Use Pesticide Number?</label>
+      </div>
+      <div class="col-md-3">
+        <input type="text" name="pesticide_number" ng_model="quests.pesticide_number" class="form-control"/>
+      </div>
+    </div>
+  </div>
+  <!-- RESTRICTED USE PESTICIDE [pesticide_number] {} -->
+
+  <div class="row">
   <div class="col-md-12 text-right">
     <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateQuestions()">NEXT</button>
   </div>
