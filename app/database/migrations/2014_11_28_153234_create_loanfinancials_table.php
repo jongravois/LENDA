@@ -87,6 +87,7 @@ class CreateLoanfinancialsTable extends Migration {
       $table->double('balance_paid')->default(0);
       $table->double('cash_flow')->default(0);
       $table->double('risk')->default(0);
+      $table->double('adj_risk')->default(0);
 			$table->timestamps();
 		});
 	}

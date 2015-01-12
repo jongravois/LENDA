@@ -4,8 +4,8 @@
       <span ng-if="loan">
         {{loan.loan_type}} - {{loan.crop_year}} - {{loan.season_full}}:
       </span>
-      <span ng-if="applicant.applicant"> - {{applicant.applicant}}</span>
-      <span ng-if="farmer.farmer"> ( {{farmer.farmer | displayname}} )</span></h6>
+      <span ng-show="applicant.applicant"> - {{applicant.applicant}}</span>
+      <span ng-show="farmer.farmer"> ( {{farmer.farmer | displayname}} )</span></h6>
     </h6>
   </div>
 

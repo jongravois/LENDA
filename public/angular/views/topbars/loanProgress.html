@@ -81,8 +81,14 @@
     </td>
     <td>
       CF: {{loan.fins.cash_flow | noCentsCurrency}}
-      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <span ng-if="loan.loan_type_id != 3 && loan.loan_type_id != 4">
+        &nbsp;&nbsp;|&nbsp;&nbsp;
       RM: {{loan.fins.risk | noCentsCurrency}}
+      </span>
+      <span ng-if="loan.loan_type_id == 3 || loan.loan_type_id == 4">
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <sub>adj</sub>RM: {{loan.fins.risk | noCentsCurrency}}
+      </span>
     </td>
     <td>
       <span loan-status-icon status="loan.status_id"></span>
