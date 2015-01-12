@@ -21,9 +21,16 @@ class LoanquestionsController extends ApiController {
 
   public function store()
   {
-    Loanquestions::create(Input::all());
+    $q = Loanquestions::create(Input::all());
 
-    return $this->respondCreated('Loan Question created');
+    DB::table('loanfinancials')
+      ->where('loan_id', $q->loan_id)
+      ->update([
+        'bankruptcy' => $q->bankruptcy,
+        'judgements' => $q->judgements
+      ]);
+
+    return $this->respondCreated('Loan Questions created');
   }
 
   public function show($id)
@@ -55,13 +62,28 @@ class LoanquestionsController extends ApiController {
     $question = Loanquestions::find($id);
 
     if(!$question){
-      Loanquestions::create(Input::all());
-      return $this->respondCreated('Loan Question Created');
+      $q = Loanquestions::create(Input::all());
+
+      DB::table('loanfinancials')
+        ->where('loan_id', $q->loan_id)
+        ->update([
+          'bankruptcy' => $q->bankruptcy,
+          'judgements' => $q->judgements
+        ]);
+
+      return $this->respondCreated('Loan Questions Created');
     } // end if
 
     $question->fill(Input::all())->save();
 
-    return $this->respondCreated('Loan Question updated.');
+    DB::table('loanfinancials')
+      ->where('loan_id', $question->loan_id)
+      ->update([
+        'bankruptcy' => $question->bankruptcy,
+        'judgements' => $question->judgements
+      ]);
+
+    return $this->respondCreated('Loan Questions updated.');
   }
 
   public function destroy($id)

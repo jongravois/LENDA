@@ -374,30 +374,6 @@
 </div>
 <!-- THIRD PARTY CREDIT [third_party_credit_available] -->
 
-<!-- INCOME PERCENTAGE [income_percent] {LOAN}-->
-<div class="row form-group">
-  <div class="col-md-8 col-lg-offset-2">
-    <div class="col-md-9">
-      <label>What is the percentage of income from this farming operation?</label>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group" style="width:100px;">
-        <input type="text" class="form-control" ng-model="quests.income_percent">
-        <span class="input-group-addon">%</span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row form-group" ng-if="quests.income_percent < 100">
-  <div class="col-md-8 col-lg-offset-2">
-    <div class="col-md-9">
-      <label>Please describe income from other sources</label>
-      <textarea name="income_distribution_details" ng-model="quests.income_distribution_details" class="form-control"></textarea>
-    </div>
-  </div>
-</div>
-<!-- INCOME PERCENTAGE [income_percent] {LOAN}-->
-
 <!--AFFILIATED ENTITIES [affiliated entities] {}-->
   <div class="row form-group">
     <div class="col-md-8 col-lg-offset-2">
@@ -422,6 +398,30 @@
     </div>
   </div>
 <!--AFFILIATED ENTITIES [affiliated entities] {}-->
+
+  <!-- INCOME PERCENTAGE [income_percent] {LOAN}-->
+  <div class="row form-group">
+    <div class="col-md-8 col-lg-offset-2">
+      <div class="col-md-9">
+        <label>What is the percentage of income from this farming operation?</label>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group" style="width:100px;">
+          <input type="text" class="form-control" ng-model="quests.income_percent">
+          <span class="input-group-addon">%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row form-group" ng-if="quests.income_percent < 100">
+    <div class="col-md-8 col-lg-offset-2">
+      <div class="col-md-9">
+        <label>Please describe income from other sources</label>
+        <textarea name="income_distribution_details" ng-model="quests.income_distribution_details" class="form-control"></textarea>
+      </div>
+    </div>
+  </div>
+  <!-- INCOME PERCENTAGE [income_percent] {LOAN}-->
 
   <!-- RESTRICTED USE PESTICIDE [pesticide_number] {} -->
   <!--TODO: Move to Distributors??-->

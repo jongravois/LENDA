@@ -24,7 +24,7 @@
         // SAVE FARMING EXPERIENCE TO LOAN FINANCIALS
         var thisYear = new Date().getFullYear();
         var exp = AppFactory.diffInDates(thisYear, parseInt(obj.first_year_farmer));
-        AppFactory.patchIt('/loanfinancials', $scope.loan.id, {experience: exp});
+        AppFactory.patchIt('/loanfinancials/', $scope.loan.id, {experience: exp});
 
         // HANDLE CREATING/UPDATING FARMER
         if (angular.isDefined($scope.farmerID) && obj.id === $scope.farmerID) {

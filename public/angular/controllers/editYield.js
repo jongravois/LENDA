@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular
-      .module('Arm')
+      .module('ARM')
       .controller('EditYieldController', EditYieldController);
 
       EditYieldController.$inject = ['$scope'];

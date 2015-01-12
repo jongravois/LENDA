@@ -7,56 +7,32 @@
     <table class="table table-striped">
       <tr>
         <td style="width:20%;">
-          <input type="checkbox" name="cpa_financials" ng-value="true" ng-model="loan.fins.cpa_financials"/>&nbsp;
-          CPA Financials
-        </td>
-        <td style="width:20%">&nbsp;</td>
-        <td style="width:16%;">
           <label>Credit Score</label>
-        </td>
-        <td style="width:24%;">
-          <input type="text" class="form-control" ng-model="loan.fins.credit_score" style="width:80px;"/>
-        </td>
-
-        <td style="width:10%;">
-          Grade
+          &nbsp;&nbsp;&nbsp;
+          <text-edit-in-place value="loan.fins.credit_score"></text-edit-in-place>
         </td>
         <td style="width:20%;">
-          {{loan.fins.grade}}
-        </td>
-      </tr>
-      <tr ng-if="loan.is_fast_tracked || loan.loan_type_id == 4 || loan.loan_type_id == 5" style="display: none;">
-        <td>
-          <label>Amount Requested</label>
-        </td>
-        <td>
-          <edit-in-place value="loan.fins.amount_requested"></edit-in-place>
-        </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>
-            <label>
-            <input type="checkbox" name="bankruptcy" ng-model="loan.fins.bankruptcy"/>&nbsp; Bankruptcy
-          </label>
-        </td>
-        <td>
           <label>
-            <input type="checkbox" name="judgements" ng-model="loan.fins.judgements"/>&nbsp; Judgements
+            <input type="checkbox" name="cpa_financials" ng-value="true" ng-model="loan.fins.cpa_financials"/>&nbsp;
+            CPA Financials
           </label>
         </td>
-        <td>
-          <label>Experience</label>&nbsp;
-          <input type="text" class="form-control" name="experience" ng-model="loan.fins.experience"/>
+        <td style="width:40%">
+              <span ng-if="loan.is_fast_tracked || loan.loan_type_id == 4 || loan.loan_type_id == 5">
+                <label>Amount Requested</label>
+                &nbsp;&nbsp;&nbsp;
+                <edit-in-place value="loan.fins.amount_requested"></edit-in-place>
+              </span>
+        </td>
+        <td style="width:20%;">
+          <label>Grade</label>
+          &nbsp;&nbsp;&nbsp;
+          <label>{{loan.fins.grade}}</label>
         </td>
       </tr>
     </table>
   </div>
 </div>
-
-<br/><br/>
-<!--<pre>{{loan.crops | json}}</pre>-->
 
 <!-- INCOME CONSTRAINTS-->
 <div class="row">

@@ -10,7 +10,9 @@
         var currScreen = curr.substring(1,curr.length);
         //alert(currScreen);
 
-        $scope.loan = Loan.data.data;
+        //TODO: Entity types always saved as '2'
+
+        $scope.loan = Loan.data.data[0];
 
         if($scope.loan.applicant_id) {
           ApplicantsFactory.getApplicant($scope.loan.applicant_id)
@@ -42,7 +44,7 @@
 
           ApplicantsFactory.createApplicant($scope.applicant)
             .then(function(rsp){
-              AppFactory.patchIt('/loans/', $scope.loan.id, {applicant_id: rsp.data.message});
+              AppFactory.patchIt('/loans/', $stateParams.loanID, {applicant_id: rsp.data.message});
               AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
             });
         };

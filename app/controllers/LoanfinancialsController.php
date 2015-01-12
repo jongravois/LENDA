@@ -52,10 +52,10 @@ class LoanfinancialsController extends ApiController {
 
 	public function update($id)
 	{
-		$loanfinancial = Loanfinancial::find($id);
+		$loanfinancial = Loanfinancials::find($id);
 
 		if(!$loanfinancial){
-			Loanfinancial::create(Input::all());
+			Loanfinancials::create(Input::all());
 			return $this->respondCreated('Loanfinancial Created');
 		} // end if
 
