@@ -13,6 +13,7 @@ class CreateFarmersTable extends Migration {
       $table->integer('user_id');
       $table->string('farmer');
       $table->string('nick')->nullable();
+      $table->string('password', 64)->default(Hash::make('changme'));
       $table->boolean('is_repeat')->default(0);
       $table->integer('loc_id')->default('4');
       $table->string('ssn')->unique();

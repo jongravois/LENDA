@@ -59,7 +59,7 @@ class FarmersTableSeeder extends Seeder{
       'nick'	=>	'Spider-Man',
       'ssn'	=>	'123456796',
       'address' => '1 Daily Bugle',
-      'city'	=> 'New New York',
+      'city'	=> 'New York',
       'state_id'	=>	4,
       'zip'	=>	'32155',
       'email'	=>	'spiderman@marvel.com',
