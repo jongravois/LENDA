@@ -413,26 +413,38 @@
 <!-- RESTRICTED USE PESTICIDE [pesticide_number] {} -->
 
 <!--AFFILIATED ENTITIES [affiliated entities] {}-->
-<!--<div class="row form-group">
+  <div class="row form-group">
+    <div class="col-md-8 col-lg-offset-2">
+      <div class="col-md-9">
+        <label>Are the additional affiliated entities to report?</label>
+      </div>
+      <div class="col-md-3">
+        <input type="radio" name="affiliates" value="1" ng-model="quests.affiliates"/>
+        &nbsp;<label>Yes</label>
+        &nbsp;&nbsp;&nbsp;
+        <input type="radio" name="affiliates" value="0" ng-model="quests.affiliates"/>
+        &nbsp;<label>No</label>
+      </div>
+    </div>
+  </div>
+  <div class="row form-group" ng-if="quests.affiliates">
+    <div class="col-md-8 col-lg-offset-2">
+      <div class="col-md-12">
+        <label>Please list affiliated entites and their ownsership percentage</label>
+        <textarea name="affiliated_entities" ng-model="quests.affiliated_entities" class="form-control"></textarea>
+      </div>
+    </div>
+  </div>
+
+<div class="row form-group">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-12">
       <label>Please list any affiliated entities.</label>
       <textarea name="affiliated_entities" ng-model="quests.affiliated_entities" class="form-control"></textarea>
     </div>
   </div>
-</div>-->
+</div>
 <!--AFFILIATED ENTITIES [affiliated entities] {}-->
-
-<!-- FARM SUPPIER CREDITORS [farm_supplier_creditors] {} -->
-<!--<div class="row form-group">
-  <div class="col-md-8 col-lg-offset-2">
-    <div class="col-md-12">
-      <label>Please list any Farm Supplier Creditor references.</label>
-      <textarea name="farm_supplier_creditors" ng-model="quests.farm_supplier_creditors" class="form-control"></textarea>
-    </div>
-  </div>
-</div>-->
-<!-- FARM SUPPLIER CREDITORS [farm_supplier_creditors] {} -->
 <div class="row">
   <div class="col-md-12 text-right">
     <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateQuestions()">NEXT</button>
