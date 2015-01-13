@@ -208,6 +208,10 @@ class StatesTableSeeder extends Seeder {
       'abr' => 'WY',
       'state' => 'Wyoming'
     ]);
+    State::create([
+      'abr' => 'USA',
+      'state' => 'United States of America'
+    ]);
   }
 
 }

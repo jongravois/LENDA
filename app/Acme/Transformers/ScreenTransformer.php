@@ -9,6 +9,7 @@ class ScreenTransformer extends Transformer{
       'id' =>	$arr['id'],
       'loantype_id'	=>	$arr['loantype_id'],
       'screen' =>	$arr['screen'],
+      'label' =>	$arr['label'],
       'sort_order' => (integer) $arr['sort_order']
     ];
   }

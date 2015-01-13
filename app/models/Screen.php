@@ -2,7 +2,7 @@
 
 class Screen extends \Eloquent {
   public $timestamps = false;
-  protected $fillable = ['loantype_id', 'screen', 'sort_order'];
+  protected $fillable = ['loantype_id', 'screen', 'label', 'sort_order'];
 
   /* RELATIONSHIPS */
   public function loantypes()

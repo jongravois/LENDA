@@ -8,8 +8,8 @@ class DistributorsTableSeeder extends Seeder {
 			'distributor' => "Don't Know",
 			'name' => "Unsure / Don't Know",
 			'address' => ' ',
-			'city' => ' ',
-			'state_id' => 1,
+			'city' => 'Anywhere',
+			'state_id' => 52,
 			'zip' => 00000,
 			'email' => ' ',
 			'phone' => ' '
@@ -19,8 +19,8 @@ class DistributorsTableSeeder extends Seeder {
 			'distributor' => 'Other',
 			'name' => 'Other',
 			'address' => ' ',
-			'city' => ' ',
-			'state_id' => 1,
+			'city' => 'Anywhere',
+			'state_id' => 52,
 			'zip' => 00000,
 			'email' => ' ',
 			'phone' => ' '
