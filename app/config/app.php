@@ -38,6 +38,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
     'Way\Generators\GeneratorsServiceProvider',
     'Laracasts\Utilities\UtilitiesServiceProvider',
+		'Laracasts\Flash\FlashServiceProvider',
     'Clockwork\Support\Laravel\ClockworkServiceProvider',
 		'Anchu\Ftp\FtpServiceProvider'
 	),
@@ -57,6 +58,7 @@ return array(
 		'Eloquent'          => 'Illuminate\Database\Eloquent\Model',
 		'Event'             => 'Illuminate\Support\Facades\Event',
 		'File'              => 'Illuminate\Support\Facades\File',
+		'Flash' 						=> 'Laracasts\Flash\Flash',
 		'Form'              => 'Illuminate\Support\Facades\Form',
 		'Hash'              => 'Illuminate\Support\Facades\Hash',
 		'HTML'              => 'Illuminate\Support\Facades\HTML',

@@ -72,6 +72,7 @@
 <script src="angular/constants.js"></script>
 <script src="angular/routes.js"></script>
 <script src="angular/filters/filters.js"></script>
+<script src="angular/models/base.js"></script>
 <script src="angular/directives/directives.js"></script>
 <!-- CONTROLLERS -->
 <script src="angular/controllers/main.js"></script>
@@ -144,6 +145,7 @@
 <script src="angular/services/FarmersFactory.js"></script>
 <script src="angular/services/ApplicantsFactory.js"></script>
 <script src="angular/services/QuestsFactory.js"></script>
+<script src="angular/services/Grader.js"></script>
 <script src="angular/services/CommentsFactory.js"></script>
 <script src="angular/services/LendaFactory.js"></script>
 <script src="angular/services/EmailFactory.js"></script>

@@ -11,7 +11,7 @@
         <th style="width:5%;">&nbsp</th>
         <th style="width:30%;">Crop</th>
         <th style="width:20%;">Acres</th>
-        <th style="width:20%;">TEA</th>
+        <th style="width:20%;">Expense</th>
         <th style="width:25%;">Value</th>
       </tr>
       <tr ng-if="loanCrops.length == 0">
@@ -28,7 +28,7 @@
         </td>
         <td class="text-center">
           <span ng-if="c.is_active">
-            <input type="number" class="form-control" name="acres" ng-model="c.acres"/>
+            <input type="number" class="form-control" name="acres" ng-model="c.acres" style="text-align: center;"/>
           </span>
         </td>
         <td class="text-right">
@@ -40,6 +40,19 @@
           <span ng-if="c.is_active">
             {{c.total = c.acres * c.tea | currency}}
           </span>
+        </td>
+      </tr>
+      <tr class="success">
+        <td>&nbsp;</td>
+        <td>
+          Total
+        </td>
+        <td style="text-align: center;">
+          {{getTotalAcres() | displaynullcurrency}}
+        </td>
+        <td style="text-align: center;"> - </td>
+        <td style="text-align: right;">
+          Total Value
         </td>
       </tr>
     </table>

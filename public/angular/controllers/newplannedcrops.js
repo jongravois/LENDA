@@ -15,6 +15,18 @@
           $scope.loanCrops = rsp.data.data;
       });
 
+      $scope.getTotalAcres = function(obj){
+        return _.reduce(obj, function(tot, obj){
+          return tot + parseFloat(obj.acres);
+        }, 0);
+      };
+
+      $scope.getTotalPCC_AgPro = function(obj) {
+        return _.reduce(obj, function (tot, obj) {
+          return tot + parseFloat(obj.acres) * parseFloat(obj.crop.tea);
+        }, 0);
+      }
+
       $scope.insertPlan = function(obj) {
         angular.forEach(obj, function(item){
           item.loan_id = $stateParams.loanID;

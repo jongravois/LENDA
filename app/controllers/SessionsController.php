@@ -17,6 +17,7 @@ class SessionsController extends BaseController{
       return Redirect::to('/app');
       // TODO: RETURN CURRENT USER JSON or ERROR VIA API
     } // end if
+    Flash::error('Username/password combination not recognized!');
     return Redirect::back()->withInput();
   }
 

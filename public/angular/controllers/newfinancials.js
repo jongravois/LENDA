@@ -4,11 +4,11 @@
       .module('ARM')
       .controller('NewFinancialsController', NewFinancialsController);
   
-      NewFinancialsController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'Loan', 'AppFactory', 'LoansFactory'];
+      NewFinancialsController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'Loan', 'AppFactory', 'LoansFactory', 'Grader'];
   
       function NewFinancialsController(
           $scope, $state, $stateParams, toastr,
-          Loan, AppFactory, LoansFactory
+          Loan, AppFactory, LoansFactory, Grader
       ){
         var curr = $state.current.url;
         var currScreen = curr.substring(1,curr.length);
@@ -70,6 +70,12 @@
             return tot + parseFloat(obj.acres) * parseFloat(obj.crop.tea);
           }, 0);
         }
+
+        $scope.loan.grade = Grader.gradeLoan($scope.loan.fins, $scope.loan.admin.grader);
+
+        $scope.$watchCollection('loan.fins', function(newVal, oldVal){
+          $scope.loan.grade = Grader.gradeLoan($scope.loan.fins, $scope.grads);
+        });
 
         $scope.insertFin = function(obj) {
           //TODO: persist data

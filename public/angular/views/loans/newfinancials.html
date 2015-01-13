@@ -1,7 +1,7 @@
 <style></style>
 <fieldset>
 <legend>Financial Information</legend>
-
+<!--<pre>{{grads | json}}</pre>-->
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <table class="table table-striped">
@@ -9,25 +9,30 @@
         <td style="width:20%;">
           <label>Credit Score</label>
           &nbsp;&nbsp;&nbsp;
-          <text-edit-in-place value="loan.fins.credit_score"></text-edit-in-place>
+          <input type="text" class="form-control" name="credit_score" ng-model="loan.fins.credit_score" style="width:80px;"/>
         </td>
         <td style="width:20%;">
           <label>
-            <input type="checkbox" name="cpa_financials" ng-value="true" ng-model="loan.fins.cpa_financials"/>&nbsp;
             CPA Financials
+            <br>
+            <input type="radio" name="cpa_financials" ng-value="true" ng-model="loan.fins.cpa_financials"/>&nbsp;Yes
+            &nbsp;&nbsp;&nbsp;
+            <input type="radio" name="cpa_financials" ng-value="false" ng-model="loan.fins.cpa_financials"/>&nbsp;No
           </label>
         </td>
         <td style="width:40%">
               <span ng-if="loan.is_fast_tracked || loan.loan_type_id == 4 || loan.loan_type_id == 5">
                 <label>Amount Requested</label>
-                &nbsp;&nbsp;&nbsp;
-                <edit-in-place value="loan.fins.amount_requested"></edit-in-place>
-              </span>
+                <div class="input-group" style="width:200px;">
+                  <span class="input-group-addon">$</span>
+                    <input type="number" class="form-control" name="amount_requested" ng-model="loan.fins.amount_requested" style="width:150px;"/>
+                  </span>
+                </div>
         </td>
         <td style="width:20%;">
           <label>Grade</label>
-          &nbsp;&nbsp;&nbsp;
-          <label>{{loan.fins.grade}}</label>
+          <br>
+          <p>{{loan.fins.grade}}</p>
         </td>
       </tr>
     </table>
