@@ -4,6 +4,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 
 	public function run()
 	{
+		//2 - Ag-Input
 		Loanfinancials::create([
 			'loan_id' => 1,
 			'total_acres' => 927.7,
@@ -11,7 +12,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'credit_score' => 730,
 			'experience' => 36,
 			'grade' => 'B',
-			'amount_requested' => 25000000,
+			'amount_requested' => 2500000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
 			'adj_prod' => 359237.87,
@@ -77,6 +78,7 @@ class LoanfinancialsTableSeeder extends Seeder {
       'capBorrow_adj' => 57
 		]);
 
+		//5 - Capital Bridge
 		Loanfinancials::create([
 			'loan_id' => 2,
 			'total_acres' => 927.7,
@@ -125,6 +127,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'remaining_balance' => 311147.97,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
+			'risk_adj' => 200000,
 			'year_1_revenue' => 1842701,
 			'year_1_expenses' => 1000000,
 			'year_2_revenue' => 1937418,
@@ -142,6 +145,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'fixed_assets_liability' => 1246794
 		]);
 
+		//4 - Ag-Pro Fasttrack
 		Loanfinancials::create([
 			'loan_id' => 3,
 			'total_acres' => 927.7,
@@ -190,6 +194,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'remaining_balance' => 311147.97,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
+			'risk_adj' => 110,
 			'year_1_revenue' => 1842701,
 			'year_1_expenses' => 1000000,
 			'year_2_revenue' => 1937418,
@@ -207,6 +212,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'fixed_assets_liability' => 1246794
 		]);
 
+		//6 - Ag-Vest
 		Loanfinancials::create([
 			'loan_id' => 4,
 			'total_acres' => 927.7,
@@ -255,6 +261,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'remaining_balance' => 311147.97,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
+			'risk_adj' => 50000,
 			'year_1_revenue' => 1842701,
 			'year_1_expenses' => 1000000,
 			'year_2_revenue' => 1937418,
@@ -272,6 +279,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'fixed_assets_liability' => 1246794
 		]);
 
+		//3 - Ag-Pro
 		Loanfinancials::create([
 			'loan_id' => 5,
 			'total_acres' => 927.7,
@@ -320,6 +328,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'remaining_balance' => 311147.97,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
+			'risk_adj' => 90910,
 			'year_1_revenue' => 1842701,
 			'year_1_expenses' => 1000000,
 			'year_2_revenue' => 1937418,
@@ -337,6 +346,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'fixed_assets_liability' => 1246794
 		]);
 
+		//1 - All-In
 		Loanfinancials::create([
 			'loan_id' => 6,
 			'total_acres' => 927.7,
@@ -385,6 +395,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'remaining_balance' => 311147.97,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
+			'risk_adj' => 2134,
 			'year_1_revenue' => 1842701,
 			'year_1_expenses' => 1000000,
 			'year_2_revenue' => 1937418,
@@ -402,6 +413,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'fixed_assets_liability' => 1246794
 		]);
 
+		//7 - Grain-Storage
 		Loanfinancials::create([
 			'loan_id' => 7,
 			'total_acres' => 927.7,
@@ -467,6 +479,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'fixed_assets_liability' => 1246794
 		]);
 
+		//2 - Ag-Input
 		Loanfinancials::create([
 			'loan_id' => 8,
 			'total_acres' => 927.7,

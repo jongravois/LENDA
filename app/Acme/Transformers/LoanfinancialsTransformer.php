@@ -41,6 +41,7 @@ class LoanfinancialsTransformer extends Transformer{
 			'balance_paid' => (double) $arr['balance_paid'],
 			'cash_flow' => (double) $arr['cash_flow'],
 			'risk' => (double) $arr['risk'],
+			'risk_adj' => (double) $arr['risk_adj'],
 			'year_1_revenue' => (double) $arr['year_1_revenue'],
 			'year_1_expenses' => (double) $arr['year_1_expenses'],
 			'year_2_revenue' => (double) $arr['year_2_revenue'],

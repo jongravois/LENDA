@@ -25,10 +25,6 @@ Route::get('api/user/current', function(){
 });
 Route::resource('sessions', 'SessionsController');
 
-Route::get('#', [
-  'as' => 'home',
-  'uses' => 'AppController@index'
-])->before('auth');
 Route::get('app', [
   'as' => 'home',
   'uses' => 'AppController@index'

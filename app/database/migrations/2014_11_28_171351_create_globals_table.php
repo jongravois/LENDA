@@ -16,6 +16,9 @@ class CreateGlobalsTable extends Migration {
 			$table->double('dist_interest_rate')->default(7.5);
 			$table->double('proc_fee_rate')->default(1);
 			$table->double('svc_fee_rate')->default(1.5);
+			$table->double('current_bs_constraint')->default(85);
+			$table->double('intermediate_bs_constraint')->default(60);
+			$table->double('fixed_bs_constraint')->default(75);
 		});
 	}
 

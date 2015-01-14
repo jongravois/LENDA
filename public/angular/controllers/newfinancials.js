@@ -17,6 +17,9 @@
         LoansFactory.getFinancials($stateParams.loanID)
           .then(function success(rsp){
             $scope.loan.fins = rsp.data.data[0];
+            //$scope.$watchCollection('loan.fins', function(newVal, oldVal){
+              //$scope.loan.grade = Grader.gradeLoan($scope.loan.fins, $scope.grads);
+            //});
           });
 
         $scope.calcIncomeConstraints = function(arr){
@@ -56,7 +59,6 @@
           $scope.loan.fins.capBorrow = ((($scope.loan.fins.total_assets * 1) - ($scope.loan.fins.total_liability * 1)) / $scope.loan.fins.total_assets) * 100;
           //total reserve / total assets/adj
           $scope.loan.fins.capBorrow_adj = (($scope.loan.fins.total_reserve * 1) / ($scope.loan.fins.total_assets_adj * 1)) * 100;
-          $scope.loan.fins.grade = LoansFactory.calcGrade($scope.loan.fins, $scope.grads);
         }
 
         $scope.getTotalAcres = function(obj){
@@ -67,20 +69,58 @@
 
         $scope.getTotalPCC_AgPro = function(obj) {
           return _.reduce(obj, function (tot, obj) {
-            return tot + parseFloat(obj.acres) * parseFloat(obj.crop.tea);
+            return tot + parseFloat(obj.acres) * parseFloat(obj.tea);
           }, 0);
         }
 
-        $scope.loan.grade = Grader.gradeLoan($scope.loan.fins, $scope.loan.admin.grader);
+        $scope.insertFins = function() {
+          //TODO: refactor to FinancialsFactory???
+          //TODO: determine if factors differ from defaults; if, loan exception
+          var returner = Grader.gradeLoan($scope.loan.fins, $scope.grads);
+          $scope.loan.fins.grade = returner.grade;
+          switch($scope.loan.fins.grade){
+            case 'A':
+              toastr.success('Loan Grade: A');
+              break;
+            case 'F':
+              toastr.error('Loan Grade: F');
+              break;
+            default:
+              toastr.info('Loan Grade: ' + $scope.loan.fins.grade);
+              break;
+          } // end switch
 
-        $scope.$watchCollection('loan.fins', function(newVal, oldVal){
-          $scope.loan.grade = Grader.gradeLoan($scope.loan.fins, $scope.grads);
-        });
+          switch( parseInt($scope.loan.loan_type_id) ){
+            case 3:
+            case 4:
+              // Ag-Pro
+              $scope.loan.fins.max_loan = returner.ag_pro_max_loan;
+              $scope.loan.fins.max_rate = returner.ag_pro_max_rate;
+              $scope.loan.fins.risk_adj = returner.ag_pro_max_loan - $scope.loan.fins.amount_requested;
+              break;
+            case 5:
+              // Cap-Bridge
+              $scope.loan.fins.max_loan = returner.capital_bridge_max_loan;
+              $scope.loan.fins.max_rate = returner.caital_bridge_max_rate;
+              $scope.loan.fins.risk_adj = returner.capital_bridge_max_loan - $scope.loan.fins.amount_requested;
+              break;
+            case 6:
+              // Ag-Vest
+              $scope.loan.fins.max_loan = returner.ag_vest_max_loan;
+              $scope.loan.fins.max_rate = returner.ag_vest_max_rate;
+              $scope.loan.fins.risk_adj = returner.ag_vest_max_loan - $scope.loan.fins.amount_requested;
+              break;
+            default:
+              //TODO: Find out about others not listed and what these values do
+              $scope.loan.fins.max_loan = returner.all_max_loan;
+              $scope.loan.fins.max_rate = 100;
+              $scope.loan.fins.risk_adj = returner.all_max_loan;
+              break;
+          } // end switch
 
-        $scope.insertFin = function(obj) {
-          //TODO: persist data
-          //TODO: Use Toastr to announce grade before transition
-          //obj.loan_id = $stateParams.loanID;
+          console.log($scope.loan.fins);
+
+          AppFactory.putIt('/loanfinancials/', $stateParams.loanID, $scope.loan.fins);
           AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
         }
       } // end function

@@ -28,7 +28,7 @@
         </td>
         <td class="text-center">
           <span ng-if="c.is_active">
-            <input type="number" class="form-control" name="acres" ng-model="c.acres" style="text-align: center;"/>
+            <input type="text" class="form-control" name="acres" ng-model="c.acres" decimals="1" style="width:140px;"/>
           </span>
         </td>
         <td class="text-right">
@@ -47,15 +47,16 @@
         <td>
           Total
         </td>
-        <td style="text-align: center;">
-          {{getTotalAcres() | displaynullcurrency}}
+        <td>
+          {{getTotalAcres() | number:1}}
         </td>
         <td style="text-align: center;"> - </td>
         <td style="text-align: right;">
-          Total Value
+          {{getTotalPCC() | displaynullcurrency}}
         </td>
       </tr>
     </table>
+    <!--<pre>{{loanCrops | json}}</pre>-->
   </div>
   <div class="col-md-12 text-right">
     <button style="margin-right:10px;" class="btn btn-primary" ng-click="insertPlan(loanCrops)">NEXT</button>

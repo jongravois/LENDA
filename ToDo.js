@@ -5,7 +5,8 @@
 //TODO: [3] Create Laravel Listeners
 //TODO: [4] Combine Comments & Responses (distinguish using type) and add nullable comment_id (for responses)
 //TODO: [5] Need function to delete loan and all related records
-// TODO: [6] Add the following SOMEWHERE??? to fix page scroll issue -- $rootScope.$on("$routeChangeSuccess", function(){ window.scrollTo(0,0); });
+//TODO: [6] Add the following SOMEWHERE??? to fix page scroll issue -- $rootScope.$on("$routeChangeSuccess", function(){ window.scrollTo(0,0); });
+//TODO: [7] on Edit loan, pass to new FinancialsFactory and calculate all loan's financials (from new to edit)
 // TODO: Fixed Header??? Table Fixed Headers
 // TODO: Unit of Measurements Switcher
 // TODO: Redirect to ChangePassword if pw = 'changeme' & never logged in

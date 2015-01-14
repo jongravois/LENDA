@@ -303,7 +303,7 @@
           })
           .state('new.prerequisites', {
             url: '/prerequisites',
-            templateUrl: 'angular/views/loans/newprerequisites.html',
+            templateUrl: 'angular/views/loans/prerequisites.html',
             controller: 'NewPrerequisitesController'
           })
           .state('new.plannedcrops', {

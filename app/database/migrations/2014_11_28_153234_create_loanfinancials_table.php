@@ -26,13 +26,13 @@ class CreateLoanfinancialsTable extends Migration {
       $table->double('year_3_revenue')->default(0);
       $table->double('year_3_expenses')->default(0);
       $table->double('current_assets')->default(0);
-      $table->double('current_assets_factor')->default(0);
+      $table->double('current_assets_factor')->default(85);
       $table->double('current_assets_liability')->default(0);
       $table->double('intermediate_assets')->default(0);
-      $table->double('intermediate_assets_factor')->default(0);
+      $table->double('intermediate_assets_factor')->default(60);
       $table->double('intermediate_assets_liability')->default(0);
       $table->double('fixed_assets')->default(0);
-      $table->double('fixed_assets_factor')->default(0);
+      $table->double('fixed_assets_factor')->default(75);
       $table->double('fixed_assets_liability')->default(0);
       $table->double('debt2asset_ratio')->default(0);
       $table->double('debt2asset_ratio_adj')->default(0);
@@ -87,7 +87,9 @@ class CreateLoanfinancialsTable extends Migration {
       $table->double('balance_paid')->default(0);
       $table->double('cash_flow')->default(0);
       $table->double('risk')->default(0);
-      $table->double('adj_risk')->default(0);
+      $table->double('risk_adj')->default(0);
+      $table->double('max_loan')->default(0);
+      $table->double('max_rate')->default(0);
 			$table->timestamps();
 		});
 	}

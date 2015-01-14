@@ -15,25 +15,33 @@
           $scope.loanCrops = rsp.data.data;
       });
 
-      $scope.getTotalAcres = function(obj){
+      $scope.getTotalAcres = function(){
+        var obj = $scope.loanCrops;
         return _.reduce(obj, function(tot, obj){
           return tot + parseFloat(obj.acres);
         }, 0);
       };
 
-      $scope.getTotalPCC_AgPro = function(obj) {
+      $scope.getTotalPCC = function() {
+        var obj = $scope.loanCrops;
         return _.reduce(obj, function (tot, obj) {
-          return tot + parseFloat(obj.acres) * parseFloat(obj.crop.tea);
+          return tot + parseFloat(obj.acres) * parseFloat(obj.tea);
         }, 0);
       }
 
       $scope.insertPlan = function(obj) {
+        var acres = 0;
+        var value = 0;
+
         angular.forEach(obj, function(item){
           item.loan_id = $stateParams.loanID;
           AppFactory.putIt('/loancrops/',item.id, item);
+          acres = acres + item.acres;
+          value = value + (item.acres * item.tea);
         });
 
         $scope.loan.crops = obj;
+        AppFactory.patchIt('/loanfinancials/', $stateParams.loanID, {total_acres: acres, cash_flow: value});
 
         AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
       }

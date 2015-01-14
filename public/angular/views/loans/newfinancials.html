@@ -21,13 +21,13 @@
           </label>
         </td>
         <td style="width:40%">
-              <span ng-if="loan.is_fast_tracked || loan.loan_type_id == 4 || loan.loan_type_id == 5">
+              <span ng-if="loan.loan_type_id == 3 || loan.loan_type_id == 4 || loan.loan_type_id == 6 || loan.loan_type_id == 7">
                 <label>Amount Requested</label>
                 <div class="input-group" style="width:200px;">
                   <span class="input-group-addon">$</span>
                     <input type="number" class="form-control" name="amount_requested" ng-model="loan.fins.amount_requested" style="width:150px;"/>
-                  </span>
                 </div>
+              </span>
         </td>
         <td style="width:20%;">
           <label>Grade</label>
@@ -216,7 +216,7 @@
       <tr>
         <td>Total</td>
         <td class="text-right">
-          {{loan.fins.total_assets = (+loan.fins.current_assets) + (+loan.fins.intermediate_assets) + (+loan.fins.fixed_assets)  | noCentsCurrency}}
+          {{loan.fins.total_assets = (loan.fins.current_assets * 1) + (loan.fins.intermediate_assets * 1) + (loan.fins.fixed_assets * 1)  | noCentsCurrency}}
         </td>
         <td class="text-center"> - </td>
         <td class="text-right">
@@ -425,6 +425,10 @@
     <!--{{grads[3].judgement | boolean}}-->
   </td>
 </tr>
+</table>
+<br/><br/>
+
+  <!--
 <tr>
   <td>Any Type Max Loan Constraint</td>
   <td></td>
@@ -544,18 +548,20 @@
     {{grads[3].ag_vest_max_rate | displaynullpercent}}
   </td>
 </tr>
-</table>
-</div>
+
+-->
+  </div>
 </div>
 <!-- RATIO CONSTRAINTS -->
 
   <br/><br/>
+  <!--NEXT BUTTON-->
   <div class="row">
     <div class="col-sm-12 text-right">
-      <button style="margin-right:10px;" class="btn btn-primary" ng-click="createFarmer(farmer)">NEXT</button>
+      <button style="margin-right:10px;" class="btn btn-primary" ng-click="insertFins()">NEXT</button>
     </div>
   </div>
-
+  <!--NEXT BUTTON-->
 </fieldset>
 <!--<pre>{{loan | json}}</pre>-->
 <!--<pre>{{loan.fins | json}}</pre>-->
@@ -622,7 +628,7 @@
       <tr>
         <th>Borrower Rating</th>
         <th>
-          {{loan.grade.grade}}
+          {{loan.fins.grade}}
         </th>
       </tr>
       <tr ng-if="loan.loan_type_id == 3">
