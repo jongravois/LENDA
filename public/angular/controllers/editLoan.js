@@ -53,6 +53,11 @@
           .then(function success(response) {
             $scope.comments = response.data.data;
           });
+      
+        LoansFactory.getPrerequisites($stateParams.loanID)
+          .then(function success(rsp){
+              $scope.docs = rsp.data.data;
+          });
 
         //LOANCROPS & PERCENT IRRIGATED
         LoansFactory.getLoanCrops($stateParams.loanID)

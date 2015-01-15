@@ -4,11 +4,18 @@
       .module('ARM')
       .controller('EditFarmsController', EditFarmsController);
 
-      EditFarmsController.$inject = ['$scope'];
+      EditFarmsController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
 
       function EditFarmsController(
-          $scope
+          $scope,
+          $state,
+          $stateParams,
+          AppFactory,
+          LoansFactory
       ){
-
+        LoansFactory.getFarms($stateParams.loanID)
+          .then(function success(rsp){
+              $scope.farms = rsp.data.data;
+          });
       } // end function
 })();

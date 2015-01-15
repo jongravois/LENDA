@@ -15,6 +15,8 @@
     .directive('socialEip', SocialEditInPlaceDirective)
     .directive('textEditInPlace', TextEditInPlaceDirective)
     .directive('textEip', TextEditInPlaceDirective)
+    .directive('digitEditInPlace', DigitEditInPlaceDirective)
+    .directive('digitEip', DigitEditInPlaceDirective)
     .directive('sglclick', SglClickDirective)
     .directive('ngReallyClick', NgReallyClickDirective)
     .directive('loanStatusIcon', LoanStatusIconDirective)
@@ -137,6 +139,40 @@
         value: '='
       },
       template: '<span ng-click="edit()" ng-show="!editing">{{ value | number:1}}%</span><input ng-model="value" ng-blur="onBlur()" ng-show="editing"></input>',
+      link: function ($scope, element, attrs) {
+        var inputElement = element.find('input');
+
+        // reference the input element
+        element.addClass('edit-in-place');
+
+        // Initially, we're not editing.
+        $scope.editing = false;
+
+        // ng-click handler to activate edit-in-place
+        $scope.edit = function () {
+          $scope.editing = true;
+
+          // element not visible until digest complete
+          // timeout causes this to run after digest
+          setTimeout(function() {
+            inputElement[0].focus();
+          });
+        };
+
+        $scope.onBlur = function() {
+          $scope.editing = false;
+        };
+      }
+    };
+  }
+
+  function DigitEditInPlaceDirective() {
+    return {
+      restrict: 'E',
+      scope: {
+        value: '='
+      },
+      template: '<span ng-click="edit()" ng-show="!editing">{{ value | number:1}}</span><input ng-model="value" ng-blur="onBlur()" ng-show="editing"></input>',
       link: function ($scope, element, attrs) {
         var inputElement = element.find('input');
 

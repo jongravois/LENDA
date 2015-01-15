@@ -20,9 +20,9 @@
       <td>{{d.document}}</td>
       <td class="text-center">
         <span class="glyphicon glyphicon-pushpin" ng-if="!d.date_requested" ></span>
-                <span ng-if="d.date_requested">
-                    {{d.date_requested | date:'M/d/yy'}}
-                </span>
+        <span ng-if="d.date_requested">
+            {{d.date_requested | date:'M/d/yy'}}
+        </span>
       </td>
       <td class="text-center">
         <span class="glyphicon glyphicon-cloud-upload" ng-if="!d.date_received"></span>

@@ -1,32 +1,36 @@
 @extends('layouts/appmain');
 
 @section('content')
+    @if (Session::has('flash_notification.message'))
+        <div class="alert alert-{{ Session::get('flash_notification.level') }}">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+            {{ Session::get('flash_notification.message') }}
+        </div>
+    @endif
+
     <h3>
         {{ Auth::user()->username . ",<br> You must change your password!" }}
     </h3>
 
-    {{ Form::open( ['route' => 'sessions.password'] ) }}
+    <form action="{{ url('/password') }}" method="POST">
 
     <!-- Password Input -->
     <div class="form-group">
         {{ Form::label( 'password', 'New Password:') }}
-        {{ Form::text( 'password', null, array('class' => 'form-control')) }}
+        {{ Form::password( 'password', ['class' => 'form-control']) }}
     </div>
 
     <!-- Password Input 2 -->
     <div class="form-group">
         {{ Form::label( 'password2', 'Confirm Password:') }}
-        {{ Form::password( 'password2', array('class' => 'form-control')) }}
+        {{ Form::password( 'password2', ['class' => 'form-control']) }}
     </div>
 
     <!-- Submit Button -->
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            @if (Auth::guest())
-                <button type="submit" class="btn btn-primary">LOG IN</button>
-            @else
-                <a class="btn btn-primary" href="logout">LOG OUT</a>
-            @endif
+            <input type="submit" class="btn btn-primary" name="submit" value="Change"/>
         </div>
     </div>
 

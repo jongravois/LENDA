@@ -4,25 +4,8 @@
 Route::get('/', 'AppController@index')->before('auth');
 Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
-Route::get('password', 'SessionsController@password_change');
-Route::get('api/login', function(){
-  if(Auth::attempt(Input::only('email', 'password'))){
-    //dd(Auth::user());
-    if(Input::get('password') == 'changeme'){
-      return View::make('sessions.change');
-    } // end if
-    return 'a token'; //TODO: JWT or some other token
-  } // end if
-  return Redirect::back()->withInput();
-});
-Route::get('api/user/current', function(){
-  if(Auth::check()){
-    //TODO: if password == changeme, change_password is true
-    return Auth::user();
-  } else {
-    return ('401'); //TODO: // return this with error code and message
-  } // end if
-});
+Route::get('pwchange', 'SessionsController@change_needed');
+Route::post('password', ['as' => 'password', 'uses' => 'SessionsController@password_change']);
 Route::resource('sessions', 'SessionsController');
 
 Route::get('app', [

@@ -3,19 +3,17 @@
 class SessionsController extends BaseController{
   public function create()
   {
-    if(Auth::check()) return Redirect::to(home);
+    if(Auth::check()) return Redirect::to('/app');
     return View::make('sessions.create');
   }
 
   public function store()
   {
     if(Auth::attempt(Input::only('email', 'password'))){
-      //dd(Auth::user());
       if(Input::get('password') == 'changeme'){
-        return View::make('sessions.change');
+        return Redirect::to('/pwchange');
       } // end if
       return Redirect::to('/app');
-      // TODO: RETURN CURRENT USER JSON or ERROR VIA API
     } // end if
     Flash::error('Username/password combination not recognized!');
     return Redirect::back()->withInput();
@@ -27,8 +25,22 @@ class SessionsController extends BaseController{
     return Redirect::route('sessions.create');
   }
 
+  public function change_needed()
+  {
+    return View::make('sessions.change');
+  }
+
   public function password_change()
   {
-    dd(Input::all());
+    if(Input::get('password') !== Input::get('password2')){
+      Flash::error('The two passwords did not match!');
+      return Redirect::back()->withInput();
+    }
+    $user = Auth::user();
+    $user->password = Input::get('password');
+    $user->save();
+    Auth::logout();
+    Flash::message('Please log in with your new credentials!');
+    return Redirect::to('login');
   }
 }

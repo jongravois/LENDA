@@ -54,7 +54,7 @@ class FarmsTableSeeder extends Seeder {
 			'ni'				=>	1,
 			'facirr'			=>  0,
 			'facni'    			=>	1,
-			'fsa_paid'			=> 	0,
+			'fsa_paid'			=> 	12000,
 			'percent_irrigated'	=>	0
 		]);
 
