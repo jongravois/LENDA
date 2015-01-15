@@ -34,7 +34,6 @@ class CreateLoansTable extends Migration {
       $table->boolean('required_3party')->default(0);
       $table->boolean('added_land')->default(0);
       $table->boolean('controlled_disbursement')->default(0);
-      $table->boolean('attachments')->default(0);
       $table->integer('its_list')->default(0);
       $table->integer('fsa_compliant')->default(0);
       $table->integer('prev_lien_verified')->default(0);

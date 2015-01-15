@@ -71,7 +71,7 @@ public function transform($arr)
 		'required_3party' => (boolean) $arr['required_3party'],
 		'added_land' => (boolean) $arr['added_land'],
 		'controlled_disbursement' => (boolean) $arr['controlled_disbursement'],
-		'attachments' => (boolean) $arr['attachments'],
+		//'attachments' => (boolean) $arr['attachments'],
 		'its_list' => (integer) $arr['its_list'],
 		'fsa_compliant' => (integer) $arr['fsa_compliant'],
 		'prev_lien_verified' => (integer) $arr['prev_lien_verified'],

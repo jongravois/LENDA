@@ -19,9 +19,7 @@ Route::get('env', function(){
 });
 
 Route::get('test', function() {
-  FTP::connection()->makeDir('code/LENDA/public/files_loans/2015_2/');
-  return 'Completed';
-//return View::make('sessions.change');
+  return View::make('hello');
 });
 
 Route::get('emailtest', function(){
@@ -104,6 +102,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/committee', 'CommitteeController@byLoan');
   Route::get('loans/{id}/conditions', 'LoanConditionsController@byLoan');
   Route::get('loans/{id}/corporations', 'CorporationsController@byLoan');
+  Route::get('loans/{id}/attachments', 'LoansController@attachments');
   Route::get('loans/{id}/counties', 'CountiesController@byLoan');
   Route::get('loans/{id}/cropexpenses', 'CropexpensesController@byLoan');
   Route::get('loans/{id}/farms', 'FarmController@byLoan');

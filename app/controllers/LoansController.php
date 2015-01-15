@@ -54,12 +54,10 @@ class LoansController extends ApiController {
 		$loan = Loan::create(Input::all());
 		$newLoan = Loan::find($loan->id);
 
-		//TODO: Create directory for new loan's uploadables
-		/*$path = getenv('FTP_BASE') . 'files_loans/' . $crop_year . '_' . $loan->id;
+		$path = public_path('files_loans/') . $crop_year . '_' . $loan->id;
 		if(!File::exists($path)) {
-			FTP::connection()->makeDir($path);
+			$result = File::makeDirectory($path, 0775);
 		}
-		*/
 
 		//TODO: Add file_url to $scope.loans -- LOOK AT STAPLER
 		//Add systemic
@@ -134,6 +132,14 @@ class LoansController extends ApiController {
     ]);
   }
 
+	public function attachments($id)
+	{
+		$loan = Loan::find($id);
+		$filePath = public_path('files_loans/' . $loan->crop_year . '_' . $loan->id);
+		$files = array_diff(scandir($filePath), array('..', '.'));
+		return $files;
+	}
+
 	private function tform($arr)
 	{
 		return array_map(function($arr)
@@ -170,7 +176,6 @@ class LoansController extends ApiController {
 				'required_3party' => (boolean) $arr['required_3party'],
 				'added_land' => (boolean) $arr['added_land'],
 				'controlled_disbursement' => (boolean) $arr['controlled_disbursement'],
-				'attachments' => (boolean) $arr['attachments'],
 				'its_list' => (integer) $arr['its_list'],
 				'fsa_compliant' => (integer) $arr['fsa_compliant'],
 				'prev_lien_verified' => (integer) $arr['prev_lien_verified'],

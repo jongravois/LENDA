@@ -27,7 +27,6 @@ class LoansTableSeeder extends Seeder {
 			'required_3party' => 0,
 			'added_land' => 0,
 			'controlled_disbursement' => 0,
-			'attachments' => 1,
 			'its_list' => 1,
 			'fsa_compliant' => 1,
 			'prev_lien_verified' => 2,

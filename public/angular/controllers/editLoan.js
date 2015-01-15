@@ -78,6 +78,16 @@
               .then(function (res) {
                 $scope.loan.total_acres = parseFloat(res);
               });
+
+            LoansFactory.getAttachments($stateParams.loanID)
+              .then(function success(rsp){
+                var data = rsp.data;
+                if( data && data.length != 0){
+                  $scope.loan.attachments = true;
+                } else {
+                  $scope.loan.attachments = false;
+                } // end if
+              });
           });
 
         //FARM EXPENSES

@@ -13,6 +13,7 @@
         createLoan: createLoan,
         createReference: createReference,
         getAffiliates: getAffiliates,
+        getAttachments: getAttachments,
         getComments: getComments,
         getCommittee: getCommittee,
         getCropExpenses: getCropExpenses,
@@ -156,6 +157,10 @@
 
       function getAffiliates(id){
         return $http.get(API_URL + '/loans/' + id + '/affiliates');
+      }
+
+      function getAttachments(id){
+        return $http.get(API_URL + '/loans/' + id + '/attachments');
       }
 
       function getComments(id){
