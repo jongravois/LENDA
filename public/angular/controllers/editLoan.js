@@ -6,7 +6,7 @@
       $scope, $state, $stateParams, $filter,
       $timeout, toastr,
       Loan, AppFactory, ApplicantsFactory, FarmersFactory,
-      LoansFactory
+      LoansFactory, InsurancesFactory
     ) {
         $scope.loan = Loan.data.data[0];
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
@@ -53,7 +53,8 @@
           .then(function success(response) {
             $scope.comments = response.data.data;
           });
-      
+
+        //PREREQUISITES
         LoansFactory.getPrerequisites($stateParams.loanID)
           .then(function success(rsp){
               $scope.docs = rsp.data.data;
@@ -96,6 +97,14 @@
             $scope.farmExpenses = response.data.data;
           });
 
+        //LOAN INSURANCE
+        /*InsurancesFactory.getValues($stateParams.loanID)
+          .then(function success(rsp){
+            console.log(rsp);
+            $scope.policies = rsp.data.data;
+          });
+        */
+
         $scope.uomChanged = function (id, uom) {
           alert('Crop ID: ' + id + ' has been changed to ' + uom);
         };
@@ -114,19 +123,6 @@
             } // end if
           } // end for
           return tot / cnt;
-        };
-
-        // TODO: Factor in changing from RP ins_type
-        // TODO: Check value and guaranty calculation
-        $scope.calcGuaranty = function ($arr) {
-          return (($arr['aph'] * ($arr['level'] / 100) * $arr['price']) - $arr['premium']) * ($arr['acres'] * ($arr['share'] / 100));
-        };
-        $scope.calcValue = function ($guaranty, $arr) {
-          return ($guaranty - $arr['premium']) * ($arr['share'] / 100) * $arr['acres'];
-        };
-        //  TODO: Create calcTotalValue Function
-        $scope.calcTotalValue = function () {
-          return 39549017.29;
         };
 
     });
