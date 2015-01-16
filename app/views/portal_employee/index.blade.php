@@ -74,6 +74,7 @@
 <script src="angular/filters/filters.js"></script>
 <script src="angular/models/base.js"></script>
 <script src="angular/directives/directives.js"></script>
+<script src="angular/directives/inPlaceDirectives.js"></script>
 <!-- CONTROLLERS -->
 <script src="angular/controllers/main.js"></script>
 <script src="angular/controllers/sessions.js"></script>
