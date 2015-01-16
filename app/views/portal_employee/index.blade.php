@@ -148,7 +148,7 @@
 <script src="angular/services/Grader.js"></script>
 <script src="angular/services/ExceptionsFactory.js"></script>
 <script src="angular/services/FinancialsFactory.js"></script>
-<script src="angular/services/InsuranceFactory.js"></script>
+<script src="angular/services/InsurancesFactory.js"></script>
 <script src="angular/services/CommentsFactory.js"></script>
 <script src="angular/services/LendaFactory.js"></script>
 <script src="angular/services/EmailFactory.js"></script>

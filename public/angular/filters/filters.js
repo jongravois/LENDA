@@ -160,13 +160,13 @@
 
   function flexCurrencyFilter($filter) {
     return function (input, decPlaces) {
-      var decPlaces = decPlaces || 2;
+      var decPlaces = decPlaces || 0;
 
       // Check for invalid inputs
       if(isNaN(input)){
         return input;
       }
-      if(input === '' || input === null){
+      if(input === '' || input === null || input == 0){
         return ' - ';
       }
       var out =  input;
@@ -187,7 +187,7 @@
 
   function flexPercentFilter($filter) {
     return function (input, decPlaces) {
-      var decPlaces = decPlaces || 2;
+      var decPlaces = decPlaces || 0;
 
       // Check for invalid inputs
       if(isNaN(input)){

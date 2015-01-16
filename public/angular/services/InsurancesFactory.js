@@ -2,30 +2,16 @@
     'use strict';
     angular.module('ARM')
         .factory('InsurancesFactory', function InsurancesFactory($q, $stateParams, LoansFactory){
-/*
- ok, I have a long list of loans and their edit screen are found at domain/edit/17/screenname, and I harvest that $stateParam of loanID in a factory, hit the API and grab all of the, let's say, applicable insurance policies from the database. I expose the 12-14 necessary calculations via the factory and since the promise is already resolved, I just direct assign the value in the controller. Even though factories run once and persist, when the user changes to another loan, the factory will perform its calculations for the new loan?
- */
-          var policies = [];
-          var total_acres = 0;
-          var crop_acres = [];
 
-          return {
-            calcTotalAcres: calcTotalAcres
-          };
+        return {
+          calcTotalAcres: calcTotalAcres
+        };
 
-          LoansFactory.getInsurancePolicies($stateParams.loanID)
-              .then(function success(rsp){
-                policies = rsp.data.data;
-                total_acres = _.reduce(policies, function(sum, obj){
-                  return sum + obj.acres;
-                }, 0);
-
-
-              });
-
-          function calcTotalAcres(){
-            return total_acres;
-          }
+        function calcTotalAcres(obj){
+          return _.reduce(obj, function(sum, o){
+            return sum + o.acres;
+          }, 0);
+        }
 
 
           /*
