@@ -14,7 +14,8 @@
     .filter('phone', phoneFilter)
     .filter('ssnum', ssnumFilter)
     .filter('justtext', justtextFilter)
-    .filter('flexCurrency', flexCurrencyFilter);
+    .filter('flexCurrency', flexCurrencyFilter)
+    .filter('flexPercent', flexPercentFilter);
 
 
   function asDateFilter() {
@@ -180,6 +181,33 @@
         return "( $" + out + ")";
       } else {
         return "$" + out;
+      };
+    }
+  }
+
+  function flexPercentFilter($filter) {
+    return function (input, decPlaces) {
+      var decPlaces = decPlaces || 2;
+
+      // Check for invalid inputs
+      if(isNaN(input)){
+        return input;
+      }
+      if(input === '' || input === null){
+        return ' - ';
+      }
+      var out =  input;
+
+      //Deal with the minus (negative numbers)
+      var minus = input < 0;
+      out = Math.abs(out);
+      out = $filter('number')(out, decPlaces);
+
+      // Add the minus and the symbol
+      if (minus) {
+        return "( " + out + "%)";
+      } else {
+        return out +  "%";
       };
     }
   }
