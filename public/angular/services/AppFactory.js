@@ -18,6 +18,7 @@
         gtZero: gtZero,
         moveToNextNewLoanScreen: moveToNextNewLoanScreen,
         patchIt: patchIt,
+        postIt: postIt,
         putIt: putIt,
         returnColor: returnColor
       };
@@ -99,6 +100,9 @@
       }
       function patchIt(end, id, data){
         return $http.patch(API_URL + end + id, data);
+      }
+      function postIt(end, data){
+        return $http.post(API_URL + end, data);
       }
       function putIt(end, id, data){
         return $http.put(API_URL + end + id, data);

@@ -125,6 +125,7 @@ class ScreensTableSeeder extends Seeder {
     Screen::create([
       'loantype_id' => 2,
       'screen' => 'financials',
+      'label' => 'Financials',
       'sort_order' => 6
     ]);
 

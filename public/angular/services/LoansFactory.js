@@ -40,6 +40,7 @@
         getPendingVotes: getPendingVotes,
         getPracticeLabel: getPracticeLabel,
         getReferences: getReferences,
+        getRequiredDocuments: getRequiredDocuments,
         getScreens: getScreens,
         getSelectedCrops: getSelectedCrops,
         getSystemics: getSystemics,
@@ -264,6 +265,10 @@
 
       function getReferences(id){
         return $http.get(API_URL + '/loans/' + id + '/references');
+      }
+
+      function getRequiredDocuments(id){
+        return $http.get(API_URL + '/requireddocuments/' + id);
       }
 
       function getScreens(type){

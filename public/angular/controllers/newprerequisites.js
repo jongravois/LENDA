@@ -3,11 +3,34 @@
   angular
     .module('ARM')
     .controller('NewPrerequisitesController', function(
-      $scope, $state, $stateParams
+      $scope, $state, $stateParams,
+      AppFactory, LoansFactory
     ){
       var curr = $state.current.url;
       var currScreen = curr.substring(1,curr.length);
       //alert(currScreen);
+
+      LoansFactory.getPrerequisites($stateParams.loanID)
+        .then(function success(rsp){
+          //console.log(rsp);
+          if(rsp.data.length !== 0){
+            $scope.docs = rsp.data.data;
+          } else {
+            $scope.docs = [];
+            LoansFactory.getRequiredDocuments($stateParams.loantypeID)
+              .then(function success(rsp){
+                var docs = rsp.data.data;
+                for(var d=0; d<docs.length; d++){
+                  var rdoc = {
+                    'loan_id': $stateParams.loanID,
+                    'document': docs[d]['document']
+                  };
+                  AppFactory.postIt('/prerequisites', rdoc);
+                  $scope.docs.push(rdoc);
+                } // end for
+              });
+          } // end if
+        });
 
       $scope.moveFromDocs = function(){
         AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
