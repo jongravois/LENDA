@@ -3,8 +3,8 @@
     <img src="images/LENDA_Logo.png" style="height:70px;"/>
   </a>
     <span class="sp_controls">
-        <span id="navbar-notifications" class="badge" ng-if="user.badged > 0" tooltip-placement="bottom" tooltip="You've got things to do!" ng-click="clkNotificationBadge(user.id)">
-          {{user.badged}}
+        <span id="navbar-notifications" class="badge" ng-if="user.notifications.length > 0" tooltip-placement="bottom" tooltip-html-unsafe="{{tooltipNotifications}}" ng-click="clkNotificationBadge(user.id)">
+          {{user.notifications.length}}
         </span>
         Welcome, {{user.username}}
         &nbsp;&nbsp;|&nbsp;&nbsp;
@@ -97,3 +97,4 @@
     </span>
     <span class="search_box" style="display:none;"></span>
 </div> <!-- /#nav_banner -->
+<!--<pre>{{user.notifications | json}}</pre>-->

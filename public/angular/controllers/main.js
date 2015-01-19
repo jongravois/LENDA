@@ -21,6 +21,7 @@
         UsersFactory.getNotifications($scope.user_id).then(function success(response){
           $scope.user.notifications = response.data.data;
           $scope.user.badged = response.data.data.length;
+          $scope.tooltipNotifications = $scope.user.notifications.map(function(arr){return arr.task}).join('<br>');
         });
       });
 
