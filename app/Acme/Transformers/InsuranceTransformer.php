@@ -31,7 +31,7 @@ class InsuranceTransformer extends Transformer{
 			'option' => $arr['option'],
 			'acres' => (double) $arr['acres'],
 			'price' => (double) $arr['price'],
-			'aph' => (double) $arr['aph'],
+			'yield' => (double) $arr['yield'],
 			'level' => (double) $arr['level'],
 			'premium' => (double) $arr['premium'],
 			'share' => (double) $arr['share'],

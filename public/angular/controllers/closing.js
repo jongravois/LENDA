@@ -4,7 +4,7 @@
       .module('ARM')
       .controller('ClosingController', ClosingController);
 
-      ClosingController.$inject = ['$scope', '$state', '$stateParams', 'Loan', 'AppFactory', 'LoansFactory', 'InsurancesFactory'];
+      ClosingController.$inject = ['$scope', '$state', '$stateParams', 'Loan', 'AppFactory', 'LoansFactory', 'InsuranceFactory'];
 
       function ClosingController(
           $scope,
@@ -13,7 +13,7 @@
           Loan,
           AppFactory,
           LoansFactory,
-          InsurancesFactory
+          InsurancFactory
       ){
         $scope.loan = $scope.loan || Loan.data.data[0];
         $scope.loan.insurance = $scope.loan.insurance || {};
@@ -22,7 +22,7 @@
           .then(function success(rsp){
             var policies = rsp.data.data;
             $scope.loan.insurance.policies = policies;
-            $scope.loan.insurance.TotalAcres = InsurancesFactory.calcTotalAcres(policies);
+            $scope.loan.insurance.TotalAcres = InsuranceFactory.calcTotalAcres(policies);
 
           });
       } // end function

@@ -21,7 +21,7 @@ class CreateInsuranceTable extends Migration {
       $table->string('option')->nullable();
       $table->double('acres')->nullable();
       $table->double('price')->nullable();
-      $table->double('aph')->nullable();
+      $table->double('yield')->nullable();
       $table->double('level')->nullable();
       $table->double('premium')->nullable();
       $table->double('share')->nullable();

@@ -3,7 +3,7 @@
 class Insurance extends \Eloquent {
 	protected $table = 'insurance';
 
-	protected $fillable = ['loan_id', 'agency_id', 'agent_id', 'policy', 'loancounty_id', 'loancrop_id', 'croppractice_id', 'type', 'option', 'acres', 'price', 'aph', 'level', 'premium', 'share', 'guaranty', 'value'];
+	protected $fillable = ['loan_id', 'agency_id', 'agent_id', 'policy', 'loancounty_id', 'loancrop_id', 'croppractice_id', 'type', 'option', 'acres', 'price', 'yield', 'level', 'premium', 'share', 'guaranty', 'value'];
 
 	// Relationships
 	public function county()

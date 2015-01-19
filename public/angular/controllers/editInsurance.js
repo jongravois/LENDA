@@ -4,18 +4,14 @@
       .module('ARM')
       .controller('EditInsuranceController', EditInsuranceController);
 
-      EditInsuranceController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
+      EditInsuranceController.$inject = ['$scope', 'InsuranceFactory'];
 
       function EditInsuranceController(
           $scope,
-          $state,
-          $stateParams,
-          AppFactory,
-          LoansFactory
+          InsuranceFactory
       ){
-        LoansFactory.getInsurancePolicies($stateParams.loanID)
-          .then(function success(rsp){
-              //$scope.loan.insurance = rsp.data.data;
-          });
+        //TODO: Add ability to add new insurance policy
+
+        $scope.insurance = InsuranceFactory.data;
       } // end function
 })();

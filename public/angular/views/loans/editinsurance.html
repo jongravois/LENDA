@@ -41,7 +41,7 @@
         <th style="width:9%;">Value</th>
       </tr>
 
-      <tr ng-repeat="i in loan.insurance">
+      <tr ng-repeat="i in insurance.policies">
         <td>{{i.locale}}</td>
         <td>{{i.practice}}</td>
         <td>
@@ -52,16 +52,20 @@
         <td class="text-center">
           <text-edit-in-place value="i.option"></text-edit-in-place>
         </td>
-        <td ng-class=gtZero(i.price)>
-          {{i.price | displaynullcurrency}}
+        <td class="text-right" ng-class=gtZero(i.price)>
+          {{i.price | flexCurrency:4}}
         </td>
-        <td ng-class=gtZero(i.level)>
+        <td class="text-right" ng-class=gtZero(i.level)>
           <percent-edit-in-place value="i.level"></percent-edit-in-place>
         </td>
-        <td class="text-center">{{i.acres}}</td>
-        <td class="text-center">{{i.aph}}</td>
-        <td ng-class=gtZero(calcGuaranty(i))>
-          {{calcGuaranty(i) | displaynullcurrency}}
+        <td class="text-center">
+          {{i.acres | number:1}}
+        </td>
+        <td class="text-center">
+          {{i.yield | number:1}}
+        </td>
+        <td ng-class=gtZero(i.guarantee)>
+          {{i.guarantee | flexCurrency:2}}
         </td>
         <td ng-class=gtZero(i.premium)>
           <edit-in-place value="i.premium"></edit-in-place>
@@ -69,16 +73,157 @@
         <td ng-class=gtZero(i.share)>
           <percent-edit-in-place value="i.share"></percent-edit-in-place>
         </td>
-        <td ng-class=gtZero(i.value)>
-          {{calcValue(calcGuaranty(i), i) | displaynullcurrency}}
+        <td class="text-right" ng-class=gtZero(i.value)>
+          {{i.value | flexCurrency:0}}
+        </td>
+      </tr>
+      
+      <tr class="warning" ng-if="insurance.cropAcres.corn > 0">
+        <td colspan="2" class="text-right">
+          <strong>Corn</strong>
+        </td>
+        <td colspan="4">&nbsp;</td>
+        <td class="text-center">
+          {{insurance.cropAcres.corn || 0 | number:1}}
+        </td>
+        <td>&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropGuars.corn)">
+          {{insurance.cropGuars.corn || 0 | flexCurrency:2}}
+        </td>
+        <td colspan="2">&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropTotals.corn)">
+          {{insurance.cropTotals.corn || 0 | flexCurrency:0}}
+        </td>
+      </tr>
+      <tr class="warning" ng-if="insurance.cropAcres.soybeans > 0">
+        <td colspan="2" class="text-right">
+          <strong>Soybeans</strong>
+        </td>
+        <td colspan="4">&nbsp;</td>
+        <td class="text-center">
+          {{insurance.cropAcres.soybeans || 0 | number:1}}
+        </td>
+        <td>&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropGuars.soybeans)">
+          {{insurance.cropGuars.soybeans || 0 | flexCurrency:2}}
+        </td>
+        <td colspan="2">&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropTotals.soybeans)">
+          {{insurance.cropTotals.soybeans || 0 | flexCurrency:0}}
+        </td>
+      </tr>
+      <tr class="warning" ng-if="insurance.cropAcres.sorghum > 0">
+        <td colspan="2" class="text-right">
+          <strong>Sorghum</strong>
+        </td>
+        <td colspan="4">&nbsp;</td>
+        <td class="text-center">
+          {{insurance.cropAcres.sorghum || 0 | number:1}}
+        </td>
+        <td>&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropGuars.sorghum)">
+          {{insurance.cropGuars.sorghum || 0 | flexCurrency:2}}
+        </td>
+        <td colspan="2">&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropTotals.sorghum)">
+          {{insurance.cropTotals.sorghum || 0 | flexCurrency:0}}
+        </td>
+      </tr>
+      <tr class="warning" ng-if="insurance.cropAcres.wheat > 0">
+        <td colspan="2" class="text-right">
+          <strong>Wheat</strong>
+        </td>
+        <td colspan="4">&nbsp;</td>
+        <td class="text-center">
+          {{insurance.cropAcres.wheat || 0 | number:1}}
+        </td>
+        <td>&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropGuars.wheat)">
+          {{insurance.cropGuars.wheat || 0 | flexCurrency:2}}
+        </td>
+        <td colspan="2">&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropTotals.wheat)">
+          {{insurance.cropTotals.wheat || 0 | flexCurrency:0}}
+        </td>
+      </tr>
+      <tr class="warning" ng-if="insurance.cropAcres.cotton > 0">
+        <td colspan="2" class="text-right">
+          <strong>Cotton</strong>
+        </td>
+        <td colspan="4">&nbsp;</td>
+        <td class="text-center">
+          {{insurance.cropAcres.cotton || 0 | number:1}}
+        </td>
+        <td>&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropGuars.cotton)">
+          {{insurance.cropGuars.cotton || 0 | flexCurrency:2}}
+        </td>
+        <td colspan="2">&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropTotals.cotton)">
+          {{insurance.cropTotals.cotton || 0 | flexCurrency:0}}
+        </td>
+      </tr>
+      <tr class="warning" ng-if="insurance.cropAcres.rice > 0">
+        <td colspan="2" class="text-right">
+          <strong>Rice</strong>
+        </td>
+        <td colspan="4">&nbsp;</td>
+        <td class="text-center">
+          {{insurance.cropAcres.rice || 0 | number:1}}
+        </td>
+        <td>&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropGuars.rice)">
+          {{insurance.cropGuars.rice || 0 | flexCurrency:2}}
+        </td>
+        <td colspan="2">&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropTotals.rice)">
+          {{insurance.cropTotals.rice || 0 | flexCurrency:0}}
+        </td>
+      </tr>
+      <tr class="warning" ng-if="insurance.cropAcres.peanuts > 0">
+        <td colspan="2" class="text-right">
+          <strong>Peanuts</strong>
+        </td>
+        <td colspan="4">&nbsp;</td>
+        <td class="text-center">
+          {{insurance.cropAcres.peanuts || 0 | number:1}}
+        </td>
+        <td>&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropGuars.peanuts)">
+          {{insurance.cropGuars.peanuts || 0 | flexCurrency:2}}
+        </td>
+        <td colspan="2">&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropTotals.peanuts)">
+          {{insurance.cropTotals.peanuts || 0 | flexCurrency:0}}
+        </td>
+      </tr>
+      <tr class="warning" ng-if="insurance.cropAcres.sugarcane > 0">
+        <td colspan="2" class="text-right">
+          <strong>Sugar Cane</strong>
+        </td>
+        <td colspan="4">&nbsp;</td>
+        <td class="text-center">
+          {{insurance.cropAcres.sugarcane || 0 | number:1}}
+        </td>
+        <td>&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropGuars.sugarcane)">
+          {{insurance.cropGuars.sugarcane || 0 | flexCurrency:2}}
+        </td>
+        <td colspan="2">&nbsp;</td>
+        <td class="text-right" ng-class="gtZero(insurance.cropTotals.sugarcane)">
+          {{insurance.cropTotals.sugarcane || 0 | flexCurrency:0}}
         </td>
       </tr>
 
       <tr class="success">
         <td>Total</td>
-        <td colspan="10">&nbsp;</td>
-        <td class="text-right">
-          {{calcTotalValue() | displaynullcurrency}}
+        <td colspan="5">&nbsp;</td>
+        <td class="text-center">
+          {{insurance.total_acres | number:1}}
+        </td>
+        <td colspan="4">&nbsp;</td>
+        <td class="text-right" ng-class=gtZero(insurance.total_value)>
+          {{insurance.total_value | flexCurrency:0}}
         </td>
       </tr>
     </table>

@@ -6,7 +6,7 @@
       $scope, $state, $stateParams, $filter,
       $timeout, toastr,
       Loan, AppFactory, ApplicantsFactory, FarmersFactory,
-      LoansFactory, InsurancesFactory
+      LoansFactory, InsuranceFactory
     ) {
         $scope.loan = Loan.data.data[0];
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
@@ -96,14 +96,6 @@
           .then(function success(response) {
             $scope.farmExpenses = response.data.data;
           });
-
-        //LOAN INSURANCE
-        /*InsurancesFactory.getValues($stateParams.loanID)
-          .then(function success(rsp){
-            console.log(rsp);
-            $scope.policies = rsp.data.data;
-          });
-        */
 
         $scope.uomChanged = function (id, uom) {
           alert('Crop ID: ' + id + ' has been changed to ' + uom);
