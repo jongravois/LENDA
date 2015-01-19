@@ -38,7 +38,8 @@
     "satellizer": "~0.8.6",
     "angular-permission": "~0.1.4",
     "angular-moment": "~0.8.2",
-    "angular-mass-autocomplete": "*"
+    "angular-mass-autocomplete": "*",
+    "angular-xeditable": "~0.1.8"
   },
   "resolutions": {
     "angular-ui-router": "~0.2.13",

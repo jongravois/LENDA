@@ -11,16 +11,16 @@
     </tr>
     <tr ng-repeat="c in crops">
       <td>
-        <text-eip value="c.crop"></text-eip>
+        <text-edit-in-place value="c.crop"></text-edit-in-place>
       </td>
       <td class="text-right">
         <edit-in-place value="c.tea"></edit-in-place>
       </td>
       <td class="text-center">
-        <text-eip value="c.measurement"></text-eip>
+        <text-edit-in-place value="c.measurement"></text-edit-in-place>
       </td>
       <td class="text-center">
-        <text-eip value="c.rebate_measurement"></text-eip>
+        <text-edit-in-place value="c.rebate_measurement"></text-edit-in-place>
       </td>
       <td style="white-space: nowrap">
         <button class="btn btn-success" ng-click="adminUpdateCrop(c)">save</button>

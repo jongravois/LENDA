@@ -70,16 +70,16 @@
               {{c.acres | number: 1}}
             </td>
             <td class="text-right">
-              {{c.tea | displaynullcurrency}}
+              {{c.tea | flexCurrency:0}}
             </td>
             <td class="text-right">
-              {{ c.tea * c.acres | displaynullcurrency }}
+              {{ c.tea * c.acres | flexCurrency:0 }}
             </td>
             <td class="text-right">
-              {{ c.tea * c.acres * 0.35 | displaynullcurrency}}
+              {{ c.tea * c.acres * 0.35 | flexCurrency:0}}
             </td>
             <td class="text-right">
-              {{ c.tea * c.acres * 0.35 | displaynullcurrency}}
+              {{ c.tea * c.acres * 0.35 | flexCurrency:0}}
             </td>
           </tr>
           <tr class="success">
@@ -91,13 +91,13 @@
             </td>
             <td class="text-center"> - </td>
             <td ng-class=gtZero(loan.fins.totalPCC)>
-              {{loan.fins.totalPCC | displaynullcurrency}}
+              {{loan.fins.totalPCC | flexCurrency:0}}
             </td>
             <td ng-class=gtZero(loan.fins.totalPCC)>
-              {{loan.fins.totalPCC * .35 | displaynullcurrency}}
+              {{loan.fins.totalPCC * .35 | flexCurrency:0}}
             </td>
             <td ng-class=gtZero(loan.fins.totalPCC)>
-              {{loan.fins.totalPCC * .35 | displaynullcurrency}}
+              {{loan.fins.totalPCC * .35 | flexCurrency:0}}
             </td>
           </tr>
         </table>
@@ -118,49 +118,49 @@
           <tr>
             <td>Year 1</td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.year_1_revenue"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.year_1_revenue"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.year_1_expenses"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.year_1_expenses"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
-              {{year1Income = getIncome(loan.fins.year_1_revenue*1, loan.fins.year_1_expenses*1) | displaynullcurrency}}
+              {{year1Income = getIncome(loan.fins.year_1_revenue*1, loan.fins.year_1_expenses*1) | flexCurrency:0}}
             </td>
           </tr>
           <tr>
             <td>Year 2</td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.year_2_revenue"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.year_2_revenue"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.year_2_expenses"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.year_2_expenses"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
-              {{year2Income = getIncome(loan.fins.year_2_revenue*1, loan.fins.year_2_expenses*1) | displaynullcurrency}}
+              {{year2Income = getIncome(loan.fins.year_2_revenue*1, loan.fins.year_2_expenses*1) | flexCurrency:0}}
             </td>
           </tr>
           <tr>
             <td>Year 3</td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.year_3_revenue"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.year_3_revenue"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.year_3_expenses"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.year_3_expenses"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
-              {{year3Income = getIncome(loan.fins.year_3_revenue*1, loan.fins.year_3_expenses*1) | displaynullcurrency}}
+              {{year3Income = getIncome(loan.fins.year_3_revenue*1, loan.fins.year_3_expenses*1) | flexCurrency:0}}
             </td>
           </tr>
           <tr class="success">
             <td>Average</td>
             <td class="text-right">
-              {{averageArray([loan.fins.year_1_revenue*1, loan.fins.year_2_revenue*1, loan.fins.year_3_revenue*1]) | displaynullcurrency}}
+              {{averageArray([loan.fins.year_1_revenue*1, loan.fins.year_2_revenue*1, loan.fins.year_3_revenue*1]) | flexCurrency:0}}
             </td>
             <td class="text-right">
-              {{averageArray([loan.fins.year_1_expenses*1, loan.fins.year_2_expenses*1, loan.fins.year_3_expenses*1]) | displaynullcurrency}}
+              {{averageArray([loan.fins.year_1_expenses*1, loan.fins.year_2_expenses*1, loan.fins.year_3_expenses*1]) | flexCurrency:0}}
             </td>
             <td class="text-right">
-              {{averageArray([year1Income*1, year2Income*1, year3Income*1]) | displaynullcurrency}}
+              {{averageArray([year1Income*1, year2Income*1, year3Income*1]) | flexCurrency:0}}
             </td>
           </tr>
         </table>
@@ -183,7 +183,7 @@
           <tr>
             <td>Current</td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.current_assets"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.current_assets"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
               <percent-edit-in-place value="loan.fins.current_assets_factor"></percent-edit-in-place>
@@ -192,7 +192,7 @@
               {{ loan.fins.current_assets_adj = loan.fins.current_assets * ((100 - loan.fins.current_assets_factor) / 100) | flexCurrency:0}}
             </td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.current_assets_liability"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.current_assets_liability"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
               {{ loan.fins.current_assets_reserve = (loan.fins.current_assets * ((100 - loan.fins.current_assets_factor) / 100)) - loan.fins.current_assets_liability | flexCurrency:0}}
@@ -201,7 +201,7 @@
           <tr>
             <td>Intermediate</td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.intermediate_assets"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.intermediate_assets"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
               <percent-edit-in-place value="loan.fins.intermediate_assets_factor"></percent-edit-in-place>
@@ -210,7 +210,7 @@
               {{ loan.fins.intermediate_assets_adj = loan.fins.intermediate_assets * ((100 - loan.fins.intermediate_assets_factor) / 100) | flexCurrency:0}}
             </td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.intermediate_assets_liability"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.intermediate_assets_liability"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
               {{ loan.fins.intermediate_assets_reserve = (loan.fins.intermediate_assets * ((100 - loan.fins.intermediate_assets_factor) / 100)) - loan.fins.intermediate_assets_liability | flexCurrency:0}}
@@ -219,7 +219,7 @@
           <tr>
             <td>Fixed</td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.fixed_assets"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.fixed_assets"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
               <percent-edit-in-place value="loan.fins.fixed_assets_factor"></percent-edit-in-place>
@@ -228,7 +228,7 @@
               {{ loan.fins.fixed_assets_adj = loan.fins.fixed_assets * ((100 - loan.fins.fixed_assets_factor) / 100) | noCentsCurrency}}
             </td>
             <td class="text-right">
-              <edit-in-place value="loan.fins.fixed_assets_liability"></edit-in-place>
+              <no-cents-edit-in-place value="loan.fins.fixed_assets_liability"></no-cents-edit-in-place>
             </td>
             <td class="text-right">
               {{ loan.fins.fixed_assets_reserve = (loan.fins.fixed_assets * ((100 - loan.fins.fixed_assets_factor) / 100)) - loan.fins.fixed_assets_liability | flexCurrency:0}}
@@ -448,16 +448,16 @@
           <td></td>
           <td class="bright"></td>
           <td class="text-right" ng-class=gtZero(grads[0].all_max_loan)>
-            {{grads[0].all_max_loan | displaynullcurrency}}
+            {{grads[0].all_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[1].all_max_loan)>
-            {{grads[1].all_max_loan | displaynullcurrency}}
+            {{grads[1].all_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[2].all_max_loan)>
-            {{grads[2].all_max_loan | displaynullcurrency}}
+            {{grads[2].all_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[3].all_max_loan)>
-            {{grads[3].all_max_loan | displaynullcurrency}}
+            {{grads[3].all_max_loan | flexCurrency:0}}
           </td>
         </tr>
         <tr ng-if="loan.loan_type_id == 3">
@@ -465,16 +465,16 @@
           <td></td>
           <td class="bright"></td>
           <td class="text-right" ng-class=gtZero(grads[0].ag_pro_max_loan)>
-            {{grads[0].ag_pro_max_loan | displaynullcurrency}}
+            {{grads[0].ag_pro_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right"ng-class=gtZero(grads[1].ag_pro_max_loan)>
-            {{grads[1].ag_pro_max_loan | displaynullcurrency}}
+            {{grads[1].ag_pro_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right"ng-class=gtZero(grads[2].ag_pro_max_loan)>
-            {{grads[2].ag_pro_max_loan | displaynullcurrency}}
+            {{grads[2].ag_pro_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right"ng-class=gtZero(grads[3].ag_pro_max_loan)>
-            {{grads[3].ag_pro_max_loan | displaynullcurrency}}
+            {{grads[3].ag_pro_max_loan | flexCurrency:0}}
           </td>
         </tr>
         <tr ng-if="loan.loan_type_id == 4">
@@ -482,16 +482,16 @@
           <td></td>
           <td class="bright"></td>
           <td class="text-right" ng-class=gtZero(grads[0].capital_bridge_max_loan)>
-            {{grads[0].capital_bridge_max_loan | displaynullcurrency}}
+            {{grads[0].capital_bridge_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[1].capital_bridge_max_loan)>
-            {{grads[1].capital_bridge_max_loan | displaynullcurrency}}
+            {{grads[1].capital_bridge_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[2].capital_bridge_max_loan)>
-            {{grads[2].capital_bridge_max_loan | displaynullcurrency}}
+            {{grads[2].capital_bridge_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[3].capital_bridge_max_loan)>
-            {{grads[3].capital_bridge_max_loan | displaynullcurrency}}
+            {{grads[3].capital_bridge_max_loan | flexCurrency:0}}
           </td>
         </tr>
         <tr ng-if="loan.loan_type_id == 5">
@@ -499,16 +499,16 @@
           <td></td>
           <td class="class-right bright"></td>
           <td class="text-right" ng-class=gtZero(grads[0].ag_vest_max_loan)>
-            {{grads[0].ag_vest_max_loan | displaynullcurrency}}
+            {{grads[0].ag_vest_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[1].ag_vest_max_loan)>
-            {{grads[1].ag_vest_max_loan | displaynullcurrency}}
+            {{grads[1].ag_vest_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[2].ag_vest_max_loan)>
-            {{grads[2].ag_vest_max_loan | displaynullcurrency}}
+            {{grads[2].ag_vest_max_loan | flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[3].ag_vest_max_loan)>
-            {{grads[3].ag_vest_max_loan | displaynullcurrency}}
+            {{grads[3].ag_vest_max_loan | flexCurrency:0}}
           </td>
         </tr>
         <tr ng-if="loan.loan_type_id == 3">
@@ -580,19 +580,19 @@
           <tr ng-if="loan.loan_type_id == 3">
             <td>Ag-Pro Max Loan Addition</td>
             <td class="text-right" ng-class=gtZero(loan.grade.ag_pro_max)>
-              {{loan.grade.ag_pro_max | displaynullcurrency}}
+              {{loan.grade.ag_pro_max | flexCurrency:0}}
             </td>
           </tr>
           <tr ng-if="loan.loan_type_id == 4">
             <td>Capital Bridge Max Loan</td>
             <td class="text-right" ng-class=gtZero(loan.grade.cap_bridge_max)>
-              {{loan.grade.cap_bridge_max | displaynullcurrency}}
+              {{loan.grade.cap_bridge_max | flexCurrency:0}}
             </td>
           </tr>
           <tr ng-if="loan.loan_type_id == 5">
             <td>Ag-Vest Max Loan</td>
             <td class="text-right" ng-class=gtZero(loan.grade.ag_vest_max)>
-              {{loan.grade.ag_vest_max | displaynullcurrency}}
+              {{loan.grade.ag_vest_max | flexCurrency:0}}
             </td>
           </tr>
         </table>

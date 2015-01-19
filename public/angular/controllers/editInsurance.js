@@ -15,7 +15,7 @@
       ){
         LoansFactory.getInsurancePolicies($stateParams.loanID)
           .then(function success(rsp){
-              $scope.loan.insurance = rsp.data.data;
+              //$scope.loan.insurance = rsp.data.data;
           });
       } // end function
 })();

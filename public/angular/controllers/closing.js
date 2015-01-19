@@ -16,12 +16,14 @@
           InsurancesFactory
       ){
         $scope.loan = $scope.loan || Loan.data.data[0];
+        $scope.loan.insurance = $scope.loan.insurance || {};
 
         LoansFactory.getInsurancePolicies($stateParams.loanID)
           .then(function success(rsp){
             var policies = rsp.data.data;
-            //$scope.loan.ins.TotalAcres = InsurancesFactory.calcTotalAcres(policies);
-            $scope.loan.insurance = policies;
+            $scope.loan.insurance.policies = policies;
+            $scope.loan.insurance.TotalAcres = InsurancesFactory.calcTotalAcres(policies);
+
           });
       } // end function
 })();

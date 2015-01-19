@@ -13,19 +13,19 @@
         </tr>
         <tr ng-repeat="d in feeder.distributors">
             <td>
-                <text-eip value="d.name"></text-eip>
+                <text-edit-in-place value="d.name"></text-edit-in-place>
             </td>
             <td>
-                <text-eip value="d.distributor"></text-eip>
+                <text-edit-in-place value="d.distributor"></text-edit-in-place>
             </td>
             <td>
-                <text-eip value="d.locale"></text-eip>
+                <text-edit-in-place value="d.locale"></text-edit-in-place>
             </td>
             <td>
-                <phone-eip value="d.phone"></phone-eip>
+                <phone-edit-in-place value="d.phone"></phone-edit-in-place>
             </td>
             <td>
-                <text-eip value="d.email"></text-eip>
+                <text-edit-in-place value="d.email"></text-edit-in-place>
             </td>
             <td style="white-space: nowrap">
                 <a class="btn btn-success" ng-click="updateDistributor(d)">save</a>
