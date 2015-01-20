@@ -209,6 +209,16 @@ class LoansController extends ApiController {
 					'nick' => $arr['user']['nick'],
 					'name' => $arr['user']['username'],
 					'email' => $arr['user']['email']
+				],
+				'conditions' => [
+					'asa' => (boolean) $arr['conditions_asa'],
+					'aci' => (boolean) $arr['conditions_aci'],
+					'areb' => (boolean) $arr['conditions_areb'],
+					'adis' => (boolean) $arr['conditions_adis'],
+					'pg' => (boolean) $arr['conditions_pg'],
+					'ccl' => (boolean) $arr['conditions_ccl'],
+					'afsa' => (boolean) $arr['conditions_afsa'],
+					'cd' => (boolean) $arr['conditions_cd']
 				]
 			];
 		}, $arr->all());

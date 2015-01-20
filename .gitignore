@@ -1,4 +1,4 @@
-vendor
+/vendor
 public/angular/logs
 composer.phar
 bootstrap/start.php

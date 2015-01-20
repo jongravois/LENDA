@@ -49,7 +49,15 @@ class LoansTableSeeder extends Seeder {
 			'limit_warning' => 0,
 			'crop_inspection' => 0,
 			'reconcilliation' => 0,
-			'grade' => 'B'
+			'grade' => 'B',
+			'conditions_asa' => 1,
+			'conditions_aci' => 1,
+			'conditions_areb' => 0,
+			'conditions_adis' => 1,
+			'conditions_pg' => 1,
+			'conditions_ccl' => 0,
+			'conditions_afsa' => 0,
+			'conditions_cd' => 0
 		]);
 
 		// Blake Donald(10) @ Rainbow Bridge(6) | Individual--Capital Bridge 2015

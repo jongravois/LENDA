@@ -1,23 +1,24 @@
-<div class="form-group col-md-6 col-md-offset-1">
+<div class="form-group col-md-10 col-md-offset-1">
   <p style="display:none;"><a ng-click="createCollateralCondition()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Condition</a></p><br>
-  <p class="lg-text" ng-class="{clrOn: loan.conditions_asa, clrOff: !loan.conditions_asa}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions_asa"/>
+  <p class="lg-text" ng-class="{clrOn: loan.conditions.asa, clrOff: !loan.conditions.asa}">
+    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.asa"/>
     &nbsp;
     Agricultural Security Agreement on Crops and Equipment
   </p>
 
-  <p class="lg-text" ng-class="{clrOn: loan.conditions_aci, clrOff: !loan.conditions_aci}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions_aci"/>
+  <p class="lg-text" ng-class="{clrOn: loan.conditions.aci, clrOff: !loan.conditions.aci}">
+    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.aci"/>
     &nbsp;
     Assignment of Crop Insurance
   </p>
-  <p ng-show="loan.conditions_aci" ng-hide="!loan.conditions_aci">
-  <table class="table table-striped" ng-show="loan.conditions_aci" ng-hide="!loan.conditions_aci">
+  <p ng-show="loan.conditions_aci" ng-hide="!loan.conditions.aci">
+  <table class="table table-striped" ng-show="loan.conditions.aci" ng-hide="!loan.conditions.aci">
     <tr>
       <th>Agency</th>
       <th>Agent</th>
       <th>Policy</th>
     </tr>
+  <!--TODO: This should be an ng-repeat of insurance (not loaded yet)-->
     <tr>
       <td>State Farm</td>
       <td>Bilbo Baggins</td>
@@ -31,13 +32,13 @@
   </table>
   </p>
 
-  <p class="lg-text" ng-class="{clrOn: loan.conditions_areb, clrOff: !loan.conditions_areb}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions_areb"/>
+  <p class="lg-text" ng-class="{clrOn: loan.conditions.areb, clrOff: !loan.conditions.areb}">
+    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.areb"/>
     &nbsp;
     Assignment of Crop Rebate
   </p>
-  <p ng-show="loan.conditions_areb" ng-hide="!loan.conditions_areb">
-  <table class="table table-striped" ng-show="loan.conditions_areb" ng-hide="!loan.conditions_areb">
+  <p ng-show="loan.conditions.areb" ng-hide="!loan.conditions.areb">
+  <table class="table table-striped" ng-show="loan.conditions.areb" ng-hide="!loan.conditions.areb">
     <tr>
       <td style="width:50%;">Crop</td>
       <td style="width:20%;">Acreage</td>
@@ -46,13 +47,13 @@
   </table>
   </p>
 
-  <p class="lg-text" ng-class="{clrOn: loan.conditions_adis, clrOff: !loan.conditions_adis}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions_adis"/>
+  <p class="lg-text" ng-class="{clrOn: loan.conditions.adis, clrOff: !loan.conditions.adis}">
+    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.adis"/>
     &nbsp;
     Approval by Distributor
   </p>
-  <p ng-show="loan.conditions_adis" ng-hide="!loan.conditions_adis">
-  <table class="table table-striped" ng-show="loan.conditions_adis" ng-hide="!loan.conditions_adis">
+  <p ng-show="loan.conditions.adis" ng-hide="!loan.conditions.adis">
+  <table class="table table-striped" ng-show="loan.conditions.adis" ng-hide="!loan.conditions.adis">
     <tr>
       <td style="width:50%;">Approval Pending</td>
       <td style="width:20%;">JSI</td>
@@ -60,13 +61,13 @@
     </tr>
   </table>
   </p>
-  <p class="lg-text" ng-class="{clrOn: loan.conditions_pg, clrOff: !loan.conditions_pg}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions_pg"/>
+  <p class="lg-text" ng-class="{clrOn: loan.conditions.pg, clrOff: !loan.conditions.pg}">
+    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.pg"/>
     &nbsp;
     Personal Guarantee
   </p>
-  <p ng-show="loan.conditions_pg" ng-hide="!loan.conditions_pg">
-  <table class="table table-striped" ng-show="loan.conditions_pg" ng-hide="!loan.conditions_pg">
+  <p ng-show="loan.conditions.pg" ng-hide="!loan.conditions.pg">
+  <table class="table table-striped" ng-show="loan.conditions.pg" ng-hide="!loan.conditions.pg">
     <tr ng-repeat="pg in loan.guarantors">
       <td>{{pg.guarantor}}</td>
     </tr>
@@ -82,13 +83,13 @@
   </table>
   </p>
 
-  <p class="lg-text" ng-class="{clrOn: loan.conditions_ccl, clrOff: !loan.conditions_ccl}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions_ccl"/>
+  <p class="lg-text" ng-class="{clrOn: loan.conditions.ccl, clrOff: !loan.conditions.ccl}">
+    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.ccl"/>
     &nbsp;
     Cross-Collateralized Loan
   </p>
-  <p ng-show="loan.conditions_ccl" ng-hide="!loan.conditions_ccl">
-  <table class="table table-striped" ng-show="loan.conditions_ccl" ng-hide="!loan.conditions_ccl">
+  <p ng-show="loan.conditions.ccl" ng-hide="!loan.conditions.ccl">
+  <table class="table table-striped" ng-show="loan.conditions.ccl" ng-hide="!loan.conditions.ccl">
     <tr>
       <td style="width:60%;">Name</td>
       <td style="width:20%;">Loan Id</td>
@@ -97,13 +98,13 @@
   </table>
   </p>
 
-  <p class="lg-text" ng-class="{clrOn: loan.conditions_afsa, clrOff: !loan.conditions_afsa}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions_afsa"/>
+  <p class="lg-text" ng-class="{clrOn: loan.conditions.afsa, clrOff: !loan.conditions.afsa}">
+    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.afsa"/>
     &nbsp;
     Assignment of FSA Direct and LDP Payment
   </p>
-  <p ng-show="loan.collateral_conditions.afsa" ng-hide="!loan.conditions_afsa">
-  <table class="table table-striped" ng-show="loan.conditions_afsa" ng-hide="!loan.conditions_afsa">
+  <p ng-show="loan.conditions.afsa" ng-hide="!loan.conditions.afsa">
+  <table class="table table-striped" ng-show="loan.conditions.afsa" ng-hide="!loan.conditions.afsa">
     <tr>
       <td style="width:60%;">Credit Limit Verified</td>
       <td style="width:20%;">PHI</td>
@@ -111,8 +112,8 @@
     </tr>
   </table>
   </p>
-  <p class="lg-text" ng-class="{clrOn: loan.conditions_cd, clrOff: !loan.conditions_cd}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions_cd"/>
+  <p class="lg-text" ng-class="{clrOn: loan.conditions.cd, clrOff: !loan.conditions.cd}">
+    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.cd"/>
     &nbsp;
     Controlled Disbursement
   </p>

@@ -53,6 +53,12 @@
           .then(function success(response) {
             $scope.prior_lien = response.data.data[0];
           });
+      
+        // GUARANTORS
+        LoansFactory.getGuarantors($stateParams.loanID)
+          .then(function success(rsp){
+              $scope.loan.guarantors = rsp.data.data;
+          });
 
         //COMMENTS
         LoansFactory.getComments($stateParams.loanID)
