@@ -11,12 +11,12 @@ class PriorlienTableSeeder extends Seeder {
       'contact' => 'Dixon Mason',
       'phone' => '3184659221',
       'email' => 'dixon@mason.org',
-      'projected_crops' => 1200000.50,
+      'projected_crops' => 120000.50,
       'ins_over_discount' => 42450,
-      'fsa_payments' => 125000.25,
-      'claims' => 60000.25,
+      'fsa_payments' => 12500.25,
+      'claims' => 6000.25,
       'other' => 0,
-      'total' => 1385001.00
+      'total' => 72951
     ]);
   }
 

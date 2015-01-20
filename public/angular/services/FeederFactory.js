@@ -1,7 +1,10 @@
 (function(){
     'use strict';
     angular.module('ARM')
-      .factory('FeederFactory', function FeederFactory($http, API_URL){
+      .factory('FeederFactory', function FeederFactory(
+        $http,
+        API_URL
+      ){
         var data = {
           hpOpts: [
             {id: 1, abr: 'll', option: 'Loan List'},

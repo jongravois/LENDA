@@ -1,7 +1,10 @@
 (function(){
   'use strict';
   angular.module('ARM')
-    .factory('ApplicantsFactory', function ApplicantsFactory($http, API_URL){
+    .factory('ApplicantsFactory', function ApplicantsFactory(
+      $http,
+      API_URL
+    ){
       /*TODO: is_repeat | loans_outstanding | previous_addendum | previous_addendum_amount */
       return {
         createApplicant: createApplicant,
