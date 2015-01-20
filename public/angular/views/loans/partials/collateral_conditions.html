@@ -1,12 +1,12 @@
 <div class="form-group col-md-10 col-md-offset-1">
-  <!--Default set at loan creation based on loan_type_id (1,2,3)-->
+  <!--Default set at loan creation based on loan_type_id (1,2,3,4)-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.asa, clrOff: !loan.conditions.asa}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.asa"/>
     &nbsp;
     Agricultural Security Agreement on Crops and Equipment
   </p>
 
-  <!--Default set ???-->
+  <!--Default set at loan creation based on loan_type_id (1,2,3,4)-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.aci, clrOff: !loan.conditions.aci}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.aci"/>
     &nbsp;
@@ -20,7 +20,6 @@
       <th>Policy</th>
       <th>Value</th>
     </tr>
-  <!--TODO: This should be an ng-repeat of insurance (not loaded yet)-->
     <tr ng-repeat=" p in insurance.policies">
       <td>{{p.agency}}</td>
       <td>{{p.agent}}</td>
@@ -108,7 +107,7 @@
   </table>
   </p>
 
-  <!--Default set ???-->
+  <!--Default set at loan creation based on loan_type_id (1,2,3,4)-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.afsa, clrOff: !loan.conditions.afsa}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.afsa"/>
     &nbsp;
