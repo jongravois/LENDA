@@ -52,11 +52,11 @@ class LoansTableSeeder extends Seeder {
 			'grade' => 'B',
 			'conditions_asa' => 1,
 			'conditions_aci' => 1,
-			'conditions_areb' => 0,
+			'conditions_areb' => 1,
+			'conditions_afsa' => 1,
 			'conditions_adis' => 1,
 			'conditions_pg' => 1,
 			'conditions_ccl' => 0,
-			'conditions_afsa' => 0,
 			'conditions_cd' => 0
 		]);
 
@@ -88,7 +88,11 @@ class LoansTableSeeder extends Seeder {
 			'season' =>	'S',
 			'loan_type_id' =>	4,
       'farmer_id' => 2,
-			'conditions_asa' => 1
+			'conditions_asa' => 1,
+			'conditions_aci' => 1,
+			'conditions_areb' => 1,
+			'conditions_afsa' => 1,
+			'conditions_adis' => 1
 		]);
 
 		// Steve Rogers(12) @ Shielded Farms(4) | Corporation -- Ag-Vest 2015
@@ -117,7 +121,11 @@ class LoansTableSeeder extends Seeder {
 			'season' =>	'S',
 			'loan_type_id' =>	3,
       'farmer_id' => 5,
-			'conditions_asa' => 1
+			'conditions_asa' => 1,
+			'conditions_aci' => 1,
+			'conditions_areb' => 1,
+			'conditions_afsa' => 1,
+			'conditions_adis' => 1
 		]);
 
 		// Jack Murdoch(9) @ Dark World(5) | Individual -- All-in 2015
@@ -132,7 +140,11 @@ class LoansTableSeeder extends Seeder {
 			'season' =>	'F',
 			'loan_type_id' =>	1,
       'farmer_id' => 9,
-			'conditions_asa' => 1
+			'conditions_asa' => 1,
+			'conditions_aci' => 1,
+			'conditions_areb' => 1,
+			'conditions_afsa' => 1,
+			'conditions_adis' => 1
 		]);
 
     // Diana Prince(7) @ Kingdom Plains(7) | Spousal -- Grain Storage 2015
@@ -167,7 +179,11 @@ class LoansTableSeeder extends Seeder {
 			'is_fast_tracked' => 0,
 			'has_distributor' => 1,
 			'distributor_id' => 6,
-			'conditions_asa' => 1
+			'conditions_asa' => 1,
+			'conditions_aci' => 1,
+			'conditions_areb' => 1,
+			'conditions_afsa' => 1,
+			'conditions_adis' => 1
 		]);
 
 	}

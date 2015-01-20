@@ -92,6 +92,7 @@
 
             if($scope.chosenLT_id == '1' || $scope.chosenLT_id == '2' || $scope.chosenLT_id == '3' || $scope.chosenLT_id == '4'){
               obj.conditions_asa = 1;
+              obj.conditions_areb = 1;
               obj.conditions_afsa = 1;
               obj.conditions_aci = 1;
             }
