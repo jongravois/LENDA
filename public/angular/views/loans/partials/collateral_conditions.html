@@ -1,11 +1,12 @@
 <div class="form-group col-md-10 col-md-offset-1">
-  <p style="display:none;"><a ng-click="createCollateralCondition()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Condition</a></p><br>
+  <!--Default set at loan creation based on loan_type_id (1,2,3)-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.asa, clrOff: !loan.conditions.asa}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.asa"/>
     &nbsp;
     Agricultural Security Agreement on Crops and Equipment
   </p>
 
+  <!--Default set ???-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.aci, clrOff: !loan.conditions.aci}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.aci"/>
     &nbsp;
@@ -17,21 +18,26 @@
       <th>Agency</th>
       <th>Agent</th>
       <th>Policy</th>
+      <th>Value</th>
     </tr>
   <!--TODO: This should be an ng-repeat of insurance (not loaded yet)-->
-    <tr>
-      <td>State Farm</td>
-      <td>Bilbo Baggins</td>
-      <td>357869</td>
+    <tr ng-repeat=" p in insurance.policies">
+      <td>{{p.agency}}</td>
+      <td>{{p.agent}}</td>
+      <td>{{p.policy}}</td>
+      <td class="text-right">{{p.value | flexCurrency:0}}</td>
     </tr>
-    <tr>
-      <td>State Farm</td>
-      <td>Bilbo Baggins</td>
-      <td>357904</td>
+    <tr class="success">
+      <td>Total</td>
+      <td colspan="2">&nbsp;</td>
+      <td class="text-right">
+        {{insurance.total_value | flexCurrency:0}}
+      </td>
     </tr>
   </table>
   </p>
 
+  <!--Default set ???-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.areb, clrOff: !loan.conditions.areb}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.areb"/>
     &nbsp;
@@ -47,6 +53,7 @@
   </table>
   </p>
 
+  <!--Default set ???-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.adis, clrOff: !loan.conditions.adis}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.adis"/>
     &nbsp;
@@ -61,6 +68,8 @@
     </tr>
   </table>
   </p>
+
+
   <p class="lg-text" ng-class="{clrOn: loan.conditions.pg, clrOff: !loan.conditions.pg}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.pg"/>
     &nbsp;
@@ -75,7 +84,7 @@
       <td>
         <form ng-submit="addGuarantor()">
           <input type="text" ng-model="newGuarantor.guarantor"/>
-          <button type="submit">                         <span class="glyphicon glyphicon-plus"></span>
+          <button type="submit"> <span class="glyphicon glyphicon-plus"></span>
           </button>
         </form>
       </td>
@@ -83,6 +92,7 @@
   </table>
   </p>
 
+  <!--No Default set-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.ccl, clrOff: !loan.conditions.ccl}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.ccl"/>
     &nbsp;
@@ -98,6 +108,7 @@
   </table>
   </p>
 
+  <!--Default set ???-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.afsa, clrOff: !loan.conditions.afsa}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.afsa"/>
     &nbsp;
@@ -112,9 +123,13 @@
     </tr>
   </table>
   </p>
+
+  <!--Default set ???-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.cd, clrOff: !loan.conditions.cd}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.cd"/>
     &nbsp;
     Controlled Disbursement
   </p>
+  <hr/>
+  <p><a ng-click="createCollateralCondition()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Condition</a></p><br>
 </div>

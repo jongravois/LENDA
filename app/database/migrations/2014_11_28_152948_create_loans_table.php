@@ -57,14 +57,14 @@ class CreateLoansTable extends Migration {
       $table->integer('crop_inspection')->default(0);
       $table->integer('reconcilliation')->default(0);
       $table->integer('account_classification')->default(0);
-      $table->boolean('conditions_asa')->default(1);
-      $table->boolean('conditions_aci')->default(1);
-      $table->boolean('conditions_areb')->default(1);
-      $table->boolean('conditions_adis')->default(1);
-      $table->boolean('conditions_pg')->default(1);
-      $table->boolean('conditions_ccl')->default(1);
-      $table->boolean('conditions_afsa')->default(1);
-      $table->boolean('conditions_cd')->default(1);
+      $table->boolean('conditions_asa')->default(0);
+      $table->boolean('conditions_aci')->default(0);
+      $table->boolean('conditions_areb')->default(0);
+      $table->boolean('conditions_adis')->default(0);
+      $table->boolean('conditions_pg')->default(0);
+      $table->boolean('conditions_ccl')->default(0);
+      $table->boolean('conditions_afsa')->default(0);
+      $table->boolean('conditions_cd')->default(0);
 			$table->timestamps();
 		});
 	}

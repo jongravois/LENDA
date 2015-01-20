@@ -457,7 +457,7 @@
           .state('edit.underwriting', {
             url: '/underwriting',
             templateUrl: 'angular/views/loans/underwriting.html',
-            controller: 'EditUnderwritingController'
+            controller: 'UnderwritingController'
           })
           .state('edit.yield', {
             url: '/yield',

@@ -88,6 +88,7 @@ class LoansTableSeeder extends Seeder {
 			'season' =>	'S',
 			'loan_type_id' =>	4,
       'farmer_id' => 2,
+			'conditions_asa' => 1
 		]);
 
 		// Steve Rogers(12) @ Shielded Farms(4) | Corporation -- Ag-Vest 2015
@@ -115,7 +116,8 @@ class LoansTableSeeder extends Seeder {
 			'crop_year' => '2015',
 			'season' =>	'S',
 			'loan_type_id' =>	3,
-      'farmer_id' => 5
+      'farmer_id' => 5,
+			'conditions_asa' => 1
 		]);
 
 		// Jack Murdoch(9) @ Dark World(5) | Individual -- All-in 2015
@@ -129,7 +131,8 @@ class LoansTableSeeder extends Seeder {
 			'crop_year' => '2015',
 			'season' =>	'F',
 			'loan_type_id' =>	1,
-      'farmer_id' => 9
+      'farmer_id' => 9,
+			'conditions_asa' => 1
 		]);
 
     // Diana Prince(7) @ Kingdom Plains(7) | Spousal -- Grain Storage 2015
@@ -144,7 +147,7 @@ class LoansTableSeeder extends Seeder {
       'season' =>	'S',
       'loan_type_id' =>	7,
       'farmer_id' => 7
-    ]);
+		]);
 
 		// Tony Stark(1) @ Glass Towers(1) | Partnership | Ag-Input 2014
 		Loan::create([
@@ -163,7 +166,8 @@ class LoansTableSeeder extends Seeder {
 			'is_cross_collateralized' => 0,
 			'is_fast_tracked' => 0,
 			'has_distributor' => 1,
-			'distributor_id' => 6
+			'distributor_id' => 6,
+			'conditions_asa' => 1
 		]);
 
 	}
