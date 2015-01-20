@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.min.css"/>
     <link rel="stylesheet" href="vendor/ng-grid/ng-grid.min.css"/>
-    <link rel="stylesheet" href="vendor/angular-xeditable/dist/css/xeditable.css"/>
     <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.min.css"/>
     <link rel="stylesheet" href="css/appng.css"/>
 
@@ -57,7 +56,6 @@
 <!-- ANGULAR CORE -->
 <script src="vendor/angular/angular.min.js"></script>
 <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="vendor/angular-xeditable/dist/js/xeditable.js"></script>
 <script src="vendor/angular-moment/angular-moment.min.js"></script>
 <script src="vendor/angular-toastr/dist/angular-toastr.min.js"></script>
 <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
