@@ -118,6 +118,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/partners', 'PartnersController@byLoan');
   Route::get('loans/{id}/pendingvotes', 'LoansController@pendingVotes');
   Route::get('loans/{id}/prerequisites', 'PrerequisitesController@byLoan');
+  Route::get('loans/{id}/priorlien', 'PriorliensController@byLoan');
   Route::get('loans/{id}/quests', 'LoanquestionsController@byLoan');
   Route::get('users/{id}/notifications', 'NotificationController@byUser');
   Route::get('loans/{id}/priorliens', 'PriorliensController@byLoan');

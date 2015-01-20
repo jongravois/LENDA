@@ -48,6 +48,12 @@
             $scope.quests = response.data.data[0];
           });
 
+        //PRIOR LIENS
+        LoansFactory.getPriorLiens($stateParams.loanID)
+          .then(function success(response) {
+            $scope.prior_lien = response.data.data[0];
+          });
+
         //COMMENTS
         LoansFactory.getComments($stateParams.loanID)
           .then(function success(response) {

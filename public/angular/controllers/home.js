@@ -3,6 +3,7 @@
     angular
       .module('ARM')
       .controller('HomeController', function($scope){
+        //TODO: Second column is supposed to be status icons
 
         $scope.columnDefs = [
           {

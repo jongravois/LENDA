@@ -251,40 +251,40 @@
           {{c.acres | number:1}}
         </td>
         <td ng-class=gtZero(c.prod_yield)>
-          {{c.prod_yield | displaynull}}
+          {{c.prod_yield | number:1}}
         </td>
         <td ng-class=gtZero(c.prod_price)>
-          {{c.prod_price | displaynullcurrency}}
+          {{c.prod_price | flexCurrency:4}}
         </td>
         <td ng-class=gtZero(c.bkqty)>
           {{c.bkqty | displaynull}}
         </td>
         <td ng-class=gtZero(c.bkprice)>
-          {{c.bkprice | displaynullcurrency}}
+          {{c.bkprice | flexCurrency:4}}
         </td>
         <td ng-class=gtZero(c.harvest)>
-          {{c.harvest | displaynullcurrency}}
+          {{c.harvest | flexCurrency:0}}
         </td>
         <td ng-class=gtZero(c.rebates)>
-          {{c.rebates | displaynullcurrency}}
+          {{c.rebates | flexCurrency:0}}
         </td>
         <td ng-class=gtZero(c.prod_share)>
           {{c.prod_share | displaynullpercent}}
         </td>
         <td ng-class=gtZero(c.adj_prod)>
-          {{c.adj_prod | displaynullcurrency}}
+          {{c.adj_prod | flexCurrency:0}}
         </td>
       </tr>
       <tr>
         <td colspan="9">FSA Payment</td>
         <td ng-class=gtZero(loan.fins.total_fsa_payment)>
-          {{loan.fins.total_fsa_payment | displaynullcurrency}}
+          {{loan.fins.total_fsa_payment | flexCurrency:0}}
         </td>
       </tr>
       <tr>
         <td colspan="9">Claims</td>
         <td ng-class=gtZero(loan.fins.total_claims)>
-          {{loan.fins.total_claims | displaynullcurrency}}
+          {{loan.fins.total_claims | flexCurrency:0}}
         </td>
       </tr>
       <tr class="success">
@@ -292,7 +292,7 @@
         <td class="text-center">{{loan.total_acres | number:1}}</td>
         <td colspan="7">&nbsp;</td>
         <td ng-class=gtZero(loan.fins.total_revenue)>
-          {{loan.fins.total_revenue | displaynullcurrency}}
+          {{loan.fins.total_revenue | flexCurrency:0}}
         </td>
       </tr>
     </table>
@@ -318,245 +318,245 @@
 <tr>
   <td colspan="5">Fertilizer</td>
   <td ng-class=gtZero(loan.totalExpenses.fertilizer.arm)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.fertilizer.dist)>
-    {{72688.53 | displaynullcurrency }}
+    {{72688.53 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.fertilizer.other)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.fertilizer.total)>
-    {{72688.53 | displaynullcurrency }}
+    {{72688.53 | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Seed</td>
   <td ng-class=gtZero(loan.totalExpenses.seed.arm)>
-    {{0  | displaynullcurrency }}
+    {{0  | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.seed.dist)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.seed.other)>
-    {{74769 | displaynullcurrency }}
+    {{74769 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.seed.total)>
-    {{74769 | displaynullcurrency }}
+    {{74769 | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Fungicide</td>
   <td ng-class=gtZero(loan.totalExpenses.fungicide.arm)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.fungicide.dist)>
-    {{7253.75 | displaynullcurrency }}
+    {{7253.75 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.fungicide.other)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.fungicide.total)>
-    {{7253.75 | displaynullcurrency }}
+    {{7253.75 | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Herbicide</td>
   <td ng-class=gtZero(loan.totalExpenses.herbicide.arm)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.herbicide.dist)>
-    {{23084.17 | displaynullcurrency }}
+    {{23084.17 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.herbicide.other)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.herbicide.total)>
-    {{23084.17 | displaynullcurrency }}
+    {{23084.17 | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Insecticide</td>
   <td ng-class=gtZero(loan.totalExpenses.insecticide.arm)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.insecticide.dist)>
-    {{6191.80 | displaynullcurrency }}
+    {{6191.80 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.insecticide.other)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.insecticide.total)>
-    {{6191.80 | displaynullcurrency }}
+    {{6191.80 | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Custom</td>
   <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-    {{19019.80 | displaynullcurrency }}
+    {{19019.80 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.custom.dist)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.custom.other)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.custom.total)>
-    {{19019.80 | displaynullcurrency }}
+    {{19019.80 | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Fuel</td>
   <td ng-class=gtZero(loan.totalExpenses.fuel.arm)>
-    {{31305.00 | displaynullcurrency }}
+    {{31305.00 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.fuel.dist)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.fuel.other)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.fuel.total)>
-    {{31305.00 | displaynullcurrency }}
+    {{31305.00 | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Labor</td>
   <td ng-class=gtZero(loan.totalExpenses.labor.arm)>
-    {{18554.00 | displaynullcurrency }}
+    {{18554.00 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.labor.dist)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.labor.other)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.labor.total)>
-    {{18554.00 | displaynullcurrency }}
+    {{18554.00 | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Repairs</td>
   <td ng-class=gtZero(loan.totalExpenses.repairs.arm)>
-    {{12751.00 | displaynullcurrency }}
+    {{12751.00 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.repairs.dist)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.repairs.other)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.repairs.total)>
-    {{12751.00 | displaynullcurrency }}
+    {{12751.00 | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Insurance</td>
   <td ng-class=gtZero(loan.totalExpenses.insurance.arm)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.insurance.dist)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.insurance.other)>
-    {{12454.42 | displaynullcurrency }}
+    {{12454.42 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.insurance.total)>
-    {{12454.42 | displaynullcurrency }}
+    {{12454.42 | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Harvesting</td>
   <td ng-class=gtZero(loan.totalExpenses.harvesting.arm)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.harvesting.dist)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.harvesting.other)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.harvesting.total)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Misc_acre</td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.arm)>
-    {{18554 | displaynullcurrency }}
+    {{18554 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.dist)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.other)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.total)>
-    {{18554 | displaynullcurrency }}
+    {{18554 | flexCurrency:0 }}
   </td>
 </tr>
 <tr ng-repeat="fex in farmExpenses">
   <td colspan="5">{{fex.expense}}</td>
   <td class="text-right">
-    {{fex.cost | displaynullcurrency}}
+    {{fex.cost | flexCurrency:0}}
   </td>
   <td class="text-center"> - </td>
   <td class="text-center"> - </td>
   <td class="text-right">
-    {{fex.cost | displaynullcurrency}}
+    {{fex.cost | flexCurrency:0}}
   </td>
 </tr>
 <tr>
   <td colspan="5">Fees and Other</td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.arm)>
-    {{5815 | displaynullcurrency }}
+    {{5815 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.dist)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.other)>
-    {{0 | displaynullcurrency }}
+    {{0 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.total)>
-    {{5815 | displaynullcurrency }}
+    {{5815 | flexCurrency:0 }}
   </td>
 </tr>
 <tr class="success">
   <td class="text-left"><strong>Total Expenses</strong></td>
   <td colspan="4">&nbsp;</td>
   <td ng-class=gtZero(loanAssets.total_arm)>
-    {{loanAssets.total_arm | displaynullcurrency }}
+    {{loanAssets.total_arm | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loanAssets.total_dist)>
-    {{loanAssets.total_dist | displaynullcurrency }}
+    {{loanAssets.total_dist | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loanAssets.total_other)>
-    {{loanAssets.total_other | displaynullcurrency }}
+    {{loanAssets.total_other | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loanAssets.total_total)>
-    {{loanAssets.total_total | displaynullcurrency }}
+    {{loanAssets.total_total | flexCurrency:0 }}
   </td>
 </tr>
 <tr>
   <td colspan="5">Estimated Interest</td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.arm)>
-    {{4360 | displaynullcurrency }}
+    {{4360 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.dist)>
-    {{3686 | displaynullcurrency }}
+    {{3686 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.other)>
-    {{2944 | displaynullcurrency }}
+    {{2944 | flexCurrency:0 }}
   </td>
   <td ng-class=gtZero(loan.totalExpenses.misc_acre.total)>
-    {{10990 | displaynullcurrency }}
+    {{10990 | flexCurrency:0 }}
   </td>
 </tr>
 <tr class="warning">
   <td colspan="5">Cash Flow (Deficit)</td>
   <td colspan="3">&nbsp;</td>
   <td class="text-right">
-    {{22718 | displaynullcurrency }}
+    {{22718 | flexCurrency:0 }}
   </td>
 </tr>
 </tbody>
@@ -574,19 +574,19 @@
       <tr>
         <td style="width:60%;">ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}} </span>Loan secured by Collateral Conditions</td>
         <td style="width:40%;" colspan="3" class="text-right">
-          {{loan.fins.arm_and_dist | displaynullcurrency}}
+          {{loan.fins.arm_and_dist | flexCurrency:0}}
         </td>
       </tr>
       <tr>
         <td>Applicant's share of crop insurance less premium</td>
         <td colspan="3" class="text-right">
-          {{loan.fins.guaranty | displaynullcurrency}}
+          {{loan.fins.guaranty | flexCurrency:0}}
         </td>
       </tr>
       <tr>
         <td>Crop Insurance coverage in excess of ARM and {{loan.distributor}} Loan</td>
         <td colspan="3" class="text-right">
-          {{loan.fins.guaranty - financials.arm_and_dist | displaynullcurrency}}
+          {{loan.fins.guaranty - financials.arm_and_dist | flexCurrency:0}}
         </td>
       </tr>
     </table>
