@@ -19,6 +19,12 @@ public function transform($arr)
     $fullSeason = 'Fall';
   } // end if
 
+  if(!$arr['distributor_approval_date']){
+    $dist_app_date = null;
+  } else {
+    $dist_app_date = $decision = $arr['distributor_approval_date']->format('m/d/Y');
+  }
+
   //is_stale
   if(!$arr['decision_date']){
     $decision = null;
@@ -63,7 +69,8 @@ public function transform($arr)
 		'is_active' => (boolean) $arr['is_active'],
 		'is_cross_collateralized' => (boolean) $arr['is_cross_collateralized'],
 		'is_fast_tracked' => (boolean) $arr['is_fast_tracked'],
-		'has_distributor' => (boolean) $arr['has_distributor'],
+    'analyst_can_approve' => (boolean) $arr['analyst_can_approve'],
+    'has_distributor' => (boolean) $arr['has_distributor'],
 		'distributor_id' => $arr['distributor_id'],
 		'distributor' => $arr['distributor']['distributor'],
 		'has_addendum' => (boolean) $arr['has_addendum'],

@@ -144,12 +144,17 @@ class LoansController extends ApiController {
 	{
 		return array_map(function($arr)
 		{
+			$appDate = $arr['app_date'];
+			$dueDate = $arr['due_date'];
+			$diff = $dueDate->diffInDays($appDate);
+
 			return [
 				'id'		=>	$arr['id'],
 				'app_date'	=> 	$arr['app_date']->format('m/d/Y'),
 				'decision_date'	=> 	($arr['decision_date'] ? $arr['decision_date']->format('m/d/Y') : null),
+				'distributor_approval_date'	=> 	($arr['distributor_approval_date'] ? $arr['distributor_approval_date']->format('m/d/Y') : null),
 				'due_date'	=>	$arr['due_date']->format('m/d/Y'),
-				//'loan_days' =>	$diff,
+				'loan_days' =>	$diff,
 				'loan_type_id' => $arr['loan_type_id'],
 				'loan_type' => $arr['loantype']['loantype'],
 				'crop_year'	=>	$arr['crop_year'],
@@ -168,6 +173,7 @@ class LoansController extends ApiController {
 				'is_active' => (boolean) $arr['is_active'],
 				'is_cross_collateralized' => (boolean) $arr['is_cross_collateralized'],
 				'is_fast_tracked' => (boolean) $arr['is_fast_tracked'],
+				'analyst_can_approve' => (boolean) $arr['analyst_can_approve'],
 				'has_distributor' => (boolean) $arr['has_distributor'],
 				'distributor_id' => $arr['distributor_id'],
 				'distributor' => $arr['distributor']['distributor'],

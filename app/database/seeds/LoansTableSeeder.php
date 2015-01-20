@@ -8,7 +8,9 @@ class LoansTableSeeder extends Seeder {
 		// Tony Stark(1) @ Glass Towers(2) | Partnership(4)--Ag-Input 2015
 		Loan::create([
 			'applicant_id' => 1,
-			'app_date' => Carbon::now()->subDays(4),
+			'app_date' => '2015-01-04',
+			'distributor_approval_date' => '2015-01-14',
+			'decision_date' => '2015-01-15',
 			'due_date' => '2015-12-15',
 			'loan_type_id' => 2,
 			'status_id' => 1,
@@ -20,6 +22,7 @@ class LoansTableSeeder extends Seeder {
       'farmer_id' => 1,
 			'is_cross_collateralized' => 0,
 			'is_fast_tracked' => 0,
+			'analyst_can_approve' => 1,
 			'has_distributor' => 1,
 			'distributor_id' => 6,
 			'has_addendum' => 0,
@@ -29,23 +32,24 @@ class LoansTableSeeder extends Seeder {
 			'controlled_disbursement' => 0,
 			'its_list' => 1,
 			'fsa_compliant' => 1,
-			'prev_lien_verified' => 2,
+			'prev_lien_verified' => 1,
 			'leases_valid' => 1,
-			'bankruptcy_order_received' => 0,
-			'received_3party' => 0,
-			'recommended' => 0,
-			'arm_approved' => 0,
-			'dist_approved' => 0,
-			'loan_closed' => 0,
-			'added_land_verified' => 0,
-			'arm_ucc_received' => 0,
-			'dist_ucc_received' => 0,
+			'bankruptcy_order_received' => 1,
+			'received_3party' => 1,
+			'recommended' => 1,
+			'arm_approved' => 1,
+			'dist_approved' => 1,
+			'loan_closed' => 1,
+			'added_land_verified' => 2,
+			'arm_ucc_received' => 1,
+			'dist_ucc_received' => 1,
 			'aoi_received' => 0,
 			'ccc_received' => 0,
 			'rebate_assignment' => 0,
 			'limit_warning' => 0,
 			'crop_inspection' => 0,
-			'reconcilliation' => 0
+			'reconcilliation' => 0,
+			'grade' => 'B'
 		]);
 
 		// Blake Donald(10) @ Rainbow Bridge(6) | Individual--Capital Bridge 2015
@@ -59,7 +63,9 @@ class LoansTableSeeder extends Seeder {
 			'crop_year' => '2015',
 			'season' =>	'S',
 			'loan_type_id' =>	5,
-			'farmer_id' => 10
+			'farmer_id' => 10,
+			'analyst_can_approve' => 1,
+			'grade' => 'B'
 		]);
 
 		// Bruce Wayne(2) @ Secret Cave(3) | Joint Venture (1)--Ag-Pro Fasttrack 2015

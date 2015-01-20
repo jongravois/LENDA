@@ -13,6 +13,7 @@ class CreateLoansTable extends Migration {
 			$table->increments('id');
       $table->date('app_date');
       $table->date('decision_date')->nullable();
+      $table->date('distributor_approval_date')->nullable();
       $table->date('due_date');
       $table->integer('loan_type_id');
       $table->integer('status_id')->default(1);
@@ -26,6 +27,7 @@ class CreateLoansTable extends Migration {
       $table->boolean('is_active')->default(1);
       $table->boolean('is_cross_collateralized')->default(0);
       $table->boolean('is_fast_tracked')->default(0);
+      $table->boolean('analyst_can_approve')->default(0);
       $table->boolean('has_distributor')->default(0);
       $table->string('distributor_id')->nullable();
       $table->string('grade')->default('F');
