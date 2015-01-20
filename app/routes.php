@@ -8,7 +8,7 @@ Route::get('pwchange', 'SessionsController@change_needed');
 Route::post('password', ['as' => 'password', 'uses' => 'SessionsController@password_change']);
 Route::resource('sessions', 'SessionsController');
 
-Route::get('app', [
+Route::get('/', [
   'as' => 'home',
   'uses' => 'AppController@index'
 ])->before('auth');

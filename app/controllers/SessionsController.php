@@ -3,7 +3,7 @@
 class SessionsController extends BaseController{
   public function create()
   {
-    if(Auth::check()) return Redirect::to('/app');
+    if(Auth::check()) return Redirect::to('/');
     return View::make('sessions.create');
   }
 
@@ -13,7 +13,7 @@ class SessionsController extends BaseController{
       if(Input::get('password') == 'changeme'){
         return Redirect::to('/pwchange');
       } // end if
-      return Redirect::to('/app');
+      return Redirect::to('/');
     } // end if
     Flash::error('Username/password combination not recognized!');
     return Redirect::back()->withInput();

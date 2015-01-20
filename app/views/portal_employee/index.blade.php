@@ -111,7 +111,7 @@
 <script src="angular/controllers/editFarms.js"></script>
 <script src="angular/controllers/editInsurance.js"></script>
 <script src="angular/controllers/editOptimizer.js"></script>
-<script src="angular/controllers/editPlannedCrops.js"></script>
+<script src="angular/controllers/editplannedcrops.js"></script>
 <script src="angular/controllers/editPrereqs.js"></script>
 <script src="angular/controllers/editQuests.js"></script>
 <script src="angular/controllers/editStorage.js"></script>
@@ -124,7 +124,7 @@
 <script src="angular/controllers/calendar.js"></script>
 <script src="angular/controllers/matrix.js"></script>
 <script src="angular/controllers/reports.js"></script>
-<script src="angular/controllers/library.js"></script>
+<script src="angular/controllers/Library.js"></script>
 <script src="angular/controllers/admin.js"></script>
 <script src="angular/controllers/audits.js"></script>
 <script src="angular/controllers/affiliates.js"></script>
