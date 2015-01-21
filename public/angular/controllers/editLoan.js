@@ -60,6 +60,12 @@
               $scope.loan.guarantors = rsp.data.data;
           });
 
+        //CONDITIONS
+        LoansFactory.getConditions($stateParams.loanID)
+          .then(function success(rsp){
+            $scope.loanConditions = rsp.data.data;
+          });
+
         //COMMENTS
         LoansFactory.getComments($stateParams.loanID)
           .then(function success(response) {

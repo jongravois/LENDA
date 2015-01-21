@@ -1,11 +1,14 @@
 <div class="form-group col-md-10 col-md-offset-1">
+<!--AGREEMENT-->
   <!--Default set at loan creation based on loan_type_id (1,2,3,4)-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.asa, clrOff: !loan.conditions.asa}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.asa"/>
     &nbsp;
     Agricultural Security Agreement on Crops and Equipment
   </p>
+<!--AGREEMENT-->
 
+<!--CROP INSURANCE-->
   <!--Default set at loan creation based on loan_type_id (1,2,3,4)-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.aci, clrOff: !loan.conditions.aci}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.aci"/>
@@ -13,29 +16,31 @@
     Assignment of Crop Insurance
   </p>
   <p ng-show="loan.conditions.aci" ng-hide="!loan.conditions.aci">
-  <table class="table table-striped" ng-show="loan.conditions.aci" ng-hide="!loan.conditions.aci">
-    <tr>
-      <th>Agency</th>
-      <th>Agent</th>
-      <th>Policy</th>
-      <th>Value</th>
-    </tr>
-    <tr ng-repeat=" p in insurance.policies">
-      <td>{{p.agency}}</td>
-      <td>{{p.agent}}</td>
-      <td>{{p.policy}}</td>
-      <td class="text-right">{{p.value | flexCurrency:0}}</td>
-    </tr>
-    <tr class="success">
-      <td>Total</td>
-      <td colspan="2">&nbsp;</td>
-      <td class="text-right">
-        {{insurance.total_value | flexCurrency:0}}
-      </td>
-    </tr>
-  </table>
+      <table class="table table-striped" ng-show="loan.conditions.aci" ng-hide="!loan.conditions.aci">
+        <tr>
+          <th>Agency</th>
+          <th>Agent</th>
+          <th>Policy</th>
+          <th>Value</th>
+        </tr>
+        <tr ng-repeat=" p in insurance.policies">
+          <td>{{p.agency}}</td>
+          <td>{{p.agent}}</td>
+          <td>{{p.policy}}</td>
+          <td class="text-right">{{p.value | flexCurrency:0}}</td>
+        </tr>
+        <tr class="success">
+          <td>Total</td>
+          <td colspan="2">&nbsp;</td>
+          <td class="text-right">
+            {{insurance.total_value | flexCurrency:0}}
+          </td>
+        </tr>
+      </table>
   </p>
+<!--CROP INSURANCE-->
 
+<!--CROP REBATE-->
   <!--Default set ???-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.areb, clrOff: !loan.conditions.areb}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.areb"/>
@@ -51,8 +56,10 @@
     </tr>
   </table>
   </p>
+<!--CROP REBATE-->
 
-  <!--Default set ???-->
+<!--DISTRIBUTOR-->
+  <!--Default set at loan creation based on loan_type_id (2,6)-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.adis, clrOff: !loan.conditions.adis}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.adis"/>
     &nbsp;
@@ -67,8 +74,9 @@
     </tr>
   </table>
   </p>
+<!--DISTRIBUTOR-->
 
-
+<!--GUARANTORS-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.pg, clrOff: !loan.conditions.pg}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.pg"/>
     &nbsp;
@@ -90,7 +98,9 @@
     </tr>
   </table>
   </p>
+<!--GUARANTORS-->
 
+<!--CROSS COLLATERAL-->
   <!--No Default set-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.ccl, clrOff: !loan.conditions.ccl}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.ccl"/>
@@ -106,7 +116,9 @@
     </tr>
   </table>
   </p>
+<!--CROSS COLLATERAL-->
 
+<!--FSA DIRECT-->
   <!--Default set at loan creation based on loan_type_id (1,2,3,4)-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.afsa, clrOff: !loan.conditions.afsa}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.afsa"/>
@@ -122,7 +134,9 @@
     </tr>
   </table>
   </p>
+<!--FSA DIRECT-->
 
+<!--CONTROLLED DISBURSEMENT-->
   <!--Default set ???-->
   <p class="lg-text" ng-class="{clrOn: loan.conditions.cd, clrOff: !loan.conditions.cd}">
     <input type="checkbox" class="squaredFour" ng-model="loan.conditions.cd"/>
@@ -131,4 +145,5 @@
   </p>
   <hr/>
   <p><a ng-click="createCollateralCondition()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Condition</a></p><br>
+<!--CONTROLLED DISBURSEMENT-->
 </div>

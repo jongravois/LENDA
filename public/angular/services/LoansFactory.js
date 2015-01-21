@@ -16,6 +16,7 @@
         getAttachments: getAttachments,
         getComments: getComments,
         getCommittee: getCommittee,
+        getConditions: getConditions,
         getCropExpenses: getCropExpenses,
         getCrops: getCrops,
         getDistributor: getDistributor,
@@ -170,6 +171,10 @@
 
       function getCommittee(id){
         return $http.get(API_URL + '/loans/' + id + '/committee');
+      }
+
+      function getConditions(id){
+        return $http.get(API_URL + '/loans/' + id + '/conditions');
       }
 
       function getCropExpenses(id){

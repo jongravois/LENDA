@@ -97,6 +97,10 @@
               obj.conditions_aci = 1;
             }
 
+            if($scope.chosenLT_id == '2' || $scope.chosenLT_id == '6'){
+              obj.conditions_adis = 1;
+            }
+
             LoansFactory.insertLoan(obj)
               .then(function success(response){
                 $state.go('new.farmer', {loantypeID: $scope.chosenLT_id, loanID: response.data.message.id});
