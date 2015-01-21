@@ -100,12 +100,36 @@ class DefaultExpensesTableSeeder extends Seeder {
 
     //peanuts
     Defaultexpenses::create([
-      'crop_id' => 7
+      'crop_id' => 7,
+      'fertilizer_dist_acre' => 107.05,
+      'seed_dist_acre' => 84.50,
+      'fungicide_dist_acre' => 5.50,
+      'herbicide_dist_acre' => 61.21,
+      'insecticide_dist_acre' => 51.95,
+      'custom_arm_acre' => 58.00,
+      'fuel_arm_acre' => 30.00,
+      'labor_arm_acre' => 24.00,
+      'repairs_arm_acre' => 20.00,
+      'insurance_other_acre' => 20.00,
+      'harvesting_arm_acre' => 90.00,
+      'misc_arm_acre' => 6.00
     ]);
 
     //cane
     Defaultexpenses::create([
-      'crop_id' => 8
+      'crop_id' => 8,
+      'fertilizer_dist_acre' => 107.05,
+      'seed_dist_acre' => 84.50,
+      'fungicide_dist_acre' => 5.50,
+      'herbicide_dist_acre' => 61.21,
+      'insecticide_dist_acre' => 51.95,
+      'custom_arm_acre' => 58.00,
+      'fuel_arm_acre' => 30.00,
+      'labor_arm_acre' => 24.00,
+      'repairs_arm_acre' => 20.00,
+      'insurance_other_acre' => 20.00,
+      'harvesting_arm_acre' => 90.00,
+      'misc_arm_acre' => 6.00
     ]);
   }
 
