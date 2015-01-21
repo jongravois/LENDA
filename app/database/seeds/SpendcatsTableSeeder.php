@@ -14,6 +14,9 @@ class SpendcatsTableSeeder extends Seeder {
 			'category'	=> 'fungicide'
 		]);
 		Spendcat::create([
+			'category'	=> 'herbicide'
+		]);
+		Spendcat::create([
 			'category'	=> 'insecticide'
 		]);
 		Spendcat::create([
@@ -35,7 +38,7 @@ class SpendcatsTableSeeder extends Seeder {
 			'category'	=> 'harvesting'
 		]);
 		Spendcat::create([
-			'category'	=> 'misc'
+			'category'	=> 'misc_acres'
 		]);
 	}
 
