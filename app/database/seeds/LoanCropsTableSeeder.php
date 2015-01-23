@@ -22,6 +22,8 @@ class LoanCropsTableSeeder extends Seeder {
 			'fsa_payment' => 0,
 			'percent_irrigated' => 90.5,
 			'break_even' => 102.8,
+			//'uom' => 'bu',
+			//'uom_rebate' => 'bu',
 			'p1_yield' => 151.0,
 			'p2_yield' => 176.0,
 			'p3_yield' => 130.0,

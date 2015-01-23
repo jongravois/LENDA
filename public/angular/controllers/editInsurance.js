@@ -11,7 +11,7 @@
           InsuranceFactory
       ){
         //TODO: Add ability to add new insurance policy
-
+        //TODO: Pass loan.id to InsuranceFactory
         $scope.insurance = InsuranceFactory.data;
       } // end function
 })();
