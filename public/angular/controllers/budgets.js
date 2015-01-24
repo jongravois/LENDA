@@ -19,7 +19,8 @@
           .then(function success(rsp){
             //console.log(rsp);
             $scope.farmExpenses = rsp.data.data;
-            $scope.uses = ExpensesFactory.data;
+            $scope.uses = ExpensesFactory.getExpenses($stateParams.loanID);
+
           });
 
       } // end function

@@ -7,16 +7,17 @@
 <fieldset>
 <tabset>
 <!-- REPEAT FOR EACH CROP SELECTED-->
-<tab ng-repeat="x in cropExpenses" heading="{{x.crop | capitalize}}">
+<tab ng-repeat="x in uses" heading="{{x.crop | capitalize}}">
   <table class="table table-striped rowed">
     <tbody>
     <tr>
       <th class="text-left" style="width:20%;">&nbsp;</th>
       <th class="text-left" colspan="4">ACRE</th>
       <th class="text-left" colspan="4">
-        {{uses.total_acres|number:1}} ACRE TOTALS
+        {{x.acres|number:1}} ACRE TOTALS
       </th>
     </tr>
+
     <tr>
       <td style="width:10%;" class="text-right">&nbsp;</td>
       <td class="text-center" style="width:10%;">ARM</td>
@@ -33,304 +34,75 @@
       <td class="text-center" style="width:10%;">Total</td>
     </tr>
 
-    <tr ng-if="uses.length == 0">
+    <tr ng-if="uses.expenses.length == 0">
       <td colspan="9">
         <strong>No expenses recorded.</strong>
       </td>
     </tr>
 
-    <tr ng-repeat="c in uses.expenses">
+    <tr ng-repeat="c in x.expenses">
       <td>
         {{c.expense|capitalize}}
       </td>
-      <td class="text-right">
-        {{c.arm|flexCurrency:0}}
+      <td class="text-right" ng-class="gtZero(c.arm)">
+        {{c.arm|flexCurrency:2}}
       </td>
-      <td class="text-right">
-        {{c.dist|flexCurrency:0}}
+      <td class="text-right" ng-class="gtZero(c.dist)">
+        {{c.dist|flexCurrency:2}}
       </td>
-      <td class="text-right">
-        {{c.other|flexCurrency:0}}
+      <td class="text-right" ng-class="gtZero(c.other)">
+        {{c.other|flexCurrency:2}}
       </td>
-      <td class="text-right">
-        {{c.peracre_total|flexCurrency:0}}
+      <td class="text-right" ng-class="gtZero(c.peracre_total)">
+        {{c.peracre_total|flexCurrency:2}}
       </td>
-      <td class="text-right">
+      <td class="text-right" ng-class="gtZero(c.calc_arm)">
         {{c.calc_arm|flexCurrency:0}}
       </td>
-      <td class="text-right">
+      <td class="text-right" ng-class="gtZero(c.calc_dist)">
         {{c.calc_dist|flexCurrency:0}}
       </td>
-      <td class="text-right">
+      <td class="text-right" ng-class="gtZero(c.calc_other)">
         {{c.calc_other|flexCurrency:0}}
       </td>
-      <td class="text-right">
+      <td class="text-right" ng-class="gtZero(c.calc_total)">
         {{c.calc_total|flexCurrency:0}}
       </td>
     </tr>
 
     <tr class="success">
       <td>TOTAL</td>
-      <td ng-class=gtZero(x.total.acre_arm)>
-        {{uses.totals.acre_arm  | displaynullcurrency }}
+      <td ng-class=gtZero(x.totals.acre_arm)>
+        {{x.totals.acre_arm  | flexCurrency:2 }}
       </td>
-      <td ng-class=gtZero(x.total.acre_dist)>
-        {{uses.totals.acre_dist | displaynullcurrency }}
+      <td ng-class=gtZero(x.totals.acre_dist)>
+        {{x.totals.acre_dist | flexCurrency:2 }}
       </td>
-      <td ng-class=gtZero(x.total.acre_other)>
-        {{uses.totals.acre_other | displaynullcurrency }}
+      <td ng-class=gtZero(x.totals.acre_other)>
+        {{x.totals.acre_other | flexCurrency:2 }}
       </td>
-      <td ng-class=gtZero(x.total.acre_total)>
-        {{uses.totals.acre_loan | displaynullcurrency }}
+      <td ng-class=gtZero(x.totals.acre_total)>
+        {{x.totals.acre_loan | flexCurrency:2 }}
       </td>
-      <td ng-class=gtZero(x.total.loan_arm)>
-        {{uses.totals.arm | displaynullcurrency }}
+      <td ng-class=gtZero(x.totals.loan_arm)>
+        {{x.totals.arm | flexCurrency:0 }}
       </td>
-      <td ng-class=gtZero(x.total.loan_dist)>
-        {{uses.totals.dist | displaynullcurrency }}
+      <td ng-class=gtZero(x.totals.loan_dist)>
+        {{x.totals.dist | flexCurrency:0 }}
       </td>
-      <td ng-class=gtZero(x.total.loan_other)>
-        {{uses.totals.other | displaynullcurrency }}
+      <td ng-class=gtZero(x.totals.loan_other)>
+        {{x.totals.other | flexCurrency:0 }}
       </td>
-      <td ng-class=gtZero(x.total.loan_total)>
-        {{uses.totals.loan | displaynullcurrency }}
+      <td ng-class=gtZero(x.totals.loan_total)>
+        {{x.totals.loan | flexCurrency:0 }}
       </td>
     </tr>
 
     </tbody>
   </table>
 </tab>
-<!-- ALWAYS THERE -->
-<tab heading="Full Farm">
-<table class="table table-striped rowed">
-<tbody>
-<tr>
-  <th class="text-left" style="width:58%;">&nbsp;</th>
-  <th class="text-left" colspan="4">&nbsp;</th>
-  <th class="text-left" colspan="4">
-    {{loan.total_acres | number:1}} ACRE TOTALS
-  </th>
-</tr>
-<tr>
-  <td colspan="5">&nbsp</td>
-  <td class="text-center" style="width:10%;">ARM</td>
-  <td class="text-center" style="width:10%;">{{loan.distributor}}</td>
-  <td class="text-center" style="width:10%;">Other</td>
-  <td class="text-center" style="width:10%;">Total</td>
-</tr>
-<tr>
-  <td colspan="5">Fertilizer</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{72688.53 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{72688.53 | flexCurrency:0 }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">Seed</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0  | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{74769 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{74769 | flexCurrency:0 }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">Fungicide</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{7253.75 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{7253.75 | flexCurrency:0 }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">Herbicide</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{23084.17 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{23084.17 | flexCurrency:0 }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">Insecticide</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{6191.80 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{6191.80 | flexCurrency }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">Custom</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{19019.80 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{19019.80 | flexCurrency:0 }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">Fuel</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{31305.00 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{31305.00 | flexCurrency:0 }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">Labor</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{18554.00 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{18554.00 | flexCurrency:0 }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">Repairs</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{12751.00 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{12751.00 | flexCurrency:0 }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">Insurance</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{12454.42 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{12454.42 | flexCurrency:0 }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">Harvesting</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-</tr>
-<tr>
-  <td colspan="5">Misc_acre</td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{18554 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{0 | flexCurrency:0 }}
-  </td>
-  <td class="text-right" ng-class=gtZero(0)>
-    {{18554 | flexCurrency:0 }}
-  </td>
-</tr>
-<tr ng-repeat="fex in farmExpenses">
-  <td colspan="5">{{fex.expense}}</td>
-  <td class="text-right">
-    {{fex.cost | flexCurrency:0}}
-  </td>
-  <td class="text-center"> - </td>
-  <td class="text-center"> - </td>
-  <td class="text-right">
-    {{fex.cost | flexCurrency:0}}
-  </td>
-</tr>
-<tr class="success">
-  <td colspan="5">Total</td>
-  <td ng-class=gtZero(uses.totals.arm)>
-    {{uses.totals.arm | flexCurrency:0 }}
-  </td>
-  <td ng-class=gtZero(uses.totals.dist)>
-    {{uses.totals.dist | flexCurrency:0 }}
-  </td>
-  <td ng-class=gtZero(uses.totals.other)>
-    {{uses.totals.other | flexCurrency:0 }}
-  </td>
-  <td ng-class=gtZero(uses.totals.loan)>
-    {{uses.totals.loan | flexCurrency:0 }}
-  </td>
-</tr>
-</tbody>
-</table>
-</tab>
 </tabset>
 </fieldset>
 <!--<pre>{{farmExpenses | json}}</pre>-->
-
-<pre>{{uses | json}}</pre>
-
+<!--<pre>{{uses | json}}</pre>-->
 </div>

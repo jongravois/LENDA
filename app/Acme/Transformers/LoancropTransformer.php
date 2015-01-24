@@ -10,6 +10,7 @@ class LoancropTransformer extends Transformer{
 			'crop_year'	=>	(integer) $arr['crop_year'],
 			'name' =>	$arr['crop']['crop'],
 			'uom' => $arr['crop']['measurement'],
+			'uom_rebate' => $arr['crop']['rebate_measurement'],
 			'is_active' => (boolean) $arr['is_active'],
 			'acres'	=>	(double) $arr['acres'],
 			'tea' => (double) $arr['crop']['tea'],

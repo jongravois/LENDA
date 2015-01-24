@@ -80,6 +80,12 @@ class LoancropsController extends ApiController {
 		]);
 	}
 
+	public function	allAcres($id)
+	{
+		$acres = Loancrop::where('loan_id', $id)->get(['crop_id', 'acres']);
+		return $acres;
+	}
+
 	public function totalAcres($id)
 	{
 		$tot = Loancrop::where('loan_id', $id)->sum('acres');
