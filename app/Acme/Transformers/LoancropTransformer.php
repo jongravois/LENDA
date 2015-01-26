@@ -8,6 +8,7 @@ class LoancropTransformer extends Transformer{
 		return [
 			'id' =>	(integer) $arr['id'],
 			'crop_year'	=>	(integer) $arr['crop_year'],
+			'crop_id' =>	$arr['crop']['id'],
 			'name' =>	$arr['crop']['crop'],
 			'uom' => $arr['crop']['measurement'],
 			'uom_rebate' => $arr['crop']['rebate_measurement'],

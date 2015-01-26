@@ -7,7 +7,7 @@
 <fieldset>
 <tabset>
 <!-- REPEAT FOR EACH CROP SELECTED-->
-<tab ng-repeat="x in uses" heading="{{x.crop | capitalize}}">
+<tab ng-repeat="x in uses" ng-show="x.acres > 0" heading="{{x.crop | capitalize}}">
   <table class="table table-striped rowed">
     <tbody>
     <tr>
@@ -53,8 +53,8 @@
       <td class="text-right" ng-class="gtZero(c.other)">
         {{c.other|flexCurrency:2}}
       </td>
-      <td class="text-right" ng-class="gtZero(c.peracre_total)">
-        {{c.peracre_total|flexCurrency:2}}
+      <td class="text-right" ng-class="gtZero(c.peracre)">
+        {{c.peracre|flexCurrency:2}}
       </td>
       <td class="text-right" ng-class="gtZero(c.calc_arm)">
         {{c.calc_arm|flexCurrency:0}}
@@ -104,5 +104,5 @@
 </tabset>
 </fieldset>
 <!--<pre>{{farmExpenses | json}}</pre>-->
-<!--<pre>{{uses | json}}</pre>-->
+<pre>{{uses | json}}</pre>
 </div>

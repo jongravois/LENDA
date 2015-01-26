@@ -15,12 +15,15 @@
       ){
         $scope.loan = $scope.loan || Loan.data.data[0];
         
-        LoansFactory.getFarmExpenses($stateParams.loanID)
+        ExpensesFactory.getExpenses($stateParams.loanID)
           .then(function success(rsp){
             //console.log(rsp);
-            $scope.farmExpenses = rsp.data.data;
-            $scope.uses = ExpensesFactory.getExpenses($stateParams.loanID);
-
+            var raw = rsp.data.data;
+            $scope.uses = raw;
+            /*$scope.uses = _.map(raw, function(obj){
+              obj.peracre = 100000;
+              return obj;
+            });*/
           });
 
       } // end function

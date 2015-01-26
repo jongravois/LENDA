@@ -5,11 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreatePracticesTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
 	public function up()
 	{
 		Schema::create('practices', function(Blueprint $table)
@@ -20,12 +15,6 @@ class CreatePracticesTable extends Migration {
 		});
 	}
 
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
 	public function down()
 	{
 		Schema::drop('practices');

@@ -14,8 +14,6 @@ class CreateLoancropsTable extends Migration {
       $table->integer('loan_id');
       $table->integer('crop_id');
       $table->boolean('is_active')->default(0);
-      $table->string('uom')->nullable();
-      $table->string('uom_rebate')->nullable();
       $table->double('acres')->default(0);
       $table->string('markettowhom')->nullable();
       $table->double('prod_price')->default(0);
@@ -26,7 +24,7 @@ class CreateLoancropsTable extends Migration {
       $table->double('ins_price')->default(0);
       $table->double('bkqty')->default(0);
       $table->double('bkprice')->default(0);
-      $table->string('gin_mill')->nullable();
+      $table->string('gin_mill')->default('N/A');
       $table->double('harvest')->default(0);
       $table->double('rebates')->default(0);
       $table->double('claims')->default(0);

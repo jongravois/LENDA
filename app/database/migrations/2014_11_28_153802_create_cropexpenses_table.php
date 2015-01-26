@@ -13,6 +13,7 @@ class CreateCropexpensesTable extends Migration {
       $table->integer('loan_id');
       $table->integer('crop_id');
 			$table->integer('cat_id');
+			$table->integer('loancrop_id');
       $table->string('expense')->nullable();
       $table->double('arm')->default(0);
       $table->double('arm_adj')->default(0);
