@@ -1,0 +1,269 @@
+<table class="table table-striped rowed">
+  <tbody>
+  <tr>
+    <th class="text-left" style="width:20%;">
+      Full Farm
+    </th>
+    <th class="text-left" colspan="4">ACRE</th>
+    <th class="text-left" colspan="4">
+      {{loan.total_acres|number:1}} ACRE TOTALS
+    </th>
+  </tr>
+
+  <tr>
+    <td colspan="5">&nbsp</td>
+    <td class="text-center" style="width:10%;">ARM</td>
+    <td class="text-center" style="width:10%;">{{loan.distributor}}</td>
+    <td class="text-center" style="width:10%;">Other</td>
+    <td class="text-center" style="width:10%;">Total</td>
+  </tr>
+  <tr>
+    <td colspan="5">Fertilizer</td>
+    <td ng-class=gtZero(total_expenses.fertilizer.arm)>
+      {{total_expenses.fertilizer.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.fertilizer.dist)>
+      {{total_expenses.fertilizer.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.fertilizer.other)>
+      {{total_expenses.fertilizer.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.fertilizer.total)>
+      {{total_expenses.fertilizer.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Seed</td>
+    <td ng-class=gtZero(total_expenses.seed.arm)>
+      {{total_expenses.seed.arm  | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.seed.dist)>
+      {{total_expenses.seed.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.seed.other)>
+      {{total_expenses.seed.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.seed.total)>
+      {{total_expenses.seed.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Fungicide</td>
+    <td ng-class=gtZero(total_expenses.fungicide.arm)>
+      {{total_expenses.fungicide.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(loan.totalExpenses.fungicide.dist)>
+      {{7253.75 | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(loan.totalExpenses.fungicide.other)>
+      {{total_expenses.fungicide.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(loan.totalExpenses.fungicide.total)>
+      {{7253.75 | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Herbicide</td>
+    <td ng-class=gtZero(total_expenses.herbicide.arm)>
+      {{total_expenses.herbicide.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.herbicide.dist)>
+      {{total_expenses.herbicide.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.herbicide.other)>
+      {{total_expenses.herbicide.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.herbicide.total)>
+      {{total_expenses.herbicide.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Insecticide</td>
+    <td ng-class=gtZero(total_expenses.insecticide.arm)>
+      {{total_expenses.insecticide.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.insecticide.dist)>
+      {{total_expenses.insecticide.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.insecticide.other)>
+      {{total_expenses.insecticide.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.insecticide.total)>
+      {{total_expenses.insecticide.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Custom</td>
+    <td ng-class=gtZero(total_expenses.custom.arm)>
+      {{total_expenses.custom.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.custom.dist)>
+      {{total_expenses.custom.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.custom.other)>
+      {{total_expenses.custom.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.custom.total)>
+      {{total_expenses.custom.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Fuel</td>
+    <td ng-class=gtZero(total_expenses.fuel.arm)>
+      {{total_expenses.fuel.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.fuel.dist)>
+      {{total_expenses.fuel.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.fuel.other)>
+      {{total_expenses.fuel.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.fuel.total)>
+      {{total_expenses.fuel.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Labor</td>
+    <td ng-class=gtZero(total_expenses.labor.arm)>
+      {{total_expenses.labor.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.labor.dist)>
+      {{total_expenses.labor.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.labor.other)>
+      {{total_expenses.labor.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.labor.total)>
+      {{total_expenses.labor.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Repairs</td>
+    <td ng-class=gtZero(total_expenses.repairs.arm)>
+      {{total_expenses.repairs.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.repairs.dist)>
+      {{total_expenses.repairs.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.repairs.other)>
+      {{total_expenses.repairs.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.repairs.total)>
+      {{total_expenses.repairs.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Insurance</td>
+    <td ng-class=gtZero(total_expenses.insurance.arm)>
+      {{total_expenses.insurance.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.insurance.dist)>
+      {{total_expenses.insurance.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.insurance.other)>
+      {{total_expenses.insurance.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.insurance.total)>
+      {{total_expenses.insurance.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Harvesting</td>
+    <td ng-class=gtZero(total_expenses.harvesting.arm)>
+      {{total_expenses.harvesting.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.harvesting.dist)>
+      {{total_expenses.harvesting.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.harvesting.other)>
+      {{total_expenses.harvesting.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.harvesting.total)>
+      {{total_expenses.harvesting.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Misc Acre</td>
+    <td ng-class=gtZero(total_expenses.misc_acres.arm)>
+      {{total_expenses.misc_acres.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.misc_acres.dist)>
+      {{total_expenses.misc_acres.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.misc_acres.other)>
+      {{total_expenses.misc_acres.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.misc_acres.total)>
+      {{total_expenses.misc_acres.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Living Expenses</td>
+    <td ng-class=gtZero(total_expenses.living_expenses.arm)>
+      {{total_expenses.living_expenses.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.living_expenses.dist)>
+      {{total_expenses.living_expenses.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.living_expenses.other)>
+      {{total_expenses.living_expenses.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.living_expenses.total)>
+      {{total_expenses.living_expenses.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Fees and Other</td>
+    <td ng-class=gtZero(total_expenses.fees_and_others.arm)>
+      {{total_expenses.fees_and_others.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.fees_and_others.dist)>
+      {{total_expenses.fees_and_others.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.fees_and_others.other)>
+      {{total_expenses.fees_and_others.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.fees_and_others.total)>
+      {{total_expenses.fees_and_others.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr class="success">
+    <td class="text-left"><strong>Total Expenses</strong></td>
+    <td colspan="4">&nbsp;</td>
+    <td ng-class=gtZero(total_expenses.total_expenses.arm)>
+      {{total_expenses.total_expenses.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.total_expenses.dist)>
+      {{total_expenses.total_expenses.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.total_expenses.other)>
+      {{total_expenses.total_expenses.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.total_expenses.total)>
+      {{total_expenses.total_expenses.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">Estimated Interest</td>
+    <td ng-class=gtZero(total_expenses.estimated_interest.arm)>
+      {{total_expenses.estimated_interest.arm | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.estimated_interest.dist)>
+      {{total_expenses.estimated_interest.dist | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.estimated_interest.other)>
+      {{total_expenses.estimated_interest.other | flexCurrency:0 }}
+    </td>
+    <td ng-class=gtZero(total_expenses.estimated_interest.total)>
+      {{total_expenses.estimated_interest.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  <tr class="warning">
+    <td colspan="5">Cash Flow (Deficit)</td>
+    <td colspan="3">&nbsp;</td>
+    <td class="text-right">
+      {{total_expenses.deficit.total | flexCurrency:0 }}
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,64 @@
+<table class="table table-striped rowed">
+  <tr>
+    <th style="width:17%;">Source</th>
+    <th style="width:9%;">Acres</th>
+    <th style="width:9%;">Yield</th>
+    <th style="width:9%;">Price</th>
+    <th style="width:9%;">Bk Qty</th>
+    <th style="width:10%;">Bk Price</th>
+    <th style="width:9%;">Harvest</th>
+    <th style="width:9%;">Rebates</th>
+    <th style="width:9%;">Share</th>
+    <th style="width:12%;">Total</th>
+  </tr>
+  <tr ng-repeat="c in loanCrops" ng-if="c.is_active">
+    <td>{{c.name | capitalize}}</td>
+    <td class="text-center">
+      {{c.acres | number:1}}
+    </td>
+    <td ng-class=gtZero(c.prod_yield)>
+      {{c.prod_yield | number:1}}
+    </td>
+    <td ng-class=gtZero(c.prod_price)>
+      {{c.prod_price | flexCurrency:4}}
+    </td>
+    <td ng-class=gtZero(c.bkqty)>
+      {{c.bkqty | displaynull}}
+    </td>
+    <td ng-class=gtZero(c.bkprice)>
+      {{c.bkprice | flexCurrency:4}}
+    </td>
+    <td ng-class=gtZero(c.harvest)>
+      {{c.harvest | flexCurrency:0}}
+    </td>
+    <td ng-class=gtZero(c.rebates)>
+      {{c.rebates | flexCurrency:0}}
+    </td>
+    <td ng-class=gtZero(c.prod_share)>
+      {{c.prod_share | displaynullpercent}}
+    </td>
+    <td ng-class=gtZero(c.adj_prod)>
+      {{c.adj_prod | flexCurrency:0}}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="9">FSA Payment</td>
+    <td ng-class=gtZero(loan.fins.total_fsa_payment)>
+      {{loan.fins.total_fsa_payment | flexCurrency:0}}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="9">Claims</td>
+    <td ng-class=gtZero(loan.fins.total_claims)>
+      {{loan.fins.total_claims | flexCurrency:0}}
+    </td>
+  </tr>
+  <tr class="success">
+    <td class="text-left"><strong>Total Revenue</strong></td>
+    <td class="text-center">{{loan.total_acres | number:1}}</td>
+    <td colspan="7">&nbsp;</td>
+    <td ng-class=gtZero(loan.fins.total_revenue)>
+      {{loan.fins.total_revenue | flexCurrency:0}}
+    </td>
+  </tr>
+</table>

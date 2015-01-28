@@ -2,7 +2,7 @@
 <fieldset>
   <tabset>
     <tab heading="Full Farm">
-      <div ng-include="'angular/views/loans/partials/budget_table.html'" ng-init="cropuse = uses.total"></div>
+      <div ng-include="'angular/views/loans/partials/budget_summary_table.html'" ng-init="cropuse = uses.total"></div>
     </tab>
     <tab heading="Corn" ng-if="uses.corn[0].acres > 0">
       <div ng-include="'angular/views/loans/partials/budget_table.html'" ng-init="cropuse = uses.corn"></div>

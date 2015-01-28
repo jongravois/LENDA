@@ -115,6 +115,111 @@
             $scope.farmExpenses = response.data.data;
           });
 
+        $scope.total_expenses = {
+          fertilizer: {
+            arm: 0,
+            dist: 72688,
+            other: 0,
+            total: 72688
+          },
+          seed: {
+            arm: 0,
+            dist: 0,
+            other: 74769,
+            total: 74769
+          },
+          fungicide: {
+            arm: 0,
+            dist: 7254,
+            other: 0,
+            total: 7254
+          },
+          herbicide: {
+            arm: 0,
+            dist: 23084,
+            other: 0,
+            total: 23084
+          },
+          insecticide: {
+            arm: 0,
+            dist: 6192,
+            other: 0,
+            total: 6192
+          },
+          custom: {
+            arm: 19020,
+            dist: 0,
+            other: 0,
+            total: 19020
+          },
+          fuel: {
+            arm: 31305,
+            dist: 0,
+            other: 0,
+            total: 31305
+          },
+          labor: {
+            arm: 18554,
+            dist: 0,
+            other: 0,
+            total: 18554
+          },
+          repairs: {
+            arm: 12751,
+            dist: 0,
+            other: 0,
+            total: 12751
+          },
+          insurance: {
+            arm: 0,
+            dist: 0,
+            other: 12454,
+            total: 12454
+          },
+          harvesting: {
+            arm: 0,
+            dist: 0,
+            other: 0,
+            total: 0
+          },
+          misc_acres: {
+            arm: 18554,
+            dist: 0,
+            other: 0,
+            total: 18554
+          },
+          living_expenses: {
+            arm: 50000,
+            dist: 0,
+            other: 0,
+            total: 50000
+          },
+          fees_and_others: {
+            arm: 5815,
+            dist: 0,
+            other: 0,
+            total: 5815
+          },
+          total_expenses: {
+            arm: 155999,
+            dist: 36530,
+            other: 87223,
+            total: 279752
+          },
+          estimated_interest: {
+            arm: 4360,
+            dist: 3686,
+            other: 2944,
+            total: 10990
+          },
+          deficit: {
+            arm: 0,
+            dist: 0,
+            other: 0,
+            total: 22718
+          }
+        };
+
         $scope.uomChanged = function (id, uom) {
           alert('Crop ID: ' + id + ' has been changed to ' + uom);
         };
