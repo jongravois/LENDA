@@ -14,44 +14,44 @@
 
         //FINS
         LoansFactory.getFinancials($stateParams.loanID)
-          .then(function success(response) {
-            $scope.loan.fins = response.data.data[0];
+          .then(function success(rsp) {
+            $scope.loan.fins = rsp.data.data[0];
           });
 
         //FARMER
         FarmersFactory.getFarmer($scope.loan.farmer_id)
-          .then(function success(response) {
-            $scope.farmer = response.data.data;
+          .then(function success(rsp) {
+            $scope.farmer = rsp.data.data;
           });
 
         //APPLICANT, PARTNERS, JOINTS & CORPORATION
         ApplicantsFactory.getApplicant($scope.loan.applicant_id)
-          .then(function success(response) {
-            $scope.applicant = response.data.data;
+          .then(function success(rsp) {
+            $scope.applicant = rsp.data.data;
             ApplicantsFactory.getPartners($stateParams.loanID)
-              .then(function success(response) {
-                $scope.partners = response.data.data;
+              .then(function success(rsp) {
+                $scope.partners = rsp.data.data;
               });
             ApplicantsFactory.getJointVentures($stateParams.loanID)
-              .then(function success(response) {
-                $scope.joints = response.data.data;
+              .then(function success(rsp) {
+                $scope.joints = rsp.data.data;
               });
             ApplicantsFactory.getCorporations($stateParams.loanID)
-              .then(function success(response) {
-                $scope.corps = response.data.data;
+              .then(function success(rsp) {
+                $scope.corps = rsp.data.data;
               });
           });
 
         //QUESTS
         LoansFactory.getQuests($stateParams.loanID)
-          .then(function success(response) {
-            $scope.quests = response.data.data[0];
+          .then(function success(rsp) {
+            $scope.quests = rsp.data.data[0];
           });
 
         //PRIOR LIENS
         LoansFactory.getPriorLiens($stateParams.loanID)
-          .then(function success(response) {
-            $scope.prior_lien = response.data.data[0];
+          .then(function success(rsp) {
+            $scope.prior_lien = rsp.data.data[0];
           });
       
         // GUARANTORS
@@ -68,8 +68,8 @@
 
         //COMMENTS
         LoansFactory.getComments($stateParams.loanID)
-          .then(function success(response) {
-            $scope.comments = response.data.data;
+          .then(function success(rsp) {
+            $scope.comments = rsp.data.data;
           });
 
         //PREREQUISITES
@@ -80,8 +80,8 @@
 
         //LOANCROPS & PERCENT IRRIGATED
         LoansFactory.getLoanCrops($stateParams.loanID)
-          .then(function success(response) {
-            $scope.loanCrops = response.data.data;
+          .then(function success(rsp) {
+            $scope.loanCrops = rsp.data.data;
             $scope.getCropsPercentIrrigated = function(id) {
               var lcIrrPer = '';
               for(var c=0;c<$scope.loanCrops.length; c++){
@@ -94,8 +94,8 @@
             };
 
             LoansFactory.getTotalAcres($scope.loan.id)
-              .then(function (res) {
-                $scope.loan.total_acres = parseFloat(res);
+              .then(function (rsp) {
+                $scope.loan.total_acres = parseFloat(rsp);
               });
 
             LoansFactory.getAttachments($stateParams.loanID)
@@ -109,116 +109,16 @@
               });
           });
 
-        //FARM EXPENSES
+        //EXPENSES
         LoansFactory.getFarmExpenses($stateParams.loanID)
-          .then(function success(response) {
-            $scope.farmExpenses = response.data.data;
+          .then(function success(rsp) {
+            $scope.farmExpenses = rsp.data.data;
           });
 
-        $scope.total_expenses = {
-          fertilizer: {
-            arm: 0,
-            dist: 72688,
-            other: 0,
-            total: 72688
-          },
-          seed: {
-            arm: 0,
-            dist: 0,
-            other: 74769,
-            total: 74769
-          },
-          fungicide: {
-            arm: 0,
-            dist: 7254,
-            other: 0,
-            total: 7254
-          },
-          herbicide: {
-            arm: 0,
-            dist: 23084,
-            other: 0,
-            total: 23084
-          },
-          insecticide: {
-            arm: 0,
-            dist: 6192,
-            other: 0,
-            total: 6192
-          },
-          custom: {
-            arm: 19020,
-            dist: 0,
-            other: 0,
-            total: 19020
-          },
-          fuel: {
-            arm: 31305,
-            dist: 0,
-            other: 0,
-            total: 31305
-          },
-          labor: {
-            arm: 18554,
-            dist: 0,
-            other: 0,
-            total: 18554
-          },
-          repairs: {
-            arm: 12751,
-            dist: 0,
-            other: 0,
-            total: 12751
-          },
-          insurance: {
-            arm: 0,
-            dist: 0,
-            other: 12454,
-            total: 12454
-          },
-          harvesting: {
-            arm: 0,
-            dist: 0,
-            other: 0,
-            total: 0
-          },
-          misc_acres: {
-            arm: 18554,
-            dist: 0,
-            other: 0,
-            total: 18554
-          },
-          living_expenses: {
-            arm: 50000,
-            dist: 0,
-            other: 0,
-            total: 50000
-          },
-          fees_and_others: {
-            arm: 5815,
-            dist: 0,
-            other: 0,
-            total: 5815
-          },
-          total_expenses: {
-            arm: 155999,
-            dist: 36530,
-            other: 87223,
-            total: 279752
-          },
-          estimated_interest: {
-            arm: 4360,
-            dist: 3686,
-            other: 2944,
-            total: 10990
-          },
-          deficit: {
-            arm: 0,
-            dist: 0,
-            other: 0,
-            total: 22718
-          }
-        };
+        LoansFactory.getTotalExpenses($stateParams.loanID)
+          .then(function success(rsp){
+            $scope.total_expenses = rsp;
+          });
 
         $scope.uomChanged = function (id, uom) {
           alert('Crop ID: ' + id + ' has been changed to ' + uom);
