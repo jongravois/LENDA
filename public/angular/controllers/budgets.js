@@ -4,26 +4,28 @@
       .module('ARM')
       .controller('BudgetsController', BudgetsController);
 
-      BudgetsController.$inject = ['$scope', "$stateParams", "AppFactory", "ExpensesFactory", "LoansFactory"];
+      BudgetsController.$inject = ['$scope', '$stateParams', 'Loan', 'ExpensesFactory'];
 
       function BudgetsController(
           $scope,
           $stateParams,
-          AppFactory,
-          ExpensesFactory,
-          LoansFactory
+          Loan,
+          ExpensesFactory
       ){
         $scope.loan = $scope.loan || Loan.data.data[0];
-        
-        ExpensesFactory.getExpenses($stateParams.loanID)
+
+        ExpensesFactory.getBudget($stateParams.loanID)
           .then(function success(rsp){
-            //console.log(rsp);
-            var raw = rsp.data.data;
-            $scope.uses = raw;
-            /*$scope.uses = _.map(raw, function(obj){
-              obj.peracre = 100000;
-              return obj;
-            });*/
+            var arr = rsp.data;
+            var flattened = _.flatten(arr);
+
+            var grped = _.groupBy(flattened, function(item) {
+              return item.crop;
+            });
+            $scope.uses = grped;
+
+            $scope.uses.totals = {};
+            //console.log($scope.uses);
           });
 
       } // end function

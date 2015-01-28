@@ -1,13 +1,15 @@
 (function() {
   angular
     .module('ARM')
-    .factory('ExpensesFactory', function ExpensesFactory($http, $q, $stateParams, API_URL) {
+    .factory('ExpensesFactory', function ExpensesFactory(
+      $http, $q, $stateParams, API_URL
+    ) {
 
       return {
-        getExpenses: getExpenses
+        getBudget: getBudget
       };
 
-      function getExpenses(id){
+      function getBudget(id){
         return $http.get(API_URL + '/loans/' + id + '/budget');
       }
 

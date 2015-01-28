@@ -96,6 +96,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('counties/{id}/locale', 'CountiesController@getLocale');
   Route::get('defaultexpenses/{id}/bycrop', 'DefaultexpensesController@byCrop');
   Route::get('insurance/{id}/value', 'InsuranceController@totalValueByLoan');
+  Route::get('loancrops/{id}/expenses', 'BudgetController@expenseByCrop');
   Route::get('loans/{id}/acres', 'LoancropsController@allAcres');
   Route::get('loans/{id}/affiliates', 'AffiliatesController@byLoan');
   Route::get('loans/{id}/attachments', 'LoansController@attachments');
