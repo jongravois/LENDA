@@ -44,7 +44,7 @@ class LoansController extends ApiController {
 
 	public function store()
 	{
-		//TODO: Add authentication
+		//TODO: Add validation
 		/*if( ! Input::get('loantype_id')){
 			return $this->respondCreationDenied('Failed Validation');
 		} // end if*/

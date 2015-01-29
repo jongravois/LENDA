@@ -90,17 +90,6 @@
               user_id: $scope.user.id
             };
 
-            if($scope.chosenLT_id == '1' || $scope.chosenLT_id == '2' || $scope.chosenLT_id == '3' || $scope.chosenLT_id == '4'){
-              obj.conditions_asa = 1;
-              obj.conditions_areb = 1;
-              obj.conditions_afsa = 1;
-              obj.conditions_aci = 1;
-            }
-
-            if($scope.chosenLT_id == '2' || $scope.chosenLT_id == '6'){
-              obj.conditions_adis = 1;
-            }
-
             LoansFactory.insertLoan(obj)
               .then(function success(response){
                 $state.go('new.farmer', {loantypeID: $scope.chosenLT_id, loanID: response.data.message.id});

@@ -13,7 +13,7 @@
           Loan,
           AppFactory,
           LoansFactory,
-          InsurancFactory
+          InsuranceFactory
       ){
         $scope.loan = $scope.loan || Loan.data.data[0];
         $scope.loan.insurance = $scope.loan.insurance || {};

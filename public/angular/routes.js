@@ -311,6 +311,11 @@
             templateUrl: 'angular/views/loans/newplannedcrops.html',
             controller: 'NewPlannedCropsController'
           })
+          .state('new.purgatory', {
+            url: '/purgatory',
+            templateUrl: 'angular/views/loans/newpurgatory.html',
+            controller: 'NewPurgatoryController'
+          })
           .state('new.references', {
             url: '/references',
             templateUrl: 'angular/views/loans/newreferences.html',

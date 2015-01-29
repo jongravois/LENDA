@@ -146,6 +146,7 @@
 <script src="angular/services/FarmersFactory.js"></script>
 <script src="angular/services/ApplicantsFactory.js"></script>
 <script src="angular/services/QuestsFactory.js"></script>
+<script src="angular/services/ConditionsFactory.js"></script>
 <script src="angular/services/ExpensesFactory.js"></script>
 <script src="angular/services/Grader.js"></script>
 <script src="angular/services/ExceptionsFactory.js"></script>

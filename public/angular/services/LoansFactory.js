@@ -12,6 +12,7 @@
         createFinancials: createFinancials,
         createLoan: createLoan,
         createReference: createReference,
+        finalizeNewLoan: finalizeNewLoan,
         getAffiliates: getAffiliates,
         getAttachments: getAttachments,
         getComments: getComments,
@@ -156,6 +157,15 @@
 
       function createReference(o){
         return $http.post(API_URL + '/references', o);
+      }
+
+      function finalizeNewLoan(id){
+        console.log(id);
+        /**
+         * TODO: CREATE LOAN CONDITIONS
+         ConditionsFactory.createConditions($scope.loan);
+         */
+        return false;
       }
 
       function getAffiliates(id){

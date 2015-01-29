@@ -14,6 +14,7 @@ class CreateLoanconditionsTable extends Migration {
       $table->integer('loan_id');
       $table->integer('condition_id');
       $table->string('condition');
+      $table->string('status')->default('pending');
 			$table->timestamps();
 		});
 	}

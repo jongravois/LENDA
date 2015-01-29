@@ -21,11 +21,22 @@ class LoanconditionsController extends ApiController {
 
 	public function store()
 	{
-		if( ! Input::get('loancondition')){
+		//TODO: Validate
+		/*if( ! Input::get('loancondition')){
 			return $this->respondCreationDenied('Failed Validation');
-		} // end if
+		} // end if*/
 
-		Loancondition::create(Input::all());
+		$doit = Loancondition::create(Input::all());
+
+		//Add systemic
+		$newInfo = [
+			'loan_id'	=>	Input::get('loan_id'),
+			'user'		=>	Auth::user()->username,
+			'action'	=>	'Created Security Agreement Loan Condition'
+		];
+		if($doit){
+			Systemics::create($newInfo);
+		}
 
 		return $this->respondCreated('Loancondition created');
 	}
@@ -64,6 +75,8 @@ class LoanconditionsController extends ApiController {
 
 	public function destroy($id)
 	{
+		//TODO: create systemic
+
 		return Loancondition::where('id', $id)->delete();
 	}
 
