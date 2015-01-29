@@ -1,5 +1,6 @@
 <?php
 
-class Clientprofile extends \Eloquent {
-	protected $fillable = [];
+class Clientprofile extends \Eloquent
+{
+    protected $fillable = [];
 }

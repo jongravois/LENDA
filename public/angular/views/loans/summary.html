@@ -102,7 +102,9 @@
           <br/>
           {{c.vicepresident}}, (Vice-President)
           <br/>
-          {{c.secretarytreasurer}}, (Secretary / Treasurer)
+          {{c.secretary}}, (Secretary)
+          <br/>
+          {{c.treasurer}}, (Treasurer)
         </p>
       </div>
       <div ng-switch-when="3">
@@ -243,6 +245,7 @@
         <th style="width:9%;">Harvest</th>
         <th style="width:9%;">Rebates</th>
         <th style="width:9%;">Share</th>
+        ng
         <th style="width:12%;">Total</th>
       </tr>
       <tr ng-repeat="c in loanCrops" ng-if="c.is_active">

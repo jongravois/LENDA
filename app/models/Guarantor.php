@@ -1,5 +1,6 @@
 <?php
 
-class Guarantor extends \Eloquent {
-	protected $fillable = [];
+class Guarantor extends \Eloquent
+{
+    protected $fillable = [];
 }
