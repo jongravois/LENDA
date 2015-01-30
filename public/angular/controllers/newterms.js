@@ -67,12 +67,12 @@
           AppFactory.putIt('/loanfinancials/', $stateParams.loanID, $scope.loan.fins);
 
           //TODO: Move from New Loan to Managed Loan
-          var finalized = LoansFactory.finalizeNewLoan();
+          var finalized = LoansFactory.finalizeNewLoan($scope.loan);
 
           if(finalized){
             AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
           } else {
-            $state.go('purgatory');
+            $state.go('new.purgatory');
           }
         }
       } // end function

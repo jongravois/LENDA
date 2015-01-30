@@ -2,8 +2,8 @@
   'use strict';
   angular.module('ARM')
     .factory('LoansFactory', function LoansFactory(
-      $http, $q, $stateParams,
-      API_URL, AppFactory, GlobalsFactory
+      $http, $q, $stateParams, toastr,
+      API_URL, AppFactory, ConditionsFactory, GlobalsFactory
     ){
       return {
         calcGrade: calcGrade,
@@ -159,12 +159,67 @@
         return $http.post(API_URL + '/references', o);
       }
 
-      function finalizeNewLoan(id){
-        console.log(id);
-        /**
-         * TODO: CREATE LOAN CONDITIONS
-         ConditionsFactory.createConditions($scope.loan);
-         */
+      function finalizeNewLoan(o){
+        //console.log(o);
+
+        //WE NEED A FARMER
+        if(!o.farmer_id || parseInt(o.farmer_id) < 1){
+          toastr.error('You have not connected a Farmer to this loan yet. You cannot continue until you have done so. Please click the "Farmer Tab" to the left.', 'Farmer Required', {timeOut: 0});
+        } // end farmer test
+
+        //WE NEED AN APPLICANT
+        if(!o.applicant_id || parseInt(o.applicant_id) < 1){
+          toastr.error('You have not connected an Applicant to this loan yet. You cannot continue until you have done so. Please click the "Applicant Tab" to the left.', 'Applicant Required', {timeOut: 0});
+        } // end applicant test
+
+        //TODO: Based on loan_type_id, test for partners, joints, corps and spouses
+
+        //WE NEED A DISTRIBUTOR FOR SOME LOANS
+        if(o.loan_type_id == '2' || o.loan_type_id == '6'){
+          if(!o.distributor_id || parseInt(o.distributor_id) < 1){
+            toastr.error('You have not connected a Distributor to this loan yet. You cannot continue until you have done so. Please click the "Distributor Tab" to the left.', 'Distributor Required', {timeOut: 0});
+          }
+        } // end if
+
+        // TODO: CREATE LOAN CONDITIONS
+        // conditions_pg - Personal Guarantee
+        switch(parseInt(o.loan_type_id)){
+          case 1: //All In
+            ConditionsFactory.createASA(o.crop_year, o.id);
+            ConditionsFactory.createAREB(o.crop_year, o.id);
+            ConditionsFactory.createAFSA(o.crop_year, o.id);
+            ConditionsFactory.createACI(o.crop_year, o.id);
+            break;
+          case 2: //Ag Input
+            //conditions_adis
+            ConditionsFactory.createASA(o.crop_year, o.id);
+            ConditionsFactory.createAREB(o.crop_year, o.id);
+            ConditionsFactory.createAFSA(o.crop_year, o.id);
+            ConditionsFactory.createACI(o.crop_year, o.id);
+            ConditionsFactory.createADIS(o.crop_year, o.id, o.distributor);
+            break;
+          case 3: //Ag Pro
+            ConditionsFactory.createASA(o.crop_year, o.id);
+            ConditionsFactory.createAREB(o.crop_year, o.id);
+            ConditionsFactory.createAFSA(o.crop_year, o.id);
+            ConditionsFactory.createACI(o.crop_year, o.id);
+            break;
+          case 4: //Ag Pro Fasttrack
+            ConditionsFactory.createASA(o.crop_year, o.id);
+            ConditionsFactory.createAREB(o.crop_year, o.id);
+            ConditionsFactory.createAFSA(o.crop_year, o.id);
+            ConditionsFactory.createACI(o.crop_year, o.id);
+            break;
+          case 5: //Capital Bridge
+            break;
+          case 6: //Ag-Vest
+            ConditionsFactory.createADIS(o.crop_year, o.id, o.distributor);
+            break;
+          case 7: //Grain Storage
+            break;
+        } // end switch
+
+        //TODO: return true if all tests pass
         return false;
       }
 

@@ -2,53 +2,108 @@
     'use strict';
     angular.module('ARM')
       .factory('ConditionsFactory', function ConditionsFactory(
-        $http, $q, API_URL, AppFactory, LoansFactory
+        $http, $q, API_URL, AppFactory
       ){
           return {
             createConditions: createConditions,
             modifyConditions: modifyConditions,
-            createAgreement_ASA: createAgreement_ASA,
-            deleteAgreement_ASA: deleteAgreement_ASA
+            createACI: createACI,
+            createADIS: createADIS,
+            createAFSA: createAFSA,
+            createAREB: createAREB,
+            createASA: createASA,
+            deleteACI: deleteACI,
+            deleteADIS: deleteADIS,
+            deleteAFSA: deleteAFSA,
+            deleteAREB: deleteAREB,
+            deleteASA: deleteASA
           };
 
         function createConditions(o){
           console.log(o);
-          /**
-           * //LOAN CONDITIONS
-           if($scope.chosenLT_id == '1' ||
-           $scope.chosenLT_id == '2' ||
-           $scope.chosenLT_id == '3' ||
-           $scope.chosenLT_id == '4'){
-                obj.conditions_asa = 1;
-                obj.conditions_areb = 1;
-                obj.conditions_afsa = 1;
-                obj.conditions_aci = 1;
-            }
-
-           if($scope.chosenLT_id == '2' || $scope.chosenLT_id == '6'){
-              obj.conditions_adis = 1;
-            }
-
-           */
           switch(o.loan_type_id){} // end switch
         }
 
         function modifyConditions(o){}
 
-        function createAgreement_ASA(o){
+        function createACI(CY, ID){
+          // conditions_aci - Assignment of Crop Insurance
+          AppFactory.patchIt('/loans/', ID, {conditions_aci: 1});
+
           var agar = {
-            crop_year: 'o.crop_year',
-            loan_id: 'o.id',
+            crop_year: CY,
+            loan_id: ID,
+            condition_id: '2',
+            condition: "Assignment of Crop Insurance"
+          };
+          $http.post(API_URL + '/loanconditions', agar);
+        }
+        function createADIS(CY, ID, DIST){
+          // conditions_adis - Approval by Distributor
+          AppFactory.patchIt('/loans/', ID, {conditions_aci: 1});
+
+          var agar = {
+            crop_year: CY,
+            loan_id: ID,
+            condition_id: '4',
+            condition: "Approval by Participating Distributor - " + DIST
+          };
+          $http.post(API_URL + '/loanconditions', agar);
+        }
+        function createAFSA(CY, ID){
+          // conditions_afsa - Assignment of FSA Direct and LDP Payment
+          AppFactory.patchIt('/loans/', ID, {conditions_afsa: 1});
+
+          var agar = {
+            crop_year: CY,
+            loan_id: ID,
+            condition_id: '9',
+            condition: "Assignment of FSA Direct and LDP Payment"
+          };
+          $http.post(API_URL + '/loanconditions', agar);
+        }
+        function createAREB(CY, ID){
+          AppFactory.patchIt('/loans/', ID, {conditions_areb: 1});
+
+          var agar = {
+            crop_year: CY,
+            loan_id: ID,
+            condition_id: '3',
+            condition: "Assignment of Rebates"
+          };
+          $http.post(API_URL + '/loanconditions', agar);
+        }
+        function createASA(CY, ID){
+          AppFactory.patchIt('/loans/', ID, {conditions_asa: 1});
+
+          var agar = {
+            crop_year: CY,
+            loan_id: ID,
             condition_id: '1',
             condition: "Agricultural Security Agreement on Crops and Equipment"
           };
           $http.post(API_URL + '/loanconditions', agar);
         }
 
-        function deleteAgreement_ASA(id){
+        function deleteACI(id){
           //TODO: delete loanCondition
           //TODO: create LENDA comment and Loan Exception
         }
-
+        function deleteADIS(id){
+          //TODO: delete loanCondition
+          //TODO: create LENDA comment and Loan Exception
+        }
+        function deleteAFSA(id){
+          //TODO: delete loanCondition
+          //TODO: create LENDA comment and Loan Exception
+        }
+        function deleteAREB(id){
+          //TODO: delete loanCondition
+          //TODO: create LENDA comment and Loan Exception
+        }
+        function deleteASA(id){
+          //TODO: delete loanCondition
+          //TODO: create LENDA comment and Loan Exception
+        }
         });
 })();

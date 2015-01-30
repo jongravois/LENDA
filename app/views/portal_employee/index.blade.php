@@ -95,6 +95,7 @@
 <script src="angular/controllers/newgrain.js"></script>
 <script src="angular/controllers/newinsurance.js"></script>
 <script src="angular/controllers/newplannedcrops.js"></script>
+<script src="angular/controllers/newpurgatory.js"></script>
 <script src="angular/controllers/newquests.js"></script>
 <script src="angular/controllers/newprerequisites.js"></script>
 <script src="angular/controllers/newreferences.js"></script>

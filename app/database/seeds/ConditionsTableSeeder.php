@@ -28,5 +28,8 @@ class ConditionsTableSeeder extends Seeder {
 		Conditions::create([
 			'condition'	=>	'Controlled Disbursements'
 		]);
+		Conditions::create([
+			'condition'	=>	'Assignment of FSA Direct and LDP Payment'
+		]);
 	}
 }

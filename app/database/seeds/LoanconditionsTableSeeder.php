@@ -20,7 +20,7 @@ class LoanconditionsTableSeeder extends Seeder {
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
 			'condition_id'	=>	4,
-			'condition'	=>	'Approval by Participating Distributor'
+			'condition'	=>	'Approval by Participating Distributor - JSI'
 		]);
 		Loanconditions::create([
 			'crop_year'	=>	2015,
@@ -37,7 +37,7 @@ class LoanconditionsTableSeeder extends Seeder {
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
-			'condition_id'	=>	7,
+			'condition_id'	=>	9,
 			'condition'	=>	'Assignment of FSA Direct and LDP Payment'
 		]);
 		Loanconditions::create([
