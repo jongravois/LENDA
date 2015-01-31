@@ -16,6 +16,7 @@
         getDefaultDueDate: getDefaultDueDate,
         getFullSeason: getFullSeason,
         gtZero: gtZero,
+        inArray: inArray,
         moveToNextNewLoanScreen: moveToNextNewLoanScreen,
         patchIt: patchIt,
         postIt: postIt,
@@ -79,6 +80,13 @@
         else {
           return 'text-right';
         }
+      }
+      function inArray(needle,haystack){
+        if(haystack.indexOf(needle) == -1){
+          return false;
+        }
+
+        return true;
       }
       function moveToNextNewLoanScreen(screenName, $stateParams) {
         //debugger;

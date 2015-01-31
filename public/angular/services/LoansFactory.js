@@ -21,6 +21,7 @@
         getCropExpenses: getCropExpenses,
         getCrops: getCrops,
         getDistributor: getDistributor,
+        getExceptions: getExceptions,
         getFarmExpenses: getFarmExpenses,
         getFarmPractices: getFarmPractices,
         getFarms: getFarms,
@@ -253,6 +254,10 @@
 
       function getDistributor(id){
         return $http.get(API_URL + '/loans/' + id + '/distributor');
+      }
+
+      function getExceptions(id){
+        return $http.get(API_URL + '/loans/' + id + '/exceptions');
       }
 
       function getFarmExpenses(id){

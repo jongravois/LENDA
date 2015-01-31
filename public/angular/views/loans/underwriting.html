@@ -7,20 +7,21 @@
 <fieldset>
   <legend>Loan Exceptions</legend>
   <div class="row">
-    <div class="form-group col-md-9 col-md-offset-1">
-      <h5>No exceptions found.</h5>
-      <!--<div ng-include="'angular/views/loans/partials/loan_exceptions.html'"></div>-->
+    <div class="form-group col-md-12">
+      <p class="lg-text" ng-repeat="e in loanExceptions">
+        {{e.msg}}&nbsp;&nbsp;<span ng-click="deleteException($index)" style="cursor:pointer;">[delete]</span>
+      </p>
+      <br/><br/>
+      <button ng-click="createExceptions(loan)">Exceptions</button>
     </div>
   </div>
 </fieldset>
 <br/><br/>
 <fieldset>
-  <legend>Collateral Conditions</legend>
-  <!-- TODO See Notes -->
+  <legend>Loan/Collateral Conditions</legend>
   <div class="row">
     <div class="form-group col-md-9 col-md-offset-1">
-      <!--<h5>No collateral conditions found.</h5>-->
-    <div ng-include="'angular/views/loans/partials/collateral_conditions.html'"></div>
+      <div ng-include="'angular/views/loans/partials/collateral_conditions.html'"></div>
     </div>
   </div>
 </fieldset>

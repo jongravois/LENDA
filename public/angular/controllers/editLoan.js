@@ -5,8 +5,8 @@
     .controller('EditAppController', function(
       $scope, $state, $stateParams, $filter,
       $timeout, toastr,
-      Loan, AppFactory, ApplicantsFactory, FarmersFactory,
-      LoansFactory, InsuranceFactory
+      Loan, AppFactory, ApplicantsFactory, ExceptionsFactory,
+      FarmersFactory, LoansFactory, InsuranceFactory
     ) {
         $scope.loan = Loan.data.data[0];
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
@@ -64,6 +64,12 @@
         LoansFactory.getConditions($stateParams.loanID)
           .then(function success(rsp){
             $scope.loanConditions = rsp.data.data;
+          });
+
+        //EXCEPTIONS
+        LoansFactory.getExceptions($stateParams.loanID)
+          .then(function success(rsp){
+              $scope.loanExceptions = rsp.data.data;
           });
 
         //COMMENTS
@@ -127,7 +133,15 @@
           $scope.guarantors.push($scope.newGuarantor);
           $scope.newGuarantor = {};
         };
-        $scope.getAverage = function (arr) {
+        //TODO: Remove These
+        $scope.createExceptions = ExceptionsFactory.createExceptions;
+        $scope.deleteException = function(index){
+          var removee = $scope.loanExceptions[index];
+          $scope.loanExceptions.splice(index,1);
+          ExceptionsFactory.deleteException(removee.id);
+        };
+      //TODO: Remove These
+      $scope.getAverage = function (arr) {
           var cnt = 0;
           var tot = 0;
           //console.log(arr);

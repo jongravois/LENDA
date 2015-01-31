@@ -27,7 +27,6 @@
         function modifyConditions(o){}
 
         function createACI(CY, ID){
-          // conditions_aci - Assignment of Crop Insurance
           AppFactory.patchIt('/loans/', ID, {conditions_aci: 1});
 
           var agar = {
@@ -39,25 +38,23 @@
           $http.post(API_URL + '/loanconditions', agar);
         }
         function createADIS(CY, ID, DIST){
-          // conditions_adis - Approval by Distributor
           AppFactory.patchIt('/loans/', ID, {conditions_aci: 1});
 
           var agar = {
             crop_year: CY,
             loan_id: ID,
-            condition_id: '4',
+            condition_id: '5',
             condition: "Approval by Participating Distributor - " + DIST
           };
           $http.post(API_URL + '/loanconditions', agar);
         }
         function createAFSA(CY, ID){
-          // conditions_afsa - Assignment of FSA Direct and LDP Payment
           AppFactory.patchIt('/loans/', ID, {conditions_afsa: 1});
 
           var agar = {
             crop_year: CY,
             loan_id: ID,
-            condition_id: '9',
+            condition_id: '4',
             condition: "Assignment of FSA Direct and LDP Payment"
           };
           $http.post(API_URL + '/loanconditions', agar);

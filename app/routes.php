@@ -107,6 +107,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/conditions', 'LoanConditionsController@byLoan');
   Route::get('loans/{id}/corporations', 'CorporationsController@byLoan');
   Route::get('loans/{id}/counties', 'CountiesController@byLoan');
+  Route::get('loans/{id}/exceptions', 'LoanexceptionsController@byLoan');
   Route::get('loans/{id}/expenses/{crop}', 'CropexpensesController@byLoanByCrop');
   Route::get('loans/{id}/cropexpenses', 'CropexpensesController@byLoan');
   Route::get('loans/{id}/distributor', 'LoandistributorController@byLoan');

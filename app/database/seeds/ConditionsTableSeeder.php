@@ -14,22 +14,22 @@ class ConditionsTableSeeder extends Seeder {
 			'condition'	=>	'Assignment of Rebates'
 		]);
 		Conditions::create([
+			'condition'	=>	'Assignment of FSA Direct and LDP Payment'
+		]);
+		Conditions::create([
 			'condition'	=>	'Approval by Distributor'
 		]);
 		Conditions::create([
 			'condition'	=>	'Personal Guarantee'
 		]);
 		Conditions::create([
-			'condition'	=>	'Cross-Collateralize'
-		]);
-		Conditions::create([
-			'condition'	=>	'Freeform Conditions'
+			'condition'	=>	'Cross-Collateralized Loan'
 		]);
 		Conditions::create([
 			'condition'	=>	'Controlled Disbursements'
 		]);
 		Conditions::create([
-			'condition'	=>	'Assignment of FSA Direct and LDP Payment'
+			'condition'	=>	'Freeform Conditions'
 		]);
 	}
 }

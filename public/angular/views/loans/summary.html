@@ -1,6 +1,6 @@
 <style>
   label{ font-weight:normal; color:#AAA; }
-  .rowed td{border:1px solid #dddddd; }
+  .red{color: #CC0000; }
 </style>
 <!--<pre>{{farmExpenses | json}}</pre>-->
 <fieldset>
@@ -214,13 +214,13 @@
 </div>
 
 <!--Collateral Conditions-->
-  <!--TODO all conditions listed; incomple is in red-->
+  <!--TODO all conditions listed; incomplete is in red-->
 <div class="row" style="padding-top: 20px;">
   <div class="form-group col-md-12 text-left">
-    <b>Collateral Conditions</b>
+    <b>Loan/Collateral Conditions</b>
     <div class="row">
       <div class="form-group col-md-6 col-md-offset-1">
-        <p class="lg-text" ng-repeat="c in loanConditions">{{c.condition}}</p>
+        <p class="lg-text" ng-class="{'red': c.status == 'pending'}" ng-repeat="c in loanConditions">{{c.condition}}</p>
       </div>
     </div>
   </div>

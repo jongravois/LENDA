@@ -11,6 +11,7 @@
       $scope.user_id = $('#user_id').data('id');
       $scope.landing_view = 'settings';
       $scope.file_url = FILE_URL;
+      $scope.inArray = AppFactory.inArray;
 
       UsersFactory.getUsers().then(function success(response){
         $scope.users = response.data.data;

@@ -31,6 +31,7 @@
           <input type="text" name="city" ng-model="newDistributor.city" class="form-control"/>
         </div>
         <div class="form-group col-sm-2">
+          <!--TODO: FIX - State not indicated in dropdown-->
           <label>State:</label>
           <select name="state" ng-model="newDistributor.state_id" class="form-control" ng-options="s.id as s.state for s in feeder.states">
             <option value="">Please select ...</option>
