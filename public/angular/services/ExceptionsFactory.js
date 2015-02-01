@@ -1,16 +1,18 @@
 (function(){
-    'use strict';
-    angular.module('ARM')
-      .factory('ExceptionsFactory', function ExceptionsFactory(
-        $http, $q, API_URL, $stateParams,
-        AppFactory, LoansFactory
-      ){
+  'use strict';
+  angular
+    .module('ARM')
+    .factory('ExceptionsFactory', function ExceptionsFactory(
+      $http, $q, API_URL, $stateParams,
+      AppFactory, LoansFactory
+    ){
 
-        return {
-          createExceptions: createExceptions,
-          deleteException: deleteException,
-          createExOne: createExOne
-        };
+      //PUBLIC API
+      return {
+        createExceptions: createExceptions,
+        deleteException: deleteException,
+        createExOne: createExOne
+      };
 
       function createExceptions(o){
         if(!o.quests){
@@ -23,7 +25,11 @@
 
         createExOne(o.id);
 
-
+        /*<div id="Two" ng-if="loan.fins.grade && loan.fins.grade != 'A'">
+          <p class="lg-text">
+          Applicant is rated  "{{loan.fins.grade}}"
+          </p>
+        </div>*/
       }
 
       function deleteException(id){
