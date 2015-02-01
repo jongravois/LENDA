@@ -1,6 +1,7 @@
 <?php
 
-class Entitytype extends \Eloquent {
-  public $timestamps = false;
-  protected $fillable = ['entitytype'];
+class Entitytype extends \Eloquent
+{
+    public $timestamps = false;
+    protected $fillable = ['entitytype'];
 }

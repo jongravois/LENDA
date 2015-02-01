@@ -1,21 +1,21 @@
 (function() {
   angular.module('ARM')
-    .filter("asDate", asDateFilter)
-    .filter('dateFmt', dateFmtFilter)
-    .filter('capitalize', capitalizeFilter)
-    .filter('displayname', displaynameFilter)
-    .filter('displaynull', displaynullFilter)
-    .filter('displaynullcurrency', displaynullcurrencyFilter)
-    .filter('displaynullpercent', displaynullpercentFilter)
-    .filter('displaynullsingle', displaynullsingleFilter)
-    .filter('displaypercent', displaypercentFilter)
-    .filter('boolean', booleanFilter)
-    .filter('noCentsCurrency', noCentsCurrencyFilter)
-    .filter('phone', phoneFilter)
-    .filter('ssnum', ssnumFilter)
-    .filter('justtext', justtextFilter)
-    .filter('flexCurrency', flexCurrencyFilter)
-    .filter('flexPercent', flexPercentFilter);
+      .filter("asDate", asDateFilter)
+      .filter('dateFmt', dateFmtFilter)
+      .filter('capitalize', capitalizeFilter)
+      .filter('displayname', displaynameFilter)
+      .filter('displaynull', displaynullFilter)
+      .filter('displaynullcurrency', displaynullcurrencyFilter)
+      .filter('displaynullpercent', displaynullpercentFilter)
+      .filter('displaynullsingle', displaynullsingleFilter)
+      .filter('displaypercent', displaypercentFilter)
+      .filter('boolean', booleanFilter)
+      .filter('noCentsCurrency', noCentsCurrencyFilter)
+      .filter('phone', phoneFilter)
+      .filter('ssnum', ssnumFilter)
+      .filter('justtext', justtextFilter)
+      .filter('flexCurrency', flexCurrencyFilter)
+      .filter('flexPercent', flexPercentFilter);
 
 
   function asDateFilter() {
