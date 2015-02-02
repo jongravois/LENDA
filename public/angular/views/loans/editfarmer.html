@@ -18,7 +18,11 @@
             </label><br/>
             <p>{{farmer.ssn | ssnum}}</p>
           </div>
-          <div class="form_group col-md-3">&nbsp;</div>
+          <div class="form_group col-md-3"><br>
+            <p>Farmer is a new ARM customer:
+              &nbsp;<input type="checkbox" ng-model="farmer.new_client"/>
+            </p>
+          </div>
         </div>
         <!-- FARMER -->
 
@@ -40,6 +44,7 @@
             <label>Zip:</label><br/>
             <text-edit-in-place value="farmer.zip"></text-edit-in-place>
           </div>
+          <div class="form-group col-md-2">&nbsp;</div>
         </div>
         <!-- ADDRESS / PHONE -->
 

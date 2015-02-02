@@ -18,7 +18,8 @@ class CorporationTransformer extends Transformer{
 			'description' => $arr['description'],
 			'president' => $arr['president'],
 			'vicepresident' => $arr['vicepresident'],
-			'secretarytreasurer' => $arr['secretarytreasurer']
+			'secretary' => $arr['secretary'],
+			'treasurer' => $arr['treasurer']
 		];
 	}
 }

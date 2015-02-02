@@ -71,15 +71,15 @@
       };
 
       function createExceptions(o) {
-        if (!o.quests) {
-          LoansFactory.getQuests($stateParams.loanID)
-            .then(function success(rsp) {
-              o.quests = rsp.data.data[0];
-              console.log(o);
-            });
-        } else {
+        //if (!o.quests) {
+          //LoansFactory.getQuests($stateParams.loanID)
+            //.then(function success(rsp) {
+              //o.quests = rsp.data.data[0];
+              //console.log(o);
+            //});
+        //} else {
           console.log(o);
-        }
+        //}
 
         balanceSheetLessArm(o.id);
         balanceSheetNetWorth(o.id);
@@ -89,12 +89,10 @@
         cashOutlayProvisions(o.id);
         cashRentWaivers(o.id);
         contractualObligations(o.id);
-        createExceptions(o.id);
         cropBreakEven(o.id);
         cropInsuranceShare(o.id);
         crossCollateralized(o.id);
         controlledDisbursment(o.id);
-        deleteException(o.id);
         differingInterestRates(o.id);
         equipmentCollateral(o.id);
         equipmentObligations(o.id);

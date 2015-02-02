@@ -13,10 +13,10 @@
   </tr>
   <tr ng-repeat="c in loanCrops" ng-if="c.is_active">
     <td>{{c.name | capitalize}}</td>
-    <td class="text-center">
+    <td class="text-right" ng-class=gtZero(c.acres)>
       {{c.acres | number:1}}
     </td>
-    <td ng-class=gtZero(c.prod_yield)>
+    <td class="text-right" ng-class=gtZero(c.prod_yield)>
       {{c.prod_yield | number:1}}
     </td>
     <td ng-class=gtZero(c.prod_price)>

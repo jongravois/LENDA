@@ -27,7 +27,7 @@ class FarmerTransformer extends Transformer{
       'age' => $age_of_farmer,
       'first_year_farmer' => $arr['first_year_farmer'],
       'farm_exp' =>	$arr['farm_exp'],
-      'is_repeat' => (boolean) $arr['is_repeat']
+      'new_client' => (boolean) $arr['new_client']
     ];
   }
 }
