@@ -71,43 +71,41 @@
       };
 
       function createExceptions(o) {
-        //if (!o.quests) {
-          //LoansFactory.getQuests($stateParams.loanID)
-            //.then(function success(rsp) {
-              //o.quests = rsp.data.data[0];
-              //console.log(o);
-            //});
-        //} else {
-          console.log(o);
-        //}
+        if (!o.quests) {
+          LoansFactory.getQuests($stateParams.loanID)
+            .then(function success(rsp) {
+              o.quests = rsp.data.data[0];
+              console.log(o);
+            });
+        } else {
+          console.info(o);
+        }
 
         balanceSheetLessArm(o.id);
         balanceSheetNetWorth(o.id);
-        bankruptcyHistory(o.id);
-        bankruptcyOrder(o.id);
+        if(o.quests.bankruptcy){ bankruptcyHistory(o.id); }
+        if(o.quests.bankruptcyOrder){ bankruptcyOrder(o.id); }
         bookedCrops(o.id);
-        cashOutlayProvisions(o.id);
+        if(!o.quests.other_cash){ cashOutlayProvisions(o.id); }
         cashRentWaivers(o.id);
-        contractualObligations(o.id);
+        if(!o.quests.future_liabilities){ contractualObligations(o.id); }
         cropBreakEven(o.id);
         cropInsuranceShare(o.id);
-        crossCollateralized(o.id);
-        controlledDisbursment(o.id);
-        differingInterestRates(o.id);
-        equipmentCollateral(o.id);
-        equipmentObligations(o.id);
+        if(o.is_cross_collateralized){ crossCollateralized(o.id); }
+        if(o.controlled_disbursement){ controlledDisbursment(o.id); }
+        if(o.fins.int_percent_arm != o.fins.int_percent_dist){ differingInterestRates(o.id); }
+        if(1 * o.fins.equipmentCollateral > 0){ equipmentCollateral(o.id); }
+        if(!o.quests.equip_obligations){ equipmentObligations(o.id); }
         farmerHistory(o.id);
         firstTimeFarmer(o.id);
-        fmaGoodStanding(o.id);
-        fsaGoodStanding(o.id);
-        harvestOwn(o.id);
+        if(!o.quests.fci_good){ fmaGoodStanding(o.id); }
+        if(!o.quests.fsa_good){ fsaGoodStanding(o.id); }
+        if(!o.quests.harvest_own){ harvestOwn(o.id); }
         insufficientValueARM(o.id);
         insufficientValueTotal(o.id);
         insuranceClaimCollateral(o.id);
-        isDefendant(o.id);
-        loanTypeDistributor(o.id);
-        loantypeNoDistributor(o.id);
-        negativeCashFlow(o.id);
+        if(o.quests.legal_defendant){ isDefendant(o.id); }
+        if(1 * o.fins.cash_flow < 0){ negativeCashFlow(o.id); }
         noGuarantors(o.id);
         nonRPInsurance(o.id);
         nonstandardArmInterest(o.id);
@@ -120,23 +118,22 @@
         nonstandardProcessingFee(o.id);
         nonstandardRealEstateDiscount(o.id);
         nonstandardServiceFee(o.id);
-        notGradeA(o.id);
-        outstandingJudgement(o.id);
-        outstandingLiens(o.id);
+        if(o.fins.grade != 'A'){ notGradeA(o.id, o.fins.grade); }
+        if(o.quests.judgements){ outstandingJudgement(o.id); }
+        if(o.quests.liens){ outstandingLiens(o.id); }
         outstandingLoan(o.id);
-        pastDuePremiums(o.id);
-        plantOwn(o.id);
+        if(!o.quests.premiums_past){ pastDuePremiums(o.id); }
+        if(!o.quests.plant_own){ plantOwn(o.id); }
         previousAddendum(o.id);
-        processingFeeNotOnTotal(o.id);
+        if(!o.fins.fee_processing_onTotal){ processingFeeNotOnTotal(o.id); }
         producesPeanuts(o.id);
         producesSugarCane(o.id);
-        realEstateCollateral(o.id);
+        if(1 * o.fins.realEstateCollateral > 0) { realEstateCollateral(o.id); }
         rentExpenses(o.id);
-        riskMargin(o.id);
-        serviceFeeNotOnTotal(o.id);
-        thirdPartyCredit(o.id);
+        if(1 * o.fins.riskMargin < 0){ riskMargin(o.id); }
+        if(!o.fins.fee_service_onTotal){ serviceFeeNotOnTotal(o.id); }
+        if(1 * o.fins.principal_other > 0){ thirdPartyCredit(o.id); }
         variableHarvesting(o.id);
-        wholeFarmExpenses(o.id);
         yieldHistory(o.id);
       }
 
