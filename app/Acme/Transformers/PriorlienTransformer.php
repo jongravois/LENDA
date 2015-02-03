@@ -17,7 +17,8 @@ class PriorlienTransformer extends Transformer{
       'ins_over_discount' => $arr['ins_over_discount'],
       'fsa_payments' => $arr['fsa_payments'],
       'claims' => $arr['claims'],
-      'other' => $arr['other'],
+      'equipment' => $arr['equipment'],
+      'realestate' => $arr['realestate'],
       'total' => $arr['total']
     ];
   }
