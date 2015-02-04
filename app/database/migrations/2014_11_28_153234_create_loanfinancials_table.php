@@ -49,6 +49,7 @@ class CreateLoanfinancialsTable extends Migration {
       $table->double('disc_prod_percent')->default(50);
       $table->double('non_rp_percent')->default(0);
       $table->double('claims_percent')->default(20);
+      $table->double('fsa_assignment_percent')->default(20);
       $table->double('collateral_equipment')->default(0);
       $table->double('equipment_percent')->default(20);
       $table->double('collateral_realestate')->default(0);

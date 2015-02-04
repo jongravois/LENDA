@@ -8,7 +8,8 @@
             getFarmer: getFarmer,
             getFarmers: getFarmers,
             createFarmer: createFarmer,
-            updateFarmer: updateFarmer
+            updateFarmer: updateFarmer,
+            loansByFarmer: loansByFarmer
           };
 
           function getFarmer(id){
@@ -25,6 +26,10 @@
 
           function updateFarmer(o){
             return $http.put(API_URL + '/farmers/' + o.id, o);
+          }
+
+          function loansByFarmer(id){
+            return $http.get(API_URL + '/farmers/' + id + '/loans')
           }
         });
 })();

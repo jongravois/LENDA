@@ -4,7 +4,7 @@
     .module('ARM')
     .factory('ExceptionsFactory', function ExceptionsFactory(
       $http, $q, API_URL, $stateParams,
-      AppFactory, LoansFactory
+      AppFactory, FarmersFactory, GlobalsFactory, LoansFactory
     ) {
 
       //PUBLIC API
@@ -70,71 +70,134 @@
         yieldHistory: yieldHistory
       };
 
-      function createExceptions(o) {
-        if (!o.quests) {
-          LoansFactory.getQuests($stateParams.loanID)
-            .then(function success(rsp) {
-              o.quests = rsp.data.data[0];
-              console.log(o);
-            });
-        } else {
-          console.info(o);
+      function createExceptions(){
+        return LoansFactory.getLoan($stateParams.loanID)
+          .then(updateLoanData);
+      }
+      
+      function getCrops(){
+        return LoansFactory.getLoanCrops($stateParams.loanID)
+          .then(function success(rsp){
+              return rsp.data.data;
+          });
+      }
+
+      function getFarmer(id){
+        return FarmersFactory.getFarmer(id)
+          .then(function success(rsp){
+              return rsp.data.data;
+          });
+      }
+
+      function getFarms(){
+        return LoansFactory.getFarms($stateParams.loanID)
+          .then(function success(rsp){
+              return rsp.data.data;
+          });
+      }
+      
+      function getFinancials(){
+        return LoansFactory.getFinancials($stateParams.loanID)
+          .then(function success(rsp){
+              return rsp.data.data[0];
+          });
+      }
+
+      function getGlobals(){
+        return GlobalsFactory.getGlobals()
+          .then(function success(rsp){
+              return rsp.data.data[0];
+          });
+      }
+
+      function getLoansByFarmer(id){
+        return FarmersFactory.loansByFarmer(id)
+          .then(function success(rsp){
+              return rsp.data.data;
+          });
+      }
+      
+      function getQuests(){
+        return LoansFactory.getQuests($stateParams.loanID)
+          .then(function success(rsp){
+              return rsp.data.data[0];
+          });
+      }
+
+      function newLoanExceptions(o){
+        var loan = o.data.data[0];
+
+        if(loan.is_cross_collateralized){ crossCollateralized(loan.id); }
+        if(loan.controlled_disbursement){ controlledDisbursment(loan.id); }
+
+        if(o.quests.bankruptcy){ bankruptcyHistory(loan.id); }
+        if(o.quests.bankruptcyOrder){ bankruptcyOrder(loan.id); }
+        if(!o.quests.other_cash){ cashOutlayProvisions(loan.id); }
+        if(!o.quests.future_liabilities){ contractualObligations(loan.id); }
+        if(!o.quests.equip_obligations){ equipmentObligations(loan.id); }
+        if(!o.quests.fci_good){ fmaGoodStanding(loan.id); }
+        if(!o.quests.fsa_good){ fsaGoodStanding(loan.id); }
+        if(!o.quests.harvest_own){ harvestOwn(loan.id); }
+        if(o.quests.legal_defendant){ isDefendant(loan.id); }
+        if(o.quests.judgements){ outstandingJudgement(loan.id); }
+        if(o.quests.liens){ outstandingLiens(loan.id); }
+        if(!o.quests.premiums_past){ pastDuePremiums(loan.id); }
+        if(!o.quests.plant_own){ plantOwn(loan.id); }
+        if(o.quests.credit_3p_available){ thirdPartyCredit(loan.id); }
+
+        if(o.fins.int_percent_arm != o.globals.int_percent_dist){ differingInterestRates(loan.id); }
+        if(1 * o.fins.equipmentCollateral > 0){ equipmentCollateral(loan.id); }
+        if(1 * o.fins.cash_flow < 0){ negativeCashFlow(loan.id); }
+        if(1 * o.fins.int_percent_arm != 1 * o.globals.int_percent_arm){
+          nonstandardArmInterest(loan.id);
+        }
+        if(1 * o.fins.claims_percent != 1 * o.globals.claims_discount_rate){
+          nonstandardClaimsDiscount(loan.id);
+        }
+        if(1 * o.fins.disc_ins_percent != 1 * o.globals.projected_crops_discount_rate){
+          nonstandardCropDiscount(loan.id);
+        }
+        if(1 * o.fins.disc_prod_percent != 1 * o.globals.ins_discount_rate){
+          nonstandardCropInsuranceDiscount(loan.id);
+        }
+        if(1 * o.fins.equipment_percent != 1 * o.globals.equipment_discount_rate){
+          nonstandardEquipmentDiscount(loan.id);
+        }
+        if(1 * o.fins.fsa_assignment_percent != 1 * o.globals.fsa_assignment_discount_rate){
+          nonstandardFsaAssignment(loan.id);
+        }
+        if(1 * o.fins.fee_processing_percent != 1 * o.globals.proc_fee_rate){
+          nonstandardProcessingFee(loan.id);
+        }
+        if(1 * o.fins.fee_service_percent != 1 * o.globals.svc_fee_rate){
+          nonstandardServiceFee(loan.id);
+        }
+        if(1 * o.fins.realestate_percent != 1 * o.globals.realestate_discount_rate){
+          nonstandardRealEstateDiscount(loan.id);
+        }
+        if(o.fins.grade != 'A'){ notGradeA(loan.id, o.fins.grade); }
+        if(!o.fins.fee_processing_onTotal){ processingFeeNotOnTotal(loan.id); }
+        if(1 * o.fins.realEstateCollateral > 0) { realEstateCollateral(loan.id); }
+        if(1 * o.fins.riskMargin < 0){ riskMargin(loan.id); }
+        if(!o.fins.fee_service_onTotal){ serviceFeeNotOnTotal(loan.id); }
+
+        if(o.loansByFarmer.length > 1){ outstandingLoan(loan.id); }
+
+        if(1 * o.farmer.farm_exp < 2){
+          firstTimeFarmer(loan.id);
+        } else if(1 * o.farmer.farm_exp < 4){
+          farmerHistory(loan.id);
+        } // end if
+
+        if(1 * o.crops[6].acres > 0){
+          producesPeanuts(loan.id);
         }
 
-        balanceSheetLessArm(o.id);
-        balanceSheetNetWorth(o.id);
-        if(o.quests.bankruptcy){ bankruptcyHistory(o.id); }
-        if(o.quests.bankruptcyOrder){ bankruptcyOrder(o.id); }
-        bookedCrops(o.id);
-        if(!o.quests.other_cash){ cashOutlayProvisions(o.id); }
-        cashRentWaivers(o.id);
-        if(!o.quests.future_liabilities){ contractualObligations(o.id); }
-        cropBreakEven(o.id);
-        cropInsuranceShare(o.id);
-        if(o.is_cross_collateralized){ crossCollateralized(o.id); }
-        if(o.controlled_disbursement){ controlledDisbursment(o.id); }
-        if(o.fins.int_percent_arm != o.fins.int_percent_dist){ differingInterestRates(o.id); }
-        if(1 * o.fins.equipmentCollateral > 0){ equipmentCollateral(o.id); }
-        if(!o.quests.equip_obligations){ equipmentObligations(o.id); }
-        farmerHistory(o.id);
-        firstTimeFarmer(o.id);
-        if(!o.quests.fci_good){ fmaGoodStanding(o.id); }
-        if(!o.quests.fsa_good){ fsaGoodStanding(o.id); }
-        if(!o.quests.harvest_own){ harvestOwn(o.id); }
-        insufficientValueARM(o.id);
-        insufficientValueTotal(o.id);
-        insuranceClaimCollateral(o.id);
-        if(o.quests.legal_defendant){ isDefendant(o.id); }
-        if(1 * o.fins.cash_flow < 0){ negativeCashFlow(o.id); }
-        noGuarantors(o.id);
-        nonRPInsurance(o.id);
-        nonstandardArmInterest(o.id);
-        nonstandardClaimsDiscount(o.id);
-        nonstandardCropDiscount(o.id);
-        nonstandardCropInsuranceDiscount(o.id);
-        nonstandardDueDate(o.id);
-        nonstandardEquipmentDiscount(o.id);
-        nonstandardFsaAssignment(o.id);
-        nonstandardProcessingFee(o.id);
-        nonstandardRealEstateDiscount(o.id);
-        nonstandardServiceFee(o.id);
-        if(o.fins.grade != 'A'){ notGradeA(o.id, o.fins.grade); }
-        if(o.quests.judgements){ outstandingJudgement(o.id); }
-        if(o.quests.liens){ outstandingLiens(o.id); }
-        outstandingLoan(o.id);
-        if(!o.quests.premiums_past){ pastDuePremiums(o.id); }
-        if(!o.quests.plant_own){ plantOwn(o.id); }
-        previousAddendum(o.id);
-        if(!o.fins.fee_processing_onTotal){ processingFeeNotOnTotal(o.id); }
-        producesPeanuts(o.id);
-        producesSugarCane(o.id);
-        if(1 * o.fins.realEstateCollateral > 0) { realEstateCollateral(o.id); }
-        rentExpenses(o.id);
-        if(1 * o.fins.riskMargin < 0){ riskMargin(o.id); }
-        if(!o.fins.fee_service_onTotal){ serviceFeeNotOnTotal(o.id); }
-        if(1 * o.fins.principal_other > 0){ thirdPartyCredit(o.id); }
-        variableHarvesting(o.id);
-        yieldHistory(o.id);
+        if(1 * o.crops[7].acres > 0){
+          producesSugarCane(loan.id);
+        }
+
+
       }
 
       function balanceSheetLessArm(loanID){
@@ -173,11 +236,11 @@
         AppFactory.postIt('/loanexceptions', ins);
       }
 
-      function bookedCrops(loanID){
+      function bookedCrops(loanID, crop){
         var ins = {
           loan_id: loanID,
           exception_id: 34,
-          msg: "More crop was booked than was insured (acres x APH x level) - corn…"
+          msg: "More crop was booked than was insured - " + crop
         };
         AppFactory.postIt('/loanexceptions', ins);
       }
@@ -218,20 +281,20 @@
         AppFactory.postIt('/loanexceptions', ins);
       }
 
-      function cropBreakEven(loanID){
+      function cropBreakEven(loanID, crop){
         var ins = {
           loan_id: loanID,
           exception_id: 45,
-          msg: "Applicant has yield history that is less than break-even for corn…"
+          msg: "Applicant has yield history that is less than break-even for " + crop
         };
         AppFactory.postIt('/loanexceptions', ins);
       }
 
-      function cropInsuranceShare(loanID){
+      function cropInsuranceShare(loanID, crop){
         var ins = {
           loan_id: loanID,
           exception_id: 33,
-          msg: "Crop Insurance share used is greater than the applicants share of operation: corn…"
+          msg: "Crop Insurance share used is greater than the applicants share of operation: " + crop
         };
         AppFactory.postIt('/loanexceptions', ins);
       }
@@ -289,7 +352,7 @@
         var ins = {
           loan_id: loanID,
           exception_id: 4,
-          msg: "Applicant is a first-time customer"
+          msg: "Applicant has a year or less of farming history"
         };
         AppFactory.postIt('/loanexceptions', ins);
       }
@@ -645,13 +708,31 @@
         AppFactory.postIt('/loanexceptions', ins);
       }
 
-      function yieldHistory(loanID){
+      function yieldHistory(loanID, crop){
         var ins = {
           loan_id: loanID,
           exception_id: 29,
-          msg: "No actual yield history existed - T-yield was used for corn…"
+          msg: "No actual yield history existed - T-yield was used for " + crop
         };
         AppFactory.postIt('/loanexceptions', ins);
+      }
+
+      function updateLoanData(loan){
+        //console.log(loan);
+        return $q.all({
+          crops: getCrops(),
+          farmer: getFarmer(loan.data.data[0].farmer_id),
+          farms: getFarms(),
+          fins: getFinancials(),
+          globals: getGlobals(),
+          loansByFarmer: getLoansByFarmer(loan.data.data[0].farmer_id),
+          quests: getQuests()
+        })
+          .then(function(updatedData){
+            angular.extend(loan, updatedData);
+            console.log(loan);
+            newLoanExceptions(loan);
+          });
       }
 
     });

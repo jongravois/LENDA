@@ -76,6 +76,7 @@ class LoanfinancialsTransformer extends Transformer{
 			'disc_adj_prod' => (double) $arr['disc_adj_prod'],
 			'ins_disc_prod' => (double) $arr['ins_disc_prod'],
 			'disc_ins' => (double) $arr['disc_ins'],
+			'fsa_assignment_percent' => (double) $arr['fsa_assignment_percent'],
 			'disc_ins_percent' => (double) $arr['disc_ins_percent'],
 			'claims_percent' => (double) $arr['claims_percent'],
 			'equipment_percent' => (double) $arr['equipment_percent'],

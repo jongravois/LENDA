@@ -41,8 +41,7 @@ class LoanexceptionsController extends ApiController {
 	{
 		//TODO: Validate
 
-		$doit = Loanexceptions::create(Input::all());
-
+		$doit = Loanexceptions::firstOrCreate(Input::all());
 		return $this->respondCreated('Loancondition created');
 	}
 

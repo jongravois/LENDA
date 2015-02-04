@@ -135,6 +135,7 @@
         };
         //TODO: Remove These
         $scope.createExceptions = ExceptionsFactory.createExceptions;
+        $scope.createBankruptcy = ExceptionsFactory.bankruptcyHistory;
         $scope.deleteException = function(index){
           var removee = $scope.loanExceptions[index];
           $scope.loanExceptions.splice(index,1);

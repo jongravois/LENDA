@@ -39,7 +39,7 @@
       {{loan.fins.total_fsa_payment | flexCurrency:0}}
     </td>
     <td class="text-right">
-      <percent-edit-in-place value="loan.fins.disc_ins_percent"></percent-edit-in-place>
+      <percent-edit-in-place value="loan.fins.fsa_assignment_percent"></percent-edit-in-place>
     </td>
     <td class="text-right">
       {{loan.fins.fsa_value = (((loan.fins.total_fsa_payment * 1) * (1 - (loan.fins.disc_ins_percent / 100 * 1))) - (prior_lien.fsa_payments * 1)) | flexCurrency:0}}
