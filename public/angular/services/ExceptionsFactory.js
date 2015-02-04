@@ -4,7 +4,7 @@
     .module('ARM')
     .factory('ExceptionsFactory', function ExceptionsFactory(
       $http, $q, API_URL, $stateParams,
-      AppFactory, FarmersFactory, GlobalsFactory, LoansFactory
+      AppFactory, FarmersFactory, GlobalsFactory, InsuranceFactory, LoansFactory
     ) {
 
       //PUBLIC API
@@ -124,6 +124,13 @@
           });
       }
 
+      function getPolicies(){
+        return InsuranceFactory.getPolicies($stateParams.loanID)
+          .then(function success(rsp){
+              return rsp.data.data;
+          });
+      }
+
       function newLoanExceptions(o){
         var loan = o.data.data[0];
 
@@ -147,6 +154,7 @@
 
         if(o.fins.int_percent_arm != o.globals.int_percent_dist){ differingInterestRates(loan.id); }
         if(1 * o.fins.equipmentCollateral > 0){ equipmentCollateral(loan.id); }
+        if(1 * o.fins.total_claims > 0){ insuranceClaimCollateral(loan.id); }
         if(1 * o.fins.cash_flow < 0){ negativeCashFlow(loan.id); }
         if(1 * o.fins.int_percent_arm != 1 * o.globals.int_percent_arm){
           nonstandardArmInterest(loan.id);
@@ -189,6 +197,11 @@
           farmerHistory(loan.id);
         } // end if
 
+        var net_worth = ((loan.fins.current_assets * ((100 - loan.fins.current_assets_factor) / 100)) - loan.fins.current_assets_liability) + ((loan.fins.intermediate_assets * ((100 - loan.fins.intermediate_assets_factor) / 100)) - loan.fins.intermediate_assets_liability) + ((loan.fins.fixed_assets * ((100 - loan.fins.fixed_assets_factor) / 100)) - loan.fins.fixed_assets_liability);
+        if(net_worth < 1 * o.fins.principal_arm){ balanceSheetLessArm(loan.id); }
+
+        if(net_worth < 0){ balanceSheetNetWorth(loan.id); }
+
         if(1 * o.crops[6].acres > 0){
           producesPeanuts(loan.id);
         }
@@ -197,7 +210,25 @@
           producesSugarCane(loan.id);
         }
 
+        var nonrp = _.find(o.policies, function(i){ return i.type != 'RP'});
+        if(nonrp.length > 0){ nonRPInsurance(loan.id); }
 
+        var wave = o.farms.reduce(function(tot,farm){return tot + farm.waived}, 0);
+        if(wave > 0){
+          cashRentWaivers(loan.id);
+        }
+
+        var rent_expense = _.any(o.farms,function(farm){ return farm.cash_rent == 0 && farm.share == 0; });
+        if(rent_expense){
+          rentExpenses(loan.id);
+        }
+
+        var varhar = o.crops.reduce(function(tot,crop){return tot + crop.harvest}, 0);
+        if(varhar > 0){
+          variableHarvesting(loan.id);
+        }
+
+        //TODO: Previous Addendum? -- previousAddendum(loan.id);
       }
 
       function balanceSheetLessArm(loanID){
@@ -726,7 +757,8 @@
           fins: getFinancials(),
           globals: getGlobals(),
           loansByFarmer: getLoansByFarmer(loan.data.data[0].farmer_id),
-          quests: getQuests()
+          quests: getQuests(),
+          policies: getPolicies()
         })
           .then(function(updatedData){
             angular.extend(loan, updatedData);
