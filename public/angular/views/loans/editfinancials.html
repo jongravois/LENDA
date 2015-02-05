@@ -273,7 +273,7 @@
         <tr>
           <td>Debt to Asset [<=]</td>
           <td class="text-center" ng-class=gtZero(loan.grader.debt2asset_ratio)>
-            {{loan.grader.debt2asset_ratio | flexPercent:1}}
+            {{loan.grader.debt2asset_ratio | displaynullpercent}}
           </td>
           <td class="bright text-center" ng-class=gtZero(loan.grader.debt2asset_ratio_adj)>
             {{loan.grader.debt2asset_ratio_adj | displaynullpercent}}
@@ -294,64 +294,64 @@
         <tr>
           <td>Current Ratio [>=]</td>
           <td class="text-center" ng-class=gtZero(loan.grader.ratio_current)>
-            {{loan.grader.ratio_current / 100 | number:2}}
+            {{loan.grader.ratio_current | displaynullpercent}}
           </td>
           <td class="bright text-center" ng-class=gtZero(loan.grader.ratio_current_adj)>
-            {{loan.grader.ratio_current_adj / 100 | number:2}}
+            {{loan.grader.ratio_current_adj | displaynullpercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[0].current_ratio }">
-            {{grads[0].current_ratio / 100 | number:2}}
+            {{grads[0].current_ratio | displaynullpercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[1].current_ratio }">
-            {{grads[1].current_ratio / 100 | number:2}}
+            {{grads[1].current_ratio | displaynullpercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[2].current_ratio }">
-            {{grads[2].current_ratio / 100 | number:2}}
+            {{grads[2].current_ratio | displaynullpercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[3].current_ratio }">
-            {{grads[3].current_ratio / 100 | number:2}}
+            {{grads[3].current_ratio | displaynullpercent}}
           </td>
         </tr>
         <tr>
           <td>Working Capital [>=]</td>
           <td class="text-center" ng-class=gtZero(loan.grader.capWork)>
-            {{loan.grader.capWork | flexPercent:1}}
+            {{loan.grader.capWork | displaynullpercent}}
           </td>
           <td class="bright text-center" ng-class=gtZero(loan.grader.capWork_adj)>
-            {{loan.grader.capWork_adj | flexPercent:1}}
+            {{loan.grader.capWork_adj | displaynullpercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[0].working_capital }">
-            {{grads[0].working_capital | flexPercent:1}}
+            {{grads[0].working_capital | displaypercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[1].working_capital }">
-            {{grads[1].working_capital | flexPercent:1}}
+            {{grads[1].working_capital | displaypercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[2].working_capital }">
-            {{grads[2].working_capital | flexPercent:1}}
+            {{grads[2].working_capital | displaypercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[3].working_capital }">
-            {{grads[3].working_capital | flexPercent:1}}
+            {{grads[3].working_capital | displaypercent}}
           </td>
         </tr>
         <tr>
           <td>Borrowing Capacity [>=]</td>
           <td class="text-center" ng-class=gtZero(loan.grader.capBorrow)>
-            {{loan.grader.capBorrow | flexPercent:1}}
+            {{loan.grader.capBorrow | displaynullpercent}}
           </td>
           <td class="bright text-center" ng-class=gtZero(loan.grader.capBorrow_adj)>
-            {{loan.grader.capBorrow_adj | flexPercent:1}}
+            {{loan.grader.capBorrow_adj | displaynullpercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[0].borrowing_capacity }">
-            {{grads[0].borrowing_capacity | flexPercent:1}}
+            {{grads[0].borrowing_capacity | displaypercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[1].borrowing_capacity }">
-            {{grads[1].borrowing_capacity | flexPercent:1}}
+            {{grads[1].borrowing_capacity | displaypercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[2].borrowing_capacity }">
-            {{grads[2].borrowing_capacity | flexPercent:1}}
+            {{grads[2].borrowing_capacity | displaypercent}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[3].borrowing_capacity }">
-            {{grads[3].borrowing_capacity | flexPercent:1}}
+            {{grads[3].borrowing_capacity | displaypercent}}
           </td>
         </tr>
         <tr>

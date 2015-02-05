@@ -1,7 +1,6 @@
 <?php
 
-class Role extends \Eloquent
-{
-    public $timestamps = false;
-    protected $fillable = ['abr', 'role'];
+class Role extends \Eloquent {
+	public $timestamps = false;
+	protected $fillable = ['abr', 'role'];
 }

@@ -1,17 +1,16 @@
 <?php
 
-class Crop extends \Eloquent
-{
-    protected $hidden = ['created_at', 'updated_at'];
-    protected $fillable = ['crop', 'tea', 'measurement', 'rebate_measurement'];
+class Crop extends \Eloquent {
+	protected $hidden = ['created_at', 'updated_at'];
+	protected $fillable = ['crop', 'tea', 'measurement', 'rebate_measurement'];
 
-    public function cropdetails()
-    {
-        return $this->hasOne('Cropdetails');
-    }
+	public function cropdetails()
+	{
+		return $this->hasOne('Cropdetails');
+	}
 
-    public function loan()
-    {
-        return $this->belongsToMany('Loan');
-    }
+	public function loan()
+	{
+		return $this->belongsToMany('Loan');
+	}
 }

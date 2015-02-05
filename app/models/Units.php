@@ -1,7 +1,6 @@
 <?php
 
-class Units extends \Eloquent
-{
-    public $timestamps = false;
-    protected $fillable = ['unit', 'abr', 'toPounds'];
+class Units extends \Eloquent {
+	public $timestamps = false;
+	protected $fillable = ['unit', 'abr', 'toPounds'];
 }
