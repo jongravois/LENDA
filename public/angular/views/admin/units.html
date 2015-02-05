@@ -11,17 +11,16 @@
         </tr>
         <tr ng-repeat="u in feeder.units">
             <td>
-                {{ u.unit | capitalize:true }}
+                {{ u.unit }}
             </td>
-            <td class="text-center">
+            <td>
                 {{ u.abr }}
             </td>
-            <td ng-class=gtZero(u.toPounds)>
-                {{u.toPounds | number:0}}
+            <td>
+                {{u.toPounds | number:2}}
             </td>
-            <!-- I really don't see the need for this.  For conversion just divide 1 / u.toPounds(target) * u.toPounds(destination) -->
-            <td ng-class=gtZero(u.fromPounds)>
-                {{1 / u.toPounds | number:6}}
+            <td>
+                {{u.fromPounds | number:2}}
             </td>
             <td style="white-space: nowrap">
                 <a class="btn btn-success" ui-sref="admin.units.edit({unitId:u.id})">edit</a>

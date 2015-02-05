@@ -1,9 +1,8 @@
 <?php
 
-class Loanstatus extends Eloquent
-{
+class Loanstatus extends Eloquent {
     protected $table = 'loanstatus';
-    public $timestamps = false;
-    protected $fillable = ['status'];
+	public $timestamps = false;
+	protected $fillable = ['status'];
 
 }

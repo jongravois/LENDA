@@ -1,7 +1,6 @@
 <?php
 
-class Exceptions extends \Eloquent
-{
-    public $timestamps = false;
-    protected $fillable = ['message'];
+class Exceptions extends \Eloquent {
+	public $timestamps = false;
+	protected $fillable = ['message'];
 }
