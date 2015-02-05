@@ -21,18 +21,29 @@ class LoanconditionsController extends ApiController {
 
 	public function store()
 	{
-		if( ! Input::get('loancondition')){
+		//TODO: Validate
+		/*if( ! Input::get('loancondition')){
 			return $this->respondCreationDenied('Failed Validation');
-		} // end if
+		} // end if*/
 
-		Loancondition::create(Input::all());
+		$doit = Loanconditions::create(Input::all());
+
+		//Add systemic
+		$newInfo = [
+			'loan_id'	=>	Input::get('loan_id'),
+			'user'		=>	Auth::user()->username,
+			'action'	=>	'Created Security Agreement Loan Condition'
+		];
+		if($doit){
+			Systemics::create($newInfo);
+		}
 
 		return $this->respondCreated('Loancondition created');
 	}
 
 	public function show($id)
 	{
-		$loancondition = Loancondition::where('id', $id)->get();
+		$loancondition = Loanconditions::where('id', $id)->get();
 
 		if( $loancondition->isEmpty() ){
 			return $this->respondNotFound('Loancondition does not exist.');
@@ -50,10 +61,10 @@ class LoanconditionsController extends ApiController {
 
 	public function update($id)
 	{
-		$loancondition = Loancondition::find($id);
+		$loancondition = Loanconditions::find($id);
 
 		if(!$loancondition){
-			Loancondition::create(Input::all());
+			Loanconditions::create(Input::all());
 			return $this->respondCreated('Loancondition Created');
 		} // end if
 
@@ -64,12 +75,14 @@ class LoanconditionsController extends ApiController {
 
 	public function destroy($id)
 	{
-		return Loancondition::where('id', $id)->delete();
+		//TODO: create systemic
+
+		return Loanconditions::where('id', $id)->delete();
 	}
 
 	public function byLoan($id)
 	{
-		$loanconditions = Loanconditions::where('loan_id', $id)->get();
+		$loanconditions = Loanconditions::where('loan_id', $id)->orderBy('condition_id')->get();
 		return $this->respond([
 			'data' => $this->loanconditionTransformer->transformCollection($loanconditions->all())
 		]);

@@ -1,0 +1,24 @@
+<style>
+  .strike { text-decoration: line-through; }
+  .bold { font-weight: bold; }
+  .red { color: red; }
+  .gray { color: #AAAAAA; }
+</style>
+<fieldset>
+  <div ng-switch="loan.loan_type_id">
+    <h3>{{loan.loan_type}} Checklist</h3>
+    <p ng-class="{'strike': farmer, 'gray': farmer, 'bold': !farmer, 'red': !farmer}">Farmer Identified</p>
+    <p ng-class="{'strike': applicant, 'gray': applicant, 'bold': !applicant, 'red': !applicant}">Applicant Identified</p>
+    <br/>
+    <p ng-switch-when="1">{{loan.loan_type}}</p>
+    <p ng-switch-when="2">{{loan.loan_type}}</p>
+    <p ng-switch-when="3">{{loan.loan_type}}</p>
+    <p ng-switch-when="4">{{loan.loan_type}}</p>
+    <p ng-switch-when="5">{{loan.loan_type}}</p>
+    <p ng-switch-when="6">{{loan.loan_type}}</p>
+    <p ng-switch-when="7">{{loan.loan_type}}</p>
+    <p ng-switch-when="8">{{loan.loan_type}}</p>
+  </div>
+</fieldset>
+<br/><br/>
+<p><pre>{{loan|json}}</pre></p>

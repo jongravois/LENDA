@@ -4,304 +4,49 @@
   .rowed td{border:1px solid #dddddd; }
   .lg-text{ font-size: 16px;}
 </style>
+<!--LOAN EXCEPTIONS-->
 <fieldset>
   <legend>Loan Exceptions</legend>
   <div class="row">
-    <div class="form-group col-md-9 col-md-offset-1">
-      <h5>No exceptions found.</h5>
-      <!--<div ng-include="'angular/views/loans/partials/loan_exceptions.html'"></div>-->
+    <div class="form-group col-md-12">
+      <p class="lg-text" ng-repeat="e in loanExceptions">
+        {{e.msg}}&nbsp;&nbsp;<span ng-click="deleteException($index)" style="cursor:pointer;">[delete]</span>
+      </p>
+      <br/><br/>
+      <button ng-click="createExceptions()">Exceptions</button>
+      <button ng-click="createBankruptcy('99')">Bankruptcy</button>
     </div>
   </div>
 </fieldset>
 <br/><br/>
+<!--LOAN CONDITIONS-->
 <fieldset>
-  <legend>Collateral Conditions</legend>
-  <!-- TODO See Notes -->
+  <legend>Loan/Collateral Conditions</legend>
   <div class="row">
     <div class="form-group col-md-9 col-md-offset-1">
-      <!--<h5>No collateral conditions found.</h5>-->
-    <div ng-include="'angular/views/loans/partials/collateral_conditions.html'"></div>
+      <div ng-include="'angular/views/loans/partials/collateral_conditions.html'"></div>
     </div>
   </div>
 </fieldset>
 <br/><br/>
+<!--COLLATERAL SUMMARY-->
 <fieldset>
-  <!-- TODO: Trigger a LENDA -->
   <legend>Collateral Summary</legend>
   <div class="row">
     <div class="form-group col-md-10 col-md-offset-1">
-      <table class="table table-striped rowed">
-        <tr>
-          <th style="width:37%;">&nbsp;</th>
-          <th style="width:15%;">
-            Prior Lien
-          </th>
-          <th style="width:12%;">
-            Mkt Value
-          </th>
-          <th style="width:12%;">
-            Disc. %
-          </th>
-          <th style="width:12%;">
-            Non RP
-          </th>
-          <th style="width:12%;">
-            Value
-          </th>
-        </tr>
-        <tr>
-          <td>Projected Crops</td>
-          <td ng-class=gtZero(prior_lien.projected_crops)>
-            <no-cents-edit-in-place value="prior_lien.projected_crops"></no-cents-edit-in-place>
-          </td>
-          <td class="text-right">
-            {{loan.fins.adj_prod | flexCurrency:0}}
-          </td>
-          <td class="text-right">
-            <percent-edit-in-place value="loan.fins.disc_prod_percent"></percent-edit-in-place>
-          </td>
-          <td class="text-right">
-            {{loan.fins.non_rp_percent | number:1}}%
-          </td>
-          <td class="text-right">
-            {{loan.fins.pc_value = ((prior_lien.projected_crops * 1 + loan.fins.adj_prod * 1) * ((loan.fins.disc_prod_percent/100) + (loan.fins.non_rp_percent/100))) | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr>
-          <td>Crop Ins Over Discounted Crops</td>
-          <td ng-class=gtZero(prior_lien.ins_over_discount)>
-            <no-cents-edit-in-place value="prior_lien.ins_over_discount"></no-cents-edit-in-place>
-          </td>
-          <td class="text-right">
-            {{loan.fins.ins_disc_prod | flexCurrency:0}}
-          </td>
-          <td class="text-right">
-            <percent-edit-in-place value="loan.fins.disc_ins_percent"></percent-edit-in-place>
-          </td>
-          <td class="text-right">
-            {{loan.fins.non_rp_percent | number:1}}%
-          </td>
-          <td class="text-right">
-            {{loan.fins.iod_value = ((prior_lien.ins_over_discount * 1 + loan.fins.ins_disc_prod * 1) * ((loan.fins.disc_ins_percent/100) + (loan.fins.non_rp_percent/100))) | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr>
-          <td>FSA Payments</td>
-          <td ng-class=gtZero(prior_lien.fsa_payments)>
-            <no-cents-edit-in-place value="prior_lien.fsa_payments"></no-cents-edit-in-place>
-          </td>
-          <td class="text-right" ng-class=gtZero(loan.fins.total_fsa_payment)>
-            {{loan.fins.total_fsa_payment | flexCurrency:0}}
-          </td>
-          <td class="text-right">
-            <percent-edit-in-place value="loan.fins.disc_ins_percent"></percent-edit-in-place>
-          </td>
-          <td class="text-right">
-            {{loan.fins.non_rp_percent | number:1}}%
-          </td>
-          <td class="text-right">
-            {{loan.fins.fsa_value = ((prior_lien.fsa_payments * 1 + loan.fins.total_fsa_payment * 1) * ((loan.fins.disc_ins_percent/100) + (loan.fins.non_rp_percent/100))) | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr>
-          <td>Claims</td>
-          <td ng-class=gtZero(prior_lien.claims)>
-            <no-cents-edit-in-place value="prior_lien.claims"></no-cents-edit-in-place>
-          </td>
-          <td class="text-right" ng-class=gtZero(loan.fins.total_claims)>
-            {{loan.fins.total_claims | flexCurrency:0}}
-          </td>
-          <td class="text-right">
-            <percent-edit-in-place value="loan.fins.disc_ins_percent"></percent-edit-in-place>
-          </td>
-          <td class="text-right">
-            {{loan.fins.non_rp_percent | number:1}}%
-          </td>
-          <td class="text-right" ng-class=gtZero(loan.fins.claims_value)>
-            {{loan.fins.claims_value = ((prior_lien.claims * 1 + loan.fins.total_claims * 1) * ((loan.fins.disc_ins_percent/100) + (loan.fins.non_rp_percent/100))) | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr>
-          <td>Equipment</td>
-          <td class="text-center">
-            <no-cents-edit-in-place value="0.00"></no-cents-edit-in-place>
-          </td>
-          <td class="text-right" ng-class=gtZero(0)>
-            {{0 | flexCurrency}}
-          </td>
-          <td class="text-right">
-            <percent-edit-in-place value="20.0"></percent-edit-in-place>
-          </td>
-          <td class="text-right">
-            {{0 | number:1}}%
-          </td>
-          <td class="text-right" ng-class=gtZero(0)>
-            {{0 | flexCurrency}}
-          </td>
-        </tr>
-        <tr>
-          <td>Real Estate</td>
-          <td class="text-right" ng-class=gtZero(0)>
-            <no-cents-edit-in-place value="0.00"></no-cents-edit-in-place>
-          </td>
-          <td class="text-right"  ng-class=gtZero(0)>
-            {{0 | flexCurrency:0}}
-          </td>
-          <td class="text-right">
-            <percent-edit-in-place value="40.0"></percent-edit-in-place>
-          </td>
-          <td class="text-right">
-            {{0 | number:1}}%
-          </td>
-          <td class="text-right" ng-class=gtZero(0)>
-            {{0 | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr class="success">
-          <td>Total Value</td>
-          <td ng-class=gtZero(prior_lien.total)>
-            {{prior_lien.total | flexCurrency:0}}
-          </td>
-          <td class="text-right">
-            {{loan.fins.adj_prod * 1 + loan.fins.ins_disc_prod * 1 + loan.fins.total_fsa_payment * 1 + loan.fins.total_claims * 1 | flexCurrency:0}}
-          </td>
-          <td class="text-right">&nbsp;</td>
-          <td class="text-right">&nbsp;</td>
-          <td class="text-right">
-            {{loan.fins.pc_value * 1 + loan.fins.iod_value * 1 + loan.fins.fsa_value * 1 + loan.fins.claims_value * 1 | flexCurrency:0}}
-          </td>
-        </tr>
-      </table>
+      <div ng-include="'angular/views/loans/partials/underwriting_collateral_table.html'"></div>
     </div>
   </div>
 </fieldset>
 <br/><br/>
-        <!--TODO: Addendums-->
+<!--TODO: Addendums-->
 <!--<fieldset ng-if="loan.has_addendum">-->
 <fieldset>
-  <legend>Loan History (Hardcoded for styling only)</legend>
+  <legend>Loan History</legend>
+  <!-- TODO: Hardcoded for styling only-->
   <div class="row">
     <div class="col-md-12">
-      <table class="table table-striped rowed">
-        <tr>
-          <th style="width:3%;">&nbsp;</th>
-          <th clas="text-center" style="width:9%;">Date</th>
-          <th clas="text-center" style="width:9%;">Acres</th>
-          <th clas="text-center" style="width:9%;">Revenue</th>
-          <th clas="text-center" style="width:9%;">ARM</th>
-          <th clas="text-center" style="width:9%;">{{loan.distributor}}</th>
-          <th class="text-center" style="width:9%;">Other</th>
-          <th class="text-center" style="width:9%;">CF</th>
-          <th class="text-center" style="width:9%;">Ins</th>
-          <th class="text-center" style="width:9%;">Collateral</th>
-          <th class="text-center" style="width:9%;">RM</th>
-        </tr>
-        <tr>
-          <td>
-            <span class="glyphicon glyphicon-usd"></span>
-          </td>
-          <td>
-            9/15/14
-          </td>
-          <td>
-            2,200
-          </td>
-          <td class="text-right">
-            $1,085,440
-          </td>
-          <td class="text-right">
-            $357,239
-          </td>
-          <td class="text-right">
-            $547,960
-          </td>
-          <td class="text-right">
-            44,000
-          </td>
-          <td class="text-right">
-            $156,000
-          </td>
-          <td class="text-right">
-            $848,560
-          </td>
-          <td class="text-right">
-            $800,000
-          </td>
-          <td class="text-right">
-            $200,000
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <span class="glyphicon glyphicon-plus"></span>
-          </td>
-          <td>
-            9/15/14
-          </td>
-          <td>
-            2,200
-          </td>
-          <td class="text-right">
-            $1,085,440
-          </td>
-          <td class="text-right">
-            $257,239
-          </td>
-          <td class="text-right">
-            $547,960
-          </td>
-          <td class="text-right">
-            44,000
-          </td>
-          <td class="text-right">
-            $198,027
-          </td>
-          <td class="text-right">
-            $848,560
-          </td>
-          <td class="text-right">
-            $809,000
-          </td>
-          <td class="text-right">
-            $3,801
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <span class="glyphicon glyphicon-record"></span>
-          </td>
-          <td>
-            3/14/14
-          </td>
-          <td>
-            2,000
-          </td>
-          <td class="text-right">
-            $971,200
-          </td>
-          <td class="text-right">
-            $233,953
-          </td>
-          <td class="text-right">
-            $481,610
-          </td>
-          <td class="text-right">
-            41,800
-          </td>
-          <td class="text-right">
-            $181,637
-          </td>
-          <td class="text-right">
-            $760,190
-          </td>
-          <td class="text-right">
-            $705,264
-          </td>
-          <td class="text-right">
-            $(10,299)
-          </td>
-        </tr>
-      </table>
+      <div ng-include="'angular/views/loans/partials/underwriting_loanhistory_summary.html'"></div>
     </div>
   </div>
 </fieldset>

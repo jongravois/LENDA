@@ -36,5 +36,29 @@ class LoanquestionsTableSeeder extends Seeder {
 			'amount_requested' => 35000
 		]);
 
+		Loanquestions::create([
+			'loan_id' 	=> 	3
+		]);
+
+		Loanquestions::create([
+			'loan_id' 	=> 	4
+		]);
+
+		Loanquestions::create([
+			'loan_id' 	=> 	5
+		]);
+
+		Loanquestions::create([
+			'loan_id' 	=> 	6
+		]);
+
+		Loanquestions::create([
+			'loan_id' 	=> 	7
+		]);
+
+		Loanquestions::create([
+			'loan_id' 	=> 	8
+		]);
+
 	}
 }

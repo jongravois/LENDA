@@ -19,6 +19,7 @@ class CreateLoanfinancialsTable extends Migration {
       $table->string('grade')->default('F');
       $table->double('amount_requested')->default(0);
       $table->double('total_acres')->default(0);
+
       $table->double('year_1_revenue')->default(0);
       $table->double('year_1_expenses')->default(0);
       $table->double('year_2_revenue')->default(0);
@@ -47,6 +48,12 @@ class CreateLoanfinancialsTable extends Migration {
       $table->double('adj_prod')->default(0);
       $table->double('disc_prod_percent')->default(50);
       $table->double('non_rp_percent')->default(0);
+      $table->double('claims_percent')->default(20);
+      $table->double('fsa_assignment_percent')->default(20);
+      $table->double('collateral_equipment')->default(0);
+      $table->double('equipment_percent')->default(20);
+      $table->double('collateral_realestate')->default(0);
+      $table->double('realestate_percent')->default(40);
       $table->double('disc_prod')->default(0);
       $table->double('disc_adj_prod')->default(0);
       $table->double('ins_disc_prod')->default(0);

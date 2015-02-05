@@ -4,13 +4,14 @@
       .module('ARM')
       .controller('NewTermsController', NewTermsController);
   
-      NewTermsController.$inject = ['$scope',  '$state', '$stateParams', 'AppFactory', 'LoansFactory', 'Loan'];
+      NewTermsController.$inject = ['$scope',  '$state', '$stateParams', 'AppFactory', 'ConditionsFactory', 'LoansFactory', 'Loan'];
   
       function NewTermsController(
           $scope,
           $state,
           $stateParams,
           AppFactory,
+          ConditionsFactory,
           LoansFactory,
           Loan
       ){
@@ -60,11 +61,19 @@
             $scope.loan.fins.commit_arm = $scope.loan.fins.amount_requested;
           } // end if
 
-          //TODO: if !processing_fee, processing_fee = 330
+          //TODO: if !processing_fee, processing_fee = 330 (global)
 
           //TODO: persist data
           AppFactory.putIt('/loanfinancials/', $stateParams.loanID, $scope.loan.fins);
-          AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
+
+          //TODO: Move from New Loan to Managed Loan
+          var finalized = LoansFactory.finalizeNewLoan($scope.loan);
+
+          if(finalized){
+            AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
+          } else {
+            $state.go('new.purgatory');
+          }
         }
       } // end function
 })();

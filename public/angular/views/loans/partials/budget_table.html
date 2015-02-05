@@ -46,7 +46,7 @@
       {{c.other|flexCurrency:2}}
     </td>
     <td class="text-right" ng-class="gtZero(c.peracre)">
-      {{c.peracre = c.arm * 1 + c.dist * 1 + c.other * 1|flexCurrency:2}}
+      {{c.peracre|flexCurrency:2}}
     </td>
     <td class="text-right" ng-class="gtZero(c.calc_arm)">
       {{c.calc_arm|flexCurrency:0}}
@@ -64,29 +64,29 @@
 
   <tr class="success">
     <td>TOTAL</td>
-    <td ng-class=gtZero(x.totals.acre_arm)>
-      {{x.totals.acre_arm  | flexCurrency:2 }}
+    <td ng-class=gtZero(c.arm_total)>
+      {{c.arm_total  | flexCurrency:2 }}
     </td>
-    <td ng-class=gtZero(x.totals.acre_dist)>
-      {{x.totals.acre_dist | flexCurrency:2 }}
+    <td ng-class=gtZero(c.dist_total)>
+      {{c.dist_total | flexCurrency:2 }}
     </td>
-    <td ng-class=gtZero(x.totals.acre_other)>
-      {{x.totals.acre_other | flexCurrency:2 }}
+    <td ng-class=gtZero(c.other_total)>
+      {{c.other_total | flexCurrency:2 }}
     </td>
-    <td ng-class=gtZero(x.totals.acre_total)>
-      {{x.totals.acre_loan | flexCurrency:2 }}
+    <td ng-class=gtZero(c.peracre_total)>
+      {{c.peracre_total | flexCurrency:2 }}
     </td>
-    <td ng-class=gtZero(x.totals.loan_arm)>
-      {{x.totals.arm | flexCurrency:0 }}
+    <td ng-class=gtZero(c.calc_arm_total)>
+      {{c.calc_arm_total | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(x.totals.loan_dist)>
-      {{x.totals.dist | flexCurrency:0 }}
+    <td ng-class=gtZero(c.calc_dist_total)>
+      {{c.calc_dist_total | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(x.totals.loan_other)>
-      {{x.totals.other | flexCurrency:0 }}
+    <td ng-class=gtZero(c.calc_other_total)>
+      {{c.calc_other_total | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(x.totals.loan_total)>
-      {{x.totals.loan | flexCurrency:0 }}
+    <td ng-class=gtZero(c.calc_total)>
+      {{c.calc_total | flexCurrency:0 }}
     </td>
   </tr>
 

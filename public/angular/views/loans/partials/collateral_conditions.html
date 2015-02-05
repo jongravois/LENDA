@@ -1,11 +1,25 @@
 <div class="form-group col-md-10 col-md-offset-1">
+  <table class="table table-striped rowed">
+    <tr>
+      <th>ID</th>
+      <th>Condition</th>
+      <th>Status</th>
+    </tr>
+    <tr ng-repeat="c in loanConditions">
+      <td>{{c.condition_id}}</td>
+      <td>{{c.condition}}</td>
+      <td>{{c.status}}</td>
+    </tr>
+  </table>
+
 <!--AGREEMENT-->
-  <!--Default set at loan creation based on loan_type_id (1,2,3,4)-->
-  <p class="lg-text" ng-class="{clrOn: loan.conditions.asa, clrOff: !loan.conditions.asa}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.asa"/>
-    &nbsp;
-    Agricultural Security Agreement on Crops and Equipment
-  </p>
+  <span ng-if="inArray(loan.loan_type_id.toString(), ['1','2','3','4'])">
+    <p class="lg-text" ng-class="{clrOn: loan.conditions.asa, clrOff: !loan.conditions.asa}">
+      <input type="checkbox" class="squaredFour" ng-model="loan.conditions.asa"/>
+      &nbsp;
+      Agricultural Security Agreement on Crops and Equipment
+    </p>
+  </span>
 <!--AGREEMENT-->
 
 <!--CROP INSURANCE-->

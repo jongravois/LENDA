@@ -24,8 +24,14 @@
             });
             $scope.uses = grped;
 
+            //TODO: Loan Crop Budget Totals
+
+            //TODO: Loan Budget Totals
             $scope.uses.totals = {};
-            //console.log($scope.uses);
+
+            //TODO: Unique Cats doesn't work
+            var uniqExp = _.pluck(arr, 'expense');
+            //console.log(arr, uniqExp);
           });
 
       } // end function

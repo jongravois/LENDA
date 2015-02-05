@@ -62,4 +62,12 @@ class FarmersController extends ApiController {
     $farmer = Farmer::find($id);
     $farmer->fill(Input::all())->save();
   }
+
+  public function allLoans($id)
+  {
+    $loans = Loan::where('farmer_id', $id)->get();
+    return $this->respond([
+      'data' => $loans->all()
+    ]);
+  }
 }

@@ -1,0 +1,122 @@
+<!-- TODO: Trigger a LENDA if percents not default-->
+<table class="table table-striped rowed">
+  <tr>
+    <th style="width:37%;">&nbsp;</th>
+    <th class="text-center" style="width:15%;">
+      Prior Lien
+    </th>
+    <th class="text-center" style="width:12%;">
+      Mkt Value
+    </th>
+    <th class="text-center" style="width:12%;">
+      Disc. %
+    </th>
+    <th class="text-center" style="width:12%;">
+      Value
+    </th>
+  </tr>
+  <tr>
+    <td>Projected Crops</td>
+    <td ng-class=gtZero(prior_lien.projected_crops)>
+      <no-cents-edit-in-place value="prior_lien.projected_crops"></no-cents-edit-in-place>
+    </td>
+    <td class="text-right">
+      {{loan.fins.adj_prod | flexCurrency:0}}
+    </td>
+    <td class="text-right">
+      <percent-edit-in-place value="loan.fins.disc_prod_percent"></percent-edit-in-place>
+    </td>
+    <td class="text-right">
+      {{loan.fins.pc_value = (((loan.fins.adj_prod * 1) * (1 - (loan.fins.disc_prod_percent / 100 * 1))) - (prior_lien.projected_crops * 1)) | flexCurrency:0}}
+    </td>
+  </tr>
+  <tr>
+    <td>FSA Assignment</td>
+    <td ng-class=gtZero(prior_lien.fsa_payments)>
+      <no-cents-edit-in-place value="prior_lien.fsa_payments"></no-cents-edit-in-place>
+    </td>
+    <td class="text-right" ng-class=gtZero(loan.fins.total_fsa_payment)>
+      {{loan.fins.total_fsa_payment | flexCurrency:0}}
+    </td>
+    <td class="text-right">
+      <percent-edit-in-place value="loan.fins.fsa_assignment_percent"></percent-edit-in-place>
+    </td>
+    <td class="text-right">
+      {{loan.fins.fsa_value = (((loan.fins.total_fsa_payment * 1) * (1 - (loan.fins.disc_ins_percent / 100 * 1))) - (prior_lien.fsa_payments * 1)) | flexCurrency:0}}
+    </td>
+  </tr>
+
+  <tr>
+    <td>Crop Ins Over Discounted Crops</td>
+    <td ng-class=gtZero(prior_lien.ins_over_discount)>
+      <no-cents-edit-in-place value="prior_lien.ins_over_discount"></no-cents-edit-in-place>
+    </td>
+    <td class="text-right">
+      {{loan.fins.ins_disc_prod | flexCurrency:0}}
+    </td>
+    <td class="text-right">
+      <percent-edit-in-place value="loan.fins.disc_ins_percent"></percent-edit-in-place>
+    </td>
+    <td class="text-right">
+      {{loan.fins.iod_value = (((loan.fins.ins_disc_prod * 1) * (1 - (loan.fins.disc_ins_percent / 100 * 1))) - (prior_lien.ins_over_discount * 1)) | flexCurrency:0}}
+    </td>
+  </tr>
+  <tr>
+    <td>Equipment</td>
+    <td class="text-right" ng-class=gtZero(prior_lien.equipment)>
+      <no-cents-edit-in-place value="prior_lien.equipment"></no-cents-edit-in-place>
+    </td>
+    <td class="text-right" ng-class=gtZero(loan.fins.collateral_equipment)>
+      {{loan.fins.collateral_equipment | flexCurrency}}
+    </td>
+    <td class="text-right">
+      <percent-edit-in-place value="loan.fins.equipment_percent"></percent-edit-in-place>
+    </td>
+    <td class="text-right" ng-class=gtZero(loan.fins.equipment_value)>
+      {{loan.fins.equipment_value = (((loan.fins.collateral_equipment * 1) * (1 - (loan.fins.equipment_percent / 100 * 1))) - (prior_lien.equipment * 1)) | flexCurrency:0}}
+    </td>
+  </tr>
+  <tr>
+    <td>Real Estate</td>
+    <td class="text-right" ng-class=gtZero(prior_lien.realestate)>
+      <no-cents-edit-in-place value="prior_lien.realestate"></no-cents-edit-in-place>
+    </td>
+    <td class="text-right" ng-class=gtZero(loan.fins.collateral_realestate)>
+      {{loan.fins.collateral_realestate | flexCurrency:0}}
+    </td>
+    <td class="text-right">
+      <percent-edit-in-place value="loan.fins.realestate_percent"></percent-edit-in-place>
+    </td>
+    <td class="text-right" ng-class=gtZero(loan.fins.realestate_value)>
+      {{loan.fins.realestate_value = (((loan.fins.collateral_realestate * 1) * (1 - (loan.fins.realestate_percent / 100 * 1))) - (prior_lien.realestate * 1)) | flexCurrency:0}}
+    </td>
+  </tr>
+  <tr>
+    <td>Claims</td>
+    <td ng-class=gtZero(prior_lien.claims)>
+      <no-cents-edit-in-place value="prior_lien.claims"></no-cents-edit-in-place>
+    </td>
+    <td class="text-right" ng-class=gtZero(loan.fins.total_claims)>
+      {{loan.fins.total_claims | flexCurrency:0}}
+    </td>
+    <td class="text-right">
+      <percent-edit-in-place value="loan.fins.claims_percent"></percent-edit-in-place>
+    </td>
+    <td class="text-right" ng-class=gtZero(loan.fins.claims_value)>
+      {{loan.fins.claims_value = (((loan.fins.total_claims * 1) * (1 - (loan.fins.claims_percent / 100 * 1))) - (prior_lien.claims * 1)) | flexCurrency:0}}
+    </td>
+  </tr>
+  <tr class="success">
+    <td>Total Value</td>
+    <td ng-class=gtZero(prior_lien.total)>
+      {{prior_lien.total | flexCurrency:0}}
+    </td>
+    <td class="text-right">
+      {{loan.fins.adj_prod * 1 + loan.fins.ins_disc_prod * 1 + loan.fins.total_fsa_payment * 1 + loan.fins.total_claims * 1 + loan.fins.collateral_equipment * 1 + loan.fins.collateral_realestate * 1 | flexCurrency:0}}
+    </td>
+    <td class="text-right">&nbsp;</td>
+    <td class="text-right">
+      {{loan.fins.pc_value * 1 + loan.fins.iod_value * 1 + loan.fins.fsa_value * 1 + loan.fins.claims_value * 1 + loan.fins.equipment_value * 1 + loan.fins.realestate_value * 1 | flexCurrency:0}}
+    </td>
+  </tr>
+</table>

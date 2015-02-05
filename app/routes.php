@@ -95,6 +95,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('counties/{id}/defaults', 'CountiesController@getDefaults');
   Route::get('counties/{id}/locale', 'CountiesController@getLocale');
   Route::get('defaultexpenses/{id}/bycrop', 'DefaultexpensesController@byCrop');
+  Route::get('farmers/{id}/loans', 'FarmersController@allLoans');
   Route::get('insurance/{id}/value', 'InsuranceController@totalValueByLoan');
   Route::get('loancrops/{id}/expenses', 'BudgetController@expenseByCrop');
   Route::get('loans/{id}/acres', 'LoancropsController@allAcres');
@@ -106,10 +107,12 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/committee', 'CommitteeController@byLoan');
   Route::get('loans/{id}/conditions', 'LoanConditionsController@byLoan');
   Route::get('loans/{id}/corporations', 'CorporationsController@byLoan');
-  Route::get('loans/{id}/counties', 'CountiesController@byLoan');
-  Route::get('loans/{id}/expenses/{crop}', 'CropexpensesController@byLoanByCrop');
   Route::get('loans/{id}/cropexpenses', 'CropexpensesController@byLoan');
+  Route::get('loans/{id}/crops', 'LoancropsController@byLoan');
+  Route::get('loans/{id}/counties', 'CountiesController@byLoan');
   Route::get('loans/{id}/distributor', 'LoandistributorController@byLoan');
+  Route::get('loans/{id}/exceptions', 'LoanexceptionsController@byLoan');
+  Route::get('loans/{id}/expenses/{crop}', 'CropexpensesController@byLoanByCrop');
   Route::get('loans/{id}/farmexpenses', 'FarmexpensesController@byLoan');
   Route::get('loans/{id}/farmpractices', 'FarmpracticesController@byLoan');
   Route::get('loans/{id}/farms', 'FarmController@byLoan');

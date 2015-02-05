@@ -5,8 +5,8 @@
     .controller('EditAppController', function(
       $scope, $state, $stateParams, $filter,
       $timeout, toastr,
-      Loan, AppFactory, ApplicantsFactory, FarmersFactory,
-      LoansFactory, InsuranceFactory
+      Loan, AppFactory, ApplicantsFactory, ExceptionsFactory,
+      FarmersFactory, LoansFactory, InsuranceFactory
     ) {
         $scope.loan = Loan.data.data[0];
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
@@ -14,44 +14,44 @@
 
         //FINS
         LoansFactory.getFinancials($stateParams.loanID)
-          .then(function success(response) {
-            $scope.loan.fins = response.data.data[0];
+          .then(function success(rsp) {
+            $scope.loan.fins = rsp.data.data[0];
           });
 
         //FARMER
         FarmersFactory.getFarmer($scope.loan.farmer_id)
-          .then(function success(response) {
-            $scope.farmer = response.data.data;
+          .then(function success(rsp) {
+            $scope.farmer = rsp.data.data;
           });
 
         //APPLICANT, PARTNERS, JOINTS & CORPORATION
         ApplicantsFactory.getApplicant($scope.loan.applicant_id)
-          .then(function success(response) {
-            $scope.applicant = response.data.data;
+          .then(function success(rsp) {
+            $scope.applicant = rsp.data.data;
             ApplicantsFactory.getPartners($stateParams.loanID)
-              .then(function success(response) {
-                $scope.partners = response.data.data;
+              .then(function success(rsp) {
+                $scope.partners = rsp.data.data;
               });
             ApplicantsFactory.getJointVentures($stateParams.loanID)
-              .then(function success(response) {
-                $scope.joints = response.data.data;
+              .then(function success(rsp) {
+                $scope.joints = rsp.data.data;
               });
             ApplicantsFactory.getCorporations($stateParams.loanID)
-              .then(function success(response) {
-                $scope.corps = response.data.data;
+              .then(function success(rsp) {
+                $scope.corps = rsp.data.data;
               });
           });
 
         //QUESTS
         LoansFactory.getQuests($stateParams.loanID)
-          .then(function success(response) {
-            $scope.quests = response.data.data[0];
+          .then(function success(rsp) {
+            $scope.quests = rsp.data.data[0];
           });
 
         //PRIOR LIENS
         LoansFactory.getPriorLiens($stateParams.loanID)
-          .then(function success(response) {
-            $scope.prior_lien = response.data.data[0];
+          .then(function success(rsp) {
+            $scope.prior_lien = rsp.data.data[0];
           });
       
         // GUARANTORS
@@ -66,10 +66,16 @@
             $scope.loanConditions = rsp.data.data;
           });
 
+        //EXCEPTIONS
+        LoansFactory.getExceptions($stateParams.loanID)
+          .then(function success(rsp){
+              $scope.loanExceptions = rsp.data.data;
+          });
+
         //COMMENTS
         LoansFactory.getComments($stateParams.loanID)
-          .then(function success(response) {
-            $scope.comments = response.data.data;
+          .then(function success(rsp) {
+            $scope.comments = rsp.data.data;
           });
 
         //PREREQUISITES
@@ -80,8 +86,8 @@
 
         //LOANCROPS & PERCENT IRRIGATED
         LoansFactory.getLoanCrops($stateParams.loanID)
-          .then(function success(response) {
-            $scope.loanCrops = response.data.data;
+          .then(function success(rsp) {
+            $scope.loanCrops = rsp.data.data;
             $scope.getCropsPercentIrrigated = function(id) {
               var lcIrrPer = '';
               for(var c=0;c<$scope.loanCrops.length; c++){
@@ -94,8 +100,8 @@
             };
 
             LoansFactory.getTotalAcres($scope.loan.id)
-              .then(function (res) {
-                $scope.loan.total_acres = parseFloat(res);
+              .then(function (rsp) {
+                $scope.loan.total_acres = parseFloat(rsp);
               });
 
             LoansFactory.getAttachments($stateParams.loanID)
@@ -109,10 +115,15 @@
               });
           });
 
-        //FARM EXPENSES
+        //EXPENSES
         LoansFactory.getFarmExpenses($stateParams.loanID)
-          .then(function success(response) {
-            $scope.farmExpenses = response.data.data;
+          .then(function success(rsp) {
+            $scope.farmExpenses = rsp.data.data;
+          });
+
+        LoansFactory.getTotalExpenses($stateParams.loanID)
+          .then(function success(rsp){
+            $scope.total_expenses = rsp;
           });
 
         $scope.uomChanged = function (id, uom) {
@@ -122,7 +133,16 @@
           $scope.guarantors.push($scope.newGuarantor);
           $scope.newGuarantor = {};
         };
-        $scope.getAverage = function (arr) {
+        //TODO: Remove These
+        $scope.createExceptions = ExceptionsFactory.createExceptions;
+        $scope.createBankruptcy = ExceptionsFactory.bankruptcyHistory;
+        $scope.deleteException = function(index){
+          var removee = $scope.loanExceptions[index];
+          $scope.loanExceptions.splice(index,1);
+          ExceptionsFactory.deleteException(removee.id);
+        };
+      //TODO: Remove These
+      $scope.getAverage = function (arr) {
           var cnt = 0;
           var tot = 0;
           //console.log(arr);

@@ -95,6 +95,7 @@
 <script src="angular/controllers/newgrain.js"></script>
 <script src="angular/controllers/newinsurance.js"></script>
 <script src="angular/controllers/newplannedcrops.js"></script>
+<script src="angular/controllers/newpurgatory.js"></script>
 <script src="angular/controllers/newquests.js"></script>
 <script src="angular/controllers/newprerequisites.js"></script>
 <script src="angular/controllers/newreferences.js"></script>
@@ -146,6 +147,7 @@
 <script src="angular/services/FarmersFactory.js"></script>
 <script src="angular/services/ApplicantsFactory.js"></script>
 <script src="angular/services/QuestsFactory.js"></script>
+<script src="angular/services/ConditionsFactory.js"></script>
 <script src="angular/services/ExpensesFactory.js"></script>
 <script src="angular/services/Grader.js"></script>
 <script src="angular/services/ExceptionsFactory.js"></script>

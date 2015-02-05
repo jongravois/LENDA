@@ -18,7 +18,7 @@ class FarmersTableSeeder extends Seeder{
       'dob'	=>	'1960-07-15',
       'first_year_farmer' => 1979,
       'farm_exp' => 36,
-      'is_repeat' => 1
+      'new_client' => 0
     ]);
 
     Farmer::create([

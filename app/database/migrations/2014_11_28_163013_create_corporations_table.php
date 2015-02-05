@@ -22,7 +22,8 @@ class CreateCorporationsTable extends Migration {
       $table->text('description');
       $table->string('president');
       $table->string('vicepresident');
-      $table->string('secretarytreasurer');
+      $table->string('secretary');
+      $table->string('treasurer');
 			$table->timestamps();
 		});
 	}

@@ -35,7 +35,7 @@
         <th style="width:6%;">Price</th>
         <th style="width:6%;">Level</th>
         <th style="width:5%;">Acres</th>
-        <th style="width:5%;">APH</th>
+        <th style="width:5%;">Yield</th>
         <th style="width:6%;">Share</th>
         <th style="width:5%;">Prem</th>
         <th style="width:8%;">Guar</th>
@@ -65,7 +65,7 @@
           {{i.acres | number:1}}
         </td>
         <td class="text-right">
-          {{i.aph | number:1}}
+          {{i.yield | number:1}}
         </td>
         <td ng-class=gtZero(i.share)>
           {{i.share | displaynullpercent}}
@@ -236,10 +236,10 @@
               </div>
               <!--APH-->
               <div class="col-xs-2">
-                <label>APH</label>
+                <label>Yield</label>
               </div>
               <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="newPolicy.aph"/>
+                <input type="text" class="form-control" ng-model="newPolicy.yield"/>
               </div>
             </div>
             <div class="row form-group">

@@ -3,8 +3,8 @@
   angular
     .module('ARM')
     .controller('NewFarmerController', function(
-      $scope, $state, $stateParams,
-      Loan, AppFactory, FarmersFactory, LoansFactory
+      $scope, $state, $stateParams, Loan,
+      AppFactory, FarmersFactory, ExceptionsFactory, LoansFactory
     ){
       $scope.loan = $scope.loan || Loan.data.data[0];
 
@@ -17,11 +17,12 @@
             $scope.farmer = rsp.data.data;
           });
       } else {
-        $scope.farmer = {};
+        $scope.farmer = {
+          new_client: true
+        };
       } // end if
 
       $scope.createFarmer = function(obj) {
-        // SAVE FARMING EXPERIENCE TO LOAN FINANCIALS
         var thisYear = new Date().getFullYear();
         var exp = AppFactory.diffInDates(thisYear, parseInt(obj.first_year_farmer));
         AppFactory.patchIt('/loanfinancials/', $scope.loan.id, {experience: exp});
@@ -38,7 +39,7 @@
             .then(function(res){
               AppFactory.patchIt('/loans/', $scope.loan.id, {farmer_id: res.data.message});
               AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
-        });
+          });
         } // end if
       }; // end createFarmer function
 
@@ -46,6 +47,7 @@
         if($item){
           $scope.farmerID = $item.id;
           $scope.farmer = $item;
+          $scope.farmer.new_client = false;
         }
       };
     });

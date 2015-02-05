@@ -22,7 +22,7 @@ class CommentsTableSeeder extends Seeder {
 			'loan_id'	=>	1,
 			'type'		=>	'Loan',
 			'user_id' => 5,
-			'comment'	=>	'The requested loan will pay off the 2014 loan and provide resources for the 2015 Crop Year. Quail Ridge has been a valued customer for 3 years and has moved his crop insurance to our subsidiary.'
+			'comment'	=>	'The requested loan will pay off the 2014 loan and provide resources for the 2015 Crop Year. Tony has been a valued customer for 3 years and has moved his crop insurance to our subsidiary.'
 		]);
 
 		Comment::create([

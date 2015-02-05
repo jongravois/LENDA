@@ -22,8 +22,14 @@
           </div>
           <div class="col-sm-1">&nbsp;</div>
           <div class="form-group col-sm-3">
-            <label>DOB:</label>
-            <input type="text" name="dob" ui-mask="99/99/9999" ng-model="farmer.dob" class="form-control" style="width: 140px;"/>
+            <label>New ARM customer:</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="new_client" value="1" ng-model="farmer.new_client">Yes </label>
+                &nbsp;&nbsp;&nbsp;
+                <label>
+                  <input type="radio" name="new_client" value="0" ng-model="farmer.new_client">No</label>
+            </div>
           </div>
         </div>
         <!-- FARMER/SSN/DOB -->
@@ -57,11 +63,15 @@
             <label>Phone:</label>
             <input type="text" name="phone" ui-mask="(999) 999-9999" ng-model="farmer.phone" class="form-control"/>
           </div>
-          <div class="form-group col-sm-4">
+          <div class="form-group col-sm-3">
             <label>Email Address:</label>
             <input type="text" name="email" ng-model="farmer.email" class="form-control"/>
           </div>
-          <div class="form-group col-sm-4">
+          <div class="form-group col-sm-2">
+            <label>DOB:</label>
+            <input type="text" name="dob" ui-mask="99/99/9999" ng-model="farmer.dob" class="form-control" style="width: 140px;"/>
+          </div>
+          <div class="form-group col-sm-3">
             <label>Year Began Farming:</label>
             <input type="text" name="first_year_farmer" ng-model="farmer.first_year_farmer" class="form-control" style="width:120px;"/>
           </div>

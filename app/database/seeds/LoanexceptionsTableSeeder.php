@@ -3,6 +3,7 @@
 class LoanexceptionsTableSeeder extends Seeder {
 	public function run()
 	{
+		/*
 		Loanexceptions::create([
 			'loan_id'	=>	1,
 			'exception_id'	=>	1,
@@ -11,8 +12,21 @@ class LoanexceptionsTableSeeder extends Seeder {
 
 		Loanexceptions::create([
 			'loan_id'	=>	1,
-			'exception_id'	=>	12,
-			'msg'	=>	'Applicant does not plant his own crops.'
+			'exception_id'	=>	3,
+			'msg'	=>	"Applicant is rated 'B'."
 		]);
+
+		Loanexceptions::create([
+			'loan_id'	=>	1,
+			'exception_id'	=>	10,
+			'msg'	=>	"Cash Rent waivers were utilized"
+		]);
+
+		Loanexceptions::create([
+			'loan_id'	=>	1,
+			'exception_id'	=>	12,
+			'msg'	=>	'Variable harvesting expenses was utilized.'
+		]);
+		*/
 	}
 }

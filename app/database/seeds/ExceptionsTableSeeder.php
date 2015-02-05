@@ -5,7 +5,11 @@ class ExceptionsTableSeeder extends Seeder {
 	public function run()
 	{
 		Exceptions::create([
-			'message'	=>	'This is an Ag-Input loan type where ARM and the destibutor are partnering on the total commitment.'
+			'message'	=>	'This is a loan where ARM is assuming the total commitment.'
+		]);
+
+		Exceptions::create([
+			'message'	=>	'This is a loan where ARM and the distributor are partnering on the total commitment.'
 		]);
 
 		Exceptions::create([
