@@ -600,7 +600,7 @@
         var ins = {
           loan_id: loanID,
           exception_id: 39,
-          msg: "FSA assignment discount rate used is non standard"
+          msg: "FSA assignment discount rate used is non-standard"
         };
         AppFactory.postIt('/loanexceptions', ins);
       }

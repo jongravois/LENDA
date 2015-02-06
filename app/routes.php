@@ -74,6 +74,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('locations', 'LocationsController');
   Route::resource('notifications', 'NotificationController');
   Route::resource('partners', 'PartnersController');
+  Route::resource('pdfapps', 'PdfAppsController');
   Route::resource('practices', 'PracticesController');
   Route::resource('prerequisites', 'PrerequisitesController');
   Route::resource('priorliens', 'PriorliensController');

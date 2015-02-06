@@ -1,14 +1,12 @@
 (function(){
     'use strict';
     angular
-      .module('ARM')
-      .controller('LegalDocsController', function($scope){})
-      .controller('LegendController', function($scope){})
-      .controller('LibraryController', function($scope){
+        .module('ARM')
+        .controller('LibraryController', LibraryController);
 
-      })
-      .controller('LoanProductsController', function($scope){})
-      .controller('PdfAppsController', function($scope){})
-      .controller('PolsProcsController', function($scope){})
-      .controller('ResourcesController', function($scope){});
+        LibraryController.$inject = ['$scope'];
+
+        function LibraryController(
+          $scope
+        ){} // end function
 })();

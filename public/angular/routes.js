@@ -30,44 +30,49 @@
           })
 
           // LIBRARY
-          .state('calendar', {
+          .state('library', {
+            url: '/library',
+            templateUrl: 'angular/views/library/home.html',
+            controller: 'LibraryController'
+          })
+          .state('library.calendar', {
             url: '/calendar',
-            templateUrl: 'angular/views/calendar.html',
+            templateUrl: 'angular/views/library/calendar.html',
             controller: 'CalendarController'
           })
-          .state('legend', {
+          .state('library.legend', {
             url: '/legend',
-            templateUrl: 'angular/views/legend.html',
+            templateUrl: 'angular/views/library/legend.html',
             controller: 'LegendController'
           })
-          .state('legal_docs', {
-            url: '/legal_docs',
-            templateUrl: 'angular/views/legal_docs.html',
+          .state('library.legaldocs', {
+            url: '/legaldocs',
+            templateUrl: 'angular/views/library/legaldocs.html',
             controller: 'LegalDocsController'
           })
-          .state('loan_products', {
-            url: '/loan_products',
-            templateUrl: 'angular/views/loanprods.html',
+          .state('library.loanproducts', {
+            url: '/loanproducts',
+            templateUrl: 'angular/views/library/loanprods.html',
             controller: 'LoanProductsController'
           })
-          .state('matrix', {
+          .state('library.matrix', {
             url: '/matrix',
-            templateUrl: 'angular/views/matrix.html',
+            templateUrl: 'angular/views/library/matrix.html',
             controller: 'MatrixController'
           })
-          .state('pdf_apps', {
-            url: '/pdf_apps',
-            templateUrl: 'angular/views/pdf_apps.html',
+          .state('library.pdfapps', {
+            url: '/pdfapps',
+            templateUrl: 'angular/views/library/pdfapps.html',
             controller: 'PdfAppsController'
           })
-          .state('pols_procs', {
-            url: '/pols_procs',
-            templateUrl: 'angular/views/pols_procs.html',
+          .state('library.polsprocs', {
+            url: '/polsprocs',
+            templateUrl: 'angular/views/library/polsprocs.html',
             controller: 'PolsProcsController'
           })
-          .state('resources', {
+          .state('library.resources', {
             url: '/resources',
-            templateUrl: 'angular/views/resources.html',
+            templateUrl: 'angular/views/library/resources.html',
             controller: 'ResourcesController'
           })
 
