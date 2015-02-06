@@ -78,56 +78,72 @@
       function getCrops(){
         return LoansFactory.getLoanCrops($stateParams.loanID)
           .then(function success(rsp){
-              return rsp.data.data;
+            //console.log(rsp);
+            return rsp.data.data;
           });
       }
 
       function getFarmer(id){
         return FarmersFactory.getFarmer(id)
           .then(function success(rsp){
-              return rsp.data.data;
+            //console.log(rsp);
+            return rsp.data.data;
           });
       }
 
       function getFarms(){
         return LoansFactory.getFarms($stateParams.loanID)
           .then(function success(rsp){
-              return rsp.data.data;
+            //console.log(rsp);
+            return rsp.data.data;
           });
       }
       
       function getFinancials(){
         return LoansFactory.getFinancials($stateParams.loanID)
           .then(function success(rsp){
-              return rsp.data.data[0];
+            //console.log(rsp);
+            return rsp.data.data[0];
           });
       }
 
       function getGlobals(){
         return GlobalsFactory.getGlobals()
           .then(function success(rsp){
-              return rsp.data.data[0];
+            //console.log(rsp);
+            return rsp.data.data[0];
           });
       }
 
       function getLoansByFarmer(id){
         return FarmersFactory.loansByFarmer(id)
           .then(function success(rsp){
-              return rsp.data.data;
+            //console.log(rsp);
+            return rsp.data.data;
+          });
+      }
+
+      function getPriorLiens(id){
+        return LoansFactory.getPriorLiens(id)
+          .then(function success(rsp){
+            //console.log(rsp);
+            return rsp.data.data[0];
           });
       }
       
       function getQuests(){
         return LoansFactory.getQuests($stateParams.loanID)
           .then(function success(rsp){
-              return rsp.data.data[0];
+            //console.log(rsp);
+            return rsp.data.data[0];
           });
       }
 
       function getPolicies(){
         return InsuranceFactory.getPolicies($stateParams.loanID)
           .then(function success(rsp){
-              return rsp.data.data;
+            //console.log(rsp);
+            return rsp.policies;
           });
       }
 
@@ -197,7 +213,7 @@
           farmerHistory(loan.id);
         } // end if
 
-        var net_worth = ((loan.fins.current_assets * ((100 - loan.fins.current_assets_factor) / 100)) - loan.fins.current_assets_liability) + ((loan.fins.intermediate_assets * ((100 - loan.fins.intermediate_assets_factor) / 100)) - loan.fins.intermediate_assets_liability) + ((loan.fins.fixed_assets * ((100 - loan.fins.fixed_assets_factor) / 100)) - loan.fins.fixed_assets_liability);
+        var net_worth = ((o.fins.current_assets * ((100 - o.fins.current_assets_factor) / 100)) - o.fins.current_assets_liability) + ((o.fins.intermediate_assets * ((100 - o.fins.intermediate_assets_factor) / 100)) - o.fins.intermediate_assets_liability) + ((o.fins.fixed_assets * ((100 - o.fins.fixed_assets_factor) / 100)) - o.fins.fixed_assets_liability);
         if(net_worth < 1 * o.fins.principal_arm){ balanceSheetLessArm(loan.id); }
 
         if(net_worth < 0){ balanceSheetNetWorth(loan.id); }
@@ -210,7 +226,7 @@
           producesSugarCane(loan.id);
         }
 
-        var nonrp = _.find(o.policies, function(i){ return i.type != 'RP'});
+        var nonrp = _.filter(o.policies, function(i){ return i.type != 'RP'});
         if(nonrp.length > 0){ nonRPInsurance(loan.id); }
 
         var wave = o.farms.reduce(function(tot,farm){return tot + farm.waived}, 0);
@@ -227,6 +243,36 @@
         if(varhar > 0){
           variableHarvesting(loan.id);
         }
+
+        var nsf = (((o.fins.total_fsa_payment * 1) * (1 - (o.fins.disc_ins_percent / 100 * 1))) - (o.prior_lien.fsa_payments * 1)) + ((o.fins.collateral_equipment * 1) * (1 - (o.fins.equipment_percent / 100 * 1))) - (o.prior_lien.equipment * 1);
+        if(nsf > o.fins.commit_arm){ insufficientValueARM(loan.id); }
+        if(nsf > o.fins.commit_total){ insufficientValueTotal(loan.id); }
+
+        //Loopers by loanCrop
+        o.crops.forEach(function(crop){
+          if(crop.bkqty > crop.ins_share){
+            bookedCrops($stateParams.loanID, crop.name);
+          }
+        });
+
+        o.crops.forEach(function(crop){
+          if(crop.prod_yield > crop.break_even){
+            cropBreakEven($stateParams.loanID, crop.name);
+          }
+        });
+
+        o.crops.forEach(function(crop){
+          if(crop.ins_share > crop.prod_share){
+            cropInsuranceShare($stateParams.loanID, crop.name);
+          }
+        });
+
+        o.crops.forEach(function(crop){
+          var yee = _.compact([crop.p1_yield, crop.p2_yield, crop.p3_yield, crop.p4_yield, crop.p5_yield, crop.p6_yield]);
+          if(yee.length == 0){
+            yieldHistory($stateParams.loanID, crop.name);
+          }
+        });
 
         //TODO: Previous Addendum? -- previousAddendum(loan.id);
       }
@@ -554,7 +600,7 @@
         var ins = {
           loan_id: loanID,
           exception_id: 39,
-          msg: "FSA assignment discount rate used is non standard"
+          msg: "FSA assignment discount rate used is non-standard"
         };
         AppFactory.postIt('/loanexceptions', ins);
       }
@@ -590,7 +636,7 @@
         var ins = {
           loan_id: loanID,
           exception_id: 3,
-          msg: "Applicant is rated " + grade
+          msg: "Applicant is rated '" + grade + "'"
         };
         AppFactory.postIt('/loanexceptions', ins);
       }
@@ -758,11 +804,12 @@
           globals: getGlobals(),
           loansByFarmer: getLoansByFarmer(loan.data.data[0].farmer_id),
           quests: getQuests(),
+          prior_lien: getPriorLiens(loan.data.data[0].id),
           policies: getPolicies()
         })
           .then(function(updatedData){
             angular.extend(loan, updatedData);
-            console.log(loan);
+            //console.log(loan);
             newLoanExceptions(loan);
           });
       }

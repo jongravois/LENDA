@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/vendor/bootstrap-3.3.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.min.css"/>
     <link rel="stylesheet" href="vendor/ng-grid/ng-grid.min.css"/>
     <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.min.css"/>
@@ -50,7 +50,7 @@
 <!--JAVASCRIPT-->
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script src="vendor/lodash/dist/lodash.min.js"></script>
-<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="vendor/bootstrap-3.3.2/js/bootstrap.min.js"></script>
 <script src="vendor/moment/min/moment.min.js"></script>
 
 <!-- ANGULAR CORE -->
@@ -122,6 +122,12 @@
 <script src="angular/controllers/management.js"></script>
 <script src="angular/controllers/prefs.js"></script>
 <script src="angular/controllers/calendar.js"></script>
+<script src="angular/controllers/legalDocs.js"></script>
+<script src="angular/controllers/legend.js"></script>
+<script src="angular/controllers/loanProducts.js"></script>
+<script src="angular/controllers/pdfApps.js"></script>
+<script src="angular/controllers/polProcs.js"></script>
+<script src="angular/controllers/resources.js"></script>
 <script src="angular/controllers/matrix.js"></script>
 <script src="angular/controllers/reports.js"></script>
 <script src="angular/controllers/Library.js"></script>
@@ -137,27 +143,28 @@
 <script src="angular/controllers/underwriting.js"></script>
 <!-- CONTROLLERS -->
 <!-- FACTORIES -->
+<script src="angular/services/ApplicantsFactory.js"></script>
 <script src="angular/services/AppFactory.js"></script>
-<script src="angular/services/GlobalsFactory.js"></script>
-<script src="angular/services/UsersFactory.js"></script>
+<script src="angular/services/CommentsFactory.js"></script>
+<script src="angular/services/ConditionsFactory.js"></script>
+<script src="angular/services/EmailFactory.js"></script>
+<script src="angular/services/ExceptionsFactory.js"></script>
+<script src="angular/services/ExpensesFactory.js"></script>
+<script src="angular/services/FarmersFactory.js"></script>
 <script src="angular/services/FeederFactory.js"></script>
+<script src="angular/services/FinancialsFactory.js"></script>
+<script src="angular/services/GlobalsFactory.js"></script>
+<script src="angular/services/Grader.js"></script>
+<script src="angular/services/InsuranceFactory.js"></script>
+<script src="angular/services/LendaFactory.js"></script>
+<script src="angular/services/LibraryFactory.js"></script>
 <script src="angular/services/LoansFactory.js"></script>
+<script src="angular/services/LoggingFactory.js"></script>
+<script src="angular/services/MessagingFactory.js"></script>
 <script src="angular/services/ProcessLoanFactory.js"></script>
 <script src="angular/services/ProcessLoansFactory.js"></script>
-<script src="angular/services/FarmersFactory.js"></script>
-<script src="angular/services/ApplicantsFactory.js"></script>
 <script src="angular/services/QuestsFactory.js"></script>
-<script src="angular/services/ConditionsFactory.js"></script>
-<script src="angular/services/ExpensesFactory.js"></script>
-<script src="angular/services/Grader.js"></script>
-<script src="angular/services/ExceptionsFactory.js"></script>
-<script src="angular/services/FinancialsFactory.js"></script>
-<script src="angular/services/InsuranceFactory.js"></script>
-<script src="angular/services/CommentsFactory.js"></script>
-<script src="angular/services/LendaFactory.js"></script>
-<script src="angular/services/EmailFactory.js"></script>
-<script src="angular/services/MessagingFactory.js"></script>
-<script src="angular/services/LoggingFactory.js"></script>
+<script src="angular/services/UsersFactory.js"></script>
 <!-- FACTORIES -->
 <!--SERVICES-->
 <!--SERVICES-->

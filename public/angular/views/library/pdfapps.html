@@ -1,0 +1,25 @@
+<div class="container libraryFull_Page" style="margin-top: 18px;">
+    <h1>Downloadable Applications</h1>
+</div>
+
+<div>
+    <!--<pre>{{pdfApps|json}}</pre>-->
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+            <th></th>
+            <th>Actions</th>
+        </tr>
+        <tr ng-repeat="pdf in pdfApps | orderBy:'rank'" ng-show="{{pdf.visible}}">
+            <td><p><strong><a href="" target="_blank">{{pdf.title}}</a></strong><br>{{pdf.description}}
+            </p></td>
+            <td style="white-space: nowrap">
+                <a class="btn btn-success" ui-sref="pdfApp.edit({pdfAppId:r.id})">edit</a>
+                <button class="btn btn-danger" ng-really-message="This action cannot be undone. Are you sure?"
+                        ng-really-click="removePdfApps($index, r.id)">del
+                </button>
+            </td>
+        </tr>
+    </table>
+    <button ng-click="addPdfApps()" class="btn btn-default">Add New Document</button>
+    <br/><br/><br/><br/>
+</div>
