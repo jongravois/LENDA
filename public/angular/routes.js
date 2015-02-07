@@ -65,6 +65,11 @@
             templateUrl: 'angular/views/library/pdfapps.html',
             controller: 'PdfAppsController'
           })
+          .state('library.pdfapps.edit', {
+            url: '/edit/:pdfAppId',
+            templateUrl: 'angular/views/library/pdfapp.html',
+            controller: 'PdfAppsController'
+          })
           .state('library.polsprocs', {
             url: '/polsprocs',
             templateUrl: 'angular/views/library/polsprocs.html',

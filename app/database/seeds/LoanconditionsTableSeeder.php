@@ -9,21 +9,24 @@ class LoanconditionsTableSeeder extends Seeder {
 			'loan_id'	=>	1,
 			'condition_id'	=>	1,
 			'condition'	=>	'Agricultural Security Agreement on Crops and Equipment',
-			'status' => 'verified'
+			'status' => 'verified',
+			'action_date' => '2015-02-01'
 		]);
 		Loanconditions::create([
 			'crop_year'	=>	'2015',
 			'loan_id'	=>	'1',
 			'condition_id'	=>	2,
 			'condition'	=>	'Assignment of Crop Insurance',
-			'status' => 'verified'
+			'status' => 'verified',
+			'action_date' => '2015-02-03'
 		]);
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
 			'condition_id'	=>	5,
 			'condition'	=>	'Approval by Participating Distributor - JSI',
-			'status' => 'verified'
+			'status' => 'verified',
+			'action_date' => '2015-02-05'
 		]);
 		Loanconditions::create([
 			'crop_year'	=>	2015,
@@ -36,21 +39,24 @@ class LoanconditionsTableSeeder extends Seeder {
 			'loan_id'	=>	1,
 			'condition_id'	=>	6,
 			'condition'	=>	'Personal Guarantee by Sharon Gwin',
-			'status' => 'verified'
+			'status' => 'verified',
+			'action_date' => '2015-02-01'
 		]);
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
 			'condition_id'	=>	4,
 			'condition'	=>	'Assignment of FSA Direct and LDP Payment',
-			'status' => 'verified'
+			'status' => 'verified',
+			'action_date' => '2015-02-03'
 		]);
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
 			'condition_id'	=>	9,
 			'condition'	=>	'PHI Credit Limit of 82K',
-			'status' => 'verified'
+			'status' => 'verified',
+			'action_date' => '2015-02-06'
 		]);
 	}
 }

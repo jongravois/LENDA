@@ -11,6 +11,7 @@
         createDistributor: createDistributor,
         createFinancials: createFinancials,
         createLoan: createLoan,
+        createLoanCondition: createLoanCondition,
         createReference: createReference,
         finalizeNewLoan: finalizeNewLoan,
         getAffiliates: getAffiliates,
@@ -154,6 +155,10 @@
         });
 
         return obj;
+      }
+
+      function createLoanCondition(o){
+        return $http.post(API_URL + '/loanconditions', o);
       }
 
       function createReference(o){
