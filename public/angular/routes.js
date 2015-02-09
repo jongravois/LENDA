@@ -301,6 +301,11 @@
             templateUrl: 'angular/views/loans/newfinancials.html',
             controller: 'NewFinancialsController'
           })
+          .state('new.grainstorage', {
+            url: '/grainstorage',
+            templateUrl: 'angular/views/loans/newgrainstorage.html',
+            controller: 'NewGrainController'
+          })
           .state('new.insurance', {
             url: '/insurance',
             templateUrl: 'angular/views/loans/newinsurance.html',

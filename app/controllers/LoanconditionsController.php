@@ -38,7 +38,7 @@ class LoanconditionsController extends ApiController {
 			Systemics::create($newInfo);
 		}
 
-		return $this->respondCreated('Loancondition created');
+		return $this->respondCreated($doit->id);
 	}
 
 	public function show($id)

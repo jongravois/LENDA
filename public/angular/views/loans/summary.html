@@ -1,6 +1,7 @@
 <style>
   label{ font-weight:normal; color:#AAA; }
   .red{color: #CC0000; }
+  .lg-text{font-size: 16px;}
 </style>
 <!--<pre>{{farmExpenses | json}}</pre>-->
 <fieldset>
@@ -26,6 +27,9 @@
     <b>Loan/Collateral Conditions</b>
     <div class="row">
       <div class="form-group col-md-6 col-md-offset-1">
+        <p class="lg-text" ng-if="loanConditions.length == 0">
+          This loan has no conditions.
+        </p>
         <p class="lg-text" ng-class="{'red': c.status == 'pending'}" ng-repeat="c in loanConditions">{{c.condition}}</p>
       </div>
     </div>
@@ -111,13 +115,6 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-12 text-right">
-    <button style="margin-right:10px;" class="btn btn-primary">
-      <span class="glyphicon glyphicon-envelope"></span> EMAIL
-    </button>
-  </div>
-</div>
 </fieldset>
 <!--<pre>{{financials | json}}</pre>-->
 <!--<pre>{{loantypes | json}}</pre>-->

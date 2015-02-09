@@ -21,6 +21,7 @@
     <div class="col-sm-2">
       <div class="btn-group-vertical" style="padding-top: 10px; width:98%;">
         <a ui-sref-active="active" ui-sref="new.{{scr.screen}}" class="btn btn-default" ng-repeat="scr in screens">
+          <!-- ng-show="scr.status == 1" -->
           <!-- ng-class="{disabled: !scr.status}" -->
           {{scr.label}}
         </a>

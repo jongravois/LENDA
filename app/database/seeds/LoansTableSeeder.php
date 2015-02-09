@@ -151,7 +151,7 @@ class LoansTableSeeder extends Seeder {
     Loan::create([
       'applicant_id' => 7,
       'app_date' => Carbon::now()->subDays(4),
-      'due_date' => '2015-12-15',
+      'due_date' => '2015-04-30',
       'loc_id' =>	4,
       'user_id' => 2,
       'region_id' => 3,

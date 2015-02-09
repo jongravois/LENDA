@@ -99,7 +99,9 @@
             });
             if(screens[parseInt(cScreenId) + 1] !== undefined){
                var cScreen = screens[parseInt(cScreenId) + 1];
-              var nextScr = screens[parseInt(cScreenId) + 1].screen;
+              var nextScr = cScreen.screen;
+              cScreen.status = 1;
+              //console.log(cScreen);
               $state.go('new.' + nextScr, $stateParams)
             } else {
               $state.go('edit.summary', $stateParams);

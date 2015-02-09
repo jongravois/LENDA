@@ -23,15 +23,16 @@
       $scope.farmer = $scope.farmer || {};
 
       if(!$scope.screens){
-        LoansFactory.getScreens($stateParams.loantypeID).then(function success(response){
-          $scope.screens = response.data.data;
-          angular.forEach($scope.screens, function(obj, index){
-            if(obj.screen == 'farmer'){
-              obj.status = 1;
-            } else {
-              obj.status = 0;
-            }
-          });
+        LoansFactory.getScreens($stateParams.loantypeID)
+          .then(function success(response){
+            $scope.screens = response.data.data;
+            angular.forEach($scope.screens, function(obj, index){
+              if(obj.screen == 'farmer'){
+                obj.status = 1;
+              } else {
+                obj.status = 0;
+              }
+            });
         });
       } // end if
 
