@@ -12,6 +12,8 @@ class CreateGrainstorageTable extends Migration {
 			$table->increments('id');
 			$table->integer('loan_id')->nullable();
 			$table->string('contract_number')->nullable();
+			$table->string('grain_buyer')->nullable();
+			$table->string('lien_holder')->nullable();
 			$table->date('contract_date')->nullable();
 			$table->date('delivery_date')->nullable();
 			$table->double('contract_amount')->default(0);
@@ -19,6 +21,7 @@ class CreateGrainstorageTable extends Migration {
 			$table->double('owner_share')->default(0);
 			$table->double('revenue')->default(0);
 			$table->double('eligible_proceeds')->default(0);
+			$table->double('advance_percent')->default(75);
 			$table->timestamps();
 		});
 	}

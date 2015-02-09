@@ -71,7 +71,9 @@
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-6">
-            <a class="btn btn-success" ng-click="saveLocation(location.id, location)" ui-sref="admin.locations">Submit</a>
+            <a class="btn btn-success" ng-click="saveLocation(location.id, location)" ui-sref="admin.locations.list">Submit</a>
+            &nbsp;&nbsp;&nbsp;
+            <a ui-sref="admin.locations.list" class="btn btn-default">Cancel</a>
         </div>
     </div>
 </form>

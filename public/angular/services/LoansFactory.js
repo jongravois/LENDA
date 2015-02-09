@@ -47,6 +47,7 @@
         getRequiredDocuments: getRequiredDocuments,
         getScreens: getScreens,
         getSelectedCrops: getSelectedCrops,
+        getStorage: getStorage,
         getSystemics: getSystemics,
         getTotalAcres: getTotalAcres,
         getTotalExpenses: getTotalExpenses,
@@ -359,6 +360,10 @@
       function getSelectedCrops(id){
         // TODO: create loan.selectedCrops from crops and acres
         return $http.get('angular/json/selectedCrops.json');
+      }
+
+      function getStorage(id){
+        return $http.get(API_URL + '/loans/' + id + '/storage');
       }
 
       function getSystemics(id){

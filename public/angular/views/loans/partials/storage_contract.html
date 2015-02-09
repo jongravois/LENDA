@@ -9,31 +9,43 @@
     <th>Expected Revenue</th>
     <th>Eligible Proceeds</th>
   </tr>
-  <tr>
-    <td>Jazzman</td>
-    <td class="text-center">09/01/2015</td>
-    <td class="text-center">04/31/2016</td>
-    <td class="text-right">{{11000|number:0}}</td>
-    <td class="text-right">{{17.9000|flexCurrency:4}}</td>
-    <td class="text-right">{{20.0|flexPercent:1}}</td>
-    <td class="text-right">{{157520|flexCurrency:0}}</td>
-    <td class="text-right">{{118140|flexCurrency:0}}</td>
-  </tr>
-  <tr>
-    <td>Hybrid</td>
-    <td class="text-center">09/01/2015</td>
-    <td class="text-center">04/31/2016</td>
-    <td class="text-right">{{28000|number:0}}</td>
-    <td class="text-right">{{15.5500|flexCurrency:4}}</td>
-    <td class="text-right">{{20.0|flexPercent:1}}</td>
-    <td class="text-right">{{348320|flexCurrency:0}}</td>
-    <td class="text-right">{{261240|flexCurrency:0}}</td>
+  <tr ng-repeat="store in storage">
+    <td>
+      {{store.contract_number}}
+    </td>
+    <td class="text-center">
+      {{store.contract_date}}
+    </td>
+    <td class="text-center">
+      {{store.delivery_date}}
+    </td>
+    <td class="text-right">
+      {{store.contract_amount|number:0}}
+    </td>
+    <td class="text-right">
+      {{store.contract_price|flexCurrency:4}}
+    </td>
+    <td class="text-right">
+      {{store.owner_share|flexPercent:1}}
+    </td>
+    <td class="text-right">
+      {{store.revenue|flexCurrency:0}}
+    </td>
+    <td class="text-right">
+      {{store.eligible_proceeds|flexCurrency:0}}
+    </td>
   </tr>
   <tr class="success">
     <td colspan="3">Total</td>
-    <td class="text-right">{{39000|number:0}}</td>
+    <td class="text-right">
+      {{total_stored.acres|number:0}}
+    </td>
     <td colspan="2">&nbsp;</td>
-    <td class="text-right">{{505840|flexCurrency:0}}</td>
-    <td class="text-right">{{379380|flexCurrency:0}}</td>
+    <td class="text-right">
+      {{total_stored.revenue|flexCurrency:0}}
+    </td>
+    <td class="text-right">
+      {{total_stored.eligible|flexCurrency:0}}
+    </td>
   </tr>
 </table>

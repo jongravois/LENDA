@@ -8,7 +8,7 @@
       ){
         var curr = $state.current.url;
         var currScreen = curr.substring(1,curr.length);
-        alert(currScreen);
+        //alert(currScreen);
 
         $scope.loan = Loan.data.data[0];
 

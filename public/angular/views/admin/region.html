@@ -8,7 +8,9 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-6">
-            <a class="btn btn-success" ng-click="saveRegion(region.id, region)" ui-sref="admin.regions">Submit</a>
+            <a class="btn btn-success" ng-click="saveRegion(region.id, region)" ui-sref="admin.regions.list">Submit</a>
+            &nbsp;&nbsp;&nbsp;
+            <a ui-sref="admin.regions.list" class="btn btn-default">Cancel</a>
         </div>
     </div>
 </form>
