@@ -8,9 +8,7 @@
       ){
         var curr = $state.current.url;
         var currScreen = curr.substring(1,curr.length);
-        //alert(currScreen);
-
-        //TODO: Entity types always saved as '2'
+        alert(currScreen);
 
         $scope.loan = Loan.data.data[0];
 

@@ -1,8 +1,8 @@
 (function(){
     'use strict';
     angular
-        .module('ARM')
-        .controller('PdfAppsController', PdfAppsController);
+      .module('ARM')
+      .controller('PdfAppsController', PdfAppsController);
 
         PdfAppsController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LibraryFactory'];
 

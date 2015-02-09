@@ -4,6 +4,7 @@
     .module('ARM')
     .controller('NewCropsController', function(
       $scope,
+      $state,
       $stateParams,
       LoansFactory
     ){
