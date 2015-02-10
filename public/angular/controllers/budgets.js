@@ -24,14 +24,38 @@
             });
             $scope.uses = grped;
 
-            //TODO: Loan Crop Budget Totals
+            $scope.budget_subtotals = _.map(grped, function (item, key) {
+              return item.reduce(function (previous, current) {
+                  previous.acres = current.acres;
+                  previous.arm += current.arm;
+                  previous.dist += current.dist;
+                  previous.other += current.other;
+                  previous.peracre += current.peracre;
+                  previous.calc_arm += current.arm * current.acres;
+                  previous.calc_dist += current.dist * current.acres;
+                  previous.calc_other += current.other * current.acres;
+                  previous.calc_total += current.peracre * current.acres;
+                  return previous;
+                },
+                {crop: key, acres: 0, arm: 0, dist: 0, other: 0, peracre: 0, calc_arm: 0, calc_dist: 0, calc_other: 0, calc_total: 0});
+            });
 
-            //TODO: Loan Budget Totals
-            $scope.uses.totals = {};
+            $scope.budget_totals = $scope.budget_subtotals.reduce(function (previous, current) {
+                previous.acres += current.acres;
+                previous.arm += current.arm;
+                previous.dist += current.dist;
+                previous.other += current.other;
+                previous.peracre += current.peracre;
+                previous.calc_arm += current.arm * current.acres;
+                previous.calc_dist += current.dist * current.acres;
+                previous.calc_other += current.other * current.acres;
+                previous.calc_total += current.peracre * current.acres;
+                return previous;
+              },
+              {acres: 0, arm: 0, dist: 0, other: 0, peracre: 0, calc_arm: 0, calc_dist: 0, calc_other: 0, calc_total: 0});
 
-            //TODO: Unique Cats doesn't work
-            var uniqExp = _.pluck(arr, 'expense');
-            //console.log(arr, uniqExp);
+            var uniqExp = _.uniq(_.pluck(flattened, 'expense'));
+            $scope.budget_expCats = uniqExp;
           });
 
       } // end function

@@ -61,7 +61,7 @@ class LoanexceptionsController extends ApiController {
 
 	public function byLoan($id)
 	{
-		$exceps = Loanexceptions::where('loan_id', $id)->get();
+		$exceps = Loanexceptions::where('loan_id', $id)->orderBy('exception_id')->get();
 		return $this->respond([
 			'data' => $this->loanexceptionsTransformer->transformCollection($exceps->all())
 		]);

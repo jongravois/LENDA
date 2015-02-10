@@ -87,6 +87,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('screens', 'ScreensController');
   Route::resource('spendcats', 'SpendcatController');
   Route::resource('states', 'StatesController');
+  Route::resource('storage', 'GrainstorageController');
   Route::resource('systemics', 'SystemicsController');
   Route::resource('units', 'UnitsController');
   Route::resource('users', 'UsersController');
@@ -131,8 +132,9 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('users/{id}/notifications', 'NotificationController@byUser');
   Route::get('loans/{id}/priorliens', 'PriorliensController@byLoan');
   Route::get('loans/{id}/references', 'ReferencesController@byLoan');
-  Route::get('loantypes/{id}/screens', 'ScreensController@byLoantype');
+  Route::get('loans/{id}/storage', 'GrainstorageController@byLoan');
   Route::get('loans/{id}/systemics', 'SystemicsController@byLoan');
   Route::get('loans/{id}/totalacres', 'LoanCropsController@totalAcres');
+  Route::get('loantypes/{id}/screens', 'ScreensController@byLoantype');
   Route::get('states/{id}/counties', 'CountiesController@byState');
 });

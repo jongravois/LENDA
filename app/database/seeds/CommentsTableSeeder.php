@@ -45,6 +45,13 @@ class CommentsTableSeeder extends Seeder {
 			'user_id' => 7,
 			'comment'	=>	'Transferred $30,000 from Misc to Equipment.'
 		]);
+
+		Comment::create([
+			'loan_id'	=>	7,
+			'type'		=>	'Loan',
+			'user_id' => 5,
+			'comment'	=>	"The grain was inspected and is top quality. It has less than 9% moisture. I don't know what else to write about the grain because I am not really an analyst but this serves as an example of a Loan Comment for this loan."
+		]);
 	}
 
 }

@@ -11,6 +11,7 @@
         createDistributor: createDistributor,
         createFinancials: createFinancials,
         createLoan: createLoan,
+        createLoanCondition: createLoanCondition,
         createReference: createReference,
         finalizeNewLoan: finalizeNewLoan,
         getAffiliates: getAffiliates,
@@ -46,6 +47,7 @@
         getRequiredDocuments: getRequiredDocuments,
         getScreens: getScreens,
         getSelectedCrops: getSelectedCrops,
+        getStorage: getStorage,
         getSystemics: getSystemics,
         getTotalAcres: getTotalAcres,
         getTotalExpenses: getTotalExpenses,
@@ -154,6 +156,10 @@
         });
 
         return obj;
+      }
+
+      function createLoanCondition(o){
+        return $http.post(API_URL + '/loanconditions', o);
       }
 
       function createReference(o){
@@ -354,6 +360,10 @@
       function getSelectedCrops(id){
         // TODO: create loan.selectedCrops from crops and acres
         return $http.get('angular/json/selectedCrops.json');
+      }
+
+      function getStorage(id){
+        return $http.get(API_URL + '/loans/' + id + '/storage');
       }
 
       function getSystemics(id){

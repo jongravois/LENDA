@@ -1,163 +1,24 @@
-<div class="form-group col-md-10 col-md-offset-1">
-  <table class="table table-striped rowed">
-    <tr>
-      <th>ID</th>
-      <th>Condition</th>
-      <th>Status</th>
-    </tr>
-    <tr ng-repeat="c in loanConditions">
-      <td>{{c.condition_id}}</td>
-      <td>{{c.condition}}</td>
-      <td>{{c.status}}</td>
-    </tr>
-  </table>
-
-<!--AGREEMENT-->
-  <span ng-if="inArray(loan.loan_type_id.toString(), ['1','2','3','4'])">
-    <p class="lg-text" ng-class="{clrOn: loan.conditions.asa, clrOff: !loan.conditions.asa}">
-      <input type="checkbox" class="squaredFour" ng-model="loan.conditions.asa"/>
-      &nbsp;
-      Agricultural Security Agreement on Crops and Equipment
-    </p>
-  </span>
-<!--AGREEMENT-->
-
-<!--CROP INSURANCE-->
-  <!--Default set at loan creation based on loan_type_id (1,2,3,4)-->
-  <p class="lg-text" ng-class="{clrOn: loan.conditions.aci, clrOff: !loan.conditions.aci}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.aci"/>
-    &nbsp;
-    Assignment of Crop Insurance
-  </p>
-  <p ng-show="loan.conditions.aci" ng-hide="!loan.conditions.aci">
-      <table class="table table-striped" ng-show="loan.conditions.aci" ng-hide="!loan.conditions.aci">
-        <tr>
-          <th>Agency</th>
-          <th>Agent</th>
-          <th>Policy</th>
-          <th>Value</th>
-        </tr>
-        <tr ng-repeat=" p in insurance.policies">
-          <td>{{p.agency}}</td>
-          <td>{{p.agent}}</td>
-          <td>{{p.policy}}</td>
-          <td class="text-right">{{p.value | flexCurrency:0}}</td>
-        </tr>
-        <tr class="success">
-          <td>Total</td>
-          <td colspan="2">&nbsp;</td>
-          <td class="text-right">
-            {{insurance.total_value | flexCurrency:0}}
-          </td>
-        </tr>
-      </table>
-  </p>
-<!--CROP INSURANCE-->
-
-<!--CROP REBATE-->
-  <!--Default set ???-->
-  <p class="lg-text" ng-class="{clrOn: loan.conditions.areb, clrOff: !loan.conditions.areb}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.areb"/>
-    &nbsp;
-    Assignment of Crop Rebate
-  </p>
-  <p ng-show="loan.conditions.areb" ng-hide="!loan.conditions.areb">
-  <table class="table table-striped" ng-show="loan.conditions.areb" ng-hide="!loan.conditions.areb">
-    <tr>
-      <td style="width:50%;">Crop</td>
-      <td style="width:20%;">Acreage</td>
-      <td style="width:30%;">Total Rebate</td>
-    </tr>
-  </table>
-  </p>
-<!--CROP REBATE-->
-
-<!--DISTRIBUTOR-->
-  <!--Default set at loan creation based on loan_type_id (2,6)-->
-  <p class="lg-text" ng-class="{clrOn: loan.conditions.adis, clrOff: !loan.conditions.adis}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.adis"/>
-    &nbsp;
-    Approval by Distributor
-  </p>
-  <p ng-show="loan.conditions.adis" ng-hide="!loan.conditions.adis">
-  <table class="table table-striped" ng-show="loan.conditions.adis" ng-hide="!loan.conditions.adis">
-    <tr>
-      <td style="width:50%;">Approval Pending</td>
-      <td style="width:20%;">JSI</td>
-      <td style="width:30%;">Marie Osmond</td>
-    </tr>
-  </table>
-  </p>
-<!--DISTRIBUTOR-->
-
-<!--GUARANTORS-->
-  <p class="lg-text" ng-class="{clrOn: loan.conditions.pg, clrOff: !loan.conditions.pg}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.pg"/>
-    &nbsp;
-    Personal Guarantee
-  </p>
-  <p ng-show="loan.conditions.pg" ng-hide="!loan.conditions.pg">
-  <table class="table table-striped" ng-show="loan.conditions.pg" ng-hide="!loan.conditions.pg">
-    <tr ng-repeat="pg in loan.guarantors">
-      <td>{{pg.guarantor}}</td>
-    </tr>
-    <tr>
-      <td>
-        <form ng-submit="addGuarantor()">
-          <input type="text" ng-model="newGuarantor.guarantor"/>
-          <button type="submit"> <span class="glyphicon glyphicon-plus"></span>
-          </button>
-        </form>
-      </td>
-    </tr>
-  </table>
-  </p>
-<!--GUARANTORS-->
-
-<!--CROSS COLLATERAL-->
-  <!--No Default set-->
-  <p class="lg-text" ng-class="{clrOn: loan.conditions.ccl, clrOff: !loan.conditions.ccl}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.ccl"/>
-    &nbsp;
-    Cross-Collateralized Loan
-  </p>
-  <p ng-show="loan.conditions.ccl" ng-hide="!loan.conditions.ccl">
-  <table class="table table-striped" ng-show="loan.conditions.ccl" ng-hide="!loan.conditions.ccl">
-    <tr>
-      <td style="width:60%;">Name</td>
-      <td style="width:20%;">Loan Id</td>
-      <td style="width:20%;">Amount</td>
-    </tr>
-  </table>
-  </p>
-<!--CROSS COLLATERAL-->
-
-<!--FSA DIRECT-->
-  <!--Default set at loan creation based on loan_type_id (1,2,3,4)-->
-  <p class="lg-text" ng-class="{clrOn: loan.conditions.afsa, clrOff: !loan.conditions.afsa}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.afsa"/>
-    &nbsp;
-    Assignment of FSA Direct and LDP Payment
-  </p>
-  <p ng-show="loan.conditions.afsa" ng-hide="!loan.conditions.afsa">
-  <table class="table table-striped" ng-show="loan.conditions.afsa" ng-hide="!loan.conditions.afsa">
-    <tr>
-      <td style="width:60%;">Credit Limit Verified</td>
-      <td style="width:20%;">PHI</td>
-      <td style="width:20%;">82K</td>
-    </tr>
-  </table>
-  </p>
-<!--FSA DIRECT-->
-
-<!--CONTROLLED DISBURSEMENT-->
-  <!--Default set ???-->
-  <p class="lg-text" ng-class="{clrOn: loan.conditions.cd, clrOff: !loan.conditions.cd}">
-    <input type="checkbox" class="squaredFour" ng-model="loan.conditions.cd"/>
-    &nbsp;
-    Controlled Disbursement
-  </p>
-  <hr/>
-  <p><a ng-click="createCollateralCondition()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Condition</a></p><br>
-<!--CONTROLLED DISBURSEMENT-->
-</div>
+<table class="table table-striped rowed" style="font-size:16px;">
+  <tr>
+    <th>Condition</th>
+    <th style="width:90px;">Verified</th>
+  </tr>
+  <tr ng-repeat="c in loanConditions">
+    <td ng-class="{'red': c.status == 'pending'}">
+      {{c.condition}}
+    </td>
+    <td ng-show="c.status == 'verified'">{{c.action_date }}</td>
+    <td ng-show="c.status == 'pending'" class="text-center">
+      <button class="btn btn-xs btn-error" ng-click="verifyCondition($index)">Verify</button>
+    </td>
+  </tr>
+  <tr class="default"><td colspan="2">&nbsp;</td></tr>
+  <tr>
+    <td>
+      <input type="text" class="form-control" name="condition" ng-model="newCondition.condition"/>
+    </td>
+    <td class="text-center">
+      <button class="btn btn-xs btn-primary" ng-click="createCollateralCondition()">Add</button>
+    </td>
+  </tr>
+</table>

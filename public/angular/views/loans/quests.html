@@ -1,8 +1,8 @@
 <fieldset>
 <legend>LOAN INFORMATION</legend>
-<!--<pre>{{screens | json}}</pre>-->
+<!--<pre>{{loan.loan_type_id | json}}</pre>-->
  <!--PLANT OWN CROPS [plantOwn] {APPLICANT or FARMER}-->
-<div class="row form-group">
+<div class="row form-group" ng-if="loan.loan_type_id != 7">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-9">
       <label>Do you plant your own crops?</label>
@@ -27,7 +27,7 @@
 <!-- PLANT OWN CROPS [plantOwn] {APPLICANT or FARMER} -->
 
 <!-- HARVEST OWN CROPS [harvestOwn] {APPLICANT or FARMER} -->
-<div class="row form-group">
+<div class="row form-group" ng-if="loan.loan_type_id != 7">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-9">
       <label>Do you harvest your own crops?</label>
@@ -52,7 +52,7 @@
 <!-- HARVEST OWN CROPS [harvestOwn] {APPLICANT or FARMER} -->
 
 <!-- EQUIPMENT OBLIGATIONS [equipObligations] {LOAN} -->
-<div class="row form-group">
+<div class="row form-group" ng-if="loan.loan_type_id != 7">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-9">
       <label>Do you have all equipment obligations met and/or factored into the loan?</label>
@@ -77,7 +77,7 @@
 <!-- EQUIPMENT OBLIGATIONS [equipObligations] {LOAN} -->
 
 <!-- OTHER CASH OUTLAYS [otherCash] {?}-->
-<div class="row form-group">
+<div class="row form-group" ng-if="loan.loan_type_id != 7">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-9">
       <label>Have you made provisions for all other non-requested cash outlays?</label>
@@ -102,7 +102,7 @@
 <!-- OTHER CASH OUTLAYS [otherCash] {?}-->
 
 <!-- FSA STANDING [fsaGood] {APPLICANT or FARMER} -->
-<div class="row form-group">
+<div class="row form-group" ng-if="loan.loan_type_id != 7">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-9">
       <label>Are you in good standing with the FSA?</label>
@@ -127,7 +127,7 @@
 <!-- FSA STANDING [fsaGood] {APPLICANT or FARMER} -->
 
 <!-- FSA DIRECT PAYMENTS [fsa_direct_pay] -->
-<div class="row form-group">
+<div class="row form-group" ng-if="loan.loan_type_id != 7">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-9">
       <label>Have you received any FSA Direct Payments?</label>
@@ -152,7 +152,7 @@
 <!-- FSA DIRECT PAYMENTS [fsa_direct_pay] -->
 
 <!-- FEDERAL CROP INSURANCE -->
-<div class="row form-group">
+<div class="row form-group" ng-if="loan.loan_type_id != 7">
   <div class="col-md-8 col-md-offset-2">
     <div class="col-md-9">
       <label>Do you have Federal Crop Insurance in force?</label>
@@ -168,8 +168,25 @@
 </div>
 <!-- FEDERAL CROP INSURANCE -->
 
+<!-- STORED CROP INSURANCE -->
+<div class="row form-group" ng-if="loan.loan_type_id == 7">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-9">
+      <label>Is your stored grain value insured?</label>
+    </div>
+    <div class="col-md-3">
+      <input type="radio" name="insInPlace" ng-value="true" ng-model="quests.insInPlace"/>
+      &nbsp;<label>Yes</label>
+      &nbsp;&nbsp;&nbsp;
+      <input type="radio" name="insInPlace" ng-value="false" ng-model="quests.insInPlace"/>
+      &nbsp;<label>No</label>
+    </div>
+  </div>
+</div>
+<!-- STORED CROP INSURANCE -->
+
 <!-- Federal Crop Insurance Standing [fciGood] -->
-<div class="row form-group">
+<div class="row form-group" ng-if="loan.loan_type_id != 7">
   <div class="col-md-8 col-md-offset-2">
     <div class="col-md-9">
       <label>Are you in good standing with Federal Crop Insurance?</label>
@@ -194,7 +211,7 @@
 <!-- Federal Crop Insurance Standing [fciGood] -->
 
 <!-- PREMIUMS DUE [premiumsPast] -->
-<div class="row form-group">
+<div class="row form-group" ng-if="loan.loan_type_id != 7">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-9">
       <label>Are you current in all Crop Insurance premiums?</label>
@@ -333,7 +350,7 @@
 <!-- LIENS [liens] -->
 
 <!-- OUTSTANDING/FUTURE LIABILITIES [future_liabilities] -->
-<div class="row form-group">
+<div class="row form-group" ng-if="loan.loan_type_id != 7">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-9">
       <label>Do you have any future crops booked or other future contract liabilities?</label>
@@ -350,7 +367,7 @@
 <!-- OUTSTANDING/FUTURE LIABILITIES [future_liabilities] -->
 
 <!-- THIRD PARTY CREDIT [third_party_credit_available] -->
-<div class="row form-group">
+<div class="row form-group" ng-if="loan.loan_type_id != 7">
   <div class="col-md-8 col-lg-offset-2">
     <div class="col-md-9">
       <label>Do you have any third-party credit available (PHI, Monsanto, FarmPlan, etc.)?</label>
@@ -400,7 +417,7 @@
 <!--AFFILIATED ENTITIES [affiliated entities] {}-->
 
   <!-- INCOME PERCENTAGE [income_percent] {LOAN}-->
-  <div class="row form-group">
+  <div class="row form-group" ng-if="loan.loan_type_id != 7">
     <div class="col-md-8 col-lg-offset-2">
       <div class="col-md-9">
         <label>What is the percentage of income from this farming operation?</label>

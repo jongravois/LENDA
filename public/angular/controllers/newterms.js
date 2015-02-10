@@ -27,6 +27,11 @@
           LoansFactory.getFinancials($stateParams.loanID)
             .then(function success(rsp){
               var sng = rsp.data.data[0];
+              angular.forEach($scope.screens, function(obj, index) {
+                if (obj.screen == currScreen) {
+                  obj.status = 1;
+                }
+              });
               //console.log(sng);
 
               //TODO: create lenda, if changed from global
