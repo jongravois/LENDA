@@ -188,6 +188,7 @@
         $state.go("admin.regions.edit",{regionId: $scope.inserted.id});
       };
     })
+
     .controller('AdminReportsController', function($scope, $http, $state, $stateParams){
       $scope.report_id = $stateParams.reportId;
       $scope.report = _.find($scope.reports, function(i) {

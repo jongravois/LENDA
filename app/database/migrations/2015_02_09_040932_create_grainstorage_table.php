@@ -22,6 +22,7 @@ class CreateGrainstorageTable extends Migration {
 			$table->double('revenue')->default(0);
 			$table->double('eligible_proceeds')->default(0);
 			$table->double('advance_percent')->default(75);
+			$table->double('payment_terms')->default(15);
 			$table->timestamps();
 		});
 	}

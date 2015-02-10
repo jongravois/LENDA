@@ -29,6 +29,9 @@ class ConditionsTableSeeder extends Seeder {
 			'condition'	=>	'Controlled Disbursements'
 		]);
 		Conditions::create([
+			'condition' => 'Grain Storage Agreement'
+		]);
+		Conditions::create([
 			'condition'	=>	'Freeform Conditions'
 		]);
 	}

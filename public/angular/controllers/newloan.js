@@ -3,16 +3,9 @@
   angular
     .module('ARM')
     .controller('NewLoanController', function(
-      $scope,
-      $http,
-      $state,
-      $stateParams,
-      API_URL,
-      AppFactory,
-      FarmersFactory,
-      GlobalsFactory,
-      LoansFactory,
-      LoanProcessor,
+      $scope, $http, $state, $stateParams,
+      API_URL, AppFactory, FarmersFactory,
+      GlobalsFactory, LoansFactory, LoanProcessor,
       Loan
     ){
       $scope.newapplication = true; //flag for screen buttons

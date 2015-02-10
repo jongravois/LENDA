@@ -53,10 +53,27 @@ class LoanconditionsTableSeeder extends Seeder {
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
-			'condition_id'	=>	9,
+			'condition_id'	=>	10,
 			'condition'	=>	'PHI Credit Limit of 82K',
 			'status' => 'verified',
 			'action_date' => '2015-02-06'
+		]);
+
+		Loanconditions::create([
+			'crop_year'	=>	2015,
+			'loan_id'	=>	7,
+			'condition_id'	=>	1,
+			'condition'	=>	'Agricultural Security Agreement on Crops and Equipment',
+			'status' => 'verified',
+			'action_date' => '2015-02-01'
+		]);
+		Loanconditions::create([
+			'crop_year'	=>	2015,
+			'loan_id'	=>	7,
+			'condition_id'	=>	9,
+			'condition'	=>	'Grain Storage Agreement',
+			'status' => 'verified',
+			'action_date' => '2015-02-01'
 		]);
 	}
 }

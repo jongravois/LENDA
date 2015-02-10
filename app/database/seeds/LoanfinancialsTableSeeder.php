@@ -417,7 +417,30 @@ class LoanfinancialsTableSeeder extends Seeder {
 
 		//7 - Grain-Storage
 		Loanfinancials::create([
-			'loan_id' => 7
+			'loan_id' => 7,
+			'amount_requested' => 200000,
+			'commit_arm' => 200000,
+			'commit_total' => 200000,
+			'fee_processing' => 1,
+			'proc_fee' => 2000,
+			'proc_fee_arm_only' => 2000,
+			'fee_service' => 1.5,
+			'srvc_fee' => 3000,
+			'srvc_fee_arm_only' => 3000,
+			'total_fee_percent' => 2.5,
+			'fee_total' => 5000,
+			'principal_arm' => 200000,
+			'principal' => 200000,
+			'int_percent_arm'	=> 9,
+			'int_arm' => 18000,
+			'interest' => 18000,
+			'total_revenue' => 218000,
+			'arm_and_dist' => 218000,
+			'total_balance' => 218000,
+			'balance_paid' => 0,
+			'remaining_balance' => 218000,
+			'cash_flow' => 126460,
+			'risk' => 179380
 		]);
 
 		//2 - Ag-Input

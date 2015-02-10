@@ -32,7 +32,8 @@ class GrainstorageTransformer extends Transformer{
       'contract_price' => (double) $arr['contract_price'],
       'owner_share' => (double) $arr['owner_share'],
       'revenue' => (double) $arr['revenue'],
-      'eligible_proceeds' => (double) $arr['eligible_proceeds']
+      'eligible_proceeds' => (double) $arr['eligible_proceeds'],
+      'payment_terms' => (double) $arr['payment_terms']
     ];
   }
 }

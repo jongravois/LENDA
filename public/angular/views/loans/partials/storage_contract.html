@@ -9,6 +9,11 @@
     <th>Expected Revenue</th>
     <th>Eligible Proceeds</th>
   </tr>
+  <tr>
+    <td colspan="8" ng-if="storage.length == 0">
+      <strong>No contracts found!</strong>
+    </td>
+  </tr>
   <tr ng-repeat="store in storage">
     <td>
       {{store.contract_number}}
