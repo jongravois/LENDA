@@ -12,7 +12,7 @@ class CreateLoanexceptionsTable extends Migration {
 			$table->increments('id');
       $table->integer('loan_id');
       $table->integer('exception_id');
-      $table->text('msg');
+			$table->text('msg');
 			$table->timestamps();
 		});
 	}

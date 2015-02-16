@@ -82,6 +82,7 @@
 <script src="angular/controllers/home.js"></script>
 <script src="angular/controllers/financials.js"></script>
 <script src="angular/controllers/loanexceptions.js"></script>
+<script src="angular/controllers/terms.js"></script>
 
 <script src="angular/controllers/newloan.js"></script>
 <script src="angular/controllers/newaffiliates.js"></script>

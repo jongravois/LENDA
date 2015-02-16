@@ -6,10 +6,11 @@ class LoanexceptionsTransformer extends Transformer{
 	{
 		//return $arr;
 		return array(
-			'id'		=>	$arr['id'],
-			'loan_id'	=> 	$arr['loan_id'],
-			'exception_id'	=>	$arr['exception_id'],
-			'msg'		=>	$arr['msg']
+			'id' => $arr['id'],
+			'loan_id' => $arr['loan_id'],
+			'exception_id' => $arr['exception_id'],
+			'exception' => $arr['exceptions']['title'],
+			'msg' => $arr['msg']
 		);
 	}
 }

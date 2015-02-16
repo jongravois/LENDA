@@ -103,9 +103,11 @@ class LoansController extends ApiController {
 		$loan = Loan::find($id);
 		$loan->fill(Input::all())->save();
 
+    $username = Auth::user()->username = Auth::user()->username || 'LENDA';
+
 		$newInfo = [
 			'loan_id'	=>	$loan->id,
-			'user'		=>	Auth::user()->username,
+			'user'		=>	$username,
 			'action'	=>	'Updated loan'
 		];
 		Systemics::create($newInfo);
@@ -148,12 +150,14 @@ class LoansController extends ApiController {
 			$dueDate = $arr['due_date'];
 			$diff = $dueDate->diffInDays($appDate);
 
-			return [
+			//return $arr;
+      return [
 				'id'		=>	$arr['id'],
 				'app_date'	=> 	$arr['app_date']->format('m/d/Y'),
 				'decision_date'	=> 	($arr['decision_date'] ? $arr['decision_date']->format('m/d/Y') : null),
-				'distributor_approval_date'	=> 	($arr['distributor_approval_date'] ? $arr['distributor_approval_date']->format('m/d/Y') : null),
+				'distributor_approval_date' => ($arr['distributor_approval_date'] ? $arr['distributor_approval_date']->format('m/d/Y') : null),
 				'due_date'	=>	$arr['due_date']->format('m/d/Y'),
+				'default_due_date' => ($arr['default_due_date'] ? $arr['default_due_date']->format('m/d/Y') : null),
 				'loan_days' =>	$diff,
 				'loan_type_id' => $arr['loan_type_id'],
 				'loan_type' => $arr['loantype']['loantype'],

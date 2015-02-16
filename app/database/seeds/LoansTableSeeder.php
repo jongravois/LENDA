@@ -11,6 +11,7 @@ class LoansTableSeeder extends Seeder {
 			'app_date' => '2015-01-04',
 			'distributor_approval_date' => '2015-01-14',
 			'decision_date' => '2015-01-15',
+			'default_due_date' => '2015-12-15',
 			'due_date' => '2015-12-15',
 			'loan_type_id' => 2,
 			'status_id' => 1,
@@ -64,7 +65,8 @@ class LoansTableSeeder extends Seeder {
 		Loan::create([
 			'applicant_id' => 6,
 			'app_date' => Carbon::now()->subDays(1),
-			'due_date' => '2015-12-15',
+			'default_due_date' => '2015-12-15',
+			'due_date' => '2016-06-15',
 			'loc_id' =>	4,
 			'user_id' => 2,
 			'region_id' => 3,
@@ -80,6 +82,7 @@ class LoansTableSeeder extends Seeder {
 		Loan::create([
 			'applicant_id' =>  3,
 			'app_date' => Carbon::now()->subDays(2),
+			'default_due_date' => '2015-12-15',
 			'due_date' => '2015-12-15',
 			'loc_id' =>	4,
 			'user_id' => 2,
@@ -99,6 +102,7 @@ class LoansTableSeeder extends Seeder {
 		Loan::create([
 			'applicant_id' => 4,
 			'app_date' => Carbon::now(),
+			'default_due_date' => '2015-12-15',
 			'due_date' => '2015-12-15',
 			'loc_id' => 4,
 			'user_id' => 2,
@@ -113,6 +117,7 @@ class LoansTableSeeder extends Seeder {
 		Loan::create([
 			'applicant_id' => 2,
 			'app_date' => Carbon::now()->subDays(3),
+			'default_due_date' => '2015-12-15',
 			'due_date' => '2015-12-15',
 			'loc_id' =>	4,
 			'user_id' => 2,
@@ -132,6 +137,7 @@ class LoansTableSeeder extends Seeder {
 		Loan::create([
 			'applicant_id' => 5,
 			'app_date' => Carbon::now()->subDays(2),
+			'default_due_date' => '2015-12-15',
 			'due_date' => '2015-12-15',
 			'loc_id' =>	4,
 			'user_id' => 2,
@@ -151,6 +157,7 @@ class LoansTableSeeder extends Seeder {
     Loan::create([
       'applicant_id' => 7,
       'app_date' => Carbon::now()->subDays(4),
+      'default_due_date' => '2015-03-15',
       'due_date' => '2015-04-30',
       'loc_id' =>	4,
       'user_id' => 2,
@@ -164,6 +171,7 @@ class LoansTableSeeder extends Seeder {
 		// Tony Stark(1) @ Glass Towers(1) | Partnership | Ag-Input 2014
 		Loan::create([
 			'app_date' => '2014-01-01',
+			'default_due_date' => '2014-12-15',
 			'due_date' => '2014-12-15',
 			'loan_type_id' => 2,
 			'status_id' => 2,

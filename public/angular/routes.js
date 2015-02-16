@@ -486,8 +486,8 @@
           })
           .state('new.terms', {
             url: '/terms',
-            templateUrl: 'angular/views/loans/newterms.html',
-            controller: 'NewTermsController'
+            templateUrl: 'angular/views/loans/terms.html',
+            controller: 'TermsController'
           })
           .state('new.yield', {
             url: '/yield',
@@ -620,7 +620,7 @@
           .state('edit.terms', {
             url: '/terms',
             templateUrl: 'angular/views/loans/terms.html',
-            controller: 'EditTermsController'
+            controller: 'TermsController'
           })
           .state('edit.underwriting', {
             url: '/underwriting',

@@ -4,7 +4,7 @@
       .module('ARM')
       .controller('NewTermsController', NewTermsController);
   
-      NewTermsController.$inject = ['$scope',  '$state', '$stateParams', 'AppFactory', 'ConditionsFactory', 'LoansFactory', 'Loan'];
+      NewTermsController.$inject = ['$scope',  '$state', '$stateParams', 'AppFactory', 'ConditionsFactory', 'ExceptionsFactory', 'LoansFactory', 'Loan'];
   
       function NewTermsController(
           $scope,
@@ -12,6 +12,7 @@
           $stateParams,
           AppFactory,
           ConditionsFactory,
+          ExceptionsFactory,
           LoansFactory,
           Loan
       ){

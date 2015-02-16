@@ -13,7 +13,7 @@ class LoanexceptionsController extends ApiController {
 
 	public function index()
 	{
-		$exceps = Loanexceptions::all();
+		$exceps = Loanexceptions::with('exceptions')->get();
 		return $this->respond([
 			'data' => $this->loanexceptionsTransformer->transformCollection($exceps->all())
 		]);
@@ -61,9 +61,15 @@ class LoanexceptionsController extends ApiController {
 
 	public function byLoan($id)
 	{
-		$exceps = Loanexceptions::where('loan_id', $id)->orderBy('exception_id')->get();
+		$exceps = Loanexceptions::with('exceptions')->where('loan_id', $id)->orderBy('exception_id')->get();
 		return $this->respond([
 			'data' => $this->loanexceptionsTransformer->transformCollection($exceps->all())
 		]);
+	}
+
+	public function findSingle($loanID, $excID)
+	{
+		$ex = Loanexceptions::where('loan_id', $loanID)->where('exception_id', $excID)->pluck('id');
+		return $ex;
 	}
 }

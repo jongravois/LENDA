@@ -3,22 +3,8 @@
 </style>
 <form>
 <fieldset>
-  <!--<pre>{{loan | json}}</pre>-->
+  <!--<pre>{{loan.due_date | json}}</pre>-->
   <legend>Loan Terms</legend>
-  <div class="row">
-    <div class="col-md-4">
-      <label>Due Date</label>
-      <p class="input-group">
-        <input type="text" class="form-control" datepicker-popup="M/d/yy" ng-model="loan.due_date" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-      </p>
-      <br/><br/>
-    </div>
-    <div class="col-md-4">&nbsp;</div>
-    <div class="col-md-4">&nbsp;</div>
-  </div>
   <div class="row">
     <div class="col-md-12">
       <table class="table" style="width: 60%;">
@@ -27,6 +13,14 @@
           <td class="text-center">
             <span ng-if="loan.loan_type_id == 2">Fee On Total</span>
           </td>
+        </tr>
+        <tr>
+          <td style="width:22%;">Loan Due Date</td>
+          <td colspan="2">
+            <text-edit-in-place value="loan.due_date"></text-edit-in-place>
+            <!--<text-edit-in-place value="loan.due_date" ng-change="changeDueDate()"></text-edit-in-place>-->
+          </td>
+          <td>&nbsp;</td>
         </tr>
         <tr>
           <td style="width:22%;">Loan Processing Fee</td>
@@ -94,8 +88,12 @@
   </div>
   <div class="row">
     <div class="col-md-12 text-right" style="padding-top:25px;">
-      <button style="margin-right:10px;" class="btn btn-primary" ng-click="insertTerms()" ng-if="newapplication">SAVE</button>
-      <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateTerms()" ng-if="!newapplication">UPDATE</button>
+        <span ng-if="newapplication">
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="insertTerms()">Next</button>
+        </span>
+        <span ng-if="!newapplication">
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateTerms()">UPDATE</button>
+        </span>
     </div>
   </div>
 </fieldset>

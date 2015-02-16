@@ -14,6 +14,7 @@ class CreateLoansTable extends Migration {
       $table->date('app_date');
       $table->date('decision_date')->nullable();
       $table->date('distributor_approval_date')->nullable();
+      $table->date('default_due_date');
       $table->date('due_date');
       $table->integer('loan_type_id');
       $table->integer('status_id')->default(1);
