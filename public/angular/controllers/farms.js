@@ -4,11 +4,11 @@
     .module('ARM')
     .controller('FarmsController', FarmsController);
 
-    FarmsController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
+    FarmsController.$inject = ['$scope', '$state', '$stateParams', 'Loan', 'AppFactory', 'LoansFactory'];
 
     function FarmsController(
       $scope, $state, $stateParams,
-      AppFactory, LoansFactory
+      Loan, AppFactory, LoansFactory
     ){
       var curr = $state.current.url;
       var currScreen = curr.substring(1,curr.length);
@@ -22,7 +22,8 @@
       }// end if
       //alert(currScreen);
 
-      $scope.loan = $scope.loan || {};
+      $scope.loan = $scope.loan || Loan.data.data[0];
+
       $scope.newFarm = $scope.newFarm || {};
       $scope.stateCounties = [];
       $scope.newFarm.irr = $scope.newFarm.irr || 0;
@@ -64,6 +65,14 @@
           obj.acres = ((1 * obj.irr) + (1 * obj.ni) + (1 * obj.facirr) + (1 * obj.facni));
           obj.percent_irrigated = (((1 * obj.irr) + (1 * obj.facirr)) / ((1 * obj.irr) + (1 * obj.ni) + (1 * obj.facirr) + (1 * obj.facni)) * 100);
 
+          if(parseFloat(obj.waived) > 0){
+            ExceptionsFactory.handler($stateParams.loanID, 'cashRentWaivers', false, {});
+          }
+
+          if(obj.cash_rent == 0 && obj.share == 0){
+            ExceptionsFactory.handler($stateParams.loanID, 'rentExpenses', false, {});
+          }
+
           LoansFactory.insertFarm(obj)
             .then(function success(rsp){
               $scope.farms.push(obj);
@@ -77,5 +86,6 @@
             });
         } // end if
       }
+
     } // end controller function
 })();

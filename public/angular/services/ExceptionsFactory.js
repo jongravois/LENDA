@@ -14,9 +14,9 @@
         balanceSheetNetWorth: balanceSheetNetWorth, //financials
         bankruptcyHistory: bankruptcyHistory,
         bankruptcyOrder: bankruptcyOrder,
-        bookedCrops: bookedCrops, //farm
+        bookedCrops: bookedCrops, //crops
         cashOutlayProvisions: cashOutlayProvisions,
-        cashRentWaivers: cashRentWaivers, //farm
+        cashRentWaivers: cashRentWaivers,
         contractualObligations: contractualObligations,
         createExceptions: createExceptions,
         cropBreakEven: cropBreakEven, //???
@@ -60,11 +60,11 @@
         producesPeanuts: producesPeanuts, //crops
         producesSugarCane: producesSugarCane, //crops
         realEstateCollateral: realEstateCollateral, //underwriting
-        rentExpenses: rentExpenses, //underwriting
+        rentExpenses: rentExpenses,
         riskMargin: riskMargin, //financials
         serviceFeeNotOnTotal: serviceFeeNotOnTotal,
         thirdPartyCredit: thirdPartyCredit,
-        variableHarvesting: variableHarvesting, //farms
+        variableHarvesting: variableHarvesting, //crops
         wholeFarmExpenses: wholeFarmExpenses, //budget
         yieldHistory: yieldHistory //yield
       };
@@ -245,16 +245,6 @@
 
         var nonrp = _.filter(o.policies, function(i){ return i.type != 'RP'});
         if(nonrp.length > 0){ nonRPInsurance(loan.id); }
-
-        var wave = o.farms.reduce(function(tot,farm){return tot + farm.waived}, 0);
-        if(wave > 0){
-          cashRentWaivers(loan.id);
-        }
-
-        var rent_expense = _.any(o.farms,function(farm){ return farm.cash_rent == 0 && farm.share == 0; });
-        if(rent_expense){
-          rentExpenses(loan.id);
-        }
 
         var varhar = o.crops.reduce(function(tot,crop){return tot + crop.harvest}, 0);
         if(varhar > 0){
