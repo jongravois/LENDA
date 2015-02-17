@@ -18,10 +18,10 @@ class FarmTransformer extends Transformer{
 			'waived'		=>	$arr['waived'],
 			'when_due'		=>	$arr['when_due'],
 			'acres' => $arr['acres'],
-			'irr'			=>	(boolean) $arr['irr'],
-			'ni'			=>	(boolean) $arr['ni'],
-			'facirr'		=>	(boolean) $arr['facirr'],
-			'facni'			=>	(boolean) $arr['facni'],
+			'irr'			=>	(double) $arr['irr'],
+			'ni'			=>	(double) $arr['ni'],
+			'facirr'		=>	(double) $arr['facirr'],
+			'facni'			=>	(double) $arr['facni'],
 			'fsa_paid'	=>	$arr['fsa_paid'],
 			'percent_irrigated'	=>	(double) $arr['percent_irrigated']
 		];

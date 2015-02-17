@@ -3,150 +3,6 @@
   td{ padding: 2px; }
 </style>
 
-<div class="row" style="display:none;">
-  <table class="table table-striped" style="width:400px;">
-    <tr>
-      <th>Field</th>
-      <th>Value</th>
-    </tr>
-    <tr>
-      <td>Farmer</td>
-      <td>{{loans[0].farmer}}</td>
-    </tr>
-    <tr>
-      <td>Applicant</td>
-      <td>{{loans[0].applicant}}</td>
-    </tr>
-    <tr>
-      <td>App Date</td>
-      <td>{{loans[0].app_date}}</td>
-    </tr>
-    <tr>
-      <td>Location</td>
-      <td>{{loans[0].loc_abr}}</td>
-    </tr>
-    <tr>
-      <td>Loan Type</td>
-      <td>{{loans[0].loan_type}}</td>
-    </tr>
-    <tr>
-      <td>Status</td>
-      <td>{{loans[0].status}}</td>
-    </tr>
-    <tr>
-      <td>Region</td>
-      <td>{{loans[0].region}}</td>
-    </tr>
-    <tr>
-      <td>Season</td>
-      <td>{{loans[0].season}}</td>
-    </tr>
-    <tr>
-      <td>Distributor</td>
-      <td>{{loans[0].distributor}}</td>
-    </tr>
-    <tr>
-      <td>Agency</td>
-      <td>{{loans[0].insurance.agency}}</td>
-    </tr>
-    <tr>
-      <td>Total Commit</td>
-      <td>{{loans[0].fins.commit_total | currency}}</td>
-    </tr>
-    <tr>
-      <td>ARM Commit</td>
-      <td>{{loans[0].fins.commit_arm | currency}}</td>
-    </tr>
-    <tr>
-      <td>Distributor Commit</td>
-      <td>{{loans[0].fins.commit_dist | currency}}</td>
-    </tr>
-    <tr>
-      <td>Other Commit</td>
-      <td>{{loans[0].fins.commit_other | currency}}</td>
-    </tr>
-    <tr>
-      <td>Processing Fee Percentage</td>
-      <td>{{loans[0].fins.fee_processing_percent | number:1}}</td>
-    </tr>
-    <tr>
-      <td>Processing Fee Total</td>
-      <td>{{loans[0].fins.proc_fee | currency}}</td>
-    </tr>
-    <tr>
-      <td>Service Fee Percentage</td>
-      <td>{{loans[0].fins.fee_service_percent | number:1}}</td>
-    </tr>
-    <tr>
-      <td>Service Fee Total</td>
-      <td>{{loans[0].fins.srvc_fee | currency}}</td>
-    </tr>
-    <tr>
-      <td>ARM Rate Percent</td>
-      <td>{{loans[0].fins.int_percent_arm | number:1}}</td>
-    </tr>
-    <tr>
-      <td>ARM Rate</td>
-      <td>{{loans[0].fins.int_arm | currency}}</td>
-    </tr>
-    <tr>
-      <td>Distributor Rate Percent</td>
-      <td>{{loans[0].fins.int_percent_dist | number:1}}</td>
-    </tr>
-    <tr>
-      <td>Distributor Rate</td>
-      <td>{{loans[0].fins.int_dist | currency}}</td>
-    </tr>
-    <tr>
-      <td>Other Rate Percent</td>
-      <td>{{loans[0].fins.int_percent_other | number:1}}</td>
-    </tr>
-    <tr>
-      <td>Other Rate</td>
-      <td>{{loans[0].fins.int_other | currency}}</td>
-    </tr>
-    <tr>
-      <td>Balance Due</td>
-      <td>{{loans[0].fins.remaining_balance | currency}}</td>
-    </tr>
-    <tr>
-      <td>Total Acres</td>
-      <td>{{loans[0].fins.total_acres}}</td>
-    </tr>
-    <tr>
-      <td>Corn Acres</td>
-      <td>{{loans[0].crops[0].acres}}</td>
-    </tr>
-    <tr>
-      <td>Soybeans Acres</td>
-      <td>{{loans[0].crops[1].acres}}</td>
-    </tr>
-    <tr>
-      <td>Sorghum Acres</td>
-      <td>{{loans[0].crops[2].acres}}</td>
-    </tr>
-    <tr>
-      <td>Wheat Acres</td>
-      <td>{{loans[0].crops[3].acres}}</td>
-    </tr>
-    <tr>
-      <td>Cotton Acres</td>
-      <td>{{loans[0].crops[4].acres}}</td>
-    </tr>
-    <tr>
-      <td>Rice Acres</td>
-      <td>{{loans[0].crops[5].acres}}</td>
-    </tr>
-    <tr>
-      <td>Peanuts Acres</td>
-      <td>{{loans[0].crops[6].acres}}</td>
-    </tr>
-    <tr>
-      <td>Sugar Cane Acres</td>
-      <td>{{loans[0].crops[7].acres}}</td>
-    </tr>
-  </table>
-</div>
 <!--TODO: Add click funtionality to progress bar-->
 <div class="button_bar" style="margin-top: 20px;">
   &nbsp;
@@ -174,12 +30,12 @@
          style="background-color: white;" border="1">
     <tr class="landing_header_row">
       <th style="width:5%;" rowspan="2">
-                <span ng-show="pending_view" ng-click="pending_view = 0; nextOrder()"
-                      class="glyphicon glyphicon-exclamation-sign"
-                      style="color:#000000;"></span>
-                <span ng-show="!pending_view" ng-click="pending_view = 1; nextOrder()"
-                      class="glyphicon glyphicon-exclamation-sign"
-                      style="color:#FFF;"></span>
+        <span ng-show="pending_view" ng-click="pending_view = 0; nextOrder()"
+          class="glyphicon glyphicon-exclamation-sign"
+          style="color:#000000;"></span>
+        <span ng-show="!pending_view" ng-click="pending_view = 1; nextOrder()"
+           class="glyphicon glyphicon-exclamation-sign"
+           style="color:#FFF;"></span>
       </th>
       <th style="width:5%;" rowspan="2">&nbsp;</th>
       <th style="width:5%;text-align:left;" rowspan="2" data-ng-click="sortBy='farmer';reverse=!reverse">Farmer</th>

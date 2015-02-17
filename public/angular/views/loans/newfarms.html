@@ -5,24 +5,30 @@
   <legend>Farms Information</legend>
   <div class="row">
     <div class="col-xs-12">
-      <table class="table table-striped">
+      <table class="table table-striped rowed">
+        <tr>
+          <th colspan="7">&nbsp;</th>
+          <th colspan="5" class="text-center;">Acres</th>
+          <th>&nbsp;</th>
+        </tr>
         <tr>
           <th style="width:15%;">State|County</th>
-          <th style="width:10%;">FSN</th>
-          <th style="width:10%;">Landlord</th>
-          <th style="width:7%;">Share</th>
-          <th style="width:7%;">Cash Rent</th>
-          <th style="width:10%;">When Due</th>
-          <th style="width:4%;">Waived</th>
-          <th style="width:9%;">Acres</th>
-          <th style="width:3%;">Irr</th>
-          <th style="width:3%;">NI</th>
-          <th style="width:3%;">FACI</th>
-          <th style="width:3%;">FACNI</th>
-          <th style="width:8%;">FSA</th>
+          <th style="width:6%;">FSN</th>
+          <th style="width:8%;">Landlord</th>
+          <th style="width:8%;">Share</th>
+          <th style="width:8%;">Cash Rent</th>
+          <th style="width:8%;">When Due</th>
+          <th style="width:8%;">Waived</th>
+          <th style="width:5%;">IR</th>
+          <th style="width:5%;">NI</th>
+          <th style="width:5%;">FACI</th>
+          <th style="width:5%;">FACNI</th>
+          <th style="width:6%;">Total</th>
+          <th class="text-center" style="width:8%;">FSA</th>
+
         </tr>
         <tr ng-show="farms.length == 0">
-          <td colspan="12">
+          <td colspan="13">
             <b>No Farms Found!</b>
           </td>
         </tr>
@@ -36,35 +42,35 @@
           <td>
             {{f.owner}}
           </td>
-          <td>
-            {{f.share_rent}}
+          <td class="text-right">
+            {{f.share_rent|flexPercent:1}}
           </td>
-          <td>
-            {{f.cash_rent}}
+          <td class="text-right" ng-class=gtZero(f.cash_rent)>
+            {{f.cash_rent|flexCurrency:2}}
           </td>
           <td>
             {{f.when_due}}
           </td>
-          <td>
-            {{f.waived}}
+          <td class="text-right" ng-class=gtZero(f.waived)>
+            {{f.waived|flexCurrency:0}}
           </td>
-          <td>
-            {{f.acres}}
+          <td class="text-right">
+            {{f.irr|number:1}}
           </td>
-          <td style="text-align: center;">
-            <input type="checkbox" ng-model="f.irr"/>
+          <td class="text-right">
+            {{f.ni|number:1}}
           </td>
-          <td style="text-align: center;">
-            <input type="checkbox" ng-model="f.ni"/>
+          <td class="text-right">
+            {{f.facirr|number:1}}
           </td>
-          <td style="text-align: center;">
-            <input type="checkbox" ng-model="f.facirr"/>
+          <td class="text-right">
+            {{f.facni|number:1}}
           </td>
-          <td style="text-align: center;">
-            <input type="checkbox" ng-model="f.facni"/>
+          <td class="text-right">
+            {{f.acres|number:1}}
           </td>
-          <td>
-            {{f.fsa_paid}}
+          <td class="text-right" ng-class=gtZero(f.fsa_paid)>
+            {{f.fsa_paid|flexCurrency:0}}
           </td>
         </tr>
         <tr style="max-height:2px; background-color: #333;">
@@ -113,20 +119,6 @@
             </div>
             <div class="row form-group">
               <div class="col-xs-2">
-                <label>Acres</label>
-              </div>
-              <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="newFarm.acres"/>
-              </div>
-              <div class="col-xs-2">
-                <label>Percent Irrigated</label>
-              </div>
-              <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="newFarm.percent_irrigated"/>
-              </div>
-            </div>
-            <div class="row form-group">
-              <div class="col-xs-2">
                 <label>Cash Rent</label>
               </div>
               <div class="col-xs-3">
@@ -160,21 +152,43 @@
               <div class="col-xs-3">
                 <input type="text" class="form-control" ng-model="newFarm.fsa_paid"/>
               </div>
+            </div>
+            <div class="row form-group">
               <div class="col-xs-2">
-                <label>Crop Practices</label>
+                <label>Acres</label>
               </div>
-              <div class="col-xs-3">
-                <label>
-                  <input type="checkbox" name="irr" ng-model="newFarm.irr"/>&nbsp;IRR
-                  &nbsp;
-                  <input type="checkbox" name="ni" ng-model="newFarm.ni"/>&nbsp;NI
-                  &nbsp;
-                  <input type="checkbox" name="facirr" ng-model="newFarm.facirr"/>&nbsp;FACIR
-                  &nbsp;
-                  <input type="checkbox" name="facni" ng-model="newFarm.facni"/>&nbsp;FACNI
-                </label>
+              <div class="col-xs-2">
+                <label>IR</label>
+                <input type="text" class="form-control" ng-model="newFarm.irr"/>
+              </div>
+              <div class="col-xs-2">
+                <label>NI</label>
+                <input type="text" class="form-control" ng-model="newFarm.ni"/>
+              </div>
+              <div class="col-xs-2">
+                <label>FACI</label>
+                <input type="text" class="form-control" ng-model="newFarm.facirr"/>
+              </div>
+              <div class="col-xs-2">
+                <label>FACNI</label>
+                <input type="text" class="form-control" ng-model="newFarm.facni"/>
               </div>
             </div>
+            <div class="row form-group">
+              <div class="col-xs-2">
+                <label>Total Acres</label>
+              </div>
+              <div class="col-xs-3">
+                <p>{{newFarm.acres = ((1 * newFarm.irr) + (1 * newFarm.ni) + (1 * newFarm.facirr) + (1 * newFarm.facni))|number:1}}</p>
+              </div>
+              <div class="col-xs-2">
+                <label>Percent Irrigated</label>
+              </div>
+              <div class="col-xs-3">
+                <p>{{newFarm.percent_irrigated = (((1 * newFarm.irr) + (1 * newFarm.facirr)) / ((1 * newFarm.irr) + (1 * newFarm.ni) + (1 * newFarm.facirr) + (1 * newFarm.facni)) * 100)|flexPercent:1}}</p>
+              </div>
+            </div>
+
             <div class="row">&nbsp;</div>
             <div class="row">
               <div class="col-xs-10 form-group text-leftt">

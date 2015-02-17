@@ -4,21 +4,27 @@
 <fieldset>
   <legend>Farms Information</legend>
 
-  <table class="table table-striped">
+  <table class="table table-striped rowed">
+    <tr>
+      <th colspan="7">&nbsp;</th>
+      <th colspan="5" class="text-center;">Acres</th>
+      <th>&nbsp;</th>
+    </tr>
     <tr>
       <th style="width:15%;">State|County</th>
-      <th style="width:10%;">FSN</th>
-      <th style="width:10%;">Landlord</th>
-      <th style="width:7%;">Share</th>
-      <th style="width:7%;">Cash Rent</th>
-      <th style="width:10%;">When Due</th>
-      <th style="width:4%;">Waived</th>
-      <th style="width:9%;">Acres</th>
-      <th style="width:3%;">Irr</th>
-      <th style="width:3%;">NI</th>
-      <th style="width:3%;">FACI</th>
-      <th style="width:3%;">FACNI</th>
+      <th style="width:6%;">FSN</th>
+      <th style="width:8%;">Landlord</th>
+      <th style="width:8%;">Share</th>
+      <th style="width:8%;">Cash Rent</th>
+      <th style="width:8%;">When Due</th>
+      <th style="width:8%;">Waived</th>
+      <th style="width:5%;">IR</th>
+      <th style="width:5%;">NI</th>
+      <th style="width:5%;">FACI</th>
+      <th style="width:5%;">FACNI</th>
+      <th style="width:6%;">Total</th>
       <th class="text-center" style="width:8%;">FSA</th>
+
     </tr>
     <tr ng-show="farms.length == 0">
       <td colspan="12">
@@ -45,21 +51,22 @@
         <text-edit-in-place value="f.when_due"></text-edit-in-place>
       </td>
       <td class="text-right">
-        <edit-in-place value="f.waived"></edit-in-place></td>
+        <edit-in-place value="f.waived"></edit-in-place>
+      </td>
+      <td style="text-align: right;">
+        <digit-edit-in-place value="f.irr"></digit-edit-in-place>
+      </td>
+      <td style="text-align: right;">
+        <digit-edit-in-place value="f.ni"></digit-edit-in-place>
+      </td>
+      <td style="text-align: right;">
+        <digit-edit-in-place value="f.facirr"></digit-edit-in-place>
+      </td>
+      <td style="text-align: right;">
+        <digit-edit-in-place value="f.facni"></digit-edit-in-place>
+      </td>
       <td class="text-right">
-        <digit-edit-in-place value="f.acres"></digit-edit-in-place>
-      </td>
-      <td style="text-align: center;">
-        <input type="checkbox" ng-model="f.irr"/>
-      </td>
-      <td style="text-align: center;">
-        <input type="checkbox" ng-model="f.ni"/>
-      </td>
-      <td style="text-align: center;">
-        <input type="checkbox" ng-model="f.facirr"/>
-      </td>
-      <td style="text-align: center;">
-        <input type="checkbox" ng-model="f.facni"/>
+        {{(1 * f.irr) + (1 * f.ni) + (1 * f.facirr) + (1 * f.facni)|number:1}}
       </td>
       <td class="text-right">
         <edit-in-place value="f.fsa_paid"></edit-in-place>

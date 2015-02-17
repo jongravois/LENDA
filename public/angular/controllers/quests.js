@@ -45,7 +45,7 @@
 
         function checkExceptions(){
           ExceptionsFactory.handler($stateParams.loanID, 'bankruptcyHistory', !$scope.quests.bankruptcy, {});
-          ExceptionsFactory.handler($stateParams.loanID, 'bankruptcyOrder', $scope.quests.bankruptcyOrder, {});
+          ExceptionsFactory.handler($stateParams.loanID, 'bankruptcyOrder', !$scope.quests.bankruptcyOrder, {});
           ExceptionsFactory.handler($stateParams.loanID, 'cashOutlayProvisions', $scope.quests.other_cash, {});
           ExceptionsFactory.handler($stateParams.loanID, 'contractualObligations', !$scope.quests.future_liabilities, {});
           ExceptionsFactory.handler($stateParams.loanID, 'equipmentObligations', $scope.quests.equip_obligations, {});

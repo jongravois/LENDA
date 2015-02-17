@@ -86,13 +86,13 @@
 <script src="angular/controllers/quests.js"></script>
 <script src="angular/controllers/terms.js"></script>
 <script src="angular/controllers/applicant.js"></script>
+<script src="angular/controllers/farms.js"></script>
 
 <script src="angular/controllers/newloan.js"></script>
 <script src="angular/controllers/newaffiliates.js"></script>
 <script src="angular/controllers/newbudget.js"></script>
 <script src="angular/controllers/newcrops.js"></script>
 <script src="angular/controllers/newdistributor.js"></script>
-<script src="angular/controllers/newfarms.js"></script>
 <script src="angular/controllers/newfinancials.js"></script>
 <script src="angular/controllers/newgrain.js"></script>
 <script src="angular/controllers/newinsurance.js"></script>
@@ -100,7 +100,6 @@
 <script src="angular/controllers/newpurgatory.js"></script>
 <script src="angular/controllers/newprerequisites.js"></script>
 <script src="angular/controllers/newreferences.js"></script>
-<script src="angular/controllers/newterms.js"></script>
 <script src="angular/controllers/newuploads.js"></script>
 <script src="angular/controllers/newyield.js"></script>
 
@@ -108,14 +107,12 @@
 <script src="angular/controllers/editCrops.js"></script>
 <script src="angular/controllers/editDistributor.js"></script>
 <script src="angular/controllers/editFarmDetails.js"></script>
-<script src="angular/controllers/editFarms.js"></script>
 <script src="angular/controllers/editInsurance.js"></script>
 <script src="angular/controllers/editOptimizer.js"></script>
 <script src="angular/controllers/editplannedcrops.js"></script>
 <script src="angular/controllers/editPrereqs.js"></script>
 <script src="angular/controllers/editStorage.js"></script>
 <script src="angular/controllers/editSummary.js"></script>
-<script src="angular/controllers/editTerms.js"></script>
 <script src="angular/controllers/editYield.js"></script>
 <script src="angular/controllers/management.js"></script>
 <script src="angular/controllers/prefs.js"></script>

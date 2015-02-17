@@ -442,7 +442,7 @@
           .state('new.farms', {
             url: '/farms',
             templateUrl: 'angular/views/loans/newfarms.html',
-            controller: 'NewFarmsController'
+            controller: 'FarmsController'
           })
           .state('new.financials', {
             url: '/financials',
@@ -570,7 +570,7 @@
           .state('edit.farms', {
             url: '/farms',
             templateUrl: 'angular/views/loans/editfarms.html',
-            controller: 'EditFarmsController'
+            controller: 'FarmsController'
           })
           .state('edit.financials', {
             url: '/financials',
