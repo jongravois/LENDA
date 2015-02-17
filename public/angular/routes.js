@@ -462,7 +462,7 @@
           .state('new.quests', {
             url: '/quests',
             templateUrl: 'angular/views/loans/quests.html',
-            controller: 'NewQuestsController'
+            controller: 'QuestsController'
           })
           .state('new.prerequisites', {
             url: '/prerequisites',
@@ -600,7 +600,7 @@
           .state('edit.quests', {
             url: '/quests',
             templateUrl: 'angular/views/loans/quests.html',
-            controller: 'EditQuestsController'
+            controller: 'QuestsController'
           })
           .state('edit.references', {
             url: '/references',

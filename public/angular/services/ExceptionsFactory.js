@@ -10,63 +10,63 @@
       //PUBLIC API
       var factoryMethods = {
         handler: handler,
-        balanceSheetLessArm: balanceSheetLessArm,
-        balanceSheetNetWorth: balanceSheetNetWorth,
+        balanceSheetLessArm: balanceSheetLessArm, //financials
+        balanceSheetNetWorth: balanceSheetNetWorth, //financials
         bankruptcyHistory: bankruptcyHistory,
         bankruptcyOrder: bankruptcyOrder,
-        bookedCrops: bookedCrops,
+        bookedCrops: bookedCrops, //farm
         cashOutlayProvisions: cashOutlayProvisions,
-        cashRentWaivers: cashRentWaivers,
+        cashRentWaivers: cashRentWaivers, //farm
         contractualObligations: contractualObligations,
         createExceptions: createExceptions,
-        cropBreakEven: cropBreakEven,
-        cropInsuranceShare: cropInsuranceShare,
-        crossCollateralized: crossCollateralized,
-        controlledDisbursment: controlledDisbursment,
+        cropBreakEven: cropBreakEven, //???
+        cropInsuranceShare: cropInsuranceShare, //insurance
+        crossCollateralized: crossCollateralized, //???
+        controlledDisbursment: controlledDisbursment, //???
         deleteException: deleteException,
         differingInterestRates: differingInterestRates,
-        equipmentCollateral: equipmentCollateral,
+        equipmentCollateral: equipmentCollateral, //underwriting
         equipmentObligations: equipmentObligations,
         farmerHistory: farmerHistory,
         firstTimeFarmer: firstTimeFarmer,
         fmaGoodStanding: fmaGoodStanding,
         fsaGoodStanding: fsaGoodStanding,
         harvestOwn: harvestOwn,
-        insufficientValueARM: insufficientValueARM,
-        insufficientValueTotal: insufficientValueTotal,
-        insuranceClaimCollateral: insuranceClaimCollateral,
+        insufficientValueARM: insufficientValueARM, //financials
+        insufficientValueTotal: insufficientValueTotal, //financials
+        insuranceClaimCollateral: insuranceClaimCollateral, //underwriting
         isDefendant: isDefendant,
-        negativeCashFlow: negativeCashFlow,
-        noGuarantors: noGuarantors,
-        nonRPInsurance: nonRPInsurance,
+        negativeCashFlow: negativeCashFlow, //financials
+        noGuarantors: noGuarantors, //underwriting
+        nonRPInsurance: nonRPInsurance, //insurance
         nonstandardArmInterest: nonstandardArmInterest,
-        nonstandardClaimsDiscount: nonstandardClaimsDiscount,
-        nonstandardCropDiscount: nonstandardCropDiscount,
-        nonstandardCropInsuranceDiscount: nonstandardCropInsuranceDiscount,
+        nonstandardClaimsDiscount: nonstandardClaimsDiscount, //underwriting
+        nonstandardCropDiscount: nonstandardCropDiscount, //underwriting
+        nonstandardCropInsuranceDiscount: nonstandardCropInsuranceDiscount, //???
         nonstandardDueDate: nonstandardDueDate,
-        nonstandardEquipmentDiscount: nonstandardEquipmentDiscount,
-        nonstandardFsaAssignment: nonstandardFsaAssignment,
+        nonstandardEquipmentDiscount: nonstandardEquipmentDiscount, //underwriting
+        nonstandardFsaAssignment: nonstandardFsaAssignment, //underwriting
         nonstandardProcessingFee: nonstandardProcessingFee,
-        nonstandardRealEstateDiscount: nonstandardRealEstateDiscount,
+        nonstandardRealEstateDiscount: nonstandardRealEstateDiscount, //underwriting
         nonstandardServiceFee: nonstandardServiceFee,
-        notGradeA: notGradeA,
+        notGradeA: notGradeA, //financials
         outstandingJudgement: outstandingJudgement,
         outstandingLiens: outstandingLiens,
-        outstandingLoan: outstandingLoan,
+        outstandingLoan: outstandingLoan, //???
         pastDuePremiums: pastDuePremiums,
         plantOwn: plantOwn,
-        previousAddendum: previousAddendum,
+        previousAddendum: previousAddendum, //???
         processingFeeNotOnTotal: processingFeeNotOnTotal,
-        producesPeanuts: producesPeanuts,
-        producesSugarCane: producesSugarCane,
-        realEstateCollateral: realEstateCollateral,
-        rentExpenses: rentExpenses,
-        riskMargin: riskMargin,
+        producesPeanuts: producesPeanuts, //crops
+        producesSugarCane: producesSugarCane, //crops
+        realEstateCollateral: realEstateCollateral, //underwriting
+        rentExpenses: rentExpenses, //underwriting
+        riskMargin: riskMargin, //financials
         serviceFeeNotOnTotal: serviceFeeNotOnTotal,
         thirdPartyCredit: thirdPartyCredit,
-        variableHarvesting: variableHarvesting,
-        wholeFarmExpenses: wholeFarmExpenses,
-        yieldHistory: yieldHistory
+        variableHarvesting: variableHarvesting, //farms
+        wholeFarmExpenses: wholeFarmExpenses, //budget
+        yieldHistory: yieldHistory //yield
       };
       return factoryMethods;
 
@@ -86,6 +86,7 @@
               if(_.contains(hash,exc)){ return true; }
             });
             if(test){
+              //Test is true and there is no exception
               if(existing){
                 //delete;
                 var founder = _.filter(exceptions, function(obj){
@@ -94,6 +95,7 @@
                 deleteException(founder[0].id);
               }
             } else {
+              //Test is false and there is an exception
               if(!existing){
                 //create
                 toastr.warning(exc, 'Loan Exception');
@@ -200,21 +202,6 @@
 
         if(loan.is_cross_collateralized){ crossCollateralized(loan.id); }
         if(loan.controlled_disbursement){ controlledDisbursment(loan.id); }
-
-        if(o.quests.bankruptcy){ bankruptcyHistory(loan.id); }
-        if(o.quests.bankruptcyOrder){ bankruptcyOrder(loan.id); }
-        if(!o.quests.other_cash){ cashOutlayProvisions(loan.id); }
-        if(!o.quests.future_liabilities){ contractualObligations(loan.id); }
-        if(!o.quests.equip_obligations){ equipmentObligations(loan.id); }
-        if(!o.quests.fci_good){ fmaGoodStanding(loan.id); }
-        if(!o.quests.fsa_good){ fsaGoodStanding(loan.id); }
-        if(!o.quests.harvest_own){ harvestOwn(loan.id); }
-        if(o.quests.legal_defendant){ isDefendant(loan.id); }
-        if(o.quests.judgements){ outstandingJudgement(loan.id); }
-        if(o.quests.liens){ outstandingLiens(loan.id); }
-        if(!o.quests.premiums_past){ pastDuePremiums(loan.id); }
-        if(!o.quests.plant_own){ plantOwn(loan.id); }
-        if(o.quests.credit_3p_available){ thirdPartyCredit(loan.id); }
 
         if(1 * o.fins.equipmentCollateral > 0){ equipmentCollateral(loan.id); }
         if(1 * o.fins.total_claims > 0){ insuranceClaimCollateral(loan.id); }

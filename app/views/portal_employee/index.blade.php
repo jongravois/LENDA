@@ -83,6 +83,7 @@
 <script src="angular/controllers/farmer.js"></script>
 <script src="angular/controllers/financials.js"></script>
 <script src="angular/controllers/loanexceptions.js"></script>
+<script src="angular/controllers/quests.js"></script>
 <script src="angular/controllers/terms.js"></script>
 
 <script src="angular/controllers/newloan.js"></script>
@@ -97,7 +98,6 @@
 <script src="angular/controllers/newinsurance.js"></script>
 <script src="angular/controllers/newplannedcrops.js"></script>
 <script src="angular/controllers/newpurgatory.js"></script>
-<script src="angular/controllers/newquests.js"></script>
 <script src="angular/controllers/newprerequisites.js"></script>
 <script src="angular/controllers/newreferences.js"></script>
 <script src="angular/controllers/newterms.js"></script>
@@ -114,7 +114,6 @@
 <script src="angular/controllers/editOptimizer.js"></script>
 <script src="angular/controllers/editplannedcrops.js"></script>
 <script src="angular/controllers/editPrereqs.js"></script>
-<script src="angular/controllers/editQuests.js"></script>
 <script src="angular/controllers/editStorage.js"></script>
 <script src="angular/controllers/editSummary.js"></script>
 <script src="angular/controllers/editTerms.js"></script>

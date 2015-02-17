@@ -22,7 +22,7 @@
           $scope.quests = rsp.data.data[0];
         });
 
-        $scope.updateQuestions = function(){
+        $scope.insertQuestions = function(){
           QuestsFactory.update($scope.quests.id, $scope.quests)
             .then(function success(rsp){
               AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
