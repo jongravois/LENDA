@@ -243,12 +243,6 @@
 
         if(o.loansByFarmer.length > 1){ outstandingLoan(loan.id); }
 
-        if(1 * o.farmer.farm_exp < 2){
-          firstTimeFarmer(loan.id);
-        } else if(1 * o.farmer.farm_exp < 4){
-          farmerHistory(loan.id);
-        } // end if
-
         var net_worth = ((o.fins.current_assets * ((100 - o.fins.current_assets_factor) / 100)) - o.fins.current_assets_liability) + ((o.fins.intermediate_assets * ((100 - o.fins.intermediate_assets_factor) / 100)) - o.fins.intermediate_assets_liability) + ((o.fins.fixed_assets * ((100 - o.fins.fixed_assets_factor) / 100)) - o.fins.fixed_assets_liability);
         if(net_worth < 1 * o.fins.principal_arm){ balanceSheetLessArm(loan.id); }
 

@@ -432,7 +432,7 @@
           .state('new.farmer', {
             url: '/farmer',
             templateUrl: 'angular/views/loans/newfarmer.html',
-            controller: 'NewFarmerController',
+            controller: 'FarmerController',
             resolve: {
               Loan: function($stateParams, LoansFactory){
                 return LoansFactory.getLoan($stateParams.loanID);
@@ -565,7 +565,7 @@
           .state('edit.farmer', {
             url: '/farmer',
             templateUrl: 'angular/views/loans/editfarmer.html',
-            controller: 'EditFarmerController'
+            controller: 'FarmerController'
           })
           .state('edit.farms', {
             url: '/farms',

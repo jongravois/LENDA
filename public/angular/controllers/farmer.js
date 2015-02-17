@@ -2,14 +2,27 @@
   'use strict';
   angular
     .module('ARM')
-    .controller('NewFarmerController', function(
+    .controller('FarmerController', FarmerController);
+
+    FarmerController.$inject = ['$scope', '$state', '$stateParams', 'Loan', 'AppFactory', 'FarmersFactory', 'ExceptionsFactory', 'LoansFactory'];
+
+  function FarmerController(
       $scope, $state, $stateParams, Loan,
       AppFactory, FarmersFactory, ExceptionsFactory, LoansFactory
     ){
-      $scope.loan = $scope.loan || Loan.data.data[0];
-
       var curr = $state.current.url;
       var currScreen = curr.substring(1,curr.length);
+      if( $state.includes('new') ){
+        $scope.newapplication == true;
+        angular.forEach($scope.screens, function(obj, index) {
+          if (obj.screen == currScreen) { obj.status = 1; }
+        });
+      } else {
+        $scope.newapplication == false;
+      }// end if
+      //alert(currScreen);
+
+      $scope.loan = $scope.loan || Loan.data.data[0];
 
       if($scope.loan.farmer_id) {
         FarmersFactory.getFarmer($scope.loan.farmer_id)
@@ -25,6 +38,7 @@
       $scope.createFarmer = function(obj) {
         var thisYear = new Date().getFullYear();
         var exp = AppFactory.diffInDates(thisYear, parseInt(obj.first_year_farmer));
+        checkExceptions(exp);
         AppFactory.patchIt('/loanfinancials/', $scope.loan.id, {experience: exp});
 
         // HANDLE CREATING/UPDATING FARMER
@@ -32,8 +46,6 @@
           AppFactory.patchIt('/loans/', $stateParams.loanID, {farmer_id: $scope.farmerID});
           AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
         } else {
-          var thisYear = new Date().getFullYear();
-          var exp = AppFactory.diffInDates(thisYear, parseInt(obj.first_year_farmer));
           obj.farm_exp = exp;
           return FarmersFactory.createFarmer(obj)
             .then(function(res){
@@ -50,5 +62,14 @@
           $scope.farmer.new_client = false;
         }
       };
-    });
+
+      function checkExceptions(experience){
+        //TODO: Exception - Previous Loans???
+        if(parseInt(experience) == 1){
+          ExceptionsFactory.handler($stateParams.loanID, 'firstTimeFarmer', false, {});
+        } else if(parseInt(experience) < 4){
+          ExceptionsFactory.handler($stateParams.loanID, 'farmerHistory', false, {});
+        } // end if
+      }
+    } // end controller
 })();

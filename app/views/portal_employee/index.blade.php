@@ -80,6 +80,7 @@
 <script src="angular/controllers/sessions.js"></script>
 <script src="angular/controllers/prefs.js"></script>
 <script src="angular/controllers/home.js"></script>
+<script src="angular/controllers/farmer.js"></script>
 <script src="angular/controllers/financials.js"></script>
 <script src="angular/controllers/loanexceptions.js"></script>
 <script src="angular/controllers/terms.js"></script>
@@ -90,7 +91,6 @@
 <script src="angular/controllers/newbudget.js"></script>
 <script src="angular/controllers/newcrops.js"></script>
 <script src="angular/controllers/newdistributor.js"></script>
-<script src="angular/controllers/newfarmer.js"></script>
 <script src="angular/controllers/newfarms.js"></script>
 <script src="angular/controllers/newfinancials.js"></script>
 <script src="angular/controllers/newgrain.js"></script>
@@ -109,7 +109,6 @@
 <script src="angular/controllers/editCrops.js"></script>
 <script src="angular/controllers/editDistributor.js"></script>
 <script src="angular/controllers/editFarmDetails.js"></script>
-<script src="angular/controllers/editFarmer.js"></script>
 <script src="angular/controllers/editFarms.js"></script>
 <script src="angular/controllers/editInsurance.js"></script>
 <script src="angular/controllers/editOptimizer.js"></script>
