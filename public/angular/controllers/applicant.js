@@ -2,17 +2,24 @@
     'use strict';
     angular
       .module('ARM')
-      .controller('NewApplicantController', function(
+      .controller('ApplicantController', ApplicantController);
+
+      ApplicantController.$inject = ['$scope', '$state', '$stateParams', 'Loan', 'AppFactory', 'ApplicantsFactory'];
+
+      function ApplicantController(
         $scope, $state, $stateParams, Loan,
         AppFactory, ApplicantsFactory
       ){
         var curr = $state.current.url;
         var currScreen = curr.substring(1,curr.length);
-        angular.forEach($scope.screens, function(obj, index) {
-          if (obj.screen == currScreen) {
-            obj.status = 1;
-          }
-        });
+        if( $state.includes('new') ){
+          $scope.newapplication == true;
+          angular.forEach($scope.screens, function(obj, index) {
+            if (obj.screen == currScreen) { obj.status = 1; }
+          });
+        } else {
+          $scope.newapplication == false;
+        }// end if
         //alert(currScreen);
 
         $scope.loan = Loan.data.data[0];
@@ -65,5 +72,5 @@
           $scope.joints.push($scope.newVenture);
           $scope.newVenture = {};
         };
-      });
+      }
 })();

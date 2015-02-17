@@ -85,10 +85,10 @@
 <script src="angular/controllers/loanexceptions.js"></script>
 <script src="angular/controllers/quests.js"></script>
 <script src="angular/controllers/terms.js"></script>
+<script src="angular/controllers/applicant.js"></script>
 
 <script src="angular/controllers/newloan.js"></script>
 <script src="angular/controllers/newaffiliates.js"></script>
-<script src="angular/controllers/newapplicant.js"></script>
 <script src="angular/controllers/newbudget.js"></script>
 <script src="angular/controllers/newcrops.js"></script>
 <script src="angular/controllers/newdistributor.js"></script>
@@ -105,7 +105,6 @@
 <script src="angular/controllers/newyield.js"></script>
 
 <script src="angular/controllers/editLoan.js"></script>
-<script src="angular/controllers/editApplicants.js"></script>
 <script src="angular/controllers/editCrops.js"></script>
 <script src="angular/controllers/editDistributor.js"></script>
 <script src="angular/controllers/editFarmDetails.js"></script>

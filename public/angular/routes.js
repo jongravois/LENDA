@@ -407,7 +407,7 @@
           .state('new.applicant', {
             url: '/applicant',
             templateUrl: 'angular/views/loans/newapplicant.html',
-            controller: 'NewApplicantController'
+            controller: 'ApplicantController'
           })
           .state('new.budget', {
             url: '/budget',
@@ -515,7 +515,7 @@
           .state('edit.applicant', {
             url: '/applicant',
             templateUrl: 'angular/views/loans/editapplicant.html',
-            controller: 'EditApplicantsController'
+            controller: 'ApplicantsController'
           })
           .state('edit.audit', {
             url: '/audit',
