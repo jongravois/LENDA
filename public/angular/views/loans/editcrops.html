@@ -1,7 +1,3 @@
-<style>
-  th{ text-align: left;}
-</style>
-
 <fieldset>
   <!--<pre>{{loanCrops|json}}</pre>-->
   <legend>Crop Options</legend>
@@ -34,7 +30,9 @@
         <edit-in-place value="c.harvest"></edit-in-place>
       </td>
       <td class="text-center">
-        <text-edit-in-place value="c.uom"></text-edit-in-place>
+        <select style="height:18px !important;" name="uom" ng-model="c.uom" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom)">
+          <option value="">Please select ...</option>
+        </select>
       </td>
       <td>
         <text-edit-in-place value="c.gin_mill"></text-edit-in-place>
@@ -43,7 +41,9 @@
         <edit-in-place value="c.rebates"></edit-in-place>
       </td>
       <td>
-        <text-edit-in-place value="c.uom_rebate || 'empty'"></text-edit-in-place>
+        <select style="height:18px !important;" name="uom_rebate" ng-model="c.uom_rebate" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom_rebate)">
+          <option value="">Please select ...</option>
+        </select>
       </td>
     </tr>
     <tr>

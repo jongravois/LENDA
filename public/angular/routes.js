@@ -417,7 +417,7 @@
           .state('new.crops', {
             url: '/crops',
             templateUrl: 'angular/views/loans/newcrops.html',
-            controller: 'NewCropsController'
+            controller: 'CropsController'
           })
           .state('new.distributor', {
             url: '/distributor',
@@ -545,7 +545,7 @@
           .state('edit.crops', {
             url: '/crops',
             templateUrl: 'angular/views/loans/editcrops.html',
-            controller: 'EditCropsController'
+            controller: 'CropsController'
           })
           .state('edit.disbursement', {
             url: '/disbursement',

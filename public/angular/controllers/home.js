@@ -4,13 +4,20 @@
       .module('ARM')
       .controller('HomeController', function($scope){
         //TODO: Second column is supposed to be status icons
+        //TODO: add Icons "column" to loanList
 
         $scope.columnDefs = [
           {
             field: 'pending',
             displayName: ' ',
             cellTemplate: 'angular/views/grid_tmpl/pending_icons.html',
-            width: 52
+            width: 58
+          },{
+            field: 'notification',
+            displayName: ' ',
+            cellTemplate: 'angular/views/grid_tmpl/indicators.html',
+            cellClass: 'text-center',
+            width: 120
           },{
             field: 'farmer',
             displayName: 'Farmer',

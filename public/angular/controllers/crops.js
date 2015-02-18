@@ -2,22 +2,30 @@
   'use strict';
   angular
     .module('ARM')
-    .controller('NewCropsController', function(
-      $scope,
-      $state,
-      $stateParams,
-      LoansFactory
+    .controller('CropsController', CropsController);
+
+    CropsController.$inject = ['$scope', '$state', '$stateParams',
+      'Loan', 'AppFactory', 'LoansFactory'];
+
+    function CropsController(
+      $scope, $state, $stateParams,
+      Loan, AppFactory, LoansFactory
     ){
       var curr = $state.current.url;
       var currScreen = curr.substring(1,curr.length);
-      angular.forEach($scope.screens, function(obj, index) {
-        if (obj.screen == currScreen) {
-          obj.status = 1;
-        }
-      });
+      if( $state.includes('new') ){
+        $scope.newapplication == true;
+        angular.forEach($scope.screens, function(obj, index) {
+          if (obj.screen == currScreen) { obj.status = 1; }
+        });
+      } else {
+        $scope.newapplication == false;
+      }// end if
       //alert(currScreen);
 
-      init();
+      $scope.loan = $scope.loan || Loan.data.data[0];
+
+      if($scope.newapplication){ init(); }
 
       $scope.createLoanCrops = function(){
         //TODO: Prevent multiple submission
@@ -217,5 +225,5 @@
       $scope.moveFromCrops = function(){
         AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
       }
-    });
+    }
 })();
