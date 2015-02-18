@@ -1,15 +1,17 @@
-<style>
-  .rowed td{border:1px solid #dddddd; }
-  .strong { font-weight: bold; }
-</style>
-<!--<pre>{{loan.committee | json}}</pre>-->
 <div class="row form-group" ng-if="user_id == loan.user_id">
-  <div class="col-md-12 text-center">
-    <button class="btn btn-primary" style="width:160px;" ng-disabled="{{loan.decision_date}}">Withdraw</button>
-    <button class="btn btn-primary" style="width:160px;" ng-disabled="{{loan.decision_date}}">Decline</button>
-    <button class="btn btn-primary" style="width:160px;" ng-disabled="{{loan.decision_date}}">Recommend (Dist)</button>
-    <button class="btn btn-primary" style="width:160px;" ng-disabled="{{loan.decision_date}}">Recommend (ARM)</button>
-    <button class="btn btn-primary" style="width:160px;" ng-disabled="{{!loan.analyst_can_approve || loan.decision_date}}">Approve</button>
+  <div ng-if="!loan.analyst_can_approve">
+    <div class="col-md-10 alert alert-danger" role="alert">
+      <h3>All loan conditions haven't been met. This loan cannot be approved for consideration at this time.</h3>
+    </div>
+  </div>
+  <div ng-if="loan.analyst_can_approve">
+    <div class="col-md-12 text-center">
+      <button class="btn btn-primary" style="width:160px;" ng-disabled="{{loan.decision_date}}">Withdraw</button>
+      <button class="btn btn-primary" style="width:160px;" ng-disabled="{{loan.decision_date}}">Decline</button>
+      <button class="btn btn-primary" style="width:160px;" ng-disabled="{{loan.decision_date}}">Recommend (Dist)</button>
+      <button class="btn btn-primary" style="width:160px;" ng-disabled="{{loan.decision_date}}">Recommend (ARM)</button>
+      <button class="btn btn-primary" style="width:160px;" ng-disabled="{{!loan.analyst_can_approve || loan.decision_date}}">Approve</button>
+    </div>
   </div>
 </div>
 <br/><br/>

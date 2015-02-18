@@ -8,7 +8,12 @@
   <a ui-sref-active="active" ui-sref="edit.applicant" class="btn btn-default">Applicant</a>
   <a ui-sref-active="active" ui-sref="edit.quests" class="btn btn-default">Questions</a>
   <a ui-sref-active="active" ui-sref="edit.references" class="btn btn-default">References</a>
-  <a ui-sref-active="active" ui-sref="edit.financials" class="btn btn-default">Financials</a>
+  <a ui-sref-active="active" ui-sref="edit.financials" class="btn btn-default">
+    Financials&nbsp;
+    <span style="font-weight: bold; color: #006837;" ng-if="loan.fins.grade">
+      [{{loan.fins.grade}}<span ng-if="loan.fins.credit_score"> - {{loan.fins.credit_score}}</span>]
+    </span>
+  </a>
   <a ui-sref-active="active" ui-sref="edit.plannedcrops" class="btn btn-default">Planned Crops</a>
   <a ui-sref-active="active" ui-sref="edit.prerequisites" class="btn btn-default">Prerequisites</a>
   <a ui-sref-active="active" ui-sref="edit.closing" class="btn btn-default">Closing</a>
