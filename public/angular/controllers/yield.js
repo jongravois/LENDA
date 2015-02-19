@@ -2,26 +2,32 @@
   'use strict';
   angular
     .module('ARM')
-    .controller('NewYieldController', function(
+    .controller('YieldController', YieldController);
+
+    YieldController.$inject = ['$scope', '$state', '$stateParams', 'Loan', 'AppFactory', 'LoansFactory'];
+
+    function YieldController(
       $scope, $state, $stateParams,
-      AppFactory, LoansFactory
+      Loan, AppFactory, LoansFactory
     ) {
       var curr = $state.current.url;
       var currScreen = curr.substring(1,curr.length);
-      angular.forEach($scope.screens, function(obj, index) {
-        if (obj.screen == currScreen) {
-          obj.status = 1;
-        }
-      });
+      if( $state.includes('new') ){
+        $scope.newapplication == true;
+        angular.forEach($scope.screens, function(obj, index) {
+          if (obj.screen == currScreen) { obj.status = 1; }
+        });
+      } else {
+        $scope.newapplication == false;
+      }// end if
       //alert(currScreen);
 
-      var idLoan = $stateParams.loanID;
-      $scope.loan = $scope.loan || {};
+      $scope.loan = $scope.loan || Loan.data.data[0];
 
       $scope.averageArray = AppFactory.averageArray;
 
       if (!$scope.loan.loanCrops) {
-        LoansFactory.getLoanCrops(idLoan)
+        LoansFactory.getLoanCrops($stateParams.loanID)
           .then(function success(response) {
             $scope.loan.loanCrops = response.data.data;
           });
@@ -35,5 +41,5 @@
       $scope.moveFromYields = function(){
         AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
       }
-    });
+    }
 })();

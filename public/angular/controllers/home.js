@@ -3,7 +3,6 @@
     angular
       .module('ARM')
       .controller('HomeController', function($scope){
-        //TODO: Second column is supposed to be status icons
         //TODO: add Icons "column" to loanList
 
         $scope.columnDefs = [

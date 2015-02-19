@@ -26,8 +26,7 @@
       function getPendingVotes(loan){
         return LoansFactory.getPendingVotes(loan.id)
           .then(function(response){
-            //TODO: return this to ===
-              return (response.data.data.length !== 0);
+              return (response.data.data.length === 0);
           });
       }
 

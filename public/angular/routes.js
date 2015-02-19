@@ -492,7 +492,7 @@
           .state('new.yield', {
             url: '/yield',
             templateUrl: 'angular/views/loans/newyield.html',
-            controller: 'NewYieldController'
+            controller: 'YieldController'
           })
 
           //EDIT APPLICATIONS
@@ -630,7 +630,7 @@
           .state('edit.yield', {
             url: '/yield',
             templateUrl: 'angular/views/loans/edityield.html',
-            controller: 'EditYieldController'
+            controller: 'YieldController'
           })
 
         $urlRouterProvider.otherwise('/');
