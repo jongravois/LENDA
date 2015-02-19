@@ -615,7 +615,7 @@
           .state('edit.summary', {
             url: '/summary',
             templateUrl: 'angular/views/loans/summary.html',
-            controller: 'EditSummaryController'
+            controller: 'SummaryController'
           })
           .state('edit.terms', {
             url: '/terms',

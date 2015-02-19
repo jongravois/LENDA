@@ -80,18 +80,42 @@
 <script src="angular/controllers/sessions.js"></script>
 <script src="angular/controllers/prefs.js"></script>
 <script src="angular/controllers/home.js"></script>
-<script src="angular/controllers/farmer.js"></script>
-<script src="angular/controllers/financials.js"></script>
-<script src="angular/controllers/loanexceptions.js"></script>
-<script src="angular/controllers/quests.js"></script>
-<script src="angular/controllers/terms.js"></script>
+<script src="angular/controllers/management.js"></script>
+<script src="angular/controllers/newloan.js"></script>
+<script src="angular/controllers/editLoan.js"></script>
+
+<script src="angular/controllers/admin.js"></script>
+<script src="angular/controllers/audits.js"></script>
+<script src="angular/controllers/affiliates.js"></script>
 <script src="angular/controllers/applicant.js"></script>
+<script src="angular/controllers/budgets.js"></script>
+<script src="angular/controllers/calendar.js"></script>
+<script src="angular/controllers/closing.js"></script>
+<script src="angular/controllers/comments.js"></script>
+<script src="angular/controllers/committee.js"></script>
 <script src="angular/controllers/crops.js"></script>
+<script src="angular/controllers/disbursement.js"></script>
+<script src="angular/controllers/farmer.js"></script>
 <script src="angular/controllers/farms.js"></script>
+<script src="angular/controllers/financials.js"></script>
+<script src="angular/controllers/legalDocs.js"></script>
+<script src="angular/controllers/legend.js"></script>
+<script src="angular/controllers/Library.js"></script>
+<script src="angular/controllers/loanexceptions.js"></script>
+<script src="angular/controllers/loanProducts.js"></script>
+<script src="angular/controllers/matrix.js"></script>
+<script src="angular/controllers/pdfApps.js"></script>
+<script src="angular/controllers/polProcs.js"></script>
+<script src="angular/controllers/prefs.js"></script>
+<script src="angular/controllers/quests.js"></script>
+<script src="angular/controllers/references.js"></script>
+<script src="angular/controllers/reports.js"></script>
+<script src="angular/controllers/resources.js"></script>
+<script src="angular/controllers/summary.js"></script>
+<script src="angular/controllers/terms.js"></script>
+<script src="angular/controllers/underwriting.js"></script>
 <script src="angular/controllers/yield.js"></script>
 
-<script src="angular/controllers/newloan.js"></script>
-<script src="angular/controllers/newaffiliates.js"></script>
 <script src="angular/controllers/newbudget.js"></script>
 <script src="angular/controllers/newdistributor.js"></script>
 <script src="angular/controllers/newfinancials.js"></script>
@@ -103,7 +127,6 @@
 <script src="angular/controllers/newreferences.js"></script>
 <script src="angular/controllers/newuploads.js"></script>
 
-<script src="angular/controllers/editLoan.js"></script>
 <script src="angular/controllers/editDistributor.js"></script>
 <script src="angular/controllers/editFarmDetails.js"></script>
 <script src="angular/controllers/editInsurance.js"></script>
@@ -111,29 +134,6 @@
 <script src="angular/controllers/editplannedcrops.js"></script>
 <script src="angular/controllers/editPrereqs.js"></script>
 <script src="angular/controllers/editStorage.js"></script>
-<script src="angular/controllers/editSummary.js"></script>
-<script src="angular/controllers/management.js"></script>
-<script src="angular/controllers/prefs.js"></script>
-<script src="angular/controllers/calendar.js"></script>
-<script src="angular/controllers/legalDocs.js"></script>
-<script src="angular/controllers/legend.js"></script>
-<script src="angular/controllers/loanProducts.js"></script>
-<script src="angular/controllers/pdfApps.js"></script>
-<script src="angular/controllers/polProcs.js"></script>
-<script src="angular/controllers/resources.js"></script>
-<script src="angular/controllers/matrix.js"></script>
-<script src="angular/controllers/reports.js"></script>
-<script src="angular/controllers/Library.js"></script>
-<script src="angular/controllers/admin.js"></script>
-<script src="angular/controllers/audits.js"></script>
-<script src="angular/controllers/affiliates.js"></script>
-<script src="angular/controllers/budgets.js"></script>
-<script src="angular/controllers/closing.js"></script>
-<script src="angular/controllers/comments.js"></script>
-<script src="angular/controllers/committee.js"></script>
-<script src="angular/controllers/disbursement.js"></script>
-<script src="angular/controllers/references.js"></script>
-<script src="angular/controllers/underwriting.js"></script>
 <!-- CONTROLLERS -->
 <!-- FACTORIES -->
 <script src="angular/services/ApplicantsFactory.js"></script>

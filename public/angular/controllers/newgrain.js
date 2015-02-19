@@ -7,12 +7,16 @@
       ){
         var curr = $state.current.url;
         var currScreen = curr.substring(1,curr.length);
-        angular.forEach($scope.screens, function(obj, index) {
-          if (obj.screen == currScreen) {
-            obj.status = 1;
-          }
-        });
+        if( $state.includes('new') ){
+          $scope.newapplication == true;
+          angular.forEach($scope.screens, function(obj, index) {
+            if (obj.screen == currScreen) { obj.status = 1; }
+          });
+        } else {
+          $scope.newapplication == false;
+        }// end if
         //alert(currScreen);
+
         $scope.storage = $scope.storage || [];
 
         $scope.newStorage = {

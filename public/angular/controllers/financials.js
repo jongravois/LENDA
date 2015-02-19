@@ -3,11 +3,8 @@
     angular
       .module('ARM')
       .controller('FinancialsController', function(
-        $scope,
-        $stateParams,
-        API_URL,
-        AppFactory,
-        LoansFactory
+        $scope, $stateParams,
+        API_URL, AppFactory, LoansFactory
       ){
         $scope.loan = $scope.loan || {};
         $scope.loan.fins = $scope.loan.fins || {};
