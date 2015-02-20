@@ -71,6 +71,11 @@
 <script src="angular/arm.js"></script>
 <script src="angular/constants.js"></script>
 <script src="angular/routes.js"></script>
+<script src="angular/admin_routes.js"></script>
+<script src="angular/edit_application_routes.js"></script>
+<script src="angular/new_application_routes.js"></script>
+<script src="angular/library_routes.js"></script>
+<script src="angular/reports_routes.js"></script>
 <script src="angular/filters/filters.js"></script>
 <script src="angular/models/base.js"></script>
 <script src="angular/directives/directives.js"></script>

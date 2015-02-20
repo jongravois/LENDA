@@ -30,4 +30,5 @@
           $scope.newAffiliate = {};
         }
       });
+  // var aph =  _.max(loan.crop[0].3yrAvg, loan.crop[0].3yrAvg) || _.min(global.corn.irr.ARM_yield, global.corn.ni.ARM_yield, global.corn.irr.midwest_yield, global.corn.ni.midwest_yield, global.corn.irr.richland_yield, global.corn.ni.richland_yield, _.forEach(county, function(item){ return _.min(yield_corn_irr, yield_corn_ni); };
 })();

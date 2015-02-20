@@ -21,6 +21,7 @@
         getConditions: getConditions,
         getCropExpenses: getCropExpenses,
         getCrops: getCrops,
+        getDefaultYields: getDefaultYields,
         getDistributor: getDistributor,
         getExceptions: getExceptions,
         getFarmExpenses: getFarmExpenses,
@@ -256,6 +257,10 @@
 
       function getCrops(){
         return $http.get(API_URL + '/crops');
+      }
+
+      function getDefaultYields(id){
+        return $http.get(API_URL + '/locations/' + id + '/yields');
       }
 
       function getDistributor(id){

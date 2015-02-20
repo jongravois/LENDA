@@ -5,6 +5,18 @@ class LocationsTableSeeder extends Seeder{
   public function run()
   {
     Location::create([
+      'location' =>  'Unassigned',
+      'loc_abr' =>  'UNA',
+      'address' =>  '',
+      'city' =>  '',
+      'state' =>  '',
+      'zip' =>  '',
+      'phone' =>  '',
+      'manager_id' =>  3,
+      'region_id' =>	1
+    ]);
+
+    Location::create([
       'location' =>  'Cleveland',
       'loc_abr' =>  'CLE',
       'address' =>  '201 E. Sunflower Road, Suite 10',

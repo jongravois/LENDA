@@ -33,6 +33,14 @@
           });
       }
 
+      if(!$scope.defaultYields){
+        LoansFactory.getDefaultYields($scope.loan.loc_id)
+          .then(function success(rsp){
+            var yields = rsp.data.data;
+            $scope.defaultYields = yields;
+          });
+      }
+
       $scope.updateYield = function () {
         //TODO: Create function
         alert('Updating');

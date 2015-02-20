@@ -24,4 +24,9 @@ class Location extends Eloquent {
   {
     return $this->belongsTo('Region');
   }
+
+  public function counties()
+  {
+    return $this->hasMany('County');
+  }
 }

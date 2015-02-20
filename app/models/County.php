@@ -20,4 +20,9 @@ class County extends \Eloquent {
     return $this->hasOne('Countiescropdefault');
   }
 
+  public function locations()
+  {
+    return $this->belongsTo('Location', 'location_id');
+  }
+
 }

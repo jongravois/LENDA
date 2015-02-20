@@ -192,7 +192,7 @@
             scope: {
                 value: '='
             },
-            template: '<span ng-click="edit()" ng-show="!editing">{{ value | number:1}}%</span><input ng-model="value" ng-blur="onBlur()" ng-show="editing"></input>',
+            template: '<span ng-if="!value" ng-click="edit()" ng-show="!editing"> - </span><span ng-if="value" ng-click="edit()" ng-show="!editing">{{ value | number:1}}%</span><input ng-model="value" ng-blur="onBlur()" ng-show="editing"/>',
             link: function (scope, element, attrs) {
                 var inputElement = element.find('input');
 
@@ -226,7 +226,7 @@
             scope: {
                 value: '='
             },
-            template: '<span ng-click="edit()" ng-show="!editing">{{ value | number:1}}</span><input ng-model="value" ng-blur="onBlur()" ng-show="editing"></input>',
+            template: '<span ng-if="!value" ng-click="edit()" ng-show="!editing"> - </span><span ng-if="value" ng-click="edit()" ng-show="!editing">{{ value | number:1}}</span><input ng-model="value" ng-blur="onBlur()" ng-show="editing"></input>',
             link: function (scope, element, attrs) {
                 var inputElement = element.find('input');
 

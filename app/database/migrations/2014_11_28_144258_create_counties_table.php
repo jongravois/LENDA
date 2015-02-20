@@ -11,7 +11,7 @@ class CreateCountiesTable extends Migration {
 		{
 			$table->increments('id');
       $table->integer('state_id');
-      $table->integer('location_id')->default(4);
+      $table->integer('location_id')->default(0);
       $table->string('county');
       $table->string('label')->unique();
       $table->string('locale')->unique();

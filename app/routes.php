@@ -137,6 +137,8 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/systemics', 'SystemicsController@byLoan');
   Route::get('loans/{id}/totalacres', 'LoanCropsController@totalAcres');
   Route::get('loantypes/{id}/screens', 'ScreensController@byLoantype');
+  Route::get('locations/{id}/counties', 'LocationsController@byCounty');
+  Route::get('locations/{id}/yields', 'LocationsController@yieldByCounty');
   Route::get('states/{id}/counties', 'CountiesController@byState');
   Route::get('users/{id}/notifications', 'NotificationController@byUser');
 });
