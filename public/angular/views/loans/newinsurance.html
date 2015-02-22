@@ -4,6 +4,57 @@
 <fieldset>
   <legend>Insurance Information</legend>
   <!--<pre>{{loan | json}}</pre>-->
+  <tabset>
+    <tab heading="Agent/Agency Information">
+      <div class="row form-group">
+        <!--AGENCY-->
+        <!--TODO: Typeahead must describe branches-->
+        <div class="col-md-5">
+          <label>Agency</label>
+          <input type="text" id="agency" ng-model="newPolicy.agency" typeahead="a.agency for a in feeder.agencies | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onAgencySelect($item, $model, $label)" autocomplete="false"/>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+
+        </div>
+      </div>
+      <div class="row form-group">
+        <!--AGENT-->
+        <div class="col-md-5">
+          <label>Agent</label>
+          <input type="text" id="agent" ng-model="newPolicy.agent" typeahead="a.agent for a in agencyAgents | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onAgentSelect($item, $model, $label)" autocomplete="false"/>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+
+        </div>
+      </div>
+      <div class="row form-group">
+        <!--AGENT_PHONE-->
+        <div class="col-md-5">
+          <label>Agent's Phone</label>
+          <input type="text" class="form-control" name="agents_phone" ng-model="newPolicy.agent_phone" ui-mask="(999) 999-9999"/>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+
+        </div>
+      </div>
+      <div class="row form-group">
+        <!--AGENT_EMAIL-->
+        <div class="col-md-5">
+          <label>Agent's Email</label>
+          <input type="text" class="form-control" name="agent_email" ng-model="newPolicy.agent_email"/>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+
+        </div>
+      </div>
+    </tab>
+    
+    <tab heading="Policy Information">Policies</tab>
+    <tab heading="APH Information">APH Information</tab>
+  </tabset>
+
+
+
   <div class="row" style="display:none;">
     <div class="form-group col-xs-3">
       <label>Agency</label>
