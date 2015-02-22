@@ -54,7 +54,8 @@
       }
 
       function updateLoanData(response){
-        var loanPlus = response.data.data;
+        //console.log(response);
+        var loanPlus = response.data.data[0];
         return $q.all(loanPlus.map(updateLoanData));
       }
 
