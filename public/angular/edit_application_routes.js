@@ -10,7 +10,7 @@
           templateUrl: 'angular/views/editapp.html',
           controller: 'EditAppController',
           resolve: {
-            Loan: function(LoansFactory, $stateParams){
+            InitialData: function(LoansFactory, $stateParams){
               return LoansFactory.getLoan($stateParams.loanID);
             }
           }

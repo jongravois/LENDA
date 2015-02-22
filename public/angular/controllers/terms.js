@@ -4,14 +4,12 @@
         .module('ARM')
         .controller('TermsController', TermsController);
 
-        TermsController.$inject = ['$scope', '$state', '$stateParams',
-          'AppFactory', 'ConditionsFactory', 'ExceptionsFactory', 'GlobalsFactory',
-          'LoansFactory', 'Loan'];
+        TermsController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'ConditionsFactory', 'ExceptionsFactory', 'GlobalsFactory', 'LoansFactory', 'InitialData'];
 
         function TermsController(
           $scope, $state, $stateParams,
           AppFactory, ConditionsFactory, ExceptionsFactory, GlobalsFactory,
-          LoansFactory, Loan
+          LoansFactory, InitialData
         ){
           var curr = $state.current.url;
           var currScreen = curr.substring(1,curr.length);
@@ -25,7 +23,7 @@
           }// end if
           //alert(currScreen);
 
-          $scope.loan = $scope.loan || Loan.data.data[0];
+          $scope.loan = $scope.loan || InitialData.data.data[0];
           
           if(!$scope.globals){
             GlobalsFactory.getGlobals()

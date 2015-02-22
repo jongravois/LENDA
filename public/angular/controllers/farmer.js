@@ -4,10 +4,10 @@
     .module('ARM')
     .controller('FarmerController', FarmerController);
 
-    FarmerController.$inject = ['$scope', '$state', '$stateParams', 'Loan', 'AppFactory', 'FarmersFactory', 'ExceptionsFactory', 'LoansFactory'];
+    FarmerController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'FarmersFactory', 'ExceptionsFactory', 'LoansFactory'];
 
   function FarmerController(
-      $scope, $state, $stateParams, Loan,
+      $scope, $state, $stateParams, InitialData,
       AppFactory, FarmersFactory, ExceptionsFactory, LoansFactory
     ){
       var curr = $state.current.url;
@@ -22,7 +22,7 @@
       }// end if
       //alert(currScreen);
 
-      $scope.loan = $scope.loan || Loan.data.data[0];
+      $scope.loan = $scope.loan || InitialData.data.data[0];
 
       if($scope.loan.farmer_id) {
         FarmersFactory.getFarmer($scope.loan.farmer_id)

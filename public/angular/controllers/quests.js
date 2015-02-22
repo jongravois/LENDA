@@ -4,11 +4,11 @@
       .module('ARM')
       .controller('QuestsController', QuestsController);
 
-      QuestsController.$inject = ['$scope', '$state', '$stateParams', 'Loan', 'AppFactory', 'ExceptionsFactory', 'LoansFactory', 'QuestsFactory'];
+      QuestsController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'ExceptionsFactory', 'LoansFactory', 'QuestsFactory'];
 
       function QuestsController(
         $scope, $state, $stateParams,
-        Loan, AppFactory, ExceptionsFactory, LoansFactory, QuestsFactory
+        InitialData, AppFactory, ExceptionsFactory, LoansFactory, QuestsFactory
       ){
         var curr = $state.current.url;
         var currScreen = curr.substring(1,curr.length);
@@ -22,7 +22,7 @@
         }// end if
         //alert(currScreen);
 
-        $scope.loan = $scope.loan || Loan.data.data[0];
+        $scope.loan = $scope.loan || InitialData.data.data[0];
 
         if(!$scope.quests){
           LoansFactory.getQuests($stateParams.loanID).then(function success(rsp){

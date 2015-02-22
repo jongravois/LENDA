@@ -4,13 +4,13 @@
         .module('ARM')
         .controller('NewPurgatoryController', NewPurgatoryController);
 
-        NewPurgatoryController.$inject = ['$scope', 'Loan'];
+        NewPurgatoryController.$inject = ['$scope', 'InitialData'];
 
         function NewPurgatoryController(
-            $scope, Loan
+            $scope, InitialData
         ){
             if(!$scope.loan){
-                $scope.loan = Loan.data.data[0];
+                $scope.loan = InitialData.data.data[0];
             } // end if
 
             $scope.farmer = ($scope.loan.farmer_id && parseInt($scope.loan.farmer_id) > 0 ? true : false);

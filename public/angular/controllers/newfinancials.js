@@ -4,11 +4,11 @@
       .module('ARM')
       .controller('NewFinancialsController', NewFinancialsController);
   
-      NewFinancialsController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'Loan', 'AppFactory', 'LoansFactory', 'Grader'];
+      NewFinancialsController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'InitialData', 'AppFactory', 'LoansFactory', 'Grader'];
   
       function NewFinancialsController(
           $scope, $state, $stateParams, toastr,
-          Loan, AppFactory, LoansFactory, Grader
+          InitialData, AppFactory, LoansFactory, Grader
       ){
         var curr = $state.current.url;
         var currScreen = curr.substring(1,curr.length);
@@ -22,7 +22,7 @@
         }// end if
         //alert(currScreen);
 
-        $scope.loan = Loan.data.data[0];
+        $scope.loan = InitialData.data.data[0];
         LoansFactory.getFinancials($stateParams.loanID)
           .then(function success(rsp){
             $scope.loan.fins = rsp.data.data[0];

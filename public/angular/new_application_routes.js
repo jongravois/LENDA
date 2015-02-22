@@ -10,7 +10,7 @@
           templateUrl: 'angular/views/newApp.html',
           controller: 'NewLoanController',
           resolve: {
-            Loan: function($stateParams, LoansFactory){
+            InitialData: function($stateParams, LoansFactory){
               return LoansFactory.getLoan($stateParams.loanID);
             }
           }

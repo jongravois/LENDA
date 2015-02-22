@@ -3,9 +3,9 @@
   angular
     .module('ARM')
     .controller('EditStorageController', function(
-      $scope, $state, $stateParams, Loan, LoansFactory
+      $scope, $state, $stateParams, InitialData, LoansFactory
     ){
-      $scope.loan = $scope.loan || Loan.data.data[0];
+      $scope.loan = $scope.loan || InitialData.data.data[0];
       LoansFactory.getStorage($stateParams.loanID)
         .then(function success(rsp){
           $scope.storage = rsp.data.data;

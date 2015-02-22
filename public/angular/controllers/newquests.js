@@ -3,7 +3,7 @@
     angular
       .module('ARM')
       .controller('NewQuestsController', function(
-        $scope, $state, $stateParams, Loan,
+        $scope, $state, $stateParams, InitialData,
         AppFactory, LoansFactory, QuestsFactory
       ){
         var curr = $state.current.url;
@@ -18,7 +18,7 @@
         }// end if
         //alert(currScreen);
 
-        $scope.loan = $scope.loan || Loan.data.data[0];
+        $scope.loan = $scope.loan || InitialData.data.data[0];
 
         $scope.quests = $scope.quests || {};
         LoansFactory.getQuests($stateParams.loanID).then(function success(rsp){

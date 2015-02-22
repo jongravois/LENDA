@@ -6,12 +6,12 @@
       $scope, $http, $state, $stateParams,
       API_URL, AppFactory, FarmersFactory,
       GlobalsFactory, LoansFactory, LoanProcessor,
-      Loan
+      InitialData
     ){
       $scope.newapplication = true; //flag for screen buttons
       $scope.currentScreen = 0;
 
-      $scope.loan = Loan.data.data[0];
+      $scope.loan = InitialData.data.data[0];
       $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
       $scope.farmer = $scope.farmer || {};
 

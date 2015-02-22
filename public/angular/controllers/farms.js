@@ -4,11 +4,11 @@
     .module('ARM')
     .controller('FarmsController', FarmsController);
 
-    FarmsController.$inject = ['$scope', '$state', '$stateParams', 'Loan', 'AppFactory', 'LoansFactory'];
+    FarmsController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'LoansFactory'];
 
     function FarmsController(
       $scope, $state, $stateParams,
-      Loan, AppFactory, LoansFactory
+      InitialData, AppFactory, LoansFactory
     ){
       var curr = $state.current.url;
       var currScreen = curr.substring(1,curr.length);
@@ -22,7 +22,7 @@
       }// end if
       //alert(currScreen);
 
-      $scope.loan = $scope.loan || Loan.data.data[0];
+      $scope.loan = $scope.loan || InitialData.data.data[0];
 
       $scope.newFarm = $scope.newFarm || {};
       $scope.stateCounties = [];

@@ -4,15 +4,15 @@
       .module('ARM')
       .controller('BudgetsController', BudgetsController);
 
-      BudgetsController.$inject = ['$scope', '$stateParams', 'Loan', 'ExpensesFactory'];
+      BudgetsController.$inject = ['$scope', '$stateParams', 'InitialData', 'ExpensesFactory'];
 
       function BudgetsController(
           $scope,
           $stateParams,
-          Loan,
+          InitialData,
           ExpensesFactory
       ){
-        $scope.loan = $scope.loan || Loan.data.data[0];
+        $scope.loan = $scope.loan || InitialData.data.data[0];
 
         ExpensesFactory.getBudget($stateParams.loanID)
           .then(function success(rsp){

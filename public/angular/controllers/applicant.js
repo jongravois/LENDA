@@ -4,10 +4,10 @@
       .module('ARM')
       .controller('ApplicantController', ApplicantController);
 
-      ApplicantController.$inject = ['$scope', '$state', '$stateParams', 'Loan', 'AppFactory', 'ApplicantsFactory'];
+      ApplicantController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'ApplicantsFactory'];
 
       function ApplicantController(
-        $scope, $state, $stateParams, Loan,
+        $scope, $state, $stateParams, InitialData,
         AppFactory, ApplicantsFactory
       ){
         var curr = $state.current.url;
@@ -22,7 +22,7 @@
         }// end if
         //alert(currScreen);
 
-        $scope.loan = Loan.data.data[0];
+        $scope.loan = InitialData.data.data[0];
 
         if($scope.loan.applicant_id) {
           ApplicantsFactory.getApplicant($scope.loan.applicant_id)

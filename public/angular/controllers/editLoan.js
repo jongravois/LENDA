@@ -5,10 +5,10 @@
     .controller('EditAppController', function(
       $scope, $state, $stateParams, $filter,
       $timeout, toastr,
-      Loan, AppFactory, ApplicantsFactory, ExceptionsFactory,
+      InitialData, AppFactory, ApplicantsFactory, ExceptionsFactory,
       FarmersFactory, LoansFactory, InsuranceFactory
     ) {
-        $scope.loan = Loan.data.data[0];
+        $scope.loan = InitialData.data.data[0];
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
         $scope.newapplication = false;
 

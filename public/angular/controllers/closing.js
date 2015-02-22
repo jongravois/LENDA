@@ -4,18 +4,18 @@
       .module('ARM')
       .controller('ClosingController', ClosingController);
 
-      ClosingController.$inject = ['$scope', '$state', '$stateParams', 'Loan', 'AppFactory', 'LoansFactory', 'InsuranceFactory'];
+      ClosingController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'LoansFactory', 'InsuranceFactory'];
 
       function ClosingController(
           $scope,
           $state,
           $stateParams,
-          Loan,
+          InitialData,
           AppFactory,
           LoansFactory,
           InsuranceFactory
       ){
-        $scope.loan = $scope.loan || Loan.data.data[0];
+        $scope.loan = $scope.loan || InitialData.data.data[0];
         $scope.loan.insurance = $scope.loan.insurance || {};
 
         LoansFactory.getInsurancePolicies($stateParams.loanID)
