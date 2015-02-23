@@ -75,16 +75,23 @@ class ScreensTableSeeder extends Seeder {
 
     Screen::create([
       'loantype_id' => 1,
+      'screen' => 'optimizer',
+      'label' => 'Optimizer',
+      'sort_order' => 11
+    ]);
+
+    Screen::create([
+      'loantype_id' => 1,
       'screen' => 'prerequisites',
       'label' => 'Required Docs',
-      'sort_order' => 11
+      'sort_order' => 12
     ]);
 
     Screen::create([
       'loantype_id' => 1,
       'screen' => 'terms',
       'label' => 'Terms',
-      'sort_order' => 12
+      'sort_order' => 13
     ]);
 
     Screen::create([
@@ -166,16 +173,23 @@ class ScreensTableSeeder extends Seeder {
 
     Screen::create([
       'loantype_id' => 2,
+      'screen' => 'optimizer',
+      'label' => 'Optimizer',
+      'sort_order' => 12
+    ]);
+
+    Screen::create([
+      'loantype_id' => 2,
       'screen' => 'prerequisites',
       'label' => 'Required Docs',
-      'sort_order' => 12
+      'sort_order' => 13
     ]);
 
     Screen::create([
       'loantype_id' => 2,
       'screen' => 'terms',
       'label' => 'Terms',
-      'sort_order' => 13
+      'sort_order' => 14
     ]);
 
     Screen::create([
@@ -250,16 +264,23 @@ class ScreensTableSeeder extends Seeder {
 
     Screen::create([
       'loantype_id' => 3,
+      'screen' => 'optimizer',
+      'label' => 'Optimizer',
+      'sort_order' => 11
+    ]);
+
+    Screen::create([
+      'loantype_id' => 3,
       'screen' => 'prerequisites',
       'label' => 'Required Docs',
-      'sort_order' => 11
+      'sort_order' => 12
     ]);
 
     Screen::create([
       'loantype_id' => 3,
       'screen' => 'terms',
       'label' => 'Terms',
-      'sort_order' => 12
+      'sort_order' => 13
     ]);
 
     Screen::create([

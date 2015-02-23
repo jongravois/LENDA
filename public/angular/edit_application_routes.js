@@ -93,7 +93,7 @@
         .state('edit.optimizer', {
           url: '/optimizer',
           templateUrl: 'angular/views/loans/optimizer.html',
-          controller: 'EditOptimizerController'
+          controller: 'OptimizerController'
         })
         .state('edit.plannedcrops', {
           url: '/plannedcrops',

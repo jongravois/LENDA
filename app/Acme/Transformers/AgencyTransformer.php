@@ -8,7 +8,6 @@ class AgencyTransformer extends Transformer{
     return [
       'id' =>	$arr['id'],
       'agency' => $arr['agency'],
-      'name' => $arr['name'],
       'address' => $arr['address'],
       'city' => $arr['city'],
       'state_id' => $arr['state_id'],

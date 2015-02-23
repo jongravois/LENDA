@@ -109,6 +109,7 @@
 <script src="angular/controllers/loanexceptions.js"></script>
 <script src="angular/controllers/loanProducts.js"></script>
 <script src="angular/controllers/matrix.js"></script>
+<script src="angular/controllers/optimizer.js"></script>
 <script src="angular/controllers/pdfApps.js"></script>
 <script src="angular/controllers/polProcs.js"></script>
 <script src="angular/controllers/prefs.js"></script>
@@ -135,7 +136,6 @@
 <script src="angular/controllers/editDistributor.js"></script>
 <script src="angular/controllers/editFarmDetails.js"></script>
 <script src="angular/controllers/editInsurance.js"></script>
-<script src="angular/controllers/editOptimizer.js"></script>
 <script src="angular/controllers/editplannedcrops.js"></script>
 <script src="angular/controllers/editPrereqs.js"></script>
 <script src="angular/controllers/editStorage.js"></script>

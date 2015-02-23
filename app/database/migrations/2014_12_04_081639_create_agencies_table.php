@@ -11,7 +11,6 @@ class CreateAgenciesTable extends Migration {
 		{
 			$table->increments('id');
       $table->string('agency')->unique();
-      $table->string('name');
       $table->string('address')->nullable();
       $table->string('city')->nullable();
       $table->string('state_id')->nullable();

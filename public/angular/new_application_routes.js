@@ -80,6 +80,11 @@
           templateUrl: 'angular/views/loans/quests.html',
           controller: 'QuestsController'
         })
+        .state('new.optimizer',{
+          url: '/optimizer',
+          templateUrl: 'angular/views/loans/optimizer.html',
+          controller: 'OptimizerController'
+        })
         .state('new.prerequisites', {
           url: '/prerequisites',
           templateUrl: 'angular/views/loans/prerequisites.html',

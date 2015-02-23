@@ -8,22 +8,41 @@
   <!--<pre>{{loan.insurance | json}}</pre>-->
   <tabset>
     <tab heading="Agent/Agency Information">
-      <div class="row">
-        <div class="form-group col-md-3">
-          <label>Agency</label>
-          <input type="text" class="form-control" ng-model="insurance[0].agency"/>
+      <div class="row" ng-if="agencies.length == 0">
+        <br/>
+        <div class="col-md-6 col-md-offset-1">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                No agencies found!
+              </h3>
+            </div>
+            <div class="panel-body">
+              There are no insurance agencies associates with this loan.
+            </div>
+          </div>
         </div>
-        <div class="form-group col-md-3">
-          <label>Agent</label>
-          <input type="text" class="form-control" ng-model="insurance[0].agent"/>
-        </div>
-        <div class="form-group col-md-3">
-          <label>Email</label>
-          <input type="text" class="form-control" ng-model="insurance[0].agent_email"/>
-        </div>
-        <div class="form-group col-md-3">
-          <label>Phone</label>
-          <input type="text" name="phone" ui-mask="(999) 999-9999" ng-model="insurance[0].agent_phone" class="form-control"/>
+      </div>
+
+      <div class="row" ng-repeat="a in agencies">
+        <br/>
+        <div class="col-md-6 col-md-offset-1">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{a.agency|capitalize}}</h3>
+            </div>
+            <div class="panel-body">
+              {{a.agency}}
+              <br/>
+              {{a.address}}
+              <br/>
+              {{a.city}}, {{a.state}}  {{a.zip}}
+              <br/>
+              {{a.phone|phone}}
+              <br/>
+              {{a.email}}
+            </div>
+          </div>
         </div>
       </div>
     </tab>
