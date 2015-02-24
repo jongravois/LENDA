@@ -118,7 +118,7 @@
         .state('edit.storage', {
           url: '/storage',
           templateUrl: 'angular/views/loans/editstorage.html',
-          controller: 'EditStorageController'
+          controller: 'GrainController'
         })
         .state('edit.summary', {
           url: '/summary',

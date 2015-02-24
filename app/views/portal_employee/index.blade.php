@@ -103,6 +103,7 @@
 <script src="angular/controllers/farmer.js"></script>
 <script src="angular/controllers/farms.js"></script>
 <script src="angular/controllers/financials.js"></script>
+<script src="angular/controllers/grain.js"></script>
 <script src="angular/controllers/legalDocs.js"></script>
 <script src="angular/controllers/legend.js"></script>
 <script src="angular/controllers/Library.js"></script>
@@ -125,7 +126,6 @@
 
 <script src="angular/controllers/newbudget.js"></script>
 <script src="angular/controllers/newdistributor.js"></script>
-<script src="angular/controllers/newgrain.js"></script>
 <script src="angular/controllers/newinsurance.js"></script>
 <script src="angular/controllers/newplannedcrops.js"></script>
 <script src="angular/controllers/newpurgatory.js"></script>
@@ -136,7 +136,6 @@
 <script src="angular/controllers/editFarmDetails.js"></script>
 <script src="angular/controllers/editInsurance.js"></script>
 <script src="angular/controllers/editplannedcrops.js"></script>
-<script src="angular/controllers/editStorage.js"></script>
 <!-- CONTROLLERS -->
 <!-- FACTORIES -->
 <script src="angular/services/ApplicantsFactory.js"></script>

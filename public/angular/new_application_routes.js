@@ -68,7 +68,7 @@
         .state('new.grainstorage', {
           url: '/grainstorage',
           templateUrl: 'angular/views/loans/newgrainstorage.html',
-          controller: 'NewGrainController'
+          controller: 'GrainController'
         })
         .state('new.insurance', {
           url: '/insurance',

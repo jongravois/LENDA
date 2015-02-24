@@ -2,7 +2,11 @@
     'use strict';
     angular
       .module('ARM')
-      .controller('NewGrainController', function(
+      .controller('GrainController', GrainController);
+
+      GrainController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory'];
+
+      function GrainController (
         $scope, $state, $stateParams, AppFactory
       ){
         var curr = $state.current.url;
@@ -82,5 +86,5 @@
           //obj.loan_id = $stateParams.loanID;
           AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
         }
-      });
+      }
 })();
