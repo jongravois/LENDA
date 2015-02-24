@@ -98,7 +98,7 @@
         .state('edit.plannedcrops', {
           url: '/plannedcrops',
           templateUrl: 'angular/views/loans/editplannedcrops.html',
-          controller: 'EditPlannedCropsController'
+          controller: 'PlannedCropsController'
         })
         .state('edit.prerequisites', {
           url: '/prerequisites',

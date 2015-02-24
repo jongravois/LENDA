@@ -93,7 +93,7 @@
         .state('new.plannedcrops', {
           url: '/plannedcrops',
           templateUrl: 'angular/views/loans/newplannedcrops.html',
-          controller: 'NewPlannedCropsController'
+          controller: 'PlannedCropsController'
         })
         .state('new.purgatory', {
           url: '/purgatory',

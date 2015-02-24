@@ -2,7 +2,11 @@
   'use strict';
   angular
     .module('ARM')
-    .controller('NewPlannedCropsController', function(
+    .controller('PlannedCropsController', PlannedCropsController);
+
+    PlannedCropsController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
+
+    function PlannedCropsController(
       $scope, $state, $stateParams,
       AppFactory, LoansFactory
     ){
@@ -53,5 +57,5 @@
 
         AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
       }
-    });
+    }
 })();

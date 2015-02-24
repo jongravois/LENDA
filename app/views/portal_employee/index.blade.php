@@ -112,6 +112,7 @@
 <script src="angular/controllers/matrix.js"></script>
 <script src="angular/controllers/optimizer.js"></script>
 <script src="angular/controllers/pdfApps.js"></script>
+<script src="angular/controllers/plannedcrops.js"></script>
 <script src="angular/controllers/polProcs.js"></script>
 <script src="angular/controllers/prefs.js"></script>
 <script src="angular/controllers/prerequisites.js"></script>
@@ -127,7 +128,6 @@
 <script src="angular/controllers/newbudget.js"></script>
 <script src="angular/controllers/newdistributor.js"></script>
 <script src="angular/controllers/newinsurance.js"></script>
-<script src="angular/controllers/newplannedcrops.js"></script>
 <script src="angular/controllers/newpurgatory.js"></script>
 <script src="angular/controllers/newreferences.js"></script>
 <script src="angular/controllers/newuploads.js"></script>
@@ -135,7 +135,6 @@
 <script src="angular/controllers/editDistributor.js"></script>
 <script src="angular/controllers/editFarmDetails.js"></script>
 <script src="angular/controllers/editInsurance.js"></script>
-<script src="angular/controllers/editplannedcrops.js"></script>
 <!-- CONTROLLERS -->
 <!-- FACTORIES -->
 <script src="angular/services/ApplicantsFactory.js"></script>
