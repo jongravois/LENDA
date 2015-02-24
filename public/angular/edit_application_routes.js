@@ -6,7 +6,7 @@
       $stateProvider
         .state('edit',{
           abstract: true,
-          url: '/edit/{loanID:\\d+}',
+          url: '/edit/{loantypeID:\\d+}/{loanID:\\d+}',
           templateUrl: 'angular/views/editapp.html',
           controller: 'EditAppController',
           resolve: {

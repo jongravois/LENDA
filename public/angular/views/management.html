@@ -125,7 +125,7 @@
         <span class="glyphicon glyphicon-paperclip indicon" tooltip="Attachments" ng-class="{ clrOn : l.attachments, clrOff: !l.attachments }"></span>
       </td>
       <td>{{l.farmer}}</td>
-      <td><a href="#/edit/{{l.id}}/summary">{{l.applicant}}</a></td>
+      <td><a href="#/edit/{{l.loan_type_id}}/{{l.id}}/summary">{{l.applicant}}</a></td>
       <td style="text-align:center;">{{l.app_date | date:'MM/dd/yy'}}</td>
       <td style="text-align:center;">{{l.loc_abr}}</td>
       <td style="text-align:center;">{{l.loan_type}}</td>
