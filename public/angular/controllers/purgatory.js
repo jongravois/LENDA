@@ -2,11 +2,11 @@
     'use strict';
     angular
         .module('ARM')
-        .controller('NewPurgatoryController', NewPurgatoryController);
+        .controller('PurgatoryController', PurgatoryController);
 
-        NewPurgatoryController.$inject = ['$scope', 'InitialData'];
+        PurgatoryController.$inject = ['$scope', 'InitialData'];
 
-        function NewPurgatoryController(
+        function PurgatoryController(
             $scope, InitialData
         ){
             if(!$scope.loan){

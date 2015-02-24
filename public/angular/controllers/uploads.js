@@ -2,14 +2,12 @@
   'use strict';
   angular
     .module('ARM')
-    .controller('NewBudgetController', function(
-      $scope,
-      $state,
-      $stateParams,
-      $location,
-      toastr,
-      AppFactory,
-      LoansFactory
+    .controller('UploadsController', UploadsController);
+
+    UploadsController.$inject = ['$scope', '$state', '$stateParams'];
+
+    function UploadsController (
+      $scope, $state, $stateParams
     ){
       var curr = $state.current.url;
       var currScreen = curr.substring(1,curr.length);
@@ -23,8 +21,8 @@
       }// end if
       //alert(currScreen);
 
-      $scope.insertBudget = function(){
+      $scope.moveFromUploads = function(){
         AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
       }
-    });
+    }
 })();

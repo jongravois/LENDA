@@ -15,11 +15,6 @@
             }
           }
         })
-        .state('edit.affiliates', {
-          url: '/affiliates',
-          templateUrl: 'angular/views/loans/editaffiliates.html',
-          controller: 'AffiliatesController'
-        })
         .state('edit.applicant', {
           url: '/applicant',
           templateUrl: 'angular/views/loans/editapplicant.html',
@@ -88,7 +83,7 @@
         .state('edit.insurance', {
           url: '/insurance',
           templateUrl: 'angular/views/loans/editinsurance.html',
-          controller: 'EditInsuranceController'
+          controller: 'InsuranceController'
         })
         .state('edit.optimizer', {
           url: '/optimizer',

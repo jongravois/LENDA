@@ -7,11 +7,21 @@
       BudgetsController.$inject = ['$scope', '$stateParams', 'InitialData', 'ExpensesFactory'];
 
       function BudgetsController(
-          $scope,
-          $stateParams,
-          InitialData,
-          ExpensesFactory
+          $scope, $stateParams,
+          InitialData, ExpensesFactory
       ){
+        var curr = $state.current.url;
+        var currScreen = curr.substring(1,curr.length);
+        if( $state.includes('new') ){
+          $scope.newapplication == true;
+          angular.forEach($scope.screens, function(obj, index) {
+            if (obj.screen == currScreen) { obj.status = 1; }
+          });
+        } else {
+          $scope.newapplication == false;
+        }// end if
+        //alert(currScreen);
+
         $scope.loan = $scope.loan || InitialData.data.data[0];
 
         ExpensesFactory.getBudget($stateParams.loanID)
@@ -57,6 +67,10 @@
             var uniqExp = _.uniq(_.pluck(flattened, 'expense'));
             $scope.budget_expCats = uniqExp;
           });
+
+        $scope.insertBudget = function(){
+          AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
+        }
 
       } // end function
 })();

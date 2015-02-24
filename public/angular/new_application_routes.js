@@ -15,11 +15,6 @@
             }
           }
         })
-        .state('new.affiliates', {
-          url: '/affiliates',
-          templateUrl: 'angular/views/loans/newaffiliates.html',
-          controller: 'NewAffiliatesController'
-        })
         .state('new.applicant', {
           url: '/applicant',
           templateUrl: 'angular/views/loans/newapplicant.html',
@@ -28,7 +23,7 @@
         .state('new.budget', {
           url: '/budget',
           templateUrl: 'angular/views/loans/newbudget.html',
-          controller: 'NewBudgetController'
+          controller: 'BudgetsController'
         })
         .state('new.crops', {
           url: '/crops',
@@ -43,7 +38,7 @@
         .state('new.expenses', {
           url: '/expenses',
           templateUrl: 'angular/views/loans/expenses.html',
-          controller: 'NewBudgetsController'
+          controller: 'BudgetsController'
         })
         .state('new.farmer', {
           url: '/farmer',
@@ -73,12 +68,7 @@
         .state('new.insurance', {
           url: '/insurance',
           templateUrl: 'angular/views/loans/newinsurance.html',
-          controller: 'NewInsuranceController'
-        })
-        .state('new.quests', {
-          url: '/quests',
-          templateUrl: 'angular/views/loans/quests.html',
-          controller: 'QuestsController'
+          controller: 'InsuranceController'
         })
         .state('new.optimizer',{
           url: '/optimizer',
@@ -98,12 +88,17 @@
         .state('new.purgatory', {
           url: '/purgatory',
           templateUrl: 'angular/views/loans/newpurgatory.html',
-          controller: 'NewPurgatoryController'
+          controller: 'PurgatoryController'
+        })
+        .state('new.quests', {
+          url: '/quests',
+          templateUrl: 'angular/views/loans/quests.html',
+          controller: 'QuestsController'
         })
         .state('new.references', {
           url: '/references',
           templateUrl: 'angular/views/loans/newreferences.html',
-          controller: 'NewReferencesController'
+          controller: 'ReferencesController'
         })
         .state('new.terms', {
           url: '/terms',

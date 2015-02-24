@@ -91,7 +91,6 @@
 
 <script src="angular/controllers/admin.js"></script>
 <script src="angular/controllers/audits.js"></script>
-<script src="angular/controllers/affiliates.js"></script>
 <script src="angular/controllers/applicant.js"></script>
 <script src="angular/controllers/budgets.js"></script>
 <script src="angular/controllers/calendar.js"></script>
@@ -105,6 +104,7 @@
 <script src="angular/controllers/farms.js"></script>
 <script src="angular/controllers/financials.js"></script>
 <script src="angular/controllers/grain.js"></script>
+<script src="angular/controllers/insurance.js"></script>
 <script src="angular/controllers/legalDocs.js"></script>
 <script src="angular/controllers/legend.js"></script>
 <script src="angular/controllers/Library.js"></script>
@@ -117,6 +117,7 @@
 <script src="angular/controllers/polProcs.js"></script>
 <script src="angular/controllers/prefs.js"></script>
 <script src="angular/controllers/prerequisites.js"></script>
+<script src="angular/controllers/purgatory.js"></script>
 <script src="angular/controllers/quests.js"></script>
 <script src="angular/controllers/references.js"></script>
 <script src="angular/controllers/reports.js"></script>
@@ -124,16 +125,8 @@
 <script src="angular/controllers/summary.js"></script>
 <script src="angular/controllers/terms.js"></script>
 <script src="angular/controllers/underwriting.js"></script>
+<script src="angular/controllers/uploads.js"></script>
 <script src="angular/controllers/yield.js"></script>
-
-<script src="angular/controllers/newbudget.js"></script>
-<script src="angular/controllers/newinsurance.js"></script>
-<script src="angular/controllers/newpurgatory.js"></script>
-<script src="angular/controllers/newreferences.js"></script>
-<script src="angular/controllers/newuploads.js"></script>
-
-<script src="angular/controllers/editFarmDetails.js"></script>
-<script src="angular/controllers/editInsurance.js"></script>
 <!-- CONTROLLERS -->
 <!-- FACTORIES -->
 <script src="angular/services/ApplicantsFactory.js"></script>
