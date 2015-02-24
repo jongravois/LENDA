@@ -1,37 +1,86 @@
 <style>
   td{ font-size: 11px;}
   input[type=text]{ width: 100%;}
-  .nav-tabs>li>a {color: #333333; }
 </style>
 <fieldset>
   <legend>Insurance Information</legend>
   <!--<pre>{{loan.insurance | json}}</pre>-->
   <tabset>
-    <tab heading="Agent/Agency Information">
-      <div class="row" ng-if="agencies.length == 0">
-        <br/>
-        <div class="col-md-6 col-md-offset-1">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                No agencies found!
-              </h3>
-            </div>
-            <div class="panel-body">
-              There are no insurance agencies associates with this loan.
-            </div>
-          </div>
-        </div>
-      </div>
+    <tab heading="Summary">
+      <table class="table table-striped rowed" style="width:100% !important;">
+        <tr>
+          <th style="width:10%;">Crop</th>
+          <th style="width:7%;">Type</th>
+          <th style="width:7%;">Option</th>
+          <th style="width:7%;">Price</th>
+          <th style="width:7%;">Level</th>
+          <th style="width:10%;">Guarantee</th>
+          <th style="width:7%;">Premium</th>
+          <th style="width:7%;">Share</th>
+          <th style="width:10%;">Value</th>
+          <th style="width:10%;">Risk (Margin)</th>
+          <th style="width:10%;">Cash Flow</th>
+        </tr>
 
-      <div class="row" ng-repeat="a in agencies">
-        <br/>
-        <div class="col-md-6 col-md-offset-1">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h3 class="panel-title">{{a.agency|capitalize}}</h3>
-            </div>
-            <div class="panel-body">
+        <tr ng-repeat="sum in ins_sum">
+          <td>
+            {{sum.crop}}
+          </td>
+          <td class="text-center">
+            {{sum.type}}
+          </td>
+          <td class="text-center">
+            {{sum.option}}
+          </td>
+          <td class="text-right">
+            {{sum.price|flexCurrency:4}}
+          </td>
+          <td class="text-right">
+            {{sum.level|flexPercent:1}}
+          </td>
+          <td class="text-right">
+            {{sum.guarantee|flexCurrency:2}}
+          </td>
+          <td class="text-right">
+            {{sum.premium|flexCurrency:4}}
+          </td>
+          <td class="text-right">
+            {{sum.share|flexPercent:1}}
+          </td>
+          <td class="text-right">
+            {{sum.value|flexCurrency:0}}
+          </td>
+          <td class="text-right">
+            {{sum.risk|number:2}}
+          </td>
+          <td class="text-right">
+            {{sum.cash_flow|flexCurrency:0}}
+          </td>
+        </tr>
+        <tr class="success">
+          <td colspan="8">Total</td>
+          <td class="text-right">
+            {{259466 | flexCurrency:0}}
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+
+    </tab>
+    <tab heading="Agent/Agency">
+      <br/>
+      <div class="col-md-8 col-md-offset-1">
+        <!--<accordion close-others="true">-->
+        <accordion close-others="false">
+          <accordion-group heading="No Agencies Found" ng-if="agencies.length == 0">
+            There are no insurance agencies associates with this loan.
+          </accordion-group>
+          <accordion-group ng-repeat="a in agencies" is-open="a.isOpen">
+            <accordion-heading class="col-md-12">
+              {{a.agency}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': a.isOpen, 'glyphicon-chevron-right': !a.isOpen}"></i>
+            </accordion-heading>
+            <div class="col-md-6">
               {{a.agency}}
               <br/>
               {{a.address}}
@@ -42,17 +91,43 @@
               <br/>
               {{a.email}}
             </div>
-          </div>
+            <div class="col-md-6">
+              {{a.agent}}
+              <br/>
+              {{a.agent_phone|phone}}
+              <br/>
+              {{a.agent_email}}
+            </div>
+          </accordion-group>
+        </accordion>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-1" style="margin:0 18px;">
+          <button class="btn btn-default btn-xs" ng-click="toggleAddNewOne()">
+            Add New
+          </button>
+        </div>
+      </div>
+      <br/>
+      <div class="row" ng-if="addNewOne">
+        <div class="col-md-10 col-md-offset-1">
+          <form>
+            <label>Agency</label>
+            <input type="text" class="form-control" name="agency" ng-model="newAgency.agency"/>
+          </form>
         </div>
       </div>
     </tab>
-    <tab heading="Policy Information">
+    <tab heading="Policies">
       <table class="table table-striped rowed" style="width:100% !important;">
         <tr>
-          <th style="width:13%;">Locale</th>
-          <th style="width:13%;">Crop</th>
-          <th style="width:9%;">Type</th>
-          <th style="width:9%;">Option</th>
+          <th style="width:8%;">Agent</th>
+          <th style="width:12%;">Locale</th>
+          <th style="width:5%;">FSN</th>
+          <th style="width:8%;">Crop</th>
+          <th style="width:7%;">Type</th>
+          <th style="width:7%;">Option</th>
           <th style="width:7%;">Price</th>
           <th style="width:6%;">Level</th>
           <th style="width:7%;">Acres</th>
@@ -64,7 +139,9 @@
         </tr>
 
         <tr ng-repeat="i in insurance.policies">
+          <td>{{i.agent}}</td>
           <td>{{i.locale}}</td>
+          <td>{{i.fsn}}</td>
           <td>{{i.practice}}</td>
           <td>
             <select style="height:18px !important;" name="ins_type" ng-model="i.type" ng-options="t.type as t.type for t in feeder.instypes">
@@ -100,146 +177,9 @@
           </td>
         </tr>
 
-        <tr class="warning" ng-if="insurance.cropAcres.corn > 0">
-          <td colspan="2" class="text-right">
-            <strong>Corn</strong>
-          </td>
-          <td colspan="4">&nbsp;</td>
-          <td class="text-center">
-            {{insurance.cropAcres.corn || 0 | number:1}}
-          </td>
-          <td>&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropGuars.corn)">
-            {{insurance.cropGuars.corn || 0 | flexCurrency:2}}
-          </td>
-          <td colspan="2">&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropTotals.corn)">
-            {{insurance.cropTotals.corn || 0 | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr class="warning" ng-if="insurance.cropAcres.soybeans > 0">
-          <td colspan="2" class="text-right">
-            <strong>Soybeans</strong>
-          </td>
-          <td colspan="4">&nbsp;</td>
-          <td class="text-center">
-            {{insurance.cropAcres.soybeans || 0 | number:1}}
-          </td>
-          <td>&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropGuars.soybeans)">
-            {{insurance.cropGuars.soybeans || 0 | flexCurrency:2}}
-          </td>
-          <td colspan="2">&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropTotals.soybeans)">
-            {{insurance.cropTotals.soybeans || 0 | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr class="warning" ng-if="insurance.cropAcres.sorghum > 0">
-          <td colspan="2" class="text-right">
-            <strong>Sorghum</strong>
-          </td>
-          <td colspan="4">&nbsp;</td>
-          <td class="text-center">
-            {{insurance.cropAcres.sorghum || 0 | number:1}}
-          </td>
-          <td>&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropGuars.sorghum)">
-            {{insurance.cropGuars.sorghum || 0 | flexCurrency:2}}
-          </td>
-          <td colspan="2">&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropTotals.sorghum)">
-            {{insurance.cropTotals.sorghum || 0 | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr class="warning" ng-if="insurance.cropAcres.wheat > 0">
-          <td colspan="2" class="text-right">
-            <strong>Wheat</strong>
-          </td>
-          <td colspan="4">&nbsp;</td>
-          <td class="text-center">
-            {{insurance.cropAcres.wheat || 0 | number:1}}
-          </td>
-          <td>&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropGuars.wheat)">
-            {{insurance.cropGuars.wheat || 0 | flexCurrency:2}}
-          </td>
-          <td colspan="2">&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropTotals.wheat)">
-            {{insurance.cropTotals.wheat || 0 | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr class="warning" ng-if="insurance.cropAcres.cotton > 0">
-          <td colspan="2" class="text-right">
-            <strong>Cotton</strong>
-          </td>
-          <td colspan="4">&nbsp;</td>
-          <td class="text-center">
-            {{insurance.cropAcres.cotton || 0 | number:1}}
-          </td>
-          <td>&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropGuars.cotton)">
-            {{insurance.cropGuars.cotton || 0 | flexCurrency:2}}
-          </td>
-          <td colspan="2">&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropTotals.cotton)">
-            {{insurance.cropTotals.cotton || 0 | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr class="warning" ng-if="insurance.cropAcres.rice > 0">
-          <td colspan="2" class="text-right">
-            <strong>Rice</strong>
-          </td>
-          <td colspan="4">&nbsp;</td>
-          <td class="text-center">
-            {{insurance.cropAcres.rice || 0 | number:1}}
-          </td>
-          <td>&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropGuars.rice)">
-            {{insurance.cropGuars.rice || 0 | flexCurrency:2}}
-          </td>
-          <td colspan="2">&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropTotals.rice)">
-            {{insurance.cropTotals.rice || 0 | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr class="warning" ng-if="insurance.cropAcres.peanuts > 0">
-          <td colspan="2" class="text-right">
-            <strong>Peanuts</strong>
-          </td>
-          <td colspan="4">&nbsp;</td>
-          <td class="text-center">
-            {{insurance.cropAcres.peanuts || 0 | number:1}}
-          </td>
-          <td>&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropGuars.peanuts)">
-            {{insurance.cropGuars.peanuts || 0 | flexCurrency:2}}
-          </td>
-          <td colspan="2">&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropTotals.peanuts)">
-            {{insurance.cropTotals.peanuts || 0 | flexCurrency:0}}
-          </td>
-        </tr>
-        <tr class="warning" ng-if="insurance.cropAcres.sugarcane > 0">
-          <td colspan="2" class="text-right">
-            <strong>Sugar Cane</strong>
-          </td>
-          <td colspan="4">&nbsp;</td>
-          <td class="text-center">
-            {{insurance.cropAcres.sugarcane || 0 | number:1}}
-          </td>
-          <td>&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropGuars.sugarcane)">
-            {{insurance.cropGuars.sugarcane || 0 | flexCurrency:2}}
-          </td>
-          <td colspan="2">&nbsp;</td>
-          <td class="text-right" ng-class="gtZero(insurance.cropTotals.sugarcane)">
-            {{insurance.cropTotals.sugarcane || 0 | flexCurrency:0}}
-          </td>
-        </tr>
-
         <tr class="success">
           <td>Total</td>
-          <td colspan="5">&nbsp;</td>
+          <td colspan="7">&nbsp;</td>
           <td class="text-center">
             {{insurance.total_acres | number:1}}
           </td>
@@ -251,7 +191,6 @@
       </table>
 
     </tab>
-    <tab heading="APH Information">APH Information</tab>
   </tabset>
 </fieldset>
 <!--<pre>{{insurance | json}}</pre>-->

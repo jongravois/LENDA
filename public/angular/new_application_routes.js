@@ -63,7 +63,7 @@
         .state('new.financials', {
           url: '/financials',
           templateUrl: 'angular/views/loans/newfinancials.html',
-          controller: 'NewFinancialsController'
+          controller: 'FinancialsController'
         })
         .state('new.grainstorage', {
           url: '/grainstorage',

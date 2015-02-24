@@ -124,7 +124,6 @@
 
 <script src="angular/controllers/newbudget.js"></script>
 <script src="angular/controllers/newdistributor.js"></script>
-<script src="angular/controllers/newfinancials.js"></script>
 <script src="angular/controllers/newgrain.js"></script>
 <script src="angular/controllers/newinsurance.js"></script>
 <script src="angular/controllers/newplannedcrops.js"></script>

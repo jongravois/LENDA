@@ -51,7 +51,7 @@
         </table>
       </div>
     </div>
-    <br/><br/>
+
     <!-- PLANNED CROP CONSTRAINTS -->
     <div class="row" ng-hide="loan.loan_type_id == 2">
       <div class="col-md-12">
@@ -107,13 +107,13 @@
   
     <!-- INCOME CONSTRAINTS-->
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <table class="table table-striped rowed">
           <tr>
-            <th style="width:34%;">Income Constraints</th>
-            <th style="width:22%;">Revenue</th>
-            <th style="width:22%;">Expenses</th>
-            <th style="width:22%;">Income</th>
+            <th style="width:25%;"><!--Income Constraints--></th>
+            <th style="width:25%;">Revenue</th>
+            <th style="width:25%;">Expenses</th>
+            <th style="width:25%;">Income</th>
           </tr>
           <tr>
             <td>Year 1</td>
@@ -165,19 +165,17 @@
           </tr>
         </table>
       </div>
-    </div>
     <!-- INCOME CONSTRAINTS-->
   
     <!-- BALANCE SHEET CONSTRAINTS-->
-    <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <table class="table table-striped rowed">
           <tr>
-            <th>Balance Sheet Constraint</th>
-            <th style="width:140px;">Asset</th>
-            <th style="width:100px;">Discount</th>
-            <th style="width:140px;">Adj Value</th>
-            <th style="width:140px;">Liability</th>
+            <th><!--Balance Sheet Constraint--></th>
+            <th style="width:16%;">Asset</th>
+            <th style="width:16%;">Discount</th>
+            <th style="width:16%;">Adj Value</th>
+            <th style="width:16%;">Liability</th>
             <th>Reserve</th>
           </tr>
           <tr>
@@ -260,105 +258,105 @@
       <div class="col-md-12">
         <table class="table table-striped rowed">
         <tr>
-          <th style="width: 35%;">Ratio Constraints</th>
+          <th style="width: 26%;">Ratio Constraints</th>
           <th style="width: 12%;">Ratios</th>
           <th class="bright" style="width: 12%;">
             Res Adj
           </th>
-          <th style="width: 10%;">A</th>
-          <th style="width: 10%;">B</th>
-          <th style="width: 10%;">C</th>
-          <th style="width: 10%;">D</th>
+          <th style="width: 12.5%;">A</th>
+          <th style="width: 12.5%;">B</th>
+          <th style="width: 12.5%;">C</th>
+          <th style="width: 12.5%;">D</th>
         </tr>
         <tr>
           <td>Debt to Asset [<=]</td>
-          <td class="text-center" ng-class=gtZero(loan.grader.debt2asset_ratio)>
-            {{loan.grader.debt2asset_ratio | displaynullpercent}}
+          <td class="text-center" ng-class=gtZero(loan.fins.debt2asset_ratio)>
+            {{loan.fins.debt2asset_ratio|flexPercent:1}}
           </td>
-          <td class="bright text-center" ng-class=gtZero(loan.grader.debt2asset_ratio_adj)>
-            {{loan.grader.debt2asset_ratio_adj | displaynullpercent}}
+          <td class="bright text-center" ng-class=gtZero(loan.fins.debt2asset_ratio_adj)>
+            {{loan.fins.debt2asset_ratio_adj|flexPercent:1}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[0].debt2asset }">
-            {{grads[0].debt2asset | displaynullpercent}}
+            {{grads[0].debt2asset|flexPercent:1}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[1].debt2asset }">
-            {{grads[1].debt2asset | displaynullpercent}}
+            {{grads[1].debt2asset|flexPercent:1}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[2].debt2asset }">
-            {{grads[2].debt2asset | displaynullpercent}}
+            {{grads[2].debt2asset|flexPercent:1}}
           </td>
           <td class="text-center" ng-class="{red: loan.grader.debt2asset_ratio_adj > grads[3].debt2asset }">
-            {{grads[3].debt2asset | displaynullpercent}}
+            {{grads[3].debt2asset|flexPercent:1}}
           </td>
         </tr>
         <tr>
           <td>Current Ratio [>=]</td>
-          <td class="text-center" ng-class=gtZero(loan.grader.ratio_current)>
-            {{loan.grader.ratio_current | displaynullpercent}}
+          <td class="text-center" ng-class=gtZero(loan.fins.ratio_current)>
+            {{loan.fins.ratio_current|flexPercent:1}}
           </td>
-          <td class="bright text-center" ng-class=gtZero(loan.grader.ratio_current_adj)>
-            {{loan.grader.ratio_current_adj | displaynullpercent}}
+          <td class="bright text-center" ng-class=gtZero(loan.fins.ratio_current_adj)>
+            {{loan.fins.ratio_current_adj|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[0].current_ratio }">
-            {{grads[0].current_ratio | displaynullpercent}}
+          <td class="text-center" ng-class="{red: loan.fins.ratio_current_adj < grads[0].current_ratio }">
+            {{grads[0].current_ratio|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[1].current_ratio }">
-            {{grads[1].current_ratio | displaynullpercent}}
+          <td class="text-center" ng-class="{red: loan.fins.ratio_current_adj < grads[1].current_ratio }">
+            {{grads[1].current_ratio|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[2].current_ratio }">
-            {{grads[2].current_ratio | displaynullpercent}}
+          <td class="text-center" ng-class="{red: loan.fins.ratio_current_adj < grads[2].current_ratio }">
+            {{grads[2].current_ratio|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.ratio_current_adj < grads[3].current_ratio }">
-            {{grads[3].current_ratio | displaynullpercent}}
+          <td class="text-center" ng-class="{red: loan.fins.ratio_current_adj < grads[3].current_ratio }">
+            {{grads[3].current_ratio|flexPercent:1}}
           </td>
         </tr>
         <tr>
           <td>Working Capital [>=]</td>
-          <td class="text-center" ng-class=gtZero(loan.grader.capWork)>
-            {{loan.grader.capWork | displaynullpercent}}
+          <td class="text-center" ng-class=gtZero(loan.fins.capWork)>
+            {{loan.fins.capWork|flexPercent:1}}
           </td>
-          <td class="bright text-center" ng-class=gtZero(loan.grader.capWork_adj)>
-            {{loan.grader.capWork_adj | displaynullpercent}}
+          <td class="bright text-center" ng-class=gtZero(loan.fins.capWork_adj)>
+            {{loan.fins.capWork_adj|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[0].working_capital }">
-            {{grads[0].working_capital | displaypercent}}
+          <td class="text-center" ng-class="{red: loan.fins.capWork_adj < grads[0].working_capital }">
+            {{grads[0].working_capital|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[1].working_capital }">
-            {{grads[1].working_capital | displaypercent}}
+          <td class="text-center" ng-class="{red: loan.fins.capWork_adj < grads[1].working_capital }">
+            {{grads[1].working_capital|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[2].working_capital }">
-            {{grads[2].working_capital | displaypercent}}
+          <td class="text-center" ng-class="{red: loan.fins.capWork_adj < grads[2].working_capital }">
+            {{grads[2].working_capital|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.capWork_adj < grads[3].working_capital }">
-            {{grads[3].working_capital | displaypercent}}
+          <td class="text-center" ng-class="{red: loan.fins.capWork_adj < grads[3].working_capital }">
+            {{grads[3].working_capital|flexPercent:1}}
           </td>
         </tr>
         <tr>
           <td>Borrowing Capacity [>=]</td>
-          <td class="text-center" ng-class=gtZero(loan.grader.capBorrow)>
-            {{loan.grader.capBorrow | displaynullpercent}}
+          <td class="text-center" ng-class=gtZero(loan.fins.capBorrow)>
+            {{loan.fins.capBorrow|flexPercent:1}}
           </td>
-          <td class="bright text-center" ng-class=gtZero(loan.grader.capBorrow_adj)>
-            {{loan.grader.capBorrow_adj | displaynullpercent}}
+          <td class="bright text-center" ng-class=gtZero(loan.fins.capBorrow_adj)>
+            {{loan.fins.capBorrow_adj|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[0].borrowing_capacity }">
-            {{grads[0].borrowing_capacity | displaypercent}}
+          <td class="text-center" ng-class="{red: loan.fins.capBorrow_adj <= grads[0].borrowing_capacity }">
+            {{grads[0].borrowing_capacity|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[1].borrowing_capacity }">
-            {{grads[1].borrowing_capacity | displaypercent}}
+          <td class="text-center" ng-class="{red: loan.fins.capBorrow_adj <= grads[1].borrowing_capacity }">
+            {{grads[1].borrowing_capacity|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[2].borrowing_capacity }">
-            {{grads[2].borrowing_capacity | displaypercent}}
+          <td class="text-center" ng-class="{red: loan.fins.capBorrow_adj <= grads[2].borrowing_capacity }">
+            {{grads[2].borrowing_capacity|flexPercent:1}}
           </td>
-          <td class="text-center" ng-class="{red: loan.grader.capBorrow_adj <= grads[3].borrowing_capacity }">
-            {{grads[3].borrowing_capacity | displaypercent}}
+          <td class="text-center" ng-class="{red: loan.fins.capBorrow_adj <= grads[3].borrowing_capacity }">
+            {{grads[3].borrowing_capacity|flexPercent:1}}
           </td>
         </tr>
         <tr>
           <td>Credit Score [>=]</td>
           <td></td>
           <td class="bright text-center">
-            {{loan.fins.credit_score | displaynull}}
+            {{loan.fins.credit_score|displaynull}}
           </td>
           <td class="text-center" ng-class="{red: loan.fins.credit_score < grads[0].credit_score }">
             {{grads[0].credit_score}}
@@ -377,7 +375,7 @@
           <td>Years Farming [>=]</td>
           <td></td>
           <td class="text-center bright">
-            {{farmer.farm_exp | displaynull}}
+            {{farmer.farm_exp|displaynull}}
           </td>
           <td class="text-center" ng-class="{red: farmer.farm_exp < grads[0].years_farming }">
             {{grads[0].years_farming}}
@@ -396,10 +394,10 @@
           <td>CPA Financials</td>
           <td></td>
           <td class="bright text-center">
-            {{loan.fins.cpa_financials | boolean}}
+            {{loan.fins.cpa_financials|boolean}}
           </td>
           <td class="text-center" ng-class="{red: !grads[0].cpa_financials }">
-            {{grads[0].cpa_financials | boolean}}
+            {{grads[0].cpa_financials|boolean}}
           </td>
           <td class="text-center">&nbsp;</td>
           <td class="text-center">&nbsp;</td>
@@ -409,16 +407,16 @@
           <td>Bankruptcy</td>
           <td></td>
           <td class="text-center bright">
-            {{ quests.bankruptcy | boolean}}
+            {{ quests.bankruptcy|boolean}}
           </td>
           <td class="text-center" ng-class="{red: quests.bankruptcy }">
-            {{grads[0].bankruptcy | boolean}}
+            {{grads[0].bankruptcy|boolean}}
           </td>
           <td class="text-center" ng-class="{red: quests.bankruptcy }">
-            {{grads[1].bankruptcy | boolean}}
+            {{grads[1].bankruptcy|boolean}}
           </td>
           <td class="text-center" ng-class="{red: quests.bankruptcy }">
-            {{grads[2].bankruptcy | boolean}}
+            {{grads[2].bankruptcy|boolean}}
           </td>
           <td class="text-center" ng-class="{red: !quests.bankruptcy }">
             <!--{{grads[3].bankruptcy | boolean}}-->
@@ -428,19 +426,19 @@
           <td>Judgement</td>
           <td></td>
           <td class="text-center bright">
-            {{ quests.judgements | boolean}}
+            {{ quests.judgements|boolean}}
           </td>
           <td class="text-center" ng-class="{red: quests.judgements }">
-            {{grads[0].judgement| boolean}}
+            {{grads[0].judgement|boolean}}
           </td>
           <td class="text-center" ng-class="{red: loan.quests.judgements }">
-            {{grads[1].judgement | boolean}}
+            {{grads[1].judgement|boolean}}
           </td>
           <td class="text-center" ng-class="{red: quests.judgements }">
-            {{grads[2].judgement | boolean}}
+            {{grads[2].judgement|boolean}}
           </td>
           <td class="text-center" ng-class="{red: !quests.judgements }">
-            <!--{{grads[3].judgement | boolean}}-->
+            <!--{{grads[3].judgement|boolean}}-->
           </td>
         </tr>
         <tr>
@@ -448,16 +446,16 @@
           <td></td>
           <td class="bright"></td>
           <td class="text-right" ng-class=gtZero(grads[0].all_max_loan)>
-            {{grads[0].all_max_loan | flexCurrency:0}}
+            {{grads[0].all_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[1].all_max_loan)>
-            {{grads[1].all_max_loan | flexCurrency:0}}
+            {{grads[1].all_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[2].all_max_loan)>
-            {{grads[2].all_max_loan | flexCurrency:0}}
+            {{grads[2].all_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[3].all_max_loan)>
-            {{grads[3].all_max_loan | flexCurrency:0}}
+            {{grads[3].all_max_loan|flexCurrency:0}}
           </td>
         </tr>
         <tr ng-if="loan.loan_type_id == 3">
@@ -465,16 +463,16 @@
           <td></td>
           <td class="bright"></td>
           <td class="text-right" ng-class=gtZero(grads[0].ag_pro_max_loan)>
-            {{grads[0].ag_pro_max_loan | flexCurrency:0}}
+            {{grads[0].ag_pro_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right"ng-class=gtZero(grads[1].ag_pro_max_loan)>
-            {{grads[1].ag_pro_max_loan | flexCurrency:0}}
+            {{grads[1].ag_pro_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right"ng-class=gtZero(grads[2].ag_pro_max_loan)>
-            {{grads[2].ag_pro_max_loan | flexCurrency:0}}
+            {{grads[2].ag_pro_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right"ng-class=gtZero(grads[3].ag_pro_max_loan)>
-            {{grads[3].ag_pro_max_loan | flexCurrency:0}}
+            {{grads[3].ag_pro_max_loan|flexCurrency:0}}
           </td>
         </tr>
         <tr ng-if="loan.loan_type_id == 4">
@@ -482,16 +480,16 @@
           <td></td>
           <td class="bright"></td>
           <td class="text-right" ng-class=gtZero(grads[0].capital_bridge_max_loan)>
-            {{grads[0].capital_bridge_max_loan | flexCurrency:0}}
+            {{grads[0].capital_bridge_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[1].capital_bridge_max_loan)>
-            {{grads[1].capital_bridge_max_loan | flexCurrency:0}}
+            {{grads[1].capital_bridge_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[2].capital_bridge_max_loan)>
-            {{grads[2].capital_bridge_max_loan | flexCurrency:0}}
+            {{grads[2].capital_bridge_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[3].capital_bridge_max_loan)>
-            {{grads[3].capital_bridge_max_loan | flexCurrency:0}}
+            {{grads[3].capital_bridge_max_loan|flexCurrency:0}}
           </td>
         </tr>
         <tr ng-if="loan.loan_type_id == 5">
@@ -499,16 +497,16 @@
           <td></td>
           <td class="class-right bright"></td>
           <td class="text-right" ng-class=gtZero(grads[0].ag_vest_max_loan)>
-            {{grads[0].ag_vest_max_loan | flexCurrency:0}}
+            {{grads[0].ag_vest_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[1].ag_vest_max_loan)>
-            {{grads[1].ag_vest_max_loan | flexCurrency:0}}
+            {{grads[1].ag_vest_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[2].ag_vest_max_loan)>
-            {{grads[2].ag_vest_max_loan | flexCurrency:0}}
+            {{grads[2].ag_vest_max_loan|flexCurrency:0}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[3].ag_vest_max_loan)>
-            {{grads[3].ag_vest_max_loan | flexCurrency:0}}
+            {{grads[3].ag_vest_max_loan|flexCurrency:0}}
           </td>
         </tr>
         <tr ng-if="loan.loan_type_id == 3">
@@ -516,16 +514,16 @@
           <td></td>
           <td class="class-right bright"></td>
           <td class="text-right" ng-class=gtZero(grads[0].ag_pro_max_rate)>
-            {{grads[0].ag_pro_max_rate | displaynullpercent}}
+            {{grads[0].ag_pro_max_rate|flexPercent:1}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[1].ag_pro_max_rate)>
-            {{grads[1].ag_pro_max_rate | displaynullpercent}}
+            {{grads[1].ag_pro_max_rate|flexPercent:1}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[2].ag_pro_max_rate)>
-            {{grads[2].ag_pro_max_rate | displaynullpercent}}
+            {{grads[2].ag_pro_max_rate|flexPercent:1}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[3].ag_pro_max_rate)>
-            {{grads[3].ag_pro_max_rate | displaynullpercent}}
+            {{grads[3].ag_pro_max_rate|flexPercent:1}}
           </td>
         </tr>
         <tr ng-if="loan.loan_type_id == 4">
@@ -533,16 +531,16 @@
           <td></td>
           <td class="class-right bright"></td>
           <td class="text-right" ng-class=gtZero(grads[0].capital_bridge_max_rate)>
-            {{grads[0].capital_bridge_max_rate | displaynullpercent}}
+            {{grads[0].capital_bridge_max_rate|flexPercent:1}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[1].capital_bridge_max_rate)>
-            {{grads[1].capital_bridge_max_rate | displaynullpercent}}
+            {{grads[1].capital_bridge_max_rate|flexPercent:1}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[2].capital_bridge_max_rate)>
-            {{grads[2].capital_bridge_max_rate | displaynullpercent}}
+            {{grads[2].capital_bridge_max_rate|flexPercent:1}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[3].capital_bridge_max_rate)>
-            {{grads[3].capital_bridge_max_rate | displaynullpercent}}
+            {{grads[3].capital_bridge_max_rate|flexPercent:1}}
           </td>
         </tr>
         <tr ng-if="loan.loan_type_id == 5">
@@ -550,16 +548,16 @@
           <td></td>
           <td class="class-right bright"></td>
           <td class="text-right" ng-class=gtZero(grads[0].ag_vest_max_rate)>
-            {{grads[0].ag_vest_max_rate | displaynullpercent}}
+            {{grads[0].ag_vest_max_rate|flexPercent:1}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[1].ag_vest_max_rate)>
-            {{grads[1].ag_vest_max_rate | displaynullpercent}}
+            {{grads[1].ag_vest_max_rate|flexPercent:1}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[2].ag_vest_max_rate)>
-            {{grads[2].ag_vest_max_rate | displaynullpercent}}
+            {{grads[2].ag_vest_max_rate|flexPercent:1}}
           </td>
           <td class="text-right" ng-class=gtZero(grads[3].ag_vest_max_rate)>
-            {{grads[3].ag_vest_max_rate | displaynullpercent}}
+            {{grads[3].ag_vest_max_rate|flexPercent:1}}
           </td>
         </tr>
         </table>
@@ -599,6 +597,12 @@
       </div>
     </div>
     <!-- SUMMARY PANEL-->
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button style="margin-right:10px;" class="btn btn-primary">UPDATE</button>
+    </div>
   </div>
 </fieldset>
 <!--<pre>{{loan.fins | json}}</pre>-->
