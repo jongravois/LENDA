@@ -2,7 +2,11 @@
     'use strict';
     angular
       .module('ARM')
-      .controller('NewDistributorController', function(
+      .controller('DistributorController', DistributorController);
+
+      DistributorController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
+
+      function DistributorController(
         $scope, $state, $stateParams,
         AppFactory, LoansFactory
       ){
@@ -18,11 +22,13 @@
         }// end if
         //alert(currScreen);
 
-        if(!$scope.newDistributor){
+        if(!$scope.distributor){
           LoansFactory.getDistributor($stateParams.loanID).then(function success(rsp){
-            $scope.newDistributor = rsp.data.data[0];
+            $scope.distributor = rsp.data.data[0];
           });
         }
+
+        $scope.newDistributor = $scope.newDistributor || {};
 
         $scope.insertDistributor = function(obj) {
           obj.loan_id = $stateParams.loanID;
@@ -39,5 +45,5 @@
           }
         };
 
-      });
+      }
 })();

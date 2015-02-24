@@ -63,7 +63,7 @@
         .state('edit.distributor', {
           url: '/distributor',
           templateUrl: 'angular/views/loans/editdistributor.html',
-          controller: 'EditDistributorController'
+          controller: 'DistributorController'
         })
         .state('edit.farmdetails', {
           url: '/farmdetails',

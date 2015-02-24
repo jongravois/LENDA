@@ -38,7 +38,7 @@
         .state('new.distributor', {
           url: '/distributor',
           templateUrl: 'angular/views/loans/newdistributor.html',
-          controller: 'NewDistributorController'
+          controller: 'DistributorController'
         })
         .state('new.expenses', {
           url: '/expenses',

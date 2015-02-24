@@ -100,6 +100,7 @@
 <script src="angular/controllers/committee.js"></script>
 <script src="angular/controllers/crops.js"></script>
 <script src="angular/controllers/disbursement.js"></script>
+<script src="angular/controllers/distributor.js"></script>
 <script src="angular/controllers/farmer.js"></script>
 <script src="angular/controllers/farms.js"></script>
 <script src="angular/controllers/financials.js"></script>
@@ -126,13 +127,11 @@
 <script src="angular/controllers/yield.js"></script>
 
 <script src="angular/controllers/newbudget.js"></script>
-<script src="angular/controllers/newdistributor.js"></script>
 <script src="angular/controllers/newinsurance.js"></script>
 <script src="angular/controllers/newpurgatory.js"></script>
 <script src="angular/controllers/newreferences.js"></script>
 <script src="angular/controllers/newuploads.js"></script>
 
-<script src="angular/controllers/editDistributor.js"></script>
 <script src="angular/controllers/editFarmDetails.js"></script>
 <script src="angular/controllers/editInsurance.js"></script>
 <!-- CONTROLLERS -->
