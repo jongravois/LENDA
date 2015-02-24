@@ -103,7 +103,7 @@
         .state('edit.prerequisites', {
           url: '/prerequisites',
           templateUrl: 'angular/views/loans/prerequisites.html',
-          controller: 'EditPrerequisitesController'
+          controller: 'PrerequisitesController'
         })
         .state('edit.quests', {
           url: '/quests',

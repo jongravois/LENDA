@@ -2,7 +2,11 @@
     'use strict';
   angular
     .module('ARM')
-    .controller('NewPrerequisitesController', function(
+    .controller('PrerequisitesController', PrerequisitesController);
+
+    PrerequisitesController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
+
+    function PrerequisitesController(
       $scope, $state, $stateParams,
       AppFactory, LoansFactory
     ){
@@ -43,5 +47,5 @@
       $scope.moveFromDocs = function(){
         AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
       }
-    });
+    } // end controller function
 })();

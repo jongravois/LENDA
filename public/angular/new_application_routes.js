@@ -88,7 +88,7 @@
         .state('new.prerequisites', {
           url: '/prerequisites',
           templateUrl: 'angular/views/loans/prerequisites.html',
-          controller: 'NewPrerequisitesController'
+          controller: 'PrerequisitesController'
         })
         .state('new.plannedcrops', {
           url: '/plannedcrops',

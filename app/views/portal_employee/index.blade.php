@@ -113,6 +113,7 @@
 <script src="angular/controllers/pdfApps.js"></script>
 <script src="angular/controllers/polProcs.js"></script>
 <script src="angular/controllers/prefs.js"></script>
+<script src="angular/controllers/prerequisites.js"></script>
 <script src="angular/controllers/quests.js"></script>
 <script src="angular/controllers/references.js"></script>
 <script src="angular/controllers/reports.js"></script>
@@ -128,7 +129,6 @@
 <script src="angular/controllers/newinsurance.js"></script>
 <script src="angular/controllers/newplannedcrops.js"></script>
 <script src="angular/controllers/newpurgatory.js"></script>
-<script src="angular/controllers/newprerequisites.js"></script>
 <script src="angular/controllers/newreferences.js"></script>
 <script src="angular/controllers/newuploads.js"></script>
 
@@ -136,7 +136,6 @@
 <script src="angular/controllers/editFarmDetails.js"></script>
 <script src="angular/controllers/editInsurance.js"></script>
 <script src="angular/controllers/editplannedcrops.js"></script>
-<script src="angular/controllers/editPrereqs.js"></script>
 <script src="angular/controllers/editStorage.js"></script>
 <!-- CONTROLLERS -->
 <!-- FACTORIES -->
