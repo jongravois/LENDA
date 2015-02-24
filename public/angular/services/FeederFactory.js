@@ -1,9 +1,14 @@
 (function(){
     'use strict';
-    angular.module('ARM')
-      .factory('FeederFactory', function FeederFactory(
-        $http,
-        API_URL
+    angular
+      .module('ARM')
+      .factory('FeederFactory', FeederFactory);
+
+      FeederFactory.$inject = ['$http', 'API_URL'];
+
+      /* @ngInject */
+      function FeederFactory(
+        $http, API_URL
       ){
         var data = {
           hpOpts: [
@@ -131,5 +136,5 @@
           getAgencies: getAgencies,
           getUnits: getUnits
         }
-      });
+      } // end factory
 })();

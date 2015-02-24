@@ -1,7 +1,12 @@
 (function(){
     'use strict';
     angular.module('ARM')
-      .factory('FarmersFactory', function FarmersFactory(
+      .factory('FarmersFactory', FarmersFactory);
+
+      FarmersFactory.$inject = ['$http', 'API_URL'];
+
+      /* @ngInject */
+      function FarmersFactory(
         $http, API_URL
       ){
           return {
@@ -31,5 +36,5 @@
           function loansByFarmer(id){
             return $http.get(API_URL + '/farmers/' + id + '/loans')
           }
-        });
+        } // end factory
 })();

@@ -1,10 +1,14 @@
 (function(){
     'use strict';
-    angular.module('ARM')
-        .factory('FinancialsFactory', function FinancialsFactory(obj){
-            return {
+    angular
+      .module('ARM')
+        .factory('FinancialsFactory', FinancialsFactory);
 
-            };
+        FinancialsFactory.$inject = [];
 
-          });
+        /* @ngInject */
+        function FinancialsFactory(){
+            return {};
+
+          } // end factory
 })();

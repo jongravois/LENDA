@@ -6,6 +6,7 @@
 
     LoanProcessor.$inject = ['$q', 'LoansFactory'];
 
+    /* @ngInject */
     function LoanProcessor(
       $q,
       LoansFactory

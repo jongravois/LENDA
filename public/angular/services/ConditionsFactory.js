@@ -1,7 +1,13 @@
 (function(){
     'use strict';
-    angular.module('ARM')
-      .factory('ConditionsFactory', function ConditionsFactory(
+    angular
+      .module('ARM')
+      .factory('ConditionsFactory', ConditionsFactory);
+
+      ConditionsFactory.$inject = ['$http', '$q', 'API_URL', 'AppFactory'];
+
+      /* @ngInject */
+      function ConditionsFactory(
         $http, $q, API_URL, AppFactory
       ){
           return {
@@ -102,5 +108,5 @@
           //TODO: delete loanCondition
           //TODO: create LENDA comment and Loan Exception
         }
-        });
+        } // end controller function
 })();

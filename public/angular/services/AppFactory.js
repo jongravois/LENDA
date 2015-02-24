@@ -1,10 +1,14 @@
 (function(){
     'use strict';
-  angular.module('ARM')
-    .factory('AppFactory', function AppFactory(
-      $http,
-      API_URL,
-      $state
+  angular
+    .module('ARM')
+    .factory('AppFactory', AppFactory);
+
+    AppFactory.$inject = ['$http', 'API_URL', '$state'];
+
+    /* @ngInject */
+    function AppFactory(
+      $http, API_URL, $state
     ){
       return {
         agentsInAgency: agentsInAgency,
@@ -121,5 +125,5 @@
         var colors = ['gray', 'green', 'yellow', 'red', 'blue', 'green_off', 'yellow_off'];
         return colors[val] || 'gray';
       }
-    });
+    } // end controller function
 })();

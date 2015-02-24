@@ -2,12 +2,18 @@
   'use strict';
   angular
     .module('ARM')
-    .controller('EditAppController', function(
+    .controller('EditAppController', EditAppController);
+
+    EditAppController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'toastr', 'InitialData', 'AppFactory', 'ApplicantsFactory', 'ExceptionsFactory', 'FarmersFactory', 'LoansFactory', 'InsuranceFactory'];
+
+    /* @ngInject */
+    function EditAppController(
       $scope, $state, $stateParams, $filter,
       $timeout, toastr,
       InitialData, AppFactory, ApplicantsFactory, ExceptionsFactory,
       FarmersFactory, LoansFactory, InsuranceFactory
     ) {
+        $scope.loantypeID = $stateParams.loantypeID;
         $scope.loan = InitialData.data.data[0];
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
         $scope.newapplication = false;
@@ -167,6 +173,6 @@
           return tot / cnt;
         };
 
-    });
+    } // end controller function
 
 })();

@@ -2,7 +2,12 @@
     'use strict';
     angular
       .module('ARM')
-      .factory('Grader', function(BaseModel) {
+      .factory('Grader', Grader);
+
+      Grader.$inject = ['BaseModel'];
+
+      /* @ngInject */
+      function Grader(BaseModel) {
           return {
               gradeLoan: function(fins, grader) {
                   var grade = 'F';
@@ -78,5 +83,5 @@
                   return grade;
               }
           };
-      });
+      } // end factory
 })();

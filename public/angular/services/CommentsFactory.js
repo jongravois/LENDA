@@ -1,9 +1,13 @@
 (function(){
     'use strict';
     angular.module('ARM')
-        .factory('CommentsFactory', function CommentsFactory(
-          $http,
-          API_URL
+        .factory('CommentsFactory', CommentsFactory);
+
+        CommentsFactory.$inject = ['$http', 'API_URL'];
+
+        /* @ngInject */
+        function CommentsFactory(
+          $http, API_URL
         ){
             return {
               getUserByLoan: getUserByLoan
@@ -13,5 +17,5 @@
             function getUserByLoan(loanId, UserId){
               return false;
             }
-          });
+        } // end controller function
 })();

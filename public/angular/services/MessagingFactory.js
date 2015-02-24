@@ -1,16 +1,21 @@
 (function(){
     'use strict';
-    angular.module('ARM')
-        .factory('MessagingFactory', function MessagingFactory(
-            $http,
-            API_URL
-        ){
-          return {
-            getNotifications: getNotifications
-          };
+    angular
+      .module('ARM')
+      .factory('MessagingFactory', MessagingFactory);
 
-          function getNotifications(id){
-            $http.get(API_URL + '/users/' + id + 'notifications');
-          }
-          });
+      MessagingFactory.$inject = ['$http', 'API_URL'];
+
+      /* @ngInject */
+      function MessagingFactory(
+          $http, API_URL
+      ){
+        return {
+          getNotifications: getNotifications
+        };
+
+        function getNotifications(id){
+          $http.get(API_URL + '/users/' + id + 'notifications');
+        }
+      } // end factory
 })();

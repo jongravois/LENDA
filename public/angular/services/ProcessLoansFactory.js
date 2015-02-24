@@ -2,7 +2,12 @@
   'use strict';
   angular
     .module('ARM')
-    .factory('LoansProcessor', function LoansProcessor(
+    .factory('LoansProcessor', LoansProcessor);
+
+    LoansProcessor.$inject = ['$q', 'LoansFactory'];
+
+    /* @ngInject */
+    function LoansProcessor(
       $q,
       LoansFactory
     ){
@@ -54,5 +59,5 @@
         return $q.all(allLoans.map(updateLoanData));
       }
 
-    });
+    } // end factory
 })();

@@ -1,7 +1,13 @@
 (function(){
   'use strict';
-  angular.module('ARM')
-    .factory('LoansFactory', function LoansFactory(
+  angular
+    .module('ARM')
+    .factory('LoansFactory', LoansFactory);
+
+    LoansFactory.$inject = ['$http', '$q', '$stateParams', 'toastr',
+      'API_URL', 'AppFactory', 'ConditionsFactory', 'GlobalsFactory'];
+
+    function LoansFactory(
       $http, $q, $stateParams, toastr,
       API_URL, AppFactory, ConditionsFactory, GlobalsFactory
     ){
@@ -523,5 +529,5 @@
 
       }
 
-    });
+    }
 })();

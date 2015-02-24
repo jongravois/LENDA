@@ -1,21 +1,25 @@
 (function(){
     'use strict';
-    angular.module('ARM')
-        .factory('LendaFactory', function LendaFactory(
-          $http,
-          API_URL,
-          toastr
-        ){
-            return {
-              create: create
-            };
+    angular
+      .module('ARM')
+      .factory('LendaFactory', LendaFactory);
 
-            function create(obj){
-              $http.post(API_URL + '/comments', obj)
-                .then(function(res){
-                  toastr.warning(obj.comment, 'LENDA');
-                });
-            }
+      LendaFactory.$inject = ['$http', 'API_URL', 'toastr'];
 
-          });
+      /* @ngInject */
+      function LendaFactory(
+        $http, API_URL, toastr
+      ){
+          return {
+            create: create
+          };
+
+          function create(obj){
+            $http.post(API_URL + '/comments', obj)
+              .then(function(res){
+                toastr.warning(obj.comment, 'LENDA');
+              });
+          }
+
+        } // end factory
 })();

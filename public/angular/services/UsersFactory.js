@@ -1,7 +1,15 @@
 (function(){
     'use strict';
-    angular.module('ARM')
-      .factory('UsersFactory', function UsersFactory($http, API_URL){
+    angular
+      .module('ARM')
+      .factory('UsersFactory', UsersFactory);
+
+      UsersFactory.$inject = ['$http', 'API_URL'];
+
+      /* @ngInject */
+      function UsersFactory(
+        $http, API_URL
+      ){
         return {
           getBadges: getBadges,
           getNotifications: getNotifications,
@@ -25,5 +33,5 @@
         function getUsers(){
           return $http.get(API_URL + '/users');
         }
-      });
+      } // end factory
 })();

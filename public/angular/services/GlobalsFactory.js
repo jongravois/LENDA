@@ -1,7 +1,13 @@
 (function(){
     'use strict';
-    angular.module('ARM')
-        .factory('GlobalsFactory', function GlobalsFactory($http, API_URL){
+    angular
+      .module('ARM')
+        .factory('GlobalsFactory', GlobalsFactory);
+
+        GlobalsFactory.$inject = ['$http', 'API_URL'];
+
+        /* @ngInject */
+        function GlobalsFactory($http, API_URL){
           return {
             getAdminGrader: getAdminGrader,
             getCropYears: getCropYears,
@@ -48,5 +54,5 @@
                 return obj;
             });
           }
-        });
+        } // end factory
 })();
