@@ -7,13 +7,8 @@
       ClosingController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'LoansFactory', 'InsuranceFactory'];
 
       function ClosingController(
-          $scope,
-          $state,
-          $stateParams,
-          InitialData,
-          AppFactory,
-          LoansFactory,
-          InsuranceFactory
+          $scope, $state, $stateParams,
+          InitialData, AppFactory, LoansFactory, InsuranceFactory
       ){
         $scope.loan = $scope.loan || InitialData.data.data[0];
         $scope.loan.insurance = $scope.loan.insurance || {};
