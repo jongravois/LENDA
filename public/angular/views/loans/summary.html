@@ -38,40 +38,7 @@
 
 <span ng-switch="loan.loan_type_id">
   <span ng-switch-when="7">
-    <div class="row" style="padding-top: 20px;">
-      <div class="form-group col-md-12 text-left">
-        <b>Grain Storage</b>
-      </div>
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <table class="table table-striped">
-            <tr>
-              <td style="width:30%;">
-                <label>Amount Requested:</label>
-                &nbsp;&nbsp;&nbsp;
-                {{loan.fins.amount_requested|flexCurrency:0}}
-              </td>
-              <td style="width:30%;">
-                <label>Advance Percentage:</label>
-                &nbsp;&nbsp;&nbsp;
-                {{storage[0].advance_percent|flexPercent:1}}
-              </td>
-              <td style="width:40%;">
-                <label>Buyer:</label>
-                &nbsp;&nbsp;&nbsp;
-                {{storage[0].grain_buyer}}
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <br/>
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <div ng-include="'angular/views/loans/partials/storage_contract.html'"></div>
-        </div>
-      </div>
-    </div>
+    <div ng-include="'angular/views/loans/partials/storage_contract.html'"></div>
   </span>
 
   <span ng-switch-default>

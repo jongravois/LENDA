@@ -5,6 +5,7 @@
       'ngSanitize',
       'ngAnimate',
       'ngResource',
+      'ngMessages',
 
       // 3rd Party Modules
       'ui.router',

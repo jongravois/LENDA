@@ -131,8 +131,8 @@
         })
         .state('edit.storage', {
           url: '/storage',
-          templateUrl: 'angular/views/loans/editstorage.html',
-          controller: 'GrainController',
+          templateUrl: 'angular/views/loans/storage.html',
+          controller: 'StorageController',
           data: { newapplication: false }
         })
         .state('edit.summary', {

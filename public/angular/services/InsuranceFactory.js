@@ -19,6 +19,7 @@
 
         return factObj;
 
+        //////////
         function getPolicies() {
           var policies, crops;
 
@@ -40,9 +41,13 @@
             var tmpData = {};
             tmpData.total_acres = 0;
             tmpData.total_value = 0;
+            var agencies = [];
             var cropAcres = {};
             var cropGuars = {};
             var cropTotals = {};
+
+            agencies = _.uniq(_.pluck(policies, 'agency_id'));
+            tmpData.agencies = agencies;
 
             angular.forEach(policies, function (obj) {
               if (!cropAcres[obj.crop]) {

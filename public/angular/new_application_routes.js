@@ -49,6 +49,7 @@
           url: '/farmer',
           templateUrl: 'angular/views/loans/newfarmer.html',
           controller: 'FarmerController',
+          data: { newapplication: true },
           resolve: {
             Loan: function($stateParams, LoansFactory){
               return LoansFactory.getLoan($stateParams.loanID);
@@ -65,12 +66,6 @@
           url: '/financials',
           templateUrl: 'angular/views/loans/newfinancials.html',
           controller: 'FinancialsController',
-          data: { newapplication: true }
-        })
-        .state('new.grainstorage', {
-          url: '/grainstorage',
-          templateUrl: 'angular/views/loans/newgrainstorage.html',
-          controller: 'GrainController',
           data: { newapplication: true }
         })
         .state('new.insurance', {
@@ -113,6 +108,12 @@
           url: '/references',
           templateUrl: 'angular/views/loans/newreferences.html',
           controller: 'ReferencesController',
+          data: { newapplication: true }
+        })
+        .state('new.storage', {
+          url: '/storage',
+          templateUrl: 'angular/views/loans/storage.html',
+          controller: 'StorageController',
           data: { newapplication: true }
         })
         .state('new.terms', {

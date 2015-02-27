@@ -31,12 +31,7 @@
               $scope.loan = loan;
             });
         }
-        if(!$scope.insurance){
-          LoansFactory.getInsurancePolicies($stateParams.loanID)
-            .then(function success(rsp){
-              $scope.insurance = rsp.data.data;
-            });
-        }
+        $scope.insurance = InsuranceFactory.data;
         $scope.newPolicy = {
           acres: 0,
           agency: '',
@@ -55,7 +50,6 @@
         };
 
         $scope.addNewOne = false;
-        $scope.insurance = InsuranceFactory.data;
 
         $scope.newPolicy = {
           acres: 0,
@@ -74,11 +68,20 @@
           type: 'RP'
         };
 
-        $scope.agencies = [
+        $scope.agencies = [];
           //TODO: load agencies
-          {agency: 'Rayville State Farm', address: '1 Good Neighbor Road', city: 'Rayville', state: 'LA', zip: '72132', phone: '3185551212', email: 'rsfarm@statefarm.org', agent: 'James Bond', agent_email: '007@hermagestyservices.org', agent_phone: '3184883988', isOpen: true},
-          {agency: 'Jack Daniels Mutual of Omaha', address: '1 Sipping Good Road', city: 'Delhi', state: 'LA', zip: '72132', phone: '3188881020', email: 'jddelhi@mutualofomaha.org', agent: 'Jason Bourne', agent_email: 'meds@treadstone.org', agent_phone: '3184569010', isOpen: false}
-        ];
+          LoansFactory.getAgent(1)
+            .then(function success(rsp){
+              var agency = rsp.data.data;
+              agency.isOpen = 1;
+              $scope.agencies.push(agency);
+            });
+          LoansFactory.getAgent(2)
+            .then(function success(rsp){
+              var agency = rsp.data.data;
+              agency.isOpen = 1;
+              $scope.agencies.push(agency);
+            });
 
         $scope.practiceDD = [
           {id:1, practice: 'Corn IR'},

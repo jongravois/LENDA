@@ -4,71 +4,9 @@
 </style>
 <fieldset>
   <legend>Insurance Information</legend>
-  <!--<pre>{{loan.insurance | json}}</pre>-->
+  <!--<pre>{{agencies|json}}</pre>-->
   <tabset>
-    <tab heading="Summary">
-      <table class="table table-striped rowed" style="width:100% !important;">
-        <tr>
-          <th style="width:10%;">Crop</th>
-          <th style="width:7%;">Type</th>
-          <th style="width:7%;">Option</th>
-          <th style="width:7%;">Price</th>
-          <th style="width:7%;">Level</th>
-          <th style="width:10%;">Guarantee</th>
-          <th style="width:7%;">Premium</th>
-          <th style="width:7%;">Share</th>
-          <th style="width:10%;">Value</th>
-          <th style="width:10%;">Risk (Margin)</th>
-          <th style="width:10%;">Cash Flow</th>
-        </tr>
-
-        <tr ng-repeat="sum in ins_sum">
-          <td>
-            {{sum.crop}}
-          </td>
-          <td class="text-center">
-            {{sum.type}}
-          </td>
-          <td class="text-center">
-            {{sum.option}}
-          </td>
-          <td class="text-right">
-            {{sum.price|flexCurrency:4}}
-          </td>
-          <td class="text-right">
-            {{sum.level|flexPercent:1}}
-          </td>
-          <td class="text-right">
-            {{sum.guarantee|flexCurrency:2}}
-          </td>
-          <td class="text-right">
-            {{sum.premium|flexCurrency:4}}
-          </td>
-          <td class="text-right">
-            {{sum.share|flexPercent:1}}
-          </td>
-          <td class="text-right">
-            {{sum.value|flexCurrency:0}}
-          </td>
-          <td class="text-right">
-            {{sum.risk|number:2}}
-          </td>
-          <td class="text-right">
-            {{sum.cash_flow|flexCurrency:0}}
-          </td>
-        </tr>
-        <tr class="success">
-          <td colspan="8">Total</td>
-          <td class="text-right">
-            {{259466 | flexCurrency:0}}
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-      </table>
-
-    </tab>
-    <tab heading="Agent/Agency">
+    <tab heading="AGENT/AGENCY">
       <br/>
       <div class="col-md-8 col-md-offset-1">
         <!--<accordion close-others="true">-->
@@ -83,13 +21,13 @@
             <div class="col-md-6">
               {{a.agency}}
               <br/>
-              {{a.address}}
+              {{a.agency_address}}
               <br/>
-              {{a.city}}, {{a.state}}  {{a.zip}}
+              {{a.agency_city}}, {{a.agency_state}}  {{a.agency_zip}}
               <br/>
-              {{a.phone|phone}}
+              {{a.agency_phone|phone}}
               <br/>
-              {{a.email}}
+              {{a.agency_email}}
             </div>
             <div class="col-md-6">
               {{a.agent}}
@@ -119,78 +57,414 @@
         </div>
       </div>
     </tab>
-    <tab heading="Policies">
+    <tab heading="POLICIES">
       <table class="table table-striped rowed" style="width:100% !important;">
         <tr>
-          <th style="width:8%;">Agent</th>
-          <th style="width:12%;">Locale</th>
-          <th style="width:5%;">FSN</th>
-          <th style="width:8%;">Crop</th>
-          <th style="width:7%;">Type</th>
-          <th style="width:7%;">Option</th>
-          <th style="width:7%;">Price</th>
-          <th style="width:6%;">Level</th>
-          <th style="width:7%;">Acres</th>
-          <th style="width:7%;">Yield</th>
-          <th style="width:9%;">Guarantee</th>
-          <th style="width:7%;">Premium</th>
-          <th style="width:6%;">Share</th>
-          <th style="width:9%;">Value</th>
+          <th>ST</th>
+          <th>County</th>
+          <th>Crop</th>
+          <th>Practice</th>
+          <th>Type</th>
+          <th>Option</th>
+          <th>Level</th>
+          <th>Price</th>
+          <th>Premium</th>
+          <th>Acres</th>
+          <th>Share</th>
+          <th>Value</th>
+          <th>Agent</th>
         </tr>
-
-        <tr ng-repeat="i in insurance.policies">
-          <td>{{i.agent}}</td>
-          <td>{{i.locale}}</td>
-          <td>{{i.fsn}}</td>
-          <td>{{i.practice}}</td>
-          <td>
-            <select style="height:18px !important;" name="ins_type" ng-model="i.type" ng-options="t.type as t.type for t in feeder.instypes">
-              <option value="">Type</option>
+        <tr>
+          <td class="text-center">LA</td>
+          <td class="text-center">Richland</td>
+          <td class="text-center">Corn</td>
+          <td class="text-center">IRR</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="RP">
+              <option value="RP">RP</option>
             </select>
           </td>
           <td class="text-center">
-            <text-edit-in-place value="i.option"></text-edit-in-place>
+            <text-edit-in-place value="'EU'"></text-edit-in-place>
           </td>
-          <td class="text-right" ng-class=gtZero(i.price)>
-            {{i.price | flexCurrency:4}}
+          <td class="text-right">
+            <percent-edit-in-place value="75"></percent-edit-in-place>
           </td>
-          <td class="text-right" ng-class=gtZero(i.level)>
-            <percent-edit-in-place value="i.level"></percent-edit-in-place>
+          <td class="text-right">
+            <edit-in-place value="4.25"></edit-in-place>
           </td>
+          <td class="text-right">
+            <edit-in-place value="11.88"></edit-in-place>
+          </td>
+          <td class="text-right">{{90|number:1}}</td>
+          <td class="text-right">{{100|flexPercent:1}}</td>
+          <td class="text-right">{{10000|flexCurrency:0}}</td>
           <td class="text-center">
-            {{i.acres | number:1}}
-          </td>
-          <td class="text-center">
-            {{i.yield | number:1}}
-          </td>
-          <td ng-class=gtZero(i.guarantee)>
-            {{i.guarantee | flexCurrency:2}}
-          </td>
-          <td ng-class=gtZero(i.premium)>
-            <edit-in-place value="i.premium"></edit-in-place>
-          </td>
-          <td ng-class=gtZero(i.share)>
-            <percent-edit-in-place value="i.share"></percent-edit-in-place>
-          </td>
-          <td class="text-right" ng-class=gtZero(i.value)>
-            {{i.value | flexCurrency:0}}
+            <select style="height:20px !important;" name="option" value="James Bond">
+              <option value="James Bond">James Bond</option>
+            </select>
           </td>
         </tr>
-
-        <tr class="success">
-          <td>Total</td>
-          <td colspan="7">&nbsp;</td>
+        <tr>
+          <td class="text-center">LA</td>
+          <td class="text-center">Richland</td>
+          <td class="text-center">Corn</td>
+          <td class="text-center">NI</td>
           <td class="text-center">
-            {{insurance.total_acres | number:1}}
+            <select style="height:20px !important;" name="option" value="RP">
+              <option value="RP">RP</option>
+            </select>
           </td>
-          <td colspan="4">&nbsp;</td>
-          <td class="text-right" ng-class=gtZero(insurance.total_value)>
-            {{insurance.total_value | flexCurrency:0}}
+          <td class="text-center">
+            <text-edit-in-place value="'EU'"></text-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="75"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="4.25"></edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="11.88"></edit-in-place>
+          </td>
+          <td class="text-right">{{28|number:1}}</td>
+          <td class="text-right">{{100|flexPercent:1}}</td>
+          <td class="text-right">{{10000|flexCurrency:0}}</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="James Bond">
+              <option value="James Bond">James Bond</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center">LA</td>
+          <td class="text-center">Richland</td>
+          <td class="text-center">Soybeans</td>
+          <td class="text-center">IRR</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="RP">
+              <option value="RP">RP</option>
+            </select>
+          </td>
+          <td class="text-center">
+            <text-edit-in-place value="'EU'"></text-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="75"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="4.25"></edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="11.88"></edit-in-place>
+          </td>
+          <td class="text-right">{{234|number:1}}</td>
+          <td class="text-right">{{100|flexPercent:1}}</td>
+          <td class="text-right">{{10000|flexCurrency:0}}</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="James Bond">
+              <option value="James Bond">James Bond</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center">LA</td>
+          <td class="text-center">Richland</td>
+          <td class="text-center">Soybeans</td>
+          <td class="text-center">NI</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="RP">
+              <option value="RP">RP</option>
+            </select>
+          </td>
+          <td class="text-center">
+            <text-edit-in-place value="'EU'"></text-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="75"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="11.25"></edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="14.35"></edit-in-place>
+          </td>
+          <td class="text-right">{{20|number:1}}</td>
+          <td class="text-right">{{100|flexPercent:1}}</td>
+          <td class="text-right">{{10000|flexCurrency:0}}</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="James Bond">
+              <option value="James Bond">James Bond</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center">LA</td>
+          <td class="text-center">Richland</td>
+          <td class="text-center">Soybeans</td>
+          <td class="text-center">FACNI</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="RP">
+              <option value="RP">RP</option>
+            </select>
+          </td>
+          <td class="text-center">
+            <text-edit-in-place value="'EU'"></text-edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="11.25"></edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="14.35"></edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="75"></percent-edit-in-place>
+          </td>
+          <td class="text-right">{{20|number:1}}</td>
+          <td class="text-right">{{100|flexPercent:1}}</td>
+          <td class="text-right">{{10000|flexCurrency:0}}</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="James Bond">
+              <option value="James Bond">James Bond</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center">LA</td>
+          <td class="text-center">W Carroll</td>
+          <td class="text-center">Corn</td>
+          <td class="text-center">IRR</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="RP">
+              <option value="RP">RP</option>
+            </select>
+          </td>
+          <td class="text-center">
+            <text-edit-in-place value="'EU'"></text-edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="4.25"></edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="11.88"></edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="75"></percent-edit-in-place>
+          </td>
+          <td class="text-right">{{229.4|number:1}}</td>
+          <td class="text-right">{{100|flexPercent:1}}</td>
+          <td class="text-right">{{10000|flexCurrency:0}}</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="James Bond">
+              <option value="James Bond">James Bond</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center">LA</td>
+          <td class="text-center">W Carroll</td>
+          <td class="text-center">Soybeans</td>
+          <td class="text-center">IRR</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="RP">
+              <option value="RP">RP</option>
+            </select>
+          </td>
+          <td class="text-center">
+            <text-edit-in-place value="'EU'"></text-edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="11.25"></edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="14.35"></edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="75"></percent-edit-in-place>
+          </td>
+          <td class="text-right">{{284|number:1}}</td>
+          <td class="text-right">{{100|flexPercent:1}}</td>
+          <td class="text-right">{{10000|flexCurrency:0}}</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="James Bond">
+              <option value="James Bond">James Bond</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center">LA</td>
+          <td class="text-center">W Carroll</td>
+          <td class="text-center">Soybeans</td>
+          <td class="text-center">FACI</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="RP">
+              <option value="RP">RP</option>
+            </select>
+          </td>
+          <td class="text-center">
+            <text-edit-in-place value="'EU'"></text-edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="11.25"></edit-in-place>
+          </td>
+          <td class="text-right">
+            <edit-in-place value="14.35"></edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="75"></percent-edit-in-place>
+          </td>
+          <td class="text-right">{{22.3|number:1}}</td>
+          <td class="text-right">{{100|flexPercent:1}}</td>
+          <td class="text-right">{{10000|flexCurrency:0}}</td>
+          <td class="text-center">
+            <select style="height:20px !important;" name="option" value="James Bond">
+              <option value="James Bond">James Bond</option>
+            </select>
           </td>
         </tr>
       </table>
+    </tab>
+    <tab heading="DATABASE">
+      <table class="table table-striped rowed" style="width:100% !important;">
+        <tr>
+          <th>ST</th>
+          <th>County</th>
+          <th>Crop</th>
+          <th>Practice</th>
+          <th>FSN</th>
+          <th>Landlord</th>
+          <th>APH</th>
+          <th>Share</th>
+        </tr>
 
+        <tr>
+          <td class="text-left">LA</td>
+          <td class="text-left">Richland</td>
+          <td class="text-left">Corn</td>
+          <td class="text-left">IRR</td>
+          <td class="text-left">2088</td>
+          <td class="text-left">Cobb</td>
+          <td class="text-right">
+            <digit-edit-in-place value="130"></digit-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="80"></percent-edit-in-place>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-left">LA</td>
+          <td class="text-left">Richland</td>
+          <td class="text-left">Corn</td>
+          <td class="text-left">NI</td>
+          <td class="text-left">409</td>
+          <td class="text-left">B Golliher</td>
+          <td class="text-right">
+            <digit-edit-in-place value="96"></digit-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="100"></percent-edit-in-place>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-left">LA</td>
+          <td class="text-left">Richland</td>
+          <td class="text-left">Soybeans</td>
+          <td class="text-left">IRR</td>
+          <td class="text-left">2088</td>
+          <td class="text-left">Cobb</td>
+          <td class="text-right">
+            <digit-edit-in-place value="33"></digit-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="80"></percent-edit-in-place>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-left">LA</td>
+          <td class="text-left">Richland</td>
+          <td class="text-left">Soybeans</td>
+          <td class="text-left">NI</td>
+          <td class="text-left">568</td>
+          <td class="text-left">Lee</td>
+          <td class="text-right">
+            <digit-edit-in-place value="23"></digit-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="80"></percent-edit-in-place>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-left">LA</td>
+          <td class="text-left">Richland</td>
+          <td class="text-left">Soybeans</td>
+          <td class="text-left">FACNI</td>
+          <td class="text-left">560</td>
+          <td class="text-left">N Golliher</td>
+          <td class="text-right">
+            <digit-edit-in-place value="21"></digit-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="100"></percent-edit-in-place>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-left">LA</td>
+          <td class="text-left">W Carroll</td>
+          <td class="text-left">Corn</td>
+          <td class="text-left">IRR</td>
+          <td class="text-left">3098</td>
+          <td class="text-left">B Gwin</td>
+          <td class="text-right">
+            <digit-edit-in-place value="149"></digit-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="100"></percent-edit-in-place>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-left">LA</td>
+          <td class="text-left">W Carroll</td>
+          <td class="text-left">Corn</td>
+          <td class="text-left">IRR</td>
+          <td class="text-left">4719</td>
+          <td class="text-left">D Gwin</td>
+          <td class="text-right">
+            <digit-edit-in-place value="141"></digit-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="80"></percent-edit-in-place>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-left">LA</td>
+          <td class="text-left">W Carroll</td>
+          <td class="text-left">Soybeans</td>
+          <td class="text-left">IRR</td>
+          <td class="text-left">4719</td>
+          <td class="text-left">D Gwin</td>
+          <td class="text-right">
+            <digit-edit-in-place value="42"></digit-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="80"></percent-edit-in-place>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-left">LA</td>
+          <td class="text-left">W Carroll</td>
+          <td class="text-left">Soybeans</td>
+          <td class="text-left">FACIR</td>
+          <td class="text-left">3097</td>
+          <td class="text-left">Vallery</td>
+          <td class="text-right">
+            <digit-edit-in-place value="26"></digit-edit-in-place>
+          </td>
+          <td class="text-right">
+            <percent-edit-in-place value="80"></percent-edit-in-place>
+          </td>
+        </tr>
+      </table>
     </tab>
   </tabset>
 </fieldset>
-<!--<pre>{{insurance | json}}</pre>-->
+<pre>{{insurance | json}}</pre>

@@ -132,18 +132,6 @@
             $scope.total_expenses = rsp;
           });
 
-        //GRAIN STORAGE
-        LoansFactory.getStorage($stateParams.loanID)
-          .then(function success(rsp){
-            $scope.storage = rsp.data.data;
-            //TODO: Hard-Coded!
-            $scope.total_stored = {
-              acres: 39000,
-              revenue: 505840,
-              eligible: 379380
-            };
-          });
-
         $scope.uomChanged = function (id, uom) {
           alert('Crop ID: ' + id + ' has been changed to ' + uom);
         };

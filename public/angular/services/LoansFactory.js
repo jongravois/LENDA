@@ -21,6 +21,10 @@
         createReference: createReference,
         finalizeNewLoan: finalizeNewLoan,
         getAffiliates: getAffiliates,
+        getAgencies: getAgencies,
+        getAgency: getAgency,
+        getAgents: getAgents,
+        getAgent: getAgent,
         getAttachments: getAttachments,
         getComments: getComments,
         getCommittee: getCommittee,
@@ -239,6 +243,22 @@
 
       function getAffiliates(id){
         return $http.get(API_URL + '/loans/' + id + '/affiliates');
+      }
+
+      function getAgencies(){
+        return $http.get(API_URL + '/agencies');
+      }
+
+      function getAgency(id){
+        return $http.get(API_URL + '/agencies/' + id);
+      }
+
+      function getAgents(){
+        return $http.get(API_URL + '/agents');
+      }
+
+      function getAgent(id){
+        return $http.get(API_URL + '/agents/' + id);
       }
 
       function getAttachments(id){

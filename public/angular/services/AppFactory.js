@@ -25,7 +25,8 @@
         patchIt: patchIt,
         postIt: postIt,
         putIt: putIt,
-        returnColor: returnColor
+        returnColor: returnColor,
+        sumThese: sumThese
       };
 
       function agentsInAgency(id){
@@ -124,6 +125,9 @@
       function returnColor(val){
         var colors = ['gray', 'green', 'yellow', 'red', 'blue', 'green_off', 'yellow_off'];
         return colors[val] || 'gray';
+      }
+      function sumThese(a, b){
+        return a + b;
       }
     } // end controller function
 })();
