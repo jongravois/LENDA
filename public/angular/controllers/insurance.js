@@ -68,21 +68,6 @@
           type: 'RP'
         };
 
-        $scope.agencies = [];
-          //TODO: load agencies
-          LoansFactory.getAgent(1)
-            .then(function success(rsp){
-              var agency = rsp.data.data;
-              agency.isOpen = 1;
-              $scope.agencies.push(agency);
-            });
-          LoansFactory.getAgent(2)
-            .then(function success(rsp){
-              var agency = rsp.data.data;
-              agency.isOpen = 1;
-              $scope.agencies.push(agency);
-            });
-
         $scope.practiceDD = [
           {id:1, practice: 'Corn IR'},
           {id:2, practice: 'Corn NI'},

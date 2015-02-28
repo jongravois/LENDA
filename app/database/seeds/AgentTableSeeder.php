@@ -6,13 +6,20 @@ class AgentTableSeeder extends Seeder {
   {
     Agents::create([
       'agency_id' => 1,
+      'agent' => 'James Bond',
+      'agent_phone' => '8003216789',
+      'agent_email' => '007@hermajestyservice.org'
+    ]);
+
+    Agents::create([
+      'agency_id' => 2,
       'agent' => 'Katniss Everdeen',
       'agent_phone' => '8001239876',
       'agent_email' => 'katniss@statefarm.org'
     ]);
 
     Agents::create([
-      'agency_id' => 1,
+      'agency_id' => 2,
       'agent' => 'Peeta Mallark',
       'agent_phone' => '8001239878',
       'agent_email' => 'peeta@statefarm.org'

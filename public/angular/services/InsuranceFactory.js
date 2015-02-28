@@ -41,12 +41,12 @@
             var tmpData = {};
             tmpData.total_acres = 0;
             tmpData.total_value = 0;
-            var agencies = [];
             var cropAcres = {};
             var cropGuars = {};
             var cropTotals = {};
 
-            agencies = _.uniq(_.pluck(policies, 'agency_id'));
+            var agencies = _.uniq(policies, 'agent_id');
+            agencies[0].isOpen = 1;
             tmpData.agencies = agencies;
 
             angular.forEach(policies, function (obj) {
@@ -62,6 +62,7 @@
             });
 
             var grouped = _.groupBy(policies, function (policy) {
+              //console.log(policy.crop); //Corn 4|Beans 5 (should be Corn 3| Beans 5)
               return policy.crop;
             });
 

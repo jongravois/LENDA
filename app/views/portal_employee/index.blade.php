@@ -60,6 +60,7 @@
 <script src="vendor/angular-toastr/dist/angular-toastr.min.js"></script>
 <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="vendor/angular-ui-utils/ui-utils.min.js"></script>
+<script src="vendor/angular-messages/angular-messages.min.js"></script>
 <script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="vendor/angular-animate/angular-animate.min.js"></script>
 <script src="vendor/angular-resource/angular-resource.min.js"></script>
@@ -103,7 +104,6 @@
 <script src="angular/controllers/farmer.js"></script>
 <script src="angular/controllers/farms.js"></script>
 <script src="angular/controllers/financials.js"></script>
-<script src="angular/controllers/grain.js"></script>
 <script src="angular/controllers/insurance.js"></script>
 <script src="angular/controllers/legalDocs.js"></script>
 <script src="angular/controllers/legend.js"></script>
@@ -122,6 +122,7 @@
 <script src="angular/controllers/references.js"></script>
 <script src="angular/controllers/reports.js"></script>
 <script src="angular/controllers/resources.js"></script>
+<script src="angular/controllers/storage.js"></script>
 <script src="angular/controllers/summary.js"></script>
 <script src="angular/controllers/terms.js"></script>
 <script src="angular/controllers/underwriting.js"></script>

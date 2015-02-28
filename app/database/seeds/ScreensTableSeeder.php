@@ -488,7 +488,7 @@ class ScreensTableSeeder extends Seeder {
 
     Screen::create([
       'loantype_id' => 7,
-      'screen' => 'grainstorage',
+      'screen' => 'storage',
       'label' => 'Grain Storage',
       'sort_order' => 5
     ]);
