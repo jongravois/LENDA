@@ -10,7 +10,7 @@ class Comment extends \Eloquent {
 
 	public function status()
 	{
-		return $this->hasOne('Commentstatus', 'comment_id');
+		return $this->hasMany('Commentstatus');
 	}
 
 	public function responses()

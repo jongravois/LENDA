@@ -2,11 +2,15 @@
   'use strict';
   angular
     .module('ARM')
-    .controller('MainController', function(
-      $scope, $state, $q, _, toastr, FILE_URL,
-      AppFactory, CommentsFactory, FarmersFactory,
-      FeederFactory, GlobalsFactory, LendaFactory,
-      LoansFactory, LoansProcessor, UsersFactory
+    .controller('MainController', MainController);
+
+    MainController.$inject = ['$scope', '$state', '$q', 'toastr', 'FILE_URL', 'AppFactory', 'FarmersFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansFactory', 'LoansProcessor', 'UsersFactory'];
+
+    function MainController(
+      $scope, $state, $q, toastr, FILE_URL,
+      AppFactory, FarmersFactory, FeederFactory,
+      GlobalsFactory, LendaFactory, LoansFactory,
+      LoansProcessor, UsersFactory
     ){
       $scope.user_id = $('#user_id').data('id');
       $scope.landing_view = 'settings';
@@ -175,5 +179,5 @@
 
         $scope.myOrder = $scope.orderOptions[$scope.orderOption]
       }
-    });
+    } // end controller
 })();

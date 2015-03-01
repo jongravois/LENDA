@@ -41,7 +41,7 @@
         })
         .state('edit.comments', {
           url: '/comments',
-          templateUrl: 'angular/views/loans/comments.html',
+          templateUrl: 'angular/comments/comments.html',
           controller: 'CommentsController',
           data: { newapplication: false }
         })

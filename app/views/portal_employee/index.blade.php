@@ -96,7 +96,7 @@
 <script src="angular/controllers/budgets.js"></script>
 <script src="angular/controllers/calendar.js"></script>
 <script src="angular/controllers/closing.js"></script>
-<script src="angular/controllers/comments.js"></script>
+<script src="angular/comments/controller.js"></script>
 <script src="angular/controllers/committee.js"></script>
 <script src="angular/controllers/crops.js"></script>
 <script src="angular/controllers/disbursement.js"></script>
@@ -132,7 +132,8 @@
 <!-- FACTORIES -->
 <script src="angular/services/ApplicantsFactory.js"></script>
 <script src="angular/services/AppFactory.js"></script>
-<script src="angular/services/CommentsFactory.js"></script>
+<script src="angular/comments/data.js"></script>
+<script src="angular/comments/logic.js"></script>
 <script src="angular/services/ConditionsFactory.js"></script>
 <script src="angular/services/EmailFactory.js"></script>
 <script src="angular/services/ExceptionsFactory.js"></script>
