@@ -1,8 +1,8 @@
-(function(){
+(function () {
     'use strict';
     angular
-      .module('ARM')
-      .controller('MatrixController', function($scope){
+        .module('ARM')
+        .controller('MatrixController', function ($scope) {
 
-      });
+        });
 })();

@@ -1,16 +1,14 @@
-(function(){
+(function () {
     'use strict';
     angular
-      .module('ARM')
+        .module('ARM')
         .factory('EmailFactory', EmailFactory);
 
-        EmailFactory.$inject = [];
+    EmailFactory.$inject = [];
 
-        /* @ngInject */
-        function EmailFactory(){
-            return {
+    /* @ngInject */
+    function EmailFactory() {
+        return {};
 
-            };
-
-          } // end controller function
+    } // end controller function
 })();

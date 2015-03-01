@@ -1,12 +1,11 @@
-(function(){
+(function () {
     'use strict';
     angular
         .module('ARM')
         .controller('LegendController', LegendController);
 
-        LegendController.$inject = ['$scope'];
+    LegendController.$inject = ['$scope'];
 
-        function LegendController(
-            $scope
-        ){} // end function
+    function LegendController($scope) {
+    } // end function
 })();

@@ -1,12 +1,11 @@
-(function(){
+(function () {
     'use strict';
     angular
         .module('ARM')
         .controller('LoanProductsController', LoanProductsController);
 
-        LoanProductsController.$inject = ['$scope'];
+    LoanProductsController.$inject = ['$scope'];
 
-        function LoanProductsController(
-            $scope
-        ){} // end function
+    function LoanProductsController($scope) {
+    } // end function
 })();

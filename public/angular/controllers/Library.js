@@ -1,12 +1,11 @@
-(function(){
+(function () {
     'use strict';
     angular
         .module('ARM')
         .controller('LibraryController', LibraryController);
 
-        LibraryController.$inject = ['$scope'];
+    LibraryController.$inject = ['$scope'];
 
-        function LibraryController(
-          $scope
-        ){} // end function
+    function LibraryController($scope) {
+    } // end function
 })();

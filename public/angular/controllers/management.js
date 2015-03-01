@@ -1,6 +1,7 @@
-(function(){
+(function () {
     'use strict';
     angular
-      .module('ARM')
-      .controller('ManagementController', function($scope){});
+        .module('ARM')
+        .controller('ManagementController', function ($scope) {
+        });
 })();

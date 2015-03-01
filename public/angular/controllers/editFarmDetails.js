@@ -1,6 +1,7 @@
-(function(){
-  'use strict';
-  angular
-    .module('ARM')
-    .controller('EditFarmDetailsController', function($scope){});
+(function () {
+    'use strict';
+    angular
+        .module('ARM')
+        .controller('EditFarmDetailsController', function ($scope) {
+        });
 })();

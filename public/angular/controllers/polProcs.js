@@ -1,12 +1,11 @@
-(function(){
+(function () {
     'use strict';
     angular
         .module('ARM')
         .controller('PolsProcsController', PolsProcsController);
 
-        PolsProcsController.$inject = ['$scope'];
+    PolsProcsController.$inject = ['$scope'];
 
-        function PolsProcsController(
-            $scope
-        ){} // end function
+    function PolsProcsController($scope) {
+    } // end function
 })();

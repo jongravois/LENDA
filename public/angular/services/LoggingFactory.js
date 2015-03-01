@@ -1,12 +1,12 @@
-(function(){
+(function () {
     'use strict';
     angular
-      .module('ARM')
-      .factory('LoggingFactory', LoggingFactory);
+        .module('ARM')
+        .factory('LoggingFactory', LoggingFactory);
 
-      /* @ngInject */
-      function LoggingFactory(){
+    /* @ngInject */
+    function LoggingFactory() {
         return {};
 
-      } // end factory
+    } // end factory
 })();

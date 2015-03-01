@@ -1,17 +1,16 @@
-(function(){
+(function () {
 
     angular.module('ARM')
-      .directive('editInPlace', EditInPlaceDirective)
-      .directive('noCentsEditInPlace', NoCentsEditInPlaceDirective)
-      .directive('currencyQuadEditInPlace', CurrencyQuadEditInPlaceDirective)
-      .directive('digitEditInPlace', DigitEditInPlaceDirective)
-      .directive('nullEditInPlace', NullEditInPlaceDirective)
-      .directive('nullIntEditInPlace', NullIntEditInPlaceDirective)
-      .directive('percentEditInPlace', PercentEditInPlaceDirective)
-      .directive('phoneEditInPlace', PhoneEditInPlaceDirective)
-      .directive('socialEditInPlace', SocialEditInPlaceDirective)
-      .directive('textEditInPlace', TextEditInPlaceDirective)
-
+        .directive('editInPlace', EditInPlaceDirective)
+        .directive('noCentsEditInPlace', NoCentsEditInPlaceDirective)
+        .directive('currencyQuadEditInPlace', CurrencyQuadEditInPlaceDirective)
+        .directive('digitEditInPlace', DigitEditInPlaceDirective)
+        .directive('nullEditInPlace', NullEditInPlaceDirective)
+        .directive('nullIntEditInPlace', NullIntEditInPlaceDirective)
+        .directive('percentEditInPlace', PercentEditInPlaceDirective)
+        .directive('phoneEditInPlace', PhoneEditInPlaceDirective)
+        .directive('socialEditInPlace', SocialEditInPlaceDirective)
+        .directive('textEditInPlace', TextEditInPlaceDirective);
 
     function EditInPlaceDirective() {
         return {
@@ -36,12 +35,12 @@
 
                     // element not visible until digest complete
                     // timeout causes this to run after digest
-                    setTimeout(function() {
+                    setTimeout(function () {
                         inputElement[0].focus();
                     });
                 };
 
-                scope.onBlur = function() {
+                scope.onBlur = function () {
                     scope.editing = false;
                 };
             }
@@ -71,12 +70,12 @@
 
                     // element not visible until digest complete
                     // timeout causes this to run after digest
-                    setTimeout(function() {
+                    setTimeout(function () {
                         inputElement[0].focus();
                     });
                 };
 
-                scope.onBlur = function() {
+                scope.onBlur = function () {
                     scope.editing = false;
                 };
             }
@@ -106,12 +105,12 @@
 
                     // element not visible until digest complete
                     // timeout causes this to run after digest
-                    setTimeout(function() {
+                    setTimeout(function () {
                         inputElement[0].focus();
                     });
                 };
 
-                scope.onBlur = function() {
+                scope.onBlur = function () {
                     scope.editing = false;
                 };
             }
@@ -140,12 +139,12 @@
 
                     // element not visible until digest complete
                     // timeout causes this to run after digest
-                    setTimeout(function() {
+                    setTimeout(function () {
                         inputElement[0].focus();
                     });
                 };
 
-                scope.onBlur = function() {
+                scope.onBlur = function () {
                     scope.editing = false;
                 };
             }
@@ -174,12 +173,12 @@
 
                     // element not visible until digest complete
                     // timeout causes this to run after digest
-                    setTimeout(function() {
+                    setTimeout(function () {
                         inputElement[0].focus();
                     });
                 };
 
-                scope.onBlur = function() {
+                scope.onBlur = function () {
                     scope.editing = false;
                 };
             }
@@ -208,12 +207,12 @@
 
                     // element not visible until digest complete
                     // timeout causes this to run after digest
-                    setTimeout(function() {
+                    setTimeout(function () {
                         inputElement[0].focus();
                     });
                 };
 
-                scope.onBlur = function() {
+                scope.onBlur = function () {
                     scope.editing = false;
                 };
             }
@@ -242,12 +241,12 @@
 
                     // element not visible until digest complete
                     // timeout causes this to run after digest
-                    setTimeout(function() {
+                    setTimeout(function () {
                         inputElement[0].focus();
                     });
                 };
 
-                scope.onBlur = function() {
+                scope.onBlur = function () {
                     scope.editing = false;
                 };
             }
@@ -276,12 +275,12 @@
 
                     // element not visible until digest complete
                     // timeout causes this to run after digest
-                    setTimeout(function() {
+                    setTimeout(function () {
                         inputElement[0].focus();
                     });
                 };
 
-                scope.onBlur = function() {
+                scope.onBlur = function () {
                     scope.editing = false;
                 };
             }
@@ -310,12 +309,12 @@
 
                     // element not visible until digest complete
                     // timeout causes this to run after digest
-                    setTimeout(function() {
+                    setTimeout(function () {
                         inputElement[0].focus();
                     });
                 };
 
-                scope.onBlur = function() {
+                scope.onBlur = function () {
                     scope.editing = false;
                 };
             }
@@ -326,35 +325,35 @@
         return {
             restrict: 'E',
             scope: {
-              value: '='
+                value: '='
             },
             template: '<span ng-click="edit()" ng-show="!editing">{{ value}}</span><input ng-model="value" ng-blur="onBlur()" ng-show="editing"/>',
             link: function (scope, element, attrs) {
-              var inputElement = element.find('input');
+                var inputElement = element.find('input');
 
-              //if(scope.ngChange){}
+                //if(scope.ngChange){}
 
-              //reference the input element
-              element.addClass('edit-in-place');
+                //reference the input element
+                element.addClass('edit-in-place');
 
-              // Initially, we're not editing.
-              scope.editing = false;
-
-              // ng-click handler to activate edit-in-place
-              scope.edit = function () {
-                scope.editing = true;
-
-                // element not visible until digest complete
-                // timeout causes this to run after digest
-                setTimeout(function() {
-                  inputElement[0].focus();
-                });
-              };
-
-              scope.onBlur = function() {
+                // Initially, we're not editing.
                 scope.editing = false;
-              };
-          }
+
+                // ng-click handler to activate edit-in-place
+                scope.edit = function () {
+                    scope.editing = true;
+
+                    // element not visible until digest complete
+                    // timeout causes this to run after digest
+                    setTimeout(function () {
+                        inputElement[0].focus();
+                    });
+                };
+
+                scope.onBlur = function () {
+                    scope.editing = false;
+                };
+            }
         };
     }
 

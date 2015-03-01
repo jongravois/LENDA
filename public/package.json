@@ -1,0 +1,28 @@
+{
+  "name": "LENDA",
+  "version": "0.1.0",
+  "description": "Operations Application for Ag Resource Management",
+  "authors": [
+    "Jonathan Gravois",
+    "Brad Terral",
+    "Kenn Thompson"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.arm-lenda.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RHT-Memphis/LENDA"
+  },
+  "scripts": {
+    "init": "npm install",
+    "install": "bower install",
+    "start": "node src/server/app.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-jscs": "^1.4.0",
+    "gulp-jshint": "^1.9.2",
+    "jshint-stylish": "^1.0.1"
+  }
+}

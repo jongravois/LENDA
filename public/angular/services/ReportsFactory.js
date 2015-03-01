@@ -1,16 +1,14 @@
-(function(){
+(function () {
     'use strict';
     angular
-      .module('ARM')
-      .factory('ReportsFactory', ReportsFactory);
+        .module('ARM')
+        .factory('ReportsFactory', ReportsFactory);
 
-        ReportsFactory.$inject = ['$http', 'API_URL'];
+    ReportsFactory.$inject = ['$http', 'API_URL'];
 
-        /* @ngInject */
-        function ReportsFactory(
-            $http, API_URL
-        ){
-            return {};
+    /* @ngInject */
+    function ReportsFactory($http, API_URL) {
+        return {};
 
-          } // end factory
+    } // end factory
 })();
