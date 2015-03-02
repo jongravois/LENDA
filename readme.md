@@ -9,6 +9,7 @@ This is an AngularJS/Laravel 4.2 application
 * Run ```touch bootstrap/environment.php```
 * Run ```touch .env.local.php```
 * Navigate to public folder
+* Run ```npm install```  
 * Run ```bower install```
 * Open site in favorite text editor (```pstorm .```)
 * Edit /bootstrap/environment.php

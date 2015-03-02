@@ -2,19 +2,26 @@
 <html lang="en" ng-app="ARM">
 <head>
     <meta charset="utf-8">
-    <title>LENDA</title>
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="AR Management Operations">
     <meta name="author" content="Jonathan Gravois">
+    <title>LENDA</title>
+    <base href="/">
+    <style>
+        .ng-hide{ display: none !important; }
+    </style>
 
-    <!-- Mobile Specific Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <!-- Stylesheets -->
+    <!-- bower:css -->
     <link rel="stylesheet" href="/vendor/bootstrap-3.3.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.min.css"/>
     <link rel="stylesheet" href="vendor/ng-grid/ng-grid.min.css"/>
     <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.min.css"/>
-    <link rel="stylesheet" href="css/appng.css"/>
+    <!-- endbower -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href=".tmp/styles.css"/>
+    <!-- endinject -->
 
     <link rel="apple-touch-icon" sizes="57x57" href="/ico/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
@@ -47,16 +54,14 @@
     <div ui-view style="margin-top:120px; z-index: 10;"></div>
 </div><!-- /.container -->
 
-<!--JAVASCRIPT-->
+<!-- bower:js -->
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script src="vendor/lodash/dist/lodash.min.js"></script>
 <script src="vendor/bootstrap-3.3.2/js/bootstrap.min.js"></script>
 <script src="vendor/moment/min/moment.min.js"></script>
 
-<!-- ANGULAR CORE -->
 <script src="vendor/angular/angular.min.js"></script>
 <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="vendor/angular-moment/angular-moment.min.js"></script>
 <script src="vendor/angular-toastr/dist/angular-toastr.min.js"></script>
 <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="vendor/angular-ui-utils/ui-utils.min.js"></script>
@@ -66,22 +71,22 @@
 <script src="vendor/angular-resource/angular-resource.min.js"></script>
 <script src="vendor/angular-loading-bar/build/loading-bar.min.js"></script>
 <script src="vendor/ng-grid/build/ng-grid.debug.js"></script>
-<!-- ANGULAR CORE -->
+<!-- endbower -->
 
-<!-- APP SPECIFIC -->
-<script src="angular/arm.js"></script>
-<script src="angular/constants.js"></script>
-<script src="angular/routes.js"></script>
-<script src="angular/admin_routes.js"></script>
-<script src="angular/edit_application_routes.js"></script>
-<script src="angular/new_application_routes.js"></script>
-<script src="angular/library_routes.js"></script>
-<script src="angular/reports_routes.js"></script>
+<!-- inject.js -->
+<script src="angular/app.module.js"></script>
+<script src="angular/constants/constants.js"></script>
+<script src="angular/routes/routes.js"></script>
+<script src="angular/routes/admin_routes.js"></script>
+<script src="angular/routes/edit_application_routes.js"></script>
+<script src="angular/routes/new_application_routes.js"></script>
+<script src="angular/routes/library_routes.js"></script>
+<script src="angular/routes/reports_routes.js"></script>
 <script src="angular/filters/filters.js"></script>
 <script src="angular/models/base.js"></script>
 <script src="angular/directives/directives.js"></script>
 <script src="angular/directives/inPlaceDirectives.js"></script>
-<!-- CONTROLLERS -->
+
 <script src="angular/controllers/main.js"></script>
 <script src="angular/controllers/sessions.js"></script>
 <script src="angular/controllers/prefs.js"></script>
@@ -128,8 +133,7 @@
 <script src="angular/controllers/underwriting.js"></script>
 <script src="angular/controllers/uploads.js"></script>
 <script src="angular/controllers/yield.js"></script>
-<!-- CONTROLLERS -->
-<!-- FACTORIES -->
+
 <script src="angular/services/ApplicantsFactory.js"></script>
 <script src="angular/services/AppFactory.js"></script>
 <script src="angular/comments/data.js"></script>
@@ -149,14 +153,10 @@
 <script src="angular/services/LoansFactory.js"></script>
 <script src="angular/services/LoggingFactory.js"></script>
 <script src="angular/services/MessagingFactory.js"></script>
-<script src="angular/services/ProcessLoanFactory.js"></script>
 <script src="angular/services/ProcessLoansFactory.js"></script>
 <script src="angular/services/QuestsFactory.js"></script>
 <script src="angular/services/UsersFactory.js"></script>
-<!-- FACTORIES -->
-<!--SERVICES-->
-<!--SERVICES-->
-<!-- APP SPECIFIC -->
+<!-- endinject -->
 
 <script type="text/javascript"> 
     var user_id = {{Auth::user()->id}}; 
