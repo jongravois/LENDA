@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('ARM')
-        .controller('CommentModalController', CommentModalController);
+        .controller('ModalController', ModalController);
 
-    CommentModalController.$inject = ['$modalInstance', 'data'];
+    ModalController.$inject = ['$modalInstance', 'data'];
 
     /* @ngInject */
-    function CommentModalController($modalInstance, data) {
+    function ModalController($modalInstance, data) {
         /* jshint validthis: true */
         var vm = this;
 
