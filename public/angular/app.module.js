@@ -3,7 +3,6 @@
     angular.module('ARM', [
         // Angular modules
         'ngSanitize',
-        'ngAnimate',
         'ngResource',
         'ngMessages',
 
@@ -13,7 +12,8 @@
         'ui.utils',
         'angular-loading-bar',
         'toastr',
-        'ngGrid'
+        'ngGrid',
+        'angularModalService'
     ])
         .run(function ($rootScope) {
             $rootScope.$on('$routeChangeSuccess', function () {

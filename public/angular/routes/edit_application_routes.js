@@ -17,14 +17,14 @@
                 })
                 .state('edit.applicant', {
                     url: '/applicant',
-                    templateUrl: 'angular/views/loans/editapplicant.html',
+                    templateUrl: 'angular/applicants/editapplicant.html',
                     controller: 'ApplicantsController',
                     data: {newapplication: false}
                 })
                 .state('edit.audit', {
                     url: '/audit',
-                    templateUrl: 'angular/views/loans/audit.html',
-                    controller: 'AuditsController',
+                    templateUrl: 'angular/systemics/systemics.html',
+                    controller: 'SystemicsController',
                     data: {newapplication: false}
                 })
                 .state('edit.budgets', {
