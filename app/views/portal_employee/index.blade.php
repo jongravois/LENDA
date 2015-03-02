@@ -52,7 +52,7 @@
         </div>
     </div>
     <div ui-view style="margin-top:120px; z-index: 10;"></div>
-</div><!-- /.container -->
+</div>
 
 <!-- bower:js -->
 <script src="vendor/jquery/dist/jquery.min.js"></script>
@@ -67,14 +67,16 @@
 <script src="vendor/angular-ui-utils/ui-utils.min.js"></script>
 <script src="vendor/angular-messages/angular-messages.min.js"></script>
 <script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="vendor/angular-animate/angular-animate.min.js"></script>
+<!--<script src="vendor/angular-animate/angular-animate.min.js"></script>-->
 <script src="vendor/angular-resource/angular-resource.min.js"></script>
 <script src="vendor/angular-loading-bar/build/loading-bar.min.js"></script>
 <script src="vendor/ng-grid/build/ng-grid.debug.js"></script>
+<script src="vendor/angular-modal-service/dst/angular-modal-service.min.js"></script>
 <!-- endbower -->
 
 <!-- inject.js -->
 <script src="angular/app.module.js"></script>
+<script src="angular/main.ctrl.js"></script>
 <script src="angular/constants/constants.js"></script>
 <script src="angular/routes/routes.js"></script>
 <script src="angular/routes/admin_routes.js"></script>
@@ -87,75 +89,72 @@
 <script src="angular/directives/directives.js"></script>
 <script src="angular/directives/inPlaceDirectives.js"></script>
 
-<script src="angular/controllers/main.js"></script>
-<script src="angular/controllers/sessions.js"></script>
-<script src="angular/controllers/prefs.js"></script>
-<script src="angular/controllers/home.js"></script>
-<script src="angular/controllers/management.js"></script>
-<script src="angular/controllers/newloan.js"></script>
-<script src="angular/controllers/editLoan.js"></script>
-
-<script src="angular/controllers/admin.js"></script>
-<script src="angular/controllers/audits.js"></script>
-<script src="angular/controllers/applicant.js"></script>
-<script src="angular/controllers/budgets.js"></script>
-<script src="angular/controllers/calendar.js"></script>
-<script src="angular/controllers/closing.js"></script>
-<script src="angular/comments/controller.js"></script>
-<script src="angular/controllers/committee.js"></script>
-<script src="angular/controllers/crops.js"></script>
-<script src="angular/controllers/disbursement.js"></script>
-<script src="angular/controllers/distributor.js"></script>
-<script src="angular/controllers/farmer.js"></script>
-<script src="angular/controllers/farms.js"></script>
-<script src="angular/controllers/financials.js"></script>
-<script src="angular/controllers/insurance.js"></script>
-<script src="angular/controllers/legalDocs.js"></script>
-<script src="angular/controllers/legend.js"></script>
-<script src="angular/controllers/Library.js"></script>
-<script src="angular/controllers/loanexceptions.js"></script>
-<script src="angular/controllers/loanProducts.js"></script>
-<script src="angular/controllers/matrix.js"></script>
-<script src="angular/controllers/optimizer.js"></script>
-<script src="angular/controllers/pdfApps.js"></script>
-<script src="angular/controllers/plannedcrops.js"></script>
-<script src="angular/controllers/polProcs.js"></script>
-<script src="angular/controllers/prefs.js"></script>
-<script src="angular/controllers/prerequisites.js"></script>
-<script src="angular/controllers/purgatory.js"></script>
-<script src="angular/controllers/quests.js"></script>
-<script src="angular/controllers/references.js"></script>
-<script src="angular/controllers/reports.js"></script>
-<script src="angular/controllers/resources.js"></script>
-<script src="angular/controllers/storage.js"></script>
-<script src="angular/controllers/summary.js"></script>
-<script src="angular/controllers/terms.js"></script>
-<script src="angular/controllers/underwriting.js"></script>
-<script src="angular/controllers/uploads.js"></script>
-<script src="angular/controllers/yield.js"></script>
-
-<script src="angular/services/ApplicantsFactory.js"></script>
-<script src="angular/services/AppFactory.js"></script>
-<script src="angular/comments/data.js"></script>
-<script src="angular/comments/logic.js"></script>
-<script src="angular/services/ConditionsFactory.js"></script>
-<script src="angular/services/EmailFactory.js"></script>
-<script src="angular/services/ExceptionsFactory.js"></script>
-<script src="angular/services/ExpensesFactory.js"></script>
-<script src="angular/services/FarmersFactory.js"></script>
-<script src="angular/services/FeederFactory.js"></script>
-<script src="angular/services/FinancialsFactory.js"></script>
-<script src="angular/services/GlobalsFactory.js"></script>
-<script src="angular/services/Grader.js"></script>
-<script src="angular/services/InsuranceFactory.js"></script>
-<script src="angular/services/LendaFactory.js"></script>
-<script src="angular/services/LibraryFactory.js"></script>
-<script src="angular/services/LoansFactory.js"></script>
-<script src="angular/services/LoggingFactory.js"></script>
-<script src="angular/services/MessagingFactory.js"></script>
-<script src="angular/services/ProcessLoansFactory.js"></script>
-<script src="angular/services/QuestsFactory.js"></script>
-<script src="angular/services/UsersFactory.js"></script>
+<script src="angular/admin/admin.ctrl.js"></script>
+<script src="angular/applicants/applicants.ctrl.js"></script>
+<script src="angular/applicants/applicants.factory.js"></script>
+<script src="angular/budgets/budgets.ctrl.js"></script>
+<script src="angular/budgets/ExpensesFactory.js"></script>
+<script src="angular/closing/closing.ctrl.js"></script>
+<script src="angular/comments/comments.ctrl.js"></script>
+<script src="angular/comments/comments.data.js"></script>
+<script src="angular/comments/comments.logic.js"></script>
+<script src="angular/committee/committee.ctrl.js"></script>
+<script src="angular/crops/crops.ctrl.js"></script>
+<script src="angular/crops/planned.crops.ctrl.js"></script>
+<script src="angular/disbursements/disbursements.ctrl.js"></script>
+<script src="angular/distributors/distributors.ctrl.js"></script>
+<script src="angular/documents/prerequisites.ctrl.js"></script>
+<script src="angular/documents/uploads.ctrl.js"></script>
+<script src="angular/farmers/farmers.ctrl.js"></script>
+<script src="angular/farmers/farmers.factory.js"></script>
+<script src="angular/farms/farms.ctrl.js"></script>
+<script src="angular/financials/financials.ctrl.js"></script>
+<script src="angular/financials/financials.factory.js"></script>
+<script src="angular/home/home.ctrl.js"></script>
+<script src="angular/insurance/insurance.ctrl.js"></script>
+<script src="angular/insurance/insurance.factory.js"></script>
+<script src="angular/library/calendar.js"></script>
+<script src="angular/library/legalDocs.js"></script>
+<script src="angular/library/legend.js"></script>
+<script src="angular/library/library.ctrl.js"></script>
+<script src="angular/library/library.factory.js"></script>
+<script src="angular/library/loanProducts.js"></script>
+<script src="angular/library/matrix.js"></script>
+<script src="angular/library/pdfApps.js"></script>
+<script src="angular/library/polProcs.js"></script>
+<script src="angular/library/resources.js"></script>
+<script src="angular/loans/edit.loans.ctrl.js"></script>
+<script src="angular/loans/globals.factory.js"></script>
+<script src="angular/loans/grader.factory.js"></script>
+<script src="angular/loans/loan.conditions.factory.js"></script>
+<script src="angular/loans/loan.exceptions.ctrl.js"></script>
+<script src="angular/loans/loan.exceptions.factory.js"></script>
+<script src="angular/loans/loans.factory.js"></script>
+<script src="angular/loans/loans.processor.factory.js"></script>
+<script src="angular/loans/loan.summary.ctrl.js"></script>
+<script src="angular/loans/new.loans.ctrl.js"></script>
+<script src="angular/loans/purgatory.ctrl.js"></script>
+<script src="angular/management/management.ctrl.js"></script>
+<script src="angular/optimizer/optimizer.ctrl.js"></script>
+<script src="angular/quests/quests.ctrl.js"></script>
+<script src="angular/quests/quests.factory.js"></script>
+<script src="angular/references/references.ctrl.js"></script>
+<script src="angular/reports/reports.ctrl.js"></script>
+<script src="angular/reports/reports.factory.js"></script>
+<script src="angular/shared/app.factory.js"></script>
+<script src="angular/shared/email.factory.js"></script>
+<script src="angular/shared/feeder.factory.js"></script>
+<script src="angular/shared/lenda.factory.js"></script>
+<script src="angular/shared/logging.factory.js"></script>
+<script src="angular/shared/messages.factory.js"></script>
+<script src="angular/storage/storage.ctrl.js"></script>
+<script src="angular/systemics/systemics.ctrl.js"></script>
+<script src="angular/terms/terms.ctrl.js"></script>
+<script src="angular/underwriting/underwriting.ctrl.js"></script>
+<script src="angular/users/sessions.ctrl.js"></script>
+<script src="angular/users/settings.ctrl.js"></script>
+<script src="angular/users/users.factory.js"></script>
+<script src="angular/yield/yield.ctrl.js"></script>
 <!-- endinject -->
 
 <script type="text/javascript"> 
