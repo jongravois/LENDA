@@ -47,7 +47,7 @@
                 })
                 .state('edit.committee', {
                     url: '/committee',
-                    templateUrl: 'angular/views/loans/committee.html',
+                    templateUrl: 'angular/committee/committee.html',
                     controller: 'CommitteeController',
                     data: {newapplication: false}
                 })

@@ -2,12 +2,11 @@
     'use strict';
     angular
         .module('ARM')
-        .controller('ApplicantController', ApplicantController);
+        .controller('ApplicantsController', ApplicantsController);
 
-    ApplicantController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'ApplicantsFactory'];
+    ApplicantsController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'ApplicantsFactory'];
 
-    function ApplicantController($scope, $state, $stateParams, InitialData,
-                                 AppFactory, ApplicantsFactory) {
+    function ApplicantsController($scope, $state, $stateParams, InitialData, AppFactory, ApplicantsFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;

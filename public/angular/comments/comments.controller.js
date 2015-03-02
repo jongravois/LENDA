@@ -28,6 +28,8 @@
             ModalsService.confirm(msg, 'First Modal', ['OK', 'Cancel'], 'lg')
                 .then(function(){
                     console.log('Modal OK!');
+                }, function(){
+                    console.log('Modal Cancel');
                 });
             //persist new response
             //create pending status for all committee members

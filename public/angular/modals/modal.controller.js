@@ -10,6 +10,7 @@
     function ModalController($modalInstance, data) {
         /* jshint validthis: true */
         var vm = this;
+        console.log('Data: ', data);
 
         vm.cancel = cancel;
         vm.ok = ok;

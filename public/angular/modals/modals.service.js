@@ -17,14 +17,14 @@
         //////////
         function confirm(message, title, buttons, size){
             var modalInstance = $modal.open({
-                templateUrl: 'angular/shared/modal.html',
+                templateUrl: 'angular/modals/modal.html',
                 controller: 'ModalController',
                 controllerAs: 'vm',
                 resolve: {
                     data: {
-                        message: message,
-                        title: title,
-                        buttons: buttons
+                        message: message || 'Message',
+                        title: title || 'TITLE',
+                        buttons: buttons || ['OK', 'Cancel']
                     }
                 },
                 size: size
