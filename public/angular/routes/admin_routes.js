@@ -60,7 +60,7 @@
                 })
                 .state('admin.entitytypes.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin.views/entitytypes.html',
+                    templateUrl: 'angular/admin/views/entitytypes.html',
                     controller: 'AdminEntitytypesController'
                 })
                 .state('admin.entitytypes.new', {
@@ -81,7 +81,7 @@
                 })
                 .state('admin.instypes.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin.views/instypes.html',
+                    templateUrl: 'angular/admin/views/instypes.html',
                     controller: 'AdminInstypesController'
                 })
                 .state('admin.instypes.new', {

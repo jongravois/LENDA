@@ -8,12 +8,12 @@
                 {
                     field: 'pending',
                     displayName: ' ',
-                    cellTemplate: 'angular/views/grid_tmpl/pending_icons.html',
+                    cellTemplate: 'angular/layout/grid_tmpl/pending_icons.html',
                     width: 58
                 }, {
                     field: 'notification',
                     displayName: ' ',
-                    cellTemplate: 'angular/views/grid_tmpl/indicators.html',
+                    cellTemplate: 'angular/layout/grid_tmpl/indicators.html',
                     cellClass: 'text-center',
                     width: 120
                 }, {
@@ -26,7 +26,7 @@
                     displayName: 'Applicant',
                     headerClass: 'text-center',
                     width: 140,
-                    cellTemplate: 'angular/views/grid_tmpl/applicant.html'
+                    cellTemplate: 'angular/layout/grid_tmpl/applicant.html'
                 }, {
                     field: 'loan_type',
                     displayName: 'Type',
@@ -76,7 +76,7 @@
                     displayName: 'Status',
                     cellClass: 'text-center',
                     headerClass: 'text-center',
-                    cellTemplate: 'angular/views/grid_tmpl/status.html'
+                    cellTemplate: 'angular/layout/grid_tmpl/status.html'
                 }, {
                     field: 'fins.commit_total',
                     displayName: 'Commit',

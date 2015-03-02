@@ -6,7 +6,7 @@
 <!--<pre>{{farmExpenses | json}}</pre>-->
 <fieldset>
 <legend>Loan Summary</legend>
-<div ng-include="'angular/views/loans/partials/summary_loaninfo.html'"></div>
+<div ng-include="'angular/loans/partials/summary_loaninfo.html'"></div>
 
 <!--LOAN SUMMARY-->
 <div ng-repeat="c in comments | filter:{type:'Loan'}">
@@ -38,7 +38,7 @@
 
 <span ng-switch="loan.loan_type_id">
   <span ng-switch-when="7">
-    <div ng-include="'angular/views/loans/partials/storage_contract.html'"></div>
+    <div ng-include="'angular/loans/partials/storage_contract.html'"></div>
   </span>
 
   <span ng-switch-default>
@@ -49,7 +49,7 @@
       </div>
       <div class="row">
         <div class="col-md-11" style="margin-left:20px;">
-          <div ng-include="'angular/views/loans/partials/income_summary_table.html'"></div>
+          <div ng-include="'angular/loans/partials/income_summary_table.html'"></div>
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
       </div>
       <div class="row">
         <div class="col-md-11" style="margin-left:20px;">
-          <div ng-include="'angular/views/loans/partials/budget_summary_table.html'"></div>
+          <div ng-include="'angular/loans/partials/budget_summary_table.html'"></div>
         </div>
       </div>
     </div>

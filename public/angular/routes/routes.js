@@ -6,7 +6,7 @@
             $stateProvider
                 .state('home', {
                     url: '/',
-                    templateUrl: 'angular/grid-loans/home.html',
+                    templateUrl: 'angular/home/home.html',
                     controller: 'HomeController',
                     resolve: {
                         armed: function ($q, $timeout) {
@@ -20,7 +20,7 @@
                 })
                 .state('management', {
                     url: '/management',
-                    templateUrl: 'angular/grid-management/management.html',
+                    templateUrl: 'angular/management/management.html',
                     controller: 'ManagementController'
                 })
                 .state('prefs', {
