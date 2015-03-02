@@ -1,7 +1,7 @@
 {
     "bitwise": true,
     "curly": true,
-    "eqeqeq": true,
+    "eqeqeq": false,
     "es3": false,
     "forin": true,
     "freeze": true,
@@ -55,7 +55,6 @@
     "globals": {
         "angular": false,
         "moment": false,
-        "$": false,
         "_": false
     }
 }

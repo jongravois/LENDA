@@ -43,7 +43,7 @@
                     .then(function (allLoans) {
                         $scope.loans = allLoans;
                         $scope.loanList = _.filter(allLoans, function (i) {
-                            return i.status_id === '1' && i.crop_year === $scope.globals.crop_year;
+                            return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
                         });
                     });
                 //toastr.success('Loaded all loans', 'Success!');
