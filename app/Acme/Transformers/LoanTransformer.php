@@ -8,6 +8,7 @@ public function transform($arr)
 {
   $dtToday = Carbon::now();
 	$appDate = $arr['app_date'];
+	$defaultDueDate = $arr['default_due_date'];
 	$dueDate = $arr['due_date'];
 	$diff = $dueDate->diffInDays($appDate);
   $staleDiff = $appDate->diffInDays($dtToday);
@@ -19,10 +20,16 @@ public function transform($arr)
     $fullSeason = 'Fall';
   } // end if
 
-  if(!$arr['distributor_approval_date']){
-    $dist_app_date = null;
+  if(!$arr['default_due_date']){
+    $defaultDueDate = null;
   } else {
-    $dist_app_date = $decision = $arr['distributor_approval_date']->format('m/d/Y');
+    $defaultDueDate = $arr['default_due_date']->format('m/d/Y');
+  }
+
+  if(!$arr['distributor_approval_date']){
+    $decision = null;
+  } else {
+    $decision = $arr['distributor_approval_date']->format('m/d/Y');
   }
 
   //is_stale
@@ -45,6 +52,7 @@ public function transform($arr)
 		'app_date'	=> 	$arr['app_date']->format('m/d/Y'),
 		'decision_date'	=> 	$decision,
 		'due_date'	=>	$arr['due_date']->format('m/d/Y'),
+		'default_due_date' => $defaultDueDate,
     'is_stale' => $isStale,
 		'loan_days' =>	$diff,
 		'loan_type_id' => $arr['loan_type_id'],
@@ -70,6 +78,7 @@ public function transform($arr)
 		'is_cross_collateralized' => (boolean) $arr['is_cross_collateralized'],
 		'is_fast_tracked' => (boolean) $arr['is_fast_tracked'],
     'analyst_can_approve' => (boolean) $arr['analyst_can_approve'],
+        'has_attachments' => (boolean) $arr['has_attachments'],
     'has_distributor' => (boolean) $arr['has_distributor'],
 		'distributor_id' => $arr['distributor_id'],
 		'distributor' => $arr['distributor']['distributor'],

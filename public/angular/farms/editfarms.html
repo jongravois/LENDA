@@ -1,0 +1,90 @@
+<style>
+  .form-control{ padding: 6px 6px !important; }
+</style>
+<fieldset>
+  <legend>Farms Information</legend>
+
+  <table class="table table-striped rowed">
+    <tr>
+      <th colspan="7">&nbsp;</th>
+      <th colspan="5" class="text-center;">Acres</th>
+      <th>&nbsp;</th>
+    </tr>
+    <tr>
+      <th style="width:15%;">State|County</th>
+      <th style="width:6%;">FSN</th>
+      <th style="width:8%;">Landlord</th>
+      <th style="width:8%;">Share</th>
+      <th style="width:8%;">Cash Rent</th>
+      <th style="width:8%;">When Due</th>
+      <th style="width:8%;">Waived</th>
+      <th style="width:5%;">IR</th>
+      <th style="width:5%;">NI</th>
+      <th style="width:5%;">FACI</th>
+      <th style="width:5%;">FACNI</th>
+      <th style="width:6%;">Total</th>
+      <th class="text-center" style="width:8%;">FSA</th>
+
+    </tr>
+    <tr ng-show="farms.length == 0">
+      <td colspan="12">
+        <b>No Farms Found!</b>
+      </td>
+    </tr>
+    <tr ng-repeat="f in farms">
+      <td>
+        <text-edit-in-place value="f.locale"></text-edit-in-place>
+      </td>
+      <td>
+        <text-edit-in-place value="f.fsn"></text-edit-in-place>
+      </td>
+      <td>
+        <text-edit-in-place value="f.owner"></text-edit-in-place>
+      </td>
+      <td class="text-right">
+        <percent-edit-in-place value="f.share_rent"></percent-edit-in-place>
+      </td>
+      <td class="text-right">
+        <edit-in-place value="f.cash_rent"></edit-in-place>
+      </td>
+      <td>
+        <text-edit-in-place value="f.when_due"></text-edit-in-place>
+      </td>
+      <td class="text-right">
+        <edit-in-place value="f.waived"></edit-in-place>
+      </td>
+      <td style="text-align: right;">
+        <digit-edit-in-place value="f.irr"></digit-edit-in-place>
+      </td>
+      <td style="text-align: right;">
+        <digit-edit-in-place value="f.ni"></digit-edit-in-place>
+      </td>
+      <td style="text-align: right;">
+        <digit-edit-in-place value="f.facirr"></digit-edit-in-place>
+      </td>
+      <td style="text-align: right;">
+        <digit-edit-in-place value="f.facni"></digit-edit-in-place>
+      </td>
+      <td class="text-right">
+        {{(1 * f.irr) + (1 * f.ni) + (1 * f.facirr) + (1 * f.facni)|number:1}}
+      </td>
+      <td class="text-right">
+        <edit-in-place value="f.fsa_paid"></edit-in-place>
+      </td>
+    </tr>
+    <tr style="max-height:2px; background-color: #333;">
+      <td colspan="13"></td>
+    </tr>
+    <tr>
+      <td colspan="13">
+        <a ng-click="createFarm()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Farm</a>
+      </td>
+    </tr>
+  </table>
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button style="margin-right:10px;" class="btn btn-primary">UPDATE</button>
+    </div>
+  </div>
+</fieldset>
+<!--<pre>{{loanCounties | json}}</pre>-->

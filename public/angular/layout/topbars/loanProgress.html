@@ -1,0 +1,99 @@
+<table class="table">
+  <tr>
+    <td>
+      <!--TODO: need_vote is loan AND user specific-->
+      <span ng-if="loan.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#000099;font-size:18px;"></span>
+      <span ng-if="!loan.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#DDDDDD;font-size:18px;"></span>
+      <span ng-if="loan.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#e0a02d;font-size:18px;"></span>
+      <span ng-if="!loan.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#DDDDDD;font-size:18px;"></span>
+      <span ng-if="loan.is_stale" tooltip="Stale Application" class="glyphicon glyphicon-exclamation-sign" style="color:#990000;font-size:18px;"></span>
+      <span ng-if="!loan.is_stale" tooltip="Stale Application" class="glyphicon glyphicon-exclamation-sign" style="color:#DDDDDD;font-size:18px;"></span>
+    </td>
+    <td>
+      <span class="glyphicon glyphicon-plus" tooltip="Addendum" style="font-size:18px;" ng-class="{ clrOn : loan.has_addendum, clrOff: !loan.has_addendum}"></span>
+      <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy History" style="font-size:18px;" ng-class="{ clrOn : quests.bankruptcy, clrOff: !quests.bankruptcy }"></span>
+      <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit Required" style="font-size:18px;" ng-class="{ clrOn : loan.required_3party, clrOff: !loan.required_3party }"></span>
+      <span class="glyphicon glyphicon-flag" tooltip="Added Land in Database" style="font-size:18px;" ng-class="{ clrOn : loan.added_land, clrOff: !loan.added_land }"></span>
+      <!--TODO: use eye-open icon for watchlist-->
+      <span class="glyphicon glyphicon-tower" tooltip="Controlled Disbursement" style="font-size:18px;" ng-class="{ clrOn : loan.controlled_disbursement, clrOff: !loan.controlled_disbursement }"></span>
+      <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" style="font-size:18px;" ng-class="{ clrOn : loan.has_attachments, clrOff: !loan.has_attachments }"></span>
+    </td>
+
+    <td>
+      <span loan-progress-icon cat="0" ng-model="loan.its_list"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="1" ng-model="loan.fsa_compliant"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="2" ng-model="loan.prev_lien_verified"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="3" ng-model="loan.leases_valid"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="4" ng-model="loan.bankruptcy_order_received"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="5" ng-model="loan.received_3party"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="6" ng-model="loan.recommended"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="7" ng-model="loan.arm_approved"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="8" ng-model="loan.dist_approved"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="9" ng-model="loan.loan_closed"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="10" ng-model="loan.added_land_verified"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="11" ng-model="loan.arm_ucc_received"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="12" ng-model="loan.dist_ucc_received"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="13" ng-model="loan.aoi_received"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="14" ng-model="loan.ccc_received"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="15" ng-model="loan.rebate_assignment"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="16" ng-model="loan.crop_inspection"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="17" ng-model="loan.limit_warning"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="18" ng-model="loan.reconcilliation"></span>
+    </td>
+    <td>
+      <span loan-progress-icon cat="19" ng-model="loan.account_classification"></span>
+    </td>
+    <td>
+      <span ng-if="loan.loan_type_id != 7">
+        CF: {{loan.fins.cash_flow | noCentsCurrency}}
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+      </span>
+      <span ng-if="loan.loan_type_id != 3 && loan.loan_type_id != 4">
+        RM: {{loan.fins.risk | noCentsCurrency}}
+      </span>
+      <span ng-if="loan.loan_type_id == 3 || loan.loan_type_id == 4">
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <sub>adj</sub>RM: {{loan.fins.risk_adj | noCentsCurrency}}
+      </span>
+    </td>
+    <td>
+      <span loan-status-icon status="loan.status_id"></span>
+    </td>
+  </tr>
+</table>

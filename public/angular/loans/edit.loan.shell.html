@@ -1,0 +1,54 @@
+<style>
+  .table>tbody>tr>td{ padding:5px !important;}
+</style>
+<div class="frmFull_Page">
+  <div class="row frmBarsm clr-black">
+    <div class="col-md-5">
+      <h6>{{loan.loan_type}} - {{loan.crop_year}} - {{loan.season_full}}: {{applicant.applicant}} ({{farmer.farmer | displayname}} )</h6>
+    </div>
+    <div class="col-md-3 text-center">
+      <h6>&nbsp;</h6>
+    </div>
+    <div class="col-md-4 text-right">
+      <h6 ng-show="!loan.is_cross_collateralized">{{ dtToday | date }}</h6>
+      <button class="btn btn-default btn-xs" style="margin-top: 5px;" ng-show="loan.is_cross_collateralized">
+        <span class="glyphicon glyphicon-search"></span>
+        &nbsp;Cross Collateral View
+      </button>
+    </div>
+  </div>
+
+  <div class="row frmBar clr-darkgreen" style="margin-top: -12px;" ng-show="loan.is_cross_collateralized">
+    <div class="col-md-12">
+      <h5>Cross Collateral View</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-12" style="margin-bottom: -20px;">
+      <div ng-include="'angular/layout/topbars/loanProgress.html'"></div>
+    </div>
+  </div>
+
+  <hr style="margin-top: 5px;"/>
+
+  <div class="row">
+    <div class="col-md-2">
+      <div>
+        <div ng-if="loantypeID == 1" ng-include="'angular/layout/sidebars/allIn.html'"></div>
+        <div ng-if="loantypeID == 2" ng-include="'angular/layout/sidebars/agInput.html'"></div>
+        <div ng-if="loantypeID == 3" ng-include="'angular/layout/sidebars/agPro.html'"></div>
+        <div ng-if="loantypeID == 4" ng-include="'angular/layout/sidebars/agProFasttrack.html'"></div>
+        <div ng-if="loantypeID == 5" ng-include="'angular/layout/sidebars/capitalBridge.html'"></div>
+        <div ng-if="loantypeID == 6" ng-include="'angular/layout/sidebars/agVest.html'"></div>
+        <div ng-if="loantypeID == 7" ng-include="'angular/layout/sidebars/grainStorage.html'"></div>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div ui-view>
+        <pre>{{loan | json}}</pre>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<pre>{{loan | json}}</pre>-->

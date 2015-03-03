@@ -1,0 +1,61 @@
+<div class="frmFull_Page">
+  <div class="row frmBarsm clr-black">
+    <h6>
+      <span ng-if="loan">
+        {{loan.loan_type}} - {{loan.crop_year}} - {{loan.season_full}}:
+      </span>
+      <span ng-show="applicant.applicant"> - {{applicant.applicant}}</span>
+      <span ng-show="farmer.farmer"> ( {{farmer.farmer | displayname}} )</span></h6>
+    </h6>
+  </div>
+
+  <hr style="margin-top: 5px;"/>
+
+  <div class="row">
+    <div class="form-group col-md-12" style="margin-bottom: -20px;">
+      <div ng-include="'angular/layout/topbars/loanProgress.html'"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="btn-group-vertical" style="padding-top: 10px; width:98%;">
+        <a ui-sref-active="active" ui-sref="new.{{scr.screen}}" class="btn btn-default" ng-repeat="scr in screens" ng-show="scr.status == 1">
+          <!-- ng-show="scr.status == 1" -->
+          <!-- ng-class="{disabled: !scr.status}" -->
+          {{scr.label}}
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <div ui-view>
+        <pre>{{screens | json}}</pre>
+      </div>
+    </div>
+  </div>
+
+<!--
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-10">
+    <pre>{{loan | json}}</pre>
+  </div>
+</div>
+-->
+<!--
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+      <pre>{{feeder.farmers | json}}</pre>
+    </div>
+  </div>
+-->
+<!--
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+      <pre>{{screens | json}}</pre>
+    </div>
+  </div>
+-->
+</div>

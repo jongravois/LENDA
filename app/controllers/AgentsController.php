@@ -13,7 +13,7 @@ class AgentsController extends ApiController {
 
 	public function index()
 	{
-		$agents = Agents::all();
+		$agents = Agents::with('agency')->get();
 
 		return $this->respond([
 			'data' => $this->agentTransformer->transformCollection($agents->all())
@@ -22,7 +22,7 @@ class AgentsController extends ApiController {
 
 	public function show($id)
 	{
-		$agent = Agents::where('id', $id)->get();
+		$agent = Agents::with('agency')->where('id', $id)->get();
 
 		if( $agent->isEmpty() ){
 			return $this->respondNotFound('Agent does not exist.');

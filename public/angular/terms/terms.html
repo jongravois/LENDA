@@ -1,0 +1,100 @@
+<style>
+  .rowed td{border:1px solid #dddddd; }
+</style>
+<form>
+<fieldset>
+  <!--<pre>{{loan.due_date | json}}</pre>-->
+  <legend>Loan Terms</legend>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table" style="width: 60%;">
+        <tr>
+          <td colspan="3">&nbsp;</td>
+          <td class="text-center">
+            <span ng-if="loan.loan_type_id == 2">Fee On Total</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width:22%;">Loan Due Date</td>
+          <td colspan="2">
+            <text-edit-in-place value="loan.due_date"></text-edit-in-place>
+            <!--<text-edit-in-place value="loan.due_date" ng-change="changeDueDate()"></text-edit-in-place>-->
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td style="width:22%;">Loan Processing Fee</td>
+          <td style="width:10%;">
+            <percent-edit-in-place value="loan.fins.fee_processing_percent"></percent-edit-in-place>
+          </td>
+          <td class="text-right" style="width:8%;">
+            <span ng-if="loan.fins.fee_processing_onTotal">
+              {{loan.fins.proc_fee | flexCurrency:0}}
+            </span>
+            <span ng-if="!loan.fins.fee_processing_onTotal">
+              {{loan.fins.proc_fee_arm_only | flexCurrency:0}}
+            </span>
+          </td>
+          <td class="text-center" style="width:20%;">
+            <span ng-if="loan.loan_type_id == 2">
+              <input type="checkbox" ng-model="loan.fins.fee_processing_onTotal"/>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>Loan Service Fee</td>
+          <td>
+            <percent-edit-in-place value="loan.fins.fee_service_percent"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            <span ng-if="loan.fins.fee_service_onTotal">
+              {{loan.fins.srvc_fee | flexCurrency:0}}
+            </span>
+            <span ng-if="!loan.fins.fee_service_onTotal">
+              {{loan.fins.srvc_fee_arm_only | flexCurrency:0}}
+            </span>
+          </td>
+          <td class="text-center">
+            <span ng-if="loan.loan_type_id == 2">
+              <input type="checkbox" ng-model="loan.fins.fee_service_onTotal"/>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>ARM Interest Rate</td>
+          <td>
+            <percent-edit-in-place value="loan.fins.int_percent_arm"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            *{{(loan.loan_days/365)*(loan.fins.int_percent_arm/100)*loan.fins.commit_arm*.5 | flexCurrency:0}}
+          </td>
+          <td class="text-center">&nbsp;</td>
+        </tr>
+        <tr ng-if="loan.has_distributor">
+          <td>Distributor Interest Rate</td>
+          <td>
+            <percent-edit-in-place value="loan.fins.int_percent_dist"></percent-edit-in-place>
+          </td>
+          <td class="text-right">
+            *{{(loan.loan_days/365)*(loan.fins.int_percent_dist/100)*loan.fins.commit_dist*.5 | flexCurrency:0}}
+          </td>
+          <td class="text-center">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="4"><span class="">* Interest amounts are best estimates</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-right" style="padding-top:25px;">
+        <span ng-if="newapplication">
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="insertTerms()">Next</button>
+        </span>
+        <span ng-if="!newapplication">
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateTerms()">UPDATE</button>
+        </span>
+    </div>
+  </div>
+</fieldset>
+  </form>

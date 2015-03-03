@@ -162,7 +162,7 @@ class FarmersTableSeeder extends Seeder{
       'phone'	=>	'9995550010',
       'dob'	=>	'1969-07-15',
       'first_year_farmer' => 2013,
-      'farm_exp' => 2
+      'farm_exp' => 1
     ]);
 
     Farmer::create([

@@ -5,8 +5,7 @@ class AgenciesTableSeeder extends Seeder {
   public function run()
   {
     Agency::create([
-      'agency' => 'State Farm',
-      'name' => 'Rayville State Farm',
+      'agency' => 'Rayville State Farm',
       'address' => '1 Good Neighbor',
       'city' => 'Rayville',
       'state_id' => 19,
@@ -17,8 +16,7 @@ class AgenciesTableSeeder extends Seeder {
     ]);
 
     Agency::create([
-      'agency' => 'Nationwide',
-      'name' => 'Tom Collins of Jonesboro Nationwide Insurance',
+      'agency' => 'Tom Collins of Jonesboro Nationwide Insurance',
       'address' => '51 Cocktails Drive',
       'city' => 'Jonesboro',
       'state_id' => 4,

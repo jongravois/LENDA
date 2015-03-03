@@ -1,0 +1,151 @@
+<style>
+  .ctrlButtons{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    text-align: right;
+    cursor: pointer;
+  }
+</style>
+<!--<pre>{{user|json}}</pre>-->
+<fieldset>
+  <legend>Comments Log</legend>
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <button class="btn btn-primary btn-xs" ng-click="createComment()"><span class="glyphicon glyphicon-plus"></span> NEW COMMENT</button>
+      <br/><br/>
+    </div>
+    <div class="col-md-6">
+      <input type="checkbox" ng-model="user.cbCommentLenda"/> LENDA [{{comments.LENDA.length || 0}}]
+      &nbsp;&nbsp;
+      <input type="checkbox" ng-model="user.cbCommentCommittee"/> Committee [{{comments.Committee.length || 0}}]
+      &nbsp;&nbsp;
+      <input type="checkbox" ng-model="user.cbCommentAnalyst"/> Analyst [{{comments.Analyst.length || 0}}]
+      &nbsp;&nbsp;
+      <input type="checkbox" ng-model="user.cbCommentAccount"/> Account [{{comments.Account.length || 0}}]
+    </div>
+  </div>
+
+  <div ng-if="comments.length == 0">
+    <b>No Comments Found!</b>
+  </div>
+
+  <div ng-if="comments.LENDA.length > 0" ng-show="user.cbCommentLenda">
+    <div ng-repeat="c in comments.LENDA">
+      <div class="alert alert-danger" role="alert">
+        <div style="position: relative;">
+          <h4><span class="glyphicon glyphicon-wrench"></span> LENDA Comment
+          </h4>
+          <span class="ctrlButtons"></span>
+        </div>
+        <hr/>
+        <p style="font-size:11px;font-weight:bold;"><i>{{c.user}}</i>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          <i>{{c.dtCom | date:'MM/dd/yy'}}</i>
+        </p>
+        <p>{{c.comment}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="comments.Committee.length > 0" ng-show="user.cbCommentCommittee">
+    <div ng-repeat="c in comments.Committee">
+      <div class="alert alert-info" role="alert">
+        <div style="position: relative;">
+          <h4><span class="glyphicon glyphicon-user"></span>
+            Committee Comment
+          </h4>
+          <span class="ctrlButtons">
+            <span ng-click="btnCommentReply(c.id)" class="glyphicon glyphicon-send" tooltip="reply"></span>&nbsp;&nbsp;&nbsp;
+            <span class="glyphicon glyphicon-unchecked" ng-if="c.status == 'pending'" ng-click="btnCommentStatus(c.id, user.id)" tooltip="{{c.status}}"></span>
+            <span class="glyphicon glyphicon-check" ng-if="c.status == 'confirmed'" tooltip="{{c.status}}"></span>
+          </span>
+          <hr/>
+          <p style="font-size:11px;font-weight:bold;"><i>{{c.user}}</i>
+            &nbsp;&nbsp;-&nbsp;&nbsp;
+            <i>{{c.dtCom | date:'MM/dd/yy'}}</i>
+          </p>
+          <p>{{c.comment}}</p>
+        </div>
+        <div ng-if="c.responses">
+          <div class="alert alert-response" ng-repeat="res in c.responses">
+            <p style="font-size:11px;font-weight:bold;"><i>{{res.user.username}}</i>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <i>{{res.created_at | date:'MM/dd/yy'}}</i>
+            </p>
+            <hr/>
+            <p>{{res.body}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="comments.Analyst.length > 0" ng-show="user.cbCommentAnalyst">
+    <div ng-repeat="c in comments.Analyst">
+      <div class="alert alert-warning" role="alert">
+        <div style="position: relative;">
+          <h4><span class="glyphicon glyphicon-user"></span> Analyst Comment
+          </h4>
+          <span class="ctrlButtons">
+            <span ng-click="btnCommentReply(c.id)" class="glyphicon glyphicon-send" tooltip="reply"></span>&nbsp;&nbsp;&nbsp;
+            <span class="glyphicon glyphicon-unchecked" ng-if="c.status == 'pending'" ng-click="btnCommentStatus(c.id, user.id)" tooltip="{{c.status}}"></span>
+            <span class="glyphicon glyphicon-check" ng-if="c.status == 'confirmed'" tooltip="{{c.status}}"></span>
+          </span>
+        </div>
+        <hr/>
+        <p style="font-size:11px;font-weight:bold;"><i>{{c.user}}</i>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          <i>{{c.dtCom | date:'MM/dd/yy'}}</i>
+        </p>
+        <p>{{c.comment}}</p>
+      </div>
+      <div ng-if="c.responses">
+        <div class="alert alert-response" ng-repeat="res in c.responses">
+          <p style="font-size:11px;font-weight:bold;"><i>{{res.user.username}}</i>
+            &nbsp;&nbsp;-&nbsp;&nbsp;
+            <i>{{res.created_at | date:'MM/dd/yy'}}</i>
+          </p>
+          <hr/>
+          <p>{{res.body}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="comments.Account.length > 0" ng-show="user.cbCommentAccount">
+    <div ng-repeat="c in comments.Account">
+      <div class="alert alert-success" role="alert">
+        <div style="position: relative;">
+          <h4><span class="glyphicon glyphicon-usd"></span> Account Comment
+          </h4>
+          <span class="ctrlButtons">
+            <span ng-click="btnCommentReply(c.id)" class="glyphicon glyphicon-send" tooltip="reply"></span>&nbsp;&nbsp;&nbsp;
+            <span class="glyphicon glyphicon-unchecked" ng-if="c.status == 'pending'" ng-click="btnCommentStatus(c.id, user.id)" tooltip="{{c.status}}"></span>
+            <span class="glyphicon glyphicon-check" ng-if="c.status == 'confirmed'" tooltip="{{c.status}}"></span>
+          </span>
+        </div>
+        <hr/>
+        <p style="font-size:11px;font-weight:bold;"><i>{{c.user}}</i>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          <i>{{c.dtCom | date:'MM/dd/yy'}}</i>
+        </p>
+        <p>{{c.comment}}</p>
+      </div>
+      <div ng-if="c.responses">
+        <div class="alert alert-response" ng-repeat="res in c.responses">
+          <p style="font-size:11px;font-weight:bold;"><i>{{res.user.username}}</i>
+            &nbsp;&nbsp;-&nbsp;&nbsp;
+            <i>{{res.created_at | date:'MM/dd/yy'}}</i>
+          </p>
+          <hr/>
+          <p>{{res.body}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</fieldset>
+<!--<pre>{{comments|json}}</pre>-->
+</div>

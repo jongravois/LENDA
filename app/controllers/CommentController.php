@@ -53,7 +53,7 @@ class CommentController extends ApiController {
 
 	public function byLoan($id)
 	{
-		$comment = Comment::with('loan', 'responses.user', 'status', 'user')->where('loan_id', $id)->get();
+		$comment = Comment::with('loan', 'responses.user', 'status', 'user')->where('loan_id', $id)->orderBy('created_at', 'desc')->get();
 
 		return $this->respond([
 			'data' => $this->commentTransformer->transformCollection($comment->all())

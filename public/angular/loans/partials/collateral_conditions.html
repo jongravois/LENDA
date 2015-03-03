@@ -1,0 +1,24 @@
+<table class="table table-striped rowed" style="font-size:16px;">
+  <tr>
+    <th>Loan Conditions</th>
+    <th style="width:90px;">Verified</th>
+  </tr>
+  <tr ng-repeat="c in loanConditions">
+    <td ng-class="{'red': c.status == 'pending'}">
+      {{c.condition}}
+    </td>
+    <td ng-show="c.status == 'verified'">{{c.action_date }}</td>
+    <td ng-show="c.status == 'pending'" class="text-center">
+      <button class="btn btn-xs btn-error" ng-click="verifyCondition($index)">Verify</button>
+    </td>
+  </tr>
+  <tr class="default"><td colspan="2">&nbsp;</td></tr>
+  <tr>
+    <td>
+      <input type="text" class="form-control" name="condition" ng-model="newCondition.condition"/>
+    </td>
+    <td class="text-center">
+      <button class="btn btn-xs btn-primary" ng-click="createCollateralCondition()">Add</button>
+    </td>
+  </tr>
+</table>

@@ -841,3 +841,5 @@ label{font-size:11px;}
 /*FINANCIALS*/
 
 .ngTopPanel{ z-index: inherit;}
+
+.nav-tabs>li>a {color: #333333; }

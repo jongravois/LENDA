@@ -49,6 +49,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::resource('defaultexpenses', 'DefaultexpensesController');
   Route::resource('distributors', 'DistributorsController');
   Route::resource('entitytypes', 'EntitytypesController');
+  Route::resource('exceptions', 'ExceptionsController');
   Route::resource('expenses', 'ExpensesController');
   Route::resource('farmers', 'FarmersController');
   Route::resource('farms', 'FarmController');
@@ -97,6 +98,7 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('counties/{id}/defaults', 'CountiesController@getDefaults');
   Route::get('counties/{id}/locale', 'CountiesController@getLocale');
   Route::get('defaultexpenses/{id}/bycrop', 'DefaultexpensesController@byCrop');
+  Route::get('exceptions/title/{title}', 'ExceptionsController@byTitle');
   Route::get('farmers/{id}/loans', 'FarmersController@allLoans');
   Route::get('insurance/{id}/value', 'InsuranceController@totalValueByLoan');
   Route::get('loancrops/{id}/expenses', 'BudgetController@expenseByCrop');
@@ -129,12 +131,14 @@ Route::group(['prefix'=>'api', 'after' => 'allowOrigin'],function(){
   Route::get('loans/{id}/prerequisites', 'PrerequisitesController@byLoan');
   Route::get('loans/{id}/priorlien', 'PriorliensController@byLoan');
   Route::get('loans/{id}/quests', 'LoanquestionsController@byLoan');
-  Route::get('users/{id}/notifications', 'NotificationController@byUser');
   Route::get('loans/{id}/priorliens', 'PriorliensController@byLoan');
   Route::get('loans/{id}/references', 'ReferencesController@byLoan');
   Route::get('loans/{id}/storage', 'GrainstorageController@byLoan');
   Route::get('loans/{id}/systemics', 'SystemicsController@byLoan');
   Route::get('loans/{id}/totalacres', 'LoanCropsController@totalAcres');
   Route::get('loantypes/{id}/screens', 'ScreensController@byLoantype');
+  Route::get('locations/{id}/counties', 'LocationsController@byCounty');
+  Route::get('locations/{id}/yields', 'LocationsController@yieldByCounty');
   Route::get('states/{id}/counties', 'CountiesController@byState');
+  Route::get('users/{id}/notifications', 'NotificationController@byUser');
 });

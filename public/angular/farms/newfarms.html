@@ -1,0 +1,185 @@
+<style>
+  .form-control{ padding: 6px 6px !important; }
+</style>
+<fieldset>
+  <legend>Farms Information</legend>
+  <div class="row">
+    <div class="col-xs-12">
+      <table class="table table-striped rowed">
+        <tr>
+          <th colspan="7">&nbsp;</th>
+          <th colspan="5" class="text-center;">Acres</th>
+          <th>&nbsp;</th>
+        </tr>
+        <tr>
+          <th style="width:15%;">State|County</th>
+          <th style="width:6%;">FSN</th>
+          <th style="width:8%;">Landlord</th>
+          <th style="width:8%;">Share</th>
+          <th style="width:8%;">Cash Rent</th>
+          <th style="width:8%;">When Due</th>
+          <th style="width:8%;">Waived</th>
+          <th style="width:5%;">IR</th>
+          <th style="width:5%;">NI</th>
+          <th style="width:5%;">FACI</th>
+          <th style="width:5%;">FACNI</th>
+          <th style="width:6%;">Total</th>
+          <th class="text-center" style="width:8%;">FSA</th>
+
+        </tr>
+        <tr ng-show="farms.length == 0">
+          <td colspan="13">
+            <b>No Farms Found!</b>
+          </td>
+        </tr>
+        <tr ng-repeat="f in farms">
+          <td>
+            {{f.locale}}
+          </td>
+          <td>
+            {{f.fsn}}
+          </td>
+          <td>
+            {{f.owner}}
+          </td>
+          <td class="text-right">
+            {{f.share_rent|flexPercent:1}}
+          </td>
+          <td class="text-right" ng-class=gtZero(f.cash_rent)>
+            {{f.cash_rent|flexCurrency:2}}
+          </td>
+          <td>
+            {{f.when_due}}
+          </td>
+          <td class="text-right" ng-class=gtZero(f.waived)>
+            {{f.waived|flexCurrency:0}}
+          </td>
+          <td class="text-right">
+            {{f.irr|number:1}}
+          </td>
+          <td class="text-right">
+            {{f.ni|number:1}}
+          </td>
+          <td class="text-right">
+            {{f.facirr|number:1}}
+          </td>
+          <td class="text-right">
+            {{f.facni|number:1}}
+          </td>
+          <td class="text-right">
+            {{f.acres|number:1}}
+          </td>
+          <td class="text-right" ng-class=gtZero(f.fsa_paid)>
+            {{f.fsa_paid|flexCurrency:0}}
+          </td>
+        </tr>
+        <tr style="max-height:2px; background-color: #333;">
+          <td colspan="13"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!--<pre>{{statesCounties | json}}</pre>-->
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-1">&nbsp;</div>
+        <div class="col-xs-10">
+          <form>
+            <div class="row form-group">
+              <div class="col-xs-4">
+                <label>State</label>
+                <select name="state_id" class="form-control" ng-model="newFarm.state_id" ng-options=" s.id as s.state for s in feeder.states" ng-change="onStateChange(newFarm.state_id)">
+                  <option value="">Please select ...</option>
+                </select>
+              </div>
+              <div class="col-xs-4">
+                <label>County</label>
+                <input type="text" id="county" ng-model="newFarm.county" typeahead="c.county for c in statesCounties | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="onCountySelect($item, $model, $label)" autocomplete="false"/>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-xs-4">
+                <label>FSN</label>
+                <input type="text" class="form-control" ng-model="newFarm.fsn"/>
+              </div>
+              <div class="col-xs-4">
+                <label>Landlord</label>
+                <input type="text" class="form-control" ng-model="newFarm.owner"/>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-xs-4">
+                <label>FSA Direct Payment</label>
+                <input type="text" class="form-control" ng-model="newFarm.fsa_paid"/>
+              </div>
+              <div class="col-xs-4">
+                <label>Share Rent</label>
+                <input type="text" class="form-control" ng-model="newFarm.share_rent"/>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-xs-4">
+                <label>Cash Rent</label>
+                <input type="text" class="form-control" ng-model="newFarm.cash_rent"/>
+              </div>
+              <div class="col-xs-4">
+                <label>When Due?</label>
+                <input type="text" class="form-control" ng-model="newFarm.when_due"/>
+              </div>
+              <div class="col-xs-4">
+                <label>Waived</label>
+                <input type="text" class="form-control" ng-model="newFarm.waived"/>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-xs-3">
+                <label>Acres - IR</label>
+                <input type="text" class="form-control" ng-model="newFarm.irr"/>
+              </div>
+              <div class="col-xs-3">
+                <label>Acres - NI</label>
+                <input type="text" class="form-control" ng-model="newFarm.ni"/>
+              </div>
+              <div class="col-xs-3">
+                <label>Acres - FACI</label>
+                <input type="text" class="form-control" ng-model="newFarm.facirr"/>
+              </div>
+              <div class="col-xs-3">
+                <label>Acres - FACNI</label>
+                <input type="text" class="form-control" ng-model="newFarm.facni"/>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-xs-4">
+                <label>Total Acres</label>
+                <p>{{newFarm.acres = ((1 * newFarm.irr) + (1 * newFarm.ni) + (1 * newFarm.facirr) + (1 * newFarm.facni))|number:1}}</p>
+              </div>
+              <div class="col-xs-4">
+                <label>Percent Irrigated</label>
+                <p>{{newFarm.percent_irrigated = (((1 * newFarm.irr) + (1 * newFarm.facirr)) / ((1 * newFarm.irr) + (1 * newFarm.ni) + (1 * newFarm.facirr) + (1 * newFarm.facni)) * 100)|flexPercent:1}}</p>
+              </div>
+            </div>
+
+            <div class="row">&nbsp;</div>
+            <div class="row">
+              <div class="col-xs-10 form-group text-leftt">
+                <input type="submit" class="btn btn-xs btn-default" value="Add Farm" ng-click="addNewFarm(newFarm)"/>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-xs-1">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+  <br/><br/>
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateYield()">
+        NEXT
+      </button>
+    </div>
+  </div>
+</fieldset>
+<!--<pre>{{loanCounties | json}}</pre>-->

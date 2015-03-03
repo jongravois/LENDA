@@ -1,0 +1,56 @@
+<fieldset>
+  <!--<pre>{{loanCrops|json}}</pre>-->
+  <legend>Crop Options</legend>
+  <table class="table table-striped">
+    <tr>
+      <th style="width:15%;">Crop</th>
+      <th style="width:12%;">Market To Whom</th>
+      <th style="width:10%;">Bk Qty</th>
+      <th style="width:10%;">Bk Price</th>
+      <th style="width:10%;">Variable Harvest</th>
+      <th>UoM</th>
+      <th style="width:12%;">Gin/Mill</th>
+      <th style="width:10%;">Rebate</th>
+      <th>UoM</th>
+    </tr>
+    <tr ng-repeat="c in loanCrops | orderBy: 'id'" ng-if="c.is_active">
+      <td>
+        {{c.name | capitalize}}
+      </td>
+      <td>
+        <text-edit-in-place value="c.markettowhom"></text-edit-in-place>
+      </td>
+      <td class="text-center">
+        <text-edit-in-place value="c.bkqty"></text-edit-in-place>
+      </td>
+      <td class="text-right">
+        <edit-in-place value="c.bkprice"></edit-in-place>
+      </td>
+      <td class="text-right">
+        <edit-in-place value="c.harvest"></edit-in-place>
+      </td>
+      <td class="text-center">
+        <select style="height:18px !important;" name="uom" ng-model="c.uom" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom)">
+          <option value="">Please select ...</option>
+        </select>
+      </td>
+      <td>
+        <text-edit-in-place value="c.gin_mill"></text-edit-in-place>
+      </td>
+      <td>
+        <edit-in-place value="c.rebates"></edit-in-place>
+      </td>
+      <td>
+        <select style="height:18px !important;" name="uom_rebate" ng-model="c.uom_rebate" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom_rebate)">
+          <option value="">Please select ...</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="6">
+        <a ng-click="createCrop()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Crop</a>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+<!--<pre>{{loanCrops | json}}</pre>-->
