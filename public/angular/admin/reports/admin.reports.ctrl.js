@@ -4,7 +4,7 @@
         .module('ARM')
         .controller('AdminReportsController', AdminReportsController);
 
-        AdminReportsController.$inject = [$scope, $http, $state, $stateParams];
+        AdminReportsController.$inject = ['$scope', '$http', '$state', '$stateParams'];
 
         function AdminReportsController($scope, $http, $state, $stateParams){
             $scope.report_id = $stateParams.reportId;

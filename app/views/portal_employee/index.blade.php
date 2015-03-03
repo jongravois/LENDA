@@ -90,6 +90,7 @@
 <script src="angular/directives/inPlaceDirectives.js"></script>
 
 <script src="angular/admin/admin.ctrl.js"></script>
+<script src="angular/admin/applicants/admin.applicants.ctrl.js"></script>
 <script src="angular/admin/crops/admin.crops.ctrl.js"></script>
 <script src="angular/admin/distributors/admin.distributors.ctrl.js"></script>
 <script src="angular/admin/entity-types/admin.entity.types.ctrl.js"></script>
@@ -125,9 +126,9 @@
 <script src="angular/home/home.ctrl.js"></script>
 <script src="angular/insurance/insurance.ctrl.js"></script>
 <script src="angular/insurance/insurance.factory.js"></script>
-<script src="angular/library/calendar.ctrl.js"></script>
-<script src="angular/library/legal.docs.ctrl.js"></script>
-<script src="angular/library/legend.ctrl.js"></script>
+<script src="angular/library/calendar/calendar.ctrl.js"></script>
+<script src="angular/library/legal-docs/legal.docs.ctrl.js"></script>
+<script src="angular/library/legend/legend.ctrl.js"></script>
 <script src="angular/library/library.ctrl.js"></script>
 <script src="angular/library/library.factory.js"></script>
 <script src="angular/library/loan-products/loan.products.ctrl.js"></script>
