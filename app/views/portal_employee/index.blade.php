@@ -46,7 +46,7 @@
             </span>
             <div class="row" style="z-index: 32000;">
                 <div class="col-xs-12">
-                    <div ng-include="'angular/views/topbars/logobar.html'"></div>
+                    <div ng-include="'angular/layout/topbars/logobar.html'"></div>
                 </div>
             </div>
         </div>
@@ -90,10 +90,22 @@
 <script src="angular/directives/inPlaceDirectives.js"></script>
 
 <script src="angular/admin/admin.ctrl.js"></script>
+<script src="angular/admin/crops/admin.crops.ctrl.js"></script>
+<script src="angular/admin/distributors/admin.distributors.ctrl.js"></script>
+<script src="angular/admin/entity-types/admin.entity.types.ctrl.js"></script>
+<script src="angular/admin/farmers/admin.farmers.ctrl.js"></script>
+<script src="angular/admin/ins-types/admin.ins.types.ctrl.js"></script>
+<script src="angular/admin/loan-types/admin.loan.types.ctrl.js"></script>
+<script src="angular/admin/locations/admin.locations.ctrl.js"></script>
+<script src="angular/admin/regions/admin.regions.ctrl.js"></script>
+<script src="angular/admin/reports/admin.reports.ctrl.js"></script>
+<script src="angular/admin/roles/admin.roles.ctrl.js"></script>
+<script src="angular/admin/units/admin.units.ctrl.js"></script>
+<script src="angular/admin/users/admin.users.ctrl.js"></script>
 <script src="angular/applicants/applicants.ctrl.js"></script>
 <script src="angular/applicants/applicants.factory.js"></script>
 <script src="angular/budgets/budgets.ctrl.js"></script>
-<script src="angular/budgets/ExpensesFactory.js"></script>
+<script src="angular/budgets/expenses.factory.js"></script>
 <script src="angular/closing/closing.ctrl.js"></script>
 <script src="angular/comments/comments.ctrl.js"></script>
 <script src="angular/comments/comments.data.js"></script>
@@ -113,16 +125,16 @@
 <script src="angular/home/home.ctrl.js"></script>
 <script src="angular/insurance/insurance.ctrl.js"></script>
 <script src="angular/insurance/insurance.factory.js"></script>
-<script src="angular/library/calendar.js"></script>
-<script src="angular/library/legalDocs.js"></script>
-<script src="angular/library/legend.js"></script>
+<script src="angular/library/calendar.ctrl.js"></script>
+<script src="angular/library/legal.docs.ctrl.js"></script>
+<script src="angular/library/legend.ctrl.js"></script>
 <script src="angular/library/library.ctrl.js"></script>
 <script src="angular/library/library.factory.js"></script>
-<script src="angular/library/loanProducts.js"></script>
-<script src="angular/library/matrix.js"></script>
-<script src="angular/library/pdfApps.js"></script>
-<script src="angular/library/polProcs.js"></script>
-<script src="angular/library/resources.js"></script>
+<script src="angular/library/loan-products/loan.products.ctrl.js"></script>
+<script src="angular/library/matrix/matrix.ctrl.js"></script>
+<script src="angular/library/pdf-apps/pdf.apps.ctrl.js"></script>
+<script src="angular/library/policies-and-procedures/pol.procs.ctrl.js"></script>
+<script src="angular/library/resources/resources.ctrl.js"></script>
 <script src="angular/loans/edit.loans.ctrl.js"></script>
 <script src="angular/loans/globals.factory.js"></script>
 <script src="angular/loans/grader.factory.js"></script>
