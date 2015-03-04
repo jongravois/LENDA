@@ -54,12 +54,12 @@
 
     function LoanStatusIconDirective($compile) {
         var templateMap = {
-            '1': '<span class="glyphicon glyphicon-wrench" tooltip="In_Progress" style="color: #009;"></span>',
-            '2': '<span class="glyphicon glyphicon-ok" tooltip="Paid" style="color: #090;"></span>',
-            '3': '<span class="glyphicon glyphicon-share-alt" tooltip="Recommended"></span>',
-            '4': '<span class="glyphicon glyphicon-thumbs-up" tooltip="Approved"></span>',
-            '5': '<span class="glyphicon glyphicon-thumbs-down" tooltip="Denied" style="color: #900;"></span>',
-            'default': '<span class="glyphicon glyphicon-wrench" tooltip="In_Progress" style="color: #009;"></span>'
+            '1': '<span class="staticon glyphicon glyphicon-wrench" tooltip="In_Progress" style="color: #009;"></span>',
+            '2': '<span class="staticon glyphicon glyphicon-ok" tooltip="Paid" style="color: #090;"></span>',
+            '3': '<span class="staticon glyphicon glyphicon-share-alt" tooltip="Recommended"></span>',
+            '4': '<span class="staticon glyphicon glyphicon-thumbs-up" tooltip="Approved"></span>',
+            '5': '<span class="staticon glyphicon glyphicon-thumbs-down" tooltip="Denied" style="color: #900;"></span>',
+            'default': '<span class="staticon glyphicon glyphicon-wrench" tooltip="In_Progress" style="color: #009;"></span>'
         };
 
         function linker(scope, element, attrs) {
@@ -215,7 +215,7 @@
             restrict: 'A',
             require: 'ngModel',
             link: linker,
-            template: '<span sglclick="progClicked()" ng-dblclick="progDblClicked()" class="glyphicon glyphicon-{{loan.glyphicon}}" tooltip="{{loan.tooltip}}" style="font-size:18px;color:{{loan.style}};cursor:pointer;"></span>',
+            template: '<span sglclick="progClicked()" ng-dblclick="progDblClicked()" class="progicon glyphicon glyphicon-{{loan.glyphicon}}" tooltip="{{loan.tooltip}}" style="font-size:18px;color:{{loan.style}};cursor:pointer;"></span>',
             scope: {
                 cat: '@',
                 ngModel: '='

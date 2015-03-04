@@ -11,6 +11,10 @@ body{
     z-index: 1;
 }
 
+.progicon, .staticon {
+    cursor: pointer;
+}
+
 #main_top{}
 
 .req{ color: #CC0000; }

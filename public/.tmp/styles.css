@@ -10,6 +10,9 @@ body {
   position: relative;
   z-index: 1; }
 
+.progicon, .staticon {
+    cursor: pointer;
+}
 .req {
   color: #CC0000; }
 

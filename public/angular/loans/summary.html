@@ -67,59 +67,12 @@
     </div>
 
     <!--INSURANCE ANALYSIS-->
-    <div class="row" style="padding-top: 20px;">
-      <div class="form-group col-md-12 text-left">
-        <b>Crop Insurance Analysis</b>
-      </div>
-      <div class="row form-group col-md-10 col-md-offset-1" >
-        <table class="table" style="width:80%;">
-          <tr>
-            <td style="width:60%;">ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}} </span>Loan secured by Collateral Conditions</td>
-            <td style="width:40%;" colspan="3" class="text-right">
-              {{loan.fins.arm_and_dist | flexCurrency:0}}
-            </td>
-          </tr>
-          <tr>
-            <td>Applicant's share of crop insurance less premium</td>
-            <td colspan="3" class="text-right">
-              {{loan.fins.guaranty | flexCurrency:0}}
-            </td>
-          </tr>
-          <tr>
-            <td>Crop Insurance coverage in excess of ARM and {{loan.distributor}} Loan</td>
-            <td colspan="3" class="text-right">
-              {{loan.fins.guaranty - financials.arm_and_dist | flexCurrency:0}}
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
+    if(parseInt($stateParams.loanTypeID) < 4){
+        <div ng-include="'angular/loans/partials/summary_insuranceanalysis.html'"></div>
+    }
 
     <!--BREAK-EVEN ANALYSIS-->
-    <!-- Need to loop through Selected Crops -->
-    <div class="row" style="padding-top: 20px;">
-      <div class="form-group col-md-12 text-left">
-        <b>Break Even Analysis</b>
-      </div>
-      <div class="row form-group col-md-10 col-md-offset-1" >
-        <table class="table" style="width:80%;">
-          <tr>
-            <td style="width:35%;">Loan payback break-even for ARM<span ng-if="loan.has_distributor"> and {{loan.quests.distributor}}</span>:</td>
-            <td style="width:10%;">CORN</td>
-            <td class="text-right" style="width:10%;">
-              {{loanCrops[0].break_even | number:1}}
-            </td>
-          </tr>
-          <tr>
-            <td style="width:35%;">Loan payback break-even for ARM<span ng-if="loan.has_distributor"> and {{loan.quests.distributor}}</span>:</td>
-            <td style="width:10%;">SOYBEANS</td>
-            <td class="text-right" style="width:10%;">
-              {{loanCrops[1].break_even | number:1}}
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
+          <div ng-include="'angular/loans/partials/summary_breakevenanalysis.html'"></div>
   </span>
 </span>
 </fieldset>

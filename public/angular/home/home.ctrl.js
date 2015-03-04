@@ -79,7 +79,7 @@
                     cellTemplate: 'angular/layout/grid_tmpl/status.html'
                 }, {
                     field: 'fins.commit_total',
-                    displayName: 'Commit',
+                    displayName: 'Total Commit',
                     headerClass: 'text-center',
                     cellFilter: 'noCentsCurrency',
                     cellClass: 'text-right',

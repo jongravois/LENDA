@@ -7,10 +7,7 @@
     EditLoansController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'toastr', 'InitialData', 'AppFactory', 'ApplicantsFactory', 'ExceptionsFactory', 'FarmersFactory', 'LoansFactory', 'InsuranceFactory'];
 
     /* @ngInject */
-    function EditLoansController($scope, $state, $stateParams, $filter,
-                               $timeout, toastr,
-                               InitialData, AppFactory, ApplicantsFactory, ExceptionsFactory,
-                               FarmersFactory, LoansFactory, InsuranceFactory) {
+    function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, InitialData, AppFactory, ApplicantsFactory, ExceptionsFactory, FarmersFactory, LoansFactory, InsuranceFactory) {
         $scope.loantypeID = $stateParams.loantypeID;
         $scope.loan = InitialData.data.data[0];
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
@@ -91,32 +88,42 @@
         //LOANCROPS & PERCENT IRRIGATED
         LoansFactory.getLoanCrops($stateParams.loanID)
             .then(function success(rsp) {
-                $scope.loanCrops = rsp.data.data;
-                $scope.getCropsPercentIrrigated = function (id) {
-                    var lcIrrPer = '';
-                    for (var c = 0; c < $scope.loanCrops.length; c++) {
-                        if (parseInt($scope.loanCrops[c].acres) !== 0) {
-                            lcIrrPer += $scope.loanCrops[c].name + ': ' + $scope.loanCrops[c].percent_irrigated + '% | ';
-                        } //end if
-                    } // end for
+                var IrrPer = '';
+                var bEven = [];
+                var lc = rsp.data.data;
 
-                    return lcIrrPer.slice(0, -2);
-                };
+                _.forEach(lc, function(item){
+                    if(item.acres > 0){
+                        IrrPer += item.name + ': ' + item.percent_irrigated + '% | ' ;
+                    }
+                });
 
-                LoansFactory.getTotalAcres($scope.loan.id)
-                    .then(function (rsp) {
-                        $scope.loan.total_acres = parseFloat(rsp);
-                    });
+                $scope.loanCrops = lc;
 
-                LoansFactory.getAttachments($stateParams.loanID)
-                    .then(function success(rsp) {
-                        var data = rsp.data;
-                        if (data && data.length !== 0) {
-                            $scope.loan.attachments = true;
-                        } else {
-                            $scope.loan.attachments = false;
-                        } // end if
-                    });
+                if(IrrPer.length === 0){
+                    $scope.IrrPer = 'No crops selected.';
+                } else {
+                    $scope.IrrPer = IrrPer.slice(0, -2);
+                }
+
+                $scope.activeCrops = _.filter(lc, function(item){
+                    return item.acres > 0;
+                });
+            });
+
+        LoansFactory.getTotalAcres($scope.loan.id)
+            .then(function (rsp) {
+                $scope.loan.total_acres = parseFloat(rsp);
+        });
+
+        LoansFactory.getAttachments($stateParams.loanID)
+            .then(function success(rsp) {
+                var data = rsp.data;
+                if (data && data.length !== 0) {
+                    $scope.loan.attachments = true;
+                } else {
+                    $scope.loan.attachments = false;
+                } // end if
             });
 
         //EXPENSES

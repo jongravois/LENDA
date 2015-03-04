@@ -66,6 +66,9 @@
 
         //SCOPE FUNCTIONS
         $scope.getColor = AppFactory.returnColor;
+        $scope.iconItsList = function(status){
+            alert(status);
+        };
         $scope.newLoan = function (val) {
             var obj = {};
             for (var l = 0; l < $scope.feeder.loantypes.length; l++) {
