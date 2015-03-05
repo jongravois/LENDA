@@ -1,52 +1,197 @@
-<div class="btn-group-vertical" style="padding-top: 10px; width:98%;">
-    <a ui-sref-active="active" ui-sref="admin.farmers.list" class="btn btn-default">Farmers</a>
-</div>
-<div class="btn-group-vertical" style="width:98%;">
-  <a ui-sref-active="active" ui-sref="admin.applicants.list" class="btn btn-default">Applicants</a>
-</div>
-<div class="btn-group-vertical" style="width:98%;">
-  <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    Feeder Lists
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu">
-    <li>
-      <a ui-sref-active="active" ui-sref="admin.crops.list" class="btn btn-default">Crops</a>
-    </li>
-    <li>
-      <a ui-sref-active="active" ui-sref="admin.distributors.list" class="btn btn-default">Distributors</a>
-    </li>
-    <li>
-      <a ui-sref-active="active" ui-sref="admin.entitytypes.list" class="btn btn-default">Entity Types</a>
-    </li>
-    <li>
-      <a ui-sref-active="active" ui-sref="admin.instypes.list" class="btn btn-default">Insurance Types</a>
-    </li>
-    <li>
-      <a ui-sref-active="active" ui-sref="admin.loantypes.list" class="btn btn-default">Loan Types</a>
-    </li>
-    <li>
-      <a ui-sref-active="active" ui-sref="admin.roles.list" class="btn btn-default">Roles</a>
-    </li>
-    <li>
-      <a ui-sref-active="active" ui-sref="admin.units.list" class="btn btn-default">Measurement Units</a>
-    </li>
-  </ul>
-</div>
-<div class="btn-group-vertical" style="width:98%;">
-    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        Library Items
-        <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-        <li>
-            <a ui-sref-active="active" ui-sref="admin.pdfapps.list" class="btn btn-default">Loan Applications (.pdf)</a>
-        </li>
-    </ul>
-</div>
-<div class="btn-group-vertical" style="width:98%;">
-  <a ui-sref-active="active" ui-sref="admin.locations.list" class="btn btn-default">Locations</a>
-  <a ui-sref-active="active" ui-sref="admin.regions.list" class="btn btn-default">Regions</a>
-  <a ui-sref-active="active" ui-sref="admin.reports.list" class="btn btn-default">Reports</a>
-  <a ui-sref-active="active" ui-sref="admin.users.list" class="btn btn-default">Users</a>
+<style>
+    .list-group-item a{
+        color: #333333;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+</style>
+<div id="AdminSideBar" style="padding-top: 10px; width:98%;">
+    <accordion>
+        <accordion-group heading="Feeders">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.crops.list">
+                        Agents &amp; Agencies
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.crops.list">
+                        Crops
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.distributors.list">
+                        Distributors
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.entitytypes.list">
+                        Entity Types
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.instypes.list">
+                        Insurance Types
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.loantypes.list">
+                        Loan Types
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.locations.list">
+                        Locations
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.regions.list">
+                        Regions
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.roles.list">
+                        Roles
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.units.list">
+                        Units of Measurement
+                    </a>
+                </li>
+            </ul>
+        </accordion-group>
+
+        <accordion-group heading="Library">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.calendar.list">
+                        Calendar
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.resources.list">
+                        Employee Resources
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.legal.docs.list">
+                        Legal Documents
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.pdfapps.list">
+                        Loan Applications (.pdf)
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.loan.products.list">
+                        Loan Products
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.pols.and.procs.list">
+                        Policies &amp; Procedures
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.matrix.list">
+                        Responsibility Matrix
+                    </a>
+                </li>
+            </ul>
+        </accordion-group>
+
+        <accordion-group heading="LENDA">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.crops.list">
+                        Archive Loans
+                    </a>
+                </li>
+            </ul>
+        </accordion-group>
+
+        <accordion-group heading="Loans">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.committee.specs.list">
+                        Committee Specs
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.grader.specs.list">
+                        Default Expenses
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.globals.list">
+                        Global Values
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.grader.specs.list">
+                        Insurance Values
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.grader.specs.list">
+                        Loan Grader Specs
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.loans.list">
+                        Loans
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.crops.list">
+                        Measurements Converter
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.newloan.screens.list">
+                        New Loan Screens
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.crops.list">
+                        Prerequisites
+                    </a>
+                </li>
+            </ul>
+        </accordion-group>
+
+        <accordion-group heading="Reports">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.reports.list">
+                        Reports
+                    </a>
+                </li>
+            </ul>
+        </accordion-group>
+
+        <accordion-group heading="Users">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.applicants.list">
+                        Applicants
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.farmers.list">
+                        Farmers
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a ui-sref-active="active" ui-sref="admin.users.list">
+                        Staff
+                    </a>
+                </li>
+            </ul>
+        </accordion-group>
+
+    </accordion>
 </div>
