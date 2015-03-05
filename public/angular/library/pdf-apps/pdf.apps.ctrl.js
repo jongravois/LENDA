@@ -4,13 +4,9 @@
         .module('ARM')
         .controller('PdfAppsController', PdfAppsController);
 
-    PdfAppsController.$inject = ['$scope', 'LibraryFactory'];
+    PdfAppsController.$inject = ['$scope', 'InitialData'];
 
-    function PdfAppsController($scope, LibraryFactory) {
-        LibraryFactory.getPdfApps()
-            .then(function success(rsp) {
-                // console.log(rsp);
-                $scope.pdfApps = rsp.data.data;
-            });
+    function PdfAppsController($scope, InitialData) {
+        $scope.pdfApps = InitialData;
     } // end function
 })();

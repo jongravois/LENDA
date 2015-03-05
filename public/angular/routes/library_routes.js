@@ -37,7 +37,16 @@
                 .state('library.pdfapps', {
                     url: '/pdfapps',
                     templateUrl: 'angular/library/pdf-apps/pdfapps.html',
-                    controller: 'PdfAppsController'
+                    controller: 'PdfAppsController',
+                    resolve: {
+                        InitialData: function($http, API_URL){
+                            var url = API_URL + '/pdfapps';
+                            return $http.get(url)
+                                .then(function(rsp){
+                                    return rsp.data.data;
+                                });
+                        }
+                    }
                 })
                 .state('library.polsprocs', {
                     url: '/polsprocs',

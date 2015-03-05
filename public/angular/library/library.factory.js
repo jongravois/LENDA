@@ -13,7 +13,10 @@
         };
 
         function getPdfApps() {
-            return $http.get(API_URL + '/pdfapps');
+            return $http.get(API_URL + '/pdfapps')
+                .then(function success(rsp){
+                    return rsp.data.data;
+                });
         }
     } // end factory
 })();
