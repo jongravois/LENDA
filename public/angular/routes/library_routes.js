@@ -35,22 +35,9 @@
                     controller: 'MatrixController'
                 })
                 .state('library.pdfapps', {
-                    abstract: true,
                     url: '/pdfapps',
-                    template: '<ui-view>',
-                    controller: 'PdfAppsController'
-                })
-                .state('library.pdfapps.list', {
-                    url: '/list',
                     templateUrl: 'angular/library/pdf-apps/pdfapps.html',
-                })
-                .state('library.pdfapps.new', {
-                    url: '/new',
-                    templateUrl: 'angular/library/pdf-apps/pdfapp_new.html'
-                })
-                .state('library.pdfapps.edit', {
-                    url: '/edit/:pdfAppId',
-                    templateUrl: 'angular/library/pdf-apps/pdfapp.html'
+                    controller: 'PdfAppsController'
                 })
                 .state('library.polsprocs', {
                     url: '/polsprocs',

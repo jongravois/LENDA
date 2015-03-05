@@ -3,23 +3,23 @@
     <div>
         <h1>Downloadable Applications</h1>
         <!--<pre>{{pdfApps|json}}</pre>-->
-        <table class="table table-striped table-bordered table-hover table-condensed">
-            <tr>
-                <th></th>
-                <th>Actions</th>
-            </tr>
+        <table class="table table-striped">
             <tr ng-repeat="pdf in pdfApps | orderBy:'rank'" ng-show="{{pdf.visible}}">
-                <td><p><strong><a href="" target="_blank">{{pdf.title}}</a></strong><br>{{pdf.description}}
-                </p></td>
-                <td style="white-space: nowrap">
-                    <a class="btn btn-success" ui-sref="library.pdfapps.edit({pdfAppId:pdf.id})">edit</a>
-                    <button class="btn btn-danger" ng-really-message="This action cannot be undone. Are you sure?"
-                            ng-really-click="removePdfApps($index, r.id)">del
-                    </button>
+                <td style="vertical-align: middle; width: 10%;">
+                    <img src="images/Adobe_PDF_Icon.svg" alt="Adobe Acrobat" style="height:48px;width:auto;"/>
+                </td>
+                <td style="width:90%;">
+                   <h3>
+                       <a href="files_library/{{pdf.pdfLink}}" target="_blank">
+                           {{pdf.title}}
+                       </a>
+                   </h3>
+                    <p>
+                        {{pdf.description}}
+                    </p>
                 </td>
             </tr>
         </table>
-        <a class="btn btn-default" ui-sref="library.pdfapps.new">Add New Document</a>
         <br/><br/><br/><br/>
     </div>
 </div>
