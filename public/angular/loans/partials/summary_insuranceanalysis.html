@@ -20,7 +20,7 @@
                 <td>Crop Insurance coverage in excess of ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}}</span> Loan</td>
                 <td colspan="3" class="text-right">
                     <!--TODO: Ensure arm_and_dist is equal to arm_commit if there is no distributor-->
-                    {{(1 * loan.fins.guaranty) - (1 * financials.arm_and_dist) | flexCurrency:0}}
+                    {{loan.fins.guaranty - financials.arm_and_dist | flexCurrency:0}}
                 </td>
             </tr>
         </table>

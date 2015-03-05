@@ -67,9 +67,8 @@
     </div>
 
     <!--INSURANCE ANALYSIS-->
-    if(parseInt($stateParams.loanTypeID) < 4){
-        <div ng-include="'angular/loans/partials/summary_insuranceanalysis.html'"></div>
-    }
+      <!--TODO: hide if loantypeid < 4-->
+    <div ng-include="'angular/loans/partials/summary_insuranceanalysis.html'"></div>
 
     <!--BREAK-EVEN ANALYSIS-->
           <div ng-include="'angular/loans/partials/summary_breakevenanalysis.html'"></div>

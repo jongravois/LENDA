@@ -10,11 +10,11 @@ gulp.task('clean-styles', function(done){
 });
 
 gulp.task('styles', ['clean-styles'], function(){
-    log('Compiling SASS -> CSS');
+    log('Compiling Less -> CSS');
     return gulp
-        .src(config.sass)
+        .src(config.less)
         .pipe($$.plumber())
-        .pipe($$.sass({onError: function(e) { console.log(e); } }))
+        .pipe($$.less())
         .pipe($$.autoprefixer({browsers: ['last 2 version', '> 5%']}))
         .pipe(gulp.dest(config.temp));
 });
@@ -30,8 +30,8 @@ gulp.task('vet', function(){
         .pipe($$.jshint.reporter('fail'));
 });
 
-gulp.task('watch-sass', function(){
-    gulp.watch([config.sass],['styles']);
+gulp.task('watch-less', function(){
+    gulp.watch([config.less],['styles']);
 });
 
 gulp.task('wiredep', function(){

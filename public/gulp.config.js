@@ -19,8 +19,8 @@ module.exports = function() {
             clientApp + '**/*.js',
             '!' + clientApp + '**/*.spec.js'
         ],
-        sass: [
-            './css/styles.scss'
+        less: [
+            './css/styles.less'
         ],
 
         /**
