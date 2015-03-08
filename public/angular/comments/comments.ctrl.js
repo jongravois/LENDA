@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('CommentsController', CommentsController);
 
-    CommentsController.$inject = ['$scope', '$state', '$stateParams', 'CommentsData', 'CommentsLogic'];
+    CommentsController.$inject = ['$scope', '$stateParams', 'CommentsData', 'CommentsLogic'];
 
-    function CommentsController($scope, $state, $stateParams, CommentsData, CommentsLogic) {
+    function CommentsController($scope, $stateParams, CommentsData, CommentsLogic) {
         CommentsData
             .load($stateParams.loanID)
             .then(CommentsLogic($scope.user.id))
@@ -24,7 +24,7 @@
         $scope.btnCommentReply = function (id) {
             alert(id);
             //pop-up to enter reply
-            var msg = "<p>This is the text that should appear in my modal.</p>";
+            var msg = '<p>This is the text that should appear in my modal.</p>';
             //persist new response
             //create pending status for all committee members
             //push into array

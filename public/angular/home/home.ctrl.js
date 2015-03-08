@@ -3,16 +3,24 @@
     angular
         .module('ARM')
         .controller('HomeController', function ($scope) {
-
+            var headerCellTemplate = '<div class="ngHeaderSortColumn {{col.headerClass}}" ng-style="{\'cursor\': col.cursor}" ng-class="{ \'ngSorted\': !noSortVisible }">' +
+                '<div ng-click="col.sort($event)" ng-class="\'colt\' + col.index" class="ngHeaderText">{{col.displayName}} <span class="glyphicon glyphicon-info-sign"></div>' +
+                '<div class="ngSortButtonDown" ng-show="col.showSortButtonDown()"></div>' +
+                '<div class="ngSortButtonUp" ng-show="col.showSortButtonUp()"></div>' +
+                '<div class="ngSortPriority">{{col.sortPriority}}</div>' +
+                '<div ng-class="{ ngPinnedIcon: col.pinned, ngUnPinnedIcon: !col.pinned }" ng-click="togglePin(col)" ng-show="col.pinnable"></div>' +
+                '</div>' +
+                '<div ng-show="col.resizable" class="ngHeaderGrip" ng-click="col.gripClick($event)" ng-mousedown="col.gripOnMouseDown($event)"></div>';
             $scope.columnDefs = [
                 {
                     field: 'pending',
                     displayName: ' ',
                     cellTemplate: 'angular/layout/grid_tmpl/pending_icons.html',
+                    headerCellTemplate: headerCellTemplate,
                     width: 58
                 }, {
                     field: 'notification',
-                    displayName: ' ',
+                    displayName: 'Status',
                     cellTemplate: 'angular/layout/grid_tmpl/indicators.html',
                     cellClass: 'text-center',
                     width: 120

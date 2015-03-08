@@ -12,8 +12,7 @@
         'ui.utils',
         'angular-loading-bar',
         'toastr',
-        'ngGrid',
-        'angularModalService'
+        'ngGrid'
     ])
         .run(function ($rootScope) {
             $rootScope.$on('$routeChangeSuccess', function () {
