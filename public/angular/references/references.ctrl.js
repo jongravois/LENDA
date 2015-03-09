@@ -4,10 +4,9 @@
         .module('ARM')
         .controller('ReferencesController', ReferencesController);
 
-    ReferencesController.$inject = ['$scope', '$state', '$stateParams', 'LoansFactory'];
+    ReferencesController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
 
-    function ReferencesController($scope, $state, $stateParams,
-                                  LoansFactory) {
+    function ReferencesController($scope, $state, $stateParams, AppFactory, LoansFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;

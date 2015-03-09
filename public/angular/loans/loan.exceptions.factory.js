@@ -7,8 +7,7 @@
     ExceptionsFactory.$inject = ['$http', '$q', 'API_URL', '$stateParams', 'toastr', 'AppFactory', 'FarmersFactory', 'GlobalsFactory', 'InsuranceFactory', 'LoansFactory'];
 
     /* @ngInject */
-    function ExceptionsFactory($http, $q, API_URL, $stateParams, toastr,
-                               AppFactory, FarmersFactory, GlobalsFactory, InsuranceFactory, LoansFactory) {
+    function ExceptionsFactory($http, $q, API_URL, $stateParams, toastr, AppFactory, FarmersFactory, GlobalsFactory, InsuranceFactory, LoansFactory) {
 
         //PUBLIC API
         var factoryMethods = {

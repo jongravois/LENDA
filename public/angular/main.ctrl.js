@@ -19,6 +19,7 @@
         UsersFactory.getUser($scope.user_id).then(function success(response) {
             $scope.user = response.data.data;
             UsersFactory.getNotifications($scope.user_id).then(function success(response) {
+                // TODO Rework Notifications!!!
                 $scope.user.notifications = response.data.data;
                 $scope.user.badged = response.data.data.length;
                 $scope.tooltipNotifications = '<p>' + $scope.user.notifications.map(function (arr) {
@@ -67,6 +68,7 @@
         //SCOPE FUNCTIONS
         $scope.getColor = AppFactory.returnColor;
         $scope.iconItsList = function(status){
+            // TODO: Functionality
             alert(status);
         };
         $scope.newLoan = function (val) {
@@ -116,6 +118,7 @@
         }; // end getReport fn
         $scope.gtZero = AppFactory.gtZero;
         $scope.clkNotificationBadge = function (id) {
+            //TODO: Modal
             alert(id);
         };
         $scope.createLenda = function () {

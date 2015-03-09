@@ -4,11 +4,9 @@
         .module('ARM')
         .factory('LoansFactory', LoansFactory);
 
-    LoansFactory.$inject = ['$http', '$q', '$stateParams', 'toastr', '_',
-        'API_URL', 'AppFactory', 'ConditionsFactory', 'GlobalsFactory'];
+    LoansFactory.$inject = ['$http', '$q', '$stateParams', 'toastr', 'API_URL', 'AppFactory', 'ConditionsFactory', 'GlobalsFactory'];
 
-    function LoansFactory($http, $q, $stateParams, toastr, _,
-                          API_URL, AppFactory, ConditionsFactory, GlobalsFactory) {
+    function LoansFactory($http, $q, $stateParams, toastr, API_URL, AppFactory, ConditionsFactory, GlobalsFactory) {
         return {
             calcGrade: calcGrade,
             createAffiliate: createAffilate,

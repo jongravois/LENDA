@@ -6,8 +6,7 @@
 
     InsuranceController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'InsuranceFactory', 'LoansFactory'];
 
-    function InsuranceController($scope, $state, $stateParams,
-                                 AppFactory, InsuranceFactory, LoansFactory) {
+    function InsuranceController($scope, $state, $stateParams, AppFactory, InsuranceFactory, LoansFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;

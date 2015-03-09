@@ -19,32 +19,9 @@
             });
         }// end if
 
-        if (!$scope.storage) {
-            LoansFactory.getStorage($stateParams.loanID)
-                .then(function success(rsp) {
-                    $scope.storage = rsp.data.data;
-                    console.log('false', $scope.storage);
-                    $scope.newStorage = {
-                        contract_date: $scope.storage.contract_date || new Date(),
-                        grain_buyer: $scope.storage.grain_buyer || '',
-                        advance_percent: $scope.storage.advance_percent || 75,
-                        payment_terms: $scope.storage.payment_terms || 15,
-                        amount_requested: $scope.storage.amount_requested || 0
-                    };
-                });
-        } else {
-            console.log('true', $scope.storage);
-            $scope.newStorage = {
-                contract_date: $scope.storage.contract_date || new Date(),
-                grain_buyer: $scope.storage.grain_buyer || '',
-                advance_percent: $scope.storage.advance_percent || 75,
-                payment_terms: $scope.storage.payment_terms || 15,
-                amount_requested: $scope.storage.amount_requested || 0
-            };
-        } // end if
-
-        $scope.newContract = {
+        var blankNewContract = {
             contract_number: '',
+            commodity: '',
             lien_holder: '',
             delivery_due_date: '',
             owner_share: 0.00,
@@ -64,19 +41,45 @@
             {id: 8, name: 'sugar cane'}
         ];
 
+        LoansFactory.getStorage($stateParams.loanID)
+            .then(function success(rsp){
+                var store = rsp.data.data;
+
+                if(store.length === 0){
+                    $scope.newStorage = {
+                        contract_date: new Date(),
+                        grain_buyer: 'Buyer',
+                        advance_percent: 75,
+                        payment_terms: 15,
+                        amount_requested: 0
+                    };
+                } else {
+                    $scope.newStorage = {
+                        contract_date: store[0].contract_date,
+                        grain_buyer: store[0].grain_buyer,
+                        advance_percent: store[0].advance_percent,
+                        payment_terms: store[0].payment_terms,
+                        amount_requested: store[0].amount_requested
+                    };
+                } // end if
+
+                $scope.storage = store;
+                $scope.newContract = blankNewContract;
+            });
+
         $scope.total_stored = {
-            acres: 0,
-            revenue: 0,
+            contract_amount: _.reduce($scope.storage, function(result, item){
+                return result + item.contract_amount;
+            }, 0),
+            revenue: _.reduce($scope.storage, function(result, item){
+                return result + item.revenue;
+            }, 0),
             eligible: 0,
             remaining: 0
         };
 
         $scope.saveStorageContract = function () {
             //TODO: Validate form
-            if (!$scope.newStorage.grain_buyer || !$scope.newContract.contract_amount || !$scope.newContract.contract_price) {
-                alert('Please fill in all Required Fields');
-                return;
-            } // end if
             var ins = {
                 loan_id: $stateParams.loanID,
                 contract_number: $scope.newContract.contract_number,
@@ -89,8 +92,8 @@
                 contract_price: $scope.newContract.contract_price,
                 owner_share: $scope.newContract.owner_share,
                 amount_requested: $scope.newStorage.amount_requested,
-                revenue: 1 * $scope.newContract.contract_amount * 1 * $scope.newContract.contract_price * (1 - (1 * $scope.newContract.owner_share / 100)),
-                eligible_proceeds: (1 * $scope.newContract.contract_amount * 1 * $scope.newContract.contract_price * (1 - (1 * $scope.newContract.owner_share / 100))) * (1 * ($scope.newStorage.advance_percent / 100)),
+                revenue: (1 * $scope.newContract.contract_amount) * (1 * $scope.newContract.contract_price) * (1 - (1 * $scope.newContract.owner_share / 100)),
+                eligible_proceeds: ((1 * $scope.newContract.contract_amount) * (1 * $scope.newContract.contract_price) * (1 - (1 * $scope.newContract.owner_share / 100))) * ((1 * ($scope.newStorage.advance_percent) / 100)),
                 advance_percent: $scope.newStorage.advance_percent,
                 payment_terms: $scope.newStorage.payment_terms
             };
@@ -98,20 +101,12 @@
 
             // persist data
             AppFactory.postIt('/storage', ins);
-            $scope.total_stored.acres += 1 * ins.contract_amount;
-            $scope.total_stored.revenue += 1 * ins.revenue;
-            $scope.total_stored.eligible += 1 * ins.eligible_proceeds;
-            $scope.total_stored.remaining = (1 * $scope.total_stored.eligible) - $scope.newStorage.amount_requested;
+            $scope.total_stored.contract_amount += (1 * ins.contract_amount);
+            $scope.total_stored.revenue += (1 * ins.revenue);
+            $scope.total_stored.eligible += (1 * ins.eligible_proceeds);
+            $scope.total_stored.remaining = (1 * $scope.total_stored.eligible) - (1 * $scope.newStorage.amount_requested);
 
-            $scope.newContract = {
-                contract_number: '',
-                lien_holder: '',
-                delivery_due_date: '',
-                owner_share: 0.00,
-                contract_amount: 0.00,
-                uom: 'bu',
-                contract_price: 0.0000
-            };
+            $scope.newContract = blankNewContract;
         };
 
         $scope.insertGrain = function () {

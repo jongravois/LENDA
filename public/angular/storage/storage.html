@@ -1,6 +1,6 @@
 <fieldset>
   <legend>Grain Storage</legend>
-  <pre>{{newStorage|json}}</pre>
+  <!--<pre>{{storage|json}}</pre>-->
   <table class="table table-striped rowed" style="width:97%; margin: 0 auto;">
     <tr>
       <td style="width:200px;">
@@ -14,15 +14,15 @@
       </td>
       <td style="width:200px;">
         <label>Percent to Advance</label>
-        <input type="text" class="form-control" style="width:190px;" name="advance_percent" ng-model="newStorage[0].advance_percent"/>
+        <input type="text" class="form-control" style="width:190px;" name="advance_percent" ng-model="newStorage.advance_percent"/>
       </td>
       <td style="width:200px;">
         <label>Payment Terms</label>
-        <input type="text" class="form-control" style="width:190px;" name="payment_terms" ng-model="newStorage[0].payment_terms"/>
+        <input type="text" class="form-control" style="width:190px;" name="payment_terms" ng-model="newStorage.payment_terms"/>
       </td>
       <td style="width:200px;">
         <label>Amount Requested</label>
-        <input type="text" class="form-control" style="width:190px;" name="amount_requested" ng-model="newStorage[0].amount_requested"/>
+        <input type="text" class="form-control" style="width:190px;" name="amount_requested" ng-model="newStorage.amount_requested"/>
       </td>
     </tr>
   </table>
@@ -42,7 +42,7 @@
             <th>Eligible Proceeds</th>
           </tr>
           <tr>
-            <td colspan="8" ng-if="storage.length == 0">
+            <td colspan="8" ng-hide="storage.length > 0">
               <strong>No contracts found!</strong>
             </td>
           </tr>
@@ -60,7 +60,7 @@
               {{store.owner_share|flexPercent:1}}
             </td>
             <td class="text-right">
-              {{store.contract_amount|number:0}}
+              {{store.contract_amount|number:1}}
             </td>
             <td class="text-right">
               {{store.contract_price|flexCurrency:4}}
@@ -73,11 +73,11 @@
             </td>
           </tr>
           <tr class="success" ng-if="storage.length > 0">
-            <td colspan="3">Total</td>
+            <td colspan="4">Total</td>
             <td class="text-right">
-              {{total_stored.acres|number:0}}
+              {{total_stored.contract_amount|number:1}}
             </td>
-            <td colspan="2">&nbsp;</td>
+            <td>&nbsp;</td>
             <td class="text-right">
               {{total_stored.revenue|flexCurrency:0}}
             </td>
@@ -105,7 +105,7 @@
       </td>
       <td>
         <label>Commodity</label>
-        <select name="commodity" class="form-control" ng-model="newStorage.commodity" ng-options="c.name as c.name for c in commodityDD">
+        <select name="commodity" class="form-control" ng-model="newContract.commodity" ng-options="c.name as c.name for c in commodityDD">
           <option value="">Please select ...</option>
         </select>
       </td>

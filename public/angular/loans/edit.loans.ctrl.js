@@ -4,10 +4,10 @@
         .module('ARM')
         .controller('EditLoansController', EditLoansController);
 
-    EditLoansController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'toastr', 'InitialData', 'AppFactory', 'ApplicantsFactory', 'ExceptionsFactory', 'FarmersFactory', 'LoansFactory', 'InsuranceFactory'];
+    EditLoansController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'toastr', 'InitialData', 'AppFactory', 'ApplicantsFactory', 'ExceptionsFactory', 'FarmersFactory', 'LoansFactory'];
 
     /* @ngInject */
-    function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, InitialData, AppFactory, ApplicantsFactory, ExceptionsFactory, FarmersFactory, LoansFactory, InsuranceFactory) {
+    function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, InitialData, AppFactory, ApplicantsFactory, ExceptionsFactory, FarmersFactory, LoansFactory) {
         $scope.loantypeID = $stateParams.loantypeID;
         $scope.loan = InitialData.data.data[0];
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);

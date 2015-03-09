@@ -4,8 +4,7 @@
         .module('ARM')
         .controller('SummaryController', SummaryController);
     SummaryController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
-    function SummaryController($scope, $state, $stateParams,
-                               AppFactory, LoansFactory) {
+    function SummaryController($scope, $state, $stateParams, AppFactory, LoansFactory) {
         if (parseInt($stateParams.loantypeID) === 7) {
             //GRAIN STORAGE
             LoansFactory.getStorage($stateParams.loanID)

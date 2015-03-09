@@ -9,6 +9,7 @@
     /* @ngInject */
     function ModalService($modal) {
         var service = {
+            commentReply: commentReply,
             confirm: confirm,
             confirmDelete: confirmDelete
         };
@@ -16,6 +17,22 @@
         return service;
 
         //////////
+        function commentReply (data) {
+            var modalInstance = $modal.open({
+                templateUrl: 'angular/comments/reply-modal.html',
+                controller: 'ConfirmModalController',
+                controllerAs: 'vm',
+                resolve: {
+                    data: function(){
+                        return {};
+                    }
+                },
+                size: 'lg'
+            });
+
+            return modalInstance.result;
+        }
+
         function confirm (data) {
             var modalInstance = $modal.open({
                 templateUrl: 'angular/modals/confirm-modal.html',

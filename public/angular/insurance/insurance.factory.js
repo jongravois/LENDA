@@ -4,10 +4,10 @@
         .module('ARM')
         .factory('InsuranceFactory', InsuranceFactory);
 
-    InsuranceFactory.$inject = ['$http', '$q', '$stateParams', '_', 'API_URL'];
+    InsuranceFactory.$inject = ['$http', '$q', '$stateParams', 'API_URL'];
 
     /* @ngInject */
-    function InsuranceFactory($http, $q, $stateParams, _, API_URL) {
+    function InsuranceFactory($http, $q, $stateParams, API_URL) {
 
         // TODO: Factor in changing from RP ins_type
         var factObj = {
@@ -46,7 +46,9 @@
                 var cropTotals = {};
 
                 var agencies = _.uniq(policies, 'agent_id');
-                agencies[0].isOpen = 1;
+                if(agencies.length > 0) {
+                    agencies[0].isOpen = 1;
+                }
                 tmpData.agencies = agencies;
 
                 angular.forEach(policies, function (obj) {
