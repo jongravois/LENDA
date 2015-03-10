@@ -38,5 +38,15 @@
       </td>
     </tr>
   </table>
+    <div class="row">
+        <div class="col-md-12 text-right" style="padding-top:25px;">
+        <span ng-if="newapplication">
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="moveFromDocs()">Next</button>
+        </span>
+        <span ng-if="!newapplication">
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="moveFromDocs()">UPDATE</button>
+        </span>
+        </div>
+    </div>
 </fieldset>
 <!--<pre>{{docs | json}}</pre>-->

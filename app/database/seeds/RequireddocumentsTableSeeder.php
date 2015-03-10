@@ -28,11 +28,10 @@ class RequireddocumentsTableSeeder extends Seeder{
 			'loantype_id' =>	6,
 			'document'	  =>	"Signed Application"
 		]);
-    Requireddocuments::create([
-      'loantype_id' =>	7,
-      'document'	  =>	"Signed Application"
-    ]);
-
+        Requireddocuments::create([
+          'loantype_id' => 7,
+          'document' =>	"Signed Application"
+        ]);
 		Requireddocuments::create([
 			'loantype_id' =>	1,
 			'document'	  =>	"Driver's License"
@@ -57,11 +56,10 @@ class RequireddocumentsTableSeeder extends Seeder{
 			'loantype_id' =>	6,
 			'document'	  =>	"Driver's License"
 		]);
-    Requireddocuments::create([
-      'loantype_id' =>	7,
-      'document'	  =>	"Driver's License"
-    ]);
-
+        Requireddocuments::create([
+          'loantype_id' =>	7,
+          'document'	  =>	"Driver's License"
+        ]);
 		Requireddocuments::create([
 			'loantype_id' =>	1,
 			'document'	  =>	"CPA Financials"
@@ -86,11 +84,10 @@ class RequireddocumentsTableSeeder extends Seeder{
 			'loantype_id' =>	6,
 			'document'	  =>	"CPA Financials"
 		]);
-    Requireddocuments::create([
-      'loantype_id' =>	7,
-      'document'	  =>	"CPA Financials"
-    ]);
-
+        Requireddocuments::create([
+          'loantype_id' =>	7,
+          'document'	  =>	"CPA Financials"
+        ]);
 		Requireddocuments::create([
 			'loantype_id' =>	1,
 			'document'	  =>	"Equipment List"

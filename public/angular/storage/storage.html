@@ -147,11 +147,11 @@
 
   <div class="row">
     <div class="col-md-12 text-right" style="padding-top:25px;">
-        <span ng-if="newapplication">
-          <button style="margin-right:10px;" class="btn btn-primary" ng-click="insertGrain()">Next</button>
+        <span ng-if="newapplication" ng-disabled="total_stored.remaining >= 0">
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="moveFromGrain()">Next</button>
         </span>
         <span ng-if="!newapplication">
-          <button style="margin-right:10px;" class="btn btn-primary" ng-click="updateGrain()">UPDATE</button>
+          <button style="margin-right:10px;" class="btn btn-primary" ng-click="moveFromGrain()">UPDATE</button>
         </span>
     </div>
   </div>

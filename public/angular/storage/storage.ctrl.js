@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('StorageController', StorageController);
 
-    StorageController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
+    StorageController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory', 'StorageFactory'];
 
-    function StorageController($scope, $state, $stateParams, AppFactory, LoansFactory) {
+    function StorageController($scope, $state, $stateParams, AppFactory, LoansFactory, StorageFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;
@@ -18,17 +18,6 @@
                 }
             });
         }// end if
-
-        var blankNewContract = {
-            contract_number: '',
-            commodity: '',
-            lien_holder: '',
-            delivery_due_date: '',
-            owner_share: 0.00,
-            contract_amount: 0.00,
-            uom: 'bu',
-            contract_price: 0.0000
-        };
 
         $scope.commodityDD = [
             {id: 1, name: 'corn'},
@@ -48,7 +37,7 @@
                 if(store.length === 0){
                     $scope.newStorage = {
                         contract_date: new Date(),
-                        grain_buyer: 'Buyer',
+                        grain_buyer: '',
                         advance_percent: 75,
                         payment_terms: 15,
                         amount_requested: 0
@@ -64,19 +53,14 @@
                 } // end if
 
                 $scope.storage = store;
-                $scope.newContract = blankNewContract;
+                $scope.newContract = _getBlankForm();
+                $scope.total_stored = {
+                    contract_amount: StorageFactory.calcContractAmount($scope.storage),
+                    revenue: StorageFactory.calcRevenue($scope.storage),
+                    eligible:  StorageFactory.calcEligible($scope.storage, $scope.newStorage.advance_percent),
+                    remaining: StorageFactory.calcEligible($scope.storage, $scope.newStorage.advance_percent) - (1 * $scope.newStorage.amount_requested)
+                };
             });
-
-        $scope.total_stored = {
-            contract_amount: _.reduce($scope.storage, function(result, item){
-                return result + item.contract_amount;
-            }, 0),
-            revenue: _.reduce($scope.storage, function(result, item){
-                return result + item.revenue;
-            }, 0),
-            eligible: 0,
-            remaining: 0
-        };
 
         $scope.saveStorageContract = function () {
             //TODO: Validate form
@@ -101,20 +85,40 @@
 
             // persist data
             AppFactory.postIt('/storage', ins);
+
             $scope.total_stored.contract_amount += (1 * ins.contract_amount);
             $scope.total_stored.revenue += (1 * ins.revenue);
             $scope.total_stored.eligible += (1 * ins.eligible_proceeds);
             $scope.total_stored.remaining = (1 * $scope.total_stored.eligible) - (1 * $scope.newStorage.amount_requested);
 
-            $scope.newContract = blankNewContract;
+            $scope.newContract = _getBlankForm();
         };
 
-        $scope.insertGrain = function () {
-            //obj.loan_id = $stateParams.loanID;
+        $scope.moveFromGrain = function () {
+            var loan_id = $stateParams.loanID;
+            var data = {
+                prod: $scope.total_stored.eligible,
+                adj_prod: $scope.total_stored.eligible,
+                collateral: $scope.total_stored.eligible,
+                commit_arm: $scope.newStorage.amount_requested,
+                commit_total: $scope.newStorage.amount_requested
+            };
+            AppFactory.putIt('/loanfinancials/', loan_id, data);
+
             AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
         };
 
-        $scope.updateGrain = function () {
-        };
+        function _getBlankForm() {
+            return {
+                contract_number: '',
+                commodity: '',
+                lien_holder: '',
+                delivery_due_date: '',
+                owner_share: 0.00,
+                contract_amount: 0.00,
+                uom: 'bu',
+                contract_price: 0.0000
+            };
+        }
     }
 })();

@@ -23,26 +23,26 @@
     "bardjs": "~0.0.3"
   },
   "dependencies": {
-    "lodash": "~2.4.1",
-    "jquery": "~2.1.3",
-    "bootstrap": "~3.3.1",
-    "moment": "~2.8.4",
-    "angular": "~1.3.4",
-    "angular-bootstrap": "~0.12.0",
-    "angular-toastr": "~0.5.2",
-    "angular-ui-router": "~0.2.13",
-    "angular-ui-utils": "~0.1.1",
-    "angular-messages": "~1.3.13",
-    "angular-sanitize": "~1.3.4",
-    "angular-animate": "~1.3.14",
-    "angular-resource": "~1.3.4",
-    "angular-loading-bar": "~0.6.0",
-    "ng-grid": "~2.0.14"
+      "lodash": "~2.4.1",
+      "jquery": "~2.1.3",
+      "bootstrap": "~3.3.1",
+      "moment": "~2.8.4",
+      "angular": "~1.3.4",
+      "angular-bootstrap": "~0.12.0",
+      "angular-toastr": "~0.5.2",
+      "angular-ui-router": "~0.2.13",
+      "angular-ui-utils": "~0.1.1",
+      "angular-messages": "~1.3.13",
+      "angular-sanitize": "~1.3.4",
+      "angular-animate": "~1.3.14",
+      "angular-resource": "~1.3.4",
+      "angular-loading-bar": "~0.6.0",
+      "ng-grid": "~2.0.14"
   },
   "resolutions": {
-    "angular-ui-router": "~0.2.13",
-    "angular-animate": "~1.3.4",
-    "angular": "~1.x",
-    "angular-sanitize": "~1.3.4"
+      "angular-ui-router": "~0.2.13",
+      "angular-animate": "~1.3.4",
+      "angular": "~1.x",
+      "angular-sanitize": "~1.3.4"
   }
 }

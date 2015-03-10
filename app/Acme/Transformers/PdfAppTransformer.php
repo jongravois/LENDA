@@ -11,9 +11,6 @@ class PdfAppTransformer extends Transformer
       'title' => $arr['title'],
       'description' => $arr['description'],
       'pdfLink' => $arr['pdfLink'],
-      'pdfImg' => $arr['pdfImg'],
-      'docLink' => $arr['docLink'],
-      'docImg' => $arr['docImg'],
       'rank' => (integer) $arr['rank'],
       'visible' => (boolean) $arr['isVisible']
     ];

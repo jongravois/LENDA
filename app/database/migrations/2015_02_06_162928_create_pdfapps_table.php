@@ -13,11 +13,8 @@ class CreatePdfappsTable extends Migration {
 			$table->string('title');
 			$table->text('description');
 			$table->string('pdfLink');
-			$table->string('pdfImg');
-			$table->string('docLink');
-			$table->string('docImg');
 			$table->integer('rank');
-			$table->boolean('isVisible');
+			$table->boolean('isVisible')->default(1);
 			$table->timestamps();
 		});
 	}

@@ -13,7 +13,7 @@
     </style>
 
     <!-- bower:css -->
-    <link rel="stylesheet" href="/vendor/bootstrap-3.3.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.min.css"/>
     <link rel="stylesheet" href="vendor/ng-grid/ng-grid.min.css"/>
     <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.min.css"/>
@@ -23,13 +23,7 @@
     <link rel="stylesheet" href=".tmp/styles.css"/>
     <!-- endinject -->
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/ico/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/ico/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/ico/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/ico/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/ico/apple-touch-icon-76x76.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/ico/apple-touch-icon-152x152.png">
     <link rel="icon" type="image/png" href="/ico/favicon-196x196.png" sizes="196x196">
     <link rel="icon" type="image/png" href="/ico/favicon-160x160.png" sizes="160x160">
@@ -57,7 +51,7 @@
 <!-- bower:js -->
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script src="vendor/lodash/dist/lodash.min.js"></script>
-<script src="vendor/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+{{--<script src="vendor/bootstrap/js/bootstrap.min.js"></script>--}}
 <script src="vendor/moment/min/moment.min.js"></script>
 
 <script src="vendor/angular/angular.min.js"></script>
@@ -67,11 +61,10 @@
 <script src="vendor/angular-ui-utils/ui-utils.min.js"></script>
 <script src="vendor/angular-messages/angular-messages.min.js"></script>
 <script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
-<!--<script src="vendor/angular-animate/angular-animate.min.js"></script>-->
+<script src="vendor/angular-animate/angular-animate.min.js"></script>
 <script src="vendor/angular-resource/angular-resource.min.js"></script>
 <script src="vendor/angular-loading-bar/build/loading-bar.min.js"></script>
 <script src="vendor/ng-grid/build/ng-grid.debug.js"></script>
-<script src="vendor/angular-modal-service/dst/angular-modal-service.min.js"></script>
 <!-- endbower -->
 
 <!-- inject.js -->
@@ -148,6 +141,8 @@
 <script src="angular/loans/new.loans.ctrl.js"></script>
 <script src="angular/loans/purgatory.ctrl.js"></script>
 <script src="angular/management/management.ctrl.js"></script>
+<script src="angular/modals/confirm.modal.ctrl.js"></script>
+<script src="angular/modals/modals.service.js"></script>
 <script src="angular/optimizer/optimizer.ctrl.js"></script>
 <script src="angular/quests/quests.ctrl.js"></script>
 <script src="angular/quests/quests.factory.js"></script>
@@ -161,6 +156,7 @@
 <script src="angular/shared/logging.factory.js"></script>
 <script src="angular/shared/messages.factory.js"></script>
 <script src="angular/storage/storage.ctrl.js"></script>
+<script src="angular/storage/storage.factory.js"></script>
 <script src="angular/systemics/systemics.ctrl.js"></script>
 <script src="angular/terms/terms.ctrl.js"></script>
 <script src="angular/underwriting/underwriting.ctrl.js"></script>

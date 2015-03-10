@@ -13,7 +13,7 @@ class LoansController extends ApiController {
 	function __construct(LoanTransformer $loanTransformer, NotificationTransformer $notificationTransformer, CommentTransformer $commentTransformer)
 	{
 		$this->loanTransformer = $loanTransformer;
-    $this->notificationTransformer = $notificationTransformer;
+        $this->notificationTransformer = $notificationTransformer;
 		$this->commentTransformer = $commentTransformer;
 
 		//$this->beforeFilter('auth.basic', ['on'=>'post']);

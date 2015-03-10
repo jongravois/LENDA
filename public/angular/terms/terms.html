@@ -1,9 +1,4 @@
-<style>
-  .rowed td{border:1px solid #dddddd; }
-</style>
-<form>
 <fieldset>
-  <!--<pre>{{loan.due_date | json}}</pre>-->
   <legend>Loan Terms</legend>
   <div class="row">
     <div class="col-md-12">
@@ -15,10 +10,10 @@
           </td>
         </tr>
         <tr>
+            <!--TODO: Exception if changed from Global-->
           <td style="width:22%;">Loan Due Date</td>
           <td colspan="2">
             <text-edit-in-place value="loan.due_date"></text-edit-in-place>
-            <!--<text-edit-in-place value="loan.due_date" ng-change="changeDueDate()"></text-edit-in-place>-->
           </td>
           <td>&nbsp;</td>
         </tr>
@@ -66,7 +61,7 @@
             <percent-edit-in-place value="loan.fins.int_percent_arm"></percent-edit-in-place>
           </td>
           <td class="text-right">
-            *{{(loan.loan_days/365)*(loan.fins.int_percent_arm/100)*loan.fins.commit_arm*.5 | flexCurrency:0}}
+            *{{loan.fins.int_arm|flexCurrency:0}}
           </td>
           <td class="text-center">&nbsp;</td>
         </tr>
@@ -76,7 +71,7 @@
             <percent-edit-in-place value="loan.fins.int_percent_dist"></percent-edit-in-place>
           </td>
           <td class="text-right">
-            *{{(loan.loan_days/365)*(loan.fins.int_percent_dist/100)*loan.fins.commit_dist*.5 | flexCurrency:0}}
+            *{{loan.fins.int_dist | flexCurrency:0}}
           </td>
           <td class="text-center">&nbsp;</td>
         </tr>
@@ -97,4 +92,5 @@
     </div>
   </div>
 </fieldset>
-  </form>
+<!--<pre>{{globals|json}}</pre>-->
+<!--<pre>{{loans|json}}</pre>-->
