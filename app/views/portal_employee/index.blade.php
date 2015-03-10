@@ -139,11 +139,11 @@
 <script src="angular/loans/loans.processor.factory.js"></script>
 <script src="angular/loans/loan.summary.ctrl.js"></script>
 <script src="angular/loans/new.loans.ctrl.js"></script>
-<script src="angular/loans/purgatory.ctrl.js"></script>
 <script src="angular/management/management.ctrl.js"></script>
 <script src="angular/modals/confirm.modal.ctrl.js"></script>
 <script src="angular/modals/modals.service.js"></script>
 <script src="angular/optimizer/optimizer.ctrl.js"></script>
+<script src="angular/purgatory/purgatory.ctrl.js"></script>
 <script src="angular/quests/quests.ctrl.js"></script>
 <script src="angular/quests/quests.factory.js"></script>
 <script src="angular/references/references.ctrl.js"></script>

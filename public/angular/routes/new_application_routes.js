@@ -94,7 +94,7 @@
                 })
                 .state('new.purgatory', {
                     url: '/purgatory',
-                    templateUrl: 'angular/loans/newpurgatory.html',
+                    templateUrl: 'angular/purgatory/purgatory.html',
                     controller: 'PurgatoryController',
                     data: {newapplication: true}
                 })
