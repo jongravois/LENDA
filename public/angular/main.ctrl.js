@@ -16,30 +16,26 @@
             $scope.users = response.data.data;
         });
 
-        UsersFactory.getUser($scope.user_id).then(function success(response) {
-            $scope.user = response.data.data;
-            UsersFactory.getNotifications($scope.user_id).then(function success(response) {
-                // TODO Rework Notifications!!!
-                $scope.user.notifications = response.data.data;
-                $scope.user.badged = response.data.data.length;
-                $scope.tooltipNotifications = '<p>' + $scope.user.notifications.map(function (arr) {
-                    return arr.task;
-                }).join('</p><p>') + '</p>';
-            });
+        UsersFactory.getUser($scope.user_id)
+            .then(function success(response) {
+                $scope.user = response.data.data;
+                UsersFactory
+                    .getNotifications($scope.user_id)
+                    .then(function success(response) {
+                        // TODO Rework Notifications!!!
+                        $scope.user.notifications = response.data.data;
+                        $scope.user.badged = response.data.data.length;
+                        $scope.tooltipNotifications = '<p>' + $scope.user.notifications.map(function (arr) {
+                            return arr.task;
+                    })
+                    .join('</p><p>') + '</p>';
+                    toastr.success('Loaded User', 'Success!');
+                });
         });
 
         GlobalsFactory.getGlobals()
-            .then(function success(response) {
-                $scope.globals = response.data.data[0];
-                $scope.cropYears = [
-                    {id: $scope.globals.CY, year: $scope.globals.CY},
-                    {id: $scope.globals.PY1, year: $scope.globals.PY1},
-                    {id: $scope.globals.PY2, year: $scope.globals.PY2},
-                    {id: $scope.globals.PY3, year: $scope.globals.PY3},
-                    {id: $scope.globals.PY4, year: $scope.globals.PY4},
-                    {id: $scope.globals.PY5, year: $scope.globals.PY5},
-                    {id: $scope.globals.PY6, year: $scope.globals.PY6},
-                ];
+            .then(function success(rsp){
+                $scope.globals = rsp.data[0];
                 LoansProcessor.getLoansWithExtraData()
                     .then(function (allLoans) {
                         $scope.loans = allLoans;
@@ -47,12 +43,13 @@
                             return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
                         });
                     });
-                //toastr.success('Loaded all loans', 'Success!');
+                toastr.success('Loaded all loans', 'Success!');
             });
 
-        GlobalsFactory.getAdminGrader().then(function success(response) {
-            $scope.grads = response.data.data;
-        });
+        GlobalsFactory.getAdminGrader()
+            .then(function success(response) {
+                $scope.grads = response.data.data;
+            });
 
         FeederFactory.init();
         $scope.feeder = FeederFactory.getObject();

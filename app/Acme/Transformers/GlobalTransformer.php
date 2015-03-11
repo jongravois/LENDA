@@ -1,5 +1,7 @@
 <?php namespace Acme\Transformers;
 
+use Carbon\Carbon;
+
 class GlobalTransformer extends Transformer{
 
 	public function transform($arr)
@@ -23,7 +25,19 @@ class GlobalTransformer extends Transformer{
 			'claims_discount_rate' => (double) $arr['claims_discount_rate'],
 			'current_bs_constraint' => (double) $arr['current_bs_constraint'],
 			'intermediate_bs_constraint' => (double) $arr['intermediate_bs_constraint'],
-			'fixed_bs_constraint' => (double) $arr['fixed_bs_constraint']
+			'fixed_bs_constraint' => (double) $arr['fixed_bs_constraint'],
+            'cropYears' => [
+                'CY' => (integer) $arr['crop_year'],
+                'PY1' => (integer) $arr['crop_year'] - 1,
+                'PY2' => (integer) $arr['crop_year'] - 2,
+                'PY3' => (integer) $arr['crop_year'] - 3,
+                'PY4' => (integer) $arr['crop_year'] - 4,
+                'PY5' => (integer) $arr['crop_year'] - 5,
+                'PY6' => (integer) $arr['crop_year'] - 6
+            ],
+            'today' => Carbon::now()->format('m/d/Y'),
+            'forward3days' => Carbon::now()->addDays(3)->format('m/d/Y'),
+            'forward14days' => Carbon::now()->addDays(14)->format('m/d/Y')
 		];
 	}
 }

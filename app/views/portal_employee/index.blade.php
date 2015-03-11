@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.min.css"/>
     <link rel="stylesheet" href="vendor/ng-grid/ng-grid.min.css"/>
-    <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.min.css"/>
+    <link rel="stylesheet" href="vendor/angular-toastr/angular-toastr.min.css"/>
     <!-- endbower -->
 
     <!-- inject:css -->
@@ -54,15 +54,15 @@
 {{--<script src="vendor/bootstrap/js/bootstrap.min.js"></script>--}}
 <script src="vendor/moment/min/moment.min.js"></script>
 
-<script src="vendor/angular/angular.min.js"></script>
+<script src="vendor/angular-1.3.14/angular.min.js"></script>
 <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="vendor/angular-toastr/dist/angular-toastr.min.js"></script>
+<script src="vendor/angular-1.3.14/angular-animate.min.js"></script>
+<script src="vendor/angular-toastr/angular-toastr.tpls.min.js"></script>
 <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="vendor/angular-ui-utils/ui-utils.min.js"></script>
-<script src="vendor/angular-messages/angular-messages.min.js"></script>
-<script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="vendor/angular-animate/angular-animate.min.js"></script>
-<script src="vendor/angular-resource/angular-resource.min.js"></script>
+<script src="vendor/angular-1.3.14/angular-messages.min.js"></script>
+<script src="vendor/angular-1.3.14/angular-sanitize.min.js"></script>
+<script src="vendor/angular-1.3.14/angular-resource.min.js"></script>
 <script src="vendor/angular-loading-bar/build/loading-bar.min.js"></script>
 <script src="vendor/ng-grid/build/ng-grid.debug.js"></script>
 <!-- endbower -->
@@ -79,8 +79,8 @@
 <script src="angular/routes/reports_routes.js"></script>
 <script src="angular/filters/filters.js"></script>
 <script src="angular/models/base.js"></script>
-<script src="angular/directives/directives.js"></script>
-<script src="angular/directives/inPlaceDirectives.js"></script>
+<script src="angular/_directives/directives.js"></script>
+<script src="angular/_directives/inPlaceDirectives.js"></script>
 
 <script src="angular/admin/admin.ctrl.js"></script>
 <script src="angular/admin/applicants/admin.applicants.ctrl.js"></script>
