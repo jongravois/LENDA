@@ -63,7 +63,7 @@ class CreateAddloansTable extends Migration {
             $table->integer('rebate_assignment')->default(0);
             $table->integer('limit_warning')->default(0);
             $table->integer('crop_inspection')->default(0);
-            $table->integer('reconcilliation')->default(0);
+            $table->integer('reconciliation')->default(0);
             $table->integer('account_classification')->default(0);
             $table->boolean('conditions_asa')->default(0);
             $table->boolean('conditions_aci')->default(0);

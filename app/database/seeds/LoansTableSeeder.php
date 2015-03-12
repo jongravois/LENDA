@@ -51,7 +51,7 @@ class LoansTableSeeder extends Seeder {
 			'rebate_assignment' => 0,
 			'limit_warning' => 0,
 			'crop_inspection' => 0,
-			'reconcilliation' => 0,
+			'reconciliation' => 0,
 			'grade' => 'B',
 			'conditions_asa' => 1,
 			'conditions_aci' => 1,

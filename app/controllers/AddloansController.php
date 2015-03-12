@@ -21,7 +21,7 @@ class AddloansController extends ApiController {
 
     public function index()
     {
-        $loans = Addloan::with('applicants.entitytype', 'committee.user', 'corporations', 'comments.responses', 'comments.status', 'distributor', 'farmer', 'farms.county', 'financials', 'insurance', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs',  'location', 'partners', 'regions', 'ventures', 'user')->where('applicant_id', '!=', 'null')->get();
+        $loans = Addloan::where('applicant_id', '!=', 'null')->get();
         //return $loans;  //REMOVE THIS
 
         return $this->respond([
@@ -32,7 +32,7 @@ class AddloansController extends ApiController {
     public function show($id)
     {
         //USED BY LoansFactory
-        $loan = Addloan::with('loanstatus', 'loantype', 'location', 'regions', 'user')->where('id', $id)->get();
+        $loan = Addloan::where('id', $id)->get();
         //return $loan;
 
         if( $loan->isEmpty() ){
@@ -125,7 +125,7 @@ class AddloansController extends ApiController {
                 'rebate_assignment' => (integer) $arr['rebate_assignment'],
                 'limit_warning' => (integer) $arr['limit_warning'],
                 'crop_inspection' => (integer) $arr['crop_inspection'],
-                'reconcilliation' => (integer) $arr['reconcilliation'],
+                'reconciliation' => (integer) $arr['reconciliation'],
                 'account_classification' => (integer) $arr['account_classification'],
                 'last_activity' => $arr['updated_at'],
                 'analyst' => [

@@ -186,7 +186,7 @@
             },
             {
                 'id': 19,
-                'cat': 'reconcilliation',
+                'cat': 'reconciliation',
                 'glyph': 'retweet',
                 'tip': 'Reconciliation'
             },

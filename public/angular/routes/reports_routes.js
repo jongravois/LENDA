@@ -11,7 +11,7 @@
                 })
                 .state('reports.accrecon', {
                     url: '/accrecon',
-                    templateUrl: 'angular/reports/views/account_reconcilliation.html'
+                    templateUrl: 'angular/reports/views/account_reconciliation.html'
                 })
                 .state('reports.actdet', {
                     url: '/actdet',
