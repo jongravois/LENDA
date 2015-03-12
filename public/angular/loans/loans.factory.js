@@ -12,7 +12,6 @@
             createAffiliate: createAffilate,
             createDistributor: createDistributor,
             createFinancials: createFinancials,
-            createLoan: createLoan,
             createLoanCondition: createLoanCondition,
             createReference: createReference,
             finalizeNewLoan: finalizeNewLoan,
@@ -147,22 +146,6 @@
 
         function createFinancials(o) {
             return $http.post(API_URL + '/loanfinancials', o);
-        }
-
-        function createLoan(type) {
-            var globals = {};
-            var obj = {};
-
-            GlobalsFactory.getGlobals().then(function success(response) {
-                globals = response.data.data[0];
-
-                obj = {
-                    loan_type_id: type,
-                    crop_year: globals.crop_year
-                };
-            });
-
-            return obj;
         }
 
         function createLoanCondition(o) {

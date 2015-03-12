@@ -10,9 +10,8 @@ class CreateLoantypesTable extends Migration {
 		Schema::create('loantypes', function(Blueprint $table)
 		{
 			$table->increments('id');
-      $table->string('loantype');
-      $table->string('ltPath');
-      $table->string('default_due_date')->default('-12-15');
+            $table->string('loantype');
+            $table->string('default_due_date')->default('-12-15');
 		});
 	}
 

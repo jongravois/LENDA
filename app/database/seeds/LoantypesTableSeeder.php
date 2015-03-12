@@ -5,34 +5,27 @@ class LoantypesTableSeeder extends Seeder {
   public function run()
   {
     Loantype::create([
-      'loantype' => 'All-In',
-      'ltPath'   => 'ali'
+      'loantype' => 'All-In'
     ]);
     Loantype::create([
-      'loantype' => 'Ag-Input',
-      'ltPath'   => 'agi'
+      'loantype' => 'Ag-Input'
     ]);
     Loantype::create([
-      'loantype' => 'Ag-Pro',
-      'ltPath'   => 'agp'
+      'loantype' => 'Ag-Pro'
     ]);
     Loantype::create([
-      'loantype' => 'Ag-Pro Fasttrack',
-      'ltPath'   => 'apf'
+      'loantype' => 'Ag-Pro Fasttrack'
     ]);
     Loantype::create([
       'loantype' => 'Capital Bridge',
-      'ltPath'   => 'cbr',
       'default_due_date' => '-3-15'
     ]);
     Loantype::create([
       'loantype' => 'Ag-Vest',
-      'ltPath'   => 'agv',
       'default_due_date' => '-3-15'
     ]);
     Loantype::create([
       'loantype' => 'Grain Storage',
-      'ltPath'   => 'grs',
       'default_due_date' => '-3-15'
     ]);
   }

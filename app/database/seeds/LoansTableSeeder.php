@@ -15,6 +15,7 @@ class LoansTableSeeder extends Seeder {
 			'due_date' => '2015-12-15',
 			'loan_type_id' => 2,
 			'status_id' => 1,
+            'analyst_can_approve' => 1,
             'has_addendum' => 1,
             'crop_year' => '2015',
 			'season' => 'S',

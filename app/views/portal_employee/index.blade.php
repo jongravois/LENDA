@@ -70,6 +70,7 @@
 <!-- inject.js -->
 <script src="angular/app.module.js"></script>
 <script src="angular/main.ctrl.js"></script>
+<script src="angular/main.loans.ctrl.js"></script>
 <script src="angular/constants/constants.js"></script>
 <script src="angular/routes/routes.js"></script>
 <script src="angular/routes/admin_routes.js"></script>

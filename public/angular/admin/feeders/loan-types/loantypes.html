@@ -1,18 +1,14 @@
-<div ng-controller="AdminLoantypesController">
+<div>
     <div ui-view></div>
     <!--<pre>{{locations | json}}</pre>-->
     <table class="table table-striped table-bordered table-hover table-condensed">
         <tr>
             <th style="width:15%;">Loantype</th>
-            <th style="width:15%;">Nav Path</th>
             <th style="width:15%;">Actions</th>
         </tr>
         <tr ng-repeat="l in feeder.loantypes">
             <td>
                 {{ l.loantype }}
-            </td>
-            <td>
-                {{ l.ltPath }}
             </td>
             <td style="white-space: nowrap">
                 <a class="btn btn-success" ui-sref="admin.loantypes.edit({loantypeId:l.id})">edit</a>

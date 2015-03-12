@@ -4,8 +4,14 @@
         .module('ARM')
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
-                .state('home', {
-                    url: '/',
+                .state('loans', {
+                    abstract: true,
+                    url: '/loans',
+                    template: '<ui-view/>',
+                    controller: 'MainLoansController'
+                })
+                .state('loans.home', {
+                    url: '/home',
                     templateUrl: 'angular/home/home.html',
                     controller: 'HomeController',
                     resolve: {
@@ -18,7 +24,7 @@
                         }
                     }
                 })
-                .state('management', {
+                .state('loans.management', {
                     url: '/management',
                     templateUrl: 'angular/management/management.html',
                     controller: 'ManagementController'
@@ -29,6 +35,6 @@
                     controller: 'SettingsController'
                 });
 
-            $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/loans/home');
         });
 })();

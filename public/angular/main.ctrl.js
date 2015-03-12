@@ -4,17 +4,13 @@
         .module('ARM')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$state', '$q', 'toastr', 'FILE_URL', 'AppFactory', 'FarmersFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansFactory', 'LoansProcessor', 'UsersFactory'];
+    MainController.$inject = ['$scope', '$state', '$q', 'toastr', 'FILE_URL', 'AppFactory', 'FarmersFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansFactory', 'UsersFactory'];
 
-    function MainController($scope, $state, $q, toastr, FILE_URL, AppFactory, FarmersFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansFactory, LoansProcessor, UsersFactory) {
+    function MainController($scope, $state, $q, toastr, FILE_URL, AppFactory, FarmersFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansFactory, UsersFactory) {
         $scope.user_id = $('#user_id').data('id');
         $scope.landing_view = 'settings';
         $scope.file_url = FILE_URL;
         $scope.inArray = AppFactory.inArray;
-
-        UsersFactory.getUsers().then(function success(response) {
-            $scope.users = response.data.data;
-        });
 
         UsersFactory.getUser($scope.user_id)
             .then(function success(response) {
@@ -36,74 +32,51 @@
         GlobalsFactory.getGlobals()
             .then(function success(rsp){
                 $scope.globals = rsp.data[0];
-                LoansProcessor.getLoansWithExtraData()
-                    .then(function (allLoans) {
-                        $scope.loans = allLoans;
-                        $scope.loanList = _.filter(allLoans, function (i) {
-                            return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
-                        });
-                    });
-                toastr.success('Loaded all loans', 'Success!');
-            });
-
-        GlobalsFactory.getAdminGrader()
-            .then(function success(response) {
-                $scope.grads = response.data.data;
             });
 
         FeederFactory.init();
         $scope.feeder = FeederFactory.getObject();
-
-        LoansFactory.getCrops().then(function success(response) {
-            $scope.crops = response.data.data;
-        });
-
-        FarmersFactory.getFarmers().then(function success(response) {
-            $scope.farmers = response.data.data;
-        });
+        toastr.success('Loaded feeder lists', 'Success!');
 
         //SCOPE FUNCTIONS
-        $scope.getColor = AppFactory.returnColor;
-        $scope.iconItsList = function(status){
-            // TODO: Functionality
-            alert(status);
-        };
-        $scope.newLoan = function (val) {
-            var obj = {};
-            for (var l = 0; l < $scope.feeder.loantypes.length; l++) {
-                if (val === $scope.feeder.loantypes[l].ltPath) {
-                    $scope.chosenLT = $scope.feeder.loantypes[l].loantype;
-                    $scope.chosenLT_id = parseInt($scope.feeder.loantypes[l].id);
-                    LoansFactory.getScreens($scope.feeder.loantypes[l].id)
-                        .then(function success(response) {
-                            $scope.screens = response.data.data;
-                            angular.forEach(response.data.data, function (obj, index) {
-                                if (obj.screen === 'farmer') {
-                                    obj.status = 1;
-                                } else {
-                                    obj.status = 0;
-                                }
-                            });
-                            return obj;
-                        });
-                    obj = {
+        $scope.newLoan = function createLoan(type_id) {
+            var types = _.find($scope.feeder.loantypes, function(item){
+                return item.id === type_id;
+            });
+            $scope.chosenLT = types.loantype;
+            $scope.chosenLT_id = types.id;
+
+            LoansFactory.getScreens(types.id)
+                .then(function success(rsp) {
+                    $scope.screens = rsp.data.data;
+                    angular.forEach(rsp.data.data, function (res) {
+                        if (res.screen === 'farmer') {
+                            res.status = 1;
+                        } else {
+                            res.status = 0;
+                        }
+                    });
+                    var obj = {
                         app_date: moment(new Date()).format('YYYY-MM-DD'),
-                        due_date: moment(new Date(AppFactory.getDefaultDueDate($scope.chosenLT_id, $scope.globals.crop_year))).format('YYYY-MM-DD'),
-                        loan_type_id: $scope.chosenLT_id,
+                        due_date: moment(new Date(AppFactory.getDefaultDueDate(types.id, $scope.globals.crop_year))).format('YYYY-MM-DD'),
+                        loan_type_id: types.id,
                         crop_year: $scope.globals.crop_year,
                         season: $scope.globals.season,
                         loc_id: $scope.user.loc_id,
                         region_id: $scope.user.region_id,
                         user_id: $scope.user.id
                     };
-
                     LoansFactory.insertLoan(obj)
                         .then(function success(response) {
-                            $state.go('new.farmer', {loantypeID: $scope.chosenLT_id, loanID: response.data.message.id});
+                            $state.go('new.farmer', {loantypeID: types.id, loanID: response.data.message.id});
                         });
-                } // end if
-            } // end for
+                });
         }; // end newLoan fn
+        $scope.getColor = AppFactory.returnColor;
+        $scope.iconItsList = function(status){
+            // TODO: Functionality
+            alert(status);
+        };
         $scope.getReport = function (val) {
             var url = '';
             for (var r = 0; r < $scope.reports.length; r++) {
