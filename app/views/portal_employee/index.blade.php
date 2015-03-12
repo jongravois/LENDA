@@ -83,19 +83,22 @@
 <script src="angular/_directives/inPlaceDirectives.js"></script>
 
 <script src="angular/admin/admin.ctrl.js"></script>
-<script src="angular/admin/applicants/admin.applicants.ctrl.js"></script>
-<script src="angular/admin/crops/admin.crops.ctrl.js"></script>
-<script src="angular/admin/distributors/admin.distributors.ctrl.js"></script>
-<script src="angular/admin/entity-types/admin.entity.types.ctrl.js"></script>
-<script src="angular/admin/farmers/admin.farmers.ctrl.js"></script>
-<script src="angular/admin/ins-types/admin.ins.types.ctrl.js"></script>
-<script src="angular/admin/loan-types/admin.loan.types.ctrl.js"></script>
-<script src="angular/admin/locations/admin.locations.ctrl.js"></script>
-<script src="angular/admin/regions/admin.regions.ctrl.js"></script>
+<script src="angular/admin/feeders/agents/admin.agents.ctrl.js"></script>
+<script src="angular/admin/feeders/crops/admin.crops.ctrl.js"></script>
+<script src="angular/admin/feeders/distributors/admin.distributors.ctrl.js"></script>
+<script src="angular/admin/feeders/entity-types/admin.entity.types.ctrl.js"></script>
+<script src="angular/admin/feeders/ins-types/admin.ins.types.ctrl.js"></script>
+<script src="angular/admin/feeders/loan-types/admin.loan.types.ctrl.js"></script>
+<script src="angular/admin/feeders/locations/admin.locations.ctrl.js"></script>
+<script src="angular/admin/feeders/regions/admin.regions.ctrl.js"></script>
+<script src="angular/admin/feeders/roles/admin.roles.ctrl.js"></script>
+<script src="angular/admin/feeders/units/admin.units.ctrl.js"></script>
+<script src="angular/admin/loans/committeespecs/admin.committee.specs.ctrl.js"></script>
 <script src="angular/admin/reports/admin.reports.ctrl.js"></script>
-<script src="angular/admin/roles/admin.roles.ctrl.js"></script>
-<script src="angular/admin/units/admin.units.ctrl.js"></script>
 <script src="angular/admin/users/admin.users.ctrl.js"></script>
+<script src="angular/admin/users/applicants/admin.applicants.ctrl.js"></script>
+<script src="angular/admin/users/farmers/admin.farmers.ctrl.js"></script>
+
 <script src="angular/applicants/applicants.ctrl.js"></script>
 <script src="angular/applicants/applicants.factory.js"></script>
 <script src="angular/budgets/budgets.ctrl.js"></script>
@@ -127,7 +130,7 @@
 <script src="angular/library/loan-products/loan.products.ctrl.js"></script>
 <script src="angular/library/matrix/matrix.ctrl.js"></script>
 <script src="angular/library/pdf-apps/pdf.apps.ctrl.js"></script>
-<script src="angular/library/policies-and-procedures/pol.procs.ctrl.js"></script>
+<script src="angular/library/policies/pol.procs.ctrl.js"></script>
 <script src="angular/library/resources/resources.ctrl.js"></script>
 <script src="angular/loans/edit.loans.ctrl.js"></script>
 <script src="angular/loans/globals.factory.js"></script>

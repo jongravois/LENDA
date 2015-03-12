@@ -10,6 +10,27 @@
                     templateUrl: 'angular/admin/home.html',
                     controller: 'AdminController'
                 })
+                .state('admin.agents', {
+                    abstract: true,
+                    url: '/agents',
+                    template: '<ui-view>',
+                    controller: 'AdminAgentsController'
+                })
+                .state('admin.agents.list', {
+                    url: '/list',
+                    templateUrl: 'angular/admin/feeders/agents/agents.html',
+                    controller: 'AdminAgentsController'
+                })
+                .state('admin.agents.new', {
+                    url: '/new',
+                    templateUrl: 'angular/admin/feeders/agents/agents_new.html',
+                    controller: 'AdminAgentsController'
+                })
+                .state('admin.agents.edit', {
+                    url: '/edit/:agentId',
+                    templateUrl: 'angular/admin/feeders/agents/agents.html',
+                    controller: 'AdminAgentsController'
+                })
                 .state('admin.applicants', {
                     abstract: true,
                     url: '/applicants',
@@ -18,8 +39,29 @@
                 })
                 .state('admin.applicants.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin/applicants/applicants.html',
+                    templateUrl: 'angular/admin/users/applicants/applicants.html',
                     controller: 'AdminApplicantsController'
+                })
+                .state('admin.committeespecs', {
+                    abstract: true,
+                    url: '/committeespecs',
+                    template: '<ui-view>',
+                    controller: 'AdminCommitteeSpecsController'
+                })
+                .state('admin.committeespecs.list', {
+                    url: '/list',
+                    templateUrl: 'angular/admin/loans/committeespecs/committeespecs.html',
+                    controller: 'AdminCommitteeSpecsController'
+                })
+                .state('admin.committeespecs.new', {
+                    url: '/new',
+                    templateUrl: 'angular/admin/loans/committeespecs/committeespecs_new.html',
+                    controller: 'AdminCommitteeSpecsController'
+                })
+                .state('admin.committeespecs.edit', {
+                    url: '/edit/:committeespecsId',
+                    templateUrl: 'angular/admin/loans/committeespecs/committeespecs.html',
+                    controller: 'AdminCommitteeSpecsController'
                 })
                 .state('admin.crops', {
                     abstract: true,
@@ -29,17 +71,17 @@
                 })
                 .state('admin.crops.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin/crops/crops.html',
+                    templateUrl: 'angular/admin/feeders/crops/crops.html',
                     controller: 'AdminCropsController'
                 })
                 .state('admin.crops.new', {
                     url: '/new',
-                    templateUrl: 'angular/admin/crops/crop_new.html',
+                    templateUrl: 'angular/admin/feeders/crops/crop_new.html',
                     controller: 'AdminCropsController'
                 })
                 .state('admin.crops.edit', {
                     url: '/edit/:cropId',
-                    templateUrl: 'angular/admin/crops/crops.html',
+                    templateUrl: 'angular/admin/feeders/crops/crops.html',
                     controller: 'AdminCropsController'
                 })
                 .state('admin.distributors', {
@@ -50,39 +92,39 @@
                 })
                 .state('admin.distributors.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin/distributors/distributors.html',
+                    templateUrl: 'angular/admin/feeders/distributors/distributors.html',
                     controller: 'AdminDistributorsController'
                 })
                 .state('admin.distributors.new', {
                     url: '/new',
-                    templateUrl: 'angular/admin/distributors/distributor_new.html',
+                    templateUrl: 'angular/admin/feeders/distributors/distributor_new.html',
                     controller: 'AdminDistributorsController'
                 })
                 .state('admin.distributors.edit', {
                     url: '/edit/:distributorId',
-                    templateUrl: 'angular/admin/distributors/distributor.html',
+                    templateUrl: 'angular/admin/feeders/distributors/distributor.html',
                     controller: 'AdminDistributorsController'
                 })
                 .state('admin.entitytypes', {
                     abstract: true,
                     url: '/entitytypes',
                     template: '<ui-view>',
-                    controller: 'AdminEntitytypesController'
+                    controller: 'AdminEntityTypesController'
                 })
                 .state('admin.entitytypes.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin/entity-types/entitytypes.html',
-                    controller: 'AdminEntitytypesController'
+                    templateUrl: 'angular/admin/feeders/entity-types/entitytypes.html',
+                    controller: 'AdminEntityTypesController'
                 })
                 .state('admin.entitytypes.new', {
                     url: '/new',
-                    templateUrl: 'angular/admin/entity-types/entitytype_new.html',
-                    controller: 'AdminEntitytypesController'
+                    templateUrl: 'angular/admin/feeders/entity-types/entitytype_new.html',
+                    controller: 'AdminEntityTypesController'
                 })
                 .state('admin.entitytypes.edit', {
                     url: '/edit/:entitytypeId',
-                    templateUrl: 'angular/admin/entity-types/entitytype.html',
-                    controller: 'AdminEntitytypesController'
+                    templateUrl: 'angular/admin/feeders/entity-types/entitytype.html',
+                    controller: 'AdminEntityTypesController'
                 })
                 .state('admin.farmers', {
                     abstract: true,
@@ -92,50 +134,50 @@
                 })
                 .state('admin.farmers.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin/farmers/farmers.html',
+                    templateUrl: 'angular/admin/users/farmers/farmers.html',
                     controller: 'AdminFarmersController'
                 })
                 .state('admin.instypes', {
                     abstract: true,
                     url: '/instypes',
                     template: '<ui-view>',
-                    controller: 'AdminInstypesController'
+                    controller: 'AdminInsTypesController'
                 })
                 .state('admin.instypes.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin/ins-types/instypes.html',
-                    controller: 'AdminInstypesController'
+                    templateUrl: 'angular/admin/feeders/ins-types/instypes.html',
+                    controller: 'AdminInsTypesController'
                 })
                 .state('admin.instypes.new', {
                     url: '/new',
-                    templateUrl: 'angular/admin/ins-types/instype_new.html',
-                    controller: 'AdminInstypesController'
+                    templateUrl: 'angular/admin/feeders/ins-types/instype_new.html',
+                    controller: 'AdminInsTypesController'
                 })
                 .state('admin.instypes.edit', {
                     url: '/edit/:instypeId',
-                    templateUrl: 'angular/admin/ins-types/instype.html',
-                    controller: 'AdminInstypesController'
+                    templateUrl: 'angular/admin/feeders/ins-types/instype.html',
+                    controller: 'AdminInsTypesController'
                 })
                 .state('admin.loantypes', {
                     abstract: true,
                     url: '/loantypes',
                     template: '<ui-view>',
-                    controller: 'AdminLoantypesController'
+                    controller: 'AdminLoanTypesController'
                 })
                 .state('admin.loantypes.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin/loan-types/loantypes.html',
-                    controller: 'AdminLoantypesController'
+                    templateUrl: 'angular/admin/feeders/loan-types/loantypes.html',
+                    controller: 'AdminLoanTypesController'
                 })
-                .state('admin.v.new', {
+                .state('admin.loantypes.new', {
                     url: '/new',
-                    templateUrl: 'angular/admin/loan-types/loantype_new.html',
-                    controller: 'AdminLoantypesController'
+                    templateUrl: 'angular/admin/feeders/loan-types/loantype_new.html',
+                    controller: 'AdminLoanTypesController'
                 })
                 .state('admin.loantypes.edit', {
                     url: '/edit/:loantypeId',
-                    templateUrl: 'angular/admin/loan-types/loantype.html',
-                    controller: 'AdminLoantypesController'
+                    templateUrl: 'angular/admin/feeders/loan-types/loantype.html',
+                    controller: 'AdminLoanTypesController'
                 })
                 .state('admin.locations', {
                     abstract: true,
@@ -145,17 +187,17 @@
                 })
                 .state('admin.locations.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin/locations/locations.html',
+                    templateUrl: 'angular/admin/feeders/locations/locations.html',
                     controller: 'AdminLocationsController'
                 })
                 .state('admin.v.new', {
                     url: '/new',
-                    templateUrl: 'angular/admin/locations/locations_new.html',
+                    templateUrl: 'angular/admin/feeders/locations/locations_new.html',
                     controller: 'AdminLocationsController'
                 })
                 .state('admin.locations.edit', {
                     url: '/edit/:locationId',
-                    templateUrl: 'angular/admin/locations/location.html',
+                    templateUrl: 'angular/admin/feeders/locations/location.html',
                     controller: 'AdminLocationsController'
                 })
                 .state('admin.regions', {
@@ -166,17 +208,17 @@
                 })
                 .state('admin.regions.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin/regions/regions.html',
+                    templateUrl: 'angular/admin/feeders/regions/regions.html',
                     controller: 'AdminRegionsController'
                 })
                 .state('admin.regions.new', {
                     url: '/new',
-                    templateUrl: 'angular/admin/regions/region_new.html',
+                    templateUrl: 'angular/admin/feeders/regions/region_new.html',
                     controller: 'AdminRegionsController'
                 })
                 .state('admin.regions.edit', {
                     url: '/edit/:regionId',
-                    templateUrl: 'angular/admin/regions/region.html',
+                    templateUrl: 'angular/admin/feeders/regions/region.html',
                     controller: 'AdminRegionsController'
                 })
                 .state('admin.reports', {
@@ -208,17 +250,17 @@
                 })
                 .state('admin.roles.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin/roles/roles.html',
+                    templateUrl: 'angular/admin/feeders/roles/roles.html',
                     controller: 'AdminRolesController'
                 })
                 .state('admin.roles.new', {
                     url: '/new',
-                    templateUrl: 'angular/admin/roles/role_new.html',
+                    templateUrl: 'angular/admin/feeders/roles/role_new.html',
                     controller: 'AdminRolesController'
                 })
                 .state('admin.roles.edit', {
                     url: '/edit/:roleId',
-                    templateUrl: 'angular/admin/roles/role.html',
+                    templateUrl: 'angular/admin/feeders/roles/role.html',
                     controller: 'AdminRolesController'
                 })
                 .state('admin.units', {
@@ -229,17 +271,17 @@
                 })
                 .state('admin.units.list', {
                     url: '/list',
-                    templateUrl: 'angular/admin/units/units.html',
+                    templateUrl: 'angular/admin/feeders/units/units.html',
                     controller: 'AdminUnitsController'
                 })
                 .state('admin.units.new', {
                     url: '/new',
-                    templateUrl: 'angular/admin/units/unit_new.html',
+                    templateUrl: 'angular/admin/feeders/units/unit_new.html',
                     controller: 'AdminUnitsController'
                 })
                 .state('admin.units.edit', {
                     url: '/edit/:unitId',
-                    templateUrl: 'angular/admin/units/unit.html',
+                    templateUrl: 'angular/admin/feeders/units/unit.html',
                     controller: 'AdminUnitsController'
                 })
                 .state('admin.users', {

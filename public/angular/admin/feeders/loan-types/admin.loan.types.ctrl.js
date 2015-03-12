@@ -2,11 +2,11 @@
     'use strict';
     angular
         .module('ARM')
-        .controller('AdminLoanTypeController', AdminLoanTypeController);
+        .controller('AdminLoanTypesController', AdminLoanTypesController);
 
-        AdminLoanTypeController.$inject = ['$scope', '$http', '$state', '$stateParams'];
+        AdminLoanTypesController.$inject = ['$scope', '$http', '$state', '$stateParams'];
 
-        function AdminLoanTypeController($scope, $http, $state, $stateParams){
+        function AdminLoanTypesController($scope, $http, $state, $stateParams){
             $scope.loantype_id = $stateParams.loantypeId;
             $scope.loantype = _.find($scope.loantypes, function (i) {
                 return i.id === $scope.loantype_id;

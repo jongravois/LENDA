@@ -2,11 +2,11 @@
     'use strict';
     angular
         .module('ARM')
-        .controller('AdminInsTypeController', AdminInsTypeController);
+        .controller('AdminInsTypesController', AdminInsTypesController);
 
-        AdminInsTypeController.$inject = ['$scope', '$http', '$state', '$stateParams'];
+        AdminInsTypesController.$inject = ['$scope', '$http', '$state', '$stateParams'];
 
-        function AdminInsTypeController($scope, $http, $state, $stateParams){
+        function AdminInsTypesController($scope, $http, $state, $stateParams){
             $scope.instype_id = $stateParams.instypeId;
             $scope.instype = _.find($scope.instypes, function (i) {
                 return i.id === $scope.instype_id;

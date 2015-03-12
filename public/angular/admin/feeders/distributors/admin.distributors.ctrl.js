@@ -2,11 +2,11 @@
     'use strict';
     angular
         .module('ARM')
-        .controller('AdminDistributorController', AdminDistributorController);
+        .controller('AdminDistributorsController', AdminDistributorsController);
 
-        AdminDistributorController.$inject = ['$scope', '$http', '$state', '$stateParams', 'AppFactory'];
+        AdminDistributorsController.$inject = ['$scope', '$http', '$state', '$stateParams', 'AppFactory'];
 
-        function AdminDistributorController($scope, $http, $state, $stateParams, AppFactory){
+        function AdminDistributorsController($scope, $http, $state, $stateParams, AppFactory){
             $scope.distributor_id = $stateParams.distributorId;
             $scope.distributor = _.find($scope.distributors, function (i) {
                 return i.id === $scope.distributor_id;
