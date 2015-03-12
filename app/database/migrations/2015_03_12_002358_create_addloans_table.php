@@ -2,15 +2,21 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Carbon\Carbon;
 
-class CreateLoansTable extends Migration {
+class CreateAddloansTable extends Migration {
 
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
 	public function up()
 	{
-		Schema::create('loans', function(Blueprint $table)
+		Schema::create('addloans', function(Blueprint $table)
 		{
 			$table->increments('id');
+            $table->integer('original_id');
+            $table->integer('addendum_type');
             $table->date('app_date');
             $table->date('decision_date')->nullable();
             $table->date('distributor_approval_date')->nullable();
@@ -34,7 +40,6 @@ class CreateLoansTable extends Migration {
             $table->string('distributor_id')->nullable();
             $table->string('grade')->default('F');
             $table->boolean('has_addendum')->default(0);
-            $table->integer('addendum_type')->nullable();
             $table->boolean('bankruptcy_history')->default(0);
             $table->boolean('required_3party')->default(0);
             $table->boolean('added_land')->default(0);
@@ -72,9 +77,15 @@ class CreateLoansTable extends Migration {
 		});
 	}
 
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
 	public function down()
 	{
-		Schema::drop('loans');
+		Schema::drop('addloans');
 	}
 
 }

@@ -3,11 +3,16 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateLoanfinancialsTable extends Migration {
+class CreateAddfinsTable extends Migration {
 
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
 	public function up()
 	{
-		Schema::create('loanfinancials', function(Blueprint $table)
+		Schema::create('addfins', function(Blueprint $table)
 		{
             $table->increments('id');
             $table->integer('loan_id');
@@ -102,9 +107,14 @@ class CreateLoanfinancialsTable extends Migration {
 	}
 
 
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
 	public function down()
 	{
-		Schema::drop('loanfinancials');
+		Schema::drop('addfins');
 	}
 
 }

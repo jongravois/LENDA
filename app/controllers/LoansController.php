@@ -7,7 +7,7 @@ use Acme\Transformers\NotificationTransformer;
 class LoansController extends ApiController {
 
 	protected $loanTransformer;
-  protected $notificationTransformer;
+    protected $notificationTransformer;
 	protected $commentTransformer;
 
 	function __construct(LoanTransformer $loanTransformer, NotificationTransformer $notificationTransformer, CommentTransformer $commentTransformer)
@@ -183,6 +183,7 @@ class LoansController extends ApiController {
           'distributor_id' => $arr['distributor_id'],
           'distributor' => $arr['distributor']['distributor'],
           'has_addendum' => (boolean) $arr['has_addendum'],
+          'addendum_type' => (string) $arr['addendum_type'],
           'bankruptcy_history' =>	(boolean) $arr['bankruptcy_history'],
           'required_3party' => (boolean) $arr['required_3party'],
           'added_land' => (boolean) $arr['added_land'],

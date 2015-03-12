@@ -30,6 +30,9 @@ Route::get('emailtest', function () {
 
 Route::group(['prefix' => 'api', 'after' => 'allowOrigin'], function () {
     //TODO: Move authentication here
+    Route::resource('addendums', 'AddLoansController');
+    Route::resource('addendumtypes', 'AddendumtypesController');
+    Route::resource('addfins', 'AddfinsController');
     Route::resource('admingrader', 'AdmingraderController');
     Route::resource('affiliates', 'AffiliatesController');
     Route::resource('agencies', 'AgenciesController');

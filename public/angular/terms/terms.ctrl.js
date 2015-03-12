@@ -25,7 +25,7 @@
 
             GlobalsFactory.getGlobals()
                 .then(function success(rsp) {
-                    var globals = rsp.data.data;
+                    var globals = rsp.data;
                     $scope.globals = globals[0];
                 });
 

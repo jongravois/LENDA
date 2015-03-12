@@ -31,7 +31,7 @@
     <link rel="icon" type="image/png" href="/ico/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/ico/favicon-32x32.png" sizes="32x32">
 </head>
-<body ng-controller="MainController"  autoscroll="true">
+<body ng-controller="MainController">
 <div id="main_container" style="min-height:800px;" ng-cloak>
     <div id="main_top">
         <div class="col-xs-12" style="z-index:1;">
@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div ui-view style="margin-top:120px; z-index: 10;"></div>
+    <div ui-view style="margin-top:120px; z-index: 10;" autoscroll></div>
 </div>
 
 <!-- bower:js -->

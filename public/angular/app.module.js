@@ -14,9 +14,9 @@
         'toastr',
         'ngGrid'
     ])
-        .run(function ($rootScope) {
+        .run(function ($rootScope, $anchorScroll) {
             $rootScope.$on('$routeChangeSuccess', function () {
-                window.scrollTo(0, 0);
+                $anchorScroll();
             });
         })
         .config(function (toastrConfig) {
