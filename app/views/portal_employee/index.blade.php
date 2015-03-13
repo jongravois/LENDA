@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="vendor/angular-loading-bar/build/loading-bar.min.css"/>
     <link rel="stylesheet" href="vendor/ng-grid/ng-grid.min.css"/>
+    <link rel="stylesheet" href="vendor/fullcalendar/fullcalendar.css"/>
     <link rel="stylesheet" href="vendor/angular-toastr/angular-toastr.min.css"/>
     <!-- endbower -->
 
@@ -50,6 +51,7 @@
 
 <!-- bower:js -->
 <script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="vendor/jquery-ui/ui/jquery-ui.js"></script>
 <script src="vendor/lodash/dist/lodash.min.js"></script>
 {{--<script src="vendor/bootstrap/js/bootstrap.min.js"></script>--}}
 <script src="vendor/moment/min/moment.min.js"></script>
@@ -59,6 +61,8 @@
 <script src="vendor/angular-1.3.14/angular-animate.min.js"></script>
 <script src="vendor/angular-toastr/angular-toastr.tpls.min.js"></script>
 <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="vendor/angular-ui-calendar/src/calendar.js"></script>
+<script src="vendor/fullcalendar/fullcalendar.min.js"></script>
 <script src="vendor/angular-ui-utils/ui-utils.min.js"></script>
 <script src="vendor/angular-1.3.14/angular-messages.min.js"></script>
 <script src="vendor/angular-1.3.14/angular-sanitize.min.js"></script>

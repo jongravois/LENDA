@@ -9,6 +9,7 @@
         // 3rd Party Modules
         'ui.router',
         'ui.bootstrap',
+        'ui.calendar',
         'ui.utils',
         'angular-loading-bar',
         'toastr',
