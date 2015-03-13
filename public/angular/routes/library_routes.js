@@ -12,7 +12,13 @@
                 .state('library.calendar', {
                     url: '/calendar',
                     templateUrl: 'angular/library/calendar/calendar.html',
-                    controller: 'CalendarController'
+                    controller: 'CalendarController',
+                    controllerAs: 'vm',
+                    resolve: {
+                        InitialData: function(LibraryFactory){
+                            return LibraryFactory.getCalendarEvents();
+                        }
+                    }
                 })
                 .state('library.legend', {
                     url: '/legend',

@@ -6,12 +6,12 @@ class LoanTransformer extends Transformer{
 
 public function transform($arr)
 {
-  $dtToday = Carbon::now();
+    $dtToday = Carbon::now();
 	$appDate = $arr['app_date'];
 	$defaultDueDate = $arr['default_due_date'];
 	$dueDate = $arr['due_date'];
 	$diff = $dueDate->diffInDays($appDate);
-  $staleDiff = $appDate->diffInDays($dtToday);
+    $staleDiff = $appDate->diffInDays($dtToday);
   //dd($staleDiff);
 
   if($arr['season'] == 'S'){

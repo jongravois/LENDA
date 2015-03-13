@@ -38,6 +38,7 @@ Route::group(['prefix' => 'api', 'after' => 'allowOrigin'], function () {
     Route::resource('agencies', 'AgenciesController');
     Route::resource('agents', 'AgentsController');
     Route::resource('applicants', 'ApplicantsController');
+    Route::resource('calendars', 'CalendarController');
     Route::resource('committees', 'CommitteeController');
     Route::resource('comments', 'CommentController');
     Route::resource('commentstatus', 'CommentStatusController');
