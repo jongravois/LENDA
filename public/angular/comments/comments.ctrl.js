@@ -40,9 +40,12 @@
                     user_id: $scope.user_id,
                     body: response.msg
                 };
+                //persist new response
                 AppFactory.postIt('/responses', newRsp);
                 toastr.success('Your comment has been sent.', 'Success!');
-                // Insert into Comments
+                //create pending status for all committee members
+                //push into array
+                // TODO: Insert into Comments and show up w/o refresh
                 angular.forEach($scope.comments, function(comment){
                     if(comment.id === obj.id){
                         comment.responses.unshift(newRsp);
@@ -53,16 +56,14 @@
                 console.log('Passed: ', obj);
             });
 
-            //persist new response
-            //create pending status for all committee members
-            //push into array
+
         };
         $scope.btnCommentStatus = function (obj, userID) {
-            //TODO: Figure out logic to persist status change
-            alert(obj.id + '||' + userID);
-            console.log(obj);
+            //TODO: create update functionality
+            var upd = {
+                status: 'confirmed'
+            };
             // persist change
-
             // remove from notifications
             // change icon
             // trigger toastr confirming action
