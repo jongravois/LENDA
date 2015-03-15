@@ -6,8 +6,7 @@
 
     FinancialsController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'InitialData', 'AppFactory', 'LoansFactory', 'Grader'];
 
-    function FinancialsController($scope, $state, $stateParams, toastr,
-                                  InitialData, AppFactory, LoansFactory, Grader) {
+    function FinancialsController($scope, $state, $stateParams, toastr, InitialData, AppFactory, LoansFactory, Grader) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;

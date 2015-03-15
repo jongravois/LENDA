@@ -50,23 +50,6 @@
 
         $scope.addNewOne = false;
 
-        $scope.newPolicy = {
-            acres: 0,
-            agency: '',
-            agent: '',
-            agent_phone: '',
-            agent_email: '',
-            aph: 0,
-            level: 75,
-            loancounty_id: '',
-            option: '',
-            policy: '',
-            premium: 0.00,
-            price: 0.00,
-            share: 100,
-            type: 'RP'
-        };
-
         $scope.practiceDD = [
             {id: 1, practice: 'Corn IR'},
             {id: 2, practice: 'Corn NI'},
