@@ -15,28 +15,23 @@
         UsersFactory.getUser($scope.user_id)
             .then(function success(response) {
                 $scope.user = response.data.data;
-                UsersFactory
-                    .getNotifications($scope.user_id)
-                    .then(function success(response) {
-                        // TODO Rework Notifications!!!
-                        $scope.user.notifications = response.data.data;
-                        $scope.user.badged = response.data.data.length;
-                        $scope.tooltipNotifications = '<p>' + $scope.user.notifications.map(function (arr) {
-                            return arr.task;
-                    })
-                    .join('</p><p>') + '</p>';
-                    toastr.success('Loaded User', 'Success!');
-                });
-        });
+                $scope.user.notifications = response.data.data.notifications;
+                $scope.user.badged = response.data.data.notifications.length;
+                $scope.tooltipNotifications = '<p>' + $scope.user.notifications.map(function (arr) {
+                    return arr.task;
+                })
+                .join('</p><p>') + '</p>';
+                toastr.success('Loaded User', 'Success!');
+            });
 
         GlobalsFactory.getGlobals()
             .then(function success(rsp){
                 $scope.globals = rsp.data[0];
+                toastr.success('Loaded Global Values', 'Success!');
             });
 
         FeederFactory.init();
         $scope.feeder = FeederFactory.getObject();
-        toastr.success('Loaded feeder lists', 'Success!');
 
         //SCOPE FUNCTIONS
         $scope.newLoan = function createLoan(type_id) {

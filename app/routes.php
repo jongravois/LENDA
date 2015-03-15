@@ -89,6 +89,7 @@ Route::group(['prefix' => 'api', 'after' => 'allowOrigin'], function () {
     Route::resource('reports', 'ReportsController');
     Route::resource('requireddocuments', 'RequireddocumentsController');
     Route::resource('roles', 'RolesController');
+    Route::resource('responses', 'ResponsesController');
     Route::resource('screens', 'ScreensController');
     Route::resource('spendcats', 'SpendcatController');
     Route::resource('states', 'StatesController');

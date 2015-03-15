@@ -4,21 +4,18 @@
         .module('ARM')
         .factory('UsersFactory', UsersFactory);
 
-    UsersFactory.$inject = ['$http', 'API_URL'];
+    UsersFactory.$inject = ['$http', '$q', 'API_URL'];
 
     /* @ngInject */
-    function UsersFactory($http, API_URL) {
+    function UsersFactory($http, $q, API_URL) {
         return {
-            getBadges: getBadges,
+            getCurrentUser: getCurrentUser,
             getNotifications: getNotifications,
             getUser: getUser,
             getUsers: getUsers
         };
 
-        //TODO: HARD CODED -- USED???
-        function getBadges(id) {
-            return '6';
-        }
+        function getCurrentUser(id){}
 
         function getNotifications(id) {
             return $http.get(API_URL + '/users/' + id + '/notifications');

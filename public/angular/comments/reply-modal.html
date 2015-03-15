@@ -3,14 +3,14 @@
 </div>
 
 <div class="modal-body">
-    <textarea name="body" class="form-control"></textarea>
+    <textarea name="body" class="form-control" ng-model="newResponse.msg"></textarea>
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="vm.ok()">
+    <button class="btn btn-primary" ng-click="ok()">
         Send
     </button>
-    <button class="btn btn-default" ng-click="vm.cancel()">
+    <button class="btn btn-default" ng-click="cancel()">
         Cancel
     </button>
 </div>

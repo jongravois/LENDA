@@ -1,6 +1,7 @@
 <?php
 
-class Responses extends \Eloquent {
+class Commentresponse extends \Eloquent {
+    protected $table = "responses";
 	protected $fillable = ['loan_id', 'comment_id', 'user_id', 'body'];
 
 	public function comments()

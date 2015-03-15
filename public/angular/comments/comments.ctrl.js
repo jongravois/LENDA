@@ -4,15 +4,18 @@
         .module('ARM')
         .controller('CommentsController', CommentsController);
 
-    CommentsController.$inject = ['$scope', '$stateParams', 'CommentsData', 'CommentsLogic', 'ModalService'];
+    CommentsController.$inject = ['$scope', '$stateParams', '$modal', 'toastr', 'AppFactory', 'CommentsData', 'CommentsLogic'];
 
-    function CommentsController($scope, $stateParams, CommentsData, CommentsLogic, ModalService) {
+    function CommentsController($scope, $stateParams, $modal, toastr, AppFactory, CommentsData, CommentsLogic) {
+        $scope.response = {};
+
         CommentsData
             .load($stateParams.loanID)
             .then(CommentsLogic($scope.user.id))
             .then(function (results) {
                 var groups = _.chain(results).groupBy('type').value();
                 $scope.comments = groups;
+                //console.log($scope.comments);
             });
 
         $scope.createComment = function () {
@@ -21,15 +24,35 @@
             //else create Committee Comment
         };
 
-        $scope.btnCommentReply = function (id) {
+        $scope.btnCommentReply = function (obj) {
             //TODO: Figure out logic to insert response
             //pop-up to enter reply
-            var msg = '<p>This is the text that should appear in my modal.</p>';
-            ModalService.commentReply({})
-                .then(function(){
-                    //delete in db
-                    alert('Deleting the record now');
+            var modalInstance = $modal.open({
+                templateUrl: 'angular/comments/reply-modal.html',
+                controller: 'CommentModalController',
+                scope: $scope
+            });
+
+            modalInstance.result.then(function (response) {
+                var newRsp = {
+                    loan_id: obj.loan_id,
+                    comment_id: obj.id,
+                    user_id: $scope.user_id,
+                    body: response.msg
+                };
+                AppFactory.postIt('/responses', newRsp);
+                toastr.success('Your comment has been sent.', 'Success!');
+                // Insert into Comments
+                angular.forEach($scope.comments, function(comment){
+                    if(comment.id === obj.id){
+                        comment.responses.unshift(newRsp);
+                    } // end if
                 });
+            }, function () {
+                console.log('Modal dismissed at: ' + new Date());
+                console.log('Passed: ', obj);
+            });
+
             //persist new response
             //create pending status for all committee members
             //push into array
@@ -44,5 +67,6 @@
             // change icon
             // trigger toastr confirming action
         };
+
     } // end function
 })();

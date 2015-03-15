@@ -112,6 +112,7 @@
 <script src="angular/comments/comments.ctrl.js"></script>
 <script src="angular/comments/comments.data.js"></script>
 <script src="angular/comments/comments.logic.js"></script>
+<script src="angular/comments/comment.modal.ctrl.js"></script>
 <script src="angular/committee/committee.ctrl.js"></script>
 <script src="angular/crops/crops.ctrl.js"></script>
 <script src="angular/crops/planned.crops.ctrl.js"></script>

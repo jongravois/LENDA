@@ -52,6 +52,13 @@ class CommentsTableSeeder extends Seeder {
 			'user_id' => 5,
 			'comment'	=>	"The grain was inspected and is top quality. It has less than 9% moisture. I don't know what else to write about the grain because I am not really an analyst but this serves as an example of a Loan Comment for this loan."
 		]);
-	}
+
+        Comment::create([
+            'loan_id'	=>	1,
+            'type'		=>	'Addendum',
+            'user_id' => 5,
+            'comment'	=>	'The additional funds requested are needed to offset unanticipated medical expenses but are easily covered by the 32% increase in yield expectation. The crop collateral is 100% insured and the request is less than the max amount of available value.'
+        ]);
+    }
 
 }

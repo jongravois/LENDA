@@ -14,7 +14,7 @@
                     url: '/home',
                     templateUrl: 'angular/home/home.html',
                     controller: 'HomeController',
-                    resolve: {
+                    /*resolve: {
                         armed: function ($q, $timeout) {
                             var defer = $q.defer();
                             $timeout(function () {
@@ -22,7 +22,7 @@
                             }, 1000);
                             return defer.promise;
                         }
-                    }
+                    }*/
                 })
                 .state('loans.management', {
                     url: '/management',

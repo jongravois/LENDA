@@ -23,5 +23,15 @@
                     return rsp.data.data;
                 });
         }
+
+        /**
+         * Use LoDash to return a single record
+         *
+         * find: function(id){
+         *      return _.find(collection, function(single){
+         *          return single.id === id;
+         *      });
+         * }
+         */
     } // end factory
 })();

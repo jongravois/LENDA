@@ -56,7 +56,7 @@
                 })
                 .state('library.polsprocs', {
                     url: '/polsprocs',
-                    templateUrl: 'angular/library/policies-and-procedures/polsprocs.html',
+                    templateUrl: 'angular/library/policies/polsprocs.html',
                     controller: 'PolsProcsController'
                 })
                 .state('library.resources', {

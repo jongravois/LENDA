@@ -1,86 +1,64 @@
 <?php
 
-class ResponsesController extends \BaseController {
+use Acme\Transformers\ResponseTransformer;
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /responses
-	 *
-	 * @return Response
-	 */
-	public function index()
+class ResponsesController extends ApiController {
+
+    protected $responseTransformer;
+
+    function __construct(ResponseTransformer $responseTransformer)
+    {
+        $this->responseTransformer = $responseTransformer;
+    }
+
+
+    public function index()
 	{
-		//
+		$responses = Commentresponse::all();
+
+        return $this->respond([
+            'data' => $this->responseTransformer->transformCollection($responses->all())
+        ]);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /responses/create
-	 *
-	 * @return Response
-	 */
-	public function create()
+    public function show($id)
+    {
+        $response = Commentresponse::where('id', $id)->get();
+
+        if( $response->isEmpty()){
+            return $this->respondNotFound('Response does not exist.');
+        } // end if
+
+        return $this->respond([
+            'data' => $this->responseTransformer->transform($response[0])
+        ]);
+    }
+
+    public function store()
 	{
-		//
+        Commentresponse::create(Input::all());
+
+        return $this->respondCreated('Response created');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /responses
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 * GET /responses/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /responses/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /responses/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
 	{
-		//
+        $response = Commentresponse::find($id);
+
+        if(!$response) {
+            Commentresponse::create(Input::all());
+
+            return $this->respondCreated('Response created');
+        } // end if
+
+        $response->fill(Input::all())->save();
+
+        return $this->respondCreated('Response created');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /responses/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
-		//
+		return Commentresponse::where('id', $id)->delete();
 	}
 
 }

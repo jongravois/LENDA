@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder{
       'is_admin'    => 0,
       'is_approver' => 0,
       'is_manager'  => 0,
-      'role_id' => 8
+      'role_id' => 16
     ]);
 
     User::create([
@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder{
       'is_admin' => 1,
       'is_approver' => 1,
       'is_manager' => 1,
-      'role_id' => 7
+      'role_id' => 14
     ]);
 
     User::create([
@@ -75,7 +75,7 @@ class UsersTableSeeder extends Seeder{
       'is_admin' => 0,
       'is_approver' => 1,
       'is_manager' => 1,
-      'role_id' => 5
+      'role_id' => 4
     ]);
 
     User::create([
@@ -90,7 +90,7 @@ class UsersTableSeeder extends Seeder{
       'is_admin' => 0,
       'is_approver' => 0,
       'is_manager' => 0,
-      'role_id' => 5
+      'role_id' => 4
     ]);
 
     User::create([
@@ -105,7 +105,7 @@ class UsersTableSeeder extends Seeder{
       'is_admin' => 0,
       'is_approver' => 0,
       'is_manager' => 0,
-      'role_id' => 6
+      'role_id' => 9
     ]);
 
     User::create([
@@ -120,7 +120,7 @@ class UsersTableSeeder extends Seeder{
       'is_admin' => 1,
       'is_approver' => 1,
       'is_manager' => 1,
-      'role_id' => 7
+      'role_id' => 14
     ]);
   }
 }
