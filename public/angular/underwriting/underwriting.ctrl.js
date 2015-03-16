@@ -4,10 +4,9 @@
         .module('ARM')
         .controller('UnderwritingController', UnderwritingController);
 
-    UnderwritingController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'InsuranceFactory', 'InitialData', 'LoansFactory'];
+    UnderwritingController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'InsuranceFactory', 'InitialData', 'AddendumsFactory', 'LoansFactory'];
 
-    function UnderwritingController($scope, $state, $stateParams,
-                                    AppFactory, InsuranceFactory, InitialData, LoansFactory) {
+    function UnderwritingController($scope, $state, $stateParams, AppFactory, InsuranceFactory, InitialData, AddendumsFactory, LoansFactory) {
         $scope.loan = $scope.loan || InitialData.data.data[0];
         $scope.insurance = $scope.insurance || InsuranceFactory.data;
         $scope.newCondition = {
@@ -18,6 +17,13 @@
             status: 'pending',
             action_date: null
         };
+
+        if($scope.loan.has_addendum){
+            AddendumsFactory.getLoanAddendums($scope.loan.id)
+                .then(function success(rsp){
+                    $scope.addendums = rsp.data.data;
+                });
+        }
 
         $scope.verifyCondition = function (index) {
             //TODO: Confirm dialog to ensure intent

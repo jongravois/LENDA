@@ -13,12 +13,12 @@
     <br/>
     <p class="display-field">
       {{loan.loan_type}}
-      <span ng-if="loan.is_addendum"> - Addendum</span>
+      <span ng-if="loan.has_addendum"> - Addendum</span>
     </p>
   </div>
   <div class="form-group col-md-4">
-    <label ng-if="!loan.is_addendum">Application Date</label>
-    <label ng-if="loan.is_addendum">Addendum Date</label>
+    <label ng-if="!loan.has_addendum">Application Date</label>
+    <label ng-if="loan.has_addendum">Addendum Date</label>
     <br/>
     <p class="display-field">
       {{loan.app_date | date:'M/d/yy'}}

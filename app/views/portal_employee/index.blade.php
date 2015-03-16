@@ -87,6 +87,8 @@
 <script src="angular/_directives/directives.js"></script>
 <script src="angular/_directives/inPlaceDirectives.js"></script>
 
+<script src="angular/addendums/addendum.factory.js"></script>
+
 <script src="angular/admin/admin.ctrl.js"></script>
 <script src="angular/admin/feeders/agents/admin.agents.ctrl.js"></script>
 <script src="angular/admin/feeders/crops/admin.crops.ctrl.js"></script>

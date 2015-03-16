@@ -4,7 +4,7 @@ class ResponsesTableSeeder extends Seeder {
 
 	public function run()
 	{
-		Responses::create([
+		Commentresponse::create([
 			'loan_id' => 1,
 			'comment_id' => 1,
 			'user_id' => 5,

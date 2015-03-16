@@ -2,17 +2,21 @@
     'use strict';
     angular
         .module('ARM')
-        .factory('AdendumsFactory', AdendumsFactory);
+        .factory('AddendumsFactory', AddendumsFactory);
 
-    AdendumsFactory.$inject = [''];
+    AddendumsFactory.$inject = ['$http', '$q', 'API_URL', 'LoansFactory'];
 
     /* @ngInject */
-    function AdendumsFactory() {
-        var service = {};
+    function AddendumsFactory($http, $q, API_URL, LoansFactory) {
+        var service = {
+            getLoanAddendums: getLoanAddendums
+        };
 
         return service;
 
         //////////
-
+        function getLoanAddendums(id){
+            return $http.get(API_URL + '/loans/' + id + '/addendums');
+        }
     } // end factory
 })();

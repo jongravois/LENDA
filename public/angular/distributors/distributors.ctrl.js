@@ -6,8 +6,7 @@
 
     DistributorsController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
 
-    function DistributorsController($scope, $state, $stateParams,
-                                   AppFactory, LoansFactory) {
+    function DistributorsController($scope, $state, $stateParams, AppFactory, LoansFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;

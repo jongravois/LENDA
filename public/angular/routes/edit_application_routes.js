@@ -66,7 +66,7 @@
                 .state('edit.distributor', {
                     url: '/distributor',
                     templateUrl: 'angular/distributors/editdistributor.html',
-                    controller: 'DistributorController',
+                    controller: 'DistributorsController',
                     data: {newapplication: false}
                 })
                 .state('edit.farmdetails', {

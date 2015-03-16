@@ -8,7 +8,7 @@ class LoansTableSeeder extends Seeder {
 		// Tony Stark(1) @ Glass Towers(2) | Partnership(4)--Ag-Input 2015
 		Loan::create([
 			'applicant_id' => 1,
-			'app_date' => '2015-01-04',
+			'app_date' => '2015-03-01',
 			'distributor_approval_date' => '2015-01-14',
 			'decision_date' => '2015-01-15',
 			'default_due_date' => '2015-12-15',
@@ -16,7 +16,6 @@ class LoansTableSeeder extends Seeder {
 			'loan_type_id' => 2,
 			'status_id' => 1,
             'analyst_can_approve' => 1,
-            'has_addendum' => 1,
             'crop_year' => '2015',
 			'season' => 'S',
 			'loc_id' => 5,

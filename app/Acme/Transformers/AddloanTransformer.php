@@ -48,7 +48,11 @@ class AddloanTransformer extends Transformer{
 
         //return $arr;
         return array(
-            'id'		=>	$arr['id'],
+            'id' =>	$arr['id'],
+            'original_id' => $arr['original_id'],
+            'has_addendum' => (boolean) $arr['has_addendum'],
+            'addendum_type_id' => (integer) $arr['addendum_type'],
+            'addendum_type' => (string) $arr['addendumtype']['type'],
             'app_date'	=> 	$arr['app_date']->format('m/d/Y'),
             'decision_date'	=> 	$decision,
             'due_date'	=>	$arr['due_date']->format('m/d/Y'),
@@ -74,8 +78,6 @@ class AddloanTransformer extends Transformer{
             'has_distributor' => (boolean) $arr['has_distributor'],
             'distributor_id' => $arr['distributor_id'],
             'distributor' => $arr['distributor']['distributor'],
-            'has_addendum' => (boolean) $arr['has_addendum'],
-            'addendum_type' => (string) $arr['addendum_type'],
             'bankruptcy_history' =>	(boolean) $arr['bankruptcy_history'],
             'required_3party' => (boolean) $arr['required_3party'],
             'added_land' => (boolean) $arr['added_land'],
@@ -103,7 +105,8 @@ class AddloanTransformer extends Transformer{
             'crop_inspection' => (integer) $arr['crop_inspection'],
             'reconciliation' => (integer) $arr['reconciliation'],
             'account_classification' => (integer) $arr['account_classification'],
-            'last_activity' => $arr['updated_at']
+            'last_activity' => $arr['updated_at'],
+            'fins' => $arr['addfins']
         );
     }
 

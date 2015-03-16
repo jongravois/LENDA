@@ -2,31 +2,31 @@
 <fieldset>
   <tabset>
     <tab heading="Full Farm">
-      <div ng-include="'angular/views/loans/partials/budget_summary_table.html'" ng-init="cropuse = uses.total"></div>
+      <div ng-include="'angular/budgets/budget_summary_table.html'" ng-init="cropuse = uses.total"></div>
     </tab>
     <tab heading="Corn" ng-if="uses.corn[0].acres > 0">
-      <div ng-include="'angular/views/loans/partials/budget_table.html'" ng-init="cropuse = uses.corn"></div>
+      <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.corn"></div>
     </tab>
     <tab heading="Soybeans" ng-if="uses.soybeans[0].acres > 0">
-      <div ng-include="'angular/views/loans/partials/budget_table.html'" ng-init="cropuse = uses.soybeans"></div>
+      <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.soybeans"></div>
     </tab>
     <tab heading="Sorghum" ng-if="uses.sorghum[0].acres > 0">
-      <div ng-include="'angular/views/loans/partials/budget_table.html'" ng-init="cropuse = uses.sorghum"></div>
+      <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.sorghum"></div>
     </tab>
     <tab heading="Wheat" ng-if="uses.wheat[0].acres > 0">
-      <div ng-include="'angular/views/loans/partials/budget_table.html'" ng-init="cropuse = uses.wheat"></div>
+      <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.wheat"></div>
     </tab>
     <tab heading="Cotton" ng-if="uses.cotton[0].acres > 0">
-      <div ng-include="'angular/views/loans/partials/budget_table.html'" ng-init="cropuse = uses.cotton"></div>
+      <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.cotton"></div>
     </tab>
     <tab heading="Rice" ng-if="uses.rice[0].acres > 0">
-      <div ng-include="'angular/views/loans/partials/budget_table.html'" ng-init="cropuse = uses.rice"></div>
+      <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.rice"></div>
     </tab>
     <tab heading="Peanuts" ng-if="uses.peanuts[0].acres > 0">
-      <div ng-include="'angular/views/loans/partials/budget_table.html'" ng-init="cropuse = uses.peanuts"></div>
+      <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.peanuts"></div>
     </tab>
     <tab heading="Sugar Cane" ng-if="uses.sugarcane[0].acres > 0">
-      <div ng-include="'angular/views/loans/partials/budget_table.html'" ng-init="cropuse = uses.sugarcane"></div>
+      <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.sugarcane"></div>
     </tab>
   </tabset>
 </fieldset>
