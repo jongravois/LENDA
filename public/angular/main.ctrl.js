@@ -12,6 +12,12 @@
         $scope.file_url = FILE_URL;
         $scope.inArray = AppFactory.inArray;
 
+        UsersFactory.getUsers()
+            .then(function success(rsp){
+                $scope.users = rsp.data.data;
+                toastr.success('Loaded All Users', 'Success!');
+            });
+
         UsersFactory.getUser($scope.user_id)
             .then(function success(response) {
                 $scope.user = response.data.data;
@@ -21,7 +27,7 @@
                     return arr.task;
                 })
                 .join('</p><p>') + '</p>';
-                toastr.success('Loaded User', 'Success!');
+                toastr.success('Loaded Current User', 'Success!');
             });
 
         GlobalsFactory.getGlobals()
