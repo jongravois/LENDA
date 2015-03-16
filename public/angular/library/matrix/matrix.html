@@ -1,1 +1,56 @@
 <h1>Responsibility Matrix</h1>
+<table class="table table-striped table-hover table-condensed">
+    <thead>
+    <tr>
+        <th>Group</th>
+        <th>Responsibility</th>
+        <th>CEO</th>
+        <th>ABM</th>
+        <th>MGR</th>
+        <th>OAS</th>
+        <th>LBM</th>
+        <th>LOF</th>
+        <th>LAN</th>
+        <th>CON</th>
+        <th>HRM</th>
+        <th>IBM</th>
+        <th>IAS</th>
+        <th>COM</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>&nbsp;</td>
+        <td>Employment Status</td>
+        <td class="text-center">100%</td>
+        <td class="text-center">100%</td>
+        <td class="text-center">100%</td>
+        <td class="text-center">100%</td>
+        <td class="text-center">100%</td>
+        <td class="text-center">100%</td>
+        <td class="text-center">100%</td>
+        <td class="text-center">100%</td>
+        <td class="text-center">100%</td>
+        <td class="text-center">100%</td>
+        <td class="text-center">100%</td>
+        <td class="text-center">0%</td>
+    </tr>
+    <tr ng-repeat="job in vm.roles">
+        <td>{{job.group_heading}}</td>
+        <td>{{job.responsibility}}</td>
+        <td class="text-center">{{job.CEO}}</td>
+        <td class="text-center">{{job.ABM}}</td>
+        <td class="text-center">{{job.MGR}}</td>
+        <td class="text-center">{{job.OAS}}</td>
+        <td class="text-center">{{job.LBM}}</td>
+        <td class="text-center">{{job.LOF}}</td>
+        <td class="text-center">{{job.LAN}}</td>
+        <td class="text-center">{{job.CON}}</td>
+        <td class="text-center">{{job.HRM}}</td>
+        <td class="text-center">{{job.IBM}}</td>
+        <td class="text-center">{{job.IAS}}</td>
+        <td class="text-center">{{job.COM}}</td>
+    </tr>
+    </tbody>
+</table>
+<!--<pre>{{vm.roles|json}}</pre>-->

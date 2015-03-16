@@ -77,6 +77,7 @@ Route::group(['prefix' => 'api', 'after' => 'allowOrigin'], function () {
     Route::resource('loanstatus', 'LoanstatusController');
     Route::resource('loantypes', 'LoantypesController');
     Route::resource('locations', 'LocationsController');
+    Route::resource('matrix', 'MatrixController');
     Route::resource('notifications', 'NotificationController');
     Route::resource('partners', 'PartnersController');
     Route::resource('pdfapps', 'PdfAppsController');

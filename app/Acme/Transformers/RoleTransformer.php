@@ -9,7 +9,8 @@ class RoleTransformer extends Transformer{
 			'id' =>	$arr['id'],
 			'abr' => $arr['abr'],
 			'role' => $arr['role'],
-            'employment_status' => $arr['employment_status']
+            'employment_status' => $arr['employment_status'],
+            'matrix' => $arr['matrix']
 		);
 	}
 }

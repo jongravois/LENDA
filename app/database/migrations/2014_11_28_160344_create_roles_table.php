@@ -13,6 +13,7 @@ class CreateRolesTable extends Migration {
             $table->string('abr');
             $table->string('role');
             $table->double('employment_status')->default(100);
+            $table->boolean('matrix')->default(0);
 		});
 	}
 

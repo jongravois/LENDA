@@ -10,52 +10,64 @@ class RolesTableSeeder extends Seeder {
 		]);
 		Role::create([
 			'abr'	=>	'CEO',
-			'role'	=>	'Chief Executive Officer'
+			'role'	=>	'Chief Executive Officer',
+            'matrix' => 1
 		]);
 		Role::create([
 			'abr'	=>	'ABM',
-			'role'	=>	'Area Business Manager'
+			'role'	=>	'Area Business Manager',
+            'matrix' => 1
 		]);
 		Role::create([
 			'abr'	=>	'MGR',
-			'role'	=>	'Office Manager'
+			'role'	=>	'Office Manager',
+            'matrix' => 1
 		]);
 		Role::create([
 			'abr'	=>	'OAS',
-			'role'	=>	'Office Assitant'
+			'role'	=>	'Office Assitant',
+            'matrix' => 1
 		]);
 		Role::create([
 			'abr'	=>	'LBM',
-			'role'	=>	'Loan Business Manager'
+			'role'	=>	'Loan Business Manager',
+            'matrix' => 1
 		]);
         Role::create([
             'abr'	=>	'LOF',
-            'role'	=>	'Loan Officer'
+            'role'	=>	'Loan Officer',
+            'matrix' => 1
         ]);
         Role::create([
             'abr'	=>	'LAN',
-            'role'	=>	'Loan Analyst'
+            'role'	=>	'Loan Analyst',
+            'matrix' => 1
         ]);
         Role::create([
             'abr'	=>	'CON',
-            'role'	=>	'Controller/Compliance'
+            'role'	=>	'Controller/Compliance',
+            'matrix' => 1
         ]);
         Role::create([
             'abr'	=>	'HRM',
-            'role'	=>	'Human Resources Manager'
+            'role'	=>	'Human Resources Manager',
+            'matrix' => 1
         ]);
         Role::create([
             'abr'	=>	'IBM',
-            'role'	=>	'Insurance Business Manager'
+            'role'	=>	'Insurance Business Manager',
+            'matrix' => 1
         ]);
         Role::create([
             'abr'	=>	'IAS',
-            'role'	=>	'Insurance Analyst'
+            'role'	=>	'Insurance Analyst',
+            'matrix' => 1
         ]);
         Role::create([
             'abr'	=>	'COM',
             'role'	=>	'Commissioned Agent',
-            'employment_status' => 0
+            'employment_status' => 0,
+            'matrix' => 1
         ]);
 		Role::create([
 			'abr'	=>	'IT',

@@ -10,6 +10,7 @@
     function LibraryFactory($http, $q, API_URL) {
         return {
             getCalendarEvents: getCalendarEvents,
+            getMatrix: getMatrix,
             getPdfApps: getPdfApps
         };
 
@@ -17,11 +18,14 @@
         function getCalendarEvents(){
             return $http.get(API_URL + '/calendars');
         }
-        function getPdfApps() {
-            return $http.get(API_URL + '/pdfapps')
+        function getMatrix(){
+            return $http.get(API_URL + '/matrix')
                 .then(function success(rsp){
                     return rsp.data.data;
                 });
+        }
+        function getPdfApps() {
+            return $http.get(API_URL + '/pdfapps');
         }
 
         /**

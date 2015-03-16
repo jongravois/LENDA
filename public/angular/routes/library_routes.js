@@ -38,7 +38,13 @@
                 .state('library.matrix', {
                     url: '/matrix',
                     templateUrl: 'angular/library/matrix/matrix.html',
-                    controller: 'MatrixController'
+                    controller: 'MatrixController',
+                    controllerAs: 'vm',
+                    resolve: {
+                        InitialData: function(LibraryFactory){
+                            return LibraryFactory.getMatrix();
+                        }
+                    }
                 })
                 .state('library.pdfapps', {
                     url: '/pdfapps',
