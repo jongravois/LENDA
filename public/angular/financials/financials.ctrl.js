@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('FinancialsController', FinancialsController);
 
-    FinancialsController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'InitialData', 'AppFactory', 'LoansFactory', 'Grader'];
+    FinancialsController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'InitialData', 'AppFactory', 'GlobalsFactory', 'LoansFactory', 'Grader'];
 
-    function FinancialsController($scope, $state, $stateParams, toastr, InitialData, AppFactory, LoansFactory, Grader) {
+    function FinancialsController($scope, $state, $stateParams, toastr, InitialData, AppFactory, GlobalsFactory, LoansFactory, Grader) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;
@@ -20,13 +20,21 @@
         }// end if
 
         $scope.loan = InitialData.data.data[0];
-        LoansFactory.getFinancials($stateParams.loanID)
+        GlobalsFactory.getAdminGrader()
             .then(function success(rsp) {
-                $scope.loan.fins = rsp.data.data[0];
-                //$scope.$watchCollection('loan.fins', function(newVal, oldVal){
-                //$scope.loan.grade = Grader.gradeLoan($scope.loan.fins, $scope.grads);
-                //});
+                $scope.grads = rsp.data.data;
             });
+        //console.log($scope.loan);
+
+        if(!$scope.loan.fins){
+            LoansFactory.getFinancials($stateParams.loanID)
+                .then(function success(rsp) {
+                    $scope.loan.fins = rsp.data.data[0];
+                    //$scope.$watchCollection('loan.fins', function(newVal, oldVal){
+                    //$scope.loan.grade = Grader.gradeLoan($scope.loan.fins, $scope.grads);
+                    //});
+                });
+        } // end if
 
         $scope.calcIncomeConstraints = function (arr) {
             var rev = [
@@ -139,6 +147,7 @@
         };
 
         //TODO: hardcoded!
-        $scope.loan.fins.totalPCC = 260550 + 261135;
+        //$scope.loan.fins.totalPCC = 260550 + 261135;
+
     } // end controller function
 })();

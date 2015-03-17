@@ -8,10 +8,10 @@
       <th style="width:10%;">Bk Qty</th>
       <th style="width:10%;">Bk Price</th>
       <th style="width:10%;">Variable Harvest</th>
-      <th>UoM</th>
+      <th style="width:10%;">UoM</th>
       <th style="width:12%;">Gin/Mill</th>
       <th style="width:10%;">Rebate</th>
-      <th>UoM</th>
+      <th style="width:10%;">UoM</th>
     </tr>
     <tr ng-repeat="c in loanCrops | orderBy: 'id'" ng-if="c.is_active">
       <td>
@@ -30,7 +30,7 @@
         <edit-in-place value="c.harvest"></edit-in-place>
       </td>
       <td class="text-center">
-        <select style="height:18px !important;" name="uom" ng-model="c.uom" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom)">
+        <select style="height:18px !important; width: 80px;" name="uom" ng-model="c.uom" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom)">
           <option value="">Please select ...</option>
         </select>
       </td>
@@ -41,7 +41,7 @@
         <edit-in-place value="c.rebates"></edit-in-place>
       </td>
       <td>
-        <select style="height:18px !important;" name="uom_rebate" ng-model="c.uom_rebate" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom_rebate)">
+        <select style="height:18px !important; width: 80px;" name="uom_rebate" ng-model="c.uom_rebate" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom_rebate)">
           <option value="">Please select ...</option>
         </select>
       </td>

@@ -150,6 +150,7 @@
 <script src="angular/loans/loans.processor.factory.js"></script>
 <script src="angular/loans/loan.summary.ctrl.js"></script>
 <script src="angular/loans/new.loans.ctrl.js"></script>
+<script src="angular/loans/summary.ctrl.js"></script>
 <script src="angular/management/management.ctrl.js"></script>
 <script src="angular/modals/confirm.modal.ctrl.js"></script>
 <script src="angular/modals/modals.service.js"></script>
