@@ -4,10 +4,9 @@
         .module('ARM')
         .controller('BudgetsController', BudgetsController);
 
-    BudgetsController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'ExpensesFactory'];
+    BudgetsController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'ExpensesFactory'];
 
-    function BudgetsController($scope, $stateParams, $state,
-                               InitialData, ExpensesFactory) {
+    function BudgetsController($scope, $state, $stateParams, AppFactory, ExpensesFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;
@@ -19,8 +18,6 @@
                 }
             });
         }// end if
-
-        $scope.loan = $scope.loan || InitialData.data.data[0];
 
         ExpensesFactory.getBudget($stateParams.loanID)
             .then(function success(rsp) {
@@ -90,6 +87,5 @@
         $scope.insertBudget = function () {
             AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
         };
-
     } // end function
 })();
