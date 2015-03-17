@@ -69,6 +69,7 @@
 <script src="lib/angular-1.3.14/angular-resource.min.js"></script>
 <script src="lib/angular-loading-bar/build/loading-bar.min.js"></script>
 <script src="lib/ng-grid/build/ng-grid.debug.js"></script>
+<script src="lib/plupload-angular-directive/dist/plupload-angular-directive.min.js"></script>
 <!-- endbower -->
 
 <!-- inject.js -->

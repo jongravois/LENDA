@@ -6,8 +6,7 @@
 
     PrerequisitesController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
 
-    function PrerequisitesController($scope, $state, $stateParams,
-                                     AppFactory, LoansFactory) {
+    function PrerequisitesController($scope, $state, $stateParams,AppFactory, LoansFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;
@@ -19,6 +18,8 @@
                 }
             });
         }// end if
+
+        $scope.files = [];
 
         LoansFactory.getPrerequisites($stateParams.loanID)
             .then(function success(rsp) {
