@@ -86,6 +86,7 @@
                 }, 0);
 
                 tmpData.policies = policies;
+                tmpData.database = policies;
 
                 angular.copy(tmpData, factObj.data);
                 factObj.data.cropAcres = cropAcres;

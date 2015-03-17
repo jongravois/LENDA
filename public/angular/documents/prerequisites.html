@@ -1,6 +1,3 @@
-<style>
-  th{ text-align:center; }
-</style>
 <fieldset>
   <!--<pre>{{screens | json}}</pre>-->
   <legend>Required Documents</legend>
@@ -20,21 +17,31 @@
     <tr ng-repeat="d in docs">
       <td>{{d.document}}</td>
       <td class="text-center">
-        <span class="glyphicon glyphicon-pushpin" ng-if="!d.date_requested" ></span>
+        <button type="button" class="btn btn-success" ng-if="!d.date_requested">
+            <span class="glyphicon glyphicon-pushpin"></span>
+            &nbsp;Request Document
+        </button>
         <span ng-if="d.date_requested">
             {{d.date_requested | date:'M/d/yy'}}
         </span>
       </td>
       <td class="text-center">
-        <span class="glyphicon glyphicon-cloud-upload" ng-if="!d.date_received"></span>
+          <button type="button" class="btn btn-success" ng-if="!d.date_received">
+            <span class="glyphicon glyphicon-cloud-upload"></span>
+              &nbsp;
+              Upload Document
+          </button>
         <span ng-if="d.date_received">
-          <a target="_blank" href="{{file_url + d.path + d.filename}}" download="{{d.filename}}">
             {{d.date_received | date:'M/d/yy'}}
-          </a>
         </span>
       </td>
       <td>
-        <input type="text" class="form-control" ng-model="d.reason_pending"/>
+        <input type="text" class="form-control" ng-model="d.reason_pending" ng-if="!d.date_received"/>
+          <a class="btn btn-success" target="_blank" href="{{file_url + d.path + d.filename}}" download="{{d.filename}}" ng-if="d.date_received">
+              <span class="glyphicon glyphicon-floppy-save"></span>
+              &nbsp;
+              View Document
+          </a>
       </td>
     </tr>
   </table>
