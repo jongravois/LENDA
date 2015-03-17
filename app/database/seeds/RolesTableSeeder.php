@@ -60,7 +60,7 @@ class RolesTableSeeder extends Seeder {
         ]);
         Role::create([
             'abr'	=>	'IAS',
-            'role'	=>	'Insurance Analyst',
+            'role'	=>	'Insurance Assistant',
             'matrix' => 1
         ]);
         Role::create([

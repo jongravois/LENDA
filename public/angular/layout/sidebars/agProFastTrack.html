@@ -11,7 +11,7 @@
   <a ui-sref-active="active" ui-sref="edit.financials" class="btn btn-default">
     Financials&nbsp;
     <span style="font-weight: bold; color: #006837;" ng-if="loan.fins.grade">
-      [{{loan.fins.grade}}<span ng-if="loan.fins.credit_score"> - {{loan.fins.credit_score}}</span>]
+      [{{loan.fins.grade}}<span ng-if="loan.fins.credit_score"> {{loan.fins.credit_score}}</span>]
     </span>
   </a>
   <a ui-sref-active="active" ui-sref="edit.plannedcrops" class="btn btn-default">Planned Crops</a>

@@ -17,7 +17,9 @@
       <br/><br/>
     </div>
     <div class="col-md-6">
-      <input type="checkbox" ng-model="user.cbCommentLenda"/> LENDA [{{comments.LENDA.length || 0}}]
+        <input type="checkbox" ng-model="user.cbCommentAll" ng-change="cbCommentsAll()"/> ALL [{{comments.length || 0}}]
+        &nbsp;&nbsp;
+        <input type="checkbox" ng-model="user.cbCommentLenda"/> LENDA [{{comments.LENDA.length || 0}}]
       &nbsp;&nbsp;
       <input type="checkbox" ng-model="user.cbCommentCommittee"/> Committee [{{comments.Committee.length || 0}}]
       &nbsp;&nbsp;
