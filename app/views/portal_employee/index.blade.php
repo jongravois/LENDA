@@ -132,6 +132,7 @@
 <script src="angular/insurance/insurance.ctrl.js"></script>
 <script src="angular/insurance/insurance.factory.js"></script>
 <script src="angular/library/calendar/calendar.ctrl.js"></script>
+<script src="angular/library/classroom/classroom.ctrl.js"></script>
 <script src="angular/library/legal-docs/legal.docs.ctrl.js"></script>
 <script src="angular/library/legend/legend.ctrl.js"></script>
 <script src="angular/library/library.ctrl.js"></script>

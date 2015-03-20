@@ -15,8 +15,6 @@
             <th style="width:8%;">Role</th>
             <th style="width:8%;">LOC</th>
             <th style="width:8%;">Admin?</th>
-            <th style="width:8%;">Approver?</th>
-            <th style="width:8%;">Manager?</th>
             <th style="width: 90px !important;">Actions</th>
         </tr>
         <tr ng-repeat="u in users | filter:filtery">
@@ -38,16 +36,13 @@
             <td class="text-center">
                 <input type="checkbox" name="is_admin" ng-model="u.is_admin"/>
             </td>
-            <td class="text-center">
-                <input type="checkbox" name="is_approver" ng-model="u.is_approver"/>
-            <td class="text-center">
-                <input type="checkbox" name="is_manager" ng-model="u.is_manager"/>
             <td style="white-space: nowrap;">
                 <div class="btn-group" dropdown>
                     <button class="btn btn-success dropdown-toggle" dropdown-toggle type="button">
                         Action <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
+                        <li><a ng-click="resetPassword(u.id)">Reset Password</a></li>
                         <li><a ui-sref="admin.users.edit({userId:u.id})">Edit</a></li>
                         <li><a ng-click="removeUser($index, u.id)">Delete</a></li>
                     </ul>

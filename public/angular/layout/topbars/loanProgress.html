@@ -15,7 +15,7 @@
       <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit Required" style="font-size:18px;" ng-class="{ clrOn : loan.required_3party, clrOff: !loan.required_3party }"></span>
       <span class="glyphicon glyphicon-flag" tooltip="Added Land in Database" style="font-size:18px;" ng-class="{ clrOn : loan.added_land, clrOff: !loan.added_land }"></span>
       <!--TODO: use eye-open icon for watchlist-->
-      <span class="glyphicon glyphicon-tower" tooltip="Controlled Disbursement" style="font-size:18px;" ng-class="{ clrOn : loan.controlled_disbursement, clrOff: !loan.controlled_disbursement }"></span>
+      <span class="glyphicon glyphicon-lock" tooltip="Controlled Disbursement" style="font-size:18px;" ng-class="{ clrOn : loan.controlled_disbursement, clrOff: !loan.controlled_disbursement }"></span>
       <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" style="font-size:18px;" ng-class="{ clrOn : loan.has_attachments, clrOff: !loan.has_attachments }"></span>
     </td>
 
@@ -80,17 +80,7 @@
       <span loan-progress-icon cat="19" ng-model="loan.account_classification"></span>
     </td>
     <td>
-      <span ng-if="loan.loan_type_id != 7">
-        CF: {{loan.fins.cash_flow | noCentsCurrency}}
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-      </span>
-      <span ng-if="loan.loan_type_id != 3 && loan.loan_type_id != 4">
-        RM: {{loan.fins.risk | noCentsCurrency}}
-      </span>
-      <span ng-if="loan.loan_type_id == 3 || loan.loan_type_id == 4">
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <sub>adj</sub>RM: {{loan.fins.risk_adj | noCentsCurrency}}
-      </span>
+      &nbsp;
     </td>
     <td>
       <span loan-status-icon status="loan.status_id"></span>

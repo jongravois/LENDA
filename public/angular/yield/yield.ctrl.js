@@ -7,8 +7,7 @@
 
     YieldController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'LoansFactory'];
 
-    function YieldController($scope, $state, $stateParams,
-                             InitialData, AppFactory, LoansFactory) {
+    function YieldController($scope, $state, $stateParams, InitialData, AppFactory, LoansFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;

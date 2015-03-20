@@ -43,5 +43,9 @@
                 $scope.users.push($scope.inserted);
                 $state.go('admin.users.edit', {userId: $scope.inserted.id});
             };
+
+            $scope.resetPassword = function(id){
+                alert(id);
+            };
         } // end function
 })();

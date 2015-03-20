@@ -20,6 +20,12 @@
                         }
                     }
                 })
+                .state('library.classroom', {
+                    url: '/classroom',
+                    templateUrl: 'angular/library/classroom/classroom.html',
+                    controller: 'ClassroomController',
+                    controllerAs: 'vm'
+                })
                 .state('library.legend', {
                     url: '/legend',
                     templateUrl: 'angular/library/legend/legend.html',

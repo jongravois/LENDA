@@ -163,7 +163,7 @@
             {
                 'id': 15,
                 'cat': 'ccc_received',
-                'glyph': 'link',
+                'glyph': 'subtitles',
                 'tip': 'CCC Received'
             },
             {
@@ -175,7 +175,7 @@
             {
                 'id': 17,
                 'cat': 'crop_inspection',
-                'glyph': 'tree-deciduous',
+                'glyph': 'grain',
                 'tip': 'Crop Inspection'
             },
             {

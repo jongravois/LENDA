@@ -29,6 +29,7 @@ class CreateLoansTable extends Migration {
             $table->boolean('is_cross_collateralized')->default(0);
             $table->boolean('is_fast_tracked')->default(0);
             $table->boolean('analyst_can_approve')->default(0);
+            $table->boolean('is_watched')->default(0);
             $table->boolean('has_attachments')->default(0);
             $table->boolean('has_distributor')->default(0);
             $table->string('distributor_id')->nullable();

@@ -14,7 +14,7 @@ class PrerequisitesTableSeeder extends Seeder {
 
 		Prerequisites::create([
 			'loan_id'	=>	1,
-			'document' => "CPA Financials",
+			'document' => "Financials",
 			'date_requested' => '2014-09-02',
 			'reason_pending' => 'Client unprepared'
 		]);
@@ -45,7 +45,7 @@ class PrerequisitesTableSeeder extends Seeder {
 
 		Prerequisites::create([
 			'loan_id'	=>	1,
-			'document' => "Crop Insurance APH Databases"
+			'document' => "Crop Insurance Info & Database"
 		]);
 
 		Prerequisites::create([

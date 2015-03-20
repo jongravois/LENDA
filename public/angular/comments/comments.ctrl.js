@@ -18,6 +18,13 @@
                 //console.log($scope.comments);
             });
 
+        $scope.cbCommentsAll = function () {
+            $scope.user.cbCommentLenda = true;
+            $scope.user.cbCommentCommittee = true;
+            $scope.user.cbCommentAnalyst = true;
+            $scope.user.cbCommentAccount = true;
+        };
+
         $scope.createComment = function () {
             alert('Creating new comment');
             //if analyst == user.id --> create Analyst Comment

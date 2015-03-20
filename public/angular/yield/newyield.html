@@ -9,13 +9,13 @@
         <tr>
           <th style="width:12%;text-align:left;">Crop</th>
           <th class="text-center" style="width:8%;">UoM</th>
-          <th style="width:10%;">{{globals.PY1}}</th>
-          <th style="width:10%;">{{globals.PY2}}</th>
-          <th style="width:10%;">{{globals.PY3}}</th>
+          <th style="width:10%;">{{globals.cropYears.PY1}}</th>
+          <th style="width:10%;">{{globals.cropYears.PY2}}</th>
+          <th style="width:10%;">{{globals.cropYears.PY3}}</th>
           <th style="width:10%;">3yr Avg</th>
-          <th style="width:10%;">{{globals.PY4}}</th>
-          <th style="width:10%;">{{globals.PY5}}</th>
-          <th style="width:10%;">{{globals.PY6}}</th>
+          <th style="width:10%;">{{globals.cropYears.PY4}}</th>
+          <th style="width:10%;">{{globals.cropYears.PY5}}</th>
+          <th style="width:10%;">{{globals.cropYears.PY6}}</th>
           <th style="width:10%;">6yr Avg</th>
         </tr>
         <tr ng-if="loan.loanCrops.length == 0">
@@ -46,10 +46,10 @@
             <input type="text" class="form-control text-right" ng-model="c.p4_yield"/>
           </td>
           <td style="text-align: center;">
-            <input type="text" class="form-control text-right" ng-model="c.p5_yield"/>
+            <input type="text" class="form-control text-right" ng-model="c.p5_yield || 'N/A'"/>
           </td>
           <td style="text-align: center;">
-            <input type="text" class="form-control text-right" ng-model="c.p6_yield"/>
+            <input type="text" class="form-control text-right" ng-model="c.p6_yield || 'N/A'"/>
           </td>
           <td class="text-right">
             {{averageArray([c.p1_yield, c.p2_yield, c.p3_yield, c.p4_yield, c.p5_yield, c.p6_yield])| number:1}}
