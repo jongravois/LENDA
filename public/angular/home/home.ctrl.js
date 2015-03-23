@@ -18,14 +18,14 @@
                     displayName: ' ',
                     cellTemplate: 'angular/layout/grid_tmpl/pending_icons.html',
                     headerCellTemplate: 'angular/layout/grid_tmpl/pending-header-cell.html',
-                    width: 58
+                    width: 90
                 },
                 {
                     field: 'notification',
                     displayName: ' ',
                     cellTemplate: 'angular/layout/grid_tmpl/indicators.html',
                     cellClass: 'text-center',
-                    width: 120
+                    width: 140
                 },
                 {
                     field: 'farmer',

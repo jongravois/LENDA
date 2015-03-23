@@ -129,6 +129,8 @@ class LoansController extends ApiController {
   {
     $pens = Notification::where('notification_type', 'vote')->where('loan_id', $id)->where('status', 'pending')->get();
 
+      if(!$pens){ return []; }
+
     return $this->respond([
       'data' => $this->notificationTransformer->transformCollection($pens->all())
     ]);
@@ -178,6 +180,7 @@ class LoansController extends ApiController {
           'is_cross_collateralized' => (boolean) $arr['is_cross_collateralized'],
           'is_fast_tracked' => (boolean) $arr['is_fast_tracked'],
           'is_watched' => (boolean) $arr['is_watched'],
+          'disbursement_issue' => (boolean) $arr['disbursement_issue'],
           'analyst_can_approve' => (boolean) $arr['analyst_can_approve'],
           'has_attachments' => (boolean) $arr['has_attachments'],
           'has_distributor' => (boolean) $arr['has_distributor'],

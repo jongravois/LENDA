@@ -8,7 +8,7 @@ class NotificationTransformer extends Transformer{
     return [
       'user_id' => $arr['user_id'],
       'loan_id' => $arr['loan_id'],
-      'notification_type'	=>	$arr['notification_type'],
+      'notification_type' => $arr['notification_type'],
       'task' => $arr['task'],
       'status' => $arr['status']
     ];

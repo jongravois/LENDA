@@ -25,6 +25,8 @@ class LoansTableSeeder extends Seeder {
 			'is_cross_collateralized' => 0,
 			'is_fast_tracked' => 0,
 			'has_attachments' => 1,
+            'is_watched' => 1,
+            'disbursement_issue' => 1,
 			'has_distributor' => 1,
 			'distributor_id' => 6,
 			'has_addendum' => 1,

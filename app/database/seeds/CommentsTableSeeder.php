@@ -59,6 +59,13 @@ class CommentsTableSeeder extends Seeder {
             'user_id' => 5,
             'comment'	=>	'The additional funds requested are needed to offset unanticipated medical expenses but are easily covered by the 32% increase in yield expectation. The crop collateral is 100% insured and the request is less than the max amount of available value.'
         ]);
+
+        Comment::create([
+            'loan_id' => 1,
+            'type' => 'Watch',
+            'user_id' => 5,
+            'comment' => 'Just like Santa Claus, ARM has its own version of "the naughty list." But this one does not record boys and girls who fibbed or acted mean to schoolmates on the playground. Instead, the Watch List keeps track of loans who are suspected or projected to become problematic during the life of the loan.'
+        ]);
     }
 
 }

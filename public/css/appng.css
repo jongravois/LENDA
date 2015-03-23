@@ -613,6 +613,7 @@ legend{
 .progicon .pending{color: #CCCCCC;}
 .progicon .completed{color: #006837;}
 .progicon .overdue{color: #990000;}
+.pendicon, .indicon{ cursor: pointer; }
 /* ~~~FORM PAGES~~~ */
 
 .flashmsg{
