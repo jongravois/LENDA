@@ -57,7 +57,7 @@
 
     <!--Loan/Addendum Comment-->
     <div ng-repeat="c in comments.Loan">
-        <div class="alert alert-default" role="alert">
+        <div class="alert alert-warning" role="alert">
             <h4>
                 <span class="glyphicon glyphicon-pencil" ></span>
                 Loan Summary
@@ -88,7 +88,7 @@
     <!--WatchList Comment-->
     <div ng-if="comments.Watch.length > 0">
         <div ng-repeat="c in comments.Watch">
-            <div class="alert alert-other" role="alert">
+            <div class="alert alert-default" role="alert">
                 <div style="position: relative;">
                     <h4><span class="glyphicon glyphicon-eye-open"></span>
                         Watch List Comment
