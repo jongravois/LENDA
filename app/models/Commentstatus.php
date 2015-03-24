@@ -2,7 +2,7 @@
 
 class Commentstatus extends \Eloquent {
 	protected $table = 'commentstatus';
-	protected $fillable = ['loan_id', 'comment_id', 'user_id', 'status'];
+	protected $fillable = ['loan_id', 'comment_id', 'user_id', 'recipient_id', 'status'];
 
 	//Relationships
 	public function comment()

@@ -6,8 +6,9 @@ class CommentstatusTransformer extends Transformer{
   {
     //return $arr;
     return [
-      'id' => $arr['id'],
-      'status' => $arr['status']
+        'id' => $arr['id'],
+        'loan_id' => $arr['loan_id'],
+        'status' => $arr['status']
     ];
   }
 }

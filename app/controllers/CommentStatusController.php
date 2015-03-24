@@ -63,7 +63,7 @@ class CommentstatusController extends ApiController {
 	public function pendingComments($id)
 	{
 		if(!Auth::user()){ return []; }
-		$comms = Commentstatus::where('loan_id', $id)->where('user_id', Auth::user()->id)->where('status', 'pending')->get();
+		$comms = Commentstatus::where('loan_id', $id)->where('recipient_id', Auth::user()->id)->where('status', 'pending')->get();
 
 		if(!$comms){ return []; }
 

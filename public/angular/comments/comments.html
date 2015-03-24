@@ -19,18 +19,32 @@
                 class="btn btn-primary btn-xs"
                 ng-click="createComment()">
                 <span class="glyphicon glyphicon-plus"></span>
-                NEW COMMENT
+                Add
+            </button>
+            <button
+                ng-if="!loan.is_watched"
+                class="btn btn-warning btn-xs"
+                ng-click="turnOnWatchList()">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                On
+            </button>
+            <button
+                ng-if="loan.is_watched"
+                class="btn btn-warning btn-xs"
+                ng-click="turnOffWatchList()">
+                <span class="glyphicon glyphicon-eye-close"></span>
+                Off
             </button>
             <br/><br/>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 text-right">
             <input type="checkbox" ng-model="user.cbCommentAll" ng-change="cbCommentsAll()"/> ALL
-            &nbsp;&nbsp;
-            <input type="checkbox" ng-model="user.cbCommentLenda"/> LENDA [{{comments.LENDA.length || 0}}]
             &nbsp;&nbsp;
             <input type="checkbox" ng-model="user.cbCommentCommittee"/> Committee [{{comments.Committee.length || 0}}]
             &nbsp;&nbsp;
-            <input type="checkbox" ng-model="user.cbCommentAnalyst"/> Analyst [{{comments.Analyst.length || 0}}]
+            <input type="checkbox" ng-model="user.cbCommentLenda"/> LENDA [{{comments.LENDA.length || 0}}]
+            &nbsp;&nbsp;
+           <input type="checkbox" ng-model="user.cbCommentAnalyst"/> Analyst [{{comments.Analyst.length || 0}}]
             &nbsp;&nbsp;
             <input type="checkbox" ng-model="user.cbCommentAccount"/> Account [{{comments.Account.length || 0}}]
         </div>
@@ -71,6 +85,40 @@
     </div>
     </div>
 
+    <!--WatchList Comment-->
+    <div ng-if="comments.Watch.length > 0">
+        <div ng-repeat="c in comments.Watch">
+            <div class="alert alert-other" role="alert">
+                <div style="position: relative;">
+                    <h4><span class="glyphicon glyphicon-eye-open"></span>
+                        Watch List Comment
+                    </h4>
+          <span class="ctrlButtons">
+              <span style="color:#aaaaaa;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" tooltip="reply"></span>
+              <span style="color:#006837;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" ng-if="c.status !== 'pending'"></span>
+                <span style="color:#e0a02d;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" ng-if="c.status === 'pending'"></span>
+          </span>
+                    <hr/>
+                    <p style="font-size:11px;font-weight:bold;"><i>{{c.user}}</i>
+                        &nbsp;&nbsp;-&nbsp;&nbsp;
+                        <i>{{c.dtCom | date:'MM/dd/yy'}}</i>
+                    </p>
+                    <p>{{c.comment}}</p>
+                </div>
+                <div ng-if="c.responses">
+                    <div class="alert alert-response" ng-repeat="res in c.responses | orderBy: 'created_at':true">
+                        <p style="font-size:11px;font-weight:bold;"><i>{{res.user.username}}</i>
+                            &nbsp;&nbsp;-&nbsp;&nbsp;
+                            <i>{{res.created_at | date:'MM/dd/yy'}}</i>
+                        </p>
+                        <hr/>
+                        <p>{{res.body}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--Committee Comments-->
     <div ng-if="comments.Committee.length > 0" ng-show="user.cbCommentCommittee">
         <div ng-repeat="c in comments.Committee">
@@ -80,9 +128,11 @@
                         Committee Comment
                     </h4>
           <span class="ctrlButtons">
-            <span ng-click="btnCommentReply(c)" class="glyphicon glyphicon-send" tooltip="reply"></span>&nbsp;&nbsp;&nbsp;
-            <span class="glyphicon glyphicon-unchecked" ng-if="c.status == 'pending'" ng-click="btnCommentStatus(c, user.id)" tooltip="{{c.status}}"></span>
-            <span class="glyphicon glyphicon-check" ng-if="c.status == 'confirmed'" tooltip="{{c.status}}"></span>
+              <span style="color:#aaaaaa;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" tooltip="reply"></span>
+              <span style="color:#006837;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" ng-if="c.status !== 'pending'"></span>
+                <span style="color:#e0a02d;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" ng-if="c.status === 'pending'"></span>
+            <!--&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-unchecked" ng-if="c.status == 'pending'" ng-click="btnCommentStatus(c, user.id)" tooltip="{{c.status}}"></span>
+            <span class="glyphicon glyphicon-check" ng-if="c.status == 'confirmed'" tooltip="{{c.status}}"></span>-->
           </span>
                     <hr/>
                     <p style="font-size:11px;font-weight:bold;"><i>{{c.user}}</i>
@@ -110,6 +160,10 @@
         <div ng-repeat="c in comments.LENDA">
             <div class="alert alert-danger" role="alert">
                 <div style="position: relative;">
+                    <span class="ctrlButtons">
+              <span style="color:#006837;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" ng-if="c.status !== 'pending'"></span>
+                <span style="color:#e0a02d;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" ng-if="c.status === 'pending'"></span>
+          </span>
                     <h4>
                         <span class="glyphicon glyphicon-wrench"></span> LENDA Comment
                     </h4>
@@ -133,9 +187,9 @@
                     <h4><span class="glyphicon glyphicon-user"></span> Analyst Comment
                     </h4>
           <span class="ctrlButtons">
-            <span ng-click="btnCommentReply(c.id)" class="glyphicon glyphicon-send" tooltip="reply"></span>&nbsp;&nbsp;&nbsp;
-            <span class="glyphicon glyphicon-unchecked" ng-if="c.status == 'pending'" ng-click="btnCommentStatus(c, user.id)" tooltip="{{c.status}}"></span>
-            <span class="glyphicon glyphicon-check" ng-if="c.status == 'confirmed'" tooltip="{{c.status}}"></span>
+            <span style="color:#aaaaaa;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" tooltip="reply"></span>
+              <span style="color:#006837;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" ng-if="c.status !== 'pending'"></span>
+                <span style="color:#e0a02d;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" ng-if="c.status === 'pending'"></span>
           </span>
                 </div>
                 <hr/>
@@ -166,9 +220,8 @@
           <h4><span class="glyphicon glyphicon-usd"></span> Account Comment
           </h4>
           <span class="ctrlButtons">
-            <span ng-click="btnCommentReply(c.id)" class="glyphicon glyphicon-send" tooltip="reply"></span>&nbsp;&nbsp;&nbsp;
-            <span class="glyphicon glyphicon-unchecked" ng-if="c.status == 'pending'" ng-click="btnCommentStatus(c, user.id)" tooltip="{{c.status}}"></span>
-            <span class="glyphicon glyphicon-check" ng-if="c.status == 'confirmed'" tooltip="{{c.status}}"></span>
+              <span style="color:#006837;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" ng-if="c.status !== 'pending'"></span>
+                <span style="color:#e0a02d;" ng-click="btnCommentReply(c)" class="glyphicon glyphicon-comment" ng-if="c.status === 'pending'"></span>
           </span>
         </div>
         <hr/>

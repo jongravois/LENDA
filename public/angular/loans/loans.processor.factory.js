@@ -29,7 +29,7 @@
         function getPendingVotes(loan) {
             return LoansFactory.getPendingVotes(loan.id)
                 .then(function (response) {
-                    return (response.data.data.length === 0);
+                    return (response.data.data.length !== 0);
                 });
         }
 

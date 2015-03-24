@@ -667,51 +667,6 @@ label{font-size:11px;}
   background-color: rgb(255, 255, 255);
 }
 
-/* FOR COMMENT CARDS */
-.alert-response{
-  width:90%;
-  margin: 0 auto 10px auto;
-  font-size: 11px;
-  color: #333;
-  background-color: #FFFFFF;
-  border-color: #006837;
-}
-.alert-response hr{
-  margin:3px 0;
-  border: 0;
-  border-top: 1px solid #bcbcbc;
-}
-.alert-default{
-  color: #333333;
-  background-color: #EBEBEB;
-  border-color: #ADADAD;
-}
-.alert-default hr{
-  margin:3px 0;
-  border: 0;
-  border-top: 1px solid #bcbcbc;
-}
-.alert-info hr{
-  margin:3px 0;
-  border: 0;
-  border-top: 1px solid #BAC9E0;
-}
-.alert-warning hr{
-  margin:3px 0;
-  border: 0;
-  border-top: 1px solid #E5E3C3;
-}
-.alert-danger hr{
-  margin:3px 0;
-  border: 0;
-  border-top: 1px solid #DBC2BE;
-}
-.alert-success hr{
-  margin:3px 0;
-  border: 0;
-  border-top: 1px solid #B8D9BA;
-}
-
 .display-field{
   font-size: 16px;
   font-weight: normal;
@@ -844,3 +799,58 @@ label{font-size:11px;}
 .ngTopPanel{ z-index: inherit;}
 
 .nav-tabs>li>a {color: #333333; }
+
+/* FOR COMMENT CARDS */
+.alert-response{
+    width:90%;
+    margin: 0 auto 10px auto;
+    font-size: 11px;
+    color: #333;
+    background-color: #FFFFFF;
+    border-color: #006837;
+}
+.alert-response hr{
+    margin:3px 0;
+    border: 0;
+    border-top: 1px solid #bcbcbc;
+}
+.alert-default{
+    color: #333333;
+    background-color: #EBEBEB;
+    border-color: #ADADAD;
+}
+.alert-default hr{
+    margin:3px 0;
+    border: 0;
+    border-top: 1px solid #bcbcbc;
+}
+.alert-info hr{
+    margin:3px 0;
+    border: 0;
+    border-top: 1px solid #BAC9E0;
+}
+.alert-warning hr{
+    margin:3px 0;
+    border: 0;
+    border-top: 1px solid #E5E3C3;
+}
+.alert-danger hr{
+    margin:3px 0;
+    border: 0;
+    border-top: 1px solid #DBC2BE;
+}
+.alert-success hr{
+    margin:3px 0;
+    border: 0;
+    border-top: 1px solid #B8D9BA;
+}
+.alert-other{
+    color: #680031;
+    background-color: #ffcae3;
+    border-color: #2d0015;
+}
+.alert-other hr{
+    margin:3px 0;
+    border: 0;
+    border-top: 1px solid #ffcae3;
+}

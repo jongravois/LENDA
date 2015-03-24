@@ -39,6 +39,11 @@
             <span style="display:none;" id="user_id" data-id="{{Auth::user()->id}}"> 
                 {{Auth::user()->username}} 
             </span>
+            <div class="row" style="z-index: 32000;">
+                <div class="col-xs-12">
+                    <div ng-include="'angular/layout/topbars/logobar.html'"></div>
+                </div>
+            </div>
         </div>
     </div>
     <div ui-view style="margin-top:120px; z-index: 10;" autoscroll></div>

@@ -18,6 +18,7 @@
                     displayName: ' ',
                     cellTemplate: 'angular/layout/grid_tmpl/pending_icons.html',
                     headerCellTemplate: 'angular/layout/grid_tmpl/pending-header-cell.html',
+                    headerClass: 'text-center',
                     width: 90
                 },
                 {
@@ -236,5 +237,9 @@
                     visible: $scope.user.viewoptions.view_acres_sugar_cane || false
                 }
             ];
+
+            $scope.nextOrder = function(item){
+                alert(item);
+            };
         });
 })();

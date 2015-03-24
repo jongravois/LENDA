@@ -728,6 +728,17 @@ label {
   border: 0;
   border-top: 1px solid #B8D9BA;
 }
+.alert-other{
+    color: #333333;
+    background-color: FFA34D;
+    border-color: #FF7B00;
+}
+.alert-other hr{
+    margin:3px 0;
+    border: 0;
+    border-top: 1px solid #FF7B00;
+}
+
 .display-field {
   font-size: 16px;
   font-weight: normal;
