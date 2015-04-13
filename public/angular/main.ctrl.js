@@ -102,13 +102,16 @@
             });
         };
         $scope.updateUserInfo = function () {
+            //TODO: create function
             alert('Updating User Info');
         };
         $scope.updateFilterPrefs = function () {
+            //TODO: create function
             alert('Updating Filters');
         };
         $scope.updateViewPrefs = function (o) {
             AppFactory.putIt('/viewoptions/', $scope.user.id, o);
+            toastr.success('Changes Saved', 'Success!');
         };
 
         $scope.toggled = function (open) {
