@@ -4,6 +4,7 @@ class ViewoptionTransformer extends Transformer{
 
   public function transform($arr)
   {
+      //added indicator icons
     //return $arr;
     return [
       'id' => $arr['id'],
