@@ -19,6 +19,10 @@ body {
 .pushed-down {
   margin-top: 20px;
 }
+.dont-wrap{
+    white-space: nowrap;
+}
+
 #navbar-notifications {
   background: #EC502A;
   cursor: pointer;
