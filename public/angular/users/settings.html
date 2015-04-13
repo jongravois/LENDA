@@ -7,7 +7,6 @@
     <div class="row">
         <div class="col-md-12">
             <h3 style="margin-left:8px;">My Preferred Settings</h3>
-            <!--<pre>{{users | json}}</pre>-->
         </div>
     </div>
     <!--PAGE TITLE-->
@@ -645,11 +644,35 @@
     <div class="row">
         <fieldset id="opt_fields" class="col-md-12" style="margin-top:18px;">
             <legend>OPTIONAL DISPLAY FIELDS</legend>
-            <!--TODO: Limit (and warn) to only 4 choices-->
+
             <div class="alert alert-danger" role="alert">
                 <p>You may only choose up to four optional fields</p>
             </div>
             <table class="table table-striped">
+                <tr>
+                    <td>
+                        <label>Loan Indicators: </label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconAddendum" ng-model="user.viewoptions.view_icon_addendum"> <span class="glyphicon glyphicon-plus" tooltip="Addendums" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconCross" ng-model="user.viewoptions.view_icon_cross"> <span class="glyphicon glyphicon-retweet" tooltip="Cross Collateralized Loans" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconBankruptcy" ng-model="user.viewoptions.view_icon_bankruptcy"> <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy History" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconThirdPartyCredit" ng-model="user.viewoptions.view_icon_3pcredit"> <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconAddedLand" ng-model="user.viewoptions.view_icon_addedland"> <span class="glyphicon glyphicon-flag" tooltip="Added Land" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconDisbursements" ng-model="user.viewoptions.view_icon_disbursement"> <span class="glyphicon glyphicon-lock" tooltip="Controlled Disbursements" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconAttachments" ng-model="user.viewoptions.view_icon_attachments"> <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" style="color: #333;"></span>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
                 <tr>
                     <td>
                         <input type="checkbox" name="view_region" ng-model="user.viewoptions.view_region"/>
@@ -770,6 +793,7 @@
         </fieldset>
     </div>
     <!--OPTIONAL FIELDS-->
+
     <!--<pre>{{user.viewoptions | json}}</pre>-->
     <br><br><br><br>
 </div>
