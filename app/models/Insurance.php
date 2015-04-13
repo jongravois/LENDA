@@ -5,7 +5,7 @@ class Insurance extends \Eloquent {
 
 	protected $fillable = ['loan_id', 'agency_id', 'agent_id', 'policy', 'is_assigned', 'fsn', 'loancounty_id', 'loancrop_id', 'croppractice_id', 'type', 'option', 'acres', 'price', 'yield', 'level', 'premium', 'share', 'guaranty', 'value'];
 
-	// Relationships
+	/* RELATIONSHIPS */
     public function agency()
     {
         return $this->belongsTo('Agency', 'agency_id');
@@ -35,4 +35,5 @@ class Insurance extends \Eloquent {
 	{
 		return $this->belongsTo('Croppractice', 'croppractice_id');
 	}
+    /* RELATIONSHIPS */
 }

@@ -8,4 +8,5 @@ class Agents extends \Eloquent {
 	{
 		return $this->belongsTo('Agency', 'agency_id');
 	}
+    /* RELATIONSHIPS */
 }

@@ -107,11 +107,13 @@
 <script src="angular/admin/users/applicants/admin.applicants.ctrl.js"></script>
 <script src="angular/admin/users/farmers/admin.farmers.ctrl.js"></script>
 
+<script src="angular/addendums/addendums.ctrl.js"></script>
 <script src="angular/applicants/applicants.ctrl.js"></script>
 <script src="angular/applicants/applicants.factory.js"></script>
 <script src="angular/budgets/budgets.ctrl.js"></script>
 <script src="angular/budgets/expenses.factory.js"></script>
 <script src="angular/closing/closing.ctrl.js"></script>
+<script src="angular/collateral/collateral.ctrl.js"></script>
 <script src="angular/comments/comments.ctrl.js"></script>
 <script src="angular/comments/comments.data.js"></script>
 <script src="angular/comments/comments.logic.js"></script>

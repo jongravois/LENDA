@@ -15,6 +15,12 @@
                         }
                     }
                 })
+                .state('edit.addendums', {
+                    url: '/addendums',
+                    templateUrl: 'angular/addendums/addendums.html',
+                    controller: 'AddendumsController',
+                    data: {newapplication: false}
+                })
                 .state('edit.applicant', {
                     url: '/applicant',
                     templateUrl: 'angular/applicants/editapplicant.html',
@@ -37,6 +43,12 @@
                     url: '/closing',
                     templateUrl: 'angular/closing/closing.html',
                     controller: 'ClosingController',
+                    data: {newapplication: false}
+                })
+                .state('edit.collateral', {
+                    url: '/collateral',
+                    templateUrl: 'angular/collateral/collateral.html',
+                    controller: 'CollateralController',
                     data: {newapplication: false}
                 })
                 .state('edit.comments', {

@@ -6,13 +6,9 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #DDDDDD;
+  background-color: #006837;
   position: relative;
   z-index: 1;
-}
-.progicon,
-.staticon {
-  cursor: pointer;
 }
 .req {
   color: #CC0000;
@@ -84,9 +80,7 @@ select {
   left: 5px;
 }
 /* UTILITY CLASSES */
-.centered {
-  margin: 0 auto;
-}
+.centered { margin: 0 auto; }
 .inlined {
   display: inline;
 }
@@ -179,10 +173,14 @@ select {
 .make-yellow {
   color: #e0a02d;
 }
-.progicon,
-.indicon {
-  cursor: pointer;
-}
+
+.cBlue{ color: #009; }
+.cGray{ color: #ddd; }
+.cGreen{ color: #006837; }
+.cOrange{ color: #ff4500; }
+.cRed{ color: #900; }
+.cYellow { color: #e0a02d; }
+
 .pIcoPen {
   color: #DDDDDD;
 }
@@ -627,6 +625,11 @@ legend {
 .progicon .overdue {
   color: #990000;
 }
+
+.pendicon, .indicon, progicon{ padding: 7px 0; cursor: pointer; }
+.headicon{ text-align: center; padding: 7px 0; cursor: pointer;}
+.padd{ padding: 5px; }
+
 /* ~~~FORM PAGES~~~ */
 .flashmsg {
   position: absolute;

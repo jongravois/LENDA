@@ -10,13 +10,13 @@ class CreateCropsTable extends Migration {
 		Schema::create('crops', function(Blueprint $table)
 		{
 			$table->increments('id');
-      $table->string('crop');
-      $table->double('tea');
-      $table->double('arm_default_price');
-      $table->double('arm_default_ins_price');
-      $table->double('arm_default_yield');
-      $table->string('measurement')->default('bu');
-      $table->string('rebate_measurement')->default('bu');
+            $table->string('crop');
+            $table->double('tea');
+            $table->double('arm_default_price');
+            $table->double('arm_default_ins_price');
+            $table->double('arm_default_yield');
+            $table->string('measurement')->default('bu');
+            $table->string('rebate_measurement')->default('bu');
 			$table->timestamps();
 		});
 	}

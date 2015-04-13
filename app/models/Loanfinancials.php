@@ -9,6 +9,7 @@ class Loanfinancials extends \Eloquent {
 	{
 		return $this->belongsTo('Loan', 'loan_id');
 	}
+    /* RELATIONSHIPS */
 
 
 }

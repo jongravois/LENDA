@@ -3,21 +3,26 @@
     angular
         .module('ARM')
         .controller('HomeController', function ($scope) {
+            $scope.pending_view = 0;
+            $scope.orderOptions = ['applicant', '-categoryOrder'];
+            $scope.orderOption = "['applicant']";
+
             $scope.gridOptions = {
                 data: 'loanList',
                 rowHeight: 40,
                 showFilter: true,
+                nextOrder: $scope.nextOrder,
                 //showGroupPanel: true,
                 enableRowSelection: false,
-                enableCellEdit: true,
+                //enableCellEdit: true,
                 columnDefs: 'columnDefs'
             };
             $scope.columnDefs = [
                 {
                     field: 'pending',
                     displayName: ' ',
-                    cellTemplate: 'angular/layout/grid_tmpl/pending_icons.html',
-                    headerCellTemplate: 'angular/layout/grid_tmpl/pending-header-cell.html',
+                    cellTemplate: 'angular/layout/grid_tmpl/pending.icons.html',
+                    headerCellTemplate: 'angular/layout/grid_tmpl/pending.header.cell.html',
                     headerClass: 'text-center',
                     width: 90
                 },
@@ -238,8 +243,12 @@
                 }
             ];
 
-            $scope.nextOrder = function(item){
-                alert(item);
+            $scope.nextOrder = function(stat){
+                if(stat === 0){
+                    $scope.orderOption = ['applicant'];
+                } else {
+                    $scope.orderOption = ['-need_vote', '-has_comment', '-is_stale', '-on_watch', '-disbursement_issue'];
+                } // end if
             };
         });
 })();

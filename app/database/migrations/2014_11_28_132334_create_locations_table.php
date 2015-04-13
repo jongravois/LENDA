@@ -9,16 +9,16 @@ class CreateLocationsTable extends Migration {
 	{
 		Schema::create('locations', function(Blueprint $table)
 		{
-			$table->increments('id');
-      $table->string('location');
-      $table->string('loc_abr');
-      $table->integer('region_id')->nullable();
-      $table->string('address');
-      $table->string('city');
-      $table->string('state');
-      $table->string('zip');
-      $table->string('phone', 10);
-      $table->integer('manager_id')->nullable();
+            $table->increments('id');
+            $table->string('location');
+            $table->string('loc_abr');
+            $table->integer('region_id')->nullable();
+            $table->string('address');
+            $table->string('city');
+            $table->string('state');
+            $table->string('zip');
+            $table->string('phone', 10);
+            $table->integer('manager_id')->nullable();
 			$table->timestamps();
 		});
 	}

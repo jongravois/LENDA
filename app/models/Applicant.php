@@ -4,6 +4,7 @@ class Applicant extends \Eloquent {
   protected $dates = array('dob');
   protected $fillable = ['grade', 'loc_id', 'entity_id', 'farmer_id', 'applicant', 'ssn', 'email', 'dob', 'address', 'phone', 'city', 'state_id', 'zip', 'spouse', 'spouse_ssn'];
 
+  /* RELATIONSHIPS */
   public function entitytype()
   {
     return $this->belongsTo('Entitytype', 'entity_id');
@@ -28,4 +29,5 @@ class Applicant extends \Eloquent {
   {
     return $this->belongsTo('State', 'state_id');
   }
+  /* RELATIONSHIPS */
 }

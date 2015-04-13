@@ -20,13 +20,14 @@
 
         UsersFactory.getUser($scope.user_id)
             .then(function success(response) {
+                var notifiers = response.data.data.notifications;
                 $scope.user = response.data.data;
-                $scope.user.notifications = response.data.data.notifications;
+                $scope.user.notifications = notifiers;
                 $scope.user.badged = response.data.data.notifications.length;
-                $scope.tooltipNotifications = '<p>' + $scope.user.notifications.map(function (arr) {
-                    return arr.task;
-                })
-                .join('</p><p>') + '</p>';
+
+
+                //TODO: Count Tasks dynamically
+                $scope.tooltipNotifications = getTallies(notifiers);
                 toastr.success('Loaded Current User', 'Success!');
             });
 
@@ -118,9 +119,7 @@
             $event.stopPropagation();
             $scope.status.isopen = !$scope.status.isopen;
         };
-        $scope.status = {
-            isopen: false
-        };
+        $scope.status = { isopen: false };
 
         $scope.changeLandingView = function (val) {
             switch (val) {
@@ -156,19 +155,27 @@
             } // end switch
         };
 
-        /* FOR PENDING SORT */
-        // compoundSort = 4 * need_vote + 2 * has_comment + is_stale
-        $scope.orderOptions = ['applicant', '-categoryOrder'];
-        $scope.myOrder = 'applicant';
-        $scope.orderOption = 0;
+        /* METHODS */
+        function getTallies(arr){
+            var catNotify = _.chain(arr)
+                .groupBy('notification_type')
+                .value();
 
-        $scope.nextOrder = function () {
-            $scope.orderOption++;
-            if ($scope.orderOption >= $scope.orderOptions.length){
-                $scope.orderOption = 0;
-            }
+            var penAct = catNotify.report.length;
+            var manReq = catNotify.vote.length;
+            var reqRep = catNotify.office.length;
 
-            $scope.myOrder = $scope.orderOptions[$scope.orderOption];
-        };
+            var retHTML = '<p style="text-align: left !important;">Pending Actions: (';
+            retHTML += penAct;
+            retHTML += ')</p><p style="text-align: left !important;">Management Required: (';
+            retHTML += manReq;
+            retHTML += ')</p><p style="text-align: left !important;">Review Reports: (';
+            retHTML += reqRep;
+            retHTML += ')</p>';
+
+            return retHTML;
+        }
+
+
     } // end controller
 })();
