@@ -69,12 +69,6 @@
             $scope.clkCROPINS = function(loan){
                 alert(loan.id);
             };
-            $scope.clkLIMITWARNING = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkRECON = function(loan){
-                alert(loan.id);
-            };
 
         } // end function
 })();

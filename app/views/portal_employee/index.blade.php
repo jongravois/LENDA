@@ -162,6 +162,7 @@
 <script src="angular/purgatory/purgatory.ctrl.js"></script>
 <script src="angular/quests/quests.ctrl.js"></script>
 <script src="angular/quests/quests.factory.js"></script>
+<script src="angular/reconciliations/recons.ctrl.js"></script>
 <script src="angular/references/references.ctrl.js"></script>
 <script src="angular/reports/reports.ctrl.js"></script>
 <script src="angular/reports/reports.factory.js"></script>

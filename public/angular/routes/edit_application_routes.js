@@ -135,6 +135,12 @@
                     controller: 'QuestsController',
                     data: {newapplication: false}
                 })
+                .state('edit.reconciliation', {
+                    url: '/reconciliation',
+                    templateUrl: 'angular/reconciliations/recon.html',
+                    controller: 'ReconciliationsController',
+                    data: {newapplication: false}
+                })
                 .state('edit.references', {
                     url: '/references',
                     templateUrl: 'angular/references/editreferences.html',
