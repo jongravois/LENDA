@@ -51,8 +51,8 @@ class LoansTableSeeder extends Seeder {
 			'aoi_received' => 0,
 			'ccc_received' => 0,
 			'rebate_assignment' => 0,
-			'limit_warning' => 8,
-			'limit_warning_message' => 'More than 95% of budget for fertilizer has been utilized.',
+			'limit_warning' => 3,
+			'limit_warning_message' => 'Less than 1% of total allotment remaining.',
 			'crop_inspection' => 0,
 			'reconciliation' => 0,
 			'grade' => 'B',
@@ -80,8 +80,8 @@ class LoansTableSeeder extends Seeder {
 			'loan_type_id' =>	5,
 			'farmer_id' => 10,
 			'analyst_can_approve' => 1,
-            'limit_warning' => 5,
-            'limit_warning_message' => 'Account spending is approaching limit for time period.',
+            'limit_warning' => 2,
+            'limit_warning_message' => 'Account spending is more than expected for time period.',
 			'grade' => 'B'
 		]);
 
@@ -97,7 +97,9 @@ class LoansTableSeeder extends Seeder {
 			'crop_year' => '2015',
 			'season' =>	'S',
 			'loan_type_id' =>	4,
-      'farmer_id' => 2,
+            'farmer_id' => 2,
+            'limit_warning' => 6,
+            'limit_warning_message' => 'Buying fertilizer quicker than expected.',
 			'conditions_asa' => 1,
 			'conditions_aci' => 1,
 			'conditions_areb' => 1,
@@ -117,7 +119,8 @@ class LoansTableSeeder extends Seeder {
 			'crop_year' => '2015',
 			'season' =>	'S',
 			'loan_type_id' => 6,
-      'farmer_id' => 12
+            'farmer_id' => 12,
+            'limit_warning' => 1
 		]);
 
 		// Clint Barton(5) @ Nested Row(2) | Spousal--Ag-Pro 2015
@@ -132,7 +135,9 @@ class LoansTableSeeder extends Seeder {
 			'crop_year' => '2015',
 			'season' =>	'S',
 			'loan_type_id' =>	3,
-      'farmer_id' => 5,
+            'farmer_id' => 5,
+            'limit_warning' => 7,
+            'limit_warning_message' => 'More than 75% of alloted budget for time period for fertilizer has been utilized.',
 			'conditions_asa' => 1,
 			'conditions_aci' => 1,
 			'conditions_areb' => 1,
@@ -152,7 +157,9 @@ class LoansTableSeeder extends Seeder {
 			'crop_year' => '2015',
 			'season' =>	'F',
 			'loan_type_id' =>	1,
-      'farmer_id' => 9,
+            'farmer_id' => 9,
+            'limit_warning' => 8,
+            'limit_warning_message' => 'More than 95% of budget for fertilizer has been utilized.',
 			'conditions_asa' => 1,
 			'conditions_aci' => 1,
 			'conditions_areb' => 1,
@@ -172,8 +179,10 @@ class LoansTableSeeder extends Seeder {
       'crop_year' => '2015',
       'season' =>	'S',
       'loan_type_id' =>	7,
-      'farmer_id' => 7
-		]);
+      'farmer_id' => 7,
+      'limit_warning' => 5,
+      'limit_warning_message' => 'Utilization of budget within 3% of time period allotment.',
+	]);
 
 		// Tony Stark(1) @ Glass Towers(1) | Partnership | Ag-Input 2014
 		Loan::create([
