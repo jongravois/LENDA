@@ -60,6 +60,7 @@ class CreateLoansTable extends Migration {
             $table->integer('ccc_received')->default(0);
             $table->integer('rebate_assignment')->default(0);
             $table->integer('limit_warning')->default(0);
+            $table->text('limit_warning_message')->nullable();
             $table->integer('crop_inspection')->default(0);
             $table->integer('reconciliation')->default(0);
             $table->integer('account_classification')->default(0);

@@ -867,3 +867,5 @@ div.editable-click {
 .nav-tabs > li > a {
   color: #333333;
 }
+
+.cents>a>img{ cursor: pointer; }

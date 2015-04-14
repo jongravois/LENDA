@@ -51,7 +51,8 @@ class LoansTableSeeder extends Seeder {
 			'aoi_received' => 0,
 			'ccc_received' => 0,
 			'rebate_assignment' => 0,
-			'limit_warning' => 0,
+			'limit_warning' => 8,
+			'limit_warning_message' => 'More than 95% of budget for fertilizer has been utilized.',
 			'crop_inspection' => 0,
 			'reconciliation' => 0,
 			'grade' => 'B',
@@ -79,6 +80,8 @@ class LoansTableSeeder extends Seeder {
 			'loan_type_id' =>	5,
 			'farmer_id' => 10,
 			'analyst_can_approve' => 1,
+            'limit_warning' => 5,
+            'limit_warning_message' => 'Account spending is approaching limit for time period.',
 			'grade' => 'B'
 		]);
 

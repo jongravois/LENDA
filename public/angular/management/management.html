@@ -3,17 +3,10 @@
   td{ padding: 2px; }
 </style>
 
-<!--TODO: Add click funtionality to progress bar-->
 <div class="button_bar" style="margin-top: 20px;">
   &nbsp;
   <!--<img src="/images/Excel_Dump_Icon.gif"/>-->
     <span class="view_control">
-        <!--<select ng-model="landing_view" class="form-control">
-          <option value="my_settings_view">My Settings</option>
-          <option value="all_loans_view">All Active Loans</option>
-          <option value="spring_loans_view">Active Spring Loans</option>
-          <option value="fall_loans_view">Active Fall Loans</option>
-        </select>-->
     </span>
 </div> <!-- end .button_bar -->
 
@@ -26,175 +19,397 @@
 </div> <!-- end .landing_header_bar -->
 
 <div>
-  <table id="tblLoans" class="tblLanding"
-         style="background-color: white;" border="1">
+  <table id="tblLoans"
+         class="tblLanding"
+         style="background-color: white;"
+         border="1">
+
     <tr class="landing_header_row">
-      <th style="width:5%;" rowspan="2">
-        <span ng-show="pending_view" ng-click="pending_view = 0; nextOrder()"
-          class="glyphicon glyphicon-exclamation-sign"
-          style="color:#000000;"></span>
-        <span ng-show="!pending_view" ng-click="pending_view = 1; nextOrder()"
-           class="glyphicon glyphicon-exclamation-sign"
-           style="color:#FFF;"></span>
+      <th rowspan="2">
+        <span ng-show="pending_view"
+              ng-click="pending_view = 0; nextOrder()"
+              class="glyphicon glyphicon-exclamation-sign"
+              style="color:#000000;"></span>
+        <span ng-show="!pending_view"
+              ng-click="pending_view = 1; nextOrder()"
+              class="glyphicon glyphicon-exclamation-sign"
+              style="color:#FFF;"></span>
       </th>
-      <th style="width:5%;" rowspan="2">&nbsp;</th>
-      <th style="width:5%;text-align:left;" rowspan="2" data-ng-click="sortBy='farmer';reverse=!reverse">Farmer</th>
-      <th style="width:5%;text-align:left;" rowspan="2" data-ng-click="sortBy='applicant';reverse=!reverse">Applicant</th>
-      <th style="width:6%;text-align:left;" rowspan="2" data-ng-click="sortBy='app_date';reverse=!reverse">App Date</th>
-      <th style="width:20px;" rowspan="2" data-ng-click="sortBy='location';reverse=!reverse">Loc</th>
-      <th style="width:5%;" rowspan="2" data-ng-click="sortBy='loan_type';reverse=!reverse">Type</th>
-      <th style="width:18px;" rowspan="2" data-ng-click="sortBy='loanStatus';reverse=!reverse">Status</th>
+      <th rowspan="2">&nbsp;</th>
+      <th style="width:7%;" rowspan="2" data-ng-click="sortBy='farmer';reverse=!reverse">Farmer</th>
+      <th style="width:7%;" rowspan="2" data-ng-click="sortBy='applicant';reverse=!reverse">Applicant</th>
+      <th style="width:5%;" rowspan="2" data-ng-click="sortBy='app_date';reverse=!reverse">Crop Yr</th>
+      <th style="width:6%;" rowspan="2" data-ng-click="sortBy='location';reverse=!reverse">Loc</th>
+      <th style="width:6%;" rowspan="2" data-ng-click="sortBy='loan_type';reverse=!reverse">Type</th>
+      <th style="width:6%;" rowspan="2" data-ng-click="sortBy='loanStatus';reverse=!reverse">Status</th>
       <th colspan="20" style="text-align: center">Progress</th>
-      <!--<th style="width:5%;" rowspan="2" data-ng-click="sortBy='commit_arm';reverse=!reverse">Commit-ARM</th>-->
     </tr>
+
     <tr class="landing_header_row">
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-list-alt" tooltip="ITS List Verfified"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-list-alt"
+              tooltip="ITS List Verfified"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-home" tooltip="FSA Eligibility"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-home"
+              tooltip="FSA Eligibility"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-star" tooltip="Prior Lien Verfied"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-star"
+              tooltip="Prior Lien Verfied"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-leaf" tooltip="Leases Valid"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-leaf"
+              tooltip="Leases Valid"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy Order Received"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-fire"
+              tooltip="Bankruptcy Order Received"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit Verified"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-stats"
+              tooltip="Third Party Credit Verified"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-share-alt" tooltip="Recommended"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-share-alt"
+              tooltip="Recommended"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-thumbs-up" tooltip="ARM Approved"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-thumbs-up"
+              tooltip="ARM Approved"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-hand-up" tooltip="Distributor Approved"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-hand-up"
+              tooltip="Distributor Approved"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-folder-close" tooltip="Loan Closed"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-folder-close"
+              tooltip="Loan Closed"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-flag" tooltip="Added Land Verified"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-flag"
+              tooltip="Added Land Verified"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-log-in" tooltip="ARM UCC Received" style="color:#006837;"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-log-in"
+              tooltip="ARM UCC Received"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              style="color:#006837;"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-log-in" tooltip="Distributor UCC Received" style="color:#333;"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-log-in"
+              tooltip="Distributor UCC Received"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              style="color:#333;"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-circle-arrow-right" tooltip="AOI Received"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-circle-arrow-right"
+              tooltip="AOI Received"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-link" tooltip="CCC Received"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-link"
+              tooltip="CCC Received"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-cog" tooltip="Rebate Assignment"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-cog"
+              tooltip="Rebate Assignment"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-tree-deciduous" tooltip="Crop Inspection"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-tree-deciduous"
+              tooltip="Crop Inspection"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-warning-sign" tooltip="Limit Warning"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-warning-sign"
+              tooltip="Limit Warning"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-retweet" tooltip="Account Reconciliation"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-retweet"
+              tooltip="Account Reconciliation"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
-      <th style="width:8px;">
-        <span class="glyphicon glyphicon-sort-by-order-alt" tooltip="Account Classification"></span>
+      <th style="width:2.5%;">
+        <span class="glyphicon glyphicon-sort-by-order-alt"
+              tooltip="Account Classification"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"></span>
       </th>
     </tr>
 
-    <tr data-ng-repeat="l in loans | filter:loanFilter | orderBy:[myOrder, 'applicant']">
-      <td>
-        <span ng-if="l.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#000099;"></span>
-        <span ng-if="l.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#e0a02d;"></span>
-        <span ng-if="l.is_stale" tooltip="Stale Application" class="glyphicon glyphicon-exclamation-sign" style="color:#990000;"></span>
+    <tr data-ng-repeat="l in loanList | filter:loanFilter | orderBy:[myOrder, 'applicant']">
+      <td style="width:80px !important;">
+          <a href="#/edit/l.loan_type_id}}/{{l.id}}/committee">
+    <span tooltip="Vote Needed"
+          tooltip-append-to-body="true"
+          tooltip-placement="bottom"
+          class="pendicon glyphicon glyphicon-exclamation-sign"
+          ng-class="{'cBlue': l.need_vote, 'cGray': !l.need_vote}"></span>
+          </a>
+
+          <a href="#/edit/{{l.loan_type_id}}/{{l.id}}/comments">
+    <span tooltip="Comments"
+          tooltip-append-to-body="true"
+          tooltip-placement="bottom"
+          class="pendicon glyphicon glyphicon-exclamation-sign"
+          ng-class="{'cYellow': l.has_comment, 'cGray': !l.has_comment}"></span>
+          </a>
+
+          <a href="#/edit/{{l.loan_type_id}}/{{l.id}}/committee">
+    <span tooltip="Stale Application"
+          tooltip-append-to-body="true"
+          tooltip-placement="bottom"
+          class="pendicon glyphicon glyphicon-exclamation-sign"
+          ng-class="{'cRed': l.is_stale, 'cGray': !l.is_stale}"></span>
+          </a>
+
+          <a href="#/edit/{{l.loan_type_id}}/{{l.id}}/comments">
+    <span tooltip="WatchList"
+          tooltip-append-to-body="true"
+          tooltip-placement="bottom"
+          class="pendicon glyphicon glyphicon-sunglasses"
+          ng-class="{'cGreen': l.is_watched, 'cGray': !l.is_watched}"></span>
+          </a>
+
+          <a href="#/edit/{{l.loan_type_id}}/{{l.id}}/disbursement">
+    <span tooltip="Disbursement Issue"
+          tooltip-append-to-body="true"
+          tooltip-placement="bottom"
+          class="pendicon glyphicon glyphicon-usd"
+          ng-class="{'cOrange': l.disbursement_issue, 'cGray': !l.disbursement_issue}"></span>
+          </a>
+
       </td>
-      <td>
-        <span class="glyphicon glyphicon-plus indicon" tooltip="Addendum" ng-class="{ clrOn : l.has_addendum, clrOff: !l.has_addendum }"></span>
-        <span class="glyphicon glyphicon-fire indicon" tooltip="Bankruptcy History" ng-class="{ clrOn : l.bankruptcy_history, clrOff: !l.bankruptcy_history }"></span>
-        <span class="glyphicon glyphicon-stats indicon" tooltip="Third Party Credit Required" ng-class="{ clrOn : l.required_3party, clrOff: !l.required_3party }"></span>
-        <span class="glyphicon glyphicon-flag indicon" tooltip="Added Land in Database" ng-class="{ clrOn : l.added_land, clrOff: !l.added_land }"></span>
-        <span class="glyphicon glyphicon-tower indicon" tooltip="Controlled Disbursement" ng-class="{ clrOn : l.controlled_disbursement, clrOff: !l.controlled_disbursement }"></span>
-        <span class="glyphicon glyphicon-paperclip indicon" tooltip="Attachments" ng-class="{ clrOn : l.has_attachments, clrOff: !l.has_attachments }"></span>
+
+      <td class="text-center" style="width:100px !important;">
+          <!--ADDENDUM-->
+          <span ng-if="user.viewoptions.view_icon_addendum">
+            <span class="indicon glyphicon glyphicon-plus"
+              tooltip="Addendum"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn' : l.has_addendum, 'clrOff': !l.has_addendum }"></span>
+          </span>
+
+          <!--CROSS COLLATERAL-->
+          <span ng-if="user.viewoptions.view_icon_cross">
+            <span class="indicon glyphicon glyphicon-retweet"
+                tooltip="Cross Collateralized"
+                tooltip-append-to-body="true"
+                tooltip-placement="bottom"
+                ng-class="{'clrOn' : l.is_cross_collateralized, 'clrOff': !l.is_cross_collateralized }"></span>
+          </span>
+
+          <!--BANKRUPTCY-->
+          <span ng-if="user.viewoptions.view_icon_bankruptcy">
+            <span class="indicon glyphicon glyphicon-fire"
+              tooltip="Bankruptcy History"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn' : l.bankruptcy_history, 'clrOff': !l.bankruptcy_history }"></span>
+          </span>
+
+          <!--THIRD PARTY CREDIT-->
+          <span ng-if="user.viewoptions.view_icon_3pcredit">
+            <span class="indicon glyphicon glyphicon-stats"
+              tooltip="Third Party Credit Required"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn' : l.required_3party, 'clrOff': !l.required_3party }"></span>
+          </span>
+
+          <!--ADDED LAND-->
+          <span ng-if="user.viewoptions.view_icon_addedland">
+            <span class="indicon glyphicon glyphicon-flag"
+              tooltip="Added Land in Database"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn' : l.added_land, 'clrOff': !l.added_land }"></span>
+          </span>
+
+          <!--CONTROLLED DISBURSEMENT-->
+          <span ng-if="user.viewoptions.view_icon_disbursement">
+            <span class="indicon glyphicon glyphicon-lock"
+              tooltip="Controlled Disbursement"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn' : l.controlled_disbursement, 'clrOff': !l.controlled_disbursement }"></span>
+          </span>
+
+          <!--ATTACHMENTS-->
+          <span ng-if="user.viewoptions.view_icon_attachments">
+            <span class="indicon glyphicon glyphicon-paperclip"
+              tooltip="Attachments"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn' : l.has_attachments, 'clrOff': !l.has_attachments }"></span>
+          </span>
       </td>
+
       <td>{{l.farmer}}</td>
+
       <td><a href="#/edit/{{l.loan_type_id}}/{{l.id}}/summary">{{l.applicant}}</a></td>
-      <td style="text-align:center;">{{l.app_date | date:'MM/dd/yy'}}</td>
-      <td style="text-align:center;">{{l.loc_abr}}</td>
-      <td style="text-align:center;">{{l.loan_type}}</td>
+
+      <td class="text-center">{{l.crop_year}}</td>
+
+      <td class="text-center">{{l.loc_abr}}</td>
+
+      <td class="text-left">{{l.loan_type}}</td>
+
       <td style="text-align:center;">
         <span loan-status-icon status="{{l.status_id}}"></span>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.its_list)}}.png" alt=""/>
+          <a ng-click="clkITS(l)">
+              <img ng-src="images/dot_{{getColor(l.its_list)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.fsa_compliant)}}.png" alt=""/>
+          <a ng-click="clkFSA(l)">
+              <img ng-src="images/dot_{{getColor(l.fsa_compliant)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.prev_lien_verified)}}.png" alt=""/>
+          <a ng-click="clkLIEN(l)">
+              <img ng-src="images/dot_{{getColor(l.prev_lien_verified)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.leases_valid)}}.png" alt=""/>
+          <a ng-click="clkLEASE(l)">
+              <img ng-src="images/dot_{{getColor(l.leases_valid)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.bankruptcy_order_received)}}.png" alt=""/>
+          <a ng-click="clkBORCVD(l)">
+              <img ng-src="images/dot_{{getColor(l.bankruptcy_order_received)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.received_3party)}}.png" alt=""/>
+          <a ng-click="clk3PC(l)">
+              <img ng-src="images/dot_{{getColor(l.received_3party)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.recommended)}}.png" alt=""/>
+          <a ng-click="clkREC(l)">
+              <img ng-src="images/dot_{{getColor(l.recommended)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.arm_approved)}}.png" alt=""/>
+          <a ng-click="clkARMAPP(l)">
+              <img ng-src="images/dot_{{getColor(l.arm_approved)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.dist_approved)}}.png" alt=""/>
+          <a ng-click="clkDISTAPP(l)">
+              <img ng-src="images/dot_{{getColor(l.dist_approved)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.loan_closed)}}.png" alt="" tooltip="{{l.loan_closed_date}}"/>
+          <a ng-click="clkCLOSE(l)">
+              <img ng-src="images/dot_{{getColor(l.loan_closed)}}.png" alt="" tooltip="{{l.loan_closed_date}}"/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.added_land_verified)}}.png" alt=""/>
+          <a ng-click="clkADDLAND(l)">
+              <img ng-src="images/dot_{{getColor(l.added_land_verified)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.arm_ucc_received)}}.png" alt=""/>
+          <a ng-click="clkARMUCC(l)">
+              <img ng-src="images/dot_{{getColor(l.arm_ucc_received)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.dist_ucc_received)}}.png" alt=""/>
+          <a ng-click="clkDISTUCC(l)">
+              <img ng-src="images/dot_{{getColor(l.dist_ucc_received)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.aoi_received)}}.png" alt=""/>
+          <a ng-click="clkAOI(l)">
+              <img ng-src="images/dot_{{getColor(l.aoi_received)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.ccc_received)}}.png" alt=""/>
+          <a ng-click="clkCCC(l)">
+              <img ng-src="images/dot_{{getColor(l.ccc_received)}}.png" alt=""/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.rebate_assignment)}}.png" alt=""/>
+          <a ng-click="clkREBA(l)">
+              <img ng-src="images/dot_{{getColor(l.rebate_assignment)}}.png" alt=""/>
+          </a>
       </td>
+
+      <td class="cents bright">
+          <a ng-click="clkCROPINS(l)">
+              <img ng-src="images/dot_{{getColor(l.crop_inspection)}}.png" alt=""/>
+          </a>
+      </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.crop_inspection)}}.png" alt=""/>
+          <a ng-click="clkLIMITWARNING(l)">
+              <img ng-src="images/dot_{{getColor(l.limit_warning)}}.png" alt="" tooltip="{{l.limit_warning_message}}"/>
+          </a>
       </td>
+
       <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.limit_warning)}}.png" alt="" tooltip="{{l.limitReport}}"/>
+          <a ng-click="clkRECON(l)">
+              <img ng-src="images/dot_{{getColor(l.reconciliation)}}.png" alt=""/>
+          </a>
       </td>
-      <td class="cents">
-        <img ng-src="images/dot_{{getColor(l.reconciliation)}}.png" alt=""/>
-      </td>
+
       <td class="cents">
         {{l.fins.grade}}
       </td>
-      <!--<td class="text-center" ng-class=gtZero(l.fins.commit_arm)>
-        {{l.fins.commit_arm | noCentsCurrency}}
-      </td>-->
     </tr>
   </table>
 </div>

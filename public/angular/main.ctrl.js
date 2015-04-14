@@ -15,7 +15,7 @@
         UsersFactory.getUsers()
             .then(function success(rsp){
                 $scope.users = rsp.data.data;
-                toastr.success('Loaded All Users', 'Success!');
+                //toastr.success('Loaded All Users', 'Success!');
             });
 
         UsersFactory.getUser($scope.user_id)
@@ -25,16 +25,15 @@
                 $scope.user.notifications = notifiers;
                 $scope.user.badged = response.data.data.notifications.length;
 
-
                 //TODO: Count Tasks dynamically
                 $scope.tooltipNotifications = getTallies(notifiers);
-                toastr.success('Loaded Current User', 'Success!');
+                //toastr.success('Loaded Current User', 'Success!');
             });
 
         GlobalsFactory.getGlobals()
             .then(function success(rsp){
                 $scope.globals = rsp.data[0];
-                toastr.success('Loaded Global Values', 'Success!');
+                //toastr.success('Loaded Global Values', 'Success!');
             });
 
         FeederFactory.init();

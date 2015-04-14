@@ -211,6 +211,7 @@ class LoansController extends ApiController {
           'ccc_received' => (integer) $arr['ccc_received'],
           'rebate_assignment' => (integer) $arr['rebate_assignment'],
           'limit_warning' => (integer) $arr['limit_warning'],
+          'limit_warning_message' => $arr['limit_warning_message'],
           'crop_inspection' => (integer) $arr['crop_inspection'],
           'reconciliation' => (integer) $arr['reconciliation'],
           'account_classification' => (integer) $arr['account_classification'],
