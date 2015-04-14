@@ -27,13 +27,13 @@
 
                 //TODO: Count Tasks dynamically
                 $scope.tooltipNotifications = getTallies(notifiers);
-                //toastr.success('Loaded Current User', 'Success!');
+                toastr.success('Loaded Current User', 'Success!');
             });
 
         GlobalsFactory.getGlobals()
             .then(function success(rsp){
                 $scope.globals = rsp.data[0];
-                //toastr.success('Loaded Global Values', 'Success!');
+                toastr.success('Loaded Global Values', 'Success!');
             });
 
         FeederFactory.init();

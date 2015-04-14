@@ -27,11 +27,11 @@
     <tr class="landing_header_row">
       <th rowspan="2">
         <span ng-show="pending_view"
-              ng-click="pending_view = 0; nextOrder()"
+              ng-click="pending_view = 0; nextOrder(0)"
               class="glyphicon glyphicon-exclamation-sign"
               style="color:#000000;"></span>
         <span ng-show="!pending_view"
-              ng-click="pending_view = 1; nextOrder()"
+              ng-click="pending_view = 1; nextOrder(1)"
               class="glyphicon glyphicon-exclamation-sign"
               style="color:#FFF;"></span>
       </th>
@@ -170,14 +170,14 @@
       </th>
     </tr>
 
-    <tr data-ng-repeat="l in loanList | filter:loanFilter | orderBy:[myOrder, 'applicant']">
+    <tr data-ng-repeat="l in loanList | filter:loanFilter | orderBy:orderOption">
       <td style="width:100px !important;">
           <a href="#/edit/l.loan_type_id}}/{{l.id}}/committee">
-    <span tooltip="Vote Needed"
-          tooltip-append-to-body="true"
-          tooltip-placement="bottom"
-          class="pendicon glyphicon glyphicon-exclamation-sign"
-          ng-class="{'cBlue': l.need_vote, 'cGray': !l.need_vote}"></span>
+            <span tooltip="Vote Needed"
+                  tooltip-append-to-body="true"
+                  tooltip-placement="bottom"
+                  class="pendicon glyphicon glyphicon-exclamation-sign"
+                  ng-class="{'cBlue': l.need_vote, 'cGray': !l.need_vote}"></span>
           </a>
 
           <a href="#/edit/{{l.loan_type_id}}/{{l.id}}/comments">
@@ -414,4 +414,4 @@
   </table>
 </div>
 <!-- APPLICATIONS -->
-        <!--<pre>{{financials | json}}</pre>-->
+        <!--<pre>{{loanList | json}}</pre>-->
