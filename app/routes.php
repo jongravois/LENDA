@@ -23,7 +23,13 @@ Route::get('test', function () {
 });
 
 Route::get('emailtest', function () {
-    Mail::send('emails.welcome', [], function ($message) {
+    $values = [
+        'fname' => 'Brad',
+        'loantype' => 'All In',
+        'analyst' => 'Jonathan Gravois',
+        'email' => 'bterral@armlend.com'
+    ];
+    Mail::send('emails.welcome', $values, function ($message) {
         $message->to('jongravois@gmail.com')->subject('welcome');
     });
 });
