@@ -4,7 +4,6 @@ Thumbs.db
 /vendor
 public/angular/logs
 composer.phar
-bootstrap/start.php
 bootstrap/compiled.php
 bootstrap/environment.php
 .env.*.php
