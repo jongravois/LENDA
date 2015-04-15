@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "description": "Operations Application for Ag Resource Management",
   "authors": [
-    "Jonathan Gravois",
-    "Brad Terral",
-    "Kenn Thompson"
+      "Jonathan Gravois <jongravois@gmail.com>",
+      "Kenn E Thompson <kennthompson@gmail.com>",
+      "Brad Terral <bterral@armlend.com>"
   ],
   "license": "MIT",
   "homepage": "http://www.arm-lenda.com",
