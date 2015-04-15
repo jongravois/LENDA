@@ -1,12 +1,12 @@
 <?php
 
 return array(
-	'driver' => 'smtp',
+	'driver' => 'mandrill',
 	'host' => 'smtp.gmail.com',
 	'port' => 465,
 	'from' => array(
-		'address' => 'jongravois@gmail.com',
-		'name' => 'Jon Gravois'
+		'address' => 'lenda@arm-lenda.com',
+		'name' => 'LENDA'
 	),
 	'encryption' => 'ssl',
 	'username' => 'jongravois@gmail.com',

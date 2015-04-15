@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'mandrill' => array(
-        'secret' => 'your-mandrill-key',
-    ),
+    'mandrill' => [
+        'secret' => $_ENV['MANDRILL_SECRET']
+    ]
 ];
