@@ -4,9 +4,17 @@
         .module('ARM')
         .controller('MainLoansController', MainLoansController);
     
-        MainLoansController.$inject = ['$scope', 'toastr', 'LoansProcessor', 'Logger'];
+        MainLoansController.$inject = ['$scope', 'toastr', 'AppFactory', 'LoansProcessor', 'Logger', 'UsersFactory'];
     
-        function MainLoansController($scope, toastr, LoansProcessor, Logger){
+        function MainLoansController($scope, toastr, AppFactory, LoansProcessor, Logger, UsersFactory){
+            if(!$scope.user){
+                $scope.user_id = $('#user_id').data('id');
+                UsersFactory.getUser($scope.user_id)
+                    .then(function success(response) {
+                        $scope.user = response.data.data;
+                    });
+            }
+
             LoansProcessor.getLoansWithExtraData()
              .then(function (allLoans) {
                 $scope.loans = allLoans;
@@ -17,58 +25,23 @@
             toastr.success('Loaded all loans', 'Success!');
 
             //SCOPE FUNCTIONS
-            $scope.clkITS = function(loan){
-                alert(loan.id);
-                Logger.newSystemic(loan.id, $scope.user.username, 'Created test systemic by clicking ITS');
-            };
-            $scope.clkFSA = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkLIEN = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkLEASE = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkBORCVD = function(loan){
-                alert(loan.id);
-            };
-            $scope.clk3PC = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkREC = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkARMAPP = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkDISTAPP = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkCLOSE = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkADDLAND = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkARMUCC = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkDISTUCC = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkAOI = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkCCC = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkREBA = function(loan){
-                alert(loan.id);
-            };
-            $scope.clkCROPINS = function(loan){
-                alert(loan.id);
-            };
+            $scope.clkITS = AppFactory.clickITS;
+            $scope.clkFSA = AppFactory.clickFSA;
+            $scope.clkLIEN = AppFactory.clickLIEN;
+            //$scope.clkLEASE = AppFactory.clickLEASE;
+            //$scope.clkBORCVD = AppFactory.clickBORCVD;
+            //$scope.clk3PC = AppFactory.click3PC;
+            //$scope.clkREC = AppFactory.clickREC;
+            //$scope.clkARMAPP = AppFactory.clickARMAPP;
+            //$scope.clkDISTAPP = AppFactory.clickDISTAPP;
+            //$scope.clkCLOSE = AppFactory.clickCLOSE;
+            //$scope.clkADDLAND = AppFactory.clickADDLAND;
+            //$scope.clkARMUCC = AppFactory.clickARMUCC;
+            //$scope.clkDISTUCC = AppFactory.clickDISTUCC;
+            //$scope.clkAOI = AppFactory.clickAOI;
+            //$scope.clkCCC = AppFactory.clickCCC;
+            //$scope.clkREBA = AppFactory.clickREBA;
+            //$scope.clkCROPINS = AppFactory.clickCROPINS;
 
         } // end function
 })();

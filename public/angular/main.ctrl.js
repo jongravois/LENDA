@@ -25,7 +25,6 @@
                 $scope.user.notifications = notifiers;
                 $scope.user.badged = response.data.data.notifications.length;
 
-                //TODO: Count Tasks dynamically
                 $scope.tooltipNotifications = getTallies(notifiers);
                 toastr.success('Loaded Current User', 'Success!');
             });
@@ -74,10 +73,6 @@
                 });
         }; // end newLoan fn
         $scope.getColor = AppFactory.returnColor;
-        $scope.iconItsList = function(status){
-            // TODO: Functionality
-            alert(status);
-        };
         $scope.getReport = function (val) {
             var url = '';
             for (var r = 0; r < $scope.reports.length; r++) {

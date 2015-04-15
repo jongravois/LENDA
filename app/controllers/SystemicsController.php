@@ -46,14 +46,7 @@ class SystemicsController extends ApiController {
 
 	public function update($id)
 	{
-		$note = Systemics::find($id);
-
-		if(!$note){
-			Systemics::create(Input::all());
-			return $this->respondCreated('Note Created');
-		} // end if
-
-		$note->fill(Input::all())->save();
+		Systemics::firstOrCreate(Input::all());
 
 		return $this->respondCreated('Note updated.');
 	}

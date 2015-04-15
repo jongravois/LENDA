@@ -20,7 +20,7 @@ class CommentstatusTableSeeder extends Seeder {
         'status' =>	'pending'
     ]);
 
-    Commentstatus::create([
+      Commentstatus::create([
         'loan_id' =>	1,
         'comment_id' => 2,
         'user_id' => 2,

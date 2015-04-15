@@ -103,11 +103,9 @@ class LoansController extends ApiController {
 		$loan = Loan::find($id);
 		$loan->fill(Input::all())->save();
 
-    $username = Auth::user()->username = Auth::user()->username || 'LENDA';
-
 		$newInfo = [
 			'loan_id'	=>	$loan->id,
-			'user'		=>	$username,
+			'user'		=>	Auth::user()->username,
 			'action'	=>	'Updated loan'
 		];
 		Systemics::create($newInfo);

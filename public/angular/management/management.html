@@ -214,7 +214,7 @@
 
       </td>
 
-      <td class="text-center" style="width:120px !important;">
+      <td class="text-center" style="width:140px !important;">
           <!--ADDENDUM-->
           <span ng-if="user.viewoptions.view_icon_addendum">
             <span class="indicon glyphicon glyphicon-plus"
@@ -294,21 +294,18 @@
       </td>
 
       <td class="cents">
-          <a ng-click="clkITS(l)">
-              <img ng-src="images/dot_{{getColor(l.its_list)}}.png" alt=""/>
-          </a>
+          <img ng-click="clkITS(l, user.username)"
+               ng-src="images/dot_{{getColor(l.its_list)}}.png" alt=""/>
       </td>
 
       <td class="cents">
-          <a ng-click="clkFSA(l)">
-              <img ng-src="images/dot_{{getColor(l.fsa_compliant)}}.png" alt=""/>
-          </a>
+          <img ng-click="clkFSA(l, user.username)"
+               ng-src="images/dot_{{getColor(l.fsa_compliant)}}.png" alt=""/>
       </td>
 
       <td class="cents">
-          <a ng-click="clkLIEN(l)">
-              <img ng-src="images/dot_{{getColor(l.prev_lien_verified)}}.png" alt=""/>
-          </a>
+          <img ng-click="clkLIEN(l, user.username)"
+               ng-src="images/dot_{{getColor(l.prev_lien_verified)}}.png" alt=""/>
       </td>
 
       <td class="cents">
@@ -414,4 +411,4 @@
   </table>
 </div>
 <!-- APPLICATIONS -->
-        <!--<pre>{{loanList | json}}</pre>-->
+        <pre>{{loanList | json}}</pre>

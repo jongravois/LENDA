@@ -868,4 +868,4 @@ div.editable-click {
   color: #333333;
 }
 
-.cents>a>img{ cursor: pointer; }
+.cents a img, .cents img{ cursor: pointer; }

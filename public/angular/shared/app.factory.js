@@ -4,15 +4,18 @@
         .module('ARM')
         .factory('AppFactory', AppFactory);
 
-    AppFactory.$inject = ['$http', 'API_URL', '$state'];
+    AppFactory.$inject = ['$http', 'API_URL', '$state', 'toastr', 'Logger'];
 
     /* @ngInject */
-    function AppFactory($http, API_URL, $state) {
+    function AppFactory($http, API_URL, $state, toastr, Logger) {
         return {
             agentsInAgency: agentsInAgency,
             averageArray: averageArray,
             calcInsuranceGuaranty: calcInsuranceGuaranty,
             calcInsuranceValue: calcInsuranceValue,
+            clickFSA: clickFSA,
+            clickITS: clickITS,
+            clickLIEN: clickLIEN,
             countiesInState: countiesInState,
             diffInDates: diffInDates,
             getDefaultDueDate: getDefaultDueDate,
@@ -27,6 +30,7 @@
             sumThese: sumThese
         };
 
+        //////////
         function agentsInAgency(id) {
             return $http.get(API_URL + '/agencies/' + id + '/agents');
         }
@@ -45,6 +49,46 @@
 
         function calcInsuranceValue(obj) {
             return (obj.guaranty - obj.premium) * obj.share / 100 * obj.acres;
+        }
+
+        function clickFSA(obj, user) {
+            if(Number(obj.fsa_compliant) == 1){
+                recordFSA(user, 3, obj);
+            } else {
+                recordFSA(user, 1, obj);
+                if(obj.its_list !== 1) {
+                    recordITS(user, 3, obj);
+                }
+            } // end if
+
+            return obj;
+        }
+
+        function clickITS(obj, user) {
+            if(Number(obj.its_list) == 1){
+                recordITS(user, 3, obj);
+            } else {
+                recordITS(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickLIEN(obj, user) {
+            if(Number(obj.prev_lien_verified) == 1){
+                recordLIEN(user, 3, obj);
+            } else {
+                recordLIEN(user, 1, obj);
+                if(obj.its_list !== 1) {
+                    recordITS(user, 3, obj);
+                }
+                //TODO: Check if FSA
+                if(obj.fsa_compliant !== 1) {
+                    recordFSA(user, 3, obj);
+                }
+            } // end if
+
+            return obj;
         }
 
         function countiesInState(id) {
@@ -142,5 +186,33 @@
         function sumThese(a, b) {
             return a + b;
         }
+
+        //////////
+        /* PRIVATE FUNCTIONS */
+        function recordFSA(user, status, obj) {
+            if( Number(status) === 1) {
+                obj.fsa_compliant = 1;
+                Logger.newSystemic(obj.id, user, 'Marked FSA Compliant as complete.');
+            } else {
+                obj.fsa_compliant = 3;
+                Logger.newSystemic(obj.id, user, 'Marked FSA Compliant as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {fsa_compliant: obj.fsa_compliant});
+            return obj;
+        }
+        function recordITS(user, status, obj) {
+            if( Number(status) === 1) {
+                obj.its_list = 1;
+                Logger.newSystemic(obj.id, user, 'Marked ITS List as complete.');
+            } else {
+                obj.its_list = 3;
+                Logger.newSystemic(obj.id, user, 'Marked ITS List as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {its_list: obj.its_list});
+            return obj;
+        }
+        function recordLIEN() {}
     } // end controller function
 })();
