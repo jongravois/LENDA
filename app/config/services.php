@@ -2,6 +2,6 @@
 
 return [
     'mandrill' => [
-        'secret' => $_ENV['MANDRILL_SECRET']
+        'secret' => 'XzfqPZ9hhJOY07ZIC1DXMQ'
     ]
 ];
