@@ -213,6 +213,17 @@
             patchIt('/loans/', obj.id, {its_list: obj.its_list});
             return obj;
         }
-        function recordLIEN() {}
+        function recordLIEN(user, status, obj) {
+            if( Number(status) === 1) {
+                obj.prev_lien_verified = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Prior Lien as complete.');
+            } else {
+                obj.prev_lien_verified = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Prior Lien as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {prev_lien_verified: obj.prev_lien_verified});
+            return obj;
+        }
     } // end controller function
 })();
