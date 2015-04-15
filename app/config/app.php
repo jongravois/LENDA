@@ -36,10 +36,10 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-    'Way\Generators\GeneratorsServiceProvider',
-    'Laracasts\Utilities\UtilitiesServiceProvider',
+        'Way\Generators\GeneratorsServiceProvider',
+        'Laracasts\Utilities\UtilitiesServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
-    'Clockwork\Support\Laravel\ClockworkServiceProvider',
+        'Clockwork\Support\Laravel\ClockworkServiceProvider',
 		'Anchu\Ftp\FtpServiceProvider'
 	),
 	'manifest' => storage_path().'/meta',

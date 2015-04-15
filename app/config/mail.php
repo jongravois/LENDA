@@ -1,7 +1,7 @@
 <?php
 
 return array(
-	'driver' => 'mandrill',
+	'driver' => 'smtp',
 	'host' => 'smtp.gmail.com',
 	'port' => 465,
 	'from' => array(
