@@ -15,7 +15,7 @@ class UsersController extends ApiController {
 
   public function index()
   {
-    $users = User::with('role', 'location', 'notifications', 'profile', 'viewoptions')->get();
+    $users = User::with('closer', 'location', 'manager', 'notifications', 'profile', 'region', 'role', 'viewoptions')->get();
 
     return $this->respond([
       'data' => $this->userTransformer->transformCollection($users->all())
@@ -24,7 +24,7 @@ class UsersController extends ApiController {
 
   public function show($id)
   {
-    $user = User::with('role', 'location', 'notifications', 'profile', 'viewoptions')->where('id', $id)->get();
+    $user = User::with('closer', 'location', 'manager', 'notifications', 'profile', 'region', 'role', 'viewoptions')->where('id', $id)->get();
 
     if( $user->isEmpty() ){
       return $this->respondNotFound('User does not exist.');

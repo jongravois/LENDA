@@ -10,7 +10,7 @@
         </div>
     </div>
     <!--PAGE TITLE-->
-
+    <!--<pre>{{user|json}}</pre>-->
     <!--USER INFO-->
     <div class="row">
         <fieldset id="userInfo" class="col-md-12" style="margin-top:18px;">
@@ -31,8 +31,8 @@
                     </select>
                 </div>
                 <div class="form_group col-xs-3">
-                    <label>Home Page</label>
-                    <select class="form-control" name="homepage" ng-model="user.homepage" ng-options="o.abr as o.option for o in feeder.hpOpts">
+                    <label>Loan Closer:</label>
+                    <select class="form-control" name="closer_id" ng-model="user.closer_id" ng-options="u.id as u.username for u in users">
                         <option value="">Please select ...</option>
                     </select>
                 </div>

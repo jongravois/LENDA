@@ -17,7 +17,8 @@ class CreateUsersTable extends Migration {
 			$table->string('phone')->nullable();
 			$table->integer('loc_id')->nullable();
 			$table->integer('region_id')->nullable();
-			$table->integer('manager_id');
+			$table->integer('manager_id')->nullable();
+			$table->integer('closer_id')->nullable();
 			$table->boolean('is_admin')->default(0);
 			$table->boolean('is_approver')->default(0);
 			$table->boolean('is_manager')->default(0);

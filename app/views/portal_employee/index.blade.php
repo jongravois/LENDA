@@ -174,9 +174,6 @@
 <script src="angular/yield/yield.ctrl.js"></script>
 <!-- endinject -->
 
-<script type="text/javascript"> 
-    var user_id = {{Auth::user()->id}}; 
-</script>
 <!--JAVASCRIPT-->
 </body>
 </html>
