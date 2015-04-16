@@ -64,6 +64,7 @@ class LoansTableSeeder extends Seeder {
 			'loan_type_id' =>	5,
 			'farmer_id' => 10,
 			'analyst_can_approve' => 1,
+            'bankruptcy_history' => 1,
             'limit_warning' => 2,
             'limit_warning_message' => 'Account spending is more than expected for time period.',
 			'grade' => 'B'

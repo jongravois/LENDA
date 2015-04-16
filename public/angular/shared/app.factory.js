@@ -13,9 +13,23 @@
             averageArray: averageArray,
             calcInsuranceGuaranty: calcInsuranceGuaranty,
             calcInsuranceValue: calcInsuranceValue,
+            clk3PC: click3PC,
+            clkADDLAND: clickADDLAND,
+            clkAOI: clickAOI,
+            clkARMAPP: clickARMAPP,
+            clkARMUCC: clickARMUCC,
+            clkBORCVD: clickBORCVD,
+            clkCCC: clickCCC,
+            clkCLOSE: clickCLOSE,
+            clkCROPINS: clickCROPINS,
+            clkDISTAPP: clickDISTAPP,
+            clkDISTUCC: clickDISTUCC,
             clickFSA: clickFSA,
             clickITS: clickITS,
+            clkLEASE: clickLEASE,
             clickLIEN: clickLIEN,
+            clkREBA: clickREBA,
+            clkREC: clickREC,
             countiesInState: countiesInState,
             diffInDates: diffInDates,
             getDefaultDueDate: getDefaultDueDate,
@@ -51,6 +65,116 @@
             return (obj.guaranty - obj.premium) * obj.share / 100 * obj.acres;
         }
 
+        function click3PC(obj, user) {
+            if(Number(obj.received_3party) == 1){
+                record3PC(user, 3, obj);
+            } else {
+                record3PC(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickADDLAND(obj, user) {
+            if(Number(obj.added_land_verified) == 1){
+                recordADDLAND(user, 3, obj);
+            } else {
+                recordADDLAND(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickAOI(obj, user) {
+            if(Number(obj.aoi_received) == 1){
+                recordAOI(user, 3, obj);
+            } else {
+                recordAOI(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickARMAPP(obj, user) {
+            if(Number(obj.arm_approved) == 1){
+                recordARMAPP(user, 3, obj);
+            } else {
+                recordARMAPP(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickARMUCC(obj, user) {
+            if(Number(obj.arm_ucc_received) == 1){
+                recordARMUCC(user, 3, obj);
+            } else {
+                recordARMUCC(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickBORCVD(obj, user) {
+            if(Number(obj.bankruptcy_order_received) == 1){
+                recordBORCVD(user, 3, obj);
+            } else {
+                recordBORCVD(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickCCC(obj, user) {
+            if(Number(obj.ccc_received) == 1){
+                recordCCC(user, 3, obj);
+            } else {
+                recordCCC(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickCLOSE(obj, user) {
+            if(Number(obj.loan_closed) == 1){
+                recordCLOSE(user, 3, obj);
+            } else {
+                recordCLOSE(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickCROPINS(obj, user) {
+            if(Number(obj.crop_inspection) == 1){
+                recordCROPINS(user, 3, obj);
+            } else {
+                recordCROPINS(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickDISTAPP(obj, user) {
+            if(Number(obj.dist_approved) == 1){
+                recordDISTAPP(user, 3, obj);
+            } else {
+                recordDISTAPP(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickDISTUCC(obj, user) {
+            if(Number(obj.dist_ucc_received) == 1){
+                recordDISTUCC(user, 3, obj);
+            } else {
+                recordDISTUCC(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
         function clickFSA(obj, user) {
             if(Number(obj.fsa_compliant) == 1){
                 recordFSA(user, 3, obj);
@@ -69,6 +193,19 @@
                 recordITS(user, 3, obj);
             } else {
                 recordITS(user, 1, obj);
+                if(!obj.quests.insInPlace) {
+                    recordFSA(user, 1, obj);
+                }
+            } // end if
+
+            return obj;
+        }
+
+        function clickLEASE(obj, user) {
+            if(Number(obj.leases_valid) == 1){
+                recordLEASE(user, 3, obj);
+            } else {
+                recordLEASE(user, 1, obj);
             } // end if
 
             return obj;
@@ -86,6 +223,26 @@
                 if(obj.fsa_compliant !== 1) {
                     recordFSA(user, 3, obj);
                 }
+            } // end if
+
+            return obj;
+        }
+
+        function clickREBA(obj, user) {
+            if(Number(obj.rebate_assignment) == 1){
+                recordREBA(user, 3, obj);
+            } else {
+                recordREBA(user, 1, obj);
+            } // end if
+
+            return obj;
+        }
+
+        function clickREC(obj, user) {
+            if(Number(obj.recommended) == 1){
+                recordREC(user, 3, obj);
+            } else {
+                recordREC(user, 1, obj);
             } // end if
 
             return obj;
@@ -189,8 +346,187 @@
 
         //////////
         /* PRIVATE FUNCTIONS */
+        function record3PC(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.received_3party = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Third Party Credit Verification as not started.');
+            } else if( Number(status) === 1) {
+                obj.received_3party = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Received Third Party Credit Verification as complete.');
+            } else {
+                obj.received_3party = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Received Third Party Credit Verification as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {received_3party: obj.received_3party});
+            return obj;
+        }
+
+        function recordADDLAND(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.added_land_verified = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Added Land Verified as not started.');
+            } else if( Number(status) === 1) {
+                obj.added_land_verified = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Added Land Verified as complete.');
+            } else {
+                obj.added_land_verified = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Added Land Verified as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {added_land_verified: obj.added_land_verified});
+            return obj;
+        }
+
+        function recordAOI(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.aoi_received = 0;
+                Logger.newSystemic(obj.id, user, 'Marked AOI Received as not started.');
+            } else if( Number(status) === 1) {
+                obj.aoi_received = 1;
+                Logger.newSystemic(obj.id, user, 'Marked AOI Received as complete.');
+            } else {
+                obj.aoi_received = 3;
+                Logger.newSystemic(obj.id, user, 'Marked AOI Received as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {aoi_received: obj.aoi_received});
+            return obj;
+        }
+
+        function recordARMAPP(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.arm_approved = 0;
+                Logger.newSystemic(obj.id, user, 'Marked ARM Approved as not started.');
+            } else if( Number(status) === 1) {
+                obj.arm_approved = 1;
+                Logger.newSystemic(obj.id, user, 'Marked ARM Approved as complete.');
+            } else {
+                obj.arm_approved = 3;
+                Logger.newSystemic(obj.id, user, 'Marked ARM Approved as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {arm_approved: obj.arm_approved});
+            return obj;
+        }
+
+        function recordARMUCC(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.arm_ucc_verified = 0;
+                Logger.newSystemic(obj.id, user, 'Marked ARM UCC Verified as not started.');
+            } else if( Number(status) === 1) {
+                obj.arm_ucc_verified = 1;
+                Logger.newSystemic(obj.id, user, 'Marked ARM UCC Verified as complete.');
+            } else {
+                obj.arm_ucc_verified = 3;
+                Logger.newSystemic(obj.id, user, 'Marked ARM UCC Verified as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {arm_ucc_verified: obj.arm_ucc_verified});
+            return obj;
+        }
+
+        function recordBORCVD(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.bankrptcy_order_received = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Bankruptcy Order Received as not started.');
+            } else if( Number(status) === 1) {
+                obj.bankruptcy_order_received = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Bankruptcy Order Received as complete.');
+            } else {
+                obj.bankruptcy_order_received = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Bankruptcy Order Received as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {bankruptcy_order_received: obj.bankruptcy_order_received});
+            return obj;
+        }
+
+        function recordCCC(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.ccc_received = 0;
+                Logger.newSystemic(obj.id, user, 'Marked CCC Received as not started.');
+            } else if( Number(status) === 1) {
+                obj.ccc_received = 1;
+                Logger.newSystemic(obj.id, user, 'Marked CCC Received as complete.');
+            } else {
+                obj.ccc_received = 3;
+                Logger.newSystemic(obj.id, user, 'Marked CCC Received as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {ccc_received: obj.ccc_received});
+            return obj;
+        }
+
+        function recordCLOSE(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.loan_closed = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Loan Closed as not started.');
+            } else if( Number(status) === 1) {
+                obj.loan_closed = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Loan Closed as complete.');
+            } else {
+                obj.loan_closed = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Loan Closed as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {loan_closed: obj.loan_closed});
+            return obj;
+        }
+
+        function recordCROPINS(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.crop_inspection = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Crop Inspection as not started.');
+            } else if( Number(status) === 1) {
+                obj.crop_inspection = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Crop Inspection as complete.');
+            } else {
+                obj.crop_inspection = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Crop Inspection as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {crop_inspection: obj.crop_inspection});
+            return obj;
+        }
+
+        function recordDISTAPP(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.dist_approved = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Distributor Approved as not started.');
+            } else if( Number(status) === 1) {
+                obj.dist_approved = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Distributor Approved as complete.');
+            } else {
+                obj.dist_approved = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Distributor Approved as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {dist_approved: obj.dist_approved});
+            return obj;
+        }
+
+        function recordDISTUCC(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.dist_ucc_received = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Distributor UCC Received as not started.');
+            } else if( Number(status) === 1) {
+                obj.dist_ucc_received = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Distributor UCC Received as complete.');
+            } else {
+                obj.dist_ucc_received = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Distributor UCC Received as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {dist_ucc_received: obj.dist_ucc_received});
+            return obj;
+        }
+
         function recordFSA(user, status, obj) {
-            if( Number(status) === 1) {
+            if( Number(status) === 0) {
+                obj.fsa_compliant = 0;
+                Logger.newSystemic(obj.id, user, 'Marked FSA Compliant as not started.');
+            } else if( Number(status) === 1) {
                 obj.fsa_compliant = 1;
                 Logger.newSystemic(obj.id, user, 'Marked FSA Compliant as complete.');
             } else {
@@ -201,8 +537,12 @@
             patchIt('/loans/', obj.id, {fsa_compliant: obj.fsa_compliant});
             return obj;
         }
+
         function recordITS(user, status, obj) {
-            if( Number(status) === 1) {
+            if( Number(status) === 0) {
+                obj.its_list = 0;
+                Logger.newSystemic(obj.id, user, 'Marked ITS List as not started.');
+            } else if( Number(status) === 1) {
                 obj.its_list = 1;
                 Logger.newSystemic(obj.id, user, 'Marked ITS List as complete.');
             } else {
@@ -213,8 +553,28 @@
             patchIt('/loans/', obj.id, {its_list: obj.its_list});
             return obj;
         }
+
+        function recordLEASE(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.leases_valid = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Leases Valid as not started.');
+            } else if( Number(status) === 1) {
+                obj.leases_valid = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Leases Valid as complete.');
+            } else {
+                obj.leases_valid = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Leases Valid as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {leases_valid: obj.leases_valid});
+            return obj;
+        }
+
         function recordLIEN(user, status, obj) {
-            if( Number(status) === 1) {
+            if( Number(status) === 0) {
+                obj.prev_lien_verified = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Prior Lien as not started.');
+            } else if( Number(status) === 1) {
                 obj.prev_lien_verified = 1;
                 Logger.newSystemic(obj.id, user, 'Marked Prior Lien as complete.');
             } else {
@@ -223,6 +583,38 @@
             } // end if
 
             patchIt('/loans/', obj.id, {prev_lien_verified: obj.prev_lien_verified});
+            return obj;
+        }
+
+        function recordREBA(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.rebate_assignment = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Rebate Assignment as not started.');
+            } else if( Number(status) === 1) {
+                obj.rebate_assignment = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Rebate Assignment as complete.');
+            } else {
+                obj.rebate_assignment = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Rebate Assignment as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {rebate_assignment: obj.rebate_assignment});
+            return obj;
+        }
+
+        function recordREC(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.recommended = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Recommended as not started.');
+            } else if( Number(status) === 1) {
+                obj.recommended = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Recommended as complete.');
+            } else {
+                obj.recommended = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Recommended as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {recommended: obj.recommended});
             return obj;
         }
     } // end controller function

@@ -18,6 +18,14 @@
             return LoansFactory.getLoans().then(updateLoansData);
         }
 
+        function getLoanQuestions(loan) {
+            return LoansFactory.getQuests(loan.id)
+                .then(function (response) {
+                    //console.log('LoanQuestions: ', response);
+                    return (response.data.data[0]);
+                });
+        }
+
         function getPendingComments(loan) {
             return LoansFactory.getPendingComments(loan.id)
                 .then(function (response) {
@@ -44,7 +52,8 @@
             return $q.all({
                 need_vote: getPendingVotes(loan),
                 has_comment: getPendingComments(loan),
-                total_ins_value: getTotalInsValue(loan)
+                total_ins_value: getTotalInsValue(loan),
+                quests: getLoanQuestions(loan)
             })
                 .then(function (updatedData) {
                     angular.extend(loan, updatedData);
