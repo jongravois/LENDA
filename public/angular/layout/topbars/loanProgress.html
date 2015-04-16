@@ -1,89 +1,251 @@
 <table class="table">
-  <tr>
-    <td>
-      <!--TODO: need_vote is loan AND user specific-->
-      <span ng-if="loan.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#000099;font-size:18px;"></span>
-      <span ng-if="!loan.need_vote" tooltip="Vote Needed" class="glyphicon glyphicon-exclamation-sign" style="color:#DDDDDD;font-size:18px;"></span>
-      <span ng-if="loan.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#e0a02d;font-size:18px;"></span>
-      <span ng-if="!loan.has_comment" tooltip="Comments" class="glyphicon glyphicon-exclamation-sign" style="color:#DDDDDD;font-size:18px;"></span>
-      <span ng-if="loan.is_stale" tooltip="Stale Application" class="glyphicon glyphicon-exclamation-sign" style="color:#990000;font-size:18px;"></span>
-      <span ng-if="!loan.is_stale" tooltip="Stale Application" class="glyphicon glyphicon-exclamation-sign" style="color:#DDDDDD;font-size:18px;"></span>
-    </td>
-    <td>
-      <span class="glyphicon glyphicon-plus" tooltip="Addendum" style="font-size:18px;" ng-class="{ clrOn : loan.has_addendum, clrOff: !loan.has_addendum}"></span>
-      <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy History" style="font-size:18px;" ng-class="{ clrOn : quests.bankruptcy, clrOff: !quests.bankruptcy }"></span>
-      <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit Required" style="font-size:18px;" ng-class="{ clrOn : loan.required_3party, clrOff: !loan.required_3party }"></span>
-      <span class="glyphicon glyphicon-flag" tooltip="Added Land in Database" style="font-size:18px;" ng-class="{ clrOn : loan.added_land, clrOff: !loan.added_land }"></span>
-      <!--TODO: use eye-open icon for watchlist-->
-      <span class="glyphicon glyphicon-lock" tooltip="Controlled Disbursement" style="font-size:18px;" ng-class="{ clrOn : loan.controlled_disbursement, clrOff: !loan.controlled_disbursement }"></span>
-      <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" style="font-size:18px;" ng-class="{ clrOn : loan.has_attachments, clrOff: !loan.has_attachments }"></span>
-    </td>
-
-    <td>
-      <span loan-progress-icon cat="0" ng-model="loan.its_list" ng-click="iconItsList(loan.its_list)"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="1" ng-model="loan.fsa_compliant"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="2" ng-model="loan.prev_lien_verified"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="3" ng-model="loan.leases_valid"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="4" ng-model="loan.bankruptcy_order_received"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="5" ng-model="loan.received_3party"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="6" ng-model="loan.recommended"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="7" ng-model="loan.arm_approved"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="8" ng-model="loan.dist_approved"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="9" ng-model="loan.loan_closed"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="10" ng-model="loan.added_land_verified"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="11" ng-model="loan.arm_ucc_received"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="12" ng-model="loan.dist_ucc_received"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="13" ng-model="loan.aoi_received"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="14" ng-model="loan.ccc_received"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="15" ng-model="loan.rebate_assignment"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="16" ng-model="loan.crop_inspection"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="17" ng-model="loan.limit_warning"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="18" ng-model="loan.reconciliation"></span>
-    </td>
-    <td>
-      <span loan-progress-icon cat="19" ng-model="loan.account_classification"></span>
-    </td>
-    <td>
-      &nbsp;
-    </td>
-    <td>
-      <span loan-status-icon status="loan.status_id"></span>
-    </td>
-  </tr>
+    <tr>
+        <td>
+        <span tooltip="Vote Needed"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              class="progicon glyphicon glyphicon-exclamation-sign"
+              ng-class="{'cBlue': loan.need_vote, 'cGray': !loan.need_vote}"></span>
+        </td>
+        <td>
+        <span tooltip="Comments"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              class="progicon glyphicon glyphicon-exclamation-sign"
+              ng-class="{'cYellow': loan.has_comment, 'cGray': !loan.has_comment}"></span>
+        </td>
+        <td>
+        <span tooltip="Stale Application"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              class="progicon glyphicon glyphicon-exclamation-sign"
+              ng-class="{'cRed': loan.is_stale, 'cGray': !loan.is_stale}"></span>
+        </td>
+        <td>
+        <span tooltip="WatchList"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              class="progicon glyphicon glyphicon-sunglasses"
+              ng-class="{'cGreen': loan.is_watched, 'cGray': !loan.is_watched}"></span>
+        </td>
+        <td>
+        <span tooltip="Disbursement Issue"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              class="progicon glyphicon glyphicon-usd"
+              ng-class="{'cOrange': loan.disbursement_issue, 'cGray': !loan.disbursement_issue}"></span>
+        </td>
+        <td colspan="3">&nbsp;</td>
+        <td>
+        <span class="progicon glyphicon glyphicon-plus"
+              tooltip="Addendum"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn': loan.has_addendum, 'clrOff': !loan.has_addendum}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-retweet"
+              tooltip="Cross Collateral"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn': loan.is_cross_collateralized, 'clrOff': !loan.is_cross_collateralized}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-fire"
+              tooltip="Bankruptcy History"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn': loan.bankruptcy_history, 'clrOff': !loan.bankruptcy_history}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-stats"
+              tooltip="Third Party Credit Required"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn': loan.required_3party, 'clrOff': !loan.required_3party}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-flag"
+              tooltip="Added Land in Database"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn': loan.added_land, 'clrOff': !loan.added_land}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-lock"
+              tooltip="Controlled Disbursement"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn': loan.controlled_disbursement, 'clrOff': !loan.controlled_disbursement}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-paperclip"
+              tooltip="Attachments"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-class="{'clrOn': loan.has_attachments, 'clrOff': !loan.has_attachments}"></span>
+        </td>
+        <td colspan="3">&nbsp;</td>
+        <td>
+      <span class="progicon glyphicon glyphicon-list-alt"
+            tooltip="ITS List Verfified"
+            tooltip-append-to-body="true"
+            tooltip-placement="bottom"
+            ng-click="clkITS(loan, user.username)"
+            ng-class="{'cGray': loan.its_list == 0, 'cGreen': loan.its_list == 1, 'cRed': loan.its_list == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-home"
+              tooltip="FSA Eligibility"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkFSA(loan, user.username)"
+              ng-class="{'cGray': loan.fsa_compliant == 0, 'cGreen': loan.fsa_compliant == 1, 'cRed': loan.fsa_compliant == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-star"
+              tooltip="Prior Lien Verfied"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkLIEN(loan, user.username)"
+              ng-class="{'cGray': loan.prev_lien_verified == 0, 'cGreen': loan.prev_lien_verified == 1, 'cRed': loan.prev_lien_verified == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-leaf"
+              tooltip="Leases Valid"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkLEASE(loan, user.username)"
+              ng-class="{'cGray': loan.leases_valid == 0, 'cGreen': loan.leases_valid == 1, 'cRed': loan.leases_valid == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-fire"
+              tooltip="Bankruptcy Order Received"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkBORCVD(loan, user.username)"
+              ng-class="{'cGray': loan.bankruptcy_order_received == 0, 'cGreen': loan.bankruptcy_order_received == 1, 'cRed': loan.bankruptcy_order_received == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-stats"
+              tooltip="Third Party Credit Verified"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clk3PC(loan, user.username)"
+              ng-class="{'cGray': loan.received_3party == 0, 'cGreen': loan.received_3party == 1, 'cRed': loan.received_3party == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-share-alt"
+              tooltip="Recommended"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkREC(loan, user.username)"
+              ng-class="{'cGray': loan.recommended == 0, 'cGreen': loan.recommended == 1, 'cRed': loan.recommended == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-thumbs-up"
+              tooltip="ARM Approved"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkARMAPP(loan, user.username)"
+              ng-class="{'cGray': loan.arm_approved == 0, 'cGreen': loan.arm_approved == 1, 'cRed': loan.arm_approved == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-hand-up"
+              tooltip="Distributor Approved"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkDISTAPP(loan, user.username)"
+              ng-class="{'cGray': loan.dist_approved == 0, 'cGreen': loan.dist_approved == 1, 'cRed': loan.dist_approved == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-folder-close"
+              tooltip="Loan Closed"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkCLOSE(loan, user.username)"
+              ng-class="{'cGray': loan.loan_closed == 0, 'cGreen': loan.loan_closed == 1, 'cRed': loan.loan_closed == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-flag"
+              tooltip="Added Land Verified"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkADDLAND(loan, user.username)"
+              ng-class="{'cGray': loan.added_land_verified == 0, 'cGreen': loan.added_land_verified == 1, 'cRed': loan.added_land_verified == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-log-in"
+              tooltip="ARM UCC Received"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkARMUCC(loan, user.username)"
+              ng-class="{'cGray': loan.arm_ucc_received == 0, 'cGreen': loan.arm_ucc_received == 1, 'cRed': loan.arm_ucc_received == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-log-in"
+              tooltip="Distributor UCC Received"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkDISTUCC(loan, user.username)"
+              ng-class="{'cGray': loan.dist_ucc_received == 0, 'cGreen': loan.dist_ucc_received == 1, 'cRed': loan.dist_ucc_received == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-circle-arrow-right"
+              tooltip="AOI Received"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkAOI(loan, user.username)"
+              ng-class="{'cGray': loan.aoi_received == 0, 'cGreen': loan.aoi_received == 1, 'cRed': loan.aoi_received == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-link"
+              tooltip="CCC Received"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkCCC(loan, user.username)"
+              ng-class="{'cGray': loan.ccc_received == 0, 'cGreen': loan.ccc_received == 1, 'cRed': loan.ccc_received == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-cog"
+              tooltip="Rebate Assignment"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkREBA(loan, user.username)"
+              ng-class="{'cGray': loan.rebate_assignment == 0, 'cGreen': loan.rebate_assignment == 1, 'cRed': loan.rebate_assignment == 2}"></span>
+        </td>
+        <td>
+        <span class="progicon glyphicon glyphicon-tree-deciduous"
+              tooltip="Crop Inspection"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              ng-click="clkCROPINS(loan, user.username)"
+              ng-class="{'cGray': loan.crop_inspection == 0, 'cGreen': loan.crop_inspection == 1, 'cRed': loan.crop_inspection == 2}"></span>
+        </td>
+        <!--<td class="bleft">-->
+        <td>
+            <!--TODO: LIMIT WARNING -- LIKE MANAGEMENT-->
+        <span class="progicon glyphicon glyphicon-grain"
+              tooltip="LIMIT WARNING"
+              tooltip-append-to-body="true"
+              tooltip-placement="bottom"
+              style="font-size:18px;"></span>
+        </td>
+        <td>
+      <span class="progicon glyphicon glyphicon-grain"
+            tooltip="RECONCILIATION"
+            tooltip-append-to-body="true"
+            tooltip-placement="bottom"
+            style="font-size:18px;"></span>
+        </td>
+        <td>
+            <span style="font-size:18px;">{{loan.grade}}</span>
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            <span loan-status-icon status="loan.status_id"></span>
+        </td>
+    </tr>
 </table>

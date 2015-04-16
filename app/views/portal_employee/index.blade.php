@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="AR Management Operations">
     <meta name="author" content="Jonathan Gravois">
-    <title>LENDA</title>
+    <title>LENDA - Ag Resource Management</title>
     <base href="/">
     <style>
         .ng-hide{ display: none !important; }
@@ -32,21 +32,11 @@
     <link rel="icon" type="image/png" href="/ico/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/ico/favicon-32x32.png" sizes="32x32">
 </head>
+
 <body ng-controller="MainController">
-<div id="main_container" style="min-height:800px;" ng-cloak>
-    <div id="main_top">
-        <div class="col-xs-12" style="z-index:1;">
-            <span style="display:none;" id="user_id" data-id="{{Auth::user()->id}}"> 
-                {{Auth::user()->username}} 
-            </span>
-            <div class="row" style="z-index: 32000;">
-                <div class="col-xs-12">
-                    <div ng-include="'angular/layout/topbars/logobar.html'"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div ui-view style="margin-top:120px; z-index: 10;" autoscroll></div>
+<div id="main_container" ng-cloak>
+    <span style="display:none;" id="user_id" data-id="{{Auth::user()->id}}"> {{Auth::user()->username}} </span>
+    <div ng-include="'angular/_shell/shell.html'"></div>
 </div>
 
 <!-- bower:js -->

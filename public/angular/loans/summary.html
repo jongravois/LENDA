@@ -1,9 +1,7 @@
 <style>
   label{ font-weight:normal; color:#AAA; }
-  .red{color: #CC0000; }
-  .lg-text{font-size: 16px;}
 </style>
-<!--<pre>{{farmExpenses | json}}</pre>-->
+<pre>{{loan|json}}</pre>
 <fieldset>
 <legend>Loan Summary</legend>
 <div ng-include="'angular/loans/partials/summary_loaninfo.html'"></div>
@@ -30,7 +28,7 @@
         <p class="lg-text" ng-if="loanConditions.length == 0">
           This loan has no conditions.
         </p>
-        <p class="lg-text" ng-class="{'red': c.status == 'pending'}" ng-repeat="c in loanConditions">{{c.condition}}</p>
+        <p class="lg-text" ng-class="{'cRed': c.status == 'pending'}" ng-repeat="c in loanConditions">{{c.condition}}</p>
       </div>
     </div>
   </div>
