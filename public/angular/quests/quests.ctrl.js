@@ -21,12 +21,6 @@
 
         $scope.loan = $scope.loan || InitialData.data.data[0];
 
-        if (!$scope.quests) {
-            LoansFactory.getQuests($stateParams.loanID).then(function success(rsp) {
-                $scope.quests = rsp.data.data[0];
-            });
-        }
-
         $scope.insertQuestions = function () {
             checkExceptions();
             QuestsFactory.update($scope.quests.id, $scope.quests)
@@ -37,7 +31,11 @@
 
         $scope.updateQuestions = function () {
             checkExceptions();
-            console.log('Loan: ', $scope.loan);
+
+            if(!$scope.quests.insInPlace) {
+                AppFactory.patchIt('/loans/', $stateParams.loanID, {'its_list': 1});
+            } // end if
+
             AppFactory.putIt('/loanquestions/', $stateParams.loanID, $scope.quests);
         };
 

@@ -4,9 +4,9 @@
         .module('ARM')
         .factory('LoansFactory', LoansFactory);
 
-    LoansFactory.$inject = ['$http', '$q', '$stateParams', 'toastr', 'API_URL', 'AppFactory', 'ConditionsFactory', 'GlobalsFactory'];
+    LoansFactory.$inject = ['$http', '$q', '$stateParams', 'toastr', 'API_URL', 'AppFactory', 'ConditionsFactory', 'GlobalsFactory', 'LoansProcessor'];
 
-    function LoansFactory($http, $q, $stateParams, toastr, API_URL, AppFactory, ConditionsFactory, GlobalsFactory) {
+    function LoansFactory($http, $q, $stateParams, toastr, API_URL, AppFactory, ConditionsFactory, GlobalsFactory, LoansProcessor) {
         return {
             calcGrade: calcGrade,
             createAffiliate: createAffilate,
@@ -314,7 +314,16 @@
         }
 
         function getLoan(id) {
-            return $http.get(API_URL + '/loans/' + id);
+            var deferred = $q.defer();
+            var single_loan = {};
+
+            LoansProcessor.getLoansWithExtraData()
+                .then(function success(rsp){
+                    single_loan = _.find(rsp, function(i) { return i.id == id; });
+                });
+
+            deferred.resolve(single_loan);
+            return deferred.promise;
         }
 
         function getLoanCounties(id) {
@@ -326,7 +335,7 @@
         }
 
         function getLoans() {
-            return $http.get(API_URL + '/loans');
+            return LoansProcessor.getLoansWithExtraData();
         }
 
         function getPendingComments(id) {

@@ -4,10 +4,10 @@
         .module('ARM')
         .factory('LoansProcessor', LoansProcessor);
 
-    LoansProcessor.$inject = ['$q', 'LoansFactory'];
+    LoansProcessor.$inject = ['$http', '$q', 'API_URL'];
 
     /* @ngInject */
-    function LoansProcessor($q, LoansFactory) {
+    function LoansProcessor($http, $q, API_URL) {
 
         //PUBLIC API
         return {
@@ -15,11 +15,11 @@
         };
 
         function getLoansWithExtraData() {
-            return LoansFactory.getLoans().then(updateLoansData);
+            return $http.get(API_URL + '/loans').then(updateLoansData);
         }
 
         function getLoanQuestions(loan) {
-            return LoansFactory.getQuests(loan.id)
+            return $http.get(API_URL + '/loans/' + loan.id + '/quests')
                 .then(function (response) {
                     //console.log('LoanQuestions: ', response);
                     return (response.data.data[0]);
@@ -27,7 +27,7 @@
         }
 
         function getPendingComments(loan) {
-            return LoansFactory.getPendingComments(loan.id)
+            return $http.get(API_URL + '/loans/' + loan.id + '/commentstatus')
                 .then(function (response) {
                     //console.log(response);
                     if(response.data.data) {
@@ -39,7 +39,7 @@
         }
 
         function getPendingVotes(loan) {
-            return LoansFactory.getPendingVotes(loan.id)
+            return $http.get(API_URL + '/loans/' + loan.id + '/pendingvotes')
                 .then(function (response) {
                     if(response.data.data) {
                         return (response.data.data.length !== 0);
@@ -51,7 +51,7 @@
         }
 
         function getTotalInsValue(loan) {
-            return LoansFactory.getInsuranceTotal(loan.id)
+            return $http.get(API_URL + '/insurance/' + loan.id + '/value')
                 .then(function (response) {
                     return response.data;
                 });

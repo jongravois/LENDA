@@ -10,8 +10,8 @@
                     templateUrl: 'angular/loans/edit.loan.shell.html',
                     controller: 'EditLoansController',
                     resolve: {
-                        InitialData: function (LoansFactory, $stateParams) {
-                            return LoansFactory.getLoan($stateParams.loanID);
+                        InitialData: function (LoansFactory) {
+                            return LoansFactory.getLoans();
                         }
                     }
                 })

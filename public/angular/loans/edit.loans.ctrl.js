@@ -4,20 +4,18 @@
         .module('ARM')
         .controller('EditLoansController', EditLoansController);
 
-    EditLoansController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'toastr', 'InitialData', 'AppFactory', 'ApplicantsFactory', 'ExceptionsFactory', 'FarmersFactory', 'LoansFactory'];
+    EditLoansController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'toastr', 'AppFactory', 'ApplicantsFactory', 'ExceptionsFactory', 'FarmersFactory', 'LoansFactory', 'InitialData'];
 
     /* @ngInject */
-    function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, InitialData, AppFactory, ApplicantsFactory, ExceptionsFactory, FarmersFactory, LoansFactory) {
+    function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, AppFactory, ApplicantsFactory, ExceptionsFactory, FarmersFactory, LoansFactory, InitialData) {
+        $scope.loans = $scope.loans || InitialData;
         $scope.loantypeID = $stateParams.loantypeID;
-        $scope.loan = InitialData.data.data[0];
+        $scope.loan = _.find($scope.loans, function(i) {
+            return i.id == $stateParams.loanID;
+        });
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
-        $scope.newapplication = false;
 
-        //FINS
-        LoansFactory.getFinancials($stateParams.loanID)
-            .then(function success(rsp) {
-                $scope.loan.fins = rsp.data.data[0];
-            });
+        //console.log('loan', $scope.loan);
 
         //FARMER
         FarmersFactory.getFarmer($scope.loan.farmer_id)
@@ -44,10 +42,7 @@
             });
 
         //QUESTS
-        LoansFactory.getQuests($stateParams.loanID)
-            .then(function success(rsp) {
-                $scope.quests = rsp.data.data[0];
-            });
+        $scope.quests = $scope.loan.quests;
 
         //PRIOR LIENS
         LoansFactory.getPriorLiens($stateParams.loanID)
@@ -111,10 +106,10 @@
                 });
             });
 
-        LoansFactory.getTotalAcres($scope.loan.id)
+        /*LoansFactory.getTotalAcres($scope.loan.id)
             .then(function (rsp) {
                 $scope.loan.total_acres = parseFloat(rsp);
-        });
+        });*/
 
         LoansFactory.getAttachments($stateParams.loanID)
             .then(function success(rsp) {
