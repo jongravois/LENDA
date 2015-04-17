@@ -90,6 +90,9 @@
                 recordAOI(user, 3, obj);
             } else {
                 recordAOI(user, 1, obj);
+                if(obj.loan_type_id == 5 || obj.loan_type_id == 6) {
+                    recordCCC(user, 1, obj);
+                }
             } // end if
 
             return obj;
@@ -111,6 +114,12 @@
                 recordARMUCC(user, 3, obj);
             } else {
                 recordARMUCC(user, 1, obj);
+                if(!obj.has_distributor) {
+                    recordDISTUCC(user, 1, obj);
+                }
+                if(!obj.quests.insInPlace) {
+                    recordAOI(user, 1, obj);
+                }
             } // end if
 
             return obj;
@@ -130,6 +139,7 @@
         }
 
         function clickCCC(obj, user) {
+            if(obj.loan_type_id != 5 || obj.loan_type_id != 6) { return; }
             if(Number(obj.ccc_received) == 1){
                 recordCCC(user, 3, obj);
             } else {
@@ -150,6 +160,7 @@
         }
 
         function clickCROPINS(obj, user) {
+            if(obj.loan_type_id != 5 || obj.loan_type_id != 6) { return; }
             if(Number(obj.crop_inspection) == 1){
                 recordCROPINS(user, 3, obj);
             } else {
@@ -174,6 +185,9 @@
                 recordDISTUCC(user, 3, obj);
             } else {
                 recordDISTUCC(user, 1, obj);
+                if(!obj.quests.insInPlace) {
+                    recordAOI(user, 1, obj);
+                }
             } // end if
 
             return obj;
@@ -242,6 +256,9 @@
                 recordREBA(user, 3, obj);
             } else {
                 recordREBA(user, 1, obj);
+                if(obj.loan_type_id == 5 || obj.loan_type_id == 6) {
+                    recordCROPINS(user, 1, obj);
+                }
             } // end if
 
             return obj;
