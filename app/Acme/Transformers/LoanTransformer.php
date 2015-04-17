@@ -128,7 +128,7 @@ public function transform($arr)
       'credit_score' => (double) $arr['financials']['credit_score'],
       'grade' => $arr['financials']['grade'],
       'amount_requested' => (double) $arr['financials']['amount_requested'],
-      'total_acres' => (double) $arr['financials']['total_acres'],
+      'total_acres' => (double) getLoanTotalAcres( $arr['id'] ),
       'int_percent_arm' => (double) $arr['financials']['int_percent_arm'],
       'int_arm' => (double) $arr['financials']['int_arm'],
       'int_percent_dist' => (double) $arr['financials']['int_percent_dist'],

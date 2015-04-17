@@ -2,7 +2,7 @@
 
 class Farm extends \Eloquent {
 	protected $hidden = ['created_at', 'updated_at'];
-	protected $fillable = ['loan_id', 'county_id', 'fsn', 'owner', 'share_rent', 'cash_rent', 'waived', 'when_due', 'irr', 'ni', 'facirr', 'facni', 'acres', 'percent_irrigated', 'fsa_paid'];
+	protected $fillable = ['loan_id', 'county_id', 'fsn', 'owner', 'share_rent', 'cash_rent', 'waived', 'when_due', 'irr', 'ni', 'acres', 'percent_irrigated', 'fsa_paid'];
 
 	/* RELATIONSHIPS */
 	public function loan()

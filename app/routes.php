@@ -19,7 +19,13 @@ Route::get('env', function () {
 });
 
 Route::get('test', function () {
-    return View::make('hello');
+    $retHTML = "<p>Corn: " . getLoanCropAcres('1', '1') . "</p>";
+    $retHTML .= "<p>Soybeans: " . getLoanCropAcres('1', '2') . "</p>";
+    $retHTML .= "<p>FAC Beans: " . getLoanCropAcres('1', '3') . "</p>";
+    $retHTML .= "<p>TOTAL: " . getLoanTotalAcres('1') . "</p>";
+
+    return $retHTML;
+    //return View::make('hello');
 });
 
 Route::get('emailtest', function () {

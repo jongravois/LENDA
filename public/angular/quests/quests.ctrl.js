@@ -6,8 +6,7 @@
 
     QuestsController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'ExceptionsFactory', 'LoansFactory', 'QuestsFactory'];
 
-    function QuestsController($scope, $state, $stateParams,
-                              InitialData, AppFactory, ExceptionsFactory, LoansFactory, QuestsFactory) {
+    function QuestsController($scope, $state, $stateParams, InitialData, AppFactory, ExceptionsFactory, LoansFactory, QuestsFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;
@@ -38,6 +37,7 @@
 
         $scope.updateQuestions = function () {
             checkExceptions();
+            console.log('Loan: ', $scope.loan);
             AppFactory.putIt('/loanquestions/', $stateParams.loanID, $scope.quests);
         };
 

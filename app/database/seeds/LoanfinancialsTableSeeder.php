@@ -7,7 +7,6 @@ class LoanfinancialsTableSeeder extends Seeder {
 		//2 - Ag-Input
 		Loanfinancials::create([
 			'loan_id' => 1,
-			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
 			'experience' => 36,
@@ -83,7 +82,6 @@ class LoanfinancialsTableSeeder extends Seeder {
 		//5 - Capital Bridge
 		Loanfinancials::create([
 			'loan_id' => 2,
-			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
 			'experience' => 2,
@@ -150,7 +148,6 @@ class LoanfinancialsTableSeeder extends Seeder {
 		//4 - Ag-Pro Fasttrack
 		Loanfinancials::create([
 			'loan_id' => 3,
-			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
 			'experience' => 3,
@@ -217,7 +214,6 @@ class LoanfinancialsTableSeeder extends Seeder {
 		//6 - Ag-Vest
 		Loanfinancials::create([
 			'loan_id' => 4,
-			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
 			'experience' => 36,
@@ -284,7 +280,6 @@ class LoanfinancialsTableSeeder extends Seeder {
 		//3 - Ag-Pro
 		Loanfinancials::create([
 			'loan_id' => 5,
-			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 770,
 			'experience' => 25,
@@ -351,7 +346,6 @@ class LoanfinancialsTableSeeder extends Seeder {
 		//1 - All-In
 		Loanfinancials::create([
 			'loan_id' => 6,
-			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
 			'experience' => 36,
@@ -446,7 +440,6 @@ class LoanfinancialsTableSeeder extends Seeder {
 		//2 - Ag-Input
 		Loanfinancials::create([
 			'loan_id' => 8,
-			'total_acres' => 927.7,
 			'cpa_financials' => 1,
 			'credit_score' => 730,
 			'experience' => 9,

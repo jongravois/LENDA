@@ -30,14 +30,23 @@
             return LoansFactory.getPendingComments(loan.id)
                 .then(function (response) {
                     //console.log(response);
-                    return (response.data.data.length !== 0);
+                    if(response.data.data) {
+                        return (response.data.data.length !== 0);
+                    } else {
+                        return 0;
+                    }
                 });
         }
 
         function getPendingVotes(loan) {
             return LoansFactory.getPendingVotes(loan.id)
                 .then(function (response) {
-                    return (response.data.data.length !== 0);
+                    if(response.data.data) {
+                        return (response.data.data.length !== 0);
+                    } else {
+                        return 0;
+                    }
+
                 });
         }
 

@@ -12,31 +12,35 @@
         $scope.file_url = FILE_URL;
         $scope.inArray = AppFactory.inArray;
 
-        UsersFactory.getUsers()
-            .then(function success(rsp){
-                $scope.users = rsp.data.data;
-                //toastr.success('Loaded All Users', 'Success!');
-            });
+        activate();
 
-        UsersFactory.getUser($scope.user_id)
-            .then(function success(response) {
-                var notifiers = response.data.data.notifications;
-                $scope.user = response.data.data;
-                $scope.user.notifications = notifiers;
-                $scope.user.badged = response.data.data.notifications.length;
+        function activate() {
+            UsersFactory.getUsers()
+                .then(function success(rsp){
+                    $scope.users = rsp.data.data;
+                    //toastr.success('Loaded All Users', 'Success!');
+                });
 
-                $scope.tooltipNotifications = getTallies(notifiers);
-                toastr.success('Loaded Current User', 'Success!');
-            });
+            UsersFactory.getUser($scope.user_id)
+                .then(function success(response) {
+                    var notifiers = response.data.data.notifications;
+                    $scope.user = response.data.data;
+                    $scope.user.notifications = notifiers;
+                    $scope.user.badged = response.data.data.notifications.length;
 
-        GlobalsFactory.getGlobals()
-            .then(function success(rsp){
-                $scope.globals = rsp.data[0];
-                toastr.success('Loaded Global Values', 'Success!');
-            });
+                    $scope.tooltipNotifications = getTallies(notifiers);
+                    toastr.success('Loaded Current User', 'Success!');
+                });
 
-        FeederFactory.init();
-        $scope.feeder = FeederFactory.getObject();
+            GlobalsFactory.getGlobals()
+                .then(function success(rsp){
+                    $scope.globals = rsp.data[0];
+                    toastr.success('Loaded Global Values', 'Success!');
+                });
+
+            FeederFactory.init();
+            $scope.feeder = FeederFactory.getObject();
+        }
 
         //SCOPE FUNCTIONS
         $scope.newLoan = function createLoan(type_id) {
@@ -66,6 +70,7 @@
                         region_id: $scope.user.region_id,
                         user_id: $scope.user.id
                     };
+
                     LoansFactory.insertLoan(obj)
                         .then(function success(response) {
                             $state.go('new.farmer', {loantypeID: types.id, loanID: response.data.message.id});

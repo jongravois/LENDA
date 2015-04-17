@@ -3,6 +3,8 @@
     angular
         .module('ARM')
         .config(function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/loans/home');
+
             $stateProvider
                 .state('loans', {
                     abstract: true,
@@ -34,7 +36,5 @@
                     templateUrl: 'angular/users/settings.html',
                     controller: 'SettingsController'
                 });
-
-            $urlRouterProvider.otherwise('/loans/home');
         });
 })();
