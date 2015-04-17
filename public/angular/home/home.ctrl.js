@@ -24,7 +24,7 @@
                     cellTemplate: 'angular/layout/grid_tmpl/pending.icons.html',
                     headerCellTemplate: 'angular/layout/grid_tmpl/pending.header.cell.html',
                     headerClass: 'text-center',
-                    width: 90
+                    width: 100
                 },
                 {
                     field: 'notification',

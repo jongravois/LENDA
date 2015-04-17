@@ -13,6 +13,7 @@
         $scope.loan = _.find($scope.loans, function(i) {
             return i.id == $stateParams.loanID;
         });
+        $scope.loan.indicon_width = '140px';
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
 
         //console.log('loan', $scope.loan);

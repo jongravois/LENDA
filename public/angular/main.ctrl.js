@@ -19,17 +19,11 @@
                 .then(function success(rsp){
                     $scope.users = rsp.data.data;
                     //toastr.success('Loaded All Users', 'Success!');
-                });
-
-            UsersFactory.getUser($scope.user_id)
-                .then(function success(response) {
-                    var notifiers = response.data.data.notifications;
-                    $scope.user = response.data.data;
-                    $scope.user.notifications = notifiers;
-                    $scope.user.badged = response.data.data.notifications.length;
-
-                    $scope.tooltipNotifications = getTallies(notifiers);
-                    toastr.success('Loaded Current User', 'Success!');
+                    $scope.user = _.find($scope.users, function(i) {
+                        return i.id == $scope.user_id;
+                    });
+                    $scope.tooltipNotifications = getTallies($scope.user.notifications);
+                    //console.log('user', $scope.user);
                 });
 
             GlobalsFactory.getGlobals()

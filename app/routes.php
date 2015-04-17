@@ -40,8 +40,7 @@ Route::get('emailtest', function () {
     });
 });
 
-Route::group(['prefix' => 'api', 'after' => 'allowOrigin'], function () {
-    //TODO: Move authentication here
+Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], function () {
     Route::resource('addendums', 'AddLoansController');
     Route::resource('addendumtypes', 'AddendumtypesController');
     Route::resource('addfins', 'AddfinsController');
