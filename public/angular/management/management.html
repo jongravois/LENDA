@@ -295,112 +295,120 @@
 
       <td class="cents">
           <img ng-click="clkITS(l, user.username)"
-               ng-src="images/dot_{{getColor(l.its_list)}}.png" alt=""/>
+               ng-src="images/dot_{{getColor(l.its_list)}}.png"
+               alt=""/>
       </td>
 
       <td class="cents">
           <img ng-click="clkFSA(l, user.username)"
-               ng-src="images/dot_{{getColor(l.fsa_compliant)}}.png" alt=""/>
+               ng-src="images/dot_{{getColor(l.fsa_compliant)}}.png"
+               alt=""/>
       </td>
 
       <td class="cents">
           <img ng-click="clkLIEN(l, user.username)"
-               ng-src="images/dot_{{getColor(l.prev_lien_verified)}}.png" alt=""/>
+               ng-src="images/dot_{{getColor(l.prev_lien_verified)}}.png"
+               alt=""/>
       </td>
 
       <td class="cents">
-          <a ng-click="clkLEASE(l)">
-              <img ng-src="images/dot_{{getColor(l.leases_valid)}}.png" alt=""/>
+          <img ng-click="clkLEASE(l)"
+               ng-src="images/dot_{{getColor(l.leases_valid)}}.png"
+               alt=""/>
+      </td>
+
+      <td class="cents">
+          <img ng-click="clkBORCVD(l)"
+               ng-src="images/dot_{{getColor(l.bankruptcy_order_received)}}.png"
+               alt=""/>
+      </td>
+
+      <td class="cents">
+          <img ng-click="clk3PC(l)"
+               ng-src="images/dot_{{getColor(l.received_3party)}}.png"
+               alt=""/>
+      </td>
+
+      <td class="cents">
+          <img ng-click="clkREC(l)"
+               ng-src="images/dot_{{getColor(l.recommended)}}.png"
+               alt=""/>
+      </td>
+
+      <td class="cents">
+          <img ng-src="images/dot_{{getColor(l.arm_approved)}}.png"
+               alt=""/>
+      </td>
+
+      <td class="cents">
+          <img ng-click="clkDISTAPP(l)"
+               ng-src="images/dot_{{getColor(l.dist_approved)}}.png"
+               alt=""/>
+      </td>
+
+      <td class="cents">
+          <img ng-src="images/dot_{{getColor(l.loan_closed)}}.png"
+               alt=""
+               tooltip="{{l.loan_closed_date}}"/>
+      </td>
+
+      <td class="cents">
+          <img ng-click="clkADDLAND(l)"
+               ng-src="images/dot_{{getColor(l.added_land_verified)}}.png"
+               alt=""/>
+      </td>
+
+      <td class="cents">
+          <img ng-click="clkARMUCC(l)"
+               ng-src="images/dot_{{getColor(l.arm_ucc_received)}}.png"
+               alt=""/>
+      </td>
+
+      <td class="cents">
+          <img ng-click="clkDISTUCC(l)"
+               ng-src="images/dot_{{getColor(l.dist_ucc_received)}}.png"
+               alt=""/>
+      </td>
+
+      <td class="cents">
+          <img ng-click="clkAOI(l)"
+               ng-src="images/dot_{{getColor(l.aoi_received)}}.png"
+               alt=""/>
           </a>
       </td>
 
       <td class="cents">
-          <a ng-click="clkBORCVD(l)">
-              <img ng-src="images/dot_{{getColor(l.bankruptcy_order_received)}}.png" alt=""/>
-          </a>
+          <img ng-click="clkCCC(l)"
+               ng-src="images/dot_{{getColor(l.ccc_received)}}.png"
+               alt=""/>
       </td>
 
       <td class="cents">
-          <a ng-click="clk3PC(l)">
-              <img ng-src="images/dot_{{getColor(l.received_3party)}}.png" alt=""/>
-          </a>
-      </td>
-
-      <td class="cents">
-          <a ng-click="clkREC(l)">
-              <img ng-src="images/dot_{{getColor(l.recommended)}}.png" alt=""/>
-          </a>
-      </td>
-
-      <td class="cents">
-          <a ng-click="clkARMAPP(l)">
-              <img ng-src="images/dot_{{getColor(l.arm_approved)}}.png" alt=""/>
-          </a>
-      </td>
-
-      <td class="cents">
-          <a ng-click="clkDISTAPP(l)">
-              <img ng-src="images/dot_{{getColor(l.dist_approved)}}.png" alt=""/>
-          </a>
-      </td>
-
-      <td class="cents">
-          <a ng-click="clkCLOSE(l)">
-              <img ng-src="images/dot_{{getColor(l.loan_closed)}}.png" alt="" tooltip="{{l.loan_closed_date}}"/>
-          </a>
-      </td>
-
-      <td class="cents">
-          <a ng-click="clkADDLAND(l)">
-              <img ng-src="images/dot_{{getColor(l.added_land_verified)}}.png" alt=""/>
-          </a>
-      </td>
-
-      <td class="cents">
-          <a ng-click="clkARMUCC(l)">
-              <img ng-src="images/dot_{{getColor(l.arm_ucc_received)}}.png" alt=""/>
-          </a>
-      </td>
-
-      <td class="cents">
-          <a ng-click="clkDISTUCC(l)">
-              <img ng-src="images/dot_{{getColor(l.dist_ucc_received)}}.png" alt=""/>
-          </a>
-      </td>
-
-      <td class="cents">
-          <a ng-click="clkAOI(l)">
-              <img ng-src="images/dot_{{getColor(l.aoi_received)}}.png" alt=""/>
-          </a>
-      </td>
-
-      <td class="cents">
-          <a ng-click="clkCCC(l)">
-              <img ng-src="images/dot_{{getColor(l.ccc_received)}}.png" alt=""/>
-          </a>
-      </td>
-
-      <td class="cents">
-          <a ng-click="clkREBA(l)">
-              <img ng-src="images/dot_{{getColor(l.rebate_assignment)}}.png" alt=""/>
-          </a>
+          <img ng-click="clkREBA(l)"
+               ng-src="images/dot_{{getColor(l.rebate_assignment)}}.png"
+               alt=""/>
       </td>
 
       <td class="cents bright">
-          <a ng-click="clkCROPINS(l)">
-              <img ng-src="images/dot_{{getColor(l.crop_inspection)}}.png" alt=""/>
-          </a>
+          <img ng-click="clkCROPINS(l)"
+               ng-src="images/dot_{{getColor(l.crop_inspection)}}.png"
+               alt=""/>
       </td>
 
       <td class="cents">
           <a href="#/edit/{{l.loan_type_id}}/{{l.id}}/disbursement">
-              <img ng-src="images/dot_{{getColor(l.limit_warning)}}.png" alt="" tooltip="{{l.limit_warning_message}}" tooltip-append-to-body="true" tooltip-placement="bottom"/>
+              <img ng-src="images/dot_{{getColor(l.limit_warning)}}.png"
+                   alt=""
+                   tooltip="{{l.limit_warning_message}}"
+                   tooltip-append-to-body="true"
+                   tooltip-placement="bottom"/>
           </a>
       </td>
 
       <td class="cents">
           <a href="#/edit/{{l.loan_type_id}}/{{l.id}}/reconciliation">
-              <img ng-src="images/dot_{{getColor(l.reconciliation)}}.png" alt=""/>
+              <img ng-src="images/dot_{{getColor(l.reconciliation)}}.png"
+                   alt=""/>
           </a>
       </td>
 

@@ -33,7 +33,10 @@
             checkExceptions();
 
             if(!$scope.quests.insInPlace) {
-                AppFactory.patchIt('/loans/', $stateParams.loanID, {'its_list': 1});
+                AppFactory.patchIt('/loans/', $stateParams.loanID, {
+                    'its_list': 1,
+                    'fsa_compliant': 1
+                });
             } // end if
 
             AppFactory.putIt('/loanquestions/', $stateParams.loanID, $scope.quests);

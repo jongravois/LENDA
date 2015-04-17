@@ -96,6 +96,7 @@
         }
 
         function clickARMAPP(obj, user) {
+            if (!obj.analyst_can_approve) { return; }
             if(Number(obj.arm_approved) == 1){
                 recordARMAPP(user, 3, obj);
             } else {
@@ -120,6 +121,9 @@
                 recordBORCVD(user, 3, obj);
             } else {
                 recordBORCVD(user, 1, obj);
+                if(!obj.quests.credit_3p_available) {
+                    record3PC(user, 1, obj);
+                }
             } // end if
 
             return obj;
@@ -178,6 +182,9 @@
         function clickFSA(obj, user) {
             if(Number(obj.fsa_compliant) == 1){
                 recordFSA(user, 3, obj);
+                if(!obj.quests.liens) {
+                    recordLIEN(user, 1, obj);
+                }
             } else {
                 recordFSA(user, 1, obj);
                 if(obj.its_list !== 1) {
@@ -206,6 +213,9 @@
                 recordLEASE(user, 3, obj);
             } else {
                 recordLEASE(user, 1, obj);
+                if(!obj.quests.bankruptcy_order) {
+                    recordBORCVD(user, 1, obj);
+                }
             } // end if
 
             return obj;
@@ -219,7 +229,6 @@
                 if(obj.its_list !== 1) {
                     recordITS(user, 3, obj);
                 }
-                //TODO: Check if FSA
                 if(obj.fsa_compliant !== 1) {
                     recordFSA(user, 3, obj);
                 }
@@ -239,10 +248,14 @@
         }
 
         function clickREC(obj, user) {
+            //TODO: LoanToClose Actions needed
             if(Number(obj.recommended) == 1){
                 recordREC(user, 3, obj);
             } else {
                 recordREC(user, 1, obj);
+                if(!obj.has_distributor) {
+                    recordDISTAPP(user, 1, obj);
+                }
             } // end if
 
             return obj;
@@ -560,6 +573,7 @@
                 Logger.newSystemic(obj.id, user, 'Marked Leases Valid as not started.');
             } else if( Number(status) === 1) {
                 obj.leases_valid = 1;
+                //TODO: OPTIONAL UPLOAD MODAL
                 Logger.newSystemic(obj.id, user, 'Marked Leases Valid as complete.');
             } else {
                 obj.leases_valid = 3;
