@@ -12,6 +12,11 @@
         $scope.file_url = FILE_URL;
         $scope.inArray = AppFactory.inArray;
 
+        $scope.comms = [
+            {id: 'email', name: 'Email'},
+            {id: 'SMS', name: 'Text'}
+        ];
+
         activate();
 
         function activate() {
