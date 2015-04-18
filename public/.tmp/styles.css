@@ -513,6 +513,7 @@ h3.divider_title {
     height: 98%;
     min-height: 98%;
     overflow: auto;
+    overflow-x: hidden;
 }
 
 h1.frmTitle {
