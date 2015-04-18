@@ -21,6 +21,7 @@ class UserTransformer extends Transformer
         'manager_id' => (integer) $arr['manager_id'],
         'manager' => $arr['manager']['username'],
         'manager_email' => $arr['manager']['email'],
+        'comms' => $arr['comms'],
         'closer_id' => $arr['closer_id'],
         'closer' => $arr['closer']['username'],
         'closer_email' => $arr['closer']['email'],

@@ -12,7 +12,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 
     protected $table = 'users';
     protected $hidden = ['password', 'remember_token'];
-    protected $fillable = ['username', 'nick', 'email', 'password', 'phone', 'loc_id', 'region_id', 'manager_id', 'closer_id', 'is_admin', 'is_approver', 'is_manager', 'role_id', 'active', 'remember_token'];
+    protected $fillable = ['username', 'nick', 'email', 'password', 'phone', 'loc_id', 'region_id', 'manager_id', 'closer_id', 'is_admin', 'is_approver', 'is_manager', 'role_id', 'comms', 'active', 'remember_token'];
 
     /* MODEL EVENTS */
     public static function boot()
