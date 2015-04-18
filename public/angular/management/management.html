@@ -38,131 +38,131 @@
       <th rowspan="2">&nbsp;</th>
       <th style="width:7%;" rowspan="2" data-ng-click="sortBy='farmer';reverse=!reverse">Farmer</th>
       <th style="width:7%;" rowspan="2" data-ng-click="sortBy='applicant';reverse=!reverse">Applicant</th>
-      <th style="width:5%;" rowspan="2" data-ng-click="sortBy='app_date';reverse=!reverse">Year</th>
+      <th style="width:7%;" rowspan="2" data-ng-click="sortBy='app_date';reverse=!reverse">Year</th>
       <th style="width:4%;" rowspan="2" data-ng-click="sortBy='location';reverse=!reverse">Loc</th>
-      <th style="width:7%;" rowspan="2" data-ng-click="sortBy='loan_type';reverse=!reverse">Type</th>
+      <th style="width:9%;" rowspan="2" data-ng-click="sortBy='loan_type';reverse=!reverse">Type</th>
       <th style="width:4%;" rowspan="2" data-ng-click="sortBy='loanStatus';reverse=!reverse">Status</th>
       <th colspan="20" style="text-align: center">Progress</th>
     </tr>
 
     <tr class="landing_header_row">
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-list-alt"
               tooltip="ITS List Verfified"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-home"
               tooltip="FSA Eligibility"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-star"
               tooltip="Prior Lien Verfied"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-leaf"
               tooltip="Leases Valid"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-fire"
               tooltip="Bankruptcy Order Received"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-stats"
               tooltip="Third Party Credit Verified"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-share-alt"
               tooltip="Recommended"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-thumbs-up"
               tooltip="ARM Approved"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-hand-up"
               tooltip="Distributor Approved"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-folder-close"
               tooltip="Loan Closed"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-flag"
               tooltip="Added Land Verified"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-log-in"
               tooltip="ARM UCC Received"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               style="color:#006837;"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-log-in"
               tooltip="Distributor UCC Received"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               style="color:#333;"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-circle-arrow-right"
               tooltip="AOI Received"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-link"
               tooltip="CCC Received"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-cog"
               tooltip="Rebate Assignment"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-tree-deciduous"
               tooltip="Crop Inspection"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-warning-sign"
               tooltip="Limit Warning"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-retweet"
               tooltip="Account Reconciliation"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
-      <th style="width:2.5%;">
+      <th style="width:2%;">
         <span class="glyphicon glyphicon-sort-by-order-alt"
               tooltip="Account Classification"
               tooltip-append-to-body="true"
@@ -171,7 +171,7 @@
     </tr>
 
     <tr data-ng-repeat="l in loanList | filter:loanFilter | orderBy:orderOption">
-      <td style="width:100px !important;">
+      <td style="width:8% !important;">
           <a href="#/edit/l.loan_type_id}}/{{l.id}}/committee">
             <span tooltip="Vote Needed"
                   tooltip-append-to-body="true"
@@ -214,7 +214,7 @@
 
       </td>
 
-      <td class="text-center" style="width:140px !important;">
+      <td class="text-left" style="width:11% !important;">
           <!--ADDENDUM-->
           <span ng-if="user.viewoptions.view_icon_addendum">
             <span class="indicon glyphicon glyphicon-plus"
