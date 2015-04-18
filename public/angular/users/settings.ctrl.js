@@ -12,9 +12,9 @@
                     username: $scope.user.username,
                     email: $scope.user.email,
                     loc_id: parseInt($scope.user.loc_id),
-                    closer_id: $scope.user.closer_id
+                    closer_id: $scope.user.closer_id,
+                    comms: $scope.user.comms
                 };
-                console.log(oUpd);
                 AppFactory.putIt('/users/', $scope.user.id, oUpd);
                 toastr.success('Changes Saved', 'Success!');
             };

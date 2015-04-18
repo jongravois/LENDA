@@ -16,29 +16,33 @@
         <fieldset id="userInfo" class="col-md-12" style="margin-top:18px;">
             <legend>USER INFORMATION</legend>
             <div class="row">
-                <div class="form-group col-xs-3">
+                <div class="form-group col-xs-2">
                 <label>Username:</label>
                 <input type="text" class="form-control" name="username" ng-model="user.username"/>
             </div>
-                <div class="form-group col-xs-3">
+                <div class="form-group col-xs-2">
                     <label>Email:</label>
                     <input type="text" class="form-control" name="email" ng-model="user.email"/>
                 </div>
-                <div class="form-group col-xs-3">
+                <div class="form-group col-xs-2">
                     <label>Default Location:</label>
                     <select class="form-control" name="loc_id" ng-model="user.loc_id" ng-options="loc.id as loc.location for loc in feeder.locations">
                         <option value="">Please select ...</option>
                     </select>
                 </div>
-                <div class="form_group col-xs-3">
+                <div class="form-group col-xs-2">
                     <label>Loan Closer:</label>
                     <select class="form-control" name="closer_id" ng-model="user.closer_id" ng-options="u.id as u.username for u in users">
                         <option value="">Please select ...</option>
                     </select>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-xs-12 text-right">
+                <div class="form-group col-xs-2">
+                    <label>Loan Closer:</label>
+                    <select class="form-control" name="closer_id" ng-model="user.closer_id" ng-options="u.id as u.username for u in users">
+                        <option value="">Please select ...</option>
+                    </select>
+                </div>
+                <div class="form-group col-xs-2 text-right">
                     <button class="btn btn-large btn-primary" ng-click="updateUserInfo()">
                         Update User Info
                     </button>
