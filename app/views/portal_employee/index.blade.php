@@ -13,15 +13,15 @@
     </style>
 
     <!-- bower:css -->
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="lib/angular-loading-bar/build/loading-bar.min.css"/>
-    <link rel="stylesheet" href="lib/ng-grid/ng-grid.min.css"/>
-    <link rel="stylesheet" href="lib/fullcalendar/fullcalendar.css"/>
-    <link rel="stylesheet" href="lib/angular-toastr/angular-toastr.min.css"/>
+    {{ HTML::style('lib/bootstrap/dist/css/bootstrap.min.css') }}
+    {{ HTML::style('lib/angular-loading-bar/build/loading-bar.min.css') }}
+    {{ HTML::style('lib/ng-grid/ng-grid.min.css') }}
+    {{ HTML::style('lib/fullcalendar/fullcalendar.css') }}
+    {{ HTML::style('lib/angular-toastr/angular-toastr.min.css') }}
     <!-- endbower -->
 
     <!-- inject:css -->
-    <link rel="stylesheet" href=".tmp/styles.css"/>
+    {{ HTML::style('css/style.css') }}
     <!-- endinject -->
 
     <link rel="apple-touch-icon" sizes="120x120" href="/ico/apple-touch-icon-120x120.png">
@@ -40,26 +40,23 @@
 </div>
 
 <!-- bower:js -->
-<script src="lib/jquery/dist/jquery.min.js"></script>
-<script src="lib/jquery-ui/ui/jquery-ui.js"></script>
-<script src="lib/lodash/dist/lodash.min.js"></script>
-{{--<script src="lib/bootstrap/js/bootstrap.min.js"></script>--}}
-<script src="lib/moment/min/moment.min.js"></script>
-
-<script src="lib/angular-1.3.14/angular.min.js"></script>
-<script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="lib/angular-1.3.14/angular-animate.min.js"></script>
-<script src="lib/angular-toastr/angular-toastr.tpls.min.js"></script>
-<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
-<script src="lib/angular-ui-calendar/src/calendar.js"></script>
-<script src="lib/fullcalendar/fullcalendar.min.js"></script>
-<script src="lib/angular-ui-utils/ui-utils.min.js"></script>
-<script src="lib/angular-1.3.14/angular-messages.min.js"></script>
-<script src="lib/angular-1.3.14/angular-sanitize.min.js"></script>
-<script src="lib/angular-1.3.14/angular-resource.min.js"></script>
-<script src="lib/angular-loading-bar/build/loading-bar.min.js"></script>
-<script src="lib/ng-grid/build/ng-grid.debug.js"></script>
-<script src="lib/plupload-angular-directive/dist/plupload-angular-directive.min.js"></script>
+{{ HTML::script('lib/lodash/lodash.min.js'); }}
+{{ HTML::script('lib/jquery/dist/jquery.min.js'); }}
+{{ HTML::script('lib/moment/min/moment.min.js'); }}
+{{ HTML::script('lib/angular-1.3.14/angular.min.js'); }}
+{{ HTML::script('lib/angular-bootstrap/ui-bootstrap-tpls.min.js'); }}
+{{ HTML::script('lib/angular-1.3.14/angular-animate.min.js'); }}
+{{ HTML::script('lib/angular-1.3.14/angular-animate.min.js'); }}
+{{ HTML::script('lib/angular-ui-router/release/angular-ui-router.min.js'); }}
+{{ HTML::script('lib/angular-ui-calendar/src/calendar.js'); }}
+{{ HTML::script('lib/fullcalendar/fullcalendar.min.js'); }}
+{{ HTML::script('lib/angular-ui-utils/ui-utils.min.js'); }}
+{{ HTML::script('lib/angular-1.3.14/angular-messages.min.js'); }}
+{{ HTML::script('lib/angular-1.3.14/angular-sanitize.min.js'); }}
+{{ HTML::script('lib/angular-1.3.14/angular-resource.min.js'); }}
+{{ HTML::script('lib/angular-loading-bar/build/loading-bar.min.js'); }}
+{{ HTML::script('lib/ng-grid/build/ng-grid.debug.js'); }}
+{{ HTML::script('lib/plupload-angular-directive/dist/plupload-angular-directive.min.js'); }}
 <!-- endbower -->
 
 <!-- inject.js -->

@@ -54,22 +54,22 @@
     <div ui-view style="margin-top:120px; z-index: 10;"></div>
 </div><!-- /.container -->
 
-<!-- bower:js -->
-<script src="../public/vendor/jquery/dist/jquery.js"></script>
-<script src="../public/vendor/lodash/dist/lodash.compat.js"></script>
-<script src="../public/vendor/bootstrap/dist/js/bootstrap.js"></script>
-<script src="../public/vendor/moment/moment.js"></script>
-<script src="../public/vendor/angular/angular.js"></script>
-<script src="../public/vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="../public/vendor/angular-toastr/dist/angular-toastr.js"></script>
-<script src="../public/vendor/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="../public/vendor/angular-ui-utils/ui-utils.js"></script>
-<script src="../public/vendor/angular-messages/angular-messages.js"></script>
-<script src="../public/vendor/angular-sanitize/angular-sanitize.js"></script>
-<script src="../public/vendor/angular-animate/angular-animate.js"></script>
-<script src="../public/vendor/angular-resource/angular-resource.js"></script>
-<script src="../public/vendor/angular-loading-bar/build/loading-bar.js"></script>
-<script src="../public/vendor/ng-grid/build/ng-grid.js"></script>
+<!-- bower:js --><!-- testme -->
+{{ HTML::script('lib/jquery/dist/jquery.min.js'); }}
+{{ HTML::script('lib/lodash/lodash.js'); }}
+<script src="../public/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../public/lib/moment/moment.js"></script>
+<script src="../public/lib/angular/angular.js"></script>
+<script src="../public/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="../public/lib/angular-toastr/dist/angular-toastr.js"></script>
+<script src="../public/lib/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../public/lib/angular-ui-utils/ui-utils.js"></script>
+<script src="../public/lib/angular-messages/angular-messages.js"></script>
+<script src="../public/lib/angular-sanitize/angular-sanitize.js"></script>
+<script src="../public/lib/angular-animate/angular-animate.js"></script>
+<script src="../public/lib/angular-resource/angular-resource.js"></script>
+<script src="../public/lib/angular-loading-bar/build/loading-bar.js"></script>
+<script src="../public/lib/ng-grid/build/ng-grid.js"></script>
 <!-- endbower -->
 
 <!-- inject.js -->

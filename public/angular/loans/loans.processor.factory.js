@@ -27,7 +27,7 @@
                         agencies: processAgencies(policyList),
                         policies: policyList,
                         byCrop: processByCrop(policyList),
-                        totals: 'totals'
+                        totals: processInsTotals(processByCrop(policyList))
                     };
                     console.log('LoanInsurance: ', ins);
                     return (ins);
@@ -110,7 +110,72 @@
         }
 
         function processByCrop(policies) {
-            return policies;
+            var bycrop = [];
+            var crops = [
+                {id: 1, crop: "Corn"},
+                {id: 2, crop: "Soybeans"},
+                {id: 3, crop: "BeansFAC"},
+                {id: 4, crop: "Sorghum"},
+                {id: 5, crop: "Wheat"},
+                {id: 6, crop: "Cotton"},
+                {id: 7, crop: "Rice"},
+                {id: 8, crop: "Peanuts"},
+                {id: 9, crop: "SugarCane"}
+            ];
+
+            var grped = _.chain(policies).groupBy('crop').value();
+            var byCrop = _.map(grped, function(item, key) {
+                return item.reduce(function(crp, plcy) {
+                    crp.crop_id = plcy.crop_id;
+                    crp.type = plcy.type;
+                    crp.option = plcy.option;
+                    crp.price = Number(plcy.price); //wgt avg
+                    crp.level = Number(plcy.level);
+                    crp.premium = Number(plcy.premium); //wgt avg
+                    crp.share = Number(plcy.share); //wgt avg
+                    crp.acres = Number(plcy.acres);
+                    crp.ins_yield = Number(plcy.ins_yield);
+                    crp.guarantee += (plcy.level / 100) * plcy.price * plcy.ins_yield;
+                    crp.value += plcy.acres * plcy.price * (plcy.ins_yield / 100) * (plcy.share / 100); //acres * yield * price * share
+                    return crp;
+                }, { crop_id: 0, crop: key, type: 0, option: 0, price: 0, level: 0, premium: 0, share: 0, acres: 0, ins_yield: 0, guarantee: 0, value: 0 });
+            });
+            _.forEach(crops, function(crop) {
+                if ( _.includes(byCrop, crops.id) ) {
+                    // don't have to do a thing
+                    var one = 1;
+                } else {
+                    var empty = {
+                        crop_id: crop.crop_id,
+                        crop: crop.crop,
+                        type: '-',
+                        option: '-',
+                        price: 0,
+                        level: 0,
+                        premium: 0,
+                        share: 0,
+                        acres: 0,
+                        ins_yield: 0,
+                        guarantee: 0,
+                        value: 0
+                    };
+                    byCrop.push(empty);
+                } // end if
+            });
+            console.log('final', byCrop);
+            return bycrop;
+        }
+
+        function processInsTotals(obj) {
+            var lone = {
+                acres: 0,
+                value: 0
+            };
+            var byLoan = _.forEach(obj, function(item, key) {
+                lone.acres += Number(item.acres);
+                lone.value += Number(item.value);
+            });
+            return lone;
         }
 
         function updateLoanData(loan) {
