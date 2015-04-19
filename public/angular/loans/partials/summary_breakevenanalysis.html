@@ -1,16 +1,9 @@
-<div class="row" style="padding-top: 20px;">
-    <div class="form-group col-md-12 text-left">
-        <b>Break Even Analysis</b>
-    </div>
-    <div class="row form-group col-md-10 col-md-offset-1" >
-        <table class="table" style="width:80%;">
-            <tr ng-repeat="ac in activeCrops">
-                <td style="width:35%;">Loan payback break-even for ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}}</span>:</td>
-                <td style="width:10%;">{{ac.name|capitalize}}</td>
-                <td class="text-right" style="width:10%;">
-                    {{ac.break_even | number:1}}
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
+<table class="table"  style="width:80%; margin:0 auto;">
+    <tr ng-repeat="ac in activeCrops">
+        <td style="width:35%;">Loan payback break-even for ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}}</span>:</td>
+        <td style="width:10%;">{{ac.name|capitalize}}</td>
+        <td class="text-right" style="width:10%;">
+            {{ac.break_even | number:1}}
+        </td>
+    </tr>
+</table>

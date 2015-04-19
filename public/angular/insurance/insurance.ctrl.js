@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('InsuranceController', InsuranceController);
 
-    InsuranceController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'InsuranceFactory', 'LoansFactory'];
+    InsuranceController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
 
-    function InsuranceController($scope, $state, $stateParams, AppFactory, InsuranceFactory, LoansFactory) {
+    function InsuranceController($scope, $state, $stateParams, AppFactory, LoansFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;
@@ -30,7 +30,7 @@
                     $scope.loan = loan;
                 });
         }
-        $scope.insurance = InsuranceFactory.data;
+
         $scope.newPolicy = {
             acres: 0,
             agency: '',

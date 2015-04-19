@@ -16,8 +16,6 @@
         $scope.loan.indicon_width = '140px';
         $scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
 
-        //console.log('loan', $scope.loan);
-
         //FARMER
         FarmersFactory.getFarmer($scope.loan.farmer_id)
             .then(function success(rsp) {
@@ -106,11 +104,6 @@
                     return item.acres > 0;
                 });
             });
-
-        /*LoansFactory.getTotalAcres($scope.loan.id)
-            .then(function (rsp) {
-                $scope.loan.total_acres = parseFloat(rsp);
-        });*/
 
         LoansFactory.getAttachments($stateParams.loanID)
             .then(function success(rsp) {

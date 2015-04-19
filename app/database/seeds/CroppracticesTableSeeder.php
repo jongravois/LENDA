@@ -41,19 +41,19 @@ class CroppracticesTableSeeder extends Seeder{
 		]);
 
 		Croppractice::create([
-			'crop_id' => 2,
-			'croppractice' =>	'Soybeans FACIR',
-			'crop' => 'soybeans',
-			'practice' =>	'FACIR',
+			'crop_id' => 3,
+			'croppractice' =>	'FAC Beans IR',
+			'crop' => 'fac beans',
+			'practice' =>	'IR',
 			'measurement' => 'bu',
 			'rebate_measurement' => 'bu'
 		]);
 
 		Croppractice::create([
-			'crop_id' => 2,
-			'croppractice' => 'Soybeans FACNI',
-			'crop' => 'soybeans',
-			'practice' => 'FACNI',
+			'crop_id' => 3,
+			'croppractice' => 'FAC Beans NI',
+			'crop' => 'fac beans',
+			'practice' => 'NI',
 			'measurement' => 'bu',
 			'rebate_measurement' =>	'bu'
 		]);

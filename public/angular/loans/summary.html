@@ -66,12 +66,32 @@
 
     <!--INSURANCE ANALYSIS-->
       <!--TODO: hide if loantypeid < 4-->
-    <div ng-include="'angular/loans/partials/summary_insuranceanalysis.html'"></div>
+      <div class="row" style="padding-top: 20px;">
+          <div class="form-group col-md-12 text-left">
+              <b>Crop Insurance Analysis</b>
+          </div>
+          <div class="row">
+              <div class="col-md-11" style="margin-left:20px;">
+                  <div ng-include="'angular/loans/partials/summary_insuranceanalysis.html'"></div>
+              </div>
+          </div>
+      </div>
 
     <!--BREAK-EVEN ANALYSIS-->
-          <div ng-include="'angular/loans/partials/summary_breakevenanalysis.html'"></div>
+      <div class="row" style="padding-top: 20px;">
+          <div class="form-group col-md-12 text-left">
+              <b>Break Even Analysis</b>
+          </div>
+          <div class="row">
+              <div class="col-md-11" style="margin-left:20px;">
+                  <div ng-include="'angular/loans/partials/summary_breakevenanalysis.html'"></div>
+              </div>
+          </div>
+      </div>
+
   </span>
 </span>
 </fieldset>
 <!--<pre>{{financials | json}}</pre>-->
 <!--<pre>{{loantypes | json}}</pre>-->
+<pre>{{loan.insurance|json}}</pre>

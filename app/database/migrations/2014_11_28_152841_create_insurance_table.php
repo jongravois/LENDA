@@ -18,7 +18,7 @@ class CreateInsuranceTable extends Migration {
             $table->string('fsn')->nullable();
             $table->integer('loancounty_id')->nullable();
             $table->integer('loancrop_id')->nullable();
-            $table->integer('croppractice_id')->nullable();
+            $table->string('practice')->nullable();
             $table->string('type')->nullable();
             $table->string('option')->nullable();
             $table->double('acres')->nullable();

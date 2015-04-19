@@ -1,28 +1,134 @@
-<div class="row" style="padding-top: 20px;">
-    <div class="form-group col-md-12 text-left">
-        <b>Crop Insurance Analysis</b>
-    </div>
-    <div class="row form-group col-md-10 col-md-offset-1" >
-        <table class="table" style="width:80%;">
-            <tr>
-                <td style="width:60%;">ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}} </span>Loan secured by Collateral Conditions</td>
-                <td style="width:40%;" colspan="3" class="text-right">
-                    {{loan.fins.arm_and_dist | flexCurrency:0}}
-                </td>
-            </tr>
-            <tr>
-                <td>Applicant's share of crop insurance less premium</td>
-                <td colspan="3" class="text-right">
-                    {{loan.fins.guaranty | flexCurrency:0}}
-                </td>
-            </tr>
-            <tr>
-                <td>Crop Insurance coverage in excess of ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}}</span> Loan</td>
-                <td colspan="3" class="text-right">
-                    <!--TODO: Ensure arm_and_dist is equal to arm_commit if there is no distributor-->
-                    {{loan.fins.guaranty - financials.arm_and_dist | flexCurrency:0}}
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
+<table class="table table-striped rowed">
+    <tr>
+        <th>&nbsp;</th>
+        <th>Type</th>
+        <th>Option</th>
+        <th>Price</th>
+        <th>Level</th>
+        <th>Guarantee</th>
+        <th>Premium</th>
+        <th>Share</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Corn</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Soybeans</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>FAC Beans</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Sorghum</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Wheat</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Cotton</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Rice</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Peanuts</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Sugar Cane</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<br/>
+<table class="table" style="width:80%; margin:0 auto;">
+    <tr>
+        <td style="width:60%;">ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}} </span>Loan secured by Collateral Conditions</td>
+        <td style="width:40%;" colspan="3" class="text-right">
+            {{loan.fins.arm_and_dist | flexCurrency:0}}
+        </td>
+    </tr>
+    <tr>
+        <td>Applicant's share of crop insurance less premium</td>
+        <td colspan="3" class="text-right">
+            {{loan.fins.guaranty | flexCurrency:0}}
+        </td>
+    </tr>
+    <tr>
+        <td>Crop Insurance coverage in excess of ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}}</span> Loan</td>
+        <td colspan="3" class="text-right">
+            <!--TODO: Ensure arm_and_dist is equal to arm_commit if there is no distributor-->
+            {{loan.fins.guaranty - financials.arm_and_dist | flexCurrency:0}}
+        </td>
+    </tr>
+</table>

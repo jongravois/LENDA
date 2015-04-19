@@ -25,7 +25,7 @@ class CropsTableSeeder extends Seeder{
 		]);
 
         Crop::create([
-            'crop' => 'FAC Beans',
+            'crop' => 'beansFAC',
             'tea' => 450,
             'measurement' => 'bu',
             'rebate_measurement' => 'bu',
