@@ -21,11 +21,11 @@
                 $anchorScroll();
             });
         })
-        .config(function (toastrConfig) {
+        /*.config(function (toastrConfig) {
             angular.extend(toastrConfig, {
                 closeButton: true
             });
-        })
+        })*/
         .config(['plUploadServiceProvider', function(plUploadServiceProvider) {
 
             plUploadServiceProvider.setConfig('flashPath', 'lib/plupload-angular-directive/plupload.flash.swf');

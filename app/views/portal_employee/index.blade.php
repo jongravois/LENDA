@@ -40,13 +40,13 @@
 </div>
 
 <!-- bower:js -->
-{{ HTML::script('lib/lodash/lodash.min.js'); }}
 {{ HTML::script('lib/jquery/dist/jquery.min.js'); }}
+{{ HTML::script('lib/lodash/lodash.min.js'); }}
 {{ HTML::script('lib/moment/min/moment.min.js'); }}
-{{ HTML::script('lib/angular-1.3.14/angular.min.js'); }}
+{{ HTML::script('lib/angular-1.3.14/angular.js'); }}
 {{ HTML::script('lib/angular-bootstrap/ui-bootstrap-tpls.min.js'); }}
 {{ HTML::script('lib/angular-1.3.14/angular-animate.min.js'); }}
-{{ HTML::script('lib/angular-1.3.14/angular-animate.min.js'); }}
+{{ HTML::script('lib/angular-toastr/angular-toastr.tpls.js'); }}
 {{ HTML::script('lib/angular-ui-router/release/angular-ui-router.min.js'); }}
 {{ HTML::script('lib/angular-ui-calendar/src/calendar.js'); }}
 {{ HTML::script('lib/fullcalendar/fullcalendar.min.js'); }}
