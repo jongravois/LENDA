@@ -49,6 +49,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], 
     Route::resource('agencies', 'AgenciesController');
     Route::resource('agents', 'AgentsController');
     Route::resource('applicants', 'ApplicantsController');
+    Route::resource('attachments', 'AttachmentsController');
     Route::resource('calendars', 'CalendarController');
     Route::resource('committees', 'CommitteeController');
     Route::resource('comments', 'CommentController');
@@ -122,7 +123,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], 
     Route::get('loans/{id}/addendums', 'AddloansController@byLoan');
     Route::get('loans/{id}/acres', 'LoancropsController@allAcres');
     Route::get('loans/{id}/affiliates', 'AffiliatesController@byLoan');
-    Route::get('loans/{id}/attachments', 'LoansController@attachments');
+    Route::get('loans/{id}/attachments', 'AttachmentsController@byLoan');
     Route::get('loans/{id}/budget', 'BudgetController@index');
     Route::get('loans/{id}/comments', 'CommentController@byLoan');
     Route::get('loans/{id}/commentstatus', 'CommentStatusController@pendingComments');

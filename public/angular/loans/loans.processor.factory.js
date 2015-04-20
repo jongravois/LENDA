@@ -22,6 +22,7 @@
             return $http.get(API_URL + '/loans/' + loan.id + '/insurance')
                 .then(function (rsp){
                     var policyList = rsp.data.data;
+                    //console.log('List', policyList);
 
                     var ins = {
                         agencies: processAgencies(policyList),
@@ -135,9 +136,9 @@
                     crp.premium = Number(plcy.premium); //wgt avg
                     crp.share = Number(plcy.share); //wgt avg
                     crp.acres = Number(plcy.acres);
-                    crp.ins_yield = Number(plcy.ins_yield);
-                    crp.guarantee += calcGuarantee(plcy.level, plcy.price, plcy.ins_yield);
-                    crp.value += calcInsValue(plcy.acres, plcy.price, plcy.ins_yield, plcy.share);
+                    crp.ins_yield = Number(plcy.yield);
+                    crp.guarantee += calcGuarantee(plcy.level, plcy.price, plcy.yield);
+                    crp.value += calcInsValue(plcy.acres, plcy.price, plcy.yield, plcy.share);
                     return crp;
                 }, { crop_id: 0, crop: key, name: 0, type: 0, option: 0, price: 0, level: 0, premium: 0, share: 0, acres: 0, ins_yield: 0, guarantee: 0, value: 0 });
             });
@@ -174,6 +175,7 @@
 
         //////////
         function calcGuarantee(level, price, insyield) {
+            console.log('Guarantee', level, price, insyield);
             return (Number(level)/100) * Number(price) * Number(insyield);
         }
         function calcInsValue(acres, price, insyield, share) {
