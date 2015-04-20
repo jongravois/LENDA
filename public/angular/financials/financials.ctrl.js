@@ -19,7 +19,6 @@
             });
         }// end if
 
-        $scope.loan = InitialData.data.data[0];
         GlobalsFactory.getAdminGrader()
             .then(function success(rsp) {
                 $scope.grads = rsp.data.data;

@@ -19,8 +19,6 @@
             });
         }// end if
 
-        $scope.loan = InitialData.data.data[0];
-
         if ($scope.loan.applicant_id) {
             ApplicantsFactory.getApplicant($scope.loan.applicant_id)
                 .then(function success(rsp) {
@@ -31,11 +29,8 @@
             $scope.applicant = {entity_type_id: '2'};
         } // end if
 
-        $scope.partners = $scope.partners || [];
         $scope.newPartner = $scope.newPartner || {};
-        $scope.joints = $scope.joints || [];
         $scope.newJoint = $scope.newJoint || {};
-        $scope.corps = $scope.corps || [];
         $scope.newCorp = $scope.newCorp || {};
 
         $scope.createApplicant = function () {
