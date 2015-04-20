@@ -215,28 +215,30 @@
               ng-class="{'cGray': loan.rebate_assignment == 0, 'cGreen': loan.rebate_assignment == 1, 'cRed': loan.rebate_assignment == 2}"></span>
         </td>
         <td>
-        <span class="progicon glyphicon glyphicon-tree-deciduous"
-              tooltip="Crop Inspection"
-              tooltip-append-to-body="true"
-              tooltip-placement="bottom"
-              ng-click="clkCROPINS(loan, user.username)"
-              ng-class="{'cGray': loan.crop_inspection == 0, 'cGreen': loan.crop_inspection == 1, 'cRed': loan.crop_inspection == 2}"></span>
+            <span class="progicon glyphicon glyphicon-grain"
+                  tooltip="Crop Inspection"
+                  tooltip-append-to-body="true"
+                  tooltip-placement="bottom"
+                  ng-click="clkCROPINS(loan, user.username)"
+                  ng-class="{'cGray': loan.crop_inspection == 0, 'cGreen': loan.crop_inspection == 1, 'cRed': loan.crop_inspection == 2}"></span>
         </td>
         <!--<td class="bleft">-->
         <td>
-            <!--TODO: LIMIT WARNING -- LIKE MANAGEMENT-->
-        <span class="progicon glyphicon glyphicon-grain"
-              tooltip="LIMIT WARNING"
-              tooltip-append-to-body="true"
-              tooltip-placement="bottom"
-              style="font-size:18px;"></span>
+            <a href="#/edit/{{l.loan_type_id}}/{{l.id}}/disbursement">
+                <img ng-src="images/dot_{{getColor(loan.limit_warning)}}.png"
+                     alt=""
+                     tooltip="{{loan.limit_warning_message}}"
+                     tooltip-append-to-body="true"
+                     tooltip-placement="bottom"/>
+            </a>
         </td>
         <td>
-      <span class="progicon glyphicon glyphicon-grain"
+      <span class="progicon glyphicon glyphicon-retweet"
             tooltip="RECONCILIATION"
             tooltip-append-to-body="true"
             tooltip-placement="bottom"
-            style="font-size:18px;"></span>
+            ng-click="clkREC(loan, user.username)"
+            ng-class="{'cGray': loan.crop_inspection == 0, 'cGreen': loan.reconciliation == 1, 'cRed': loan.reconciliation == 2}"></span>
         </td>
         <td>
             <span style="font-size:18px;">{{loan.grade}}</span>
