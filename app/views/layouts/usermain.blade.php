@@ -11,7 +11,7 @@
     <title>AR Management Application Intake</title>
 
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('css/flatly.bootstrap.min.css'); }}
+    {{ HTML::style('css/bootstrap.min.css'); }}
     {{ HTML::style('css/app.css'); }}
 
     <link rel="apple-touch-icon" sizes="57x57" href="/ico/apple-touch-icon-57x57.png">
