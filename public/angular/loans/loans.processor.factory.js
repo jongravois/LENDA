@@ -140,30 +140,7 @@
                     return crp;
                 }, { crop_id: 0, crop: key, type: 0, option: 0, price: 0, level: 0, premium: 0, share: 0, acres: 0, ins_yield: 0, guarantee: 0, value: 0 });
             });
-            _.forEach(crops, function(crop) {
-                if ( _.includes(byCrop, crops.id) ) {
-                    // don't have to do a thing
-                    var one = 1;
-                } else {
-                    var empty = {
-                        crop_id: crop.crop_id,
-                        crop: crop.crop,
-                        type: '-',
-                        option: '-',
-                        price: 0,
-                        level: 0,
-                        premium: 0,
-                        share: 0,
-                        acres: 0,
-                        ins_yield: 0,
-                        guarantee: 0,
-                        value: 0
-                    };
-                    byCrop.push(empty);
-                } // end if
-            });
-            console.log('final', byCrop);
-            return bycrop;
+            return byCrop;
         }
 
         function processInsTotals(obj) {
