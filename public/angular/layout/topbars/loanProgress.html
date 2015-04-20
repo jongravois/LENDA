@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" ng-controller="ProgressBarCtrl">
     <tr>
         <td>
         <span tooltip="Vote Needed"
@@ -248,6 +248,12 @@
         </td>
         <td>
             <span loan-status-icon status="loan.status_id"></span>
+        </td>
+        <td>
+            <span ng-click="showModal()"
+                  style="cursor: pointer;">
+                Modal
+            </span>
         </td>
     </tr>
 </table>

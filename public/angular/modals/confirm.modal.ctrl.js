@@ -4,18 +4,14 @@
         .module('ARM')
         .controller('ConfirmModalController', ConfirmModalController);
     
-        ConfirmModalController.$inject = ['$modalInstance', 'data'];
+        ConfirmModalController.$inject = ['$scope', '$modalInstance', 'data'];
     
         /* @ngInject */
-        function ConfirmModalController(
-            $modalInstance, data
-        ){
+        function ConfirmModalController($scope, $modalInstance, data){
             /* jshint validthis: true */
-            var vm = this;
-            
-            vm.cancel = cancel;
-            vm.ok = ok;
-            vm.properties = data;
+            $scope.cancel = cancel;
+            $scope.ok = ok;
+            $scope.properties = data;
 
             function cancel() {
                 $modalInstance.dismiss();

@@ -21,7 +21,6 @@
             var modalInstance = $modal.open({
                 templateUrl: 'angular/comments/reply-modal.html',
                 controller: 'ConfirmModalController',
-                controllerAs: 'vm',
                 resolve: {
                     data: function(){
                         return {};
@@ -37,7 +36,6 @@
             var modalInstance = $modal.open({
                 templateUrl: 'angular/modals/confirm-modal.html',
                 controller: 'ConfirmModalController',
-                controllerAs: 'vm',
                 resolve: {
                     data: function(){
                         return {
@@ -57,7 +55,6 @@
             var modalInstance = $modal.open({
                 templateUrl: 'angular/modals/confirm-delete-modal.html',
                 controller: 'ConfirmModalController',
-                controllerAs: 'vm',
                 resolve: {
                     data: function(){
                         return {};
