@@ -175,7 +175,7 @@
 
         //////////
         function calcGuarantee(level, price, insyield) {
-            console.log('Guarantee', level, price, insyield);
+            //console.log('Guarantee', level, price, insyield);
             return (Number(level)/100) * Number(price) * Number(insyield);
         }
         function calcInsValue(acres, price, insyield, share) {
