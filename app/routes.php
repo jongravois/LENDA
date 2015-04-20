@@ -128,7 +128,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], 
     Route::get('loans/{id}/comments', 'CommentController@byLoan');
     Route::get('loans/{id}/commentstatus', 'CommentStatusController@pendingComments');
     Route::get('loans/{id}/committee', 'CommitteeController@byLoan');
-    Route::get('loans/{id}/conditions', 'LoanConditionsController@byLoan');
+    Route::get('loans/{id}/conditions', 'LoanconditionsController@byLoan');
     Route::get('loans/{id}/corporations', 'CorporationsController@byLoan');
     Route::get('loans/{id}/cropexpenses', 'CropexpensesController@byLoan');
     Route::get('loans/{id}/crops', 'LoancropsController@byLoan');
