@@ -22,7 +22,7 @@ class LoansTableSeeder extends Seeder {
 			'region_id' => 3,
 			'user_id' => 2,
             'farmer_id' => 1,
-			'is_cross_collateralized' => 1,
+			'is_cross_collateralized' => 0,
 			'is_fast_tracked' => 0,
 			'has_attachments' => 1,
             'is_watched' => 1,
