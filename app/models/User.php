@@ -20,6 +20,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         parent::boot();
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     /* RELATIONSHIPS */
     public function closer()
     {

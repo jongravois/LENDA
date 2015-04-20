@@ -60,6 +60,7 @@ public function transform($arr)
 		'crop_year'	=>	$arr['crop_year'],
 		'season'	=>	$arr['season'],
 		'season_full' => $fullSeason,
+        'file_path' => $arr['crop_year'] . '-' . $arr['id'],
 		'status_id' =>	$arr['status_id'],
 		'status' => $arr['loanstatus']['status'],
     'grade' => $arr['grade'],

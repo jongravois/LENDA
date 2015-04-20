@@ -13,6 +13,7 @@ Route::get('/', [
     'uses' => 'AppController@index'
 ])->before('auth');
 
+Route::resource('uploads', 'UploadsController');
 
 Route::get('env', function () {
     return App::environment();
