@@ -29,7 +29,7 @@
                         byCrop: processByCrop(policyList),
                         totals: processInsTotals(processByCrop(policyList))
                     };
-                    console.log('LoanInsurance: ', ins);
+                    //console.log('LoanInsurance: ', ins);
                     return (ins);
                 });
         }
@@ -127,6 +127,7 @@
             var byCrop = _.map(grped, function(item, key) {
                 return item.reduce(function(crp, plcy) {
                     crp.crop_id = plcy.crop_id;
+                    crp.name = plcy.name;
                     crp.type = plcy.type;
                     crp.option = plcy.option;
                     crp.price = Number(plcy.price); //wgt avg
@@ -135,19 +136,16 @@
                     crp.share = Number(plcy.share); //wgt avg
                     crp.acres = Number(plcy.acres);
                     crp.ins_yield = Number(plcy.ins_yield);
-                    crp.guarantee += (plcy.level / 100) * plcy.price * plcy.ins_yield;
-                    crp.value += plcy.acres * plcy.price * (plcy.ins_yield / 100) * (plcy.share / 100); //acres * yield * price * share
+                    crp.guarantee += calcGuarantee(plcy.level, plcy.price, plcy.ins_yield);
+                    crp.value += calcInsValue(plcy.acres, plcy.price, plcy.ins_yield, plcy.share);
                     return crp;
-                }, { crop_id: 0, crop: key, type: 0, option: 0, price: 0, level: 0, premium: 0, share: 0, acres: 0, ins_yield: 0, guarantee: 0, value: 0 });
+                }, { crop_id: 0, crop: key, name: 0, type: 0, option: 0, price: 0, level: 0, premium: 0, share: 0, acres: 0, ins_yield: 0, guarantee: 0, value: 0 });
             });
             return byCrop;
         }
 
         function processInsTotals(obj) {
-            var lone = {
-                acres: 0,
-                value: 0
-            };
+            var lone = { acres: 0, value: 0 };
             var byLoan = _.forEach(obj, function(item, key) {
                 lone.acres += Number(item.acres);
                 lone.value += Number(item.value);
@@ -174,5 +172,12 @@
             return $q.all(allLoans.map(updateLoanData));
         }
 
+        //////////
+        function calcGuarantee(level, price, insyield) {
+            return (Number(level)/100) * Number(price) * Number(insyield);
+        }
+        function calcInsValue(acres, price, insyield, share) {
+            return Number(acres) * Number(price) * Number(insyield) * (Number(share)/100);
+        }
     } // end factory
 })();

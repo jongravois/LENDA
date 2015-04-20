@@ -37,6 +37,7 @@ class InsuranceTransformer extends Transformer{
 			'state' => substr($arr['county']['locale'],0,2),
 			'loancrop_id' => $arr['loancrop_id'],
 			'crop' => $arr['crop']['crop'],
+			'name' => $arr['crop']['name'],
 			'practice' => $arr['practice'],
 			'type' => $arr['type'],
 			'option' => $arr['option'],

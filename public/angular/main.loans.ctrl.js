@@ -15,14 +15,16 @@
                     });
             }
 
-            LoansProcessor.getLoansWithExtraData()
-             .then(function (allLoans) {
-                $scope.loans = allLoans;
-                $scope.loanList = _.filter(allLoans, function (i) {
-                    return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
-                });
-             });
-            toastr.success('Loaded all loans', 'Success!');
+            if(!$scope.loans) {
+                LoansProcessor.getLoansWithExtraData()
+                    .then(function (allLoans) {
+                        $scope.loans = allLoans;
+                        $scope.loanList = _.filter(allLoans, function (i) {
+                            return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
+                        });
+                    });
+                toastr.success('Loaded all loans', 'Success!');
+            }
 
             //SCOPE FUNCTIONS
             $scope.clkITS = AppFactory.clickITS;

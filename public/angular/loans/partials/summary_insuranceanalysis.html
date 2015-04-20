@@ -10,115 +10,24 @@
         <th>Share</th>
         <th>Value</th>
     </tr>
-    <tr ng-repeat="c in loan.insurance.byCrop|orderBy:'crop_id'">
-        <td>{{c.crop|uppercase}}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+    <tr ng-if="loan.insurance.byCrop.length === 0">
+        <td colspan="9"><strong>No Insurance Information Found.</strong></td>
     </tr>
-    <tr>
-        <td>Corn</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+    <tr ng-repeat="c in loan.insurance.byCrop|orderBy:'crop_id'" ng-if="loan.insurance.byCrop.length !== 0">
+        <td>{{c.name}}</td>
+        <td class="text-center">{{c.type}}</td>
+        <td class="text-center">{{c.option}}</td>
+        <td class="text-right">{{c.price|flexCurrency:2}}</td>
+        <td class="text-right">{{c.level|flexPercent:1}}</td>
+        <td class="text-right">{{c.guarantee|flexCurrency:0}}</td>
+        <td class="text-right">{{c.premium|flexCurrency:2}}</td>
+        <td class="text-right">{{c.share|flexPercent:1}}</td>
+        <td class="text-right">{{c.value|flexCurrency:0}}</td>
     </tr>
-    <tr>
-        <td>Soybeans</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>FAC Beans</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Sorghum</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Wheat</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Cotton</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Rice</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Peanuts</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Sugar Cane</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+    <tr class="success" ng-if="loan.insurance.byCrop.length !== 0">
+        <td>Total</td>
+        <td colspan="7">&nbsp;</td>
+        <td class="text-right">{{loan.fins.guaranty|flexCurrency:0}}</td>
     </tr>
 </table>
 <br/>
