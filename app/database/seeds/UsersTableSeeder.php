@@ -137,7 +137,7 @@ class UsersTableSeeder extends Seeder
             'nick' => 'TST',
             'email' => 'test@arm-lenda.com',
             'password' => 'justToTest',
-            'phone' => '9991235648',
+            'phone' => '5041235648',
             'loc_id' => '6',
             'region_id' => '1',
             'manager_id' => 2,
