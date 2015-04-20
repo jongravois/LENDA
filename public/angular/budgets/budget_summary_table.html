@@ -235,7 +235,7 @@
       {{total_expenses.total_expenses.total | flexCurrency:0 }}
     </td>
   </tr>
-  <tr>
+  <tr style="display:none;">
     <td colspan="5">Estimated Interest</td>
     <td ng-class=gtZero(total_expenses.estimated_interest.arm)>
       {{total_expenses.estimated_interest.arm | flexCurrency:0 }}
@@ -250,7 +250,7 @@
       {{total_expenses.estimated_interest.total | flexCurrency:0 }}
     </td>
   </tr>
-  <tr class="warning">
+  <tr class="warning" style="display:none;">
     <td colspan="5">Cash Flow (Deficit)</td>
     <td colspan="3" ng-if="loan.has_distributor">&nbsp;</td>
     <td colspan="2" ng-if="!loan.has_distributor">&nbsp;</td>

@@ -123,7 +123,7 @@ class FarmcropsTableSeeder extends Seeder {
 			'crop_year'         =>	2015,
 			'loan_id'           =>	1,
 			'farm_id'           =>	5,
-			'crop_id'           =>	2,
+			'crop_id'           =>	3,
 			'towhom_market' => 'CropsRUs',
 			'ins_price'         =>	11.2500,
 			'ins_yield'         =>	26.0,

@@ -26,6 +26,8 @@
                 toastr.success('Loaded all loans', 'Success!');
             }
 
+            // Bind
+
             //SCOPE FUNCTIONS
             $scope.clkITS = AppFactory.clickITS;
             $scope.clkFSA = AppFactory.clickFSA;
