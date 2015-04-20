@@ -21,7 +21,7 @@
     <!-- endbower -->
 
     <!-- inject:css -->
-    {{ HTML::style('css/style.css') }}
+    {{ HTML::style('css/styles.css') }}
     <!-- endinject -->
 
     <link rel="apple-touch-icon" sizes="120x120" href="/ico/apple-touch-icon-120x120.png">
