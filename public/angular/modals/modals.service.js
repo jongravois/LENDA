@@ -11,15 +11,17 @@
         var service = {
             commentReply: commentReply,
             confirm: confirm,
-            confirmDelete: confirmDelete
+            confirmDelete: confirmDelete,
+            optionalUpload: optionalUpload,
+            requiredUpload: requiredUpload
         };
 
         return service;
 
         //////////
-        function commentReply (data) {
+        function commentReply(data) {
             var modalInstance = $modal.open({
-                templateUrl: 'angular/comments/reply-modal.html',
+                templateUrl: 'angular/comments/reply.modal.html',
                 controller: 'ConfirmModalController',
                 resolve: {
                     data: function(){
@@ -32,9 +34,9 @@
             return modalInstance.result;
         }
 
-        function confirm (data) {
+        function confirm(data) {
             var modalInstance = $modal.open({
-                templateUrl: 'angular/modals/confirm-modal.html',
+                templateUrl: 'angular/modals/confirm.modal.html',
                 controller: 'ConfirmModalController',
                 resolve: {
                     data: function(){
@@ -51,13 +53,52 @@
             return modalInstance.result;
         }
 
-        function confirmDelete (data) {
+        function confirmDelete(data) {
             var modalInstance = $modal.open({
-                templateUrl: 'angular/modals/confirm-delete-modal.html',
+                templateUrl: 'angular/modals/confirm.delete.modal.html',
                 controller: 'ConfirmModalController',
                 resolve: {
                     data: function(){
                         return {};
+                    }
+                },
+                size: 'sm'
+            });
+
+            return modalInstance.result;
+        }
+
+        function optionalUpload(data) {
+            var modalInstance = $modal.open({
+                templateUrl: 'angular/modals/upload.optional.modal.html',
+                controller: 'ConfirmModalController',
+                resolve: {
+                    data: function(){
+                        return {
+                            loanID: data.loanID,
+                            title: data.title,
+                            message: data.message,
+                            buttons: data.buttons
+                        };
+                    }
+                },
+                size: 'lg'
+            });
+
+            return modalInstance.result;
+        }
+
+        function requiredUpload(data) {
+            var modalInstance = $modal.open({
+                templateUrl: 'angular/modals/confirm-modal.html',
+                controller: 'ConfirmModalController',
+                resolve: {
+                    data: function(){
+                        return {
+                            title: data.title,
+                            message: data.message,
+                            buttons: data.buttons
+                        };
                     }
                 },
                 size: 'sm'

@@ -4,10 +4,10 @@
         .module('ARM')
         .factory('AppFactory', AppFactory);
 
-    AppFactory.$inject = ['$http', 'API_URL', '$state', 'toastr', 'Logger'];
+    AppFactory.$inject = ['$http', 'API_URL', '$state', '$stateParams', 'toastr', 'Logger', 'ModalService'];
 
     /* @ngInject */
-    function AppFactory($http, API_URL, $state, toastr, Logger) {
+    function AppFactory($http, API_URL, $state, $stateParams, toastr, Logger, ModalService) {
         return {
             agentsInAgency: agentsInAgency,
             averageArray: averageArray,
@@ -224,6 +224,20 @@
         }
 
         function clickLEASE(obj, user) {
+            //TODO: MODAL
+            var data = {
+                loanID: obj.id,
+                title: 'Leases Verified',
+                message: 'This is a test of the LENDA Modal Service. In the event of a real modal, instuctions will be provided.',
+                buttons: ['ok', 'cancel']
+            };
+            ModalService.optionalUpload(data)
+                .then(function() {
+                    alert('OK, then!');
+                }, function() {
+                    console.log(data);
+                });
+/*
             if(Number(obj.leases_valid) == 1){
                 recordLEASE(user, 3, obj);
             } else {
@@ -232,7 +246,7 @@
                     recordBORCVD(user, 1, obj);
                 }
             } // end if
-
+*/
             return obj;
         }
 
