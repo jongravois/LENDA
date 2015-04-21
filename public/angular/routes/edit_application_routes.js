@@ -23,7 +23,7 @@
                 })
                 .state('edit.applicant', {
                     url: '/applicant',
-                    templateUrl: 'angular/applicants/editapplicant.html',
+                    templateUrl: 'angular/applicants/applicant.html',
                     controller: 'ApplicantsController',
                     data: {newapplication: false}
                 })

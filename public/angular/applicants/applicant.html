@@ -1,13 +1,12 @@
 <fieldset>
-  <!--<pre>{{applicant | json}}</pre>-->
   <legend>APPLICANT INFORMATION</legend>
 
   <!-- APPLICANT / SSN -->
   <div class="row">
     <div class="form_group col-md-8">
-      <label>Last Name, First Name or Company Name:</label>
+      <label>Name (Last Name, First Name or Company):</label>
       <br/>
-      <text-edit-in-place value="applicant.applicant"></text-edit-in-place>
+        <input type="text" ng-model="applicant.applicant" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>Entity Type</label><br>
@@ -25,22 +24,24 @@
     <div class="form-group col-md-5">
       <label>Mailing Address:</label>
       <br/>
-      <text-edit-in-place value="applicant.address"></text-edit-in-place>
+        <input type="text" name="address" ng-model="applicant.address" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>City:</label>
       <br/>
-      <text-edit-in-place value="applicant.city"></text-edit-in-place>
+        <input type="text" name="city" ng-model="applicant.city" class="form-control"/>
     </div>
     <div class="form-group col-md-2">
       <label>State:</label>
       <br/>
-      <text-edit-in-place value="applicant.state_abr"></text-edit-in-place>
+        <select name="state" ng-model="applicant.state_id" class="form-control" ng-options="s.id as s.state for s in feeder.states">
+            <option value="">Please select ...</option>
+        </select>
     </div>
     <div class="form-group col-md-2">
       <label>Zip:</label>
       <br/>
-      <text-edit-in-place value="applicant.zip"></text-edit-in-place>
+        <input type="text" name="zip" ng-model="applicant.zip" class="form-control"/>
     </div>
   </div>
   <!-- ADDRESS / PHONE -->
@@ -50,22 +51,22 @@
     <div class="form-group col-md-5">
       <label>Phone:</label>
       <br/>
-      <phone-edit-in-place value="applicant.phone"></phone-edit-in-place>
+        <input type="text" name="phone" ui-mask="(999) 999-9999" ng-model="applicant.phone" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>Email Address:</label>
       <br/>
-      <text-edit-in-place value="applicant.email"></text-edit-in-place>
+        <input type="text" name="email" ng-model="applicant.email" class="form-control"/>
     </div>
     <div class="form-group col-md-2">
       <label>SSN / Tax ID Number:</label>
       <br/>
-      <social-edit-in-place value="applicant.ssn"></social-edit-in-place>
+        <input type="text" name="ssn" ui-mask="999-99-9999" ng-model="applicant.ssn" class="form-control"/>
     </div>
     <div class="form-group col-md-2">
       <label>DOB or Incorporation:</label>
       <br/>
-      <text-edit-in-place value="applicant.dob"></text-edit-in-place>
+        <input type="text" name="dob" ui-mask="99/99/9999" ng-model="applicant.dob" class="form-control" style="width: 120px;"/>
     </div>
   </div>
   <!-- PHONE / EMAIL / SSN / DOB -->
@@ -75,22 +76,22 @@
     <div class="form-group col-md-3">
       <label>Spouse</label>
       <br/>
-      <text-edit-in-place value="applicant.spouse"></text-edit-in-place>
+        <input type="text" name="spouse" ng-model="applicant.spouse" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>Spouse SSN:</label>
       <br/>
-      <social-edit-in-place value="applicant.spouse_ssn"></social-edit-in-place>
+        <input type="text" name="spouse_ssn" ng-model="applicant.spouse_ssn" ui-mask="999-99-9999" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>Spouse Phone:</label>
       <br/>
-      <phone-edit-in-place value="applicant.spouse_phone"></phone-edit-in-place>
+        <input type="text" name="spouse_phone" ui-mask="(999) 999-9999" ng-model="applicant.spouse_phone" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>Spouse Email:</label>
       <br/>
-      <text-edit-in-place value="applicant.spouse_email"></text-edit-in-place>
+        <input type="text" name="spouse_email" ng-model="applicant.spouse_email" class="form-control"/>
     </div>
 
   </div>
@@ -99,7 +100,12 @@
   <!-- UPDATE BUTTON -->
   <div class="row">
     <div class="col-md-12 text-right">
-      <button style="margin-right:10px;" class="btn btn-primary" ng-click="updApplicant()">UPDATE</button>
+        <button style="margin-right:10px;" class="btn btn-primary" ng-click="createApplicant()" ng-if="newapplication">
+            NEXT
+        </button>
+      <button style="margin-right:10px;" class="btn btn-primary" ng-click="updApplicant()" ng-if="!newapplication">
+          UPDATE
+      </button>
     </div>
   </div>
 </fieldset>

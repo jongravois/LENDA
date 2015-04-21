@@ -17,7 +17,7 @@
                 })
                 .state('new.applicant', {
                     url: '/applicant',
-                    templateUrl: 'angular/applicants/newapplicant.html',
+                    templateUrl: 'angular/applicants/applicant.html',
                     controller: 'ApplicantsController',
                     data: {newapplication: true}
                 })
