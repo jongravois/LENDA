@@ -146,13 +146,22 @@
 
         /* METHODS */
         function getTallies(arr){
+            var penAct = 0;
+            var manReq = 0;
+            var reqRep = 0;
             var catNotify = _.chain(arr)
                 .groupBy('notification_type')
                 .value();
 
-            var penAct = catNotify.report.length;
-            var manReq = catNotify.vote.length;
-            var reqRep = catNotify.office.length;
+            if(catNotify.report) {
+                penAct = catNotify.report.length;
+            }
+            if(catNotify.vote) {
+                manReq = catNotify.vote.length;
+            }
+            if(catNotify.office) {
+                reqRep = catNotify.office.length;
+            }
 
             var retHTML = '<p style="text-align: left !important;">Pending Actions: (';
             retHTML += penAct;
