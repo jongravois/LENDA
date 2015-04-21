@@ -171,6 +171,12 @@
                     controller: 'UnderwritingController',
                     data: {newapplication: false}
                 })
+                .state('edit.uploads', {
+                    url: '/uploads',
+                    templateUrl: 'angular/uploads/uploads.html',
+                    controller: 'UploadsController',
+                    data: {newapplication: false}
+                })
                 .state('edit.yield', {
                     url: '/yield',
                     templateUrl: 'angular/yield/edityield.html',

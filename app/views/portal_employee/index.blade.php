@@ -164,6 +164,7 @@
 <script src="angular/terms/terms.ctrl.js"></script>
 <script src="angular/layout/topbars/progress-bar.ctrl.js"></script>
 <script src="angular/underwriting/underwriting.ctrl.js"></script>
+<script src="angular/uploads/uploads.ctrl.js"></script>
 <script src="angular/users/sessions.ctrl.js"></script>
 <script src="angular/users/settings.ctrl.js"></script>
 <script src="angular/users/users.factory.js"></script>
