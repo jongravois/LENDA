@@ -9,6 +9,8 @@
         /* @ngInject */
         function ProgressBarCtrl($scope, ModalService){
             /* jshint validthis: true */
+            $scope.percent = '';
+            $scope.files = [];
 
             $scope.showModal = function() {
                 var data = {

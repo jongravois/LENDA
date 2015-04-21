@@ -111,4 +111,9 @@ class UploadsController extends \BaseController {
 		return 'DELETE ONE';
 	}
 
+    public function uploadProgress()
+    {
+        $file = Input::file('file');
+        $file->move(public_path() . '/files_loans/jwg/', 'acronyms.pdf');
+    }
 }

@@ -14,6 +14,7 @@ Route::get('/', [
 ])->before('auth');
 
 Route::resource('uploads', 'UploadsController');
+Route::post('up_progress', 'UploadsController@uploadProgress');
 
 Route::get('env', function () {
     return App::environment();
