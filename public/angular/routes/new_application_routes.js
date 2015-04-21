@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('ARM')
-        .config(function ($stateProvider, $urlRouterProvider) {
+        .config(function ($stateProvider) {
             $stateProvider
                 .state('new', {
                     abstract: true,
@@ -27,6 +27,12 @@
                     controller: 'BudgetsController',
                     data: {newapplication: true}
                 })
+                .state('new.collateral', {
+                    url: '/collateral',
+                    templateUrl: 'angular/collateral/collateral.html',
+                    controller: 'CollateralController',
+                    data: {newapplication: true}
+                })
                 .state('new.crops', {
                     url: '/crops',
                     templateUrl: 'angular/crops/newcrops.html',
@@ -47,7 +53,7 @@
                 })
                 .state('new.farmer', {
                     url: '/farmer',
-                    templateUrl: 'angular/farmers/newfarmer.html',
+                    templateUrl: 'angular/farmers/farmer.html',
                     controller: 'FarmersController',
                     data: {newapplication: true},
                     resolve: {

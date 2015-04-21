@@ -4,10 +4,9 @@
         .module('ARM')
         .controller('FarmersController', FarmersController);
 
-    FarmersController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'FarmersFactory', 'ExceptionsFactory', 'LoansFactory'];
+    FarmersController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'FarmersFactory', 'ExceptionsFactory', 'LoansFactory', 'InitialData'];
 
-    function FarmersController($scope, $state, $stateParams, InitialData,
-                              AppFactory, FarmersFactory, ExceptionsFactory, LoansFactory) {
+    function FarmersController($scope, $state, $stateParams, AppFactory, FarmersFactory, ExceptionsFactory, LoansFactory, InitialData) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;

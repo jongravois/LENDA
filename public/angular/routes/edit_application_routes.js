@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('ARM')
-        .config(function ($stateProvider, $urlRouterProvider) {
+        .config(function ($stateProvider) {
             $stateProvider
                 .state('edit', {
                     abstract: true,
@@ -89,7 +89,7 @@
                 })
                 .state('edit.farmer', {
                     url: '/farmer',
-                    templateUrl: 'angular/farmers/editfarmer.html',
+                    templateUrl: 'angular/farmers/farmer.html',
                     controller: 'FarmersController',
                     data: {newapplication: false}
                 })
