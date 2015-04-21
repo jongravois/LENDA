@@ -42,7 +42,7 @@
       <th style="width:4%;" rowspan="2" data-ng-click="sortBy='location';reverse=!reverse">Loc</th>
       <th style="width:9%;" rowspan="2" data-ng-click="sortBy='loan_type';reverse=!reverse">Type</th>
       <th style="width:4%;" rowspan="2" data-ng-click="sortBy='loanStatus';reverse=!reverse">Status</th>
-      <th colspan="20" style="text-align: center">Progress</th>
+      <th colspan="21" style="text-align: center">Progress</th>
     </tr>
 
     <tr class="landing_header_row">
@@ -112,6 +112,13 @@
               tooltip-append-to-body="true"
               tooltip-placement="bottom"></span>
       </th>
+        <th style="width:2%;">
+            <span class="glyphicon glyphicon-gift"
+                  tooltip="Permission to Insure Received"
+                  tooltip-append-to-body="true"
+                  tooltip-placement="bottom"
+                  style="color:#333;"></span>
+        </th>
       <th style="width:2%;">
         <span class="glyphicon glyphicon-log-in"
               tooltip="ARM UCC Received"
@@ -357,6 +364,12 @@
                ng-src="images/dot_{{getColor(l.added_land_verified)}}.png"
                alt=""/>
       </td>
+
+        <td class="cents">
+            <img ng-click="clkPERINS(l)"
+                 ng-src="images/dot_{{getColor(l.permission_to_insure)}}.png"
+                 alt=""/>
+        </td>
 
       <td class="cents">
           <img ng-click="clkARMUCC(l)"

@@ -54,6 +54,7 @@ class CreateLoansTable extends Migration {
             $table->integer('loan_closed')->default(0);
             $table->date('loan_closed_date')->nullable();
             $table->integer('added_land_verified')->default(0);
+            $table->integer('permission_to_insure_verified')->default(0);
             $table->integer('arm_ucc_received')->default(0);
             $table->integer('dist_ucc_received')->default(0);
             $table->integer('aoi_received')->default(0);

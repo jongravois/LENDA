@@ -26,6 +26,7 @@
             $scope.clkCCC = AppFactory.clickCCC;
             $scope.clkREBA = AppFactory.clickREBA;
             $scope.clkCROPINS = AppFactory.clickCROPINS;
+            $scope.clkPERINS = AppFactory.clickPERINS;
 
         } // end function
 })();

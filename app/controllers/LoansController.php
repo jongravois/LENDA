@@ -204,6 +204,7 @@ class LoansController extends ApiController {
           'loan_closed_date' => $arr['loan_closed_date'],
           'arm_balance' => (integer) $arr['arm_balance'],
           'added_land_verified' => (integer) $arr['added_land_verified'],
+          'permission_to_insure_verified' => (integer) $arr['permission_to_insure_verified'],
           'arm_ucc_received' => (integer) $arr['arm_ucc_received'],
           'dist_ucc_received' => (integer) $arr['dist_ucc_received'],
           'aoi_received' => (integer) $arr['aoi_received'],

@@ -28,6 +28,7 @@
             clickITS: clickITS,
             clickLEASE: clickLEASE,
             clickLIEN: clickLIEN,
+            clickPERINS: clickPERINS,
             clickREBA: clickREBA,
             clickREC: clickREC,
             countiesInState: countiesInState,
@@ -246,6 +247,17 @@
                 if(obj.fsa_compliant !== 1) {
                     recordFSA(user, 3, obj);
                 }
+            } // end if
+
+            return obj;
+        }
+
+        function clickPERINS(obj, user) {
+            if(Number(obj.permission_to_insure_verified) == 1){
+                recordPERINS(user, 3, obj);
+            } else {
+                recordPERINS(user, 1, obj);
+                // TODO: Other Actions??
             } // end if
 
             return obj;
@@ -614,6 +626,22 @@
             } // end if
 
             patchIt('/loans/', obj.id, {prev_lien_verified: obj.prev_lien_verified});
+            return obj;
+        }
+
+        function recordPERINS(user, status, obj) {
+            if( Number(status) === 0) {
+                obj.permission_to_insure_verified = 0;
+                Logger.newSystemic(obj.id, user, 'Marked Permission to Insure Verification as not started.');
+            } else if( Number(status) === 1) {
+                obj.permission_to_insure_verified = 1;
+                Logger.newSystemic(obj.id, user, 'Marked Permission to Insure Verification as complete.');
+            } else {
+                obj.permission_to_insure_verified = 3;
+                Logger.newSystemic(obj.id, user, 'Marked Permission to Insure Verification as overdue.');
+            } // end if
+
+            patchIt('/loans/', obj.id, {permission_to_insure_verified: obj.permission_to_insure_verified});
             return obj;
         }
 

@@ -175,6 +175,13 @@
               ng-class="{'cGray': loan.added_land_verified == 0, 'cGreen': loan.added_land_verified == 1, 'cRed': loan.added_land_verified == 2}"></span>
         </td>
         <td>
+            <span class="progicon glyphicon glyphicon-gift"
+                  tooltip="Permission to Insure Verified" tooltip-append-to-body="true"
+                  tooltip-placement="bottom"
+                  ng-click="clkPERINS(loan, user.username)"
+                  ng-class="{'cGray': loan.permission_to_insure_verified == 0, 'cGreen': loan.permission_to_insure == 1, 'cRed': loan.permission_to_insure == 2}"></span>
+        </td>
+        <td>
         <span class="progicon glyphicon glyphicon-log-in"
               tooltip="ARM UCC Received"
               tooltip-append-to-body="true"
