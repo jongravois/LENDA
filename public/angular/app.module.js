@@ -13,7 +13,8 @@
         'ui.utils',
         'angular-loading-bar',
         'toastr',
-        'ngGrid'
+        'ngGrid',
+        'angularFileUpload'
     ])
         .run(function ($rootScope, $anchorScroll) {
             $rootScope.$on('$routeChangeSuccess', function () {

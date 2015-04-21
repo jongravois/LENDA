@@ -56,6 +56,8 @@
 {{ HTML::script('lib/angular-1.3.14/angular-resource.min.js'); }}
 {{ HTML::script('lib/angular-loading-bar/build/loading-bar.min.js'); }}
 {{ HTML::script('lib/ng-grid/build/ng-grid.debug.js'); }}
+{{ HTML::script('lib/ng-file-upload/angular-file-upload-shim.js'); }}
+{{ HTML::script('lib/ng-file-upload/angular-file-upload.js'); }}
 <!-- endbower -->
 
 <!-- inject.js -->
