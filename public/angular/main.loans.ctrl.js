@@ -7,26 +7,6 @@
         MainLoansController.$inject = ['$scope', 'toastr', 'AppFactory', 'LoansProcessor', 'Logger', 'UsersFactory'];
     
         function MainLoansController($scope, toastr, AppFactory, LoansProcessor, Logger, UsersFactory){
-            if(!$scope.user){
-                $scope.user_id = $('#user_id').data('id');
-                UsersFactory.getUser($scope.user_id)
-                    .then(function success(response) {
-                        $scope.user = response.data.data;
-                    });
-            }
-
-            if(!$scope.loans) {
-                LoansProcessor.getLoansWithExtraData()
-                    .then(function (allLoans) {
-                        $scope.loans = allLoans;
-                        $scope.loanList = _.filter(allLoans, function (i) {
-                            return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
-                        });
-                    });
-                toastr.success('Loaded all loans', 'Success!');
-            }
-
-            // Bind
 
             //SCOPE FUNCTIONS
             $scope.clkITS = AppFactory.clickITS;

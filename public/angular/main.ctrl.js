@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$state', '$q', 'toastr', 'FILE_URL', 'AppFactory', 'FarmersFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansFactory', 'UsersFactory'];
+    MainController.$inject = ['$scope', '$state', '$q', 'toastr', 'FILE_URL', 'AppFactory', 'FarmersFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'LoansFactory', 'UsersFactory'];
 
-    function MainController($scope, $state, $q, toastr, FILE_URL, AppFactory, FarmersFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansFactory, UsersFactory) {
+    function MainController($scope, $state, $q, toastr, FILE_URL, AppFactory, FarmersFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, LoansFactory, UsersFactory) {
         $scope.user_id = $('#user_id').data('id');
         $scope.landing_view = 'settings';
         $scope.file_url = FILE_URL;
@@ -39,6 +39,17 @@
 
             FeederFactory.init();
             $scope.feeder = FeederFactory.getObject();
+
+            if(!$scope.loans) {
+                LoansProcessor.getLoansWithExtraData()
+                    .then(function (allLoans) {
+                        $scope.loans = allLoans;
+                        $scope.loanList = _.filter(allLoans, function(i) {
+                            return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
+                        });
+                    });
+                toastr.success('Loaded all loans', 'Success!');
+            }
         }
 
         //SCOPE FUNCTIONS
@@ -117,12 +128,19 @@
                     break;
                 case 'settings':
                     $scope.loanList = _.filter($scope.loans, function (i) {
-                        return i.status_id === '1' && i.crop_year === $scope.globals.crop_year;
+                        return i.status_id === '1' && i.crop_year === $scope.globals.crop_year && i.season === 'F';
+                    });
+                    $scope.loanList = _.filter(_.filter($scope.loans,
+                        function (i) {
+                            return i.status_id === '1';
+                        }
+                    ), function (i) {
+                        return i.season === 'F' || i.season === 'S';
                     });
                     break;
                 case 'fall':
                     $scope.loanList = _.filter($scope.loans, function (i) {
-                        return i.status_id === '1' && i.crop_year === $scope.globals.crop_year;
+                        return i.status_id === '1' && i.crop_year === $scope.globals.crop_year && i.season === 'F';
                     });
                     $scope.loanList = _.filter(_.filter($scope.loans,
                         function (i) {
@@ -133,6 +151,9 @@
                     });
                     break;
                 case 'spring':
+                    $scope.loanList = _.filter($scope.loans, function (i) {
+                        return i.status_id === '1' && i.crop_year === $scope.globals.crop_year && i.season === 'F';
+                    });
                     $scope.loanList = _.filter(_.filter($scope.loans,
                         function (i) {
                             return i.status_id === '1';
@@ -173,7 +194,5 @@
 
             return retHTML;
         }
-
-
     } // end controller
 })();

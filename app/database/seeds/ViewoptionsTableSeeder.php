@@ -29,6 +29,18 @@ class ViewoptionsTableSeeder extends Seeder{
 
     Viewoptions::create([
       'user_id' => 6
-    ]);
+  ]);
+
+      Viewoptions::create([
+          'user_id' => 7
+      ]);
+
+      Viewoptions::create([
+          'user_id' => 8
+      ]);
+
+      Viewoptions::create([
+          'user_id' => 9
+      ]);
   }
 }
