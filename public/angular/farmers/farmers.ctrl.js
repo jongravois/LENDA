@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('FarmersController', FarmersController);
 
-    FarmersController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'FarmersFactory', 'ExceptionsFactory', 'LoansFactory', 'InitialData'];
+    FarmersController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'AppFactory', 'FarmersFactory', 'ExceptionsFactory', 'LoansFactory', 'InitialData'];
 
-    function FarmersController($scope, $state, $stateParams, AppFactory, FarmersFactory, ExceptionsFactory, LoansFactory, InitialData) {
+    function FarmersController($scope, $state, $stateParams, toastr, AppFactory, FarmersFactory, ExceptionsFactory, LoansFactory, InitialData) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;
@@ -51,6 +51,11 @@
                     });
             } // end if
         }; // end createFarmer function
+
+        $scope.updateFarmer = function(obj) {
+            AppFactory.putIt('/farmers/', obj.id, obj);
+            toastr.success('Modified farmer.', 'Success!');
+        }; // end updateFarmer function
 
         $scope.onFarmerSelect = function ($item, $model, $label) {
             if ($item) {

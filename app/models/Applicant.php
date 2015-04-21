@@ -1,8 +1,15 @@
 <?php
 
+use Carbon\Carbon;
+
 class Applicant extends \Eloquent {
   protected $dates = array('dob');
   protected $fillable = ['grade', 'loc_id', 'entity_id', 'farmer_id', 'applicant', 'ssn', 'email', 'dob', 'address', 'phone', 'city', 'state_id', 'zip', 'spouse', 'spouse_ssn'];
+
+    public function setDobAttribute($value)
+    {
+        $this->attributes['dob'] = Carbon::createFromFormat('d/m/Y', $value);
+    }
 
   /* RELATIONSHIPS */
   public function entitytype()
