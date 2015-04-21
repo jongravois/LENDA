@@ -13,20 +13,12 @@
         'ui.utils',
         'angular-loading-bar',
         'toastr',
-        'ngGrid',
-        'plupload.directive'
+        'ngGrid'
     ])
         .run(function ($rootScope, $anchorScroll) {
             $rootScope.$on('$routeChangeSuccess', function () {
                 $anchorScroll();
             });
-        })
-        .config(['plUploadServiceProvider', function(plUploadServiceProvider) {
-
-            plUploadServiceProvider.setConfig('flashPath', 'lib/plupload-angular-directive/plupload.flash.swf');
-            plUploadServiceProvider.setConfig('silverLightPath', 'lib/plupload-angular-directive/plupload.silverlight.xap');
-            plUploadServiceProvider.setConfig('uploadPath', 'upload.php');
-
-        }]);
+        });
 
 })();
