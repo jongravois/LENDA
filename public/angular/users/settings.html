@@ -10,7 +10,9 @@
         </div>
     </div>
     <!--PAGE TITLE-->
-    <!--<pre>{{user|json}}</pre>-->
+
+    <!--<pre>{{user.viewoptions|json}}</pre>-->
+
     <!--USER INFO-->
     <div class="row">
         <fieldset id="userInfo" class="col-md-12" style="margin-top:18px;">
@@ -53,6 +55,158 @@
         </fieldset>
     </div>
     <!--USER INFO-->
+
+    <!--OPTIONAL FIELDS-->
+    <div class="row">
+        <fieldset id="opt_fields" class="col-md-12" style="margin-top:18px;">
+            <legend>OPTIONAL DISPLAY FIELDS</legend>
+
+            <div class="alert alert-danger" role="alert">
+                <p>You may only choose up to four optional fields</p>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <td colspan="3">
+                        <label>Loan Indicators: </label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconAddendum" ng-model="user.viewoptions.view_icon_addendum"> <span class="glyphicon glyphicon-plus" tooltip="Addendums" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconCross" ng-model="user.viewoptions.view_icon_cross"> <span class="glyphicon glyphicon-retweet" tooltip="Cross Collateralized Loans" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconBankruptcy" ng-model="user.viewoptions.view_icon_bankruptcy"> <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy History" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconThirdPartyCredit" ng-model="user.viewoptions.view_icon_3pcredit"> <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconAddedLand" ng-model="user.viewoptions.view_icon_addedland"> <span class="glyphicon glyphicon-flag" tooltip="Added Land" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconDisbursements" ng-model="user.viewoptions.view_icon_disbursement"> <span class="glyphicon glyphicon-lock" tooltip="Controlled Disbursements" style="color: #333;"></span>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="iconAttachments" ng-model="user.viewoptions.view_icon_attachments"> <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" style="color: #333;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="view_region" ng-model="user.viewoptions.view_region"/>
+                        Region
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_commit_total" ng-model="user.viewoptions.view_commit_total"/>
+                        Commit-Total
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_acres_total" ng-model="user.viewoptions.view_acres_total"/>
+                        Acres -- Total
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="view_season" ng-model="user.viewoptions.view_season"/>
+                        Season
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_commit_arm" ng-model="user.viewoptions.view_commit_arm"/>
+                        Commit-ARM
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_acres_corn" ng-model="user.viewoptions.view_acres_corn"/>
+                        Acres -- Corn
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="view_distributor" ng-model="user.viewoptions.view_distributor"/>
+                        Distributor
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_commit_distributor" ng-model="user.viewoptions.view_commit_distributor"/>
+                        Commit-Distributor
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_acres_soybeans" ng-model="user.viewoptions.view_acres_soybeans"/>
+                        Acres -- Soybeans
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="view_agency" ng-model="user.viewoptions.view_agency"/>
+                        Agency
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_commit_other" ng-model="user.viewoptions.view_commit_other"/>
+                        Commit-Other
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_acres_sorghum" ng-model="user.viewoptions.view_acres_sorghum"/>
+                        Acres -- Sorghum
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input type="checkbox" name="view_fee_percentage" ng-model="user.viewoptions.view_fee_percentage"/>
+                        Fee Percentage
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_acres_wheat" ng-model="user.viewoptions.view_acres_wheat"/>
+                        Acres -- Wheat
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input type="checkbox" name="view_fee_total" ng-model="user.viewoptions.view_fee_total"/>
+                        Fee Total
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_acres_cotton" ng-model="user.viewoptions.view_acres_cotton"/>
+                        Acres -- Cotton
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input type="checkbox" name="view_rate_arm" ng-model="user.viewoptions.view_rate_arm"/>
+                        Rate - ARM
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_acres_rice" ng-model="user.viewoptions.view_acres_rice"/>
+                        Acres -- Rice
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input type="checkbox" name="view_rate_dist" ng-model="user.viewoptions.view_rate_dist"/>
+                        Rate - Distributor
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_acres_peanuts" ng-model="user.viewoptions.view_acres_peanuts"/>
+                        Acres -- Peanuts
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input type="checkbox" name="view_balance_due" ng-model="user.viewoptions.view_balance_due"/>
+                        Balance Due
+                    </td>
+                    <td>
+                        <input type="checkbox" name="view_acres_sugar_cane" ng-model="user.viewoptions.view_acres_sugar_cane"/>
+                        Acres -- Sugar Cane
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-right">
+                        <button class="btn btn-large btn-primary" ng-click="updateViewPrefs(user.viewoptions)">Update View Preferences</button>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <!--OPTIONAL FIELDS-->
 
     <!--FILTERS-->
     <div class="row">
@@ -645,158 +799,6 @@
         </fieldset>
     </div>
     <!--FILTERS-->
-
-    <!--OPTIONAL FIELDS-->
-    <div class="row">
-        <fieldset id="opt_fields" class="col-md-12" style="margin-top:18px;">
-            <legend>OPTIONAL DISPLAY FIELDS</legend>
-
-            <div class="alert alert-danger" role="alert">
-                <p>You may only choose up to four optional fields</p>
-            </div>
-            <table class="table table-striped">
-                <tr>
-                    <td colspan="3">
-                        <label>Loan Indicators: </label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconAddendum" ng-model="user.viewoptions.view_icon_addendum"> <span class="glyphicon glyphicon-plus" tooltip="Addendums" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconCross" ng-model="user.viewoptions.view_icon_cross"> <span class="glyphicon glyphicon-retweet" tooltip="Cross Collateralized Loans" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconBankruptcy" ng-model="user.viewoptions.view_icon_bankruptcy"> <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy History" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconThirdPartyCredit" ng-model="user.viewoptions.view_icon_3pcredit"> <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconAddedLand" ng-model="user.viewoptions.view_icon_addedland"> <span class="glyphicon glyphicon-flag" tooltip="Added Land" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconDisbursements" ng-model="user.viewoptions.view_icon_disbursement"> <span class="glyphicon glyphicon-lock" tooltip="Controlled Disbursements" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconAttachments" ng-model="user.viewoptions.view_icon_attachments"> <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" style="color: #333;"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="view_region" ng-model="user.viewoptions.view_region"/>
-                        Region
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_commit_total" ng-model="user.viewoptions.view_commit_total"/>
-                        Commit-Total
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_total" ng-model="user.viewoptions.view_acres_total"/>
-                        Acres -- Total
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="view_season" ng-model="user.viewoptions.view_season"/>
-                        Season
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_commit_arm" ng-model="user.viewoptions.view_commit_arm"/>
-                        Commit-ARM
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_corn" ng-model="user.viewoptions.view_acres_corn"/>
-                        Acres -- Corn
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="view_distributor" ng-model="user.viewoptions.view_distributor"/>
-                        Distributor
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_commit_distributor" ng-model="user.viewoptions.view_commit_distributor"/>
-                        Commit-Distributor
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_soybeans" ng-model="user.viewoptions.view_acres_soybeans"/>
-                        Acres -- Soybeans
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="view_agency" ng-model="user.viewoptions.view_agency"/>
-                        Agency
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_commit_other" ng-model="user.viewoptions.view_commit_other"/>
-                        Commit-Other
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_sorghum" ng-model="user.viewoptions.view_acres_sorghum"/>
-                        Acres -- Sorghum
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="checkbox" name="view_fee_percentage" ng-model="user.viewoptions.view_fee_percentage"/>
-                        Fee Percentage
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_wheat" ng-model="user.viewoptions.view_acres_wheat"/>
-                        Acres -- Wheat
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="checkbox" name="view_fee_total" ng-model="user.viewoptions.view_fee_total"/>
-                        Fee Total
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_cotton" ng-model="user.viewoptions.view_acres_cotton"/>
-                        Acres -- Cotton
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="checkbox" name="view_rate_arm" ng-model="user.viewoptions.view_rate_arm"/>
-                        Rate - ARM
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_rice" ng-model="user.viewoptions.view_acres_rice"/>
-                        Acres -- Rice
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="checkbox" name="view_rate_dist" ng-model="user.viewoptions.view_rate_dist"/>
-                        Rate - Distributor
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_peanuts" ng-model="user.viewoptions.view_acres_peanuts"/>
-                        Acres -- Peanuts
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="checkbox" name="view_balance_due" ng-model="user.viewoptions.view_balance_due"/>
-                        Balance Due
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_sugar_cane" ng-model="user.viewoptions.view_acres_sugar_cane"/>
-                        Acres -- Sugar Cane
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-right">
-                        <button class="btn btn-large btn-primary" ng-click="updateViewPrefs(user.viewoptions)">Update View Preferences</button>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-    </div>
-    <!--OPTIONAL FIELDS-->
 
     <!--<pre>{{user.viewoptions | json}}</pre>-->
     <br><br><br><br>

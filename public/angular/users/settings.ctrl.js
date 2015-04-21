@@ -18,13 +18,13 @@
                 AppFactory.putIt('/users/', $scope.user.id, oUpd);
                 toastr.success('Changes Saved', 'Success!');
             };
-            $scope.updateFilterPrefs = function () {
-                //TODO: create function
-                alert('Updating Filters');
-            };
             $scope.updateViewPrefs = function (o) {
                 AppFactory.putIt('/viewoptions/', $scope.user.id, o);
                 toastr.success('Changes Saved', 'Success!');
+            };
+            $scope.updateFilterPrefs = function () {
+                //TODO: create function
+                alert('Updating Filters');
             };
         } // end controller
 })();

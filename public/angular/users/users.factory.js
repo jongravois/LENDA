@@ -30,10 +30,6 @@
         }
 
         function getNotificationText(array) {
-            /*return '<p>' + array.map(function (arr) {
-                        return arr.task;
-                    })
-                    .join('</p><p>') + '</p>';*/
             return '<p>Pending Actions: (3)</p><p>Management Required: (2)</p><p>Review Reports: (3)</p>';
         }
 
