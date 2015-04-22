@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="favicon.ico">
 
-    <title>AR Management Application Intake</title>
+    <title>LENDA: AR Resource Management</title>
 
     <!-- Bootstrap core CSS -->
     {{ HTML::style('css/bootstrap.min.css'); }}

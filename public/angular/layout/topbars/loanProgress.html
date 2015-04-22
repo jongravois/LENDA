@@ -91,7 +91,7 @@
             tooltip="ITS List Verfified"
             tooltip-append-to-body="true"
             tooltip-placement="bottom"
-            ng-click="clkITS(loan, user.username)"
+            ng-click="AppFactory.clickITS(loan, user.username)"
             ng-class="{'cGray': loan.its_list == 0, 'cGreen': loan.its_list == 1, 'cRed': loan.its_list == 2}"></span>
         </td>
         <td>
@@ -99,7 +99,7 @@
               tooltip="FSA Eligibility"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkFSA(loan, user.username)"
+              ng-click="AppFactory.clickFSA(loan, user.username)"
               ng-class="{'cGray': loan.fsa_compliant == 0, 'cGreen': loan.fsa_compliant == 1, 'cRed': loan.fsa_compliant == 2}"></span>
         </td>
         <td>
@@ -107,7 +107,7 @@
               tooltip="Prior Lien Verfied"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkLIEN(loan, user.username)"
+              ng-click="AppFactory.clickLIEN(loan, user.username)"
               ng-class="{'cGray': loan.prev_lien_verified == 0, 'cGreen': loan.prev_lien_verified == 1, 'cRed': loan.prev_lien_verified == 2}"></span>
         </td>
         <td>
@@ -115,7 +115,7 @@
               tooltip="Leases Valid"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkLEASE(loan, user.username)"
+              ng-click="AppFactory.clickLEASE(loan, user.username)"
               ng-class="{'cGray': loan.leases_valid == 0, 'cGreen': loan.leases_valid == 1, 'cRed': loan.leases_valid == 2}"></span>
         </td>
         <td>
@@ -123,7 +123,7 @@
               tooltip="Bankruptcy Order Received"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkBORCVD(loan, user.username)"
+              ng-click="AppFactory.clickBORCVD(loan, user.username)"
               ng-class="{'cGray': loan.bankruptcy_order_received == 0, 'cGreen': loan.bankruptcy_order_received == 1, 'cRed': loan.bankruptcy_order_received == 2}"></span>
         </td>
         <td>
@@ -131,7 +131,7 @@
               tooltip="Third Party Credit Verified"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clk3PC(loan, user.username)"
+              ng-click="AppFactory.click3PC(loan, user.username)"
               ng-class="{'cGray': loan.received_3party == 0, 'cGreen': loan.received_3party == 1, 'cRed': loan.received_3party == 2}"></span>
         </td>
         <td>
@@ -139,7 +139,7 @@
               tooltip="Recommended"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkREC(loan, user.username)"
+              ng-click="AppFactory.clickREC(loan, user.username)"
               ng-class="{'cGray': loan.recommended == 0, 'cGreen': loan.recommended == 1, 'cRed': loan.recommended == 2}"></span>
         </td>
         <td>
@@ -147,7 +147,7 @@
               tooltip="ARM Approved"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkARMAPP(loan, user.username)"
+              ng-click="AppFactory.clickARMAPP(loan, user.username)"
               ng-class="{'cGray': loan.arm_approved == 0, 'cGreen': loan.arm_approved == 1, 'cRed': loan.arm_approved == 2}"></span>
         </td>
         <td>
@@ -155,7 +155,7 @@
               tooltip="Distributor Approved"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkDISTAPP(loan, user.username)"
+              ng-click="AppFactory.clickDISTAPP(loan, user.username)"
               ng-class="{'cGray': loan.dist_approved == 0, 'cGreen': loan.dist_approved == 1, 'cRed': loan.dist_approved == 2}"></span>
         </td>
         <td>
@@ -163,7 +163,7 @@
               tooltip="Loan Closed"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkCLOSE(loan, user.username)"
+              ng-click="AppFactory.clickCLOSE(loan, user.username)"
               ng-class="{'cGray': loan.loan_closed == 0, 'cGreen': loan.loan_closed == 1, 'cRed': loan.loan_closed == 2}"></span>
         </td>
         <td>
@@ -171,14 +171,14 @@
               tooltip="Added Land Verified"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkADDLAND(loan, user.username)"
+              ng-click="AppFactory.clickADDLAND(loan, user.username)"
               ng-class="{'cGray': loan.added_land_verified == 0, 'cGreen': loan.added_land_verified == 1, 'cRed': loan.added_land_verified == 2}"></span>
         </td>
         <td>
             <span class="progicon glyphicon glyphicon-gift"
                   tooltip="Permission to Insure Verified" tooltip-append-to-body="true"
                   tooltip-placement="bottom"
-                  ng-click="clkPERINS(loan, user.username)"
+                  ng-click="AppFactory.clickPERINS(loan, user.username)"
                   ng-class="{'cGray': loan.permission_to_insure_verified == 0, 'cGreen': loan.permission_to_insure == 1, 'cRed': loan.permission_to_insure == 2}"></span>
         </td>
         <td>
@@ -186,7 +186,7 @@
               tooltip="ARM UCC Received"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkARMUCC(loan, user.username)"
+              ng-click="AppFactory.clickARMUCC(loan, user.username)"
               ng-class="{'cGray': loan.arm_ucc_received == 0, 'cGreen': loan.arm_ucc_received == 1, 'cRed': loan.arm_ucc_received == 2}"></span>
         </td>
         <td>
@@ -194,7 +194,7 @@
               tooltip="Distributor UCC Received"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkDISTUCC(loan, user.username)"
+              ng-click="AppFactory.clickDISTUCC(loan, user.username)"
               ng-class="{'cGray': loan.dist_ucc_received == 0, 'cGreen': loan.dist_ucc_received == 1, 'cRed': loan.dist_ucc_received == 2}"></span>
         </td>
         <td>
@@ -210,7 +210,7 @@
               tooltip="CCC Received"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkCCC(loan, user.username)"
+              ng-click="AppFactory.clickCCC(loan, user.username)"
               ng-class="{'cGray': loan.ccc_received == 0, 'cGreen': loan.ccc_received == 1, 'cRed': loan.ccc_received == 2}"></span>
         </td>
         <td>
@@ -218,7 +218,7 @@
               tooltip="Rebate Assignment"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-click="clkREBA(loan, user.username)"
+              ng-click="AppFactory.clickREBA(loan, user.username)"
               ng-class="{'cGray': loan.rebate_assignment == 0, 'cGreen': loan.rebate_assignment == 1, 'cRed': loan.rebate_assignment == 2}"></span>
         </td>
         <td>
@@ -226,7 +226,7 @@
                   tooltip="Crop Inspection"
                   tooltip-append-to-body="true"
                   tooltip-placement="bottom"
-                  ng-click="clkCROPINS(loan, user.username)"
+                  ng-click="AppFactory.clickCROPINS(loan, user.username)"
                   ng-class="{'cGray': loan.crop_inspection == 0, 'cGreen': loan.crop_inspection == 1, 'cRed': loan.crop_inspection == 2}"></span>
         </td>
         <!--<td class="bleft">-->
@@ -244,7 +244,7 @@
             tooltip="RECONCILIATION"
             tooltip-append-to-body="true"
             tooltip-placement="bottom"
-            ng-click="clkREC(loan, user.username)"
+            ng-click="AppFactory.clickREC(loan, user.username)"
             ng-class="{'cGray': loan.crop_inspection == 0, 'cGreen': loan.reconciliation == 1, 'cRed': loan.reconciliation == 2}"></span>
         </td>
         <td>
