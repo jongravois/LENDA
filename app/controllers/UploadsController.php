@@ -34,7 +34,8 @@ class UploadsController extends \BaseController {
 	public function store()
 	{
         if (Auth::check()) {
-            $fnm = 'driversLicense.pdf';
+            $fnm = Input::get('filename');
+            $document = Input::get('document');
             $loanID = Input::get('loan_id');
             $loan = Loan::findOrFail($loanID);
             $file_path = $loan->crop_year . '_' . $loanID;
@@ -44,10 +45,10 @@ class UploadsController extends \BaseController {
             $upload->loan_id = (integer) $loanID;
             $upload->user_id = (integer) Auth::user()->getId();
 
-            if (Input::hasFile('thumbnail')) {
-                $file = Input::file('thumbnail');
+            if (Input::hasFile('file')) {
+                $file = Input::file('file');
 
-                $upload->document = Input::get('title');
+                $upload->document = $document;
                 $upload->filename = $fnm;
                 $upload->original_filename = $file->getClientOriginalName();
                 $upload->path =$file_path . '/' . $fnm;

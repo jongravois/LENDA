@@ -1,6 +1,7 @@
 <?php
 
 use Acme\Transformers\LoanquestionTransformer;
+use Illuminate\Support\Facades\Input;
 
 class LoanquestionsController extends ApiController {
 
@@ -29,6 +30,16 @@ class LoanquestionsController extends ApiController {
         'bankruptcy' => $q->bankruptcy,
         'judgements' => $q->judgements
       ]);
+
+      if(Input::get('insInPlace') === 0)
+      {
+          DB::table('loans')
+              ->where('id', $q->loan_id)
+              ->update([
+                  'its_list' => 1,
+                  'fsa_compliant' => 1
+              ]);
+      } // end if
 
     return $this->respondCreated('Loan Questions created');
   }

@@ -54,11 +54,18 @@ class LoanquestionsTableSeeder extends Seeder {
 		]);
 
 		Loanquestions::create([
-			'loan_id' 	=> 	6
+			'loan_id' 	=> 	6,
+            'amount_requested' => 35000,
+            'insInPlace' => 1,
+            'bankruptcy' => 1,
+            'bankruptcy_details' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum maximus dolor.',
+            'bankruptcy_order' => 1,
+            'credit_3p_available' => 1
 		]);
 
 		Loanquestions::create([
-			'loan_id' 	=> 	7
+			'loan_id' => 7,
+            'insInPlace' => 0
 		]);
 
 		Loanquestions::create([

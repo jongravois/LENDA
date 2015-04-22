@@ -67,10 +67,26 @@
         }
 
         function click3PC(obj, user) {
+            console.log('obj:', obj);
             if(Number(obj.received_3party) == 1){
                 record3PC(user, 3, obj);
             } else {
                 record3PC(user, 1, obj);
+                if(obj.its_list !== 1) {
+                    recordITS(user, 3, obj);
+                }
+                if(obj.fsa_compliant !== 1) {
+                    recordFSA(user, 3, obj);
+                }
+                if(obj.prev_lien_verified !== 1) {
+                    recordLIEN(user, 3, obj);
+                }
+                if(obj.leases_valid !== 1) {
+                    recordLEASE(user, 3, obj);
+                }
+                if(obj.bankrptcy_order_received !== 1) {
+                    recordBORCVD(user, 3, obj);
+                }
             } // end if
 
             return obj;
@@ -127,14 +143,39 @@
         }
 
         function clickBORCVD(obj, user) {
-            if(Number(obj.bankruptcy_order_received) == 1){
+            //TODO: REQUIRED MODAL FOR UPLOAD
+            var data = {
+                loanID: obj.id,
+                document: 'Order to Incur Debt',
+                filename: 'orderToIncur.pdf',
+                title: 'Bankruptcy Order Received',
+                buttons: ['ok', 'cancel']
+            };
+            ModalService.requiredUpload(data)
+                .then(function() {
+                    alert('OK, then!');
+                }, function() {
+                    toastr.warning('No data saved.', 'User Cancelled Action');
+                });
+            /*if(Number(obj.bankruptcy_order_received) == 1){
                 recordBORCVD(user, 3, obj);
             } else {
                 recordBORCVD(user, 1, obj);
                 if(!obj.quests.credit_3p_available) {
                     record3PC(user, 1, obj);
                 }
-            } // end if
+             if(obj.its_list !== 1) {
+             recordITS(user, 3, obj);
+             }
+             if(obj.fsa_compliant !== 1) {
+             recordFSA(user, 3, obj);
+             }
+             if(obj.prev_lien_verified !== 1) {
+                recordLIEN(user, 3, obj);
+             }
+             if(obj.leases_valid !== 1) {
+             recordLEASE(user, 3, obj);
+             }*/
 
             return obj;
         }
@@ -224,20 +265,21 @@
         }
 
         function clickLEASE(obj, user) {
-            //TODO: MODAL
+            //TODO: OPTIONAL MODAL FOR UPLOAD
             var data = {
                 loanID: obj.id,
+                document: 'Leases Verified',
+                filename: 'leasesVerified.pdf',
                 title: 'Leases Verified',
-                message: 'This is a test of the LENDA Modal Service. In the event of a real modal, instuctions will be provided.',
                 buttons: ['ok', 'cancel']
             };
             ModalService.optionalUpload(data)
                 .then(function() {
-                    alert('OK, then!');
+                    toastr.success('File uploaded.', 'Success');
                 }, function() {
-                    toastr.warning('No data saved.', 'User Cancelled Action');
+                    toastr.info('Optional file upload declined.', 'No File Uploaded');
                 });
-/*
+
             if(Number(obj.leases_valid) == 1){
                 recordLEASE(user, 3, obj);
             } else {
@@ -245,8 +287,17 @@
                 if(!obj.quests.bankruptcy_order) {
                     recordBORCVD(user, 1, obj);
                 }
+                if(obj.its_list !== 1) {
+                    recordITS(user, 3, obj);
+                }
+                if(obj.fsa_compliant !== 1) {
+                    recordFSA(user, 3, obj);
+                }
+                if(obj.prev_lien_verified !== 1) {
+                    recordLIEN(user, 3, obj);
+                }
             } // end if
-*/
+
             return obj;
         }
 

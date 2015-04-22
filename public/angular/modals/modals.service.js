@@ -76,13 +76,14 @@
                     data: function(){
                         return {
                             loanID: data.loanID,
+                            document: data.document,
+                            filename: data.filename,
                             title: data.title,
-                            message: data.message,
                             buttons: data.buttons
                         };
                     }
                 },
-                size: 'lg'
+                size: 'sm'
             });
 
             return modalInstance.result;
@@ -90,13 +91,15 @@
 
         function requiredUpload(data) {
             var modalInstance = $modal.open({
-                templateUrl: 'angular/modals/confirm-modal.html',
+                templateUrl: 'angular/modals/upload.required.modal.html',
                 controller: 'ConfirmModalController',
                 resolve: {
                     data: function(){
                         return {
+                            loanID: data.loanID,
+                            document: data.document,
+                            filename: data.filename,
                             title: data.title,
-                            message: data.message,
                             buttons: data.buttons
                         };
                     }
