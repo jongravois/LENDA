@@ -235,7 +235,7 @@
                 .then(function() {
                     alert('OK, then!');
                 }, function() {
-                    console.log(data);
+                    toastr.warning('No data saved.', 'User Cancelled Action');
                 });
 /*
             if(Number(obj.leases_valid) == 1){

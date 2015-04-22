@@ -16,6 +16,12 @@
         'ngGrid',
         'angularFileUpload'
     ])
+        .config(function(toastrConfig) {
+            angular.extend(toastrConfig, {
+                closeButton: true,
+                timeOut: 3000
+            });
+        })
         .run(function ($rootScope, $anchorScroll) {
             $rootScope.$on('$routeChangeSuccess', function () {
                 $anchorScroll();
