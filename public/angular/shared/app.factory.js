@@ -67,7 +67,6 @@
         }
 
         function click3PC(obj, user) {
-            console.log('obj:', obj);
             if(Number(obj.received_3party) == 1){
                 record3PC(user, 3, obj);
             } else {
@@ -109,6 +108,9 @@
                 recordAOI(user, 1, obj);
                 if(obj.loan_type_id == 5 || obj.loan_type_id == 6) {
                     recordCCC(user, 1, obj);
+                    if(!obj.has_rebates) {
+                        recordREBA(user, 1, obj);
+                    }
                 }
             } // end if
 
@@ -181,10 +183,17 @@
         }
 
         function clickCCC(obj, user) {
-            if(obj.loan_type_id != 5 || obj.loan_type_id != 6) { return; }
-            if(Number(obj.ccc_received) == 1){
+            if(Number(obj.loan_type_id) !== 5 && Number(obj.loan_type_id) !== 6) {
+                obj.ccc_received == 1;
+                return;
+            }
+
+            if(Number(obj.ccc_received) === 1) {
                 recordCCC(user, 3, obj);
             } else {
+                if(!obj.has_rebates) {
+                    recordREBA(user, 1, obj);
+                }
                 recordCCC(user, 1, obj);
             } // end if
 

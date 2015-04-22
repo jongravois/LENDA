@@ -182,6 +182,7 @@ class LoansController extends ApiController {
           'disbursement_issue' => (boolean) $arr['disbursement_issue'],
           'analyst_can_approve' => (boolean) $arr['analyst_can_approve'],
           'has_attachments' => (boolean) $arr['has_attachments'],
+          'has_rebates' => (boolean) $arr['has_rebates'],
           'has_distributor' => (boolean) $arr['has_distributor'],
           'distributor_id' => $arr['distributor_id'],
           'distributor' => $arr['distributor']['distributor'],
