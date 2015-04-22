@@ -1,6 +1,7 @@
 <?php
 
 use Acme\Transformers\CropTransformer;
+use Illuminate\Support\Facades\Input;
 
 class CropController extends ApiController {
 
@@ -27,7 +28,7 @@ class CropController extends ApiController {
 
 		Crop::create(Input::all());
 
-		return $this->respondCreated('Crop created');
+        return $this->respondCreated('Crop created');
 	}
 
 	public function show($id)

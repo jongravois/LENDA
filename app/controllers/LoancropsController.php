@@ -1,6 +1,7 @@
 <?php
 
 use Acme\Transformers\LoancropTransformer;
+use Illuminate\Support\Facades\Input;
 
 class LoancropsController extends ApiController {
 	/*
@@ -24,13 +25,17 @@ class LoancropsController extends ApiController {
 
 	public function store()
 	{
-		//TODO: Add Validation
-		/*if( ! Input::get('loancrop')){
+        $loanID = Input::get('loan_id');
+		if( !$loanID ){
 			return $this->respondCreationDenied('Failed Validation');
 		} // end if
-		*/
 
 		Loancrop::create(Input::all());
+
+        if(Input::get('rebates') > 0)
+        {
+            Loan::where('id', $loanID)->update(['has_rebates' => 1]);
+        }
 
 		return $this->respondCreated('Loancrop created');
 	}
