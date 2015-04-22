@@ -71,7 +71,7 @@
 <script src="angular/routes/new_application_routes.js"></script>
 <script src="angular/routes/library_routes.js"></script>
 <script src="angular/routes/reports_routes.js"></script>
-<script src="angular/filters/filters.js"></script>
+<script src="angular/_filters/filters.js"></script>
 <script src="angular/models/base.js"></script>
 <script src="angular/_directives/directives.js"></script>
 <script src="angular/_directives/inPlaceDirectives.js"></script>

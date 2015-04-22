@@ -12,7 +12,7 @@
     <th style="width:12%;">Total</th>
   </tr>
   <tr ng-repeat="c in loanCrops" ng-if="c.is_active">
-    <td>{{c.name | capitalize}}</td>
+    <td>{{c.name | capitalizeFirst}}</td>
     <td class="text-right" ng-class=gtZero(c.acres)>
       {{c.acres | number:1}}
     </td>

@@ -3,6 +3,7 @@
         .filter('asDate', asDateFilter)
         .filter('dateFmt', dateFmtFilter)
         .filter('capitalize', capitalizeFilter)
+        .filter('capitalizeFirst', capitalizeFirstFilter)
         .filter('displayname', displaynameFilter)
         .filter('displaynull', displaynullFilter)
         .filter('displaynullcurrency', displaynullcurrencyFilter)
@@ -38,6 +39,14 @@
         return function (input) {
             return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            }) : '';
+        };
+    }
+
+    function capitalizeFirstFilter() {
+        return function (input) {
+            return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function (txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1);
             }) : '';
         };
     }
