@@ -66,31 +66,50 @@
             return (obj.guaranty - obj.premium) * obj.share / 100 * obj.acres;
         }
 
+        //TODO: REQUIRED UPLOAD
         function click3PC(obj, user) {
-            if(Number(obj.received_3party) == 1){
-                record3PC(user, 3, obj);
+            var data = {
+                loanID: obj.id,
+                document: 'Third Party Credit Verification',
+                filename: 'verify3partycredit.pdf',
+                title: 'Third Party Credit Verification Received',
+                buttons: ['ok', 'cancel']
+            };
+
+            if(Number(obj.received_3party) !== 1) {
+                ModalService.requiredUpload(data)
+                    .then(function(){
+                        if(Number(obj.received_3party) == 1){
+                            record3PC(user, 3, obj);
+                        } else {
+                            record3PC(user, 1, obj);
+                            if(obj.its_list !== 1) {
+                                recordITS(user, 3, obj);
+                            }
+                            if(obj.fsa_compliant !== 1) {
+                                recordFSA(user, 3, obj);
+                            }
+                            if(obj.prev_lien_verified !== 1) {
+                                recordLIEN(user, 3, obj);
+                            }
+                            if(obj.leases_valid !== 1) {
+                                recordLEASE(user, 3, obj);
+                            }
+                            if(obj.bankrptcy_order_received !== 1) {
+                                recordBORCVD(user, 3, obj);
+                            }
+                        } // end if
+                    }, function(){
+                        toastr.warning('No data saved.', 'User Cancelled Action');
+                    });
             } else {
-                record3PC(user, 1, obj);
-                if(obj.its_list !== 1) {
-                    recordITS(user, 3, obj);
-                }
-                if(obj.fsa_compliant !== 1) {
-                    recordFSA(user, 3, obj);
-                }
-                if(obj.prev_lien_verified !== 1) {
-                    recordLIEN(user, 3, obj);
-                }
-                if(obj.leases_valid !== 1) {
-                    recordLEASE(user, 3, obj);
-                }
-                if(obj.bankrptcy_order_received !== 1) {
-                    recordBORCVD(user, 3, obj);
-                }
+                // Update Existing Document
             } // end if
 
             return obj;
         }
 
+        // ADDLAND COMPLETE
         function clickADDLAND(obj, user) {
             if(Number(obj.added_land_verified) == 1){
                 recordADDLAND(user, 3, obj);
@@ -101,22 +120,41 @@
             return obj;
         }
 
+        //TODO: REQUIRED UPLOAD (Need Name)
         function clickAOI(obj, user) {
-            if(Number(obj.aoi_received) == 1){
-                recordAOI(user, 3, obj);
+            var data = {
+                loanID: obj.id,
+                document: 'AOI',
+                filename: 'aoi.pdf',
+                title: 'AOI',
+                buttons: ['ok', 'cancel']
+            };
+
+            if(Number(obj.aoi_received) !== 1) {
+                ModalService.requiredUpload(data)
+                    .then(function() {
+                        if(Number(obj.aoi_received) == 1){
+                            recordAOI(user, 3, obj);
+                        } else {
+                            recordAOI(user, 1, obj);
+                            if(obj.loan_type_id == 5 || obj.loan_type_id == 6) {
+                                recordCCC(user, 1, obj);
+                                if(!obj.has_rebates) {
+                                    recordREBA(user, 1, obj);
+                                }
+                            }
+                        } // end if
+                    }, function() {
+                        toastr.warning('No data saved.', 'User Cancelled Action');
+                    });
             } else {
-                recordAOI(user, 1, obj);
-                if(obj.loan_type_id == 5 || obj.loan_type_id == 6) {
-                    recordCCC(user, 1, obj);
-                    if(!obj.has_rebates) {
-                        recordREBA(user, 1, obj);
-                    }
-                }
+                // Update Existing Document
             } // end if
 
             return obj;
         }
 
+        // TODO: ARMAPP - DIFFERENT FUNCTIONALITY
         function clickARMAPP(obj, user) {
             if (!obj.analyst_can_approve) { return; }
             if(Number(obj.arm_approved) == 1){
@@ -128,24 +166,42 @@
             return obj;
         }
 
+        //TODO: REQUIRED UPLOAD (Need Name)
         function clickARMUCC(obj, user) {
-            if(Number(obj.arm_ucc_received) == 1){
-                recordARMUCC(user, 3, obj);
+            var data = {
+                loanID: obj.id,
+                document: 'ARMUCC',
+                filename: 'armucc.pdf',
+                title: 'ARMUCC',
+                buttons: ['ok', 'cancel']
+            };
+
+            if(Number(obj.arm_ucc_received) !== 1) {
+                ModalService.requiredUpload(data)
+                    .then(function() {
+                        if(Number(obj.arm_ucc_received) == 1){
+                            recordARMUCC(user, 3, obj);
+                        } else {
+                            recordARMUCC(user, 1, obj);
+                            if(!obj.has_distributor) {
+                                recordDISTUCC(user, 1, obj);
+                            }
+                            if(!obj.quests.insInPlace) {
+                                recordAOI(user, 1, obj);
+                            }
+                        } // end if
+                    }, function() {
+                        toastr.warning('No data saved.', 'User Cancelled Action');
+                    });
             } else {
-                recordARMUCC(user, 1, obj);
-                if(!obj.has_distributor) {
-                    recordDISTUCC(user, 1, obj);
-                }
-                if(!obj.quests.insInPlace) {
-                    recordAOI(user, 1, obj);
-                }
+                // Update Existing Document
             } // end if
 
             return obj;
         }
 
+        //TODO: REQUIRED UPLOAD
         function clickBORCVD(obj, user) {
-            //TODO: REQUIRED MODAL FOR UPLOAD
             var data = {
                 loanID: obj.id,
                 document: 'Order to Incur Debt',
@@ -157,54 +213,73 @@
             if( Number(obj.bankruptcy_order_received) !== 1) {
                 ModalService.requiredUpload(data)
                     .then(function () {
-                        alert('OK, then!');
+                        if(Number(obj.bankruptcy_order_received) == 1){
+                            recordBORCVD(user, 3, obj);
+                        } else {
+                            recordBORCVD(user, 1, obj);
+                            if (!obj.quests.credit_3p_available) {
+                                record3PC(user, 1, obj);
+                            }
+                            if (obj.its_list !== 1) {
+                                recordITS(user, 3, obj);
+                            }
+                            if (obj.fsa_compliant !== 1) {
+                                recordFSA(user, 3, obj);
+                            }
+                            if (obj.prev_lien_verified !== 1) {
+                                recordLIEN(user, 3, obj);
+                            }
+                            if (obj.leases_valid !== 1) {
+                                recordLEASE(user, 3, obj);
+                            }
+                        } // end if
                     }, function () {
                         toastr.warning('No data saved.', 'User Cancelled Action');
                     });
-            } // end if
-
-            if(Number(obj.bankruptcy_order_received) == 1){
-                recordBORCVD(user, 3, obj);
             } else {
-                recordBORCVD(user, 1, obj);
-                if (!obj.quests.credit_3p_available) {
-                    record3PC(user, 1, obj);
-                }
-                if (obj.its_list !== 1) {
-                    recordITS(user, 3, obj);
-                }
-                if (obj.fsa_compliant !== 1) {
-                    recordFSA(user, 3, obj);
-                }
-                if (obj.prev_lien_verified !== 1) {
-                    recordLIEN(user, 3, obj);
-                }
-                if (obj.leases_valid !== 1) {
-                    recordLEASE(user, 3, obj);
-                }
+                // Update Existing Document
             } // end if
 
             return obj;
         }
 
+        //TODO: REQUIRED UPLOAD (Need Name)
         function clickCCC(obj, user) {
-            if(Number(obj.loan_type_id) !== 5 && Number(obj.loan_type_id) !== 6) {
-                obj.ccc_received == 1;
-                return;
-            }
+            var data = {
+                loanID: obj.id,
+                document: 'CCC',
+                filename: 'ccc.pdf',
+                title: 'CCC',
+                buttons: ['ok', 'cancel']
+            };
 
-            if(Number(obj.ccc_received) === 1) {
-                recordCCC(user, 3, obj);
+            if(Number(obj.ccc_received) !== 1) {
+                ModalService.requiredUpload(data)
+                    .then(function() {
+                        if(Number(obj.loan_type_id) !== 5 && Number(obj.loan_type_id) !== 6) {
+                            obj.ccc_received = 1;
+                            return;
+                        }
+
+                        if(Number(obj.ccc_received) === 1) {
+                            recordCCC(user, 3, obj);
+                        } else {
+                            if(!obj.has_rebates) {
+                                recordREBA(user, 1, obj);
+                            }
+                            recordCCC(user, 1, obj);
+                        } // end if
+                    }, function() {
+                        toastr.warning('No data saved.', 'User Cancelled Action');
+                    });
             } else {
-                if(!obj.has_rebates) {
-                    recordREBA(user, 1, obj);
-                }
-                recordCCC(user, 1, obj);
+                // Update Existing Document
             } // end if
 
             return obj;
         }
 
+        // TODO: CLOSE - DIFFERENT FUNCTIONALITY
         function clickCLOSE(obj, user) {
             if(Number(obj.loan_closed) == 1){
                 recordCLOSE(user, 3, obj);
@@ -215,6 +290,7 @@
             return obj;
         }
 
+        //TODO: MODAL FOR UPLOAD OR INSPECTION FORM
         function clickCROPINS(obj, user) {
             if(obj.loan_type_id != 5 || obj.loan_type_id != 6) { return; }
             if(Number(obj.crop_inspection) == 1){
@@ -226,29 +302,66 @@
             return obj;
         }
 
+        //TODO: REQUIRED UPLOAD
         function clickDISTAPP(obj, user) {
-            if(Number(obj.dist_approved) == 1){
-                recordDISTAPP(user, 3, obj);
+            var data = {
+                loanID: obj.id,
+                document: 'Distributor Approval',
+                filename: 'distributorApproval.pdf',
+                title: 'Distributor Approval',
+                buttons: ['ok', 'cancel']
+            };
+
+            if(Number(obj.dist_approved) !== 1) {
+                ModalService.requiredUpload(data)
+                    .then(function() {
+                        if(Number(obj.dist_approved) == 1){
+                            recordDISTAPP(user, 3, obj);
+                        } else {
+                            recordDISTAPP(user, 1, obj);
+                        } // end if
+                    }, function() {
+                        toastr.warning('No data saved.', 'User Cancelled Action');
+                    });
             } else {
-                recordDISTAPP(user, 1, obj);
+                // Update Existing Document
             } // end if
 
             return obj;
         }
 
+        //TODO: REQUIRED UPLOAD (Need Name)
         function clickDISTUCC(obj, user) {
-            if(Number(obj.dist_ucc_received) == 1){
-                recordDISTUCC(user, 3, obj);
+            var data = {
+                loanID: obj.id,
+                document: 'DISTUCC',
+                filename: 'distucc.pdf',
+                title: 'DISTUCC',
+                buttons: ['ok', 'cancel']
+            };
+
+            if(Number(obj.dist_ucc_received) !== 1) {
+                ModalService.requiredUpload(data)
+                    .then(function() {
+                        if(Number(obj.dist_ucc_received) == 1){
+                            recordDISTUCC(user, 3, obj);
+                        } else {
+                            recordDISTUCC(user, 1, obj);
+                            if(!obj.quests.insInPlace) {
+                                recordAOI(user, 1, obj);
+                            }
+                        } // end if
+                    }, function() {
+                        toastr.warning('No data saved.', 'User Cancelled Action');
+                    });
             } else {
-                recordDISTUCC(user, 1, obj);
-                if(!obj.quests.insInPlace) {
-                    recordAOI(user, 1, obj);
-                }
+                // Update Existing Document
             } // end if
 
             return obj;
         }
 
+        // FSA COMPLETE
         function clickFSA(obj, user) {
             if(Number(obj.fsa_compliant) == 1){
                 recordFSA(user, 3, obj);
@@ -265,6 +378,7 @@
             return obj;
         }
 
+        // ITS COMPLETE
         function clickITS(obj, user) {
             if(Number(obj.its_list) == 1){
                 recordITS(user, 3, obj);
@@ -278,8 +392,8 @@
             return obj;
         }
 
+        //TODO: OPTIONAL UPLOAD
         function clickLEASE(obj, user) {
-            //TODO: OPTIONAL MODAL FOR UPLOAD
             var data = {
                 loanID: obj.id,
                 document: 'Leases Verified',
@@ -314,6 +428,7 @@
             return obj;
         }
 
+        // LIEN COMPLETE
         function clickLIEN(obj, user) {
             if(Number(obj.prev_lien_verified) == 1){
                 recordLIEN(user, 3, obj);
@@ -330,6 +445,7 @@
             return obj;
         }
 
+        // PERINS COMPLETE
         function clickPERINS(obj, user) {
             if(Number(obj.permission_to_insure_verified) == 1){
                 recordPERINS(user, 3, obj);
@@ -341,21 +457,39 @@
             return obj;
         }
 
+        //TODO: REQUIRED UPLOAD
         function clickREBA(obj, user) {
-            if(Number(obj.rebate_assignment) == 1){
-                recordREBA(user, 3, obj);
+            var data = {
+                loanID: obj.id,
+                document: 'Rebate Assignment',
+                filename: 'rebateAssignment.pdf',
+                title: 'Rebate Assignment',
+                buttons: ['ok', 'cancel']
+            };
+
+            if(Number(obj.rebate_assignment) !== 1) {
+                ModalService.requiredUpload(data)
+                    .then(function() {
+                        if(Number(obj.rebate_assignment) == 1){
+                            recordREBA(user, 3, obj);
+                        } else {
+                            recordREBA(user, 1, obj);
+                            if(obj.loan_type_id == 5 || obj.loan_type_id == 6) {
+                                recordCROPINS(user, 1, obj);
+                            }
+                        } // end if
+                    }, function() {
+                        toastr.warning('No data saved.', 'User Cancelled Action');
+                    });
             } else {
-                recordREBA(user, 1, obj);
-                if(obj.loan_type_id == 5 || obj.loan_type_id == 6) {
-                    recordCROPINS(user, 1, obj);
-                }
+                // Update Existing Document
             } // end if
 
             return obj;
         }
 
+        //TODO: LoanToClose Actions needed
         function clickREC(obj, user) {
-            //TODO: LoanToClose Actions needed
             if(Number(obj.recommended) == 1){
                 recordREC(user, 3, obj);
             } else {
