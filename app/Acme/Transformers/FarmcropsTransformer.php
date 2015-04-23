@@ -4,6 +4,13 @@ class FarmcropsTransformer extends Transformer{
 
 	public function transform($arr)
 	{
+        $acres = ((double) $arr['farm']['irr'] + (double) $arr['farm']['ni']);
+        if($acres == 0){
+            $total_acres = 1;
+        } else {
+            $total_acres = $acres;
+        } // end if
+
 		//return $arr;
 		return array(
 			'id' =>	(integer) $arr['id'],
@@ -41,7 +48,7 @@ class FarmcropsTransformer extends Transformer{
 			'disc_adj_prod'	=>	calcDiscAdjProd($arr),
 			'ins_disc_prod'	=>	calcInsDiscProd($arr),
 			'disc_ins'	=>	calcDiscIns($arr),
-            'percent_irrigated'	=> (double) $arr['farm']['irr']/((double) $arr['farm']['irr'] + (double) $arr['farm']['ni'])
+            'percent_irrigated'	=> (double) $arr['farm']['irr']/$total_acres
 		);
 	}
 }
