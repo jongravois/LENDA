@@ -18,15 +18,6 @@
             return $http.get(API_URL + '/loans').then(updateLoansData);
         }
 
-        function getCrops(loan) {
-            return $http.get(API_URL + '/loans/' + loan.id + '/farmcrops')
-                .then(function(rsp){
-                    var cropList = rsp.data.data;
-                    var crops = {};
-                });
-
-            //return $http.get(API_URL + '/loans/' + loan.id + '/budgets');
-        }
 
         function getInsurance(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/insurance')
@@ -174,7 +165,6 @@
                 has_comment: getPendingComments(loan),
                 total_ins_value: getTotalInsValue(loan),
                 quests: getLoanQuestions(loan),
-                crops: getCrops(loan),
                 insurance: getInsurance(loan)
             })
                 .then(function (updatedData) {
