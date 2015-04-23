@@ -23,24 +23,26 @@
             .then(function success(rsp) {
                 var arr = rsp.data;
                 var flattened = _.flatten(arr);
+                //console.log('flattened', flattened);
 
                 var grped = _.groupBy(flattened, function (item) {
                     return item.crop;
                 });
                 $scope.uses = grped;
+                //console.log('grped', grped);
 
                 $scope.budget_subtotals = _.map(grped, function (item, key) {
                     return item.reduce(function (previous, current) {
-                            previous.acres = current.acres;
-                            previous.arm += current.arm;
-                            previous.dist += current.dist;
-                            previous.other += current.other;
-                            previous.peracre += current.peracre;
-                            previous.calc_arm += current.arm * current.acres;
-                            previous.calc_dist += current.dist * current.acres;
-                            previous.calc_other += current.other * current.acres;
-                            previous.calc_total += current.peracre * current.acres;
-                            return previous;
+                        previous.acres = current.acres;
+                        previous.arm += current.arm;
+                        previous.dist += current.dist;
+                        previous.other += current.other;
+                        previous.peracre += current.peracre;
+                        previous.calc_arm += current.arm * current.acres;
+                        previous.calc_dist += current.dist * current.acres;
+                        previous.calc_other += current.other * current.acres;
+                        previous.calc_total += current.peracre * current.acres;
+                        return previous;
                         },
                         {
                             crop: key,
@@ -55,18 +57,19 @@
                             calc_total: 0
                         });
                 });
+                //console.log('subtotals', $scope.budget_subtotals);
 
                 $scope.budget_totals = $scope.budget_subtotals.reduce(function (previous, current) {
-                        previous.acres += current.acres;
-                        previous.arm += current.arm;
-                        previous.dist += current.dist;
-                        previous.other += current.other;
-                        previous.peracre += current.peracre;
-                        previous.calc_arm += current.arm * current.acres;
-                        previous.calc_dist += current.dist * current.acres;
-                        previous.calc_other += current.other * current.acres;
-                        previous.calc_total += current.peracre * current.acres;
-                        return previous;
+                    previous.acres += current.acres;
+                    previous.arm += current.arm;
+                    previous.dist += current.dist;
+                    previous.other += current.other;
+                    previous.peracre += current.peracre;
+                    previous.calc_arm += current.arm * current.acres;
+                    previous.calc_dist += current.dist * current.acres;
+                    previous.calc_other += current.other * current.acres;
+                    previous.calc_total += current.peracre * current.acres;
+                    return previous;
                     },
                     {
                         acres: 0,

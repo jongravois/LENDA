@@ -21,7 +21,6 @@ class CreateFarmsTable extends Migration
             $table->double('fsa_paid')->default(0);
             $table->double('irr')->default(0);
             $table->double('ni')->default(0);
-            $table->double('acres')->default(0);
             $table->double('percent_irrigated')->default(0);
             $table->timestamps();
         });

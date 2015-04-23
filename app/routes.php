@@ -21,10 +21,7 @@ Route::get('env', function () {
 });
 
 Route::get('test', function () {
-    $retHTML = "<p>Corn: " . getLoanCropAcres('1', '1') . "</p>";
-    $retHTML .= "<p>Soybeans: " . getLoanCropAcres('1', '2') . "</p>";
-    $retHTML .= "<p>FAC Beans: " . getLoanCropAcres('1', '3') . "</p>";
-    $retHTML .= "<p>TOTAL: " . getLoanTotalAcres('1') . "</p>";
+    $retHTML = Loancrop::where('loan_id', '1')->get();
 
     return $retHTML;
     //return View::make('hello');
@@ -138,6 +135,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], 
     Route::get('loans/{id}/distributor', 'LoandistributorController@byLoan');
     Route::get('loans/{id}/exceptions', 'LoanexceptionsController@byLoan');
     Route::get('loans/{id}/expenses/{crop}', 'CropexpensesController@byLoanByCrop');
+    Route::get('loans/{id}/farmcrops', 'FarmcropsController@byLoan');
     Route::get('loans/{id}/farmexpenses', 'FarmexpensesController@byLoan');
     Route::get('loans/{id}/farmpractices', 'FarmpracticesController@byLoan');
     Route::get('loans/{id}/farms', 'FarmController@byLoan');

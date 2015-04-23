@@ -7,7 +7,7 @@
   <table class="table table-striped rowed">
     <tr>
       <th colspan="7">&nbsp;</th>
-      <th colspan="5" class="text-center;">Farmable Acres</th>
+      <th colspan="3" class="text-center bleft bright">Farmable Acres</th>
       <th>&nbsp;</th>
     </tr>
     <tr>
@@ -20,8 +20,6 @@
       <th style="width:8%;">Waived</th>
       <th style="width:5%;">IR</th>
       <th style="width:5%;">NI</th>
-      <th style="width:5%;">FACI</th>
-      <th style="width:5%;">FACNI</th>
       <th style="width:6%;">Total</th>
       <th class="text-center" style="width:8%;">FSA</th>
 
@@ -59,24 +57,18 @@
       <td style="text-align: right;">
         <digit-edit-in-place value="f.ni"></digit-edit-in-place>
       </td>
-      <td style="text-align: right;">
-        <digit-edit-in-place value="f.facirr"></digit-edit-in-place>
-      </td>
-      <td style="text-align: right;">
-        <digit-edit-in-place value="f.facni"></digit-edit-in-place>
-      </td>
       <td class="text-right">
-        {{(1 * f.irr) + (1 * f.ni) + (1 * f.facirr) + (1 * f.facni)|number:1}}
+        {{f.irr + f.ni|number:1}}
       </td>
       <td class="text-right">
         <edit-in-place value="f.fsa_paid"></edit-in-place>
       </td>
     </tr>
     <tr style="max-height:2px; background-color: #333;">
-      <td colspan="13"></td>
+      <td colspan="11"></td>
     </tr>
     <tr>
-      <td colspan="13">
+      <td colspan="11">
         <a ng-click="createFarm()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Add New Farm</a>
       </td>
     </tr>

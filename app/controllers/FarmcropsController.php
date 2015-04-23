@@ -47,6 +47,19 @@ class FarmcropsController extends ApiController {
 		//
 	}
 
+    public function byLoan($id)
+    {
+        $fcs = Farmcrops::with('farm', 'crop')->where('loan_id', $id)->get();
+
+        if($fcs->isEmpty() ){
+            return $this->respondNotFound('Loan does not exist.');
+        } // end if
+
+        return $this->respond([
+            'data' => $this->farmcropsTransformer->transformCollection($fcs->all())
+        ]);
+    }
+
 	public function acrop($crop_id, $loan_id){
 		/*
 		 SELECT c.crop, SUM(acres) AS Total_Acres, SUM(yield) AS Total_Yield, price, insured_price, bkqty, bkprice, harvest

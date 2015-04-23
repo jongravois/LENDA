@@ -6,8 +6,7 @@
 
     FarmsController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'LoansFactory'];
 
-    function FarmsController($scope, $state, $stateParams,
-                             InitialData, AppFactory, LoansFactory) {
+    function FarmsController($scope, $state, $stateParams, InitialData, AppFactory, LoansFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;

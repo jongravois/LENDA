@@ -10,6 +10,9 @@
         <tab heading="Soybeans" ng-if="uses.soybeans[0].acres > 0">
             <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.soybeans"></div>
         </tab>
+        <tab heading="BeansFAC" ng-if="uses.beansFAC[0].acres > 0">
+            <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.beansFAC"></div>
+        </tab>
         <tab heading="Sorghum" ng-if="uses.sorghum[0].acres > 0">
             <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.sorghum"></div>
         </tab>

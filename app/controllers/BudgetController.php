@@ -6,7 +6,8 @@ class BudgetController extends ApiController {
 	{
 		$budget = [];
 		$exps = Loancrop::where('loan_id', $id)->get();
-		foreach($exps as $exp){
+
+        foreach($exps as $exp){
 			$crp = $this->expenseByCrop($exp->id);
 			array_push($budget, $crp);
 		} // end foreach
@@ -16,7 +17,7 @@ class BudgetController extends ApiController {
 	public function expenseByCrop($id)
 	{
 		$exps = Cropexpenses::with('crop', 'loancrop')->where('loancrop_id', $id)->orderBy('cat_id')->get();
-		//return $exps;
+		return $exps;
 		return array_map(function($exps)
 		{
 			return [
