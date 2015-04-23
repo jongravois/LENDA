@@ -52,7 +52,7 @@ class FarmcropsController extends ApiController {
         $fcs = Farmcrops::with('farm', 'crop')->where('loan_id', $id)->get();
 
         if($fcs->isEmpty() ){
-            return $this->respondNotFound('Loan does not exist.');
+            return $this->respond(['data' => []]);
         } // end if
 
         return $this->respond([

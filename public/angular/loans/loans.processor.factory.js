@@ -19,7 +19,12 @@
         }
 
         function getCrops(loan) {
-            return [];
+            return $http.get(API_URL + '/loans/' + loan.id + '/farmcrops')
+                .then(function(rsp){
+                    var cropList = rsp.data.data;
+                    console.log('Crops', cropList);
+                });
+
             //return $http.get(API_URL + '/loans/' + loan.id + '/budgets');
         }
 

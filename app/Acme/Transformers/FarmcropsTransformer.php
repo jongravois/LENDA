@@ -12,7 +12,7 @@ class FarmcropsTransformer extends Transformer{
         } // end if
 
 		//return $arr;
-		return array(
+		return [
 			'id' =>	(integer) $arr['id'],
 			'crop_year' => $arr['crop_year'],
 			'loan_id' => (integer) $arr['loan_id'],
@@ -49,6 +49,6 @@ class FarmcropsTransformer extends Transformer{
 			'ins_disc_prod'	=>	calcInsDiscProd($arr),
 			'disc_ins'	=>	calcDiscIns($arr),
             'percent_irrigated'	=> (double) $arr['farm']['irr']/$total_acres
-		);
+		];
 	}
 }
