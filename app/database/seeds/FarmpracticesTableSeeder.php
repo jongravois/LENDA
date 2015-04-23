@@ -12,7 +12,6 @@ class FarmpracticesTableSeeder extends Seeder {
 			'ins_price' => 4.25,
 			'aph' => 96.0,
 			'ins_premium' => 11.88,
-			'acres' => 0,
 			'ins_share' => 100,
 			'prod_share' => 100,
 			'prod_yield' => 152.3,

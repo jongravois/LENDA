@@ -16,7 +16,6 @@ class FarmsTableSeeder extends Seeder
             'when_due' => '',
             'fsa_paid' => 0,
             'percent_irrigated' => 0,
-            'acres' => 28,
             'irr' => 0,
             'ni' => 28
         ]);
@@ -32,9 +31,7 @@ class FarmsTableSeeder extends Seeder
             'when_due' => '',
             'fsa_paid' => 0,
             'percent_irrigated' => 0,
-            'irr' => 0,
-            'ni' => 20,
-            'acres' => 20
+            'irr' => 0
         ]);
 
         Farm::create([
@@ -49,8 +46,7 @@ class FarmsTableSeeder extends Seeder
             'fsa_paid' => 12000,
             'percent_irrigated' => 0,
             'irr' => 0,
-            'ni' => 20,
-            'acres' => 20
+            'ni' => 20
         ]);
 
         Farm::create([
@@ -65,8 +61,7 @@ class FarmsTableSeeder extends Seeder
             'fsa_paid' => 0,
             'percent_irrigated' => 20,
             'irr' => 200,
-            'ni' => 124,
-            'acres' => 324
+            'ni' => 124
         ]);
 
         Farm::create([
@@ -81,8 +76,7 @@ class FarmsTableSeeder extends Seeder
             'fsa_paid' => 0,
             'percent_irrigated' => 100,
             'irr' => 22.3,
-            'ni' => 0,
-            'acres' => 22.3
+            'ni' => 0
         ]);
 
         Farm::create([
@@ -97,8 +91,7 @@ class FarmsTableSeeder extends Seeder
             'fsa_paid' => 0,
             'percent_irrigated' => 50,
             'irr' => 24.2,
-            'ni' => 24.2,
-            'acres' => 48.4
+            'ni' => 24.2
         ]);
 
         Farm::create([
@@ -113,8 +106,7 @@ class FarmsTableSeeder extends Seeder
             'fsa_paid' => 0,
             'percent_irrigated' => 20,
             'irr' => 53,
-            'ni' => 412,
-            'acres' => 465
+            'ni' => 412
         ]);
     }
 }
