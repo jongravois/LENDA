@@ -22,7 +22,7 @@
             return $http.get(API_URL + '/loans/' + loan.id + '/farmcrops')
                 .then(function(rsp){
                     var cropList = rsp.data.data;
-                    console.log('Crops', cropList);
+                    var crops = {};
                 });
 
             //return $http.get(API_URL + '/loans/' + loan.id + '/budgets');
@@ -48,8 +48,12 @@
         function getLoanQuestions(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/quests')
                 .then(function (response) {
-                    //console.log('LoanQuestions: ', response);
-                    return (response.data.data[0]);
+                    if(response) {
+                        //console.log('LoanQuestions: ', response);
+                        return (response.data.data[0]);
+                    } else {
+                        return {};
+                    }
                 });
         }
 
