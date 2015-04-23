@@ -285,32 +285,31 @@
                 document: 'Leases Verified',
                 filename: 'leasesVerified.pdf',
                 title: 'Leases Verified',
-                buttons: ['ok', 'cancel']
+                buttons: ['no upload', 'cancel']
             };
             ModalService.optionalUpload(data)
-                .then(function() {
-                    toastr.success('File uploaded.', 'Success');
-                }, function() {
+                .then(function () {
                     toastr.info('Optional file upload declined.', 'No File Uploaded');
+                    if(Number(obj.leases_valid) == 1){
+                        recordLEASE(user, 3, obj);
+                    } else {
+                        recordLEASE(user, 1, obj);
+                        if(!obj.quests.bankruptcy_order) {
+                            recordBORCVD(user, 1, obj);
+                        }
+                        if(obj.its_list !== 1) {
+                            recordITS(user, 3, obj);
+                        }
+                        if(obj.fsa_compliant !== 1) {
+                            recordFSA(user, 3, obj);
+                        }
+                        if(obj.prev_lien_verified !== 1) {
+                            recordLIEN(user, 3, obj);
+                        }
+                    } // end if
+                }, function () {
+                    toastr.warning('No data saved.', 'User Cancelled Action');
                 });
-
-            if(Number(obj.leases_valid) == 1){
-                recordLEASE(user, 3, obj);
-            } else {
-                recordLEASE(user, 1, obj);
-                if(!obj.quests.bankruptcy_order) {
-                    recordBORCVD(user, 1, obj);
-                }
-                if(obj.its_list !== 1) {
-                    recordITS(user, 3, obj);
-                }
-                if(obj.fsa_compliant !== 1) {
-                    recordFSA(user, 3, obj);
-                }
-                if(obj.prev_lien_verified !== 1) {
-                    recordLIEN(user, 3, obj);
-                }
-            } // end if
 
             return obj;
         }

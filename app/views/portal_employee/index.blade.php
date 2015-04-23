@@ -144,7 +144,7 @@
 <script src="angular/loans/new.loans.ctrl.js"></script>
 <script src="angular/loans/summary.ctrl.js"></script>
 <script src="angular/management/management.ctrl.js"></script>
-<script src="angular/modals/confirm.modal.ctrl.js"></script>
+<script src="angular/modals/modal.ctrl.js"></script>
 <script src="angular/modals/modals.service.js"></script>
 <script src="angular/optimizer/optimizer.ctrl.js"></script>
 <script src="angular/purgatory/purgatory.ctrl.js"></script>

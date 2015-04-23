@@ -6,17 +6,17 @@
 </div>
 
 <div class="modal-body">
-    <p>If you are not uploading a file, please click cancel.</p>
+    <p>The file upload is optional. Click "choose file" to upload, "no upload" to continue without upload, or, "cancel" to take no action.</p>
     <br/>
     <input type="hidden" name="loan_id" value="{{properties.loanID}}"/>
     <input type="hidden" name="document" value="{{properties.document}}"/>
     <input type="hidden" name="filename" value="{{properties.filename}}"/>
     <label>Please select file to upload!</label><br/>
-    <div class="btn btn-success"
+    <div class="btn btn-primary"
          ng-file-select
          ng-model="files"
          ng-multiple="multiple">
-        Select File
+        choose file
     </div>
 </div>
 

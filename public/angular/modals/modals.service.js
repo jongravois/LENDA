@@ -22,7 +22,7 @@
         function commentReply(data) {
             var modalInstance = $modal.open({
                 templateUrl: 'angular/comments/reply.modal.html',
-                controller: 'ConfirmModalController',
+                controller: 'ModalController',
                 resolve: {
                     data: function(){
                         return {};
@@ -37,7 +37,7 @@
         function confirm(data) {
             var modalInstance = $modal.open({
                 templateUrl: 'angular/modals/confirm.modal.html',
-                controller: 'ConfirmModalController',
+                controller: 'ModalController',
                 resolve: {
                     data: function(){
                         return {
@@ -56,7 +56,7 @@
         function confirmDelete(data) {
             var modalInstance = $modal.open({
                 templateUrl: 'angular/modals/confirm.delete.modal.html',
-                controller: 'ConfirmModalController',
+                controller: 'ModalController',
                 resolve: {
                     data: function(){
                         return {};
@@ -71,7 +71,7 @@
         function optionalUpload(data) {
             var modalInstance = $modal.open({
                 templateUrl: 'angular/modals/upload.optional.modal.html',
-                controller: 'ConfirmModalController',
+                controller: 'ModalController',
                 resolve: {
                     data: function(){
                         return {
@@ -92,7 +92,7 @@
         function requiredUpload(data) {
             var modalInstance = $modal.open({
                 templateUrl: 'angular/modals/upload.required.modal.html',
-                controller: 'ConfirmModalController',
+                controller: 'ModalController',
                 resolve: {
                     data: function(){
                         return {

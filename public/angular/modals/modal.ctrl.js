@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('ARM')
-        .controller('ConfirmModalController', ConfirmModalController);
+        .controller('ModalController', ModalController);
     
-        ConfirmModalController.$inject = ['$scope', '$modalInstance', 'data'];
+        ModalController.$inject = ['$scope', '$modalInstance', 'data'];
     
         /* @ngInject */
-        function ConfirmModalController($scope, $modalInstance, data){
+        function ModalController($scope, $modalInstance, data){
             /* jshint validthis: true */
             $scope.cancel = cancel;
             $scope.ok = ok;
