@@ -4,7 +4,7 @@ class SystemicTransformer extends Transformer{
 
 	public function transform($arr)
 	{
-		return $arr;
+		//return $arr;
 		return [
 			'id' =>	$arr['id'],
 			'partner' => $arr['partner'],

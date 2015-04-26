@@ -4,27 +4,28 @@ class FarmcropsTransformer extends Transformer{
 
 	public function transform($arr)
 	{
-        $acres = ((double) $arr['farm']['irr'] + (double) $arr['farm']['ni']);
+        //return $arr;
+
+        $acres = ((double) $arr['farms']['irr'] + (double) $arr['farms']['ni']);
         if($acres == 0){
             $total_acres = 1;
         } else {
             $total_acres = $acres;
         } // end if
 
-		//return $arr;
 		return [
 			'id' =>	(integer) $arr['id'],
 			'crop_year' => $arr['crop_year'],
 			'loan_id' => (integer) $arr['loan_id'],
 			'farm_id' => (integer) $arr['farm_id'],
-            'fsn' => $arr['farm']['fsn'],
+            'fsn' => $arr['farms']['fsn'],
             'crop_id' => (integer) $arr['crop_id'],
-            'crop' => $arr['crop']['crop'],
+            'crop' => $arr['crops']['crop'],
             'towhom_market' => $arr['towhom_market'],
 			'gin_mill' => $arr['gin_mill'],
-			'irr' =>  (double) $arr['farm']['irr'],
-			'ni' => (double) $arr['farm']['ni'],
-            'acres' => (double) $arr['farm']['irr'] + (double) $arr['farm']['ni'],
+			'irr' =>  (double) $arr['farms']['irr'],
+			'ni' => (double) $arr['farms']['ni'],
+            'acres' => (double) $acres,
 			'ins_type'	=>	$arr['ins_type'],
 			'ins_price'	=>	(double) $arr['ins_price'],
 			'ins_level'	=>	(double) $arr['ins_level'],
@@ -48,7 +49,7 @@ class FarmcropsTransformer extends Transformer{
 			'disc_adj_prod'	=>	calcDiscAdjProd($arr),
 			'ins_disc_prod'	=>	calcInsDiscProd($arr),
 			'disc_ins'	=>	calcDiscIns($arr),
-            'percent_irrigated'	=> (double) $arr['farm']['irr']/$total_acres
+            'percent_irrigated'	=> (double) $arr['farms']['irr']/$total_acres
 		];
 	}
 }

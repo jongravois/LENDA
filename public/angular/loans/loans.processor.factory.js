@@ -18,10 +18,29 @@
             return $http.get(API_URL + '/loans').then(updateLoansData);
         }
 
+        function getCrops(loan) {
+            return $http.get(API_URL + '/loans/' + loan.id + '/farmcrops')
+                .then(function (rsp) {
+                    var cropsList = rsp.data.data;
+
+                    var crops = {
+                        corn: makeCorn(cropsList),
+                        soybeans: makeSoybeans(cropsList),
+                        beansFAC: makeBeans(cropsList),
+                        sorghum: makeSorghum(cropsList),
+                        wheat: makeWheat(cropsList),
+                        cotton: makeCotton(cropsList),
+                        rice: makeRice(cropsList),
+                        peanuts: makePeanuts(cropsList),
+                        sugarcane: makeCane(cropsList)
+                    };
+                    return crops;
+                });
+        }
 
         function getInsurance(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/insurance')
-                .then(function (rsp){
+                .then(function (rsp) {
                     var policyList = rsp.data.data;
                     //console.log('List', policyList);
 
@@ -79,6 +98,141 @@
                 });
         }
 
+        function makeBeans(list) {
+            var crop = _.filter(list, function(item){
+                if(item.crop_id === 3){ return item; }
+            });
+            if(!crop.length) {
+                return getEmptyCrop();
+            } // end if
+
+            var cropObj = {
+                totals: processCropTotals(crop),
+                byFarm: crop
+            };
+            return cropObj;
+        }
+
+        function makeCane(list) {
+            var crop = _.filter(list, function(item){
+                if(item.crop_id === 9){ return item; }
+            });
+            if(!crop.length) {
+                return getEmptyCrop();
+            } // end if
+
+            var cropObj = {
+                totals: processCropTotals(crop),
+                byFarm: crop
+            };
+            return cropObj;
+        }
+
+        function makeCorn(list) {
+            var crop = _.filter(list, function(item){
+                if(item.crop_id === 1){ return item; }
+            });
+            if(!crop.length) {
+                return getEmptyCrop();
+            } // end if
+
+            var cropObj = {
+                totals: processCropTotals(crop),
+                byFarm: crop
+            };
+            return cropObj;
+        }
+
+        function makeCotton(list) {
+            var crop = _.filter(list, function(item){
+                if(item.crop_id === 6){ return item; }
+            });
+            if(!crop.length) {
+                return getEmptyCrop();
+            } // end if
+
+            var cropObj = {
+                totals: processCropTotals(crop),
+                byFarm: crop
+            };
+            return cropObj;
+        }
+
+        function makePeanuts(list) {
+            var crop = _.filter(list, function(item){
+                if(item.crop_id === 8){ return item; }
+            });
+            if(!crop.length) {
+                return getEmptyCrop();
+            } // end if
+
+            var cropObj = {
+                totals: processCropTotals(crop),
+                byFarm: crop
+            };
+            return cropObj;
+        }
+
+        function makeRice(list) {
+            var crop = _.filter(list, function(item){
+                if(item.crop_id === 7){ return item; }
+            });
+            if(!crop.length) {
+                return getEmptyCrop();
+            } // end if
+
+            var cropObj = {
+                totals: processCropTotals(crop),
+                byFarm: crop
+            };
+            return cropObj;
+        }
+
+        function makeSorghum(list) {
+            var crop = _.filter(list, function(item){
+                if(item.crop_id === 4){ return item; }
+            });
+            if(!crop.length) {
+                return getEmptyCrop();
+            } // end if
+
+            var cropObj = {
+                totals: processCropTotals(crop),
+                byFarm: crop
+            };
+            return cropObj;
+        }
+
+        function makeSoybeans(list) {
+            var crop = _.filter(list, function(item){
+                if(item.crop_id === 2){ return item; }
+            });
+            if(!crop.length) {
+                return getEmptyCrop();
+            } // end if
+
+            var cropObj = {
+                totals: processCropTotals(crop),
+                byFarm: crop
+            };
+            return cropObj;
+        }
+
+        function makeWheat(list) {
+            var crop = _.filter(list, function(item){
+                if(item.crop_id === 5){ return item; }
+            });
+            if(!crop.length) {
+                return getEmptyCrop();
+            } // end if
+
+            var cropObj = {
+                totals: processCropTotals(crop),
+                byFarm: crop
+            };
+            return cropObj;
+        }
+
         function processAgencies(policies) {
             var result = [];
             var exists = {};
@@ -112,7 +266,7 @@
                     agentExists[policy.agent_id] = true;
                 }
             });
-            return arrayOfFinalProduct;;
+            return arrayOfFinalProduct;
         }
 
         function processByCrop(policies) {
@@ -150,6 +304,42 @@
             return byCrop;
         }
 
+        function processCropTotals(arrCrop) {
+            var acres = 0, bkqty = 0, bkprice = 0, harvest = 0, irr = 0, mill_share = 0, ni = 0, percent_irrigated = 0, price = 0, rebate_price = 0, rebate_share = 0, prod_share = 0, value = 0, prod_yield = 0;
+
+            angular.forEach(arrCrop, function(rows){
+                bkqty += Number(rows.bkqty);
+                bkprice = Number(rows.bkprice);
+                harvest = Number(rows.harvest);
+                irr += Number(rows.irr);
+                mill_share += Number(rows.mill_share);
+                ni += Number(rows.ni);
+                price = Number(rows.price);
+                rebate_price = Number(rows.rebate_price);
+                rebate_share = Number(rows.rebate_share);
+                prod_share += Number(rows.share) * (Number(rows.irr) + Number(rows.ni));
+                prod_yield += Number(rows.prod_yield);
+            });
+
+            var croptotals = {
+                acres: Number(irr) + Number(ni),
+                bkqty: Number(bkqty),
+                bkprice: Number(bkprice),
+                harvest: Number(harvest),
+                irr: Number(irr),
+                mill_share: Number(mill_share),
+                ni: Number(ni),
+                percent_irrigated: 100 * (Number(irr)/(Number(irr) + Number(ni))),
+                price: Number(price),
+                rebate_price: Number(rebate_price),
+                rebate_share: Number(rebate_share),
+                share: Number(prod_share)/(Number(irr) + Number(ni)),
+                prod_yield: Number(prod_yield),
+                value: (((Number(prod_share)/(Number(irr) + Number(ni)))/100)*(Number(irr) + Number(ni))*Number(prod_yield) * Number(price))+(((Number(prod_share)/(Number(irr) + Number(ni)))/100) * Number(bkqty) * (Number(bkprice) - Number(price)))+((Number(irr) + Number(ni))*Number(prod_yield) * Number(harvest))
+            };
+            return croptotals;
+        }
+
         function processInsTotals(obj) {
             var lone = { acres: 0, value: 0 };
             var byLoan = _.forEach(obj, function(item, key) {
@@ -164,8 +354,9 @@
                 need_vote: getPendingVotes(loan),
                 has_comment: getPendingComments(loan),
                 total_ins_value: getTotalInsValue(loan),
-                quests: getLoanQuestions(loan),
-                insurance: getInsurance(loan)
+                crops: getCrops(loan),
+                insurance: getInsurance(loan),
+                quests: getLoanQuestions(loan)
             })
                 .then(function (updatedData) {
                     angular.extend(loan, updatedData);
@@ -175,6 +366,7 @@
 
         function updateLoansData(response) {
             var allLoans = response.data.data;
+            //console.log('allLoans', allLoans);
             return $q.all(allLoans.map(updateLoanData));
         }
 
@@ -185,6 +377,27 @@
         }
         function calcInsValue(acres, price, insyield, share) {
             return Number(acres) * Number(price) * Number(insyield) * (Number(share)/100);
+        }
+        function getEmptyCrop() {
+            return {
+                totals: {
+                    acres: 0,
+                    bkqty: 0,
+                    bkprice: 0,
+                    harvest: 0,
+                    irr: 0,
+                    mill_share: 0,
+                    ni: 0,
+                    percent_irrigated: 0,
+                    price: 0,
+                    rebate_price: 0,
+                    rebate_share: 0,
+                    share: 0,
+                    value: 0,
+                    prod_yield: 0
+                },
+                byFarm: []
+            };
         }
     } // end factory
 })();

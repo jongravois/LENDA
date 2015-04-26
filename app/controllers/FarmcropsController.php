@@ -13,7 +13,7 @@ class FarmcropsController extends ApiController {
 
 	public function index()
 	{
-		$fcs = Farmcrops::with('farm', 'crop')->get();
+		$fcs = Farmcrops::with('farms', 'crops')->get();
 		return $this->respond(
 			$this->farmcropsTransformer->transformCollection($fcs->all())
 		);
@@ -21,7 +21,7 @@ class FarmcropsController extends ApiController {
 
 	public function show($id)
 	{
-		$fcs = Farmcrops::with('farm', 'crop')->where('loan_id', $id)->get();
+		$fcs = Farmcrops::with('farms', 'crops')->where('loan_id', $id)->get();
 
 		if($fcs->isEmpty() ){
 			return $this->respondNotFound('Loan does not exist.');
@@ -49,7 +49,7 @@ class FarmcropsController extends ApiController {
 
     public function byLoan($id)
     {
-        $fcs = Farmcrops::with('farm', 'crop')->where('loan_id', $id)->get();
+        $fcs = Farmcrops::with('farms', 'crops')->where('loan_id', $id)->get();
 
         if($fcs->isEmpty() ){
             return $this->respond(['data' => []]);
@@ -61,17 +61,7 @@ class FarmcropsController extends ApiController {
     }
 
 	public function acrop($crop_id, $loan_id){
-		/*
-		 SELECT c.crop, SUM(acres) AS Total_Acres, SUM(yield) AS Total_Yield, price, insured_price, bkqty, bkprice, harvest
-FROM farmcrops AS f
-JOIN crops AS c
-ON f.crop_id = c.id
-WHERE crop_year = 2015
-AND `loan_id` = '1'
-AND crop_id = 1
-GROUP BY crop_year
-		*/
-		return Farmcrops::join('crops', 'crops.id', '=', 'farmcrops.crop_id')->where('crop_year', '2015')->where('loan_id', $loan_id)->where('crop_id', $crop_id)->get(['crops.crop', DB::raw('SUM(acres) AS Total_Acres'), DB::raw('SUM(yield) AS Total_Yield'), 'price', 'insured_price', 'bkqty', 'bkprice', 'harvest' ]);
+		return Farmcrops::join('crops', 'crops.id', '=', 'farmcrops.crop_id')->where('crop_year', '2015')->where('loan_id', $loan_id)->where('crop_id', $crop_id)->get(['crops.id', 'crops.crop', DB::raw('SUM(irr) AS irrigated'), DB::raw('SUM(ni) AS nonirrigated'), DB::raw('SUM(prod_yield) AS prodYield'), DB::raw('SUM(ins_yield) AS insYield'), 'prod_price', 'ins_price', 'bkqty', 'bkprice', 'harvest' ]);
 	}
 
 }

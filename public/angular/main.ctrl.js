@@ -4,22 +4,23 @@
         .module('ARM')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$state', '$q', 'toastr', 'FILE_URL', 'AppFactory', 'FarmersFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'LoansFactory', 'UsersFactory'];
+    MainController.$inject = ['$scope', '$state', '$q', 'toastr', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersFactory'];
 
-    function MainController($scope, $state, $q, toastr, FILE_URL, AppFactory, FarmersFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, LoansFactory, UsersFactory) {
+    function MainController($scope, $state, $q, toastr, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersFactory) {
         $scope.user_id = $('#user_id').data('id');
-        $scope.landing_view = 'settings';
-        $scope.file_url = FILE_URL;
-        $scope.inArray = AppFactory.inArray;
-
-        $scope.comms = [
-            {id: 'email', name: 'Email'},
-            {id: 'SMS', name: 'Text'}
-        ];
 
         activate();
 
         function activate() {
+            $scope.landing_view = 'settings';
+            $scope.file_url = FILE_URL;
+            $scope.inArray = AppFactory.inArray;
+
+            $scope.comms = [
+                {id: 'email', name: 'Email'},
+                {id: 'SMS', name: 'Text'}
+            ];
+
             UsersFactory.getUsers()
                 .then(function success(rsp){
                     $scope.users = rsp.data.data;
@@ -40,16 +41,27 @@
             FeederFactory.init();
             $scope.feeder = FeederFactory.getObject();
 
-            if(!$scope.loans) {
-                LoansProcessor.getLoansWithExtraData()
-                    .then(function (allLoans) {
-                        $scope.loans = allLoans;
-                        $scope.loanList = _.filter(allLoans, function(i) {
-                            return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
-                        });
+            LoansProcessor.getLoansWithExtraData()
+                .then(function (allLoans) {
+                    $scope.loans = allLoans;
+                    console.log('Loans from Main', allLoans);
+                    $scope.loanList = _.filter(allLoans, function(i) {
+                        return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
                     });
+                });
                 toastr.success('Loaded all loans', 'Success!');
-            }
+
+            FarmersFactory.getFarmers()
+                .then(function(rsp){
+                    $scope.farmers = rsp.data.data;
+                    toastr.success('Loaded all farmers', 'Success!');
+                });
+
+            ApplicantsFactory.getApplicants()
+                .then(function(rsp){
+                    $scope.applicants = rsp.data.data;
+                    toastr.success('Loaded all applicants', 'Success!');
+                });
         }
 
         //SCOPE FUNCTIONS

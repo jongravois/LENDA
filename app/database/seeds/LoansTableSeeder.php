@@ -4,17 +4,16 @@ use Carbon\Carbon;
 
 class LoansTableSeeder extends Seeder
 {
-
     public function run()
     {
         // Tony Stark(1) @ Glass Towers(2) | Partnership(4)--Ag-Input 2015
         Loan::create([
             'applicant_id' => 1,
-            'app_date' => '2015-03-01',
-            'distributor_approval_date' => '2015-01-14',
-            'decision_date' => '2015-01-15',
-            'default_due_date' => '2015-12-15',
-            'due_date' => '2015-12-15',
+            'app_date' => '01/03/2015',
+            'distributor_approval_date' => '01/14/2015',
+            'decision_date' => '01/19/2015',
+            'default_due_date' => '12/15/2015',
+            'due_date' => '12/15/2015',
             'loan_type_id' => 2,
             'status_id' => 1,
             'analyst_can_approve' => 1,
@@ -55,9 +54,10 @@ class LoansTableSeeder extends Seeder
         // Blake Donald(10) @ Rainbow Bridge(6) | Individual--Capital Bridge 2015
         Loan::create([
             'applicant_id' => 6,
-            'app_date' => Carbon::now()->subDays(1),
-            'default_due_date' => '2015-12-15',
-            'due_date' => '2016-06-15',
+            //'app_date' => Carbon::yesterday()->format('m/d/Y'),
+            'app_date' => '04/24/2015',
+            'default_due_date' => '06/15/2015',
+            'due_date' => '06/15/2015',
             'loc_id' => 5,
             'user_id' => 2,
             'region_id' => 3,
@@ -75,9 +75,9 @@ class LoansTableSeeder extends Seeder
         // Bruce Wayne(2) @ Secret Cave(3) | Joint Venture (1)--Ag-Pro Fasttrack 2015
         Loan::create([
             'applicant_id' => 3,
-            'app_date' => Carbon::now()->subDays(2),
-            'default_due_date' => '2015-12-15',
-            'due_date' => '2015-12-15',
+            'app_date' => Carbon::now()->subDays(2)->format('m/d/Y'),
+            'default_due_date' => '12/15/2015',
+            'due_date' => '12/15/2015',
             'loc_id' => 5,
             'user_id' => 2,
             'region_id' => 3,
@@ -97,9 +97,9 @@ class LoansTableSeeder extends Seeder
         // Steve Rogers(12) @ Shielded Farms(4) | Corporation -- Ag-Vest 2015
         Loan::create([
             'applicant_id' => 4,
-            'app_date' => Carbon::now(),
-            'default_due_date' => '2015-12-15',
-            'due_date' => '2015-12-15',
+            'app_date' => Carbon::now()->format('m/d/Y'),
+            'default_due_date' => '12/15/2015',
+            'due_date' => '12/15/2015',
             'loc_id' => 5,
             'user_id' => 2,
             'region_id' => 3,
@@ -114,9 +114,9 @@ class LoansTableSeeder extends Seeder
         // Clint Barton(5) @ Nested Row(2) | Spousal--Ag-Pro 2015
         Loan::create([
             'applicant_id' => 2,
-            'app_date' => Carbon::now()->subDays(3),
-            'default_due_date' => '2015-12-15',
-            'due_date' => '2015-12-15',
+            'app_date' => Carbon::now()->subDays(3)->format('m/d/Y'),
+            'default_due_date' => '12/15/2015',
+            'due_date' => '12/15/2015',
             'loc_id' => 5,
             'user_id' => 2,
             'region_id' => 3,
@@ -136,9 +136,9 @@ class LoansTableSeeder extends Seeder
         // Matt Murdoch(9) @ Dark World(5) | Individual -- All-in 2015
         Loan::create([
             'applicant_id' => 5,
-            'app_date' => Carbon::now()->subDays(2),
-            'default_due_date' => '2015-12-15',
-            'due_date' => '2015-12-15',
+            'app_date' => Carbon::now()->subDays(2)->format('m/d/Y'),
+            'default_due_date' => '12/15/2015',
+            'due_date' => '12/15/2015',
             'loc_id' => 5,
             'user_id' => 2,
             'region_id' => 3,
@@ -160,9 +160,9 @@ class LoansTableSeeder extends Seeder
         // Diana Prince(7) @ Kingdom Plains(7) | Spousal -- Grain Storage 2015
         Loan::create([
             'applicant_id' => 7,
-            'app_date' => Carbon::now()->subDays(4),
-            'default_due_date' => '2015-03-15',
-            'due_date' => '2015-04-30',
+            'app_date' => Carbon::now()->subDays(4)->format('m/d/Y'),
+            'default_due_date' => '03/15/2015',
+            'due_date' => '04/30/2015',
             'loc_id' => 5,
             'user_id' => 2,
             'region_id' => 3,
@@ -178,9 +178,9 @@ class LoansTableSeeder extends Seeder
 
         // Tony Stark(1) @ Glass Towers(1) | Partnership | Ag-Input 2014
         Loan::create([
-            'app_date' => '2014-01-01',
-            'default_due_date' => '2014-12-15',
-            'due_date' => '2014-12-15',
+            'app_date' => '01/01/2014',
+            'default_due_date' => '12/15/2014',
+            'due_date' => '12/15/2014',
             'loan_type_id' => 2,
             'status_id' => 2,
             'crop_year' => '2014',
@@ -210,7 +210,7 @@ class LoansTableSeeder extends Seeder
             'arm_approved' => 1,
             'dist_approved' => 1,
             'loan_closed' => 1,
-            'loan_closed_date' => '2014-08-01',
+            'loan_closed_date' => '08/01/2014',
             'added_land_verified' => 1,
             'arm_ucc_received' => 1,
             'dist_ucc_received' => 1,

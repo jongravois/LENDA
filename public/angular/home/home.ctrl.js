@@ -34,7 +34,7 @@
                     width: 140
                 },
                 {
-                    field: 'farmer',
+                    field: 'farmer.farmer',
                     displayName: 'Farmer',
                     headerClass: 'text-center',
                     width: 140

@@ -9,8 +9,13 @@ class Crop extends \Eloquent {
 		return $this->hasOne('Cropdetails');
 	}
 
-	public function loan()
+    public function loan()
 	{
 		return $this->belongsToMany('Loan');
 	}
+
+    public function expenses()
+    {
+        return $this->hasOne('Expenses');
+    }
 }

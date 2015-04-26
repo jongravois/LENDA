@@ -1,11 +1,39 @@
 <?php
 
+use Carbon\Carbon;
+
 class Loan extends \Eloquent {
-	protected $dates = array('app_date', 'distributor_approval_date', 'decision_date', 'due_date', 'default_due_date');
+	protected $dates = array('app_date', 'distributor_approval_date', 'decision_date', 'loan_closed_date', 'due_date', 'default_due_date');
 	protected $fillable = ['app_date', 'decision_date', 'distributor_approval_date', 'default_due_date', 'due_date', 'loan_type_id', 'status_id', 'crop_year', 'season', 'loc_id', 'region_id', 'user_id', 'farmer_id', 'applicant_id', 'is_cross_collateralized', 'is_fast_tracked', 'has_attachments', 'grade', 'analyst_can_approve', 'is_watched', 'disbursement_issue', 'has_rebates', 'has_distributor', 'distributor', 'is_stale', 'has_addendum', 'addendum_type', 'bankruptcy_history', 'required_3party', 'added_land', 'controlled_disbursement', 'its_list', 'fsa_compliant', 'prev_lien_verified', 'leases_valid', 'bankruptcy_order_received', 'received_3party', 'recommended', 'arm_approved', 'dist_approved', 'loan_closed', 'loan_closed_date', 'added_land_verified', 'permission_to_insure_verified', 'arm_ucc_received', 'dist_ucc_received', 'aoi_received', 'ccc_received', 'rebate_assignment', 'limit_warning', 'limit_warning_message', 'crop_inspection', 'reconciliation', 'account_classification', 'conditions_asa', 'conditions_aci', 'conditions_areb', 'conditions_adis', 'conditions_pg', 'conditions_ccl', 'conditions_cd'];
 
+    /* DATES */
+    public function setDistributorApprovalDateAttribute($value)
+    {
+        $this->attributes['distributor_approval_date'] = Carbon::createFromFormat('m/d/Y', $value);
+    }
+    public function setDecisionDateAttribute($value)
+    {
+        $this->attributes['decision_date'] = Carbon::createFromFormat('m/d/Y', $value);
+    }
+    public function setLoanClosedDateAttribute($value)
+    {
+        $this->attributes['loan_closed_date'] = Carbon::createFromFormat('m/d/Y', $value);
+    }
+    public function setDueDateAttribute($value)
+    {
+        $this->attributes['due_date'] = Carbon::createFromFormat('m/d/Y', $value);
+    }
+    public function setDefaultDueDateAttribute($value)
+    {
+        $this->attributes['default_due_date'] = Carbon::createFromFormat('m/d/Y', $value);
+    }
+    public function setAppDateAttribute($value)
+    {
+        $this->attributes['app_date'] = Carbon::createFromFormat('m/d/Y', $value);
+    }
+
 	/* RELATIONSHIPS */
-  public function applicants()
+  public function applicant()
     {
         return $this->belongsTo('Applicant', 'applicant_id');
     }
@@ -35,6 +63,11 @@ class Loan extends \Eloquent {
 		return $this->belongsToMany('Crop');
 	}
 
+    public function cropexpenses()
+    {
+        return $this->hasMany('Cropexpenses');
+    }
+
 	public function cropdetails()
 	{
 		return $this->hasMany('Cropdetails');
@@ -60,7 +93,12 @@ class Loan extends \Eloquent {
 		return $this->hasMany('Farm');
 	}
 
-	public function farmexpenses()
+    public function farmcrops()
+    {
+        return $this->hasMany('Farmcrops');
+    }
+
+    public function farmexpenses()
 	{
 		return $this->hasMany('Farmexpense');
 	}
@@ -77,7 +115,7 @@ class Loan extends \Eloquent {
 
   public function insurance()
   {
-    return $this->hasOne('Insurance');
+    return $this->hasMany('Insurance');
   }
 
   public function loanconditions()

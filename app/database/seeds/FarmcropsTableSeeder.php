@@ -14,10 +14,10 @@ class FarmcropsTableSeeder extends Seeder {
 			'ins_price' => 4.2500,
 			'ins_yield' => 96.0,
 			'ins_premium' => 11.88,
-			'acres' => 28,
+			'irr' => 0,
+			'ni' => 28,
 			'prod_yield' =>	152.3,
-			'prod_price' =>	4.2000,
-			'percent_irrigated' =>	0
+			'prod_price' =>	4.2000
 		]);
 
 		Farmcrops::create([
@@ -31,10 +31,10 @@ class FarmcropsTableSeeder extends Seeder {
 			'ins_premium' => 11.88,
 			'ins_share' => 80,
 			'prod_share' =>	80,
-			'acres' => 90,
+			'irr' => 90,
+			'ni' => 0,
 			'prod_yield' =>	152.3,
-			'prod_price' =>	4.2000,
-			'percent_irrigated' =>	100
+			'prod_price' =>	4.2000
 		]);
 
 		Farmcrops::create([
@@ -46,10 +46,10 @@ class FarmcropsTableSeeder extends Seeder {
 			'ins_price' =>	4.2500,
 			'ins_yield' =>	149.0,
 			'ins_premium' => 11.88,
-			'acres' =>	48.4,
+			'irr' => 48.4,
+			'ni' =>	0,
 			'prod_yield' =>	152.3,
-			'prod_price' =>	4.2000,
-			'percent_irrigated' => 100
+			'prod_price' =>	4.2000
 		]);
 
 		Farmcrops::create([
@@ -63,10 +63,10 @@ class FarmcropsTableSeeder extends Seeder {
 			'ins_premium' => 11.88,
 			'ins_share' => 80,
 			'prod_share' =>	80,
-			'acres' => 181.0,
+			'irr' => 181.0,
+			'ni' => 0,
 			'prod_yield' =>	152.3,
-			'prod_price' =>	4.2000,
-			'percent_irrigated' =>	100
+			'prod_price' =>	4.2000
 		]);
 
 		// soybeans
@@ -79,10 +79,10 @@ class FarmcropsTableSeeder extends Seeder {
 			'ins_price' => 11.2500,
 			'ins_yield' => 21.0,
 			'ins_premium' => 14.35,
-			'acres' => 20.0,
+			'irr' => 0,
+			'ni' => 20.0,
 			'prod_yield' =>	36.7,
-			'prod_price' =>	10.0000,
-			'percent_irrigated' =>	0
+			'prod_price' =>	10.0000
 		]);
 
 		Farmcrops::create([
@@ -96,10 +96,10 @@ class FarmcropsTableSeeder extends Seeder {
 			'ins_premium' => 14.35,
 			'ins_share' => 80,
 			'prod_share' =>	80,
-			'acres' =>	20.0,
+			'irr' => 0,
+			'ni' =>	20.0,
 			'prod_yield' =>	36.7,
-			'prod_price' =>	10.0000,
-			'percent_irrigated' =>	0
+			'prod_price' =>	10.0000
 		]);
 
 		Farmcrops::create([
@@ -113,10 +113,10 @@ class FarmcropsTableSeeder extends Seeder {
 			'ins_premium' => 14.35,
 			'ins_share' => 80,
 			'prod_share' =>	80,
-			'acres' =>	234.0,
+			'irr' => 234.0,
+			'ni' =>	0,
 			'prod_yield' =>	36.7,
-			'prod_price' =>	10.0000,
-			'percent_irrigated' =>	100
+			'prod_price' =>	10.0000
 		]);
 
 		Farmcrops::create([
@@ -130,10 +130,10 @@ class FarmcropsTableSeeder extends Seeder {
 			'ins_premium' => 16.35,
 			'ins_share' => 80,
 			'prod_share' =>	80,
-			'acres' => 22.3,
+			'irr' => 22.3,
+			'ni' => 0,
 			'prod_yield' =>	36.7,
-			'prod_price' =>	10.0000,
-			'percent_irrigated' =>	100
+			'prod_price' =>	10.0000
 		]);
 
 		Farmcrops::create([
@@ -147,10 +147,10 @@ class FarmcropsTableSeeder extends Seeder {
 			'ins_premium' => 14.35,
 			'ins_share' => 80,
 			'prod_share' =>	80,
-			'acres' =>	284.0,
+			'irr' => 284.0,
+			'ni' =>	0,
 			'prod_yield' =>	36.7,
-			'prod_price' =>	10.0000,
-			'percent_irrigated' =>	100
+			'prod_price' =>	10.0000
 		]);
 	}
 }

@@ -1,4 +1,3 @@
-<!--TODO: Collapse Entity Info and Use Modal-->
 <!--Analyst/Loan Type/App Date-->
 <div class="row">
   <div class="form-group col-md-4">
@@ -60,96 +59,96 @@
 
 <!--Entity/Applicant/Stakeholders-->
 <div class="row">
-  <div class="form-group col-md-4">
-    <label>Organization Type</label>
-    <br/>
-    <p class="display-field">
-      {{applicant.entity}}
-    </p>
-  </div>
-  <div class="form-group col-md-4">
-    <label>Applicant</label>
-    <br/>
-    <p class="display-field">
-      {{applicant.applicant | displayname}}
-      <br/>
-      {{applicant.address}}
-      <br/>
-      {{applicant.city}}, {{applicant.state_abr}} {{applicant.zip}}
-      <br/>
-      {{applicant.phone | phone}}
-      <br/>
-      {{applicant.email}}
-      <br/>
-    </p>
-  </div>
-  <!--<pre>{{corps | json}}</pre>-->
-  <div class="form-group col-md-4">
-    <div ng-switch="applicant.entity_id">
-      <div ng-switch-when="1">
-        <label>Corporation</label>
-        <br/>
-        <p class="display-field" ng-repeat="c in corps">
-          {{c.corporation}}
-          <br/>
-          {{c.president}}, (President)
-          <br/>
-          {{c.vicepresident}}, (Vice-President)
-          <br/>
-          {{c.secretary}}, (Secretary)
-          <br/>
-          {{c.treasurer}}, (Treasurer)
-        </p>
-      </div>
-      <div ng-switch-when="3">
-        <label>Joint Venture</label>
-        <br/>
-        <p class="display-field" ng-repeat="j in joints">
-          {{j.partner}}
-          <br/>
-          {{j.address}}
-          <br/>
-          {{j.city}}, {{j.state_abr}} {{j.zip}}
-          <br/>
-          {{j.phone | phone}}
-          <br/>
-          {{j.email}}
-        </p>
-      </div>
-      <div ng-switch-when="4">
-        <label>Partners</label>
-        <br/>
-        <p class="display-field" ng-repeat="p in partners">
-          {{p.partner}}
-          <br/>
-          {{p.address}}
-          <br/>
-          {{p.city}}, {{p.state_abr}} {{p.zip}}
-          <br/>
-          {{p.phone | phone}}
-          <br/>
-          {{p.email}}
-          <br/><br/>
-        </p>
-      </div>
-      <div ng-switch-when="5">
-        <label>Spouse</label>
+    <div class="form-group col-md-4">
+        <label>Organization Type</label>
         <br/>
         <p class="display-field">
-          {{applicant.spouse | displayname}}
+            {{loan.entity_type}}
+        </p>
+    </div>
+    <div class="form-group col-md-4">
+        <label>Applicant</label>
+        <br/>
+        <p class="display-field">
+          {{loan.applicant.applicant | displayname}}
           <br/>
-          {{applicant.address}}
+          {{loan.applicant.address}}
           <br/>
-          {{applicant.city}}, {{applicant.state_abr}} {{applicant.zip}}
+          {{loan.applicant.city}}, {{applicant.state_abr}} {{applicant.zip}}
           <br/>
-          {{applicant.spouse_phone | phone}}
+          {{loan.applicant.phone | phone}}
           <br/>
-          {{applicant.spouse_email}}
+          {{loan.applicant.email}}
           <br/>
         </p>
-      </div>
     </div>
-  </div>
+
+    <div class="form-group col-md-4">
+        <div ng-switch="loan.entity_type_id">
+          <div ng-switch-when="1">
+            <label>Corporation</label>
+            <br/>
+            <p class="display-field" ng-repeat="c in loan.corporations">
+              {{c.corporation}}
+              <br/>
+              {{c.president}}, (President)
+              <br/>
+              {{c.vicepresident}}, (Vice-President)
+              <br/>
+              {{c.secretary}}, (Secretary)
+              <br/>
+              {{c.treasurer}}, (Treasurer)
+            </p>
+          </div>
+          <div ng-switch-when="3">
+            <label>Joint Venture</label>
+            <br/>
+            <p class="display-field" ng-repeat="j in loan.ventures">
+              {{j.partner}}
+              <br/>
+              {{j.address}}
+              <br/>
+              {{j.city}}, {{j.state_abr}} {{j.zip}}
+              <br/>
+              {{j.phone | phone}}
+              <br/>
+              {{j.email}}
+            </p>
+          </div>
+          <div ng-switch-when="4">
+            <label>Partners</label>
+            <br/>
+            <p class="display-field" ng-repeat="p in loan.partners">
+              {{p.partner}}
+              <br/>
+              {{p.address}}
+              <br/>
+              {{p.city}}, {{p.state_abr}} {{p.zip}}
+              <br/>
+              {{p.phone | phone}}
+              <br/>
+              {{p.email}}
+              <br/><br/>
+            </p>
+          </div>
+          <div ng-switch-when="5">
+            <label>Spouse</label>
+            <br/>
+            <p class="display-field">
+              {{loan.applicant.spouse | displayname}}
+              <br/>
+              {{loan.applicant.address}}
+              <br/>
+              {{loan.applicant.city}}, {{loan.applicant.state_abr}} {{loan.applicant.zip}}
+              <br/>
+              {{loan.applicant.spouse_phone | phone}}
+              <br/>
+              {{loan.applicant.spouse_email}}
+              <br/>
+            </p>
+          </div>
+        </div>
+    </div>
 </div>
 
 <!--Income%/Crops-Irrigation-->
@@ -158,7 +157,7 @@
     <label>Income From Farm</label>
     <br/>
     <p class="display-field">
-        {{quests.income_percent | number:1}}%
+        {{loan.quests.income_percent|flexPercent:1}}
     </p>
   </div>
   <div class="form-group col-md-8">
@@ -171,10 +170,10 @@
 </div>
 
 <!--Income% Explanation-->
-<div class="row" ng-if="quests.income_percent < 100">
+<div class="row" ng-if="loan.quests.income_percent < 100">
   <div class="form-group col-md-12">
     <label>Additional Income</label>
-    <p>{{quests.income_distribution_details}}</p>
+    <p>{{loan.quests.income_distribution_details}}</p>
   </div>
 </div>
 
@@ -191,7 +190,7 @@
     <label>Pesticide Number</label>
     <br/>
     <p class="display-field">
-      {{quests.pesticide_number}}
+      {{loan.quests.pesticide_number}}
     </p>
   </div>
 </div>

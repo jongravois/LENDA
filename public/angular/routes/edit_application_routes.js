@@ -9,11 +9,7 @@
                     url: '/edit/{loantypeID:\\d+}/{loanID:\\d+}',
                     templateUrl: 'angular/loans/edit.loan.shell.html',
                     controller: 'EditLoansController',
-                    resolve: {
-                        InitialData: function (LoansFactory) {
-                            return LoansFactory.getLoans();
-                        }
-                    }
+                    resolve: {}
                 })
                 .state('edit.addendums', {
                     url: '/addendums',

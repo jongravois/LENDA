@@ -74,7 +74,7 @@ class CreateLoansTable extends Migration {
             $table->boolean('conditions_ccl')->default(0);
             $table->boolean('conditions_afsa')->default(0);
             $table->boolean('conditions_cd')->default(0);
-			$table->timestamps();
+            $table->timestamps();
 		});
 	}
 

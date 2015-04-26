@@ -25,7 +25,7 @@
          border="1">
 
     <tr class="landing_header_row">
-      <th rowspan="2">
+      <th rowspan="2" style="width:100px !important;">
         <span ng-show="pending_view"
               ng-click="pending_view = 0; nextOrder(0)"
               class="glyphicon glyphicon-exclamation-sign"
@@ -35,7 +35,7 @@
               class="glyphicon glyphicon-exclamation-sign"
               style="color:#FFF;"></span>
       </th>
-      <th rowspan="2">&nbsp;</th>
+      <th rowspan="2" style="width:140px !important;">&nbsp;</th>
       <th style="width:9%;" rowspan="2" data-ng-click="sortBy='farmer';reverse=!reverse">Farmer</th>
       <th style="width:9%;" rowspan="2" data-ng-click="sortBy='applicant';reverse=!reverse">Applicant</th>
       <th style="width:4%;" rowspan="2" data-ng-click="sortBy='crop_year';reverse=!reverse">Year</th>
@@ -178,7 +178,7 @@
     </tr>
 
     <tr data-ng-repeat="l in loanList | filter:loanFilter | orderBy:orderOption">
-      <td style="width:7% !important;">
+      <td>
           <a href="#/edit/l.loan_type_id}}/{{l.id}}/committee">
             <span tooltip="Vote Needed"
                   tooltip-append-to-body="true"
@@ -221,7 +221,7 @@
 
       </td>
 
-      <td class="text-left" style="width:6% !important;">
+      <td class="text-left">
           <!--ADDENDUM-->
           <span ng-if="user.viewoptions.view_icon_addendum">
             <span class="indicon glyphicon glyphicon-plus"
@@ -286,9 +286,9 @@
           </span>
       </td>
 
-      <td>{{l.farmer}}</td>
+      <td>{{l.farmer.farmer}}</td>
 
-      <td><a href="#/edit/{{l.loan_type_id}}/{{l.id}}/summary">{{l.applicant}}</a></td>
+      <td><a href="#/edit/{{l.loan_type_id}}/{{l.id}}/summary">{{l.applicant.applicant}}</a></td>
 
       <td class="text-center">{{l.crop_year}}</td>
 

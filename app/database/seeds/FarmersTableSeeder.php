@@ -135,7 +135,7 @@ class FarmersTableSeeder extends Seeder{
 
     Farmer::create([
       'user_id' => 16,
-      'farmer' => 'Murdock, Jack',
+      'farmer' => 'Murdock, Matt',
       'nick'	=>	'Daredevil',
       'ssn'	=>	'123456791',
       'address'	=>	'3 Blind Mouse Drive',

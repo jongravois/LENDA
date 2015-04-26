@@ -26,18 +26,18 @@
                 //console.log('flattened', flattened);
 
                 var grped = _.groupBy(flattened, function (item) {
-                    return item.crop;
+                    return item.crop.crop;
                 });
                 $scope.uses = grped;
-                //console.log('grped', grped);
+                console.log('grped', grped);
 
                 $scope.budget_subtotals = _.map(grped, function (item, key) {
                     return item.reduce(function (previous, current) {
-                        previous.acres = current.acres;
-                        previous.arm += current.arm;
-                        previous.dist += current.dist;
-                        previous.other += current.other;
-                        previous.peracre += current.peracre;
+                        previous.acres += Number(current.acres);
+                        previous.arm += Number(current.arm);
+                        previous.dist += Number(current.dist);
+                        previous.other += Number(current.other);
+                        previous.peracre += Number(current.peracre);
                         previous.calc_arm += current.arm * current.acres;
                         previous.calc_dist += current.dist * current.acres;
                         previous.calc_other += current.other * current.acres;

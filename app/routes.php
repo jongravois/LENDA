@@ -128,6 +128,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], 
     Route::get('loans/{id}/commentstatus', 'CommentStatusController@pendingComments');
     Route::get('loans/{id}/committee', 'CommitteeController@byLoan');
     Route::get('loans/{id}/conditions', 'LoanconditionsController@byLoan');
+    Route::get('loans/{loanid}/cropexpenses/{cropid}', 'CropexpensesController@byLoanByCrop');
     Route::get('loans/{id}/corporations', 'CorporationsController@byLoan');
     Route::get('loans/{id}/cropexpenses', 'CropexpensesController@byLoan');
     Route::get('loans/{id}/crops', 'LoancropsController@byLoan');
@@ -135,6 +136,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], 
     Route::get('loans/{id}/distributor', 'LoandistributorController@byLoan');
     Route::get('loans/{id}/exceptions', 'LoanexceptionsController@byLoan');
     Route::get('loans/{id}/expenses/{crop}', 'CropexpensesController@byLoanByCrop');
+    Route::get('loans/{loanid}/farmcrops/{cropid}', 'FarmcropsController@acrop');
     Route::get('loans/{id}/farmcrops', 'FarmcropsController@byLoan');
     Route::get('loans/{id}/farmexpenses', 'FarmexpensesController@byLoan');
     Route::get('loans/{id}/farmpractices', 'FarmpracticesController@byLoan');

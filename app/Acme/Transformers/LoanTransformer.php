@@ -1,13 +1,17 @@
 <?php namespace Acme\Transformers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class LoanTransformer extends Transformer
 {
 
     public function transform($arr)
     {
+        //return $arr;
+
         $dtToday = Carbon::now();
+
         $appDate = $arr['app_date'];
         $defaultDueDate = $arr['default_due_date'];
         $dueDate = $arr['due_date'];
@@ -27,10 +31,16 @@ class LoanTransformer extends Transformer
             $defaultDueDate = $arr['default_due_date']->format('m/d/Y');
         }
 
-        if (!$arr['distributor_approval_date']) {
-            $decision = null;
+        if (!$arr['farmer']['dob']) {
+            $farmer_dob = null;
         } else {
-            $decision = $arr['distributor_approval_date']->format('m/d/Y');
+            $farmer_dob = $arr['farmer']['dob']->format('m/d/Y');
+        }
+
+        if (!$arr['applicant']['dob']) {
+            $applicant_dob = null;
+        } else {
+            $applicant_dob = $arr['applicant']['dob']->format('m/d/Y');
         }
 
         //is_stale
@@ -45,15 +55,33 @@ class LoanTransformer extends Transformer
         } else {
             $decision = $arr['decision_date']->format('m/d/Y');
             $isStale = false;
+            $staleDiff = 0;
         } // end if
 
-        //return $arr;
+        if (!$arr['distributor_approval_date']) {
+            $distDecision = null;
+        } else {
+            $distDecision = $arr['distributor_approval_date']->format('m/d/Y');
+        }
+
+        if (!$arr['loan_closed_date']) {
+            $lnClosed = null;
+        } else {
+            $lnClosed = $arr['loan_closed_date']->format('m/d/Y');
+        }
+
+        //$agencies = DB::table('agencies')->get();
+        //dd($agencies);
+
         return array(
-            'id' => $arr['id'],
+            'id' => (integer) $arr['id'],
             'app_date' => $arr['app_date']->format('m/d/Y'),
+            'distributor_approval_date' => $distDecision,
             'decision_date' => $decision,
+            'loan_closed_date' => $lnClosed,
             'due_date' => $arr['due_date']->format('m/d/Y'),
             'default_due_date' => $defaultDueDate,
+            'stale_days' =>$staleDiff,
             'is_stale' => $isStale,
             'loan_days' => $diff,
             'loan_type_id' => $arr['loan_type_id'],
@@ -70,12 +98,6 @@ class LoanTransformer extends Transformer
             'loc_abr' => $arr['location']['loc_abr'],
             'region_id' => $arr['region_id'],
             'region' => $arr['regions']['region'],
-            'entity_type_id' => $arr['applicants']['entitytype']['id'],
-            'entity_type' => $arr['applicants']['entitytype']['entitytype'],
-            'applicant_id' => $arr['applicant_id'],
-            'applicant' => $arr['applicants']['applicant'],
-            'farmer_id' => (integer)$arr['farmer_id'],
-            'farmer' => $arr['farmer']['farmer'],
             'is_active' => (boolean)$arr['is_active'],
             'is_cross_collateralized' => (boolean)$arr['is_cross_collateralized'],
             'is_fast_tracked' => (boolean)$arr['is_fast_tracked'],
@@ -93,7 +115,7 @@ class LoanTransformer extends Transformer
             'required_3party' => (boolean)$arr['required_3party'],
             'added_land' => (boolean)$arr['added_land'],
             'controlled_disbursement' => (boolean)$arr['controlled_disbursement'],
-            //'attachments' => (boolean) $arr['attachments'],
+            'attachments' => (boolean) $arr['attachments'],
             'its_list' => (integer)$arr['its_list'],
             'fsa_compliant' => (integer)$arr['fsa_compliant'],
             'prev_lien_verified' => (integer)$arr['prev_lien_verified'],
@@ -104,7 +126,6 @@ class LoanTransformer extends Transformer
             'arm_approved' => (integer)$arr['arm_approved'],
             'dist_approved' => (integer)$arr['dist_approved'],
             'loan_closed' => (integer)$arr['loan_closed'],
-            'loan_closed_date' => $arr['loan_closed_date'],
             'arm_balance' => (integer)$arr['arm_balance'],
             'added_land_verified' => (integer)$arr['added_land_verified'],
             'permission_to_insure_verified' => (integer)$arr['permission_to_insure_verified'],
@@ -118,12 +139,57 @@ class LoanTransformer extends Transformer
             'crop_inspection' => (integer)$arr['crop_inspection'],
             'reconciliation' => (integer)$arr['reconciliation'],
             'account_classification' => (integer)$arr['account_classification'],
-            'last_activity' => $arr['updated_at'],
             'analyst' => [
                 'nick' => $arr['user']['nick'],
                 'name' => $arr['user']['username'],
                 'email' => $arr['user']['email']
             ],
+            'farmer' => [
+                'farmer_id' => (integer) $arr['farmer_id'],
+                'farmer' => $arr['farmer']['farmer'],
+                'ssn' => $arr['farmer']['ssn'],
+                'address' => $arr['farmer']['address'],
+                'city' => $arr['farmer']['city'],
+                'state_id' => $arr['farmer']['state_id'],
+                'state_abr' => $arr['farmer']['state']['abr'],
+                'zip' => $arr['farmer']['zip'],
+                'phone' => $arr['farmer']['phone'],
+                'email' => $arr['farmer']['email'],
+                'dob' => $farmer_dob
+            ],
+            'applicant' => [
+                'id' => (integer) $arr['applicant_id'],
+                'applicant' => $arr['applicant']['applicant'],
+                'ssn' => $arr['applicant']['ssn'],
+                'address' => $arr['applicant']['address'],
+                'city' => $arr['applicant']['city'],
+                'state_id' => $arr['applicant']['state_id'],
+                'state_abr' => $arr['applicant']['state']['abr'],
+                'zip' => $arr['applicant']['zip'],
+                'phone' => $arr['applicant']['phone'],
+                'email' => $arr['applicant']['email'],
+                'dob' => $applicant_dob,
+                'spouse' => $arr['applicant']['spouse'],
+                'spouse_ssn' => $arr['applicant']['spouse_ssn'],
+                'spouse_phone' => $arr['applicant']['spouse_phone'],
+                'spouse_email' => $arr['applicant']['spouse_email']
+            ],
+            'entity_type_id' => $arr['applicant']['entitytype']['id'],
+            'entity_type' => $arr['applicant']['entitytype']['entitytype'],
+            'partners' => $arr['partners'],
+            'ventures' => $arr['ventures'],
+            'corporations' => $arr['corporations'],
+            'conditions' => [
+                'asa' => (boolean)$arr['conditions_asa'],
+                'aci' => (boolean)$arr['conditions_aci'],
+                'areb' => (boolean)$arr['conditions_areb'],
+                'adis' => (boolean)$arr['conditions_adis'],
+                'pg' => (boolean)$arr['conditions_pg'],
+                'ccl' => (boolean)$arr['conditions_ccl'],
+                'afsa' => (boolean)$arr['conditions_afsa'],
+                'cd' => (boolean)$arr['conditions_cd']
+            ],
+            'farmcrops' => $arr['farmcrops'],
             'fins' => [
                 'bankruptcy' => (boolean)$arr['financials']['bankruptcy'],
                 'judgements' => (boolean)$arr['financials']['judgements'],
@@ -191,23 +257,10 @@ class LoanTransformer extends Transformer
                 'arm_and_dist' => (double)$arr['financials']['arm_and_dist'],
                 'collateral' => (double)$arr['financials']['collateral']
             ],
-            'insurance' => $arr['insurance'],
-            'crops' => $arr['loancrop'],
-            'conditions' => [
-                'asa' => (boolean)$arr['conditions_asa'],
-                'aci' => (boolean)$arr['conditions_aci'],
-                'areb' => (boolean)$arr['conditions_areb'],
-                'adis' => (boolean)$arr['conditions_adis'],
-                'pg' => (boolean)$arr['conditions_pg'],
-                'ccl' => (boolean)$arr['conditions_ccl'],
-                'afsa' => (boolean)$arr['conditions_afsa'],
-                'cd' => (boolean)$arr['conditions_cd']
-            ],
             'committee' => $arr['committee'],
-            'corporations' => $arr['corporations'],
-            'partners' => $arr['partners'],
-            'ventures' => $arr['ventures'],
-            'comments' => $arr['comments']
+            'comments' => $arr['comments'],
+            'loanconditions' => $arr['loanconditions'],
+            'last_activity' => $arr['updated_at']
         );
     }
 
