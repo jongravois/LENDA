@@ -4,29 +4,26 @@
         .module('ARM')
         .controller('FarmersController', FarmersController);
 
-    FarmersController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'AppFactory', 'FarmersFactory', 'ExceptionsFactory', 'LoansFactory', 'InitialData'];
+    FarmersController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'AppFactory', 'FarmersFactory', 'ExceptionsFactory', 'LoansFactory'];
 
-    function FarmersController($scope, $state, $stateParams, toastr, AppFactory, FarmersFactory, ExceptionsFactory, LoansFactory, InitialData) {
-        var curr = $state.current.url;
-        var currScreen = curr.substring(1, curr.length);
-        $scope.newapplication = $state.current.data.newapplication;
+    function FarmersController($scope, $state, $stateParams, toastr, AppFactory, FarmersFactory, ExceptionsFactory, LoansFactory) {
+        activate();
 
-        if ($scope.newapplication && $scope.screens) {
-            angular.forEach($scope.screens, function (obj) {
-                if (obj.screen === currScreen) {
-                    obj.status = 1;
-                }
-            });
-        }// end if
+        function activate() {
+            var curr = $state.current.url;
+            var currScreen = curr.substring(1, curr.length);
+            $scope.newapplication = $state.current.data.newapplication;
 
-        $scope.loan = $scope.loan || InitialData.data.data[0];
-
-        if ($scope.loan.farmer_id) {
-            FarmersFactory.getFarmer($scope.loan.farmer_id)
-                .then(function success(rsp) {
-                    $scope.farmer = rsp.data.data;
+            if ($scope.newapplication && $scope.screens) {
+                angular.forEach($scope.screens, function (obj) {
+                    if (obj.screen === currScreen) {
+                        obj.status = 1;
+                    }
                 });
-        } else {
+            }// end if
+        }
+
+        if (!$scope.loan.farmer_id) {
             $scope.farmer = {
                 new_client: true
             };

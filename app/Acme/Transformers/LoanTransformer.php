@@ -155,7 +155,9 @@ class LoanTransformer extends Transformer
                 'zip' => $arr['farmer']['zip'],
                 'phone' => $arr['farmer']['phone'],
                 'email' => $arr['farmer']['email'],
-                'dob' => $farmer_dob
+                'dob' => $farmer_dob,
+                'first_year_farmer' => $arr['farmer']['first_year_farmer'],
+                'readable_exp' => Carbon::createFromDate($arr['farmer']['first_year_farmer'])->age . ' years'
             ],
             'applicant' => [
                 'id' => (integer) $arr['applicant_id'],
