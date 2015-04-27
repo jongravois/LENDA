@@ -4,80 +4,68 @@
         .module('ARM')
         .controller('TermsController', TermsController);
     
-        TermsController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'ExceptionsFactory', 'GlobalsFactory', 'LoansFactory'];
+        TermsController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'ExceptionsFactory', 'GlobalsFactory', 'LoansFactory'];
     
         function TermsController(
-            $scope, $state, $stateParams, InitialData, AppFactory, ExceptionsFactory, GlobalsFactory, LoansFactory
+            $scope, $state, $stateParams, AppFactory, ExceptionsFactory, GlobalsFactory, LoansFactory
         ){
-            var curr = $state.current.url;
-            var currScreen = curr.substring(1, curr.length);
-            $scope.newapplication = $state.current.data.newapplication;
+            activate();
 
-            if ($scope.newapplication && $scope.screens) {
-                angular.forEach($scope.screens, function (obj) {
-                    if (obj.screen === currScreen) {
-                        obj.status = 1;
-                    }
-                });
-            }// end if
+            function activate() {
+                var curr = $state.current.url;
+                var currScreen = curr.substring(1, curr.length);
+                $scope.newapplication = $state.current.data.newapplication;
 
-            $scope.loan = $scope.loan || InitialData.data.data[0];
+                if ($scope.newapplication && $scope.screens) {
+                    angular.forEach($scope.screens, function (obj) {
+                        if (obj.screen === currScreen) {
+                            obj.status = 1;
+                        }
+                    });
+                }// end if
+            }
 
-            GlobalsFactory.getGlobals()
-                .then(function success(rsp) {
-                    var globals = rsp.data;
-                    $scope.globals = globals[0];
-                });
+            //TODO: Set to default on creation and trigger exception if changed
+            if ($scope.loan.fins.fee_service_percent === 0) {
+                $scope.loan.fins.fee_service_percent = $scope.globals.svc_fee_rate;
+            }
 
-            LoansFactory.getFinancials($stateParams.loanID)
-                .then(function success(rsp) {
-                    var sng = rsp.data.data[0];
+            if (!$scope.loan.fins.fee_processing_percent) {
+                $scope.loan.fins.fee_processing_percent = $scope.globals.proc_fee_rate;
+            }
 
-                    //TODO: Set to default on creation and trigger exception if changed
-                    if (sng.fee_service_percent === 0) {
-                        sng.fee_service_percent = $scope.globals.svc_fee_rate;
-                    }
+            if (!$scope.loan.fins.int_percent_arm) {
+                $scope.loan.fins.int_percent_arm = $scope.globals.int_percent_arm;
+            }
 
-                    if (!sng.fee_processing_percent) {
-                        sng.fee_processing_percent = $scope.globals.proc_fee_rate;
-                    }
+            if (!$scope.loan.fins.int_percent_dist) {
+                $scope.loan.fins.int_percent_dist = $scope.globals.int_percent_dist;
+            }
 
-                    if (!sng.int_percent_arm) {
-                        sng.int_percent_arm = $scope.globals.int_percent_arm;
-                    }
+            /** CALCULATIONS */
+            // Processing Fee
+            if (($scope.loan_type_id === 2 || $scope.loan_type_id === 6) && $scope.loan.fins.fee_processing_onTotal) {
+                $scope.loan.fins.proc_fee = ($scope.loan.fins.fee_processing_percent / 100) * ($scope.loan.fins.commit_arm + $scope.loan.fins.commit_dist);
+            } else {
+                $scope.loan.fins.proc_fee = ($scope.loan.fins.fee_processing_percent / 100) * $scope.loan.fins.commit_arm;
+            } // end if
 
-                    if (!sng.int_percent_dist) {
-                        sng.int_percent_dist = $scope.globals.int_percent_dist;
-                    }
+            if ($scope.loan.fins.proc_fee < $scope.globals.min_proc_fee) {
+                $scope.loan.fins.proc_fee = $scope.globals.min_proc_fee;
+            } // end if
 
-                    /**
-                     * CALCULATIONS
-                     */
-                    // Processing Fee
-                    if (($scope.loan_type_id === 2 || $scope.loan_type_id === 6) && sng.fee_processing_onTotal) {
-                        sng.proc_fee = (sng.fee_processing_percent / 100) * (sng.commit_arm + sng.commit_dist);
-                    } else {
-                        sng.proc_fee = (sng.fee_processing_percent / 100) * sng.commit_arm;
-                    } // end if
+            // Service Fee
+            if (($scope.loan.loan_type_id === 2 || $scope.loan.loan_type_id === 6) && $scope.loan.fins.fee_service_onTotal) {
+                $scope.loan.fins.srvc_fee = ($scope.loan.fins.fee_service_percent / 100) * ($scope.loan.fins.commit_arm + $scope.loan.fins.commit_dist);
+            } else {
+                $scope.loan.fins.srvc_fee = ($scope.loan.fins.fee_service_percent / 100) * $scope.loan.fins.commit_arm;
+            } // end if
 
-                    if (sng.proc_fee < $scope.globals.min_proc_fee) {
-                        sng.proc_fee = $scope.globals.min_proc_fee;
-                    } // end if
+            // ARM Interest
+            $scope.loan.fins.int_arm = ((Number($scope.loan.loan_days) / 365) * 0.5) * (Number($scope.loan.fins.int_percent_arm) / 100) * Number($scope.loan.fins.commit_arm);
 
-                    // Service Fee
-                    if (($scope.loan.loan_type_id === 2 || $scope.loan.loan_type_id === 6) && sng.fee_service_onTotal) {
-                        sng.srvc_fee = (sng.fee_service_percent / 100) * (sng.commit_arm + sng.commit_dist);
-                    } else {
-                        sng.srvc_fee = (sng.fee_service_percent / 100) * sng.commit_arm;
-                    } // end if
-
-                    // ARM Interest
-                    sng.int_arm = ((Number($scope.loan.loan_days) / 365) * 0.5) * (Number(sng.int_percent_arm) / 100) * Number(sng.commit_arm);
-
-                    // Distributor Interest
-                    sng.int_dist = ((Number($scope.loan.loan_days) / 365) * 0.5) * (Number(sng.int_percent_dist) / 100) * Number(sng.commit_dist);
-                    $scope.loan.fins = sng;
-                });
+            // Distributor Interest
+            $scope.loan.fins.int_dist = ((Number($scope.loan.loan_days) / 365) * 0.5) * (Number($scope.loan.fins.int_percent_dist) / 100) * Number($scope.loan.fins.commit_dist);
 
             $scope.insertTerms = function () {
                 var calcTerms = {
@@ -113,11 +101,27 @@
                 }
             };
             $scope.updateTerms = function () {
+                var calcTerms = {
+                    fee_processing: $scope.loan.fins.fee_processing_percent,
+                    proc_fee: $scope.loan.fins.proc_fee,
+                    proc_fee_arm_only: $scope.loan.fins.proc_fee_arm_only,
+                    fee_processing_on_total: $scope.loan.fins.fee_processing_onTotal,
+                    fee_service: $scope.loan.fins.fee_service_percent,
+                    srvc_fee: $scope.loan.fins.srvc_fee,
+                    srvc_fee_arm_only: $scope.loan.fins.srvc_fee_arm_only,
+                    fee_service_on_total: $scope.loan.fins.fee_service_onTotal,
+                    fee_total: Number($scope.loan.fins.proc_fee) + Number($scope.loan.fins.srvc_fee),
+                    int_percent_arm: $scope.loan.fins.int_percent_arm,
+                    int_arm: $scope.loan.fins.int_arm,
+                    int_percent_dist: $scope.loan.fins.int_percent_dist,
+                    int_dist: $scope.loan.fins.int_dist
+                };
+
                 checkExceptions();
 
                 AppFactory.patchIt('/loans/', $scope.loan.id, {due_date: moment($scope.loan.due_date).format('YYYY-MM-DD')});
 
-                AppFactory.putIt('/loanfinancials/', $scope.loan.id, calcTerms());
+                AppFactory.putIt('/loanfinancials/', $scope.loan.id, calcTerms);
             }; // end updateTerms
 
             function checkExceptions() {
