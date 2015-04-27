@@ -36,18 +36,15 @@ class LoanfinancialsController extends ApiController {
 	{
 		$loanfinancial = Loanfinancials::where('id', $id)->get();
 
-		if( $loanfinancial->isEmpty() ){
-			return $this->respondNotFound('Loanfinancial does not exist.');
-		} // end if
+        if( $loanfinancial->isEmpty() ){
+            return $this->respond([
+                'data' => []
+            ]);
+        } // end if
 
 		return $this->respond([
 			'data' => $this->loanfinancialsTransformer->transform($loanfinancial[0])
 		]);
-	}
-
-	public function edit($id)
-	{
-		//
 	}
 
 	public function update($id)
@@ -66,7 +63,7 @@ class LoanfinancialsController extends ApiController {
 
 	public function destroy($id)
 	{
-		return Loanfinancial::where('id', $id)->delete();
+		return Loanfinancials::where('id', $id)->delete();
 	}
 
 	public function byLoan($id)

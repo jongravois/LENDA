@@ -14,15 +14,15 @@
     </div>
     <div class="col-md-4 text-right" style="color:white;margin-top:5px;">
         <span ng-if="loan.loan_type_id != 7">
-        CF: {{loan.fins.cash_flow | noCentsCurrency}}
+        CF: {{AppFactory.monitorCashFlow(loan)|flexCurrency:0}}
         &nbsp;&nbsp;|&nbsp;&nbsp;
       </span>
       <span ng-if="loan.loan_type_id != 3 && loan.loan_type_id != 4">
-        RM: {{loan.fins.risk | noCentsCurrency}}
+        RM: {{AppFactory.monitorRiskMargin(loan)|flexCurrency:0}}
       </span>
       <span ng-if="loan.loan_type_id == 3 || loan.loan_type_id == 4">
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <sub>adj</sub>RM: {{loan.fins.risk_adj | noCentsCurrency}}
+        <sub>adj</sub>RM: {{AppFactory.monitorAdjustedRisk(loan)|flexCurrency:0}}
       </span>
     </div>
   </div>
@@ -44,13 +44,13 @@
   <div class="row">
     <div class="col-md-2">
       <div>
-        <div ng-if="loantypeID == 1" ng-include="'angular/layout/sidebars/allIn.html'"></div>
-        <div ng-if="loantypeID == 2" ng-include="'angular/layout/sidebars/agInput.html'"></div>
-        <div ng-if="loantypeID == 3" ng-include="'angular/layout/sidebars/agPro.html'"></div>
-        <div ng-if="loantypeID == 4" ng-include="'angular/layout/sidebars/agProFasttrack.html'"></div>
-        <div ng-if="loantypeID == 5" ng-include="'angular/layout/sidebars/capitalBridge.html'"></div>
-        <div ng-if="loantypeID == 6" ng-include="'angular/layout/sidebars/agVest.html'"></div>
-        <div ng-if="loantypeID == 7" ng-include="'angular/layout/sidebars/grainStorage.html'"></div>
+        <div ng-if="loan.loan_type_id == 1" ng-include="'angular/layout/sidebars/allIn.html'"></div>
+        <div ng-if="loan.loan_type_id == 2" ng-include="'angular/layout/sidebars/agInput.html'"></div>
+        <div ng-if="loan.loan_type_id == 3" ng-include="'angular/layout/sidebars/agPro.html'"></div>
+        <div ng-if="loan.loan_type_id == 4" ng-include="'angular/layout/sidebars/agProFasttrack.html'"></div>
+        <div ng-if="loan.loan_type_id == 5" ng-include="'angular/layout/sidebars/capitalBridge.html'"></div>
+        <div ng-if="loan.loan_type_id == 6" ng-include="'angular/layout/sidebars/agVest.html'"></div>
+        <div ng-if="loan.loan_type_id == 7" ng-include="'angular/layout/sidebars/grainStorage.html'"></div>
       </div>
     </div>
     <div class="col-md-10">

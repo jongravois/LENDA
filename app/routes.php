@@ -47,6 +47,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], 
     Route::resource('affiliates', 'AffiliatesController');
     Route::resource('agencies', 'AgenciesController');
     Route::resource('agents', 'AgentsController');
+    Route::resource('applicantfinancials', 'ApplicantfinancialsController');
     Route::resource('applicants', 'ApplicantsController');
     Route::resource('attachments', 'AttachmentsController');
     Route::resource('calendars', 'CalendarController');
@@ -121,7 +122,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], 
     Route::get('loancrops/{id}/expenses', 'BudgetController@expenseByCrop');
     Route::get('loans/{id}/addendums', 'AddloansController@byLoan');
     Route::get('loans/{id}/acres', 'LoancropsController@allAcres');
-    Route::get('loans/{id}/affiliates', 'AffiliatesController@byLoan');
+    Route::get('loans/{id}/appfins', 'ApplicationfinancialsController@byLoan');
     Route::get('loans/{id}/attachments', 'AttachmentsController@byLoan');
     Route::get('loans/{id}/budget', 'BudgetController@index');
     Route::get('loans/{id}/comments', 'CommentController@byLoan');

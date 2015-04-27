@@ -8,6 +8,7 @@
 
     /* @ngInject */
     function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, AppFactory, ApplicantsFactory, ExceptionsFactory, FarmersFactory, LoansFactory, LoansProcessor) {
+        $scope.AppFactory = AppFactory;
 
         activate();
 

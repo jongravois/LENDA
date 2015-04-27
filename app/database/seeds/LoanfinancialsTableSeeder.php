@@ -7,10 +7,6 @@ class LoanfinancialsTableSeeder extends Seeder {
 		//2 - Ag-Input
 		Loanfinancials::create([
 			'loan_id' => 1,
-			'cpa_financials' => 1,
-			'credit_score' => 730,
-			'experience' => 36,
-			'grade' => 'B',
 			'amount_requested' => 2750000,
 			'collateral_equipment' => 300000,
 			'collateral_realestate' => 500000,
@@ -53,39 +49,12 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'balance_paid' => 0,
 			'remaining_balance' => 342262.767,
 			'cash_flow' => 61412.76,
-			'risk' => -7575.84,
-			'year_1_revenue' => 1842701,
-			'year_1_expenses' => 1000000,
-			'year_2_revenue' => 1937418,
-			'year_2_expenses' => 900000,
-			'year_3_revenue' => 2845790,
-			'year_3_expenses' => 800000,
-			'current_assets' => 1555079,
-			'current_assets_factor' => 15,
-			'current_assets_liability' => 410285,
-			'intermediate_assets' => 2831750,
-			'intermediate_assets_factor' => 40,
-			'intermediate_assets_liability' => 776456,
-			'fixed_assets' => 3590675,
-			'fixed_assets_factor' => 25,
-			'fixed_assets_liability' => 1246794,
-			'debt2asset_ratio' => 31,
-            'debt2asset_ratio_adj' => 43,
-            'ratio_current' => 379,
-            'ratio_current_adj' => 322,
-            'capWork' => 114,
-            'capWork_adj' => 91,
-            'capBorrow' => 69,
-            'capBorrow_adj' => 57
+			'risk' => -7575.84
 		]);
 
 		//5 - Capital Bridge
 		Loanfinancials::create([
 			'loan_id' => 2,
-			'cpa_financials' => 1,
-			'credit_score' => 730,
-			'experience' => 2,
-			'grade' => 'D',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
@@ -127,31 +96,12 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'remaining_balance' => 311147.97,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
-			'risk_adj' => 200000,
-			'year_1_revenue' => 1842701,
-			'year_1_expenses' => 1000000,
-			'year_2_revenue' => 1937418,
-			'year_2_expenses' => 900000,
-			'year_3_revenue' => 2845790,
-			'year_3_expenses' => 800000,
-			'current_assets' => 1555079,
-			'current_assets_factor' => 15,
-			'current_assets_liability' => 410285,
-			'intermediate_assets' => 2831750,
-			'intermediate_assets_factor' => 40,
-			'intermediate_assets_liability' => 776456,
-			'fixed_assets' => 3590675,
-			'fixed_assets_factor' => 25,
-			'fixed_assets_liability' => 1246794
+			'risk_adj' => 200000
 		]);
 
 		//4 - Ag-Pro Fasttrack
 		Loanfinancials::create([
 			'loan_id' => 3,
-			'cpa_financials' => 1,
-			'credit_score' => 730,
-			'experience' => 3,
-			'grade' => 'C',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
@@ -193,31 +143,12 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'remaining_balance' => 311147.97,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
-			'risk_adj' => 110,
-			'year_1_revenue' => 1842701,
-			'year_1_expenses' => 1000000,
-			'year_2_revenue' => 1937418,
-			'year_2_expenses' => 900000,
-			'year_3_revenue' => 2845790,
-			'year_3_expenses' => 800000,
-			'current_assets' => 1555079,
-			'current_assets_factor' => 15,
-			'current_assets_liability' => 410285,
-			'intermediate_assets' => 2831750,
-			'intermediate_assets_factor' => 40,
-			'intermediate_assets_liability' => 776456,
-			'fixed_assets' => 3590675,
-			'fixed_assets_factor' => 25,
-			'fixed_assets_liability' => 1246794
+			'risk_adj' => 110
 		]);
 
 		//6 - Ag-Vest
 		Loanfinancials::create([
 			'loan_id' => 4,
-			'cpa_financials' => 1,
-			'credit_score' => 730,
-			'experience' => 36,
-			'grade' => 'B',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
@@ -259,31 +190,12 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'remaining_balance' => 311147.97,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
-			'risk_adj' => 50000,
-			'year_1_revenue' => 1842701,
-			'year_1_expenses' => 1000000,
-			'year_2_revenue' => 1937418,
-			'year_2_expenses' => 900000,
-			'year_3_revenue' => 2845790,
-			'year_3_expenses' => 800000,
-			'current_assets' => 1555079,
-			'current_assets_factor' => 15,
-			'current_assets_liability' => 410285,
-			'intermediate_assets' => 2831750,
-			'intermediate_assets_factor' => 40,
-			'intermediate_assets_liability' => 776456,
-			'fixed_assets' => 3590675,
-			'fixed_assets_factor' => 25,
-			'fixed_assets_liability' => 1246794
+			'risk_adj' => 50000
 		]);
 
 		//3 - Ag-Pro
 		Loanfinancials::create([
 			'loan_id' => 5,
-			'cpa_financials' => 1,
-			'credit_score' => 770,
-			'experience' => 25,
-			'grade' => 'A',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
@@ -325,31 +237,12 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'remaining_balance' => 311147.97,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
-			'risk_adj' => 90910,
-			'year_1_revenue' => 1842701,
-			'year_1_expenses' => 1000000,
-			'year_2_revenue' => 1937418,
-			'year_2_expenses' => 900000,
-			'year_3_revenue' => 2845790,
-			'year_3_expenses' => 800000,
-			'current_assets' => 1555079,
-			'current_assets_factor' => 15,
-			'current_assets_liability' => 410285,
-			'intermediate_assets' => 2831750,
-			'intermediate_assets_factor' => 40,
-			'intermediate_assets_liability' => 776456,
-			'fixed_assets' => 3590675,
-			'fixed_assets_factor' => 25,
-			'fixed_assets_liability' => 1246794
+			'risk_adj' => 90910
 		]);
 
 		//1 - All-In
 		Loanfinancials::create([
 			'loan_id' => 6,
-			'cpa_financials' => 1,
-			'credit_score' => 730,
-			'experience' => 36,
-			'grade' => 'B',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
@@ -391,22 +284,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'remaining_balance' => 311147.97,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
-			'risk_adj' => 2134,
-			'year_1_revenue' => 1842701,
-			'year_1_expenses' => 1000000,
-			'year_2_revenue' => 1937418,
-			'year_2_expenses' => 900000,
-			'year_3_revenue' => 2845790,
-			'year_3_expenses' => 800000,
-			'current_assets' => 1555079,
-			'current_assets_factor' => 15,
-			'current_assets_liability' => 410285,
-			'intermediate_assets' => 2831750,
-			'intermediate_assets_factor' => 40,
-			'intermediate_assets_liability' => 776456,
-			'fixed_assets' => 3590675,
-			'fixed_assets_factor' => 25,
-			'fixed_assets_liability' => 1246794
+			'risk_adj' => 2134
 		]);
 
 		//7 - Grain-Storage
@@ -440,10 +318,6 @@ class LoanfinancialsTableSeeder extends Seeder {
 		//2 - Ag-Input
 		Loanfinancials::create([
 			'loan_id' => 8,
-			'cpa_financials' => 1,
-			'credit_score' => 730,
-			'experience' => 9,
-			'grade' => 'D',
 			'amount_requested' 	=> 25000000,
 			'guaranty' => 259465.97,
 			'prod' => 359237.87,
@@ -484,22 +358,7 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'balance_paid' => 0,
 			'remaining_balance' => 311147.97,
 			'cash_flow' => 34118.20,
-			'risk' => -4208.80,
-			'year_1_revenue' => 1842701,
-			'year_1_expenses' => 1000000,
-			'year_2_revenue' => 1937418,
-			'year_2_expenses' => 900000,
-			'year_3_revenue' => 2845790,
-			'year_3_expenses' => 800000,
-			'current_assets' => 1555079,
-			'current_assets_factor' => 15,
-			'current_assets_liability' => 410285,
-			'intermediate_assets' => 2831750,
-			'intermediate_assets_factor' => 40,
-			'intermediate_assets_liability' => 776456,
-			'fixed_assets' => 3590675,
-			'fixed_assets_factor' => 25,
-			'fixed_assets_liability' => 1246794
+			'risk' => -4208.80
 		]);
 	}
 }

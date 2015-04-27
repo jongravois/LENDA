@@ -6,7 +6,7 @@ class LoansTableSeeder extends Seeder
 {
     public function run()
     {
-        // Tony Stark(1) @ Glass Towers(2) | Partnership(4)--Ag-Input 2015
+        // Tony Stark(1) @ Glass Towers(1) | Partnership(4)--Ag-Input 2015
         Loan::create([
             'applicant_id' => 1,
             'app_date' => '01/03/2015',

@@ -8,6 +8,7 @@
 
     function MainController($scope, $state, $q, toastr, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersFactory) {
         $scope.user_id = $('#user_id').data('id');
+        $scope.AppFactory = AppFactory;
 
         activate();
 

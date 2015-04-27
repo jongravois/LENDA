@@ -38,6 +38,9 @@
             gtZero: gtZero,
             inArray: inArray,
             moveToNextNewLoanScreen: moveToNextNewLoanScreen,
+            monitorAdjustedRisk: monitorAdjustedRisk,
+            monitorCashFlow: monitorCashFlow,
+            monitorRiskMargin: monitorRiskMargin,
             patchIt: patchIt,
             postIt: postIt,
             putIt: putIt,
@@ -573,6 +576,24 @@
                         $state.go('edit.summary', $stateParams);
                     }
                 });
+        }
+
+        function monitorAdjustedRisk(loan) {
+            var old_adj_risk = Number(loan.fins.risk_adj);
+            var adj_risk = Number(loan.fins.risk_adj);
+            return adj_risk;
+        }
+
+        function monitorCashFlow(loan) {
+            var old_cash_flow = Number(loan.fins.cash_flow);
+            var cash_flow = Number(loan.fins.cash_flow);
+            return cash_flow;
+        }
+
+        function monitorRiskMargin(loan) {
+            var old_risk_margin = Number(loan.fins.risk);
+            var risk_margin = Number(loan.fins.risk);
+            return risk_margin;
         }
 
         function patchIt(end, id, data) {
