@@ -4,11 +4,10 @@
         .module('ARM')
         .controller('UnderwritingController', UnderwritingController);
 
-    UnderwritingController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'InsuranceFactory', 'InitialData', 'AddendumsFactory', 'LoansFactory'];
+    UnderwritingController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'InsuranceFactory', 'AddendumsFactory', 'LoansFactory'];
 
-    function UnderwritingController($scope, $state, $stateParams, AppFactory, InsuranceFactory, InitialData, AddendumsFactory, LoansFactory) {
-        $scope.loan = $scope.loan || InitialData.data.data[0];
-        $scope.insurance = $scope.insurance || InsuranceFactory.data;
+    function UnderwritingController($scope, $state, $stateParams, AppFactory, InsuranceFactory, AddendumsFactory, LoansFactory) {
+
         $scope.newCondition = {
             crop_year: $scope.loan.crop_year,
             loan_id: $stateParams.loanID,
