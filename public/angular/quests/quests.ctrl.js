@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('QuestsController', QuestsController);
 
-    QuestsController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'ExceptionsFactory', 'LoansFactory', 'QuestsFactory'];
+    QuestsController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'ExceptionsFactory', 'LoansFactory', 'QuestsFactory'];
 
-    function QuestsController($scope, $state, $stateParams, InitialData, AppFactory, ExceptionsFactory, LoansFactory, QuestsFactory) {
+    function QuestsController($scope, $state, $stateParams, AppFactory, ExceptionsFactory, LoansFactory, QuestsFactory) {
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
         $scope.newapplication = $state.current.data.newapplication;
