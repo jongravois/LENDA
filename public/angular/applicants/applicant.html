@@ -6,15 +6,15 @@
     <div class="form_group col-md-8">
       <label>Name (Last Name, First Name or Company):</label>
       <br/>
-        <input type="text" ng-model="applicant.applicant" class="form-control"/>
+        <input type="text" ng-model="loan.applicant.applicant" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>Entity Type</label><br>
-      <input type="radio" name="entity_type_id" ng-model="applicant.entity_id" value="2"/> <label>I</label>&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" name="entity_type_id" ng-model="applicant.entity_id" value="5"/> <label>S</label>&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" name="entity_type_id" ng-model="applicant.entity_id" value="4"/> <label>P</label>&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" name="entity_type_id" ng-model="applicant.entity_id" value="3"/> <label>J</label>&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" name="entity_type_id" ng-model="applicant.entity_id" value="1"/> <label>C</label>
+      <input type="radio" name="entity_type_id" ng-model="loan.entity_type_id" value="2"/> <label>I</label>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" name="entity_type_id" ng-model="loan.entity_type_id" value="5"/> <label>S</label>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" name="entity_type_id" ng-model="loan.entity_type_id" value="4"/> <label>P</label>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" name="entity_type_id" ng-model="loan.entity_type_id" value="3"/> <label>J</label>&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" name="entity_type_id" ng-model="loan.entity_type_id" value="1"/> <label>C</label>
     </div>
   </div>
   <!-- APPLICANT / SSN / DOB -->
@@ -24,24 +24,24 @@
     <div class="form-group col-md-5">
       <label>Mailing Address:</label>
       <br/>
-        <input type="text" name="address" ng-model="applicant.address" class="form-control"/>
+        <input type="text" name="address" ng-model="loan.applicant.address" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>City:</label>
       <br/>
-        <input type="text" name="city" ng-model="applicant.city" class="form-control"/>
+        <input type="text" name="city" ng-model="loan.applicant.city" class="form-control"/>
     </div>
     <div class="form-group col-md-2">
       <label>State:</label>
       <br/>
-        <select name="state" ng-model="applicant.state_id" class="form-control" ng-options="s.id as s.state for s in feeder.states">
+        <select name="state" ng-model="loan.applicant.state_id" class="form-control" ng-options="s.id as s.state for s in feeder.states">
             <option value="">Please select ...</option>
         </select>
     </div>
     <div class="form-group col-md-2">
       <label>Zip:</label>
       <br/>
-        <input type="text" name="zip" ng-model="applicant.zip" class="form-control"/>
+        <input type="text" name="zip" ng-model="loan.applicant.zip" class="form-control"/>
     </div>
   </div>
   <!-- ADDRESS / PHONE -->
@@ -51,22 +51,22 @@
     <div class="form-group col-md-5">
       <label>Phone:</label>
       <br/>
-        <input type="text" name="phone" ui-mask="(999) 999-9999" ng-model="applicant.phone" class="form-control"/>
+        <input type="text" name="phone" ui-mask="(999) 999-9999" ng-model="loan.applicant.phone" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>Email Address:</label>
       <br/>
-        <input type="text" name="email" ng-model="applicant.email" class="form-control"/>
+        <input type="text" name="email" ng-model="loan.applicant.email" class="form-control"/>
     </div>
     <div class="form-group col-md-2">
       <label>SSN / Tax ID Number:</label>
       <br/>
-        <input type="text" name="ssn" ng-model="applicant.ssn" class="form-control"/>
+        <input type="text" name="ssn" ng-model="loan.applicant.ssn" class="form-control"/>
     </div>
     <div class="form-group col-md-2">
       <label>DOB or Incorporation:</label>
       <br/>
-        <input type="text" name="dob" ui-mask="99/99/9999" ng-model="applicant.dob" class="form-control" style="width: 120px;"/>
+        <input type="text" name="dob" ui-mask="99/99/9999" ng-model="loan.applicant.dob" class="form-control" style="width: 120px;"/>
     </div>
   </div>
   <!-- PHONE / EMAIL / SSN / DOB -->
@@ -76,22 +76,22 @@
     <div class="form-group col-md-3">
       <label>Spouse</label>
       <br/>
-        <input type="text" name="spouse" ng-model="applicant.spouse" class="form-control"/>
+        <input type="text" name="spouse" ng-model="loan.applicant.spouse" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>Spouse SSN:</label>
       <br/>
-        <input type="text" name="spouse_ssn" ng-model="applicant.spouse_ssn" ui-mask="999-99-9999" class="form-control"/>
+        <input type="text" name="spouse_ssn" ng-model="loan.applicant.spouse_ssn" ui-mask="999-99-9999" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>Spouse Phone:</label>
       <br/>
-        <input type="text" name="spouse_phone" ui-mask="(999) 999-9999" ng-model="applicant.spouse_phone" class="form-control"/>
+        <input type="text" name="spouse_phone" ui-mask="(999) 999-9999" ng-model="loan.applicant.spouse_phone" class="form-control"/>
     </div>
     <div class="form-group col-md-3">
       <label>Spouse Email:</label>
       <br/>
-        <input type="text" name="spouse_email" ng-model="applicant.spouse_email" class="form-control"/>
+        <input type="text" name="spouse_email" ng-model="loan.applicant.spouse_email" class="form-control"/>
     </div>
 
   </div>
@@ -110,9 +110,9 @@
   </div>
 </fieldset>
 <br/><br/>
-<fieldset ng-show="applicant.entity_id == '1'">
+<fieldset ng-show="loan.entity_type_id == '1'">
   <legend>CORPORATION INFORMATION</legend>
-  <div ng-repeat="c in corps">
+  <div ng-repeat="c in loan.corporations">
     <div class="row">
       <div class="form-group col-md-4">
         <label>President (Last, First, MI):</label>
@@ -146,7 +146,7 @@
   </div>
 </fieldset>
 
-<fieldset ng-show="applicant.entity_id == '3'">
+<fieldset ng-show="loan.entity_type_id == '3'">
   <legend>JOINT VENTURES INFORMATION</legend>
   <table id="tblCosigner" class="tblLanding" style="width:96%; margin:0 auto;">
     <tr class="landing_data_row">
@@ -163,7 +163,7 @@
       <th style="width:10%;" data-ng-click="doSort('Email')">Email</th>
       <th style="width:5%;">&nbsp;</th>
     </tr>
-    <tr ng-repeat="p in joints" class="landing_data_row">
+    <tr ng-repeat="p in loan.ventures" class="landing_data_row">
       <td>
         <text-edit-in-place value="p.partner"></text-edit-in-place>
       </td>
@@ -182,14 +182,14 @@
         </span>
       </td>
     </tr>
-    <tr ng-if="loan.joints.length == 0" class="landing_data_row">
+    <tr ng-if="loan.ventures.length == 0" class="landing_data_row">
       <td colspan="6"><b>No joint ventures found!</b></td>
     </tr>
   </table>
   </div>
 </fieldset>
 
-<fieldset ng-show="applicant.entity_id == '4'">
+<fieldset ng-show="loan.entity_type_id == '4'">
   <legend>PARTNER INFORMATION</legend>
   <table id="tblPartner" class="tblLanding" style="width:96%; margin:0 auto;">
     <tr class="landing_data_row">
@@ -206,7 +206,7 @@
       <th style="width:10%;" data-ng-click="doSort('Email')">Email</th>
       <th style="width:5%;">&nbsp;</th>
     </tr>
-    <tr ng-repeat="p in partners" class="landing_data_row">
+    <tr ng-repeat="p in loan.partners" class="landing_data_row">
       <td>
         <text-edit-in-place value="p.partner"></text-edit-in-place>
       </td>
