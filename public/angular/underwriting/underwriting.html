@@ -12,8 +12,8 @@
 
     <!--<div class="col-md-12" style="padding-left:20px;">-->
 
-      <p class="lg-text" ng-if="loanExceptions.length == 0">This loan has no exceptions.</p>
-      <p class="lg-text" ng-repeat="e in loanExceptions">
+      <p class="lg-text" ng-if="loan.exceptions.length == 0">This loan has no exceptions.</p>
+      <p class="lg-text" ng-repeat="e in loan.exceptions">
         <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>&nbsp;{{e.msg}}
       </p>
       <!--<button ng-click="createExceptions()">Exceptions</button>-->

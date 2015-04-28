@@ -61,7 +61,7 @@
                 })
                 .state('edit.crops', {
                     url: '/crops',
-                    templateUrl: 'angular/crops/editcrops.html',
+                    templateUrl: 'angular/crops/crops.html',
                     controller: 'CropsController',
                     data: {newapplication: false}
                 })
@@ -91,13 +91,13 @@
                 })
                 .state('edit.farms', {
                     url: '/farms',
-                    templateUrl: 'angular/farms/editfarms.html',
+                    templateUrl: 'angular/farms/farms.html',
                     controller: 'FarmsController',
                     data: {newapplication: false}
                 })
                 .state('edit.financials', {
                     url: '/financials',
-                    templateUrl: 'angular/financials/editfinancials.html',
+                    templateUrl: 'angular/financials/financials.html',
                     controller: 'FinancialsController',
                     data: {newapplication: false}
                 })
@@ -115,7 +115,7 @@
                 })
                 .state('edit.plannedcrops', {
                     url: '/plannedcrops',
-                    templateUrl: 'angular/crops/editplannedcrops.html',
+                    templateUrl: 'angular/crops/plannedcrops.html',
                     controller: 'PlannedCropsController',
                     data: {newapplication: false}
                 })
@@ -175,7 +175,7 @@
                 })
                 .state('edit.yield', {
                     url: '/yield',
-                    templateUrl: 'angular/yield/edityield.html',
+                    templateUrl: 'angular/yield/yield.html',
                     controller: 'YieldController',
                     data: {newapplication: false}
                 });

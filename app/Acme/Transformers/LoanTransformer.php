@@ -191,6 +191,7 @@ class LoanTransformer extends Transformer
                 'afsa' => (boolean)$arr['conditions_afsa'],
                 'cd' => (boolean)$arr['conditions_cd']
             ],
+            'exceptions' => $arr['exceptions'],
             'farmcrops' => $arr['farmcrops'],
             'fins' => [
                 'amount_requested' => (double)$arr['financials']['amount_requested'],
@@ -238,9 +239,14 @@ class LoanTransformer extends Transformer
                 'arm_and_dist' => (double)$arr['financials']['arm_and_dist'],
                 'collateral' => (double)$arr['financials']['collateral']
             ],
+            'appfins' => $arr['appfins'],
             'committee' => $arr['committee'],
             'comments' => $arr['comments'],
             'loanconditions' => $arr['loanconditions'],
+            'loancrops' => $arr['loancrop'],
+            'expenses' => $arr['expenses'],
+            'priorlien' => $arr['priorliens'],
+            'systemics' => $arr['systemics'],
             'last_activity' => $arr['updated_at']
         );
     }

@@ -15,12 +15,12 @@
             User
           </th>
         </tr>
-        <tr ng-show="systemics.length == 0">
+        <tr ng-show="loan.systemics.length == 0">
           <td colspan="3">
             <b>No activity has been logged.</b>
           </td>
         </tr>
-        <tr ng-repeat="s in systemics | orderBy: 'created_at':true">
+        <tr ng-repeat="s in loan.systemics | orderBy: 'created_at':true">
           <td>
             {{s.action}}
           </td>

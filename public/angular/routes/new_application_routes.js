@@ -70,7 +70,7 @@
                 })
                 .state('new.financials', {
                     url: '/financials',
-                    templateUrl: 'angular/financials/newfinancials.html',
+                    templateUrl: 'angular/financials/financials.html',
                     controller: 'FinancialsController',
                     data: {newapplication: true}
                 })

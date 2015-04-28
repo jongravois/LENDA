@@ -33,9 +33,14 @@ class Loan extends \Eloquent {
     }
 
 	/* RELATIONSHIPS */
-  public function applicant()
+    public function applicant()
     {
         return $this->belongsTo('Applicant', 'applicant_id');
+    }
+
+    public function appfins()
+    {
+        return $this->hasOne('Applicantfinancial');
     }
 
     public function attachments()
@@ -128,7 +133,7 @@ class Loan extends \Eloquent {
 		return $this->hasMany('Loancrop');
 	}
 
-	public function loanexceptions()
+	public function exceptions()
 	{
 		return $this->hasMany('Loanexceptions');
 	}
@@ -170,7 +175,7 @@ class Loan extends \Eloquent {
 
 	public function priorliens()
 	{
-		return $this->hasOne('Priorlien');
+		return $this->hasOne('Priorliens');
 	}
 
 	public function regions()

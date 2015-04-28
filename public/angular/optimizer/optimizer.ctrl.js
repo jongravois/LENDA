@@ -4,23 +4,24 @@
         .module('ARM')
         .controller('OptimizerController', OptimizerController);
 
-    OptimizerController.$inject = ['$scope', '$state', '$stateParams', 'InitialData', 'AppFactory', 'LoansFactory'];
+    OptimizerController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
 
-    function OptimizerController($scope, $state, $stateParams,
-                                 InitialData, AppFactory, LoansFactory) {
-        var curr = $state.current.url;
-        var currScreen = curr.substring(1, curr.length);
-        $scope.newapplication = $state.current.data.newapplication;
+    function OptimizerController($scope, $state, $stateParams, AppFactory, LoansFactory) {
+        activate();
 
-        if ($scope.newapplication && $scope.screens) {
-            angular.forEach($scope.screens, function (obj) {
-                if (obj.screen === currScreen) {
-                    obj.status = 1;
-                }
-            });
-        }// end if
+        function activate() {
+            var curr = $state.current.url;
+            var currScreen = curr.substring(1, curr.length);
+            $scope.newapplication = $state.current.data.newapplication;
 
-        $scope.loan = $scope.loan || InitialData.data.data[0];
+            if ($scope.newapplication && $scope.screens) {
+                angular.forEach($scope.screens, function (obj) {
+                    if (obj.screen === currScreen) {
+                        obj.status = 1;
+                    }
+                });
+            }// end if
+        }
 
         LoansFactory.getFarmPractices($stateParams.loanID)
             .then(function success(rsp) {

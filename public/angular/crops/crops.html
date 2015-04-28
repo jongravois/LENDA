@@ -1,21 +1,21 @@
 <fieldset>
   <!--<pre>{{loanCrops|json}}</pre>-->
-  <legend>Crop Options</legend>
+  <legend>Crops Information</legend>
   <table class="table table-striped">
     <tr>
       <th style="width:15%;">Crop</th>
       <th style="width:12%;">Market To Whom</th>
       <th style="width:10%;">Bk Qty</th>
       <th style="width:10%;">Bk Price</th>
-      <th style="width:10%;">Variable Harvest</th>
+      <th style="width:10%;">Var Harv</th>
       <th style="width:10%;">UoM</th>
       <th style="width:12%;">Gin/Mill</th>
       <th style="width:10%;">Rebate</th>
       <th style="width:10%;">UoM</th>
     </tr>
-    <tr ng-repeat="c in loanCrops | orderBy: 'id'" ng-if="c.is_active">
+    <tr ng-repeat="c in loan.loancrops | orderBy: 'id'" ng-if="c.is_active == '1'">
       <td>
-        {{c.name | capitalize}}
+          {{c.crop.name}}
       </td>
       <td>
         <text-edit-in-place value="c.markettowhom"></text-edit-in-place>
@@ -69,4 +69,4 @@
         </div>
     </div>
 </fieldset>
-<!--<pre>{{loanCrops | json}}</pre>-->
+<!--<pre>{{loan.loancrops|json}}</pre>-->

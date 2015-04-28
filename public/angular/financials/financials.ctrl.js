@@ -4,36 +4,36 @@
         .module('ARM')
         .controller('FinancialsController', FinancialsController);
 
-    FinancialsController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'InitialData', 'AppFactory', 'GlobalsFactory', 'LoansFactory', 'Grader'];
+    FinancialsController.$inject = ['$scope', '$state', '$stateParams', 'toastr', 'AppFactory', 'GlobalsFactory', 'LoansFactory', 'Grader', 'FinancialsFactory'];
 
-    function FinancialsController($scope, $state, $stateParams, toastr, InitialData, AppFactory, GlobalsFactory, LoansFactory, Grader) {
-        var curr = $state.current.url;
-        var currScreen = curr.substring(1, curr.length);
-        $scope.newapplication = $state.current.data.newapplication;
+    function FinancialsController($scope, $state, $stateParams, toastr, AppFactory, GlobalsFactory, LoansFactory, Grader, FinancialsFactory) {
+        activate();
 
-        if ($scope.newapplication && $scope.screens) {
-            angular.forEach($scope.screens, function (obj) {
-                if (obj.screen === currScreen) {
-                    obj.status = 1;
-                }
-            });
-        }// end if
+        function activate() {
+            var curr = $state.current.url;
+            var currScreen = curr.substring(1, curr.length);
+            $scope.newapplication = $state.current.data.newapplication;
+
+            if ($scope.newapplication && $scope.screens) {
+                angular.forEach($scope.screens, function (obj) {
+                    if (obj.screen === currScreen) {
+                        obj.status = 1;
+                    }
+                });
+            }// end if
+
+            if($scope.loan.appfins.cpa_financials){
+                $scope.loan.appfins.cpa_financials = true;
+            } else {
+                $scope.loan.appfins.cpa_financials = false;
+            } // end if
+        }
 
         GlobalsFactory.getAdminGrader()
             .then(function success(rsp) {
                 $scope.grads = rsp.data.data;
             });
         //console.log($scope.loan);
-
-        if(!$scope.loan.fins){
-            LoansFactory.getFinancials($stateParams.loanID)
-                .then(function success(rsp) {
-                    $scope.loan.fins = rsp.data.data[0];
-                    //$scope.$watchCollection('loan.fins', function(newVal, oldVal){
-                    //$scope.loan.grade = Grader.gradeLoan($scope.loan.fins, $scope.grads);
-                    //});
-                });
-        } // end if
 
         $scope.calcIncomeConstraints = function (arr) {
             var rev = [
@@ -72,12 +72,6 @@
             $scope.loan.fins.capBorrow = ((($scope.loan.fins.total_assets * 1) - ($scope.loan.fins.total_liability * 1)) / $scope.loan.fins.total_assets) * 100;
             //total reserve / total assets/adj
             $scope.loan.fins.capBorrow_adj = (($scope.loan.fins.total_reserve * 1) / ($scope.loan.fins.total_assets_adj * 1)) * 100;
-        };
-
-        $scope.getTotalAcres = function (obj) {
-            return _.reduce(obj, function (tot, obj) {
-                return tot + parseFloat(obj.acres);
-            }, 0);
         };
 
         $scope.getTotalPCC_AgPro = function (obj) {
@@ -131,7 +125,7 @@
                     break;
             } // end switch
 
-            console.log($scope.loan.fins);
+            //console.log($scope.loan.fins);
 
             AppFactory.putIt('/loanfinancials/', $stateParams.loanID, $scope.loan.fins);
             AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
