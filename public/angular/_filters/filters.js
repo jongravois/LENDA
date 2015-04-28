@@ -6,6 +6,7 @@
         .filter('capitalizeFirst', capitalizeFirstFilter)
         .filter('displayname', displaynameFilter)
         .filter('displaynull', displaynullFilter)
+        .filter('displaynNA', displaynNAFilter)
         .filter('displaynullcurrency', displaynullcurrencyFilter)
         .filter('displaynullpercent', displaynullpercentFilter)
         .filter('displaynullsingle', displaynullsingleFilter)
@@ -60,6 +61,18 @@
                 return input;
             }
             return input.substring(input.indexOf(',') + 1) + ' ' + input.substring(0, input.indexOf(','));
+        };
+    }
+
+    function displaynNAFilter() {
+        return function (input) {
+            if (!input) {
+                return 'N/A';
+            }
+            if (parseFloat(input) !== 0) {
+                return input;
+            }
+            return ' - ';
         };
     }
 
@@ -183,7 +196,9 @@
             if (isNaN(input)) {
                 return input;
             }
-            if (input === '' || input === null || input === 0) {
+            if (input === '' || input === null) {
+                return 'N/A';
+            } else if(input === 0) {
                 return ' - ';
             }
             var out = input;
@@ -211,7 +226,7 @@
                 return input;
             }
             if (input === '' || input === null) {
-                return ' - ';
+                return 'N/A';
             }
             var out = input;
 
