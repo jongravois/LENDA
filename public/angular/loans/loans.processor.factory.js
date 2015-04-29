@@ -48,6 +48,7 @@
                         agencies: processAgencies(policyList),
                         policies: policyList,
                         byCrop: processByCrop(policyList),
+                        nonrp: processNonRPInsurance(policyList),
                         totals: processInsTotals(processByCrop(policyList))
                     };
                     //console.log('LoanInsurance: ', ins);
@@ -60,7 +61,11 @@
                 .then(function (response) {
                     if(response) {
                         //console.log('LoanQuestions: ', response);
-                        return (response.data.data[0]);
+                        if(response.data.data[0]) {
+                            return response.data.data[0];
+                        } else if(response.data.data) {
+                            return response.data.data;
+                        }
                     } else {
                         return {};
                     }
@@ -340,6 +345,28 @@
             return croptotals;
         }
 
+        function processNonRPInsurance(obj) {
+            var nonrp = _.filter(obj, function(item){
+                if( item.type !== 'RP'){
+                    return item;
+                }
+            });
+            if(!nonrp){
+                return {
+                    acres: 0,
+                    value: 0
+                };
+            } else {
+                var lone = { acres: 0, value: 0 };
+                // TODO: Does nonrp have value to accumulate?
+                var byLoan = _.forEach(nonrp, function(item, key) {
+                    lone.acres += Number(item.acres);
+                    lone.value += Number(item.value);
+                });
+                return lone;
+            }
+        }
+
         function processInsTotals(obj) {
             var lone = { acres: 0, value: 0 };
             var byLoan = _.forEach(obj, function(item, key) {
@@ -349,6 +376,15 @@
             return lone;
         }
 
+        function processPriorLien(lien) {
+            if(!lien){ return; }
+            var lienplus = _.forEach([lien], function(obj){
+                obj.lientotal = parseFloat(obj.projected_crops) + parseFloat(obj.fsa_payments) + parseFloat(obj.ins_over_discount) + parseFloat(obj.nonrp_discount) + parseFloat(obj.supplemental_coverage) + parseFloat(obj.claims) + parseFloat(obj.equipment) + parseFloat(obj.realestate) + parseFloat(obj.other);
+                return obj;
+            });
+            return lienplus;
+        }
+
         function updateLoanData(loan) {
             return $q.all({
                 need_vote: getPendingVotes(loan),
@@ -356,7 +392,8 @@
                 total_ins_value: getTotalInsValue(loan),
                 crops: getCrops(loan),
                 insurance: getInsurance(loan),
-                quests: getLoanQuestions(loan)
+                quests: getLoanQuestions(loan),
+                priorlien: processPriorLien(loan.priorlien)
             })
                 .then(function (updatedData) {
                     angular.extend(loan, updatedData);

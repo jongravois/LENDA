@@ -7,6 +7,15 @@
     UnderwritingController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'InsuranceFactory', 'AddendumsFactory', 'LoansFactory'];
 
     function UnderwritingController($scope, $state, $stateParams, AppFactory, InsuranceFactory, AddendumsFactory, LoansFactory) {
+        $scope.loan.fins.disc_prod_percent = $scope.loan.fins.disc_prod_percent|| $scope.globals.projected_crops_discount_rate;
+        $scope.loan.fins.fsa_assignment_percent = $scope.loan.fins.fsa_assignment_percent|| $scope.globals.fsa_assignment_discount_rate;
+        $scope.loan.fins.disc_ins_percent = $scope.loan.fins.disc_ins_percent|| $scope.globals.ins_discount_rate;
+        //$scope.loan.fins.fsa_assignment_percent = $scope.loan.fins.fsa_assignment_percent|| $scope.globals.fsa_assignment_discount_rate;
+        //$scope.loan.fins.fsa_assignment_percent = $scope.loan.fins.fsa_assignment_percent|| $scope.globals.fsa_assignment_discount_rate;
+        $scope.loan.fins.equipment_percent = $scope.loan.fins.equipment_percent|| $scope.globals.equipment_discount_rate;
+        $scope.loan.fins.realestate_percent = $scope.loan.fins.realestate_percent|| $scope.globals.realestate_discount_rate;
+        $scope.loan.fins.claims_percent = $scope.loan.fins.claims_percent|| $scope.globals.claims_discount_rate;
+        //$scope.loan.fins.other_collateral_percent = $scope.loan.fins.other_collateral_percent|| $scope.globals.other_collateral_discount_rate;
 
         $scope.newCondition = {
             crop_year: $scope.loan.crop_year,

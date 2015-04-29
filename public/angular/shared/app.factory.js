@@ -11,8 +11,15 @@
         return {
             agentsInAgency: agentsInAgency,
             averageArray: averageArray,
+            calcClaimsCollateralValue: calcClaimsCollateralValue,
+            calcEquipmentCollateralValue: calcEquipmentCollateralValue,
+            calcFSACollateralValue: calcFSACollateralValue,
             calcInsuranceGuaranty: calcInsuranceGuaranty,
             calcInsuranceValue: calcInsuranceValue,
+            calcIODCollateralValue: calcIODCollateralValue,
+            calcNRPCollateralValue: calcNRPCollateralValue,
+            calcPlannedCropValue: calcPlannedCropValue,
+            calcRECollateralValue: calcRECollateralValue,
             click3PC: click3PC,
             clickADDLAND: clickADDLAND,
             clickAOI: clickAOI,
@@ -61,12 +68,40 @@
             return avg;
         }
 
+        function calcClaimsCollateralValue(obj) {
+            return (Number(obj.fins.total_claims) * (1 - (Number(obj.fins.claims_percent) / 100))) - Number(obj.priorlien.claims * 1);
+        }
+
+        function calcEquipmentCollateralValue(obj) {
+            return (Number(obj.fins.collateral_equipment) * (1 - (Number(obj.fins.equipment_percent) / 100))) - Number(obj.priorlien.equipment);
+        }
+
+        function calcFSACollateralValue(obj) {
+            return (Number(obj.fins.total_fsa_payment) * (1 - (Number(obj.fins.fsa_assignment_percent) / 100))) - Number(obj.priorlien[0].fsa_payments);
+        }
+
         function calcInsuranceGuaranty(obj) {
             return ((obj.aph * 1 * obj.level / 100 * obj.price) - obj.premium) * (obj.acres * obj.share / 100);
         }
 
         function calcInsuranceValue(obj) {
             return (obj.guaranty - obj.premium) * obj.share / 100 * obj.acres;
+        }
+
+        function calcIODCollateralValue(obj) {
+            return (Number(obj.fins.ins_disc_prod) * (1 - (Number(obj.fins.disc_ins_percent) / 100))) - Number(obj.priorlien[0].ins_over_discount);
+        }
+
+        function calcNRPCollateralValue(obj) {
+            return (Number(obj.insurance.nonrp.value) * (1 - (Number(obj.fins.non_rp_percent) / 100))) - Number(obj.priorlien[0].nonrp_discount);
+        }
+
+        function calcPlannedCropValue(obj) {
+            return (Number(obj.fins.adj_prod) * (1 - (Number(obj.fins.disc_prod_percent) / 100))) - Number(obj.priorlien[0].projected_crops);
+        }
+
+        function calcRECollateralValue(obj) {
+            return (Number(obj.fins.collateral_realestate) * (1 - Number(obj.fins.realestate_percent) / 100)) - Number(obj.priorlien[0].realestate);
         }
 
         //TODO: REQUIRED UPLOAD

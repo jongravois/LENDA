@@ -17,7 +17,7 @@ class PriorlienTableSeeder extends Seeder {
       'claims' => 6000,
       'equipment' => 10000,
       'realestate' => 20000,
-      'total' => 144000
+      'other' => 0
     ]);
   }
 

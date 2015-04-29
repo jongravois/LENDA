@@ -1,149 +1,173 @@
 <!-- TODO: Trigger a LENDA if percents not default-->
+<!--<pre>{{loan.priorlien|json}}</pre>-->
 <table class="table table-striped rowed">
-  <tr>
-    <th style="width:37%;">&nbsp;</th>
-    <th class="text-center" style="width:15%;">
-      Prior Lien
-    </th>
-    <th class="text-center" style="width:12%;">
-      Mkt Value
-    </th>
-    <th class="text-center" style="width:12%;">
-      Discount
-    </th>
-    <th class="text-center" style="width:12%;">
-      Value
-    </th>
-  </tr>
+    <tr>
+        <th style="width:37%;">&nbsp;</th>
+        <th class="text-center" style="width:15%;">
+            Prior Lien
+        </th>
+        <th class="text-center" style="width:12%;">
+            Mkt Value
+        </th>
+        <th class="text-center" style="width:12%;">
+            Discount
+        </th>
+        <th class="text-center" style="width:12%;">
+            Value
+        </th>
+    </tr>
     <!--PROJECTED CROPS-->
-      <tr>
+    <tr>
         <td>Projected Crops</td>
-        <td ng-class=gtZero(loan.priorlien.projected_crops)>
-          {{loan.priorlien.projected_crops|flexCurrency:0}}
+        <td class="text-right">
+            {{loan.priorlien[0].projected_crops|flexCurrency:0}}
         </td>
         <td class="text-right">
-          {{loan.fins.adj_prod|flexCurrency:0}}
+            {{loan.fins.adj_prod|flexCurrency:0}}
         </td>
         <td class="text-right">
-          {{loan.fins.disc_prod_percent|flexPercent:1}}
+            {{loan.fins.disc_prod_percent|flexPercent:1}}
         </td>
         <td class="text-right">
-          {{loan.fins.pc_value = (((loan.fins.adj_prod * 1) * (1 - (loan.fins.disc_prod_percent / 100 * 1))) - (loan.priorlien.projected_crops * 1)) | flexCurrency:0}}
+            {{AppFactory.calcPlannedCropValue(loan)|flexCurrency:0}}
         </td>
-      </tr>
+    </tr>
     <!--FSA ASSIGNMENT-->
-      <tr>
+    <tr>
         <td>FSA Assignment</td>
-        <td ng-class=gtZero(loan.priorlien.fsa_payments)>
-          {{loan.priorlien.fsa_payments|flexCurrency:0}}
-        </td>
-        <td class="text-right" ng-class=gtZero(loan.fins.total_fsa_payment)>
-          {{loan.fins.total_fsa_payment | flexCurrency:0}}
+        <td class="text-right">
+            {{loan.priorlien[0].fsa_payments|flexCurrency:0}}
         </td>
         <td class="text-right">
-          {{loan.fins.fsa_assignment_percent|flexPercent:1}}
+            {{loan.fins.total_fsa_payment| flexCurrency:0}}
         </td>
         <td class="text-right">
-          {{loan.fins.fsa_value = (((loan.fins.total_fsa_payment * 1) * (1 - (loan.fins.disc_ins_percent / 100 * 1))) - (loan.priorlien.fsa_payments * 1)) | flexCurrency:0}}
+            {{loan.fins.fsa_assignment_percent|flexPercent:1}}
         </td>
-      </tr>
+        <td class="text-right">
+            {{AppFactory.calcFSACollateralValue(loan)|flexCurrency:0}}
+        </td>
+    </tr>
     <!--INS OVER DISCOUNTED YIELD-->
-      <tr>
+    <tr>
         <td>Ins Over Discounted Yield</td>
-        <td ng-class=gtZero(loan.priorlien.ins_over_discount)>
-          {{loan.priorlien.ins_over_discount|flexCurrency:0}}
+        <td class="text-right">
+            {{loan.priorlien[0].ins_over_discount|flexCurrency:0}}
         </td>
         <td class="text-right">
-          {{loan.fins.ins_disc_prod|flexCurrency:0}}
+            {{loan.fins.ins_disc_prod|flexCurrency:0}}
         </td>
         <td class="text-right">
-          {{loan.fins.disc_ins_percent|flexPercent:1}}
+            {{loan.fins.disc_ins_percent|flexPercent:1}}
         </td>
         <td class="text-right">
-          {{loan.fins.iod_value = (((loan.fins.ins_disc_prod * 1) * (1 - (loan.fins.disc_ins_percent / 100 * 1))) - (loan.priorlien.ins_over_discount * 1)) | flexCurrency:0}}
+            {{AppFactory.calcIODCollateralValue(loan)|flexCurrency:0}}
         </td>
-      </tr>
-    <!--ADDITIONAL NON RP DISCOUNT-->
-      <tr>
-          <td>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              Additional Non RP Discount
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-    <!--SUPPLEMENTAL COVERAGE-->
-      <tr>
-          <td>Supplemental Coverage</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
+    </tr>
+    <!--TODO: ADDITIONAL NON RP DISCOUNT-->
+    <tr>
+        <td>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Additional Non RP Discount
+        </td>
+        <td class="text-right">
+            {{loan.priorlien[0].nonrp_discount|flexCurrency:0}}
+        </td>
+        <td class="text-right">
+            {{loan.insurance.nonrp.value|flexCurrency:0}}
+        </td>
+        <td class="text-right">
+            {{loan.fins.non_rp_percent|flexPercent:1}}
+        </td>
+        <td class="text-right">
+            {{AppFactory.calcNRPCollateralValue(loan)|flexCurrency:0}}
+        </td>
+    </tr>
+    <!--TODO: SUPPLEMENTAL COVERAGE-->
+    <tr>
+        <td>Supplemental Coverage</td>
+        <td class="text-right">
+            {{loan.priorlien[0].supplemental_coverage|flexCurrency:0}}
+        </td>
+        <td></td>
+        <td></td>
+        <td>
 
-          </td>
-      </tr>
+        </td>
+    </tr>
     <!--EQUIPMENT-->
-      <tr>
+    <tr>
         <td>Equipment</td>
-        <td class="text-right" ng-class=gtZero(loan.priorlien.equipment)>
-          {{loan.priorlien.equipment|flexCurrency:0}}
+        <td class="text-right">
+            {{loan.priorlien[0].equipment|flexCurrency:0}}
         </td>
         <td class="text-right" ng-class=gtZero(loan.fins.collateral_equipment)>
-          {{loan.fins.collateral_equipment | flexCurrency}}
+            {{loan.fins.collateral_equipment | flexCurrency}}
         </td>
         <td class="text-right">
-          {{loan.fins.equipment_percent|flexPercent:1}}
+            {{loan.fins.equipment_percent|flexPercent:1}}
         </td>
         <td class="text-right" ng-class=gtZero(loan.fins.equipment_value)>
-          {{loan.fins.equipment_value = (((loan.fins.collateral_equipment * 1) * (1 - (loan.fins.equipment_percent / 100 * 1))) - (loan.priorlien.equipment * 1)) | flexCurrency:0}}
+            {{AppFactory.calcEquipmentCollateralValue(loan)|flexCurrency:0}}
         </td>
-      </tr>
+    </tr>
     <!--REAL ESTATE-->
-      <tr>
+    <tr>
         <td>Real Estate</td>
-        <td class="text-right" ng-class=gtZero(loan.priorlien.realestate)>
-          {{loan.priorlien.realestate|flexCurrency:0}}
+        <td class="text-right">
+            {{loan.priorlien[0].realestate|flexCurrency:0}}
         </td>
         <td class="text-right" ng-class=gtZero(loan.fins.collateral_realestate)>
-          {{loan.fins.collateral_realestate | flexCurrency:0}}
+            {{loan.fins.collateral_realestate | flexCurrency:0}}
         </td>
         <td class="text-right">
-          {{loan.fins.realestate_percent|flexPercent:1}}
+            {{loan.fins.realestate_percent|flexPercent:1}}
         </td>
         <td class="text-right" ng-class=gtZero(loan.fins.realestate_value)>
-          {{loan.fins.realestate_value = (((loan.fins.collateral_realestate * 1) * (1 - (loan.fins.realestate_percent / 100 * 1))) - (loan.priorlien.realestate * 1)) | flexCurrency:0}}
+            {{AppFactory.calcRECollateralValue(loan)|flexCurrency:0}}
         </td>
-      </tr>
+    </tr>
     <!--CLAIMS-->
-      <tr>
+    <tr>
         <td>Claims</td>
-        <td ng-class=gtZero(loan.priorlien.claims)>
-          {{loan.priorlien.claims|flexCurrency:1}}
+        <td class="text-right">
+            {{loan.priorlien[0].claims | flexCurrency:1}}
         </td>
         <td class="text-right" ng-class=gtZero(loan.fins.total_claims)>
-          {{loan.fins.total_claims | flexCurrency:0}}
+            {{loan.fins.total_claims|flexCurrency:0}}
         </td>
         <td class="text-right">
-          {{loan.fins.claims_percent|flexPercent:1}}
+            {{loan.fins.claims_percent|flexPercent:1}}
         </td>
         <td class="text-right" ng-class=gtZero(loan.fins.claims_value)>
-          {{loan.fins.claims_value = (((loan.fins.total_claims * 1) * (1 - (loan.fins.claims_percent / 100 * 1))) - (loan.priorlien.claims * 1)) | flexCurrency:0}}
+            {{AppFactory.calcClaimsCollateralValue(loan)|flexCurrency:0}}
         </td>
-      </tr>
+    </tr>
+    <!--TODO: OTHER COLLATERAL-->
+    <tr>
+        <td>Other</td>
+        <td class="text-right">
+            {{loan.priorlien[0].other|flexCurrency:0}}
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+
+        </td>
+    </tr>
     <!--TOTALS-->
-      <tr class="success">
+    <tr class="success">
         <td>Total Value</td>
-        <td ng-class=gtZero(loan.priorlien.total)>
-          {{loan.priorlien.total || 0|flexCurrency:0}}
+        <td class="text-right">
+            {{loan.priorlien[0].lientotal|flexCurrency:0}}
         </td>
         <td class="text-right">
-          {{loan.fins.adj_prod * 1 + loan.fins.ins_disc_prod * 1 + loan.fins.total_fsa_payment * 1 + loan.fins.total_claims * 1 + loan.fins.collateral_equipment * 1 + loan.fins.collateral_realestate * 1 | flexCurrency:0}}
+            {{loan.fins.adj_prod * 1 + loan.fins.ins_disc_prod * 1 + loan.fins.total_fsa_payment * 1 + loan.fins.total_claims * 1 + loan.fins.collateral_equipment * 1 + loan.fins.collateral_realestate * 1 |
+            flexCurrency:0}}
         </td>
-        <td class="text-right">&nbsp;</td>
+        <td class="text-center"> - </td>
         <td class="text-right">
-          {{loan.fins.pc_value * 1 + loan.fins.iod_value * 1 + loan.fins.fsa_value * 1 + loan.fins.claims_value * 1 + loan.fins.equipment_value * 1 + loan.fins.realestate_value * 1 | flexCurrency:0}}
+            {{loan.fins.pc_value * 1 + loan.fins.iod_value * 1 + loan.fins.fsa_value * 1 + loan.fins.claims_value * 1 + loan.fins.equipment_value * 1 + loan.fins.realestate_value * 1 | flexCurrency:0}}
         </td>
-      </tr>
+    </tr>
 </table>
