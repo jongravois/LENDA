@@ -163,6 +163,11 @@ class Loan extends \Eloquent {
 		return $this->belongsTo('Location', 'loc_id');
 	}
 
+	public function othercollateral()
+	{
+		return $this->hasMany('Othercollateral');
+	}
+
   public function partners()
   {
     return $this->hasMany('Partners');
@@ -187,6 +192,11 @@ class Loan extends \Eloquent {
   {
     return $this->hasMany('Requireddocuments');
   }
+
+	public function suppins()
+	{
+		return $this->hasMany('Supplementalinsurance');
+	}
 
   public function systemics()
 	{

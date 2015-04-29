@@ -91,6 +91,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], 
     Route::resource('locations', 'LocationsController');
     Route::resource('matrix', 'MatrixController');
     Route::resource('notifications', 'NotificationController');
+    Route::resource('othercollaterals', 'OthercollateralsController');
     Route::resource('partners', 'PartnersController');
     Route::resource('pdfapps', 'PdfAppsController');
     Route::resource('practices', 'PracticesController');
@@ -107,6 +108,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], 
     Route::resource('spendcats', 'SpendcatController');
     Route::resource('states', 'StatesController');
     Route::resource('storage', 'GrainstorageController');
+    Route::resource('supplementalinsurances', 'SupplementalinsurancesController');
     Route::resource('systemics', 'SystemicsController');
     Route::resource('units', 'UnitsController');
     Route::resource('users', 'UsersController');

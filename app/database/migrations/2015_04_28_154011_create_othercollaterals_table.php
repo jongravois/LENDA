@@ -11,6 +11,9 @@ class CreateOthercollateralsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('loan_id');
+			$table->string('source');
+			$table->text('description')->nullable();
+			$table->double('amount')->default(0);
 			$table->timestamps();
 		});
 	}
