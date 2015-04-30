@@ -253,7 +253,6 @@ class LoanTransformer extends Transformer
             'comments' => $arr['comments'],
             'loanconditions' => $arr['loanconditions'],
             'loancrops' => $arr['loancrop'],
-            'expenses' => $arr['expenses'],
             'suppins' => $arr['suppins'],
             'othercollateral' => $arr['othercollateral'],
             'priorlien' => $arr['priorliens'],

@@ -38,6 +38,21 @@
                 });
         }
 
+        function getExpenses(loan) {
+            return $http.get(API_URL + '/loans/' + loan.id + '/expenses')
+                .then(function(rsp) {
+                    var expAll = rsp.data.data;
+                    //console.log('expAll', expAll);
+
+                    var exps = {
+                        byCrop: processExpByCrop(expAll),
+                        totals: processExpenses(expAll)
+                    };
+
+                    return (exps);
+                });
+        }
+
         function getInsurance(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/insurance')
                 .then(function (rsp) {
@@ -345,6 +360,27 @@
             return croptotals;
         }
 
+        function processExpByCrop(xps) {
+            var exp = _.chain(xps).flatten().groupBy('crop').value();
+            return exp;
+        }
+
+        function processExpenses(xps) {
+            var ARM = 0, DIST = 0, OTHER = 0, TOTAL = 0;
+            angular.forEach(xps, function(row){
+                ARM += row.arm_adj;
+                DIST += row.dist_adj;
+                OTHER += row.other_adj;
+                TOTAL += row.arm_adj + row.dist_adj + row.other_adj;
+            });
+            return {
+                exp_arm: ARM,
+                exp_dist: DIST,
+                exp_other: OTHER,
+                exp_total: TOTAL
+            };
+        }
+
         function processLoanCrops(crops) {
             if(!crops){ return; }
             var cropplus = _.forEach(crops, function(obj){
@@ -460,6 +496,7 @@
         function updateLoanData(loan) {
             return $q.all({
                 crops: getCrops(loan),
+                expenses: getExpenses(loan),
                 has_comment: getPendingComments(loan),
                 insurance: getInsurance(loan),
                 loancrops: processLoanCrops(loan.loancrops),

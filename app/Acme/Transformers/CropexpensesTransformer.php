@@ -9,6 +9,7 @@ class CropexpensesTransformer extends Transformer{
 			'id' =>	$arr['id'],
 			'loan_id' => (integer) $arr['loan_id'],
 			'crop_id' => (integer) $arr['crop_id'],
+			'crop' => $arr['crop']['name'],
 			'cat_id' => (integer) $arr['cat_id'],
 			'expense' => $arr['expense'],
 			'arm' => (double) $arr['arm'],
@@ -16,7 +17,7 @@ class CropexpensesTransformer extends Transformer{
 			'dist' => (double) $arr['dist'],
 			'dist_adj' => (double) $arr['dist_adj'],
 			'other' => (double) $arr['other'],
-			'other_adj' => (double) $arr['other_adj'],
+			'other_adj' => (double) $arr['other_adj']
 		];
 	}
 }
