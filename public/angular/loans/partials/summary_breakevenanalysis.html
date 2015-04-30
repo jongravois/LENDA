@@ -1,7 +1,7 @@
 <table class="table"  style="width:80%; margin:0 auto;">
-    <tr ng-repeat="ac in activeCrops">
+    <tr ng-repeat="ac in loan.loancrops" ng-if="ac.break_even != 0">
         <td style="width:35%;">Loan payback break-even for ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}}</span>:</td>
-        <td style="width:10%;">{{ac.name|capitalize}}</td>
+        <td style="width:10%;">{{ac.crop.name}}</td>
         <td class="text-right" style="width:10%;">
             {{ac.break_even | number:1}}
         </td>
