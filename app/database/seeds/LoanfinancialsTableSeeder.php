@@ -48,6 +48,8 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_balance' => 342262.767,
 			'balance_paid' => 0,
 			'remaining_balance' => 342262.767,
+			'supplement_insurance_discount_percent' => 50,
+			'other_discount_percent' => 100,
 			'cash_flow' => 61412.76,
 			'risk' => -7575.84
 		]);
@@ -94,7 +96,9 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_balance' => 311147.97,
 			'balance_paid' => 0,
 			'remaining_balance' => 311147.97,
+			'other_discount_percent' => 100,
 			'cash_flow' => 34118.20,
+			'supplement_insurance_discount_percent' => 50,
 			'risk' => -4208.80,
 			'risk_adj' => 200000
 		]);
@@ -141,6 +145,8 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_balance' => 311147.97,
 			'balance_paid' => 0,
 			'remaining_balance' => 311147.97,
+			'supplement_insurance_discount_percent' => 50,
+			'other_discount_percent' => 100,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
 			'risk_adj' => 110
@@ -188,6 +194,8 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_balance' => 311147.97,
 			'balance_paid' => 0,
 			'remaining_balance' => 311147.97,
+			'supplement_insurance_discount_percent' => 50,
+			'other_discount_percent' => 100,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
 			'risk_adj' => 50000
@@ -235,6 +243,8 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_balance' => 311147.97,
 			'balance_paid' => 0,
 			'remaining_balance' => 311147.97,
+			'supplement_insurance_discount_percent' => 50,
+			'other_discount_percent' => 100,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
 			'risk_adj' => 90910
@@ -282,6 +292,8 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_balance' => 311147.97,
 			'balance_paid' => 0,
 			'remaining_balance' => 311147.97,
+			'supplement_insurance_discount_percent' => 50,
+			'other_discount_percent' => 100,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80,
 			'risk_adj' => 2134
@@ -311,6 +323,8 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_balance' => 218000,
 			'balance_paid' => 0,
 			'remaining_balance' => 218000,
+			'supplement_insurance_discount_percent' => 50,
+			'other_discount_percent' => 100,
 			'cash_flow' => 126460,
 			'risk' => 179380
 		]);
@@ -357,6 +371,8 @@ class LoanfinancialsTableSeeder extends Seeder {
 			'total_balance' => 311147.97,
 			'balance_paid' => 0,
 			'remaining_balance' => 311147.97,
+			'supplement_insurance_discount_percent' => 50,
+			'other_discount_percent' => 100,
 			'cash_flow' => 34118.20,
 			'risk' => -4208.80
 		]);

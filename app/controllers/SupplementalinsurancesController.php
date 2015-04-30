@@ -52,4 +52,17 @@ class SupplementalinsurancesController extends ApiController {
 	    return Supplementalinsurance::where('id', $id)->delete();
 	}
 
+	public function byLoan($id)
+	{
+		$single = Supplementalinsurance::where('loan_id', $id)->get();
+
+		if( $single->isEmpty() ){
+			return $this->respondNotFound('Supplementalinsurance does not exist.');
+		} // end if
+
+		return $this->respond([
+			'data' => $this->supplementalinsuranceTransformer->transform($single[0])
+		]);
+	}
+
 }

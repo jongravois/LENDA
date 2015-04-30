@@ -17,9 +17,13 @@
             calcInsuranceGuaranty: calcInsuranceGuaranty,
             calcInsuranceValue: calcInsuranceValue,
             calcIODCollateralValue: calcIODCollateralValue,
+            calcMarketValueTotal: calcMarketValueTotal,
             calcNRPCollateralValue: calcNRPCollateralValue,
             calcPlannedCropValue: calcPlannedCropValue,
+            calcSuppInsValue: calcSuppInsValue,
+            calcOtherCollateralValue: calcOtherCollateralValue,
             calcRECollateralValue: calcRECollateralValue,
+            calcTotalCollateral: calcTotalCollateral,
             click3PC: click3PC,
             clickADDLAND: clickADDLAND,
             clickAOI: clickAOI,
@@ -69,11 +73,11 @@
         }
 
         function calcClaimsCollateralValue(obj) {
-            return (Number(obj.fins.total_claims) * (1 - (Number(obj.fins.claims_percent) / 100))) - Number(obj.priorlien.claims * 1);
+            return (Number(obj.fins.total_claims) * (1 - (Number(obj.fins.claims_percent) / 100))) - Number(obj.priorlien[0].claims * 1);
         }
 
         function calcEquipmentCollateralValue(obj) {
-            return (Number(obj.fins.collateral_equipment) * (1 - (Number(obj.fins.equipment_percent) / 100))) - Number(obj.priorlien.equipment);
+            return (Number(obj.fins.collateral_equipment) * (1 - (Number(obj.fins.equipment_percent) / 100))) - Number(obj.priorlien[0].equipment);
         }
 
         function calcFSACollateralValue(obj) {
@@ -88,6 +92,10 @@
             return (obj.guaranty - obj.premium) * obj.share / 100 * obj.acres;
         }
 
+        function calcMarketValueTotal(loan) {
+            return Number(loan.fins.adj_prod) + Number(loan.fins.total_fsa_payment) + Number(loan.fins.ins_disc_prod) + Number(loan.insurance.nonrp.value) + Number(loan.supplements.totals.value) + Number(loan.fins.collateral_equipment) + Number(loan.fins.collateral_realestate) + Number(loan.fins.total_claims) + Number(loan.othercollateral.totals.value);
+        }
+
         function calcIODCollateralValue(obj) {
             return (Number(obj.fins.ins_disc_prod) * (1 - (Number(obj.fins.disc_ins_percent) / 100))) - Number(obj.priorlien[0].ins_over_discount);
         }
@@ -96,12 +104,32 @@
             return (Number(obj.insurance.nonrp.value) * (1 - (Number(obj.fins.non_rp_percent) / 100))) - Number(obj.priorlien[0].nonrp_discount);
         }
 
+        function calcOtherCollateralValue(obj) {
+            return (Number(obj.othercollateral.totals.value) * (1 - (Number(obj.fins.other_discount_percent) / 100))) - Number(obj.priorlien[0].other);
+        }
+
         function calcPlannedCropValue(obj) {
             return (Number(obj.fins.adj_prod) * (1 - (Number(obj.fins.disc_prod_percent) / 100))) - Number(obj.priorlien[0].projected_crops);
         }
 
+        function calcSuppInsValue(obj) {
+            return (Number(obj.supplements.totals.value) * (1 - (Number(obj.fins.supplement_insurance_discount_percent) / 100))) - Number(obj.priorlien[0].supplemental_coverage);
+        }
+
         function calcRECollateralValue(obj) {
             return (Number(obj.fins.collateral_realestate) * (1 - Number(obj.fins.realestate_percent) / 100)) - Number(obj.priorlien[0].realestate);
+        }
+
+        function calcTotalCollateral(loan) {
+            return Number(calcPlannedCropValue(loan)) +
+                   Number(calcFSACollateralValue(loan)) +
+                   Number(calcIODCollateralValue(loan)) +
+                   Number(calcNRPCollateralValue(loan)) +
+                   Number(calcSuppInsValue(loan)) +
+                   Number(calcEquipmentCollateralValue(loan)) +
+                   Number(calcRECollateralValue(loan)) +
+                   Number(calcClaimsCollateralValue(loan)) +
+                   Number(calcOtherCollateralValue(loan));
         }
 
         //TODO: REQUIRED UPLOAD

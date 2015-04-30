@@ -367,11 +367,51 @@
             }
         }
 
+        function processSupInsurance(obj) {
+            var suppins = obj;
+
+            var supp = {
+                policies: processSupplements(suppins),
+                totals: processSuppInsTotals(suppins)
+            };
+
+            return (supp);
+        }
+
         function processInsTotals(obj) {
             var lone = { acres: 0, value: 0 };
             var byLoan = _.forEach(obj, function(item, key) {
                 lone.acres += Number(item.acres);
                 lone.value += Number(item.value);
+            });
+            return lone;
+        }
+
+        function processOtherCollateral(obj) {
+            var all = obj;
+
+            var others = {
+                sources: processOthers(all),
+                totals: processOthersTotals(all)
+            };
+
+            return (others);
+        }
+
+        function processOthers(obj) {
+            if(!obj){ return; }
+            var others = _.forEach(obj, function(obj){
+                obj.value = Number(obj.amount);
+                return obj;
+            });
+            return others;
+        }
+
+        function processOthersTotals(obj) {
+            if(!obj) { return; }
+            var lone = { value: 0 };
+            var bySource = _.forEach(obj, function(item, key) {
+                lone.value += Number(item.amount);
             });
             return lone;
         }
@@ -385,15 +425,36 @@
             return lienplus;
         }
 
+        function processSuppInsTotals(obj) {
+            if(!obj) { return; }
+            var lone = { acres: 0, value: 0 };
+            var byPol = _.forEach(obj, function(item, key) {
+                lone.acres += Number(item.acres);
+                lone.value += Number(item.value);
+            });
+            return lone;
+        }
+
+        function processSupplements(obj) {
+            if(!obj){ return; }
+            var supplus = _.forEach(obj, function(obj){
+                obj.value = Number(obj.acres) * (Number(obj.share)/100) * Number(obj.max_indemnity);
+                return obj;
+            });
+            return supplus;
+        }
+
         function updateLoanData(loan) {
             return $q.all({
-                need_vote: getPendingVotes(loan),
-                has_comment: getPendingComments(loan),
-                total_ins_value: getTotalInsValue(loan),
                 crops: getCrops(loan),
+                has_comment: getPendingComments(loan),
                 insurance: getInsurance(loan),
+                need_vote: getPendingVotes(loan),
+                othercollateral: processOtherCollateral(loan.othercollateral),
+                priorlien: processPriorLien(loan.priorlien),
                 quests: getLoanQuestions(loan),
-                priorlien: processPriorLien(loan.priorlien)
+                supplements: processSupInsurance(loan.suppins),
+                total_ins_value: getTotalInsValue(loan)
             })
                 .then(function (updatedData) {
                     angular.extend(loan, updatedData);

@@ -73,7 +73,7 @@
                 })
                 .state('edit.distributor', {
                     url: '/distributor',
-                    templateUrl: 'angular/distributors/editdistributor.html',
+                    templateUrl: 'angular/distributors/distributor.html',
                     controller: 'DistributorsController',
                     data: {newapplication: false}
                 })
@@ -103,7 +103,7 @@
                 })
                 .state('edit.insurance', {
                     url: '/insurance',
-                    templateUrl: 'angular/insurance/editinsurance.html',
+                    templateUrl: 'angular/insurance/insurance.html',
                     controller: 'InsuranceController',
                     data: {newapplication: false}
                 })
@@ -139,7 +139,7 @@
                 })
                 .state('edit.references', {
                     url: '/references',
-                    templateUrl: 'angular/references/editreferences.html',
+                    templateUrl: 'angular/references/references.html',
                     controller: 'ReferencesController',
                     data: {newapplication: false}
                 })
