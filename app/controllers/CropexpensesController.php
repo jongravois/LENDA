@@ -65,7 +65,7 @@ class CropexpensesController extends ApiController {
 
 	public function byLoan($id)
 	{
-		$crex = Cropexpenses::with('crop')->where('loan_id', $id)->get();
+		$crex = Cropexpenses::with('loancrop.crop')->where('loan_id', $id)->get();
 		return $this->respond([
 			'data' => $this->cropexpensesTransformer->transformCollection($crex->all())
 		]);

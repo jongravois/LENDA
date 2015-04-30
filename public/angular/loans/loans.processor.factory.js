@@ -368,10 +368,10 @@
         function processExpenses(xps) {
             var ARM = 0, DIST = 0, OTHER = 0, TOTAL = 0;
             angular.forEach(xps, function(row){
-                ARM += row.arm_adj;
-                DIST += row.dist_adj;
-                OTHER += row.other_adj;
-                TOTAL += row.arm_adj + row.dist_adj + row.other_adj;
+                ARM += Number(row.arm_adj) * Number(row.acres);
+                DIST += Number(row.dist_adj) * Number(row.acres);
+                OTHER += Number(row.other_adj) * Number(row.acres);
+                TOTAL += (Number(row.arm_adj) * Number(row.acres)) + (Number(row.dist_adj) * Number(row.acres)) + (Number(row.other_adj) * Number(row.acres));
             });
             return {
                 exp_arm: ARM,
