@@ -26,17 +26,27 @@
 <fieldset>
   <legend>Loan/Collateral Conditions</legend>
   <div class="row">
-    <div class="form-group col-md-10 col-md-offset-1">
+    <div class="form-group col-md-12">
       <div ng-include="'angular/loans/partials/collateral_conditions.html'"></div>
     </div>
   </div>
+</fieldset>
+<br/><br/>
+<!--PROJECTED INCOME-->
+<fieldset>
+    <legend>Detailed Projected Income</legend>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <div ng-include="'angular/loans/partials/income_underwriting_table.html'"></div>
+        </div>
+    </div>
 </fieldset>
 <br/><br/>
 <!--COLLATERAL SUMMARY-->
 <fieldset ng-if="loan.loan_type_id != 7">
   <legend>Collateral Summary</legend>
   <div class="row">
-    <div class="form-group col-md-10 col-md-offset-1">
+    <div class="form-group col-md-12">
       <div ng-include="'angular/loans/partials/underwriting_collateral_table.html'"></div>
     </div>
   </div>
@@ -44,6 +54,7 @@
 <br/><br/>
 
 <fieldset ng-if="loan.has_addendum">
+    <!--TODO: Extract to Partial-->
   <legend>Loan History</legend>
   <div class="row">
     <div class="col-md-12">
@@ -138,4 +149,4 @@
 </fieldset>
 <!--<pre>{{addendums|json}}</pre>-->
 
-<pre>{{globals|json}}</pre>
+<!--<pre>{{globals|json}}</pre>-->

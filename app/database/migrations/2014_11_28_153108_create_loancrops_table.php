@@ -25,6 +25,7 @@ class CreateLoancropsTable extends Migration
             $table->double('ins_price')->default(0);
             $table->double('bkqty')->default(0);
             $table->double('bkprice')->default(0);
+            $table->double('overbook')->default(0);
             $table->string('gin_mill')->default('N/A');
             $table->double('harvest')->default(0);
             $table->double('rebates')->default(0);

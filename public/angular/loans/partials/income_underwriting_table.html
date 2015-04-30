@@ -1,0 +1,80 @@
+<table class="table table-striped rowed" style="width:96%; margin: 0 auto;">
+  <tr>
+    <th style="width:10%;">Source</th>
+    <th style="width:7%;">Acres</th>
+    <th style="width:7%;">Yield</th>
+    <th style="width:7%;">Price</th>
+    <th style="width:7%;">Share</th>
+    <th style="width:7%;">Value</th>
+    <th style="width:8%;">Bk Qty</th>
+    <th style="width:8%;">Bk Price</th>
+    <th style="width:8%;">Overbk</th>
+    <th style="width:8%;">Bk Adj</th>
+    <th style="width:7%;">Var Hrv</th>
+    <th style="width:7%;">Hrv Adj</th>
+    <th style="width:10%;">Total</th>
+  </tr>
+  <tr ng-repeat="c in loan.loancrops" ng-if="c.is_active == '1'">
+    <td>{{c.crop.name}}</td>
+    <td class="text-right"> <!--ng-class=gtZero(c.acres)>-->
+      {{c.acres | number:1}}
+    </td>
+    <td class="text-right">
+      {{c.prod_yield | number:1}}
+    </td>
+    <td class="text-right">
+      {{c.prod_price | flexCurrency:4}}
+    </td>
+    <td class="text-right">
+      {{c.prod_share | flexPercent:1}}
+    </td>
+    <td class="text-right bright">
+      {{c.crop_value | flexCurrency:0}}
+    </td>
+
+    <td class="text-right" ng-class="gtZero(c.bkqty)">
+      {{Number(c.bkqty) | displaynull}}
+    </td>
+    <td class="text-right" ng-class="gtZero(c.bkprice)">
+      {{Number(c.bkprice) | flexCurrency:4}}
+    </td>
+    <td class="text-right" ng-class="gtZero(c.overbook)">
+      {{Number(c.overbook) | displaynull}}
+    </td>
+    <td class="text-right bright" ng-class="gtZero(c.adj_book_value)">
+      {{c.adj_book_value | flexCurrency:0}}
+    </td>
+
+    <td class="text-right" ng-class="gtZero(c.harvest)">
+      {{Number(c.harvest) | flexCurrency:4}}
+    </td>
+    <td class="text-right bright" ng-class="gtZero(c.adj_harvest_value)">
+      {{c.adj_harvest_value | flexCurrency:0}}
+    </td>
+
+    <td class="text-right">
+      {{c.crop_total | flexCurrency:0}}
+    </td>
+
+  </tr>
+  <tr>
+    <td colspan="12">FSA Payment</td>
+    <td class="text-right">
+      {{loan.fins.total_fsa_payment | flexCurrency:0}}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="12">Claims</td>
+    <td ng-class=gtZero(loan.fins.total_claims)>
+      {{loan.fins.total_claims | flexCurrency:0}}
+    </td>
+  </tr>
+  <tr class="success">
+    <td class="text-left"><strong>Revenue</strong></td>
+    <td class="text-right">{{loan.fins.total_acres | number:1}}</td>
+    <td colspan="10">&nbsp;</td>
+    <td class="text-right">
+      {{AppFactory.income_totalCollateral(loan) | flexCurrency:0}}
+    </td>
+  </tr>
+</table>

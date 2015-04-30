@@ -4,10 +4,10 @@
         .module('ARM')
         .factory('LoansProcessor', LoansProcessor);
 
-    LoansProcessor.$inject = ['$http', '$q', 'API_URL'];
+    LoansProcessor.$inject = ['$http', '$q', 'API_URL', 'AppFactory'];
 
     /* @ngInject */
-    function LoansProcessor($http, $q, API_URL) {
+    function LoansProcessor($http, $q, API_URL, AppFactory) {
 
         //PUBLIC API
         return {
@@ -345,6 +345,19 @@
             return croptotals;
         }
 
+        function processLoanCrops(crops) {
+            if(!crops){ return; }
+            var cropplus = _.forEach(crops, function(obj){
+                obj.crop_value = AppFactory.incomeCropValue(obj);
+                obj.adj_book_value = AppFactory.incomeBookValue(obj);
+                obj.adj_harvest_value = AppFactory.incomeHarvestValue(obj);
+                obj.crop_total = AppFactory.incomeCropTotal(obj);
+                return obj;
+            });
+            //console.log('LoanCrops', cropplus);
+            return cropplus;
+        }
+
         function processNonRPInsurance(obj) {
             var nonrp = _.filter(obj, function(item){
                 if( item.type !== 'RP'){
@@ -449,6 +462,7 @@
                 crops: getCrops(loan),
                 has_comment: getPendingComments(loan),
                 insurance: getInsurance(loan),
+                loancrops: processLoanCrops(loan.loancrops),
                 need_vote: getPendingVotes(loan),
                 othercollateral: processOtherCollateral(loan.othercollateral),
                 priorlien: processPriorLien(loan.priorlien),

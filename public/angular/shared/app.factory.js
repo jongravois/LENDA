@@ -49,6 +49,11 @@
             getIrrPerString: getIrrPerString,
             gtZero: gtZero,
             inArray: inArray,
+            incomeBookValue: incomeBookValue,
+            incomeCropTotal: incomeCropTotal,
+            incomeCropValue: incomeCropValue,
+            incomeHarvestValue: incomeHarvestValue,
+            income_totalCollateral: income_totalCollateral,
             moveToNextNewLoanScreen: moveToNextNewLoanScreen,
             monitorAdjustedRisk: monitorAdjustedRisk,
             monitorCashFlow: monitorCashFlow,
@@ -639,6 +644,32 @@
             }
 
             return true;
+        }
+
+        function incomeBookValue(o) {
+            return (Number(o.bkprice) - Number(o.prod_price)) * Number(o.bkqty);
+        }
+
+        function incomeCropTotal(o) {
+            return incomeCropValue(o) + incomeBookValue(o) - incomeHarvestValue(o);
+        }
+
+        function incomeCropValue(o) {
+            return Number(o.acres) * Number(o.prod_yield) * Number(o.prod_price) * (Number(o.prod_share)/100);
+        }
+
+        function incomeHarvestValue(o) {
+            return Number(o.acres) * Number(o.prod_yield) * Number(o.harvest);
+        }
+
+        function income_totalCollateral(loan) {
+            //R/M == income_totalCollateral - commitment_total
+            var allCropValue = _.reduce(loan.loancrops, function(sum, obj){
+                return sum + Number(obj.crop_total);
+            }, 0);
+
+            var totRev = allCropValue + Number(loan.fins.total_fsa_payment) + Number(loan.fins.total_claims);
+            return totRev;
         }
 
         function moveToNextNewLoanScreen(screenName, $stateParams) {
