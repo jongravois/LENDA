@@ -46,6 +46,7 @@
             diffInDates: diffInDates,
             getDefaultDueDate: getDefaultDueDate,
             getFullSeason: getFullSeason,
+            getIrrPerString: getIrrPerString,
             gtZero: gtZero,
             inArray: inArray,
             moveToNextNewLoanScreen: moveToNextNewLoanScreen,
@@ -601,6 +602,26 @@
                 case 'S':
                     return 'Spring';
             } // end switch
+        }
+
+        function getIrrPerString(loan) {
+            var IrrPer = '';
+            var bEven = [];
+            var lc = loan.loancrops;
+
+            _.forEach(lc, function(item){
+                if(item.acres > 0){
+                    IrrPer += item.crop.name + ': ' + item.percent_irrigated + '% | ' ;
+                }
+            });
+
+            if(IrrPer.length === 0){
+                IrrPer = 'No crops selected.';
+            } else {
+                IrrPer = IrrPer.slice(0, -2);
+            }
+
+            return IrrPer;
         }
 
         function gtZero(value) {
