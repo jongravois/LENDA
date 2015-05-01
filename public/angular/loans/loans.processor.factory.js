@@ -38,20 +38,14 @@
                 });
         }
 
-        function getExpenses(loan) {
-            return $http.get(API_URL + '/loans/' + loan.id + '/expenses')
-                .then(function(rsp) {
-                    var expAll = rsp.data.data;
-                    //console.log('expAll', expAll);
+        function getExpenses(expenses) {
+            var exps = {
+                byCrop: processExpByCrop(expenses),
+                byCat: processExpByCat(expenses),
+                totals: processExpenses(expenses)
+            };
 
-                    var exps = {
-                        byCrop: processExpByCrop(expAll),
-                        byCat: processExpByCat(expAll),
-                        totals: processExpenses(expAll)
-                    };
-
-                    return (exps);
-                });
+            return (exps);
         }
 
         function getInsurance(loan) {
@@ -551,7 +545,7 @@
         function updateLoanData(loan) {
             return $q.all({
                 crops: getCrops(loan),
-                expenses: getExpenses(loan),
+                expenses: getExpenses(loan.expenses),
                 has_comment: getPendingComments(loan),
                 insurance: getInsurance(loan),
                 loancrops: processLoanCrops(loan.loancrops),
