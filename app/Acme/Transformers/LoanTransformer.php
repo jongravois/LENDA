@@ -192,6 +192,7 @@ class LoanTransformer extends Transformer
                 'cd' => (boolean)$arr['conditions_cd']
             ],
             'exceptions' => $arr['exceptions'],
+            'expenses' => $arr['cropexpenses'],
             'farmcrops' => $arr['farmcrops'],
             'fins' => [
                 'amount_requested' => (double)$arr['financials']['amount_requested'],
