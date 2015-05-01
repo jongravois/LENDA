@@ -46,6 +46,7 @@
 
                     var exps = {
                         byCrop: processExpByCrop(expAll),
+                        byCat: processExpByCat(expAll),
                         totals: processExpenses(expAll)
                     };
 
@@ -360,9 +361,63 @@
             return croptotals;
         }
 
+        function processExpByCat(xps) {
+            var exp = _.chain(xps).groupBy('expense').value();
+            console.log('exp', exp);
+
+            var byCat = _.map(exp, function(item, key) {
+                return item.reduce(function(xp, xps) {
+                    xp.id = Number(xps.id);
+                    xp.loan_id = Number(xps.loan_id);
+                    xp.crop_id = Number(xps.crop_id);
+                    xp.crop = xps.crop;
+                    xp.acres = Number(xps.acres);
+                    xp.cat_id = Number(xps.cat_id);
+                    xp.expense = xps.expense;
+                    xp.arm = Number(xps.arm);
+                    xp.arm_adj = Number(xps.arm_adj);
+                    xp.dist = Number(xps.dist);
+                    xp.dist_adj = Number(xps.dist_adj);
+                    xp.other = Number(xps.other);
+                    xp.other_adj = Number(xps.other_adj);
+                    xp.per_acre = Number(xps.arm_adj) + Number(xps.dist_adj) + Number(xps.other_adj);
+                    xp.calc_arm = Number(xps.arm_adj)*Number(xps.acres);
+                    xp.calc_dist = Number(xps.dist_adj)*Number(xps.acres);
+                    xp.calc_other = Number(xps.other_adj)*Number(xps.acres);
+                    xp.calc_total = (Number(xps.arm_adj)*Number(xps.acres)) + (Number(xps.dist_adj)*Number(xps.acres)) + (Number(xps.other_adj)*Number(xps.acres));
+                    return xp;
+                }, {});
+            });
+            return byCat;
+        }
+
         function processExpByCrop(xps) {
-            var exp = _.chain(xps).flatten().groupBy('crop').value();
-            return exp;
+            var exp = _.chain(xps).groupBy('crop').value();
+
+            var byCrop = _.map(exp, function(item, key) {
+                return item.reduce(function(xp, xps) {
+                    xp.id = Number(xps.id);
+                    xp.loan_id = Number(xps.loan_id);
+                    xp.crop_id = Number(xps.crop_id);
+                    xp.crop = xps.crop;
+                    xp.acres = Number(xps.acres);
+                    xp.cat_id = Number(xps.cat_id);
+                    xp.expense = xps.expense;
+                    xp.arm = Number(xps.arm);
+                    xp.arm_adj = Number(xps.arm_adj);
+                    xp.dist = Number(xps.dist);
+                    xp.dist_adj = Number(xps.dist_adj);
+                    xp.other = Number(xps.other);
+                    xp.other_adj = Number(xps.other_adj);
+                    xp.per_acre = Number(xps.arm_adj) + Number(xps.dist_adj) + Number(xps.other_adj);
+                    xp.calc_arm = Number(xps.arm_adj)*Number(xps.acres);
+                    xp.calc_dist = Number(xps.dist_adj)*Number(xps.acres);
+                    xp.calc_other = Number(xps.other_adj)*Number(xps.acres);
+                    xp.calc_total = (Number(xps.arm_adj)*Number(xps.acres)) + (Number(xps.dist_adj)*Number(xps.acres)) + (Number(xps.other_adj)*Number(xps.acres));
+                    return xp;
+                }, {});
+            });
+            return byCrop;
         }
 
         function processExpenses(xps) {

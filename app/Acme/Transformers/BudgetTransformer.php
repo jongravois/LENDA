@@ -6,7 +6,7 @@ class BudgetTransformer extends Transformer{
   {
     //return $arr;
     return [
-      'id' => $arr['id'],
+      'id' => (integer)$arr['id'],
       'crop' => $arr['crop']['crop'],
       'acres' => $arr['acres'],
       'expenses' => $arr['expenses']
