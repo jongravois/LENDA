@@ -21,7 +21,7 @@ Route::get('env', function () {
 });
 
 Route::get('test', function () {
-    $retHTML = Loancrop::where('loan_id', '1')->get();
+    $retHTML = Loan::with('cropexpenses.loancrop.crop')->where('id', '1')->get();
 
     return $retHTML;
     //return View::make('hello');

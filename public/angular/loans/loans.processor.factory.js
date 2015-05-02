@@ -39,6 +39,32 @@
         }
 
         function getExpenses(expenses) {
+            angular.forEach(expenses, function(row){
+                if(!row){ return; }
+
+                row.crop_name = row.loancrop.crop.crop;
+                row.acres = Number(row.loancrop.acres);
+                row.arm_pa_default = Number(row.arm_adj);
+                row.arm_pa = Number(row.arm);
+                row.dist_pa_default = Number(row.dist_adj);
+                row.dist_pa = Number(row.dist);
+                row.other_pa_default = Number(row.other_adj);
+                row.other_pa = Number(row.other);
+
+                delete row.created_at;
+                delete row.updated_at;
+                delete row.arm_adj;
+                delete row.arm;
+                delete row.dist_adj;
+                delete row.dist;
+                delete row.other_adj;
+                delete row.other;
+                delete row.loancrop
+
+                return row;
+
+            });
+
             var exps = {
                 byCrop: processExpByCrop(expenses),
                 byCat: processExpByCat(expenses),
@@ -356,58 +382,62 @@
         }
 
         function processExpByCat(xps) {
-            var exp = _.chain(xps).groupBy('expense').value();
-            console.log('exp', exp);
-
-            var byCat = _.map(exp, function(item, key) {
-                return item.reduce(function(xp, xps) {
-                    xp.id = Number(xps.id);
-                    xp.loan_id = Number(xps.loan_id);
-                    xp.crop_id = Number(xps.crop_id);
-                    xp.crop = xps.crop;
-                    xp.acres = Number(xps.acres);
-                    xp.cat_id = Number(xps.cat_id);
-                    xp.expense = xps.expense;
-                    xp.arm = Number(xps.arm);
-                    xp.arm_adj = Number(xps.arm_adj);
-                    xp.dist = Number(xps.dist);
-                    xp.dist_adj = Number(xps.dist_adj);
-                    xp.other = Number(xps.other);
-                    xp.other_adj = Number(xps.other_adj);
-                    xp.per_acre = Number(xps.arm_adj) + Number(xps.dist_adj) + Number(xps.other_adj);
-                    xp.calc_arm = Number(xps.arm_adj)*Number(xps.acres);
-                    xp.calc_dist = Number(xps.dist_adj)*Number(xps.acres);
-                    xp.calc_other = Number(xps.other_adj)*Number(xps.acres);
-                    xp.calc_total = (Number(xps.arm_adj)*Number(xps.acres)) + (Number(xps.dist_adj)*Number(xps.acres)) + (Number(xps.other_adj)*Number(xps.acres));
-                    return xp;
-                }, {});
-            });
-            return byCat;
-        }
-
-        function processExpByCrop(xps) {
-            var exp = _.chain(xps).groupBy('crop').value();
+            var exp = _.chain(xps)
+                .groupBy('expense')
+                .value();
 
             var byCrop = _.map(exp, function(item, key) {
                 return item.reduce(function(xp, xps) {
                     xp.id = Number(xps.id);
                     xp.loan_id = Number(xps.loan_id);
                     xp.crop_id = Number(xps.crop_id);
-                    xp.crop = xps.crop;
+                    xp.crop = xps.crop_name;
                     xp.acres = Number(xps.acres);
                     xp.cat_id = Number(xps.cat_id);
                     xp.expense = xps.expense;
-                    xp.arm = Number(xps.arm);
-                    xp.arm_adj = Number(xps.arm_adj);
-                    xp.dist = Number(xps.dist);
-                    xp.dist_adj = Number(xps.dist_adj);
-                    xp.other = Number(xps.other);
-                    xp.other_adj = Number(xps.other_adj);
-                    xp.per_acre = Number(xps.arm_adj) + Number(xps.dist_adj) + Number(xps.other_adj);
-                    xp.calc_arm = Number(xps.arm_adj)*Number(xps.acres);
-                    xp.calc_dist = Number(xps.dist_adj)*Number(xps.acres);
-                    xp.calc_other = Number(xps.other_adj)*Number(xps.acres);
-                    xp.calc_total = (Number(xps.arm_adj)*Number(xps.acres)) + (Number(xps.dist_adj)*Number(xps.acres)) + (Number(xps.other_adj)*Number(xps.acres));
+                    xp.arm_pa = Number(xps.arm_pa);
+                    xp.arm_pa_default = Number(xps.arm_pa_default);
+                    xp.dist_pa = Number(xps.dist_pa);
+                    xp.dist_pa_default = Number(xps.dist_pa_default);
+                    xp.other_pa = Number(xps.other_pa);
+                    xp.other_pa_default = Number(xps.other_pa_default);
+                    xp.per_acre = Number(xps.arm) + Number(xps.dist) + Number(xps.other);
+                    xp.calc_arm = Number(xps.arm) * Number(xps.acres);
+                    xp.calc_dist = Number(xps.dist) * Number(xps.acres);
+                    xp.calc_other = Number(xps.other) * Number(xps.acres);
+                    xp.calc_total = (Number(xps.arm) * Number(xps.acres)) + (Number(xps.dist) * Number(xps.acres)) + (Number(xps.other) * Number(xps.acres));
+                    return xp;
+                }, {});
+            });
+            return byCrop;
+        }
+
+        function processExpByCrop(xps) {
+            console.log('xps', xps);
+            var exp = _.chain(xps)
+                       .groupBy('crop_name')
+                       .value();
+
+            var byCrop = _.map(exp, function(item, key) {
+                return item.reduce(function(xp, xps) {
+                    xp.id = Number(xps.id);
+                    xp.loan_id = Number(xps.loan_id);
+                    xp.crop_id = Number(xps.crop_id);
+                    xp.crop_name = xps.crop_name;
+                    xp.acres = Number(xps.acres);
+                    xp.cat_id = Number(xps.cat_id);
+                    xp.expense = xps.expense;
+                    xp.arm_pa = Number(xps.arm_pa);
+                    xp.arm_pa_default = Number(xps.arm_pa_default);
+                    xp.dist_pa = Number(xps.dist_pa);
+                    xp.dist_pa_default = Number(xps.dist_pa_default);
+                    xp.other_pa = Number(xps.other_pa);
+                    xp.other_pa_default = Number(xps.other_pa_default);
+                    xp.per_acre = Number(xps.arm) + Number(xps.dist) + Number(xps.other);
+                    xp.calc_arm = Number(xps.arm) * Number(xps.acres);
+                    xp.calc_dist = Number(xps.dist) * Number(xps.acres);
+                    xp.calc_other = Number(xps.other) * Number(xps.acres);
+                    xp.calc_total = (Number(xps.arm) * Number(xps.acres)) + (Number(xps.dist) * Number(xps.acres)) + (Number(xps.other) * Number(xps.acres));
                     return xp;
                 }, {});
             });
@@ -415,12 +445,13 @@
         }
 
         function processExpenses(xps) {
+            //return xps;
             var ARM = 0, DIST = 0, OTHER = 0, TOTAL = 0;
             angular.forEach(xps, function(row){
-                ARM += Number(row.arm_adj) * Number(row.acres);
-                DIST += Number(row.dist_adj) * Number(row.acres);
-                OTHER += Number(row.other_adj) * Number(row.acres);
-                TOTAL += (Number(row.arm_adj) * Number(row.acres)) + (Number(row.dist_adj) * Number(row.acres)) + (Number(row.other_adj) * Number(row.acres));
+                ARM += Number(row.arm) * Number(row.acres);
+                DIST += Number(row.dist) * Number(row.acres);
+                OTHER += Number(row.other) * Number(row.acres);
+                TOTAL += (Number(row.arm) * Number(row.acres)) + (Number(row.dist) * Number(row.acres)) + (Number(row.other) * Number(row.acres));
             });
             return {
                 exp_arm: ARM,
