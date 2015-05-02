@@ -18,23 +18,42 @@
             return $http.get(API_URL + '/loans').then(updateLoansData);
         }
 
+        function getCropExpenses(crop) {
+            if(crop.length < 1) { return; }
+            return $http.get(API_URL + '/loans/' + crop[0].loan_id + '/expenses/' + crop[0].crop_id)
+                .then(function(rsp){
+                    return rsp.data.data;
+                });
+        }
+
         function getCrops(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/farmcrops')
                 .then(function (rsp) {
                     var cropsList = rsp.data.data;
 
-                    var crops = {
-                        corn: makeCorn(cropsList),
-                        soybeans: makeSoybeans(cropsList),
-                        beansFAC: makeBeans(cropsList),
-                        sorghum: makeSorghum(cropsList),
-                        wheat: makeWheat(cropsList),
-                        cotton: makeCotton(cropsList),
-                        rice: makeRice(cropsList),
-                        peanuts: makePeanuts(cropsList),
-                        sugarcane: makeCane(cropsList)
-                    };
-                    return crops;
+                    return $q.all({
+                        corn: makeCrop(1, cropsList),
+                        soybeans: makeCrop(2, cropsList),
+                        beansFAC: makeCrop(3, cropsList),
+                        sorghum: makeCrop(4, cropsList),
+                        wheat: makeCrop(5, cropsList),
+                        cotton: makeCrop(6, cropsList),
+                        rice: makeCrop(7, cropsList),
+                        peanuts: makeCrop(8, cropsList),
+                        sugarcane: makeCrop(9, cropsList)
+                    }).then(function (allCrops) {
+                        return {
+                            corn: allCrops.corn,
+                            soybeans: allCrops.soybeans,
+                            beansFAC: allCrops.beansFAC,
+                            sorghum: allCrops.sorghum,
+                            wheat: allCrops.wheat,
+                            cotton: allCrops.cotton,
+                            rice: allCrops.rice,
+                            peanuts: allCrops.peanuts,
+                            sugarcane: allCrops.sugarcane
+                        };
+                    });
                 });
         }
 
@@ -139,6 +158,26 @@
                 });
         }
 
+        function makeCrop(id, list) {
+            var crop_id = Number(id);
+            var crop = _.filter(list, function(item){
+                if(item.crop_id === crop_id){ return item; }
+            });
+            if(!crop.length) {
+                return getEmptyCrop();
+            } // end if
+
+            return getCropExpenses(crop).then(function(exp){
+                var cropObj = {
+                    totals: processCropTotals(crop),
+                    byFarm: crop,
+                    expenses: exp
+                };
+                return cropObj;
+            });
+
+        }
+
         function makeBeans(list) {
             var crop = _.filter(list, function(item){
                 if(item.crop_id === 3){ return item; }
@@ -177,11 +216,15 @@
                 return getEmptyCrop();
             } // end if
 
-            var cropObj = {
-                totals: processCropTotals(crop),
-                byFarm: crop
-            };
-            return cropObj;
+            return getCropExpenses(crop).then(function(exp){
+                var cropObj = {
+                    totals: processCropTotals(crop),
+                    byFarm: crop,
+                    expenses: exp
+                };
+                return cropObj;
+            });
+
         }
 
         function makeCotton(list) {
