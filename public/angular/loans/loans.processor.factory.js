@@ -413,7 +413,7 @@
         }
 
         function processExpByCrop(xps) {
-            console.log('xps', xps);
+            //console.log('xps', xps);
             var exp = _.chain(xps)
                        .groupBy('crop_name')
                        .value();

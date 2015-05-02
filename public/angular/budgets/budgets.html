@@ -1,10 +1,13 @@
-<pre>{{loan.expenses|json}}</pre>
+<!--<pre>{{loan.expenses|json}}</pre>-->
 
 <div>
     <fieldset>
         <tabset>
             <tab heading="Full Farm">
                 <div ng-include="'angular/budgets/budget_summary_table.html'" ng-init="cropuse = uses.total"></div>
+            </tab>
+            <tab ng-repeat="ce in loan.expenses.byCrop" heading="{{ce.crop_name}}">
+                <pre>{{ce|json}}</pre>
             </tab>
             <tab heading="Corn" ng-if="uses.corn[0].loancrop.acres > 0">
                 <div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.corn"></div>
