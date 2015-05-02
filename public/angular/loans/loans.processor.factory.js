@@ -418,6 +418,9 @@
                        .groupBy('crop_name')
                        .value();
 
+            // Returning before reduction
+            return exp;
+
             var byCrop = _.map(exp, function(item, key) {
                 return item.reduce(function(xp, xps) {
                     xp.id = Number(xps.id);
