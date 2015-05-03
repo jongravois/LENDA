@@ -23,7 +23,23 @@
             }// end if
         }
 
+        $scope.calc_arm_total = function(o) {
+            return _.reduce(o.expenses, function(sum, obj) {
+                return sum + Number(obj.arm);
+            }, 0);
+        };
 
+        $scope.calc_dist_total = function(o) {
+            return _.reduce(o.expenses, function(sum, obj) {
+                return sum + Number(obj.dist);
+            }, 0);
+        };
+
+        $scope.calc_other_total = function(o) {
+            return _.reduce(o.expenses, function(sum, obj) {
+                return sum + Number(obj.other);
+            }, 0);
+        };
 
         $scope.insertBudget = function () {
             AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);

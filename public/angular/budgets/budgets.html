@@ -8,48 +8,39 @@
             </tab>
             <!-- CORN -->
             <tab heading="Corn" ng-if="loan.crops.corn.totals.acres > 0">
-                <pre>{{loan.crops.corn|json}}</pre>
-                <!--<div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.corn"></div>-->
+                <div ng-include="'angular/budgets/budget_table.html'" ng-init="thiscrop = loan.crops.corn"></div>
             </tab>
             <!-- SOYBEANS -->
             <tab heading="Soybeans" ng-if="loan.crops.soybeans.totals.acres > 0">
-                <pre>{{loan.crops.soybeans|json}}</pre>
-                <!--<div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.soybeans"></div>-->
+                <div ng-include="'angular/budgets/budget_table.html'" ng-init="thiscrop = loan.crops.soybeans"></div>
             </tab>
             <!-- BEANSFAC -->
             <tab heading="BeansFAC" ng-if="loan.crops.beansFAC.totals.acres > 0">
-                <pre>{{loan.crops.beansFAC|json}}</pre>
-                <!--<div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.beansFAC"></div>-->
+                <div ng-include="'angular/budgets/budget_table.html'" ng-init="thiscrop = loan.crops.beansFAC"></div>
             </tab>
             <!-- SORGHUM -->
             <tab heading="Sorghum" ng-if="loan.crops.sorghum.totals.acres > 0">
-                <pre>{{loan.crops.sorghum|json}}</pre>
-                <!--<div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.sorghum"></div>-->
+                <div ng-include="'angular/budgets/budget_table.html'" ng-init="thiscrop = loan.crops.sorghum"></div>
             </tab>
             <!-- WHEAT -->
             <tab heading="Wheat" ng-if="loan.crops.wheat.totals.acres > 0">
-                <pre>{{loan.crops.wheat|json}}</pre>
-                <!--<div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.wheat"></div>-->
+                <div ng-include="'angular/budgets/budget_table.html'" ng-init="thiscrop = loan.crops.wheat"></div>
             </tab>
             <!-- COTTON -->
             <tab heading="Cotton" ng-if="loan.crops.cotton.totals.acres > 0">
-                <pre>{{loan.crops.cotton|json}}</pre>
-                <!--<div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.cotton"></div>-->
+                <div ng-include="'angular/budgets/budget_table.html'" ng-init="thiscrop = loan.crops.cotton"></div>
             </tab>
             <!-- RICE -->
             <tab heading="Rice" ng-if="loan.crops.rice.totals.acres > 0">
-                <pre>{{loan.crops.rice|json}}</pre>
-                <!--<div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.rice"></div>-->
+                <div ng-include="'angular/budgets/budget_table.html'" ng-init="thiscrop = loan.crops.rice"></div>
             </tab>
             <!-- PEANUTS -->
             <tab heading="Peanuts" ng-if="loan.crops.peanuts.totals.acres > 0">
-                <pre>{{loan.crops.peanuts|json}}</pre>
-                <!--<div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.peanuts"></div>-->
+                <div ng-include="'angular/budgets/budget_table.html'" ng-init="thiscrop = loan.crops.peanuts"></div>
             </tab>
             <!-- SUGAR CANE-->
             <tab heading="Sugar Cane" ng-if="loan.crops.sugarcane.totals.acres > 0">
-                <pre>{{loan.crops.sugarcane|json}}</pre>
-                <!--<div ng-include="'angular/budgets/budget_table.html'" ng-init="cropuse = uses.sugarcane"></div>-->
+                <div ng-include="'angular/budgets/budget_table.html'" ng-init="thiscrop = loan.crops.sugarcane"></div>
             </tab>
         </tabset>
     </fieldset>

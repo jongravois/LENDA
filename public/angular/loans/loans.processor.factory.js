@@ -22,7 +22,10 @@
             if(crop.length < 1) { return; }
             return $http.get(API_URL + '/loans/' + crop[0].loan_id + '/expenses/' + crop[0].crop_id)
                 .then(function(rsp){
-                    return rsp.data.data;
+                    var dbRec = rsp.data.data;
+
+                    var processed = dbRec;
+                    return processed;
                 });
         }
 
@@ -42,6 +45,7 @@
                         peanuts: makeCrop(8, cropsList),
                         sugarcane: makeCrop(9, cropsList)
                     }).then(function (allCrops) {
+                        //console.log('All Crops', allCrops);
                         return {
                             corn: allCrops.corn,
                             soybeans: allCrops.soybeans,
@@ -58,39 +62,10 @@
         }
 
         function getExpenses(expenses) {
-            angular.forEach(expenses, function(row){
-                if(!row){ return; }
-
-                row.crop_name = row.loancrop.crop.crop;
-                row.acres = Number(row.loancrop.acres);
-                row.arm_pa_default = Number(row.arm_adj);
-                row.arm_pa = Number(row.arm);
-                row.dist_pa_default = Number(row.dist_adj);
-                row.dist_pa = Number(row.dist);
-                row.other_pa_default = Number(row.other_adj);
-                row.other_pa = Number(row.other);
-
-                delete row.created_at;
-                delete row.updated_at;
-                delete row.arm_adj;
-                delete row.arm;
-                delete row.dist_adj;
-                delete row.dist;
-                delete row.other_adj;
-                delete row.other;
-                delete row.loancrop
-
-                return row;
-
-            });
-
-            var exps = {
-                byCrop: processExpByCrop(expenses),
-                byCat: processExpByCat(expenses),
-                totals: processExpenses(expenses)
-            };
-
-            return (exps);
+            return $http.get('angular/json/expenses.json')
+                .then(function(rsp){
+                    return rsp.data;
+                });
         }
 
         function getInsurance(loan) {
@@ -168,6 +143,7 @@
             } // end if
 
             return getCropExpenses(crop).then(function(exp){
+                //console.log('exp', exp);
                 var cropObj = {
                     totals: processCropTotals(crop),
                     byFarm: crop,
