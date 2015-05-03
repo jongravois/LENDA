@@ -43,6 +43,7 @@
             clickREBA: clickREBA,
             clickREC: clickREC,
             countiesInState: countiesInState,
+            createLenda: createLenda,
             diffInDates: diffInDates,
             getDefaultDueDate: getDefaultDueDate,
             getFullSeason: getFullSeason,
@@ -576,6 +577,13 @@
 
         function countiesInState(id) {
             return $http.get(API_URL + '/states/' + id + '/counties');
+        }
+
+        function createLenda(obj) {
+            $http.post(API_URL + '/comments', obj)
+                .then(function (res) {
+                    toastr.warning(obj.comment, 'LENDA', {closeButton: true});
+                });
         }
 
         function diffInDates(first, second) {

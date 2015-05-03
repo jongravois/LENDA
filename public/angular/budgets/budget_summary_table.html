@@ -27,24 +27,32 @@
 
   <tr>
     <td colspan="5">Fees and Other</td>
-    <td ng-class=gtZero(total_expenses.fees_and_others.arm)>
-      {{total_expenses.fees_and_others.arm | flexCurrency:0 }}
+    <td class="text-right">
+      {{999999 | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(total_expenses.fees_and_others.dist) ng-if="loan.has_distributor">
-      {{total_expenses.fees_and_others.dist | flexCurrency:0 }}
+    <td class="text-right" ng-if="loan.has_distributor">
+      {{999999 | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(total_expenses.fees_and_others.other)>
-      {{total_expenses.fees_and_others.other | flexCurrency:0 }}
+    <td class="text-right">
+      {{999999 | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(total_expenses.fees_and_others.total)>
-      {{total_expenses.fees_and_others.total | flexCurrency:0 }}
+    <td class="text-right">
+      {{999999 | flexCurrency:0 }}
     </td>
   </tr>
   <tr class="success">
-    <td colspan="5" class="text-left"><strong>Total Expenses</strong></td>
-    <td class="text-right"></td>
-    <td class="text-right" ng-if="loan.has_distributor"></td>
-    <td class="text-right"></td>
+    <td colspan="5" class="text-left">
+      <strong>Total Expenses</strong>
+    </td>
+    <td class="text-right">
+      {{loan.expenses[loan.expenses.length - 1].arm|flexCurrency:0}}
+    </td>
+    <td class="text-right" ng-if="loan.has_distributor">
+      {{loan.expenses[loan.expenses.length - 1].other|flexCurrency:0}}
+    </td>
+    <td class="text-right">
+      {{loan.expenses[loan.expenses.length - 1].crop_total|flexCurrency:0}}
+    </td>
     <td class="text-right"></td>
   </tr>
   <tr>
