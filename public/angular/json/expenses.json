@@ -80,7 +80,8 @@
         "total": 12751
     },
     {
-        "name": "Insurance",
+        "cat_id": 10,
+        "expense": "Insurance",
         "arm": 0,
         "dist": 0,
         "other": 8327,
@@ -109,13 +110,5 @@
         "dist": 0,
         "other": 0,
         "total": 45797
-    },
-    {
-        "cat_id": 99,
-        "expense": "Total",
-        "arm": 158732,
-        "dist": 109118,
-        "other": 83096,
-        "crop_total": 350946
     }
 ]

@@ -11,6 +11,8 @@
         return {
             agentsInAgency: agentsInAgency,
             averageArray: averageArray,
+            calcAdjustedRiskMargin: calcAdjustedRiskMargin,
+            calcCashFlow: calcCashFlow,
             calcClaimsCollateralValue: calcClaimsCollateralValue,
             calcEquipmentCollateralValue: calcEquipmentCollateralValue,
             calcFSACollateralValue: calcFSACollateralValue,
@@ -20,6 +22,7 @@
             calcMarketValueTotal: calcMarketValueTotal,
             calcNRPCollateralValue: calcNRPCollateralValue,
             calcPlannedCropValue: calcPlannedCropValue,
+            calcRiskMargin: calcRiskMargin,
             calcSuppInsValue: calcSuppInsValue,
             calcOtherCollateralValue: calcOtherCollateralValue,
             calcRECollateralValue: calcRECollateralValue,
@@ -45,7 +48,15 @@
             countiesInState: countiesInState,
             createLenda: createLenda,
             diffInDates: diffInDates,
+            getArmInterest: getArmInterest,
+            getArmPrincipal: getArmPrincipal,
+            getDistInterest: getDistInterest,
+            getDistPrincipal: getDistPrincipal,
+            getOtherPrincipal: getOtherPrincipal,
+            getTotalInterest: getTotalInterest,
+            getTotalPrincipal: getTotalPrincipal,
             getDefaultDueDate: getDefaultDueDate,
+            getFeesForArm: getFeesForArm,
             getFullSeason: getFullSeason,
             getIrrPerString: getIrrPerString,
             gtZero: gtZero,
@@ -78,6 +89,15 @@
             }, 0);
             var avg = sum / arr.length;
             return avg;
+        }
+
+        function calcAdjustedRiskMargin(loan) {
+            return -999999;
+        }
+
+        function calcCashFlow(loan) {
+            //projected_income_total - ag_inputs_total - total_int
+            return Number(income_totalCollateral(loan)) - Number(getTotalPrincipal(loan)) - Number(getTotalInterest(loan));
         }
 
         function calcClaimsCollateralValue(obj) {
@@ -118,6 +138,10 @@
 
         function calcPlannedCropValue(obj) {
             return (Number(obj.fins.adj_prod) * (1 - (Number(obj.fins.disc_prod_percent) / 100))) - Number(obj.priorlien[0].projected_crops);
+        }
+
+        function calcRiskMargin(loan) {
+            return -999999;
         }
 
         function calcSuppInsValue(obj) {
@@ -601,6 +625,34 @@
             } // end if
         }
 
+        function getArmInterest(loan) {
+            return Number(getArmPrincipal(loan)) * (Number(loan.fins.int_percent_arm)/100);
+        }
+
+        function getArmPrincipal(loan) {
+            return Number(loan.expenses.totals.arm) + Number(getFeesForArm(loan));
+        }
+
+        function getDistInterest(loan) {
+            return Number(getDistPrincipal(loan)) * (Number(loan.fins.int_percent_dist)/100);
+        }
+
+        function getDistPrincipal(loan) {
+            return Number(loan.expenses.totals.dist);
+        }
+
+        function getOtherPrincipal(loan) {
+            return Number(loan.expenses.totals.other);
+        }
+
+        function getTotalInterest(loan) {
+            return Number(getArmInterest(loan)) + Number(getDistInterest(loan));
+        }
+
+        function getTotalPrincipal(loan) {
+            return (Number(loan.expenses.totals.arm) + Number(getFeesForArm(loan))) + (Number(loan.expenses.totals.dist)) + (Number(loan.expenses.totals.other));
+        }
+
         function getDefaultDueDate(type, year) {
             switch (type) {
                 case '5':
@@ -610,6 +662,38 @@
                 default:
                     return '12/15/' + year;
             } // end switch
+        }
+
+        function getFeesForArm(loan) {
+            if(loan.fins.fee_processing_onTotal) {
+                var prFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_processing_percent)/100);
+            } else {
+                var prFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_processing_percent)/100);
+            } // end if
+
+            if(loan.fins.fee_service_onTotal) {
+                var svcFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_service_percent)/100);
+            } else {
+                var svcFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_service_percent)/100);
+            } //end if
+
+            return prFee + svcFee;
+        }
+
+        function getFeesForDist(loan) {
+            var prFee = Number(loan.expenses.totals.dist) * (Number(loan.fins.fee_processing_percent)/100);
+
+            var svcFee = Number(loan.expenses.totals.dist) * (Number(loan.fins.fee_service_percent)/100);
+
+            return prFee + svcFee;
+        }
+
+        function getFeesForOther(loan) {
+            var prFee = Number(loan.expenses.totals.othert) * (Number(loan.fins.fee_processing_percent)/100);
+
+            var svcFee = Number(loan.expenses.totals.other) * (Number(loan.fins.fee_service_percent)/100);
+
+            return prFee + svcFee;
         }
 
         function getFullSeason(initial) {

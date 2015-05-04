@@ -63,8 +63,10 @@
         }
 
         function getExpenses(expenses) {
+            //TODO: Get from database rather than JSON
             return $http.get('angular/json/expenses.json')
                 .then(function(rsp){
+                    //console.log(rsp.data);
                     return rsp.data;
                 });
         }
@@ -231,6 +233,19 @@
                 }, { crop_id: 0, crop: key, name: 0, type: 0, option: 0, price: 0, level: 0, premium: 0, share: 0, acres: 0, ins_yield: 0, guarantee: 0, value: 0 });
             });
             return byCrop;
+        }
+
+        function processCropExpenses(expenses) {
+            return getExpenses(expenses).then(function(prodata){
+                var proexp = prodata;
+
+                var processed = {
+                    data: proexp,
+                    totals: totalCropExpenses(proexp)
+                };
+                return processed;
+            });
+
         }
 
         function processCropTotals(arrCrop) {
@@ -464,10 +479,32 @@
             return supplus;
         }
 
+        function totalCropExpenses(exps) {
+            //console.log('totalCropExpenses', exps);
+            var armtotal = _.reduce(exps, function(sum, obj) {
+                return sum + Number(obj.arm);
+            }, 0);
+            var disttotal = _.reduce(exps, function(sum, obj) {
+                return sum + Number(obj.dist);
+            }, 0);
+            var othertotal = _.reduce(exps, function(sum, obj) {
+                return sum + Number(obj.other);
+            }, 0);
+            var totaltotal = Number(armtotal) + Number(disttotal) + Number(othertotal);
+
+            var processed = {
+                arm: armtotal,
+                dist: disttotal,
+                other: othertotal,
+                total: totaltotal
+            };
+            return processed;
+        }
+
         function updateLoanData(loan) {
             return $q.all({
                 crops: getCrops(loan),
-                expenses: getExpenses(loan.expenses),
+                expenses: processCropExpenses(loan.expenses),
                 has_comment: getPendingComments(loan),
                 insurance: getInsurance(loan),
                 loancrops: processLoanCrops(loan.loancrops),
