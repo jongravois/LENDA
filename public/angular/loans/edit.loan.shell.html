@@ -1,5 +1,7 @@
 <style>
-  .table>tbody>tr>td{ padding:5px !important;}
+    .table>tbody>tr>td{ padding:5px !important;}
+    .enabled{ color: #ffffff; }
+    .disabled{ color: #cccccc; }
 </style>
 <div class="frmFull_Page">
   <div class="row frmBarsm clr-black">
@@ -7,10 +9,13 @@
       <h6>{{loan.loan_type}} - {{loan.crop_year}} - {{loan.season_full}}: {{loan.applicant.applicant}} ({{loan.farmer.farmer|displayname}} )</h6>
     </div>
     <div class="col-md-3 text-center">
-        <button class="btn btn-default btn-xs" style="margin-top: 5px;" ng-show="loan.is_cross_collateralized">
-            <span class="glyphicon glyphicon-search"></span>
-            &nbsp;Cross Collateral View
-        </button>
+        <div style="margin-top: 5px; cursor:pointer;"
+             ng-class="{'enabled': XColView, 'disabled': !XColView}"
+             ng-show="loan.is_cross_collateralized"
+             ng-model="XColView"
+             ng-click="XColView = !XColView">
+            <span class="glyphicon glyphicon-random"></span>
+        </div>
     </div>
     <div class="col-md-4 text-right" style="color:white;margin-top:5px;">
         <span ng-if="loan.loan_type_id != 7">
@@ -27,7 +32,7 @@
     </div>
   </div>
 
-  <div class="row frmBar clr-darkgreen" style="margin-top: -12px;" ng-show="loan.is_cross_collateralized">
+  <div class="row frmBar clr-darkgreen" style="margin-top: -12px;" ng-show="XColView">
     <div class="col-md-12">
       <h5>Cross Collateral View</h5>
     </div>

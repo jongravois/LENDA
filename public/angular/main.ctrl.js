@@ -49,7 +49,8 @@
                     $scope.loanList = _.filter(allLoans, function(i) {
                         return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
                     });
-                    $scope.sortedLoanList = orderByFilter($scope.loanList, '-app_date');
+                    //TODO: Determine initial sort order
+                    $scope.sortedLoanList = orderByFilter($scope.loanList, '+id');
                 });
                 toastr.success('Loaded all loans', 'Success!');
 
