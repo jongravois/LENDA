@@ -112,16 +112,16 @@
             return Number(income_totalCollateral(loan)) - Number(getTotalPrincipal(loan)) - Number(getTotalInterest(loan));
         }
 
-        function calcClaimsCollateralValue(obj) {
-            return (Number(obj.fins.total_claims) * (1 - (Number(obj.fins.claims_percent) / 100))) - Number(obj.priorlien[0].claims * 1);
+        function calcClaimsCollateralValue(loan) {
+            return (Number(loan.fins.total_claims) * (1 - (Number(loan.fins.claims_percent) / 100))) - Number(loan.priorlien[0].claims * 1);
         }
 
-        function calcEquipmentCollateralValue(obj) {
-            return (Number(obj.fins.collateral_equipment) * (1 - (Number(obj.fins.equipment_percent) / 100))) - Number(obj.priorlien[0].equipment);
+        function calcEquipmentCollateralValue(loan) {
+            return (Number(loan.fins.collateral_equipment) * (1 - (Number(loan.fins.equipment_percent) / 100))) - Number(loan.priorlien[0].equipment);
         }
 
-        function calcFSACollateralValue(obj) {
-            return (Number(obj.fins.total_fsa_payment) * (1 - (Number(obj.fins.fsa_assignment_percent) / 100))) - Number(obj.priorlien[0].fsa_payments);
+        function calcFSACollateralValue(loan) {
+            return (Number(loan.fins.total_fsa_payment) * (1 - (Number(loan.fins.fsa_assignment_percent) / 100))) - Number(loan.priorlien[0].fsa_payments);
         }
 
         function calcInsuranceGuaranty(obj) {
@@ -129,7 +129,7 @@
         }
 
         function calcInsOverDisc(obj) {
-            //(Guar-Premium)*share/100*Acres
+            //(Guarantee-Premium)*share/100*Acres
             if(obj.type == 'RP') {
                 return (obj.guarantee - obj.premium) * (obj.share/100) * obj.acres;
             } else {
@@ -159,20 +159,20 @@
             return Number(loan.fins.adj_prod) + Number(loan.fins.total_fsa_payment) + Number(loan.fins.ins_disc_prod) + Number(loan.insurance.nonrp.value) + Number(loan.supplements.totals.value) + Number(loan.fins.collateral_equipment) + Number(loan.fins.collateral_realestate) + Number(loan.fins.total_claims) + Number(loan.othercollateral.totals.value);
         }
 
-        function calcIODCollateralValue(obj) {
-            return (Number(obj.fins.ins_disc_prod) * (1 - (Number(obj.fins.disc_ins_percent) / 100))) - Number(obj.priorlien[0].ins_over_discount);
+        function calcIODCollateralValue(loan) {
+            return (Number(loan.fins.ins_disc_prod) * (1 - (Number(loan.fins.disc_ins_percent) / 100))) - Number(loan.priorlien[0].ins_over_discount);
         }
 
-        function calcNRPCollateralValue(obj) {
-            return (Number(obj.insurance.nonrp.value) * (1 - (Number(obj.fins.non_rp_percent) / 100))) - Number(obj.priorlien[0].nonrp_discount);
+        function calcNRPCollateralValue(loan) {
+            return (Number(loan.insurance.nonrp.value) * (1 - (Number(loan.fins.non_rp_percent) / 100))) - Number(loan.priorlien[0].nonrp_discount);
         }
 
-        function calcOtherCollateralValue(obj) {
-            return (Number(obj.othercollateral.totals.value) * (1 - (Number(obj.fins.other_discount_percent) / 100))) - Number(obj.priorlien[0].other);
+        function calcOtherCollateralValue(loan) {
+            return (Number(loan.othercollateral.totals.value) * (1 - (Number(loan.fins.other_discount_percent) / 100))) - Number(loan.priorlien[0].other);
         }
 
-        function calcPlannedCropValue(obj) {
-            return (Number(obj.fins.adj_prod) * (1 - (Number(obj.fins.disc_prod_percent) / 100))) - Number(obj.priorlien[0].projected_crops);
+        function calcPlannedCropValue(loan) {
+            return (Number(loan.fins.adj_prod) * (1 - (Number(loan.fins.disc_prod_percent) / 100))) - Number(loan.priorlien[0].projected_crops);
         }
 
         function calcRiskMargin(loan) {
@@ -181,12 +181,12 @@
             return Number(calcTotalCollateral(loan)) - Number(calcTotalExpenses(loan));
         }
 
-        function calcSuppInsValue(obj) {
-            return (Number(obj.supplements.totals.value) * (1 - (Number(obj.fins.supplement_insurance_discount_percent) / 100))) - Number(obj.priorlien[0].supplemental_coverage);
+        function calcSuppInsValue(loan) {
+            return (Number(loan.supplements.totals.value) * (1 - (Number(loan.fins.supplement_insurance_discount_percent) / 100))) - Number(loan.priorlien[0].supplemental_coverage);
         }
 
-        function calcRECollateralValue(obj) {
-            return (Number(obj.fins.collateral_realestate) * (1 - Number(obj.fins.realestate_percent) / 100)) - Number(obj.priorlien[0].realestate);
+        function calcRECollateralValue(loan) {
+            return (Number(loan.fins.collateral_realestate) * (1 - Number(loan.fins.realestate_percent) / 100)) - Number(loan.priorlien[0].realestate);
         }
 
         function calcTotalCollateral(loan) {
