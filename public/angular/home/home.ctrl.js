@@ -2,22 +2,26 @@
     'use strict';
     angular
         .module('ARM')
-        .controller('HomeController', function ($scope) {
-            $scope.pending_view = 0;
-            $scope.orderOptions = ['applicant', '-categoryOrder'];
-            $scope.orderOption = "['applicant']";
+        .controller('HomeController', HomeController);
 
-            $scope.gridOptions = {
-                data: 'loanList',
-                rowHeight: 40,
-                showFilter: true,
-                nextOrder: $scope.nextOrder,
-                //showGroupPanel: true,
-                enableRowSelection: false,
-                //enableCellEdit: true,
-                columnDefs: 'columnDefs'
-            };
-            $scope.columnDefs = [
+    HomeController.$inject = ['$scope', '$filter', 'orderByFilter'];
+
+    function HomeController($scope, $filter, orderByFilter) {
+        $scope.pending_view = 0;
+        $scope.orderOptions = ['applicant', '-categoryOrder'];
+        $scope.orderOption = "['applicant']";
+
+        $scope.gridOptions = {
+            data: 'sortedLoanList',
+            rowHeight: 40,
+            showFilter: true,
+            nextOrder: $scope.nextOrder,
+            //showGroupPanel: true,
+            enableRowSelection: false,
+            //enableCellEdit: true,
+            columnDefs: 'columnDefs'
+        };
+        $scope.columnDefs = [
                 {
                     field: 'pending',
                     displayName: ' ',
@@ -242,13 +246,5 @@
                     visible: $scope.user.viewoptions.view_acres_sugar_cane || false
                 }
             ];
-
-            $scope.nextOrder = function(stat){
-                if(stat === 0){
-                    $scope.orderOption = ['applicant'];
-                } else {
-                    $scope.orderOption = ['-need_vote', '-has_comment', '-is_stale', '-on_watch', '-disbursement_issue'];
-                } // end if
-            };
-        });
+    } // end controller
 })();

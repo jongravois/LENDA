@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$state', '$q', 'toastr', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersFactory'];
+    MainController.$inject = ['$scope', '$state', '$q', '$filter', 'toastr', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersFactory', 'orderByFilter'];
 
-    function MainController($scope, $state, $q, toastr, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersFactory) {
+    function MainController($scope, $state, $q, $filter, toastr, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersFactory, orderByFilter) {
         $scope.user_id = $('#user_id').data('id');
         $scope.AppFactory = AppFactory;
 
@@ -49,6 +49,7 @@
                     $scope.loanList = _.filter(allLoans, function(i) {
                         return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
                     });
+                    $scope.sortedLoanList = orderByFilter($scope.loanList, '-app_date');
                 });
                 toastr.success('Loaded all loans', 'Success!');
 
@@ -66,6 +67,14 @@
         }
 
         //SCOPE FUNCTIONS
+        $scope.nextOrder = function(stat){
+            if( Number(stat) === 1) {
+                $scope.sortedLoanList = orderByFilter($scope.loanList, ['-need_vote', '-has_comment', '-is_stale', '-on_watch', '-disbursement_issue', '+farmer.farmer']);
+            } else {
+                $scope.sortedLoanList = orderByFilter($scope.loanList, '-app_date');
+            }
+        };
+
         $scope.newLoan = function createLoan(type_id) {
             var types = _.find($scope.feeder.loantypes, function(item){
                 return item.id === type_id;
