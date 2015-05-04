@@ -1,5 +1,12 @@
 <?php
 
+function getAcresForCrop($obj, $cropID)
+{
+    $nCropID = (integer)$cropID-1;
+    if($obj[$nCropID]['crop_id'] == $cropID){
+        return $obj[$nCropID]['acres'];
+    }
+}
 function calcAdjProd($arr)
 {
     return ( (double) $arr['acres'] * ((double) $arr['prod_share'] / 100) * (double) $arr['prod_yield'] * (double) $arr['prod_price']) + (((double) $arr['bkprice'] - (double) $arr['prod_price']) * (double) $arr['bkqty']) - ((double) $arr['harvest'] * (double) $arr['prod_yield'] * (double) $arr['acres']) + ((double) $arr['rebates'] * (double) $arr['prod_yield'] * (double) $arr['acres'] * ((double) $arr['prod_share'] / 100));

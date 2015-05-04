@@ -55,6 +55,7 @@
             incomeCropValue: incomeCropValue,
             incomeHarvestValue: incomeHarvestValue,
             income_totalCollateral: income_totalCollateral,
+            income_totalCropValue: income_totalCropValue,
             moveToNextNewLoanScreen: moveToNextNewLoanScreen,
             monitorAdjustedRisk: monitorAdjustedRisk,
             monitorCashFlow: monitorCashFlow,
@@ -579,6 +580,9 @@
             return $http.get(API_URL + '/states/' + id + '/counties');
         }
 
+        /*
+        * obj includes loan_id, user_id and comment
+        */
         function createLenda(obj) {
             $http.post(API_URL + '/comments', obj)
                 .then(function (res) {
@@ -678,6 +682,13 @@
 
             var totRev = allCropValue + Number(loan.fins.total_fsa_payment) + Number(loan.fins.total_claims);
             return totRev;
+        }
+
+        function income_totalCropValue(loan) {
+            var allCropValue = _.reduce(loan.loancrops, function(sum, obj){
+                return sum + Number(obj.crop_total);
+            }, 0);
+            return allCropValue;
         }
 
         function moveToNextNewLoanScreen(screenName, $stateParams) {

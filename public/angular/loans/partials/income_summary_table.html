@@ -37,6 +37,16 @@
       {{c.crop_total | flexCurrency:0}}
     </td>
   </tr>
+  <tr class="warning">
+      <td>Subtotal: Crop Input</td>
+      <td class="text-right">
+          {{loan.fins.total_acres|number:1}}
+      </td>
+      <td colspan="6">&nbsp;</td>
+      <td class="text-right">
+          {{AppFactory.income_totalCropValue(loan)|flexCurrency:0}}
+      </td>
+  </tr>
   <tr>
     <td colspan="8">FSA Payment</td>
     <td ng-class=gtZero(loan.fins.total_fsa_payment)>
@@ -44,7 +54,7 @@
     </td>
   </tr>
   <tr>
-    <td colspan="8">Claims</td>
+    <td colspan="8">Other</td>
     <td ng-class=gtZero(loan.fins.total_claims)>
       {{loan.fins.total_claims | flexCurrency:0}}
     </td>

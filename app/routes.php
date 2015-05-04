@@ -1,6 +1,8 @@
 <?php
 
 //TODO: All non-Laravel routes should be prefixed with 'api'
+use Acme\Transformers\LoanTransformer;
+
 Route::get('/', 'AppController@index')->before('auth');
 Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
@@ -21,8 +23,10 @@ Route::get('env', function () {
 });
 
 Route::get('test', function () {
-    $retHTML = Loan::with('cropexpenses.loancrop.crop')->where('id', '1')->get();
-
+    $retHTML = Cropexpenses::where('loan_id', '1')
+        ->orderBy('crop_id')
+        ->orderBy('cat_id')
+        ->get();
     return $retHTML;
     //return View::make('hello');
 });

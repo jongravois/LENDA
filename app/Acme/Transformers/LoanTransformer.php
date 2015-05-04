@@ -139,6 +139,106 @@ class LoanTransformer extends Transformer
             'crop_inspection' => (integer)$arr['crop_inspection'],
             'reconciliation' => (integer)$arr['reconciliation'],
             'account_classification' => (integer)$arr['account_classification'],
+            /*'acres' => [
+                'corn' => (double)getAcresForCrop($arr['loancrop'], 1),
+                'soybeans' => (double)getAcresForCrop($arr['loancrop'], 2),
+                'beansFAC' => (double)getAcresForCrop($arr['loancrop'], 3),
+                'sorghum' => (double)getAcresForCrop($arr['loancrop'], 4),
+                'wheat' => (double)getAcresForCrop($arr['loancrop'], 5),
+                'cotton' => (double)getAcresForCrop($arr['loancrop'], 6),
+                'rice' => (double)getAcresForCrop($arr['loancrop'], 7),
+                'peanuts' => (double)getAcresForCrop($arr['loancrop'], 8),
+                'sugarcane' => (double)getAcresForCrop($arr['loancrop'], 9),
+                'total' => (double)getLoanTotalAcres($arr['id'])
+            ], */
+            'expenses' => $arr['cropexpenses'],
+            'fins' => [
+                'amount_requested' => (double)$arr['financials']['amount_requested'],
+                'total_acres' => (double)getLoanTotalAcres($arr['id']),
+                'claims_percent' => (double)$arr['financials']['claims_percent'],
+                'supplement_insurance_discount_percent' => (double) $arr['financials']['supplement_insurance_discount_percent'],
+                'fsa_assignment_percent' => (double)$arr['financials']['fsa_assignment_percent'],
+                'other_discount_percent' => (double)$arr['financials']['other_discount_percent'],
+                'disc_prod_percent' => (double)$arr['financials']['disc_prod_percent'],
+                'equipment_percent' => (double)$arr['financials']['equipment_percent'],
+                'realestate_percent' => (double)$arr['financials']['realestate_percent'],
+                'non_rp_percent' => (double)$arr['financials']['non_rp_percent'],
+                'int_percent_arm' => (double)$arr['financials']['int_percent_arm'],
+                'fee_processing_percent' => (double)$arr['financials']['fee_processing'],
+                'fee_processing_onTotal' => (boolean)$arr['financials']['fee_processing_onTotal'],
+                // CALCULATION
+                'int_arm' => (double)$arr['financials']['int_arm'],
+                'int_percent_dist' => (double)$arr['financials']['int_percent_dist'],
+                // CALCULATION
+                'int_dist' => (double)$arr['financials']['int_dist'],
+                'int_percent_other' => (double)$arr['financials']['int_percent_other'],
+                // CALCULATION
+                'int_other' => (double)$arr['financials']['int_other'],
+                // CALCULATION
+                'proc_fee' => (double)$arr['financials']['proc_fee'],
+                // CALCULATION
+                'proc_fee_arm_only' => (double)$arr['financials']['proc_fee_arm_only'],
+                'fee_service_percent' => (double)$arr['financials']['fee_service'],
+                // CALCULATION
+                'fee_service_onTotal' => (boolean)$arr['financials']['fee_service_onTotal'],
+                // CALCULATION
+                'srvc_fee' => (double)$arr['financials']['srvc_fee'],
+                // CALCULATION
+                'srvc_fee_arm_only' => (double)$arr['financials']['srvc_fee_arm_only'],
+                'total_fee_percent' => (double)$arr['financials']['total_fee_percent'],
+                // CALCULATION
+                'fee_total' => (double)$arr['financials']['fee_total'],
+                // CALCULATION
+                'total_fsa_payment' => (double)$arr['financials']['total_fsa_payment'],
+                // CALCULATION
+                'total_claims' => (double)$arr['financials']['total_claims'],
+                // CALCULATION
+                'total_revenue' => (double)$arr['financials']['total_revenue'],
+                // CALCULATION
+                'total_balance' => (double)$arr['financials']['total_balance'],
+                'remaining_balance' => (double)$arr['financials']['remaining_balance'],
+                // CALCULATION
+                'cash_flow' => (double)$arr['financials']['cash_flow'],
+                // CALCULATION
+                'risk' => (double)$arr['financials']['risk'],
+                // CALCULATION
+                'collateral_equipment' => (double)$arr['financials']['collateral_equipment'],
+                // CALCULATION
+                'collateral_realestate' => (double)$arr['financials']['collateral_realestate'],
+                // CALCULATION
+                'guaranty' => (double)$arr['financials']['guaranty'],
+                // CALCULATION
+                'prod' => (double)$arr['financials']['prod'],
+                // CALCULATION
+                'adj_prod' => (double)$arr['financials']['adj_prod'],
+                // CALCULATION
+                'disc_adj_prod' => (double)$arr['financials']['disc_adj_prod'],
+                // CALCULATION
+                'ins_disc_prod' => (double)$arr['financials']['ins_disc_prod'],
+                // CALCULATION
+                'disc_ins' => (double)$arr['financials']['disc_ins'],
+                'disc_ins_percent' => (double)$arr['financials']['disc_ins_percent'],
+                // CALCULATION
+                'commit_arm' => (double)$arr['financials']['commit_arm'],
+                // CALCULATION
+                'commit_dist' => (double)$arr['financials']['commit_dist'],
+                // CALCULATION
+                'commit_other' => (double)$arr['financials']['commit_other'],
+                // CALCULATION
+                'commit_total' => (double)$arr['financials']['commit_total'],
+                // CALCULATION
+                'principal_arm' => (double)$arr['financials']['principal_arm'],
+                // CALCULATION
+                'principal_dist' => (double)$arr['financials']['principal_dist'],
+                // CALCULATION
+                'principal_other' => (double)$arr['financials']['principal_other'],
+                // CALCULATION
+                'principal' => (double)$arr['financials']['principal'],
+                // CALCULATION
+                'arm_and_dist' => (double)$arr['financials']['arm_and_dist'],
+                // CALCULATION
+                'collateral' => (double)$arr['financials']['collateral'],
+            ],
             'analyst' => [
                 'nick' => $arr['user']['nick'],
                 'name' => $arr['user']['username'],
@@ -192,63 +292,7 @@ class LoanTransformer extends Transformer
                 'cd' => (boolean)$arr['conditions_cd']
             ],
             'exceptions' => $arr['exceptions'],
-            'expenses' => $arr['cropexpenses'],
             'farmcrops' => $arr['farmcrops'],
-            'fins' => [
-                'amount_requested' => (double)$arr['financials']['amount_requested'],
-                'total_acres' => (double)getLoanTotalAcres($arr['id']),
-                'int_percent_arm' => (double)$arr['financials']['int_percent_arm'],
-                'int_arm' => (double)$arr['financials']['int_arm'],
-                'int_percent_dist' => (double)$arr['financials']['int_percent_dist'],
-                'int_dist' => (double)$arr['financials']['int_dist'],
-                'int_percent_other' => (double)$arr['financials']['int_percent_other'],
-                'int_other' => (double)$arr['financials']['int_other'],
-                'fee_processing_percent' => (double)$arr['financials']['fee_processing'],
-                'fee_processing_onTotal' => (boolean)$arr['financials']['fee_processing_onTotal'],
-                'proc_fee' => (double)$arr['financials']['proc_fee'],
-                'proc_fee_arm_only' => (double)$arr['financials']['proc_fee_arm_only'],
-                'fee_service_percent' => (double)$arr['financials']['fee_service'],
-                'fee_service_onTotal' => (boolean)$arr['financials']['fee_service_onTotal'],
-                'srvc_fee' => (double)$arr['financials']['srvc_fee'],
-                'srvc_fee_arm_only' => (double)$arr['financials']['srvc_fee_arm_only'],
-                'total_fee_percent' => (double)$arr['financials']['total_fee_percent'],
-                'fee_total' => (double)$arr['financials']['fee_total'],
-                'total_fsa_payment' => (double)$arr['financials']['total_fsa_payment'],
-                'total_claims' => (double)$arr['financials']['total_claims'],
-                'total_revenue' => (double)$arr['financials']['total_revenue'],
-                'total_balance' => (double)$arr['financials']['total_balance'],
-                'remaining_balance' => (double)$arr['financials']['remaining_balance'],
-                'cash_flow' => (double)$arr['financials']['cash_flow'],
-                'risk' => (double)$arr['financials']['risk'],
-                'collateral_equipment' => (double)$arr['financials']['collateral_equipment'],
-                'collateral_realestate' => (double)$arr['financials']['collateral_realestate'],
-                'guaranty' => (double)$arr['financials']['guaranty'],
-                'prod' => (double)$arr['financials']['prod'],
-                'adj_prod' => (double)$arr['financials']['adj_prod'],
-                'claims_percent' => (double)$arr['financials']['claims_percent'],
-                'fsa_assignment_percent' => (double)$arr['financials']['fsa_assignment_percent'],
-                'other_discount_percent' => (double)$arr['financials']['other_discount_percent'],
-                'disc_prod_percent' => (double)$arr['financials']['disc_prod_percent'],
-                'equipment_percent' => (double)$arr['financials']['equipment_percent'],
-                'realestate_percent' => (double)$arr['financials']['realestate_percent'],
-                'non_rp_percent' => (double)$arr['financials']['non_rp_percent'],
-                'disc_adj_prod' => (double)$arr['financials']['disc_adj_prod'],
-                'ins_disc_prod' => (double)$arr['financials']['ins_disc_prod'],
-                'disc_ins' => (double)$arr['financials']['disc_ins'],
-                'disc_ins_percent' => (double)$arr['financials']['disc_ins_percent'],
-                'commit_arm' => (double)$arr['financials']['commit_arm'],
-                'commit_dist' => (double)$arr['financials']['commit_dist'],
-                'commit_other' => (double)$arr['financials']['commit_other'],
-                'commit_total' => (double)$arr['financials']['commit_total'],
-                'principal_arm' => (double)$arr['financials']['principal_arm'],
-                'principal_dist' => (double)$arr['financials']['principal_dist'],
-                'principal_other' => (double)$arr['financials']['principal_other'],
-                'principal' => (double)$arr['financials']['principal'],
-                'arm_and_dist' => (double)$arr['financials']['arm_and_dist'],
-                'collateral' => (double)$arr['financials']['collateral'],
-                'supplement_insurance_discount_percent' => (double) $arr['financials']['supplement_insurance_discount_percent'],
-
-            ],
             'appfins' => $arr['appfins'],
             'committee' => $arr['committee'],
             'comments' => $arr['comments'],

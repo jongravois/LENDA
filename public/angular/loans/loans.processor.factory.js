@@ -25,6 +25,7 @@
                     var dbRec = rsp.data.data;
 
                     var processed = dbRec;
+                    //console.log('From getCropExpenses', processed);
                     return processed;
                 });
         }
@@ -143,154 +144,22 @@
             } // end if
 
             return getCropExpenses(crop).then(function(exp){
-                //console.log('exp', exp);
+                //console.log('fromMakeCrop', exp);
+
+                var expenses = _.chain(exp)
+                            .groupBy('expense')
+                            .value();
+
+                //console.log('fromMakeCrop', expenses);
+
                 var cropObj = {
                     totals: processCropTotals(crop),
                     byFarm: crop,
-                    expenses: exp
+                    expenses: expenses
                 };
                 return cropObj;
             });
 
-        }
-
-        function makeBeans(list) {
-            var crop = _.filter(list, function(item){
-                if(item.crop_id === 3){ return item; }
-            });
-            if(!crop.length) {
-                return getEmptyCrop();
-            } // end if
-
-            var cropObj = {
-                totals: processCropTotals(crop),
-                byFarm: crop
-            };
-            return cropObj;
-        }
-
-        function makeCane(list) {
-            var crop = _.filter(list, function(item){
-                if(item.crop_id === 9){ return item; }
-            });
-            if(!crop.length) {
-                return getEmptyCrop();
-            } // end if
-
-            var cropObj = {
-                totals: processCropTotals(crop),
-                byFarm: crop
-            };
-            return cropObj;
-        }
-
-        function makeCorn(list) {
-            var crop = _.filter(list, function(item){
-                if(item.crop_id === 1){ return item; }
-            });
-            if(!crop.length) {
-                return getEmptyCrop();
-            } // end if
-
-            return getCropExpenses(crop).then(function(exp){
-                var cropObj = {
-                    totals: processCropTotals(crop),
-                    byFarm: crop,
-                    expenses: exp
-                };
-                return cropObj;
-            });
-
-        }
-
-        function makeCotton(list) {
-            var crop = _.filter(list, function(item){
-                if(item.crop_id === 6){ return item; }
-            });
-            if(!crop.length) {
-                return getEmptyCrop();
-            } // end if
-
-            var cropObj = {
-                totals: processCropTotals(crop),
-                byFarm: crop
-            };
-            return cropObj;
-        }
-
-        function makePeanuts(list) {
-            var crop = _.filter(list, function(item){
-                if(item.crop_id === 8){ return item; }
-            });
-            if(!crop.length) {
-                return getEmptyCrop();
-            } // end if
-
-            var cropObj = {
-                totals: processCropTotals(crop),
-                byFarm: crop
-            };
-            return cropObj;
-        }
-
-        function makeRice(list) {
-            var crop = _.filter(list, function(item){
-                if(item.crop_id === 7){ return item; }
-            });
-            if(!crop.length) {
-                return getEmptyCrop();
-            } // end if
-
-            var cropObj = {
-                totals: processCropTotals(crop),
-                byFarm: crop
-            };
-            return cropObj;
-        }
-
-        function makeSorghum(list) {
-            var crop = _.filter(list, function(item){
-                if(item.crop_id === 4){ return item; }
-            });
-            if(!crop.length) {
-                return getEmptyCrop();
-            } // end if
-
-            var cropObj = {
-                totals: processCropTotals(crop),
-                byFarm: crop
-            };
-            return cropObj;
-        }
-
-        function makeSoybeans(list) {
-            var crop = _.filter(list, function(item){
-                if(item.crop_id === 2){ return item; }
-            });
-            if(!crop.length) {
-                return getEmptyCrop();
-            } // end if
-
-            var cropObj = {
-                totals: processCropTotals(crop),
-                byFarm: crop
-            };
-            return cropObj;
-        }
-
-        function makeWheat(list) {
-            var crop = _.filter(list, function(item){
-                if(item.crop_id === 5){ return item; }
-            });
-            if(!crop.length) {
-                return getEmptyCrop();
-            } // end if
-
-            var cropObj = {
-                totals: processCropTotals(crop),
-                byFarm: crop
-            };
-            return cropObj;
         }
 
         function processAgencies(policies) {
