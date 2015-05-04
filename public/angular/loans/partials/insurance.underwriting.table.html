@@ -9,6 +9,8 @@
         <th>Premium</th>
         <th>Share</th>
         <th>Value</th>
+        <th>Over Disc</th>
+        <th>Non RP</th>
     </tr>
     <tr ng-if="loan.insurance.byCrop.length === 0">
         <td colspan="9"><strong>No Insurance Information Found.</strong></td>
@@ -23,31 +25,15 @@
         <td class="text-right">{{c.premium|flexCurrency:2}}</td>
         <td class="text-right">{{c.share|flexPercent:1}}</td>
         <td class="text-right">{{c.value|flexCurrency:0}}</td>
+        <td class="text-right">{{AppFactory.calcInsOverDisc(c)|flexCurrency:0}}</td>
+        <td class="text-right">{{AppFactory.calcInsOverDiscNonRP(c)|flexCurrency:0}}</td>
     </tr>
     <tr class="success" ng-if="loan.insurance.byCrop.length !== 0">
         <td>Total</td>
+        <!-- TODO: These calculations are wrong! -->
         <td colspan="7">&nbsp;</td>
-        <td class="text-right">{{loan.fins.guaranty|flexCurrency:0}}</td>
-    </tr>
-</table>
-<br/>
-<table class="table" style="width:80%; margin:0 auto;">
-    <tr>
-        <td style="width:60%;">ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}} </span>Loan secured by Collateral Conditions</td>
-        <td style="width:40%;" colspan="3" class="text-right">
-            {{loan.expenses.totals.arm | flexCurrency:0}}
-        </td>
-    </tr>
-    <tr>
-        <td>Applicant's share of crop insurance less premium</td>
-        <td colspan="3" class="text-right">
-            {{AppFactory.calcInsuranceTotalGuarantee(loan) | flexCurrency:0}}
-        </td>
-    </tr>
-    <tr>
-        <td>Crop Insurance coverage in excess of ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}}</span> Loan</td>
-        <td colspan="3" class="text-right">
-            {{AppFactory.getInsExcessCoverage(loan) | flexCurrency:0}}
-        </td>
+        <td class="text-right">{{AppFactory.calcTotalInsGuar(loan)|flexCurrency:0}}</td>
+        <td class="text-right">{{AppFactory.calcTotalOverDisc(loan)|flexCurrency:0}}</td>
+        <td class="text-right">{{AppFactory.calcTotalOverDiscNonRP(loan)|flexCurrency:0}}</td>
     </tr>
 </table>

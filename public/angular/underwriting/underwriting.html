@@ -42,6 +42,16 @@
     </div>
 </fieldset>
 <br/><br/>
+<!--INSURANCE COVERAGE-->
+<fieldset>
+    <legend>Detailed Insurance Coverage</legend>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <div ng-include="'angular/loans/partials/insurance.underwriting.table.html'"></div>
+        </div>
+    </div>
+</fieldset>
+<br/><br/>
 <!--COLLATERAL SUMMARY-->
 <fieldset ng-if="loan.loan_type_id != 7">
   <legend>Collateral Summary</legend>

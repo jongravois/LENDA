@@ -234,7 +234,7 @@
             obj.value = AppFactory.calcInsuranceValue(obj);
 
             $scope.loan.total_ins_value = $scope.loan.total_ins_value + obj.value;
-            console.log(obj);
+            //console.log(obj);
 
             LoansFactory.insertPolicy(obj)
                 .then(function success(rsp) {

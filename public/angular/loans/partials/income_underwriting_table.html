@@ -58,13 +58,13 @@
 
   </tr>
   <tr>
-    <td colspan="12">FSA Payment</td>
+    <td colspan="12" class="bright">FSA Payment</td>
     <td class="text-right">
       {{loan.fins.total_fsa_payment | flexCurrency:0}}
     </td>
   </tr>
   <tr>
-    <td colspan="12">Claims</td>
+    <td colspan="12" class="bright">Other</td>
     <td ng-class=gtZero(loan.fins.total_claims)>
       {{loan.fins.total_claims | flexCurrency:0}}
     </td>
@@ -72,7 +72,7 @@
   <tr class="success">
     <td class="text-left"><strong>Revenue</strong></td>
     <td class="text-right">{{loan.fins.total_acres | number:1}}</td>
-    <td colspan="10">&nbsp;</td>
+    <td colspan="10" class="bright">&nbsp;</td>
     <td class="text-right">
       {{AppFactory.income_totalCollateral(loan) | flexCurrency:0}}
     </td>
