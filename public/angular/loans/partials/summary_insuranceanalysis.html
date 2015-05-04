@@ -27,7 +27,7 @@
     <tr class="success" ng-if="loan.insurance.byCrop.length !== 0">
         <td>Total</td>
         <td colspan="7">&nbsp;</td>
-        <td class="text-right">{{loan.fins.guaranty|flexCurrency:0}}</td>
+        <td class="text-right">{{AppFactory.calcInsuranceTotalValue(loan)|flexCurrency:0}}</td>
     </tr>
 </table>
 <br/>
@@ -35,19 +35,19 @@
     <tr>
         <td style="width:60%;">ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}} </span>Loan secured by Collateral Conditions</td>
         <td style="width:40%;" colspan="3" class="text-right">
-            {{loan.expenses.totals.arm | flexCurrency:0}}
+            {{AppFactory.getArmDistCollateral(loan) | flexCurrency:0}}
         </td>
     </tr>
     <tr>
         <td>Applicant's share of crop insurance less premium</td>
         <td colspan="3" class="text-right">
-            {{AppFactory.calcInsuranceTotalGuarantee(loan) | flexCurrency:0}}
+            {{AppFactory.calcInsuranceTotalValue(loan) | flexCurrency:0}}
         </td>
     </tr>
     <tr>
         <td>Crop Insurance coverage in excess of ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}}</span> Loan</td>
         <td colspan="3" class="text-right">
-            {{AppFactory.getInsExcessCoverage(loan) | flexCurrency:0}}
+            {{AppFactory.calcInsuranceTotalValue(loan) - AppFactory.getArmDistCollateral(loan) | flexCurrency:0}}
         </td>
     </tr>
 </table>

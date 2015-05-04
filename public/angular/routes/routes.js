@@ -10,21 +10,21 @@
                     abstract: true,
                     url: '/loans',
                     template: '<ui-view/>',
-                    controller: 'MainLoansController'
+                    controller: 'MainLoansController',
+                    resolve: {
+                     armed: function ($q, $timeout) {
+                     var defer = $q.defer();
+                     $timeout(function () {
+                     defer.resolve();
+                     }, 2000);
+                     return defer.promise;
+                     }
+                     }
                 })
                 .state('loans.home', {
                     url: '/home',
                     templateUrl: 'angular/home/home.html',
-                    controller: 'HomeController',
-                    /*resolve: {
-                        armed: function ($q, $timeout) {
-                            var defer = $q.defer();
-                            $timeout(function () {
-                                defer.resolve();
-                            }, 1000);
-                            return defer.promise;
-                        }
-                    }*/
+                    controller: 'HomeController'
                 })
                 .state('loans.management', {
                     url: '/management',

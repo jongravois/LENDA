@@ -20,6 +20,7 @@
             calcInsOverDiscNonRP: calcInsOverDiscNonRP,
             calcInsuranceGuaranty: calcInsuranceGuaranty,
             calcInsuranceTotalGuarantee: calcInsuranceTotalGuarantee,
+            calcInsuranceTotalValue: calcInsuranceTotalValue,
             calcInsuranceValue: calcInsuranceValue,
             calcIODCollateralValue: calcIODCollateralValue,
             calcMarketValueTotal: calcMarketValueTotal,
@@ -56,11 +57,11 @@
             countiesInState: countiesInState,
             createLenda: createLenda,
             diffInDates: diffInDates,
+            getArmDistCollateral: getArmDistCollateral,
             getArmInterest: getArmInterest,
             getArmPrincipal: getArmPrincipal,
             getDistInterest: getDistInterest,
             getDistPrincipal: getDistPrincipal,
-            getInsExcessCoverage: getInsExcessCoverage,
             getOtherPrincipal: getOtherPrincipal,
             getTotalInterest: getTotalInterest,
             getTotalPrincipal: getTotalPrincipal,
@@ -149,6 +150,14 @@
         function calcInsuranceTotalGuarantee(loan) {
             // TOTAL INSURANCE VALUE
             return calcTotalOverDisc(loan);
+        }
+
+        function calcInsuranceTotalValue(loan) {
+            // TOTAL INSURANCE VALUE 359,558
+            var totval = _.reduce(loan.insurance.byCrop, function(sum, obj){
+                return sum + Number(obj.value);
+            }, 0);
+            return totval;
         }
 
         function calcInsuranceValue(obj) {
@@ -734,6 +743,10 @@
             } // end if
         }
 
+        function getArmDistCollateral(loan) {
+            return Number(getArmPrincipal(loan)) + Number(getDistPrincipal(loan));
+        }
+
         function getArmInterest(loan) {
             return Number(getArmPrincipal(loan)) * (Number(loan.fins.int_percent_arm)/100);
         }
@@ -748,10 +761,6 @@
 
         function getDistPrincipal(loan) {
             return Number(loan.expenses.totals.dist);
-        }
-
-        function getInsExcessCoverage(loan) {
-            return Number(calcInsuranceTotalGuarantee(loan)) - Number(loan.expenses.totals.arm);
         }
 
         function getOtherPrincipal(loan) {
