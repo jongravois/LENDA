@@ -66,6 +66,8 @@
             getTotalInterest: getTotalInterest,
             getTotalPrincipal: getTotalPrincipal,
             getDefaultDueDate: getDefaultDueDate,
+            getFeeForArmProc: getFeeForArmProc,
+            getFeeForArmSrvc: getFeeForArmSrvc,
             getFeesForArm: getFeesForArm,
             getFullSeason: getFullSeason,
             getIrrPerString: getIrrPerString,
@@ -784,6 +786,26 @@
                 default:
                     return '12/15/' + year;
             } // end switch
+        }
+
+        function getFeeForArmProc(loan) {
+            if(loan.fins.fee_processing_onTotal) {
+                var prFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_processing_percent)/100);
+            } else {
+                var prFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_processing_percent)/100);
+            } // end if
+
+            return prFee;
+        }
+
+        function getFeeForArmSrvc(loan) {
+            if(loan.fins.fee_service_onTotal) {
+                var svcFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_service_percent)/100);
+            } else {
+                var svcFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_service_percent)/100);
+            } //end if
+
+            return svcFee;
         }
 
         function getFeesForArm(loan) {

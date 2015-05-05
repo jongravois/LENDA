@@ -43,7 +43,7 @@
         <td class="text-center">{{c.vote_received_date | date:'M/d/yy'}}</td>
         <td ng-class="{'strong' : c.vote_id = 1}">{{c.vote.vote}}</td>
         <td>
-          <span class="glyphicon glyphicon-comment" style="margin-right:10px;cursor: pointer;" ng-repeat="cc in comments | filter:{user_id : c.user_id}" tooltip="{{cc.comment}}" sglclick="commentBaloonClicked(cc.id)" ng-dblclick="commentBaloonDblClicked(cc.id)"></span>
+          <span class="glyphicon glyphicon-comment" style="margin-right:10px;cursor: pointer;" ng-repeat="cc in loan.comments | filter:{user_id : c.user_id}" tooltip="{{cc.comment}}" sglclick="commentBaloonClicked(cc.id)" ng-dblclick="commentBaloonDblClicked(cc.id)"></span>
         </td>
       </tr>
       <tr>

@@ -23,7 +23,28 @@
                         }
                     });
                 }// end if
-            }
+
+                $scope.gridData = [
+                    {
+                        due_date: $scope.loan.due_date,
+                        fee_processing_percent: $scope.loan.fins.fee_processing_percent,
+                        fee_processing_onTotal: $scope.loan.fins.fee_processing_onTotal,
+                        fee_service_percent: $scope.loan.fins.fee_service_percent,
+                        fee_service_onTotal: $scope.loan.fins.fee_service_onTotal,
+                        int_percent_arm: $scope.loan.fins.int_percent_arm,
+                        int_percent_dist: $scope.loan.fins.int_percent_dist,
+                        total_commit_arm: AppFactory.getArmPrincipal($scope.loan),
+                        total_commit_dist: AppFactory.getDistPrincipal($scope.loan)
+                    }
+                ];
+            } // end activate
+
+            $scope.gridOptions = {
+                data: 'gridData',
+                enableCellSelection: true,
+                enableCellEditOnFocus: true,
+                enableRowSelection: false
+            };
 
             //TODO: Set to default on creation and trigger exception if changed
             if ($scope.loan.fins.fee_service_percent === 0) {

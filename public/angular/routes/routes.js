@@ -11,15 +11,7 @@
                     url: '/loans',
                     template: '<ui-view/>',
                     controller: 'MainLoansController',
-                    resolve: {
-                     armed: function ($q, $timeout) {
-                     var defer = $q.defer();
-                     $timeout(function () {
-                     defer.resolve();
-                     }, 2000);
-                     return defer.promise;
-                     }
-                     }
+                    resolve: {}
                 })
                 .state('loans.home', {
                     url: '/home',

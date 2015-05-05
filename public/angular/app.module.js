@@ -22,10 +22,9 @@
                 timeOut: 3000
             });
         })
-        .run(function ($rootScope, $anchorScroll) {
-            $rootScope.$on('$routeChangeSuccess', function () {
-                $anchorScroll();
+        .run(function ($rootScope) {
+            $rootScope.$on('$routeChangeSuccess', function (event, currentRoute, previousRoute) {
+                window.scrollTo(0, (top - 100));
             });
         });
-
 })();
