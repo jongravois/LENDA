@@ -9,7 +9,7 @@
     function MainController($scope, $state, $q, $filter, toastr, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersFactory, orderByFilter) {
         $scope.user_id = $('#user_id').data('id');
         $scope.AppFactory = AppFactory;
-
+        
         activate();
 
         function activate() {

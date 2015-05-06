@@ -139,18 +139,6 @@ class LoanTransformer extends Transformer
             'crop_inspection' => (integer)$arr['crop_inspection'],
             'reconciliation' => (integer)$arr['reconciliation'],
             'account_classification' => (integer)$arr['account_classification'],
-            /*'acres' => [
-                'corn' => (double)getAcresForCrop($arr['loancrop'], 1),
-                'soybeans' => (double)getAcresForCrop($arr['loancrop'], 2),
-                'beansFAC' => (double)getAcresForCrop($arr['loancrop'], 3),
-                'sorghum' => (double)getAcresForCrop($arr['loancrop'], 4),
-                'wheat' => (double)getAcresForCrop($arr['loancrop'], 5),
-                'cotton' => (double)getAcresForCrop($arr['loancrop'], 6),
-                'rice' => (double)getAcresForCrop($arr['loancrop'], 7),
-                'peanuts' => (double)getAcresForCrop($arr['loancrop'], 8),
-                'sugarcane' => (double)getAcresForCrop($arr['loancrop'], 9),
-                'total' => (double)getLoanTotalAcres($arr['id'])
-            ], */
             'expenses' => $arr['cropexpenses'],
             'fins' => [
                 'amount_requested' => (double)$arr['financials']['amount_requested'],

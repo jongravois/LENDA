@@ -1,5 +1,6 @@
 (function () {
     'use strict';
+
     angular
         .module('ARM')
         .factory('LoansProcessor', LoansProcessor);
@@ -8,16 +9,47 @@
 
     /* @ngInject */
     function LoansProcessor($http, $q, API_URL, AppFactory) {
-
-        //PUBLIC API
         return {
             getLoansWithExtraData: getLoansWithExtraData
         };
-
+        //////////
         function getLoansWithExtraData() {
             return $http.get(API_URL + '/loans').then(updateLoansData);
         }
-
+        function updateLoanData(loan) {
+            return $q.all({
+                crops: getCrops(loan),
+                expenses: processCropExpenses(loan.expenses),
+                has_comment: getPendingComments(loan),
+                insurance: getInsurance(loan),
+                loancrops: processLoanCrops(loan.loancrops),
+                need_vote: getPendingVotes(loan),
+                othercollateral: processOtherCollateral(loan.othercollateral),
+                priorlien: processPriorLien(loan.priorlien),
+                quests: getLoanQuestions(loan),
+                supplements: processSupInsurance(loan.suppins),
+                total_ins_value: getTotalInsValue(loan)
+            })
+                .then(function (updatedData) {
+                    angular.extend(loan, updatedData);
+                    return loan;
+                });
+        }
+        function updateLoansData(response) {
+            var allLoans = response.data.data;
+            return $q.all(allLoans.map(updateLoanData));
+        }
+        //////////
+        function filterByCropAndPractice(col, crop, practice) {
+            var results = [];
+            var filtered = _.filter(col, function(row){
+                if(row.crop === crop && row.practice === practice){
+                    results.push(row);
+                }
+            });
+            //console.log(filtered);
+            return results;
+        }
         function getCropExpenses(crop) {
             if(crop.length < 1) { return; }
             return $http.get(API_URL + '/loans/' + crop[0].loan_id + '/expenses/' + crop[0].crop_id)
@@ -29,7 +61,6 @@
                     return processed;
                 });
         }
-
         function getCrops(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/farmcrops')
                 .then(function (rsp) {
@@ -61,7 +92,74 @@
                     });
                 });
         }
+        function getPendingComments(loan) {
+            return $http.get(API_URL + '/loans/' + loan.id + '/commentstatus')
+                .then(function (response) {
+                    //console.log(response);
+                    if(response.data.data) {
+                        return (response.data.data.length !== 0);
+                    } else {
+                        return 0;
+                    }
+                });
+        }
+        function getPendingVotes(loan) {
+            return $http.get(API_URL + '/loans/' + loan.id + '/pendingvotes')
+                .then(function (response) {
+                    if(response.data.data) {
+                        return (response.data.data.length !== 0);
+                    } else {
+                        return 0;
+                    }
+                });
+        }
+        function makeCrop(id, list) {
+            var crop_id = Number(id);
+            var crop = _.filter(list, function(item){
+                if(item.crop_id === crop_id){ return item; }
+            });
+            if(!crop.length) {
+                return getEmptyCrop();
+            } // end if
 
+            return getCropExpenses(crop).then(function(exp){
+                //console.log('fromMakeCrop', exp);
+
+                var expenses = _.chain(exp)
+                    .groupBy('expense')
+                    .value();
+
+                //console.log('fromMakeCrop', expenses);
+
+                var cropObj = {
+                    totals: processCropTotals(crop),
+                    byFarm: crop,
+                    expenses: expenses
+                };
+                return cropObj;
+            });
+        }
+        function getEmptyCrop() {
+            return {
+                totals: {
+                    acres: 0,
+                    bkqty: 0,
+                    bkprice: 0,
+                    harvest: 0,
+                    irr: 0,
+                    mill_share: 0,
+                    ni: 0,
+                    percent_irrigated: 0,
+                    price: 0,
+                    rebate_price: 0,
+                    rebate_share: 0,
+                    share: 0,
+                    value: 0,
+                    prod_yield: 0
+                },
+                byFarm: []
+            };
+        }
         function getExpenses(expenses) {
             //TODO: Get from database rather than JSON
             return $http.get('angular/json/expenses.json')
@@ -70,7 +168,6 @@
                     return rsp.data;
                 });
         }
-
         function getInsurance(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/insurance')
                 .then(function (rsp) {
@@ -79,16 +176,19 @@
 
                     var ins = {
                         agencies: processAgencies(policyList),
-                        policies: policyList,
                         byCrop: processByCrop(policyList),
+                        //not Working
+                        database: processForInsDB(policyList),
+                        //not Working
                         nonrp: processNonRPInsurance(policyList),
+                        policies: policyList,
+                        //not Working
                         totals: processInsTotals(processByCrop(policyList))
                     };
                     //console.log('LoanInsurance: ', ins);
                     return (ins);
                 });
         }
-
         function getLoanQuestions(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/quests')
                 .then(function (response) {
@@ -104,66 +204,12 @@
                     }
                 });
         }
-
-        function getPendingComments(loan) {
-            return $http.get(API_URL + '/loans/' + loan.id + '/commentstatus')
-                .then(function (response) {
-                    //console.log(response);
-                    if(response.data.data) {
-                        return (response.data.data.length !== 0);
-                    } else {
-                        return 0;
-                    }
-                });
-        }
-
-        function getPendingVotes(loan) {
-            return $http.get(API_URL + '/loans/' + loan.id + '/pendingvotes')
-                .then(function (response) {
-                    if(response.data.data) {
-                        return (response.data.data.length !== 0);
-                    } else {
-                        return 0;
-                    }
-
-                });
-        }
-
         function getTotalInsValue(loan) {
             return $http.get(API_URL + '/insurance/' + loan.id + '/value')
                 .then(function (response) {
                     return response.data;
                 });
         }
-
-        function makeCrop(id, list) {
-            var crop_id = Number(id);
-            var crop = _.filter(list, function(item){
-                if(item.crop_id === crop_id){ return item; }
-            });
-            if(!crop.length) {
-                return getEmptyCrop();
-            } // end if
-
-            return getCropExpenses(crop).then(function(exp){
-                //console.log('fromMakeCrop', exp);
-
-                var expenses = _.chain(exp)
-                            .groupBy('expense')
-                            .value();
-
-                //console.log('fromMakeCrop', expenses);
-
-                var cropObj = {
-                    totals: processCropTotals(crop),
-                    byFarm: crop,
-                    expenses: expenses
-                };
-                return cropObj;
-            });
-
-        }
-
         function processAgencies(policies) {
             var result = [];
             var exists = {};
@@ -185,13 +231,13 @@
                 }else if(!agentExists[policy.agent_id]){
                     idealProduct.agents = [];
                     idealProduct.id = policy.agency_id;
-                    idealProduct.name = policy.agency;
-                    idealProduct.address = policy.agency_address;
-                    idealProduct.address_city = policy.agency_city;
-                    idealProduct.address_state = policy.agency_state;
-                    idealProduct.address_zip = policy.agency_zip;
-                    idealProduct.address_email = policy.agency_email;
-                    idealProduct.address_phone = policy.agency_phone;
+                    idealProduct.agency = policy.agency;
+                    idealProduct.agency_address = policy.agency_address;
+                    idealProduct.agency_city = policy.agency_city;
+                    idealProduct.agency_state = policy.agency_state;
+                    idealProduct.agency_zip = policy.agency_zip;
+                    idealProduct.agency_email = policy.agency_email;
+                    idealProduct.agency_phone = policy.agency_phone;
                     idealProduct.agents.push({id: policy.agent_id, agent: policy.agent, agent_email: policy.agent_email, agent_phone: policy.agent_phone});
                     arrayOfFinalProduct.push(idealProduct);
                     agentExists[policy.agent_id] = true;
@@ -199,42 +245,38 @@
             });
             return arrayOfFinalProduct;
         }
-
         function processByCrop(policies) {
-            var bycrop = [];
-            var crops = [
-                {id: 1, crop: "Corn"},
-                {id: 2, crop: "Soybeans"},
-                {id: 3, crop: "BeansFAC"},
-                {id: 4, crop: "Sorghum"},
-                {id: 5, crop: "Wheat"},
-                {id: 6, crop: "Cotton"},
-                {id: 7, crop: "Rice"},
-                {id: 8, crop: "Peanuts"},
-                {id: 9, crop: "SugarCane"}
-            ];
-
             var grped = _.chain(policies).groupBy('crop').value();
-            var byCrop = _.map(grped, function(item, key) {
-                return item.reduce(function(crp, plcy) {
-                    crp.crop_id = plcy.crop_id;
-                    crp.name = plcy.name;
-                    crp.type = plcy.type;
-                    crp.option = plcy.option;
-                    crp.price = Number(plcy.price); //wgt avg
-                    crp.level = Number(plcy.level);
-                    crp.premium = Number(plcy.premium); //wgt avg
-                    crp.share = Number(plcy.share); //wgt avg
-                    crp.acres = Number(plcy.acres);
-                    crp.ins_yield = Number(plcy.yield);
-                    crp.guarantee += calcGuarantee(plcy.level, plcy.price, plcy.yield);
-                    crp.value += calcInsValue(plcy.acres, plcy.price, plcy.yield, plcy.share);
-                    return crp;
-                }, { crop_id: 0, crop: key, name: 0, type: 0, option: 0, price: 0, level: 0, premium: 0, share: 0, acres: 0, ins_yield: 0, guarantee: 0, value: 0 });
-            });
+            var byCrop = [];
+            angular.forEach(grped, function(row){
+                var calcer = {
+                    level: _.pluckuniq(row, 'level'),
+                    price: _.pluckuniq(row, 'price'),
+                    yield: _.pluckuniq(row, 'yield'),
+                    premium: _.pluckuniq(row, 'premium'),
+                    share: _.weighted(row, 'share', 'acres'),
+                    acres: _.mysum(row, 'acres')
+                };
+
+                var crop = {
+                    loancrop_id: _.pluckuniq(row, 'loancrop_id'),
+                    crop: _.pluckuniq(row, 'crop'),
+                    name: _.pluckuniq(row, 'name'),
+                    type: _.pluckuniq(row, 'type'),
+                    option: _.pluckuniq(row, 'option'),
+                    price: _.pluckuniq(row, 'price'),
+                    premium: _.pluckuniq(row, 'premium'),
+                    acres: _.mysum(row, 'acres'),
+                    share: _.weighted(row, 'share', 'acres'),
+                    level: _.pluckuniq(row, 'level'),
+                    ins_yield: _.pluckuniq(row, 'yield'),
+                    guarantee: Number(AppFactory.calcInsuranceGuaranty(calcer)),
+                    value: AppFactory.calcInsuranceValue(calcer)
+                };
+                this.push(crop);
+            }, byCrop);
             return byCrop;
         }
-
         function processCropExpenses(expenses) {
             return getExpenses(expenses).then(function(prodata){
                 var proexp = prodata;
@@ -245,9 +287,7 @@
                 };
                 return processed;
             });
-
         }
-
         function processCropTotals(arrCrop) {
             var acres = 0, bkqty = 0, bkprice = 0, harvest = 0, irr = 0, mill_share = 0, ni = 0, percent_irrigated = 0, price = 0, rebate_price = 0, rebate_share = 0, prod_share = 0, value = 0, prod_yield = 0;
 
@@ -283,90 +323,41 @@
             };
             return croptotals;
         }
+        function processForInsDB(policies) {
+            //console.log('InsDB', policies);
+            var results = [],
+                practices = ['ir', 'ni'],
+                crops = ['corn', 'soybeans', 'beansFAC',
+                    'sorghum', 'wheat', 'cotton',
+                    'rice', 'peanuts', 'sugarcane'];
 
-        function processExpByCat(xps) {
-            var exp = _.chain(xps)
-                .groupBy('expense')
-                .value();
-
-            var byCrop = _.map(exp, function(item, key) {
-                return item.reduce(function(xp, xps) {
-                    xp.id = Number(xps.id);
-                    xp.loan_id = Number(xps.loan_id);
-                    xp.crop_id = Number(xps.crop_id);
-                    xp.crop = xps.crop_name;
-                    xp.acres = Number(xps.acres);
-                    xp.cat_id = Number(xps.cat_id);
-                    xp.expense = xps.expense;
-                    xp.arm_pa = Number(xps.arm_pa);
-                    xp.arm_pa_default = Number(xps.arm_pa_default);
-                    xp.dist_pa = Number(xps.dist_pa);
-                    xp.dist_pa_default = Number(xps.dist_pa_default);
-                    xp.other_pa = Number(xps.other_pa);
-                    xp.other_pa_default = Number(xps.other_pa_default);
-                    xp.per_acre = Number(xps.arm) + Number(xps.dist) + Number(xps.other);
-                    xp.calc_arm = Number(xps.arm) * Number(xps.acres);
-                    xp.calc_dist = Number(xps.dist) * Number(xps.acres);
-                    xp.calc_other = Number(xps.other) * Number(xps.acres);
-                    xp.calc_total = (Number(xps.arm) * Number(xps.acres)) + (Number(xps.dist) * Number(xps.acres)) + (Number(xps.other) * Number(xps.acres));
-                    return xp;
-                }, {});
+            angular.forEach(crops, function(crop) {
+                angular.forEach(practices, function(practice) {
+                    if(processInsPol(filterByCropAndPractice(policies, crop, practice))) {
+                        results.push(processInsPol(filterByCropAndPractice(policies, crop, practice)));
+                    }
+                });
             });
-            return byCrop;
+
+            return results;
         }
-
-        function processExpByCrop(xps) {
-            //console.log('xps', xps);
-            var exp = _.chain(xps)
-                       .groupBy('crop_name')
-                       .value();
-
-            // Returning before reduction
-            return exp;
-
-            var byCrop = _.map(exp, function(item, key) {
-                return item.reduce(function(xp, xps) {
-                    xp.id = Number(xps.id);
-                    xp.loan_id = Number(xps.loan_id);
-                    xp.crop_id = Number(xps.crop_id);
-                    xp.crop_name = xps.crop_name;
-                    xp.acres = Number(xps.acres);
-                    xp.cat_id = Number(xps.cat_id);
-                    xp.expense = xps.expense;
-                    xp.arm_pa = Number(xps.arm_pa);
-                    xp.arm_pa_default = Number(xps.arm_pa_default);
-                    xp.dist_pa = Number(xps.dist_pa);
-                    xp.dist_pa_default = Number(xps.dist_pa_default);
-                    xp.other_pa = Number(xps.other_pa);
-                    xp.other_pa_default = Number(xps.other_pa_default);
-                    xp.per_acre = Number(xps.arm) + Number(xps.dist) + Number(xps.other);
-                    xp.calc_arm = Number(xps.arm) * Number(xps.acres);
-                    xp.calc_dist = Number(xps.dist) * Number(xps.acres);
-                    xp.calc_other = Number(xps.other) * Number(xps.acres);
-                    xp.calc_total = (Number(xps.arm) * Number(xps.acres)) + (Number(xps.dist) * Number(xps.acres)) + (Number(xps.other) * Number(xps.acres));
-                    return xp;
-                }, {});
-            });
-            return byCrop;
-        }
-
-        function processExpenses(xps) {
-            //return xps;
-            var ARM = 0, DIST = 0, OTHER = 0, TOTAL = 0;
-            angular.forEach(xps, function(row){
-                ARM += Number(row.arm) * Number(row.acres);
-                DIST += Number(row.dist) * Number(row.acres);
-                OTHER += Number(row.other) * Number(row.acres);
-                TOTAL += (Number(row.arm) * Number(row.acres)) + (Number(row.dist) * Number(row.acres)) + (Number(row.other) * Number(row.acres));
-            });
+        function processInsPol(arr) {
+            if(arr.length < 1){ return false; }
             return {
-                exp_arm: ARM,
-                exp_dist: DIST,
-                exp_other: OTHER,
-                exp_total: TOTAL
+                crop: arr[0].crop,
+                practice: arr[0].practice,
+                acres: _.sum(arr, 'acres'),
+                premium: _.sum(arr, 'premium')
             };
+        } // end function
+        function processInsTotals(obj) {
+            var lone = { acres: 0, value: 0 };
+            var byLoan = _.forEach(obj, function(item, key) {
+                lone.acres += Number(item.acres);
+                lone.value += Number(item.value);
+            });
+            return lone;
         }
-
         function processLoanCrops(crops) {
             if(!crops){ return; }
             var cropplus = _.forEach(crops, function(obj){
@@ -379,7 +370,6 @@
             //console.log('LoanCrops', cropplus);
             return cropplus;
         }
-
         function processNonRPInsurance(obj) {
             var nonrp = _.filter(obj, function(item){
                 if( item.type !== 'RP'){
@@ -401,27 +391,6 @@
                 return lone;
             }
         }
-
-        function processSupInsurance(obj) {
-            var suppins = obj;
-
-            var supp = {
-                policies: processSupplements(suppins),
-                totals: processSuppInsTotals(suppins)
-            };
-
-            return (supp);
-        }
-
-        function processInsTotals(obj) {
-            var lone = { acres: 0, value: 0 };
-            var byLoan = _.forEach(obj, function(item, key) {
-                lone.acres += Number(item.acres);
-                lone.value += Number(item.value);
-            });
-            return lone;
-        }
-
         function processOtherCollateral(obj) {
             var all = obj;
 
@@ -432,7 +401,6 @@
 
             return (others);
         }
-
         function processOthers(obj) {
             if(!obj){ return; }
             var others = _.forEach(obj, function(obj){
@@ -441,7 +409,6 @@
             });
             return others;
         }
-
         function processOthersTotals(obj) {
             if(!obj) { return; }
             var lone = { value: 0 };
@@ -450,7 +417,6 @@
             });
             return lone;
         }
-
         function processPriorLien(lien) {
             if(!lien){ return; }
             var lienplus = _.forEach([lien], function(obj){
@@ -459,7 +425,16 @@
             });
             return lienplus;
         }
+        function processSupInsurance(obj) {
+            var suppins = obj;
 
+            var supp = {
+                policies: processSupplements(suppins),
+                totals: processSuppInsTotals(suppins)
+            };
+
+            return (supp);
+        }
         function processSuppInsTotals(obj) {
             if(!obj) { return; }
             var lone = { acres: 0, value: 0 };
@@ -469,7 +444,6 @@
             });
             return lone;
         }
-
         function processSupplements(obj) {
             if(!obj){ return; }
             var supplus = _.forEach(obj, function(obj){
@@ -478,7 +452,6 @@
             });
             return supplus;
         }
-
         function totalCropExpenses(exps) {
             //console.log('totalCropExpenses', exps);
             var armtotal = _.reduce(exps, function(sum, obj) {
@@ -500,61 +473,6 @@
             };
             return processed;
         }
-
-        function updateLoanData(loan) {
-            return $q.all({
-                crops: getCrops(loan),
-                expenses: processCropExpenses(loan.expenses),
-                has_comment: getPendingComments(loan),
-                insurance: getInsurance(loan),
-                loancrops: processLoanCrops(loan.loancrops),
-                need_vote: getPendingVotes(loan),
-                othercollateral: processOtherCollateral(loan.othercollateral),
-                priorlien: processPriorLien(loan.priorlien),
-                quests: getLoanQuestions(loan),
-                supplements: processSupInsurance(loan.suppins),
-                total_ins_value: getTotalInsValue(loan)
-            })
-                .then(function (updatedData) {
-                    angular.extend(loan, updatedData);
-                    return loan;
-                });
-        }
-
-        function updateLoansData(response) {
-            var allLoans = response.data.data;
-            //console.log('allLoans', allLoans);
-            return $q.all(allLoans.map(updateLoanData));
-        }
-
-        //////////
-        function calcGuarantee(level, price, insyield) {
-            //console.log('Guarantee', level, price, insyield);
-            return (Number(level)/100) * Number(price) * Number(insyield);
-        }
-        function calcInsValue(acres, price, insyield, share) {
-            return Number(acres) * Number(price) * Number(insyield) * (Number(share)/100);
-        }
-        function getEmptyCrop() {
-            return {
-                totals: {
-                    acres: 0,
-                    bkqty: 0,
-                    bkprice: 0,
-                    harvest: 0,
-                    irr: 0,
-                    mill_share: 0,
-                    ni: 0,
-                    percent_irrigated: 0,
-                    price: 0,
-                    rebate_price: 0,
-                    rebate_share: 0,
-                    share: 0,
-                    value: 0,
-                    prod_yield: 0
-                },
-                byFarm: []
-            };
-        }
     } // end factory
+
 })();

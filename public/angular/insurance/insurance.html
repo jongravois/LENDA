@@ -10,10 +10,10 @@
             <div class="col-md-8 col-md-offset-1">
                 <accordion close-others="true">
                     <!--<accordion close-others="false">-->
-                    <accordion-group heading="No Agencies Found" ng-if="insurance.agencies.length == 0">
+                    <accordion-group heading="No Agencies Found" ng-if="loan.insurance.agencies.length == 0">
                         There are no insurance agencies associates with this loan.
                     </accordion-group>
-                    <accordion-group ng-repeat="a in insurance.agencies" is-open="a.isOpen">
+                    <accordion-group ng-repeat="a in loan.insurance.agencies" is-open="a.is_open">
                         <accordion-heading class="col-md-12">
                             {{a.agency}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': a.isOpen, 'glyphicon-chevron-right': !a.isOpen}"></i>
                         </accordion-heading>
@@ -73,7 +73,7 @@
                     <th>Value</th>
                     <th>Agent</th>
                 </tr>
-                <tr ng-repeat="p in insurance.policies | orderBy: ['state', 'county', 'crop', 'practice']">
+                <tr ng-repeat="p in loan.insurance.policies | orderBy: ['state', 'county', 'crop', 'practice']">
                     <td class="text-left">
                         {{p.state}}
                     </td>
@@ -105,7 +105,7 @@
                         {{p.acres|number:1}}
                     </td>
                     <td class="text-right">
-                        <percent-edit-in-place value="p.share"></percent-edit-in-place>
+                        {{p.share|flexPercent:1}}
                     </td>
                     <td class="text-right">
                         {{p.value|flexCurrency:0}}
@@ -128,7 +128,7 @@
                     <th>APH</th>
                     <th>Share</th>
                 </tr>
-                <tr ng-repeat="d in insurance.database | orderBy: ['state', 'county', 'crop', 'practice']">
+                <tr ng-repeat="d in loan.insurance.database | orderBy: ['state', 'county', 'crop', 'practice']">
                     <td class="text-left">
                         {{d.state}}
                     </td>
@@ -148,14 +148,17 @@
                         {{d.owner}}
                     </td>
                     <td class="text-right">
-                        <digit-edit-in-place value="{{d.yield}}"></digit-edit-in-place>
+                        <digit-edit-in-place value="d.ins_yield"></digit-edit-in-place>
                     </td>
                     <td class="text-right">
-                        <percent-edit-in-place value="{{d.share}}"></percent-edit-in-place>
+                        <percent-edit-in-place value="d.share"></percent-edit-in-place>
                     </td>
                 </tr>
             </table>
         </tab>
+        <tab heading="STAX/SCO">
+            <h1>Supplemental Insurance</h1>
+        </tab>
     </tabset>
 </fieldset>
-<pre>{{insurance | json}}</pre>
+<!--<pre>{{loan.insurance.database | json}}</pre>-->

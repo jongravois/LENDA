@@ -7,28 +7,25 @@
     InsuranceController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
 
     function InsuranceController($scope, $state, $stateParams, AppFactory, LoansFactory) {
-        var curr = $state.current.url;
-        var currScreen = curr.substring(1, curr.length);
-        $scope.newapplication = $state.current.data.newapplication;
+        activate();
 
-        if ($scope.newapplication && $scope.screens) {
-            angular.forEach($scope.screens, function (obj) {
-                if (obj.screen === currScreen) {
-                    obj.status = 1;
-                }
-            });
-        }// end if
+        function activate() {
+            var curr = $state.current.url;
+            var currScreen = curr.substring(1, curr.length);
+            $scope.newapplication = $state.current.data.newapplication;
 
-        if (!$scope.loan) {
-            LoansFactory.getLoan($stateParams.loanID)
-                .then(function success(rsp) {
-                    var loan = rsp.data.data;
-                    LoansFactory.getInsuranceTotal($stateParams.loanID)
-                        .then(function (rsp) {
-                            loan.total_ins_value = rsp.data;
-                        });
-                    $scope.loan = loan;
+            if ($scope.newapplication && $scope.screens) {
+                angular.forEach($scope.screens, function (obj) {
+                    if (obj.screen === currScreen) {
+                        obj.status = 1;
+                    }
                 });
+            }// end if
+
+        }
+
+        if($scope.loan.insurance.agencies.length !== 0){
+            $scope.loan.insurance.agencies[0].is_open = true;
         }
 
         $scope.newPolicy = {

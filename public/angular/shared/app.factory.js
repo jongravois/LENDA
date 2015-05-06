@@ -127,10 +127,6 @@
             return (Number(loan.fins.total_fsa_payment) * (1 - (Number(loan.fins.fsa_assignment_percent) / 100))) - Number(loan.priorlien[0].fsa_payments);
         }
 
-        function calcInsuranceGuaranty(obj) {
-            return ((obj.aph * 1 * obj.level / 100 * obj.price) - obj.premium) * (obj.acres * obj.share / 100);
-        }
-
         function calcInsOverDisc(obj) {
             //(Guarantee-Premium)*share/100*Acres
             if(obj.type == 'RP') {
@@ -149,21 +145,28 @@
             } //end if
         }
 
+        function calcInsuranceGuaranty(obj) {
+            //Level * Price * Yield
+            //console.log('Guar', obj);
+            if(!obj.yield){
+                obj.yield = obj.aph;
+            }
+            return (Number(obj.level) / 100) * Number(obj.price) * Number(obj.yield);
+        }
+
         function calcInsuranceTotalGuarantee(loan) {
             // TOTAL INSURANCE VALUE
             return calcTotalOverDisc(loan);
         }
 
         function calcInsuranceTotalValue(loan) {
-            // TOTAL INSURANCE VALUE 359,558
-            var totval = _.reduce(loan.insurance.byCrop, function(sum, obj){
-                return sum + Number(obj.value);
-            }, 0);
-            return totval;
+            var policies = loan.insurance.byCrop;
+
+            return _.mysum(policies, 'value');
         }
 
         function calcInsuranceValue(obj) {
-            return (obj.guaranty - obj.premium) * obj.share / 100 * obj.acres;
+            return (Number(calcInsuranceGuaranty(obj)) - Number(obj.premium)) * (Number(obj.share) / 100) * obj.acres;
         }
 
         function calcMarketValueTotal(loan) {
