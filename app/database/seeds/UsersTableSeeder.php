@@ -133,6 +133,22 @@ class UsersTableSeeder extends Seeder
         ]);
 
         User::create([
+            'username' => 'Adam Robertson',
+            'nick' => 'ARR',
+            'email' => 'adamrobertson@rht.com',
+            'password' => 'trumpets',
+            'phone' => '9991235648',
+            'loc_id' => '4',
+            'region_id' => '1',
+            'manager_id' => 2,
+            'closer_id' => 2,
+            'is_admin' => 1,
+            'is_approver' => 1,
+            'is_manager' => 1,
+            'role_id' => 14
+        ]);
+
+        User::create([
             'username' => 'Test Account',
             'nick' => 'TST',
             'email' => 'test@arm-lenda.com',
