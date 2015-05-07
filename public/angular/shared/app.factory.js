@@ -162,7 +162,7 @@
         function calcInsuranceTotalValue(loan) {
             var policies = loan.insurance.byCrop;
 
-            return _.mysum(policies, 'value');
+            return _.sumCollection(policies, 'value');
         }
 
         function calcInsuranceValue(obj) {

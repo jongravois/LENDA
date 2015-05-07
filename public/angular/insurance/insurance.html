@@ -148,10 +148,10 @@
                         {{d.owner}}
                     </td>
                     <td class="text-right">
-                        <digit-edit-in-place value="d.ins_yield"></digit-edit-in-place>
+                        {{d.yield|number:1}}
                     </td>
                     <td class="text-right">
-                        <percent-edit-in-place value="d.share"></percent-edit-in-place>
+                        {{d.share|flexPercent:1}}
                     </td>
                 </tr>
             </table>

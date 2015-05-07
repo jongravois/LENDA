@@ -255,7 +255,7 @@
                     yield: _.pluckuniq(row, 'yield'),
                     premium: _.pluckuniq(row, 'premium'),
                     share: _.weighted(row, 'share', 'acres'),
-                    acres: _.mysum(row, 'acres')
+                    acres: _.sumCollection(row, 'acres')
                 };
 
                 var crop = {
@@ -266,7 +266,7 @@
                     option: _.pluckuniq(row, 'option'),
                     price: _.pluckuniq(row, 'price'),
                     premium: _.pluckuniq(row, 'premium'),
-                    acres: _.mysum(row, 'acres'),
+                    acres: _.sumCollection(row, 'acres'),
                     share: _.weighted(row, 'share', 'acres'),
                     level: _.pluckuniq(row, 'level'),
                     ins_yield: _.pluckuniq(row, 'yield'),
@@ -324,22 +324,31 @@
             return croptotals;
         }
         function processForInsDB(policies) {
-            //console.log('InsDB', policies);
-            var results = [],
-                practices = ['ir', 'ni'],
-                crops = ['corn', 'soybeans', 'beansFAC',
-                    'sorghum', 'wheat', 'cotton',
-                    'rice', 'peanuts', 'sugarcane'];
+            var groupByPractice = _.partial(_.ary(_.groupBy, 2), _, 'practice');
 
-            angular.forEach(crops, function(crop) {
-                angular.forEach(practices, function(practice) {
-                    if(processInsPol(filterByCropAndPractice(policies, crop, practice))) {
-                        results.push(processInsPol(filterByCropAndPractice(policies, crop, practice)));
-                    }
+            var mapped = _(policies).chain()
+                .groupBy('crop')
+                .mapValues(groupByPractice);
+
+            var reduced = _(mapped).chain()
+                .map(function(cropGroup) {
+                    return _.mapValues(cropGroup, function(v){
+                        var initial = _(v).chain().first().clone().value();
+                        return _.reduce(_.rest(v), function(result, n){
+                            result.acres += n.acres;
+                            return result;
+                        }, initial);
+                    });
+                });
+
+            var arrRedux = [];
+            var redux = reduced.value();
+            _.each(redux, function(col){
+                _.each(col, function(row){
+                    arrRedux.push(row);
                 });
             });
-
-            return results;
+            return arrRedux;
         }
         function processInsPol(arr) {
             if(arr.length < 1){ return false; }

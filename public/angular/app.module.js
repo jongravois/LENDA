@@ -34,7 +34,7 @@
                 return byFirst;
             }
 
-            function mysum(arr, val) {
+            function sumCollection(arr, val) {
                 return _.reduce(arr, function(sum, item){
                     return sum += item[val];
                 }, 0);
@@ -48,7 +48,7 @@
             * col (collection) | val (to be adjusted) | factor (percent field)
             */
             function weighted(col, val, factor){
-                var total_factor = _.mysum(col, factor);
+                var total_factor = _.sumCollection(col, factor);
 
                 return _.reduce(col, function(sum, current) {
                     return sum += (current[val]) * (current[factor] / total_factor);
@@ -56,7 +56,7 @@
             }
             _.mixin({
                 groupByMulti: groupByMulti,
-                mysum: mysum,
+                sumCollection: sumCollection,
                 pluckuniq: pluckuniq,
                 weighted: weighted
             });
