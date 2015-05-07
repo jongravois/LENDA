@@ -87,19 +87,19 @@
                         {{p.practice}}
                     </td>
                     <td class="text-center">
-                        <text-edit-in-place value="p.type"></text-edit-in-place>
+                        {{p.type}}
                     </td>
                     <td class="text-center">
-                        <text-edit-in-place value="p.option"></text-edit-in-place>
+                        {{p.option}}
                     </td>
                     <td class="text-right">
-                        <percent-edit-in-place value="p.level"></percent-edit-in-place>
+                        {{p.level|flexPercent:1}}
                     </td>
                     <td class="text-right">
-                        <edit-in-place value="p.price"></edit-in-place>
+                        {{p.price|flexCurrency:2}}
                     </td>
                     <td class="text-right">
-                        <edit-in-place value="p.premium"></edit-in-place>
+                        {{p.premium|flexCurrency:4}}
                     </td>
                     <td class="text-right">
                         {{p.acres|number:1}}
@@ -108,7 +108,7 @@
                         {{p.share|flexPercent:1}}
                     </td>
                     <td class="text-right">
-                        {{p.value|flexCurrency:0}}
+                        {{AppFactory.calcInsuranceValue(p)|flexCurrency:0}}
                     </td>
                     <td class="text-left">
                         {{p.agent}}

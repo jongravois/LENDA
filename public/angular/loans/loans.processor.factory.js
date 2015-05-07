@@ -177,7 +177,6 @@
                     var ins = {
                         agencies: processAgencies(policyList),
                         byCrop: processByCrop(policyList),
-                        //not Working
                         database: processForInsDB(policyList),
                         //not Working
                         nonrp: processNonRPInsurance(policyList),
