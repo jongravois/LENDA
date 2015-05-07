@@ -3,14 +3,14 @@
 <table class="table table-striped rowed" style="width:96%; margin: 0 auto;">
     <tr>
         <th style="width:37%;">&nbsp;</th>
-        <th class="text-center" style="width:15%;">
-            Prior Lien
-        </th>
         <th class="text-center" style="width:12%;">
             Mkt Value
         </th>
         <th class="text-center" style="width:12%;">
             Discount
+        </th>
+        <th class="text-center" style="width:15%;">
+            Prior Lien
         </th>
         <th class="text-center" style="width:12%;">
             Value
@@ -20,13 +20,13 @@
     <tr>
         <td>Projected Crops</td>
         <td class="text-right">
-            {{loan.priorlien[0].projected_crops|flexCurrency:0}}
-        </td>
-        <td class="text-right">
             {{loan.fins.adj_prod|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.disc_prod_percent|flexPercent:1}}
+        </td>
+        <td class="text-right">
+            {{loan.priorlien[0].projected_crops|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{AppFactory.calcPlannedCropValue(loan)|flexCurrency:0}}
@@ -36,13 +36,13 @@
     <tr>
         <td>FSA Assignment</td>
         <td class="text-right">
-            {{loan.priorlien[0].fsa_payments|flexCurrency:0}}
-        </td>
-        <td class="text-right">
             {{loan.fins.total_fsa_payment|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.fsa_assignment_percent|flexPercent:1}}
+        </td>
+        <td class="text-right">
+            {{loan.priorlien[0].fsa_payments|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{AppFactory.calcFSACollateralValue(loan)|flexCurrency:0}}
@@ -52,13 +52,13 @@
     <tr>
         <td>Ins Over Discounted Yield</td>
         <td class="text-right">
-            {{loan.priorlien[0].ins_over_discount|flexCurrency:0}}
-        </td>
-        <td class="text-right">
             {{loan.fins.ins_disc_prod|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.disc_ins_percent|flexPercent:1}}
+        </td>
+        <td class="text-right">
+            {{loan.priorlien[0].ins_over_discount|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{AppFactory.calcIODCollateralValue(loan)|flexCurrency:0}}
@@ -71,13 +71,13 @@
             Additional Non RP Discount
         </td>
         <td class="text-right">
-            {{loan.priorlien[0].nonrp_discount|flexCurrency:0}}
-        </td>
-        <td class="text-right">
             {{loan.insurance.nonrp.value|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.non_rp_percent|flexPercent:1}}
+        </td>
+        <td class="text-right">
+            {{loan.priorlien[0].nonrp_discount|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{AppFactory.calcNRPCollateralValue(loan)|flexCurrency:0}}
@@ -87,13 +87,13 @@
     <tr>
         <td>Supplemental Coverage</td>
         <td class="text-right">
-            {{loan.priorlien[0].supplemental_coverage|flexCurrency:0}}
-        </td>
-        <td class="text-right">
             {{loan.supplements.totals.value|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.supplement_insurance_discount_percent|flexPercent:1}}
+        </td>
+        <td class="text-right">
+            {{loan.priorlien[0].supplemental_coverage|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{AppFactory.calcSuppInsValue(loan)|flexCurrency:0}}
@@ -103,13 +103,13 @@
     <tr>
         <td>Equipment</td>
         <td class="text-right">
-            {{loan.priorlien[0].equipment|flexCurrency:0}}
-        </td>
-        <td class="text-right">
             {{loan.fins.collateral_equipment | flexCurrency}}
         </td>
         <td class="text-right">
             {{loan.fins.equipment_percent|flexPercent:1}}
+        </td>
+        <td class="text-right">
+            {{loan.priorlien[0].equipment|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{AppFactory.calcEquipmentCollateralValue(loan)|flexCurrency:0}}
@@ -119,13 +119,13 @@
     <tr>
         <td>Real Estate</td>
         <td class="text-right">
-            {{loan.priorlien[0].realestate|flexCurrency:0}}
-        </td>
-        <td class="text-right">
             {{loan.fins.collateral_realestate | flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.realestate_percent|flexPercent:1}}
+        </td>
+        <td class="text-right">
+            {{loan.priorlien[0].realestate|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{AppFactory.calcRECollateralValue(loan)|flexCurrency:0}}
@@ -135,13 +135,13 @@
     <tr>
         <td>Claims</td>
         <td class="text-right">
-            {{loan.priorlien[0].claims | flexCurrency:1}}
-        </td>
-        <td class="text-right">
             {{loan.fins.total_claims|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.claims_percent|flexPercent:1}}
+        </td>
+        <td class="text-right">
+            {{loan.priorlien[0].claims | flexCurrency:1}}
         </td>
         <td class="text-right">
             {{AppFactory.calcClaimsCollateralValue(loan)|flexCurrency:0}}
@@ -151,13 +151,13 @@
     <tr>
         <td>Other</td>
         <td class="text-right">
-            {{loan.priorlien[0].other|flexCurrency:0}}
-        </td>
-        <td class="text-right">
             {{loan.othercollateral.totals.value|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.other_discount_percent|flexPercent:1}}
+        </td>
+        <td class="text-right">
+            {{loan.priorlien[0].other|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{AppFactory.calcOtherCollateralValue(loan)|flexCurrency:0}}
@@ -167,12 +167,12 @@
     <tr class="success">
         <td>Total Value</td>
         <td class="text-right">
-            {{loan.priorlien[0].lientotal|flexCurrency:0}}
-        </td>
-        <td class="text-right">
             {{AppFactory.calcMarketValueTotal(loan)|flexCurrency:0}}
         </td>
         <td class="text-center"> - </td>
+        <td class="text-right">
+            {{loan.priorlien[0].lientotal|flexCurrency:0}}
+        </td>
         <td class="text-right">
             {{AppFactory.calcTotalCollateral(loan)|flexCurrency:0}}
         </td>

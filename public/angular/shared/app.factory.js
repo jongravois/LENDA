@@ -27,6 +27,8 @@
             calcNRPCollateralValue: calcNRPCollateralValue,
             calcPlannedCropValue: calcPlannedCropValue,
             calcRiskMargin: calcRiskMargin,
+            calcSuppInsTotalAcres: calcSuppInsTotalAcres,
+            calcSuppInsTotalValue: calcSuppInsTotalValue,
             calcSuppInsValue: calcSuppInsValue,
             calcOtherCollateralValue: calcOtherCollateralValue,
             calcRECollateralValue: calcRECollateralValue,
@@ -147,7 +149,7 @@
 
         function calcInsuranceGuaranty(obj) {
             //Level * Price * Yield
-            //console.log('Guar', obj);
+            //(75/100) * 4.25 * 96
             if(!obj.yield){
                 obj.yield = obj.aph;
             }
@@ -166,6 +168,8 @@
         }
 
         function calcInsuranceValue(obj) {
+            /* acres: 347.4, level: 75, premium: 11.88, price: 42.5, share: 84.4, yield: 96 gcalc: 306 */
+            //(306 - 11.88) * (84.4/100) * 347.4
             return (Number(calcInsuranceGuaranty(obj)) - Number(obj.premium)) * (Number(obj.share) / 100) * obj.acres;
         }
 
@@ -193,6 +197,16 @@
             //TOTAL COLLATERAL - TOTAL COMMITMENT
             var old_risk_margin = -999999;
             return Number(calcTotalCollateral(loan)) - Number(calcTotalExpenses(loan));
+        }
+
+        function calcSuppInsTotalAcres(loan) {
+            var supps = loan.supplements.policies;
+            return _.sumCollection(supps, 'acres');
+        }
+
+        function calcSuppInsTotalValue(loan) {
+            var supps = loan.supplements.policies;
+            return _.sumCollection(supps, 'value');
         }
 
         function calcSuppInsValue(loan) {

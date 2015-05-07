@@ -148,16 +148,115 @@
                         {{d.owner}}
                     </td>
                     <td class="text-right">
-                        {{d.yield|number:1}}
+                        <digit-edit-in-place value="d.yield"></digit-edit-in-place>
                     </td>
+                    <!--TODO: test if > policies::share & show paperclip and force upload of Permission to Insure -->
                     <td class="text-right">
-                        {{d.share|flexPercent:1}}
+                        <percent-edit-in-place value="d.share"></percent-edit-in-place>
                     </td>
                 </tr>
             </table>
         </tab>
         <tab heading="STAX/SCO">
-            <h1>Supplemental Coverage Addendum</h1>
+            <h3>Supplemental Coverage Addendum</h3>
+            <br/>
+            <table class="table table-striped rowed">
+                <tr>
+                    <th>Crop</th>
+                    <th>County</th>
+                    <th>HPEO</th>
+                    <th>APH</th>
+                    <th>Level</th>
+                    <th class="bright">Base</th>
+                    <th>Type</th>
+                    <th>Trigger</th>
+                    <th>Range</th>
+                    <th>Coverage</th>
+                    <th>Protection</th>
+                    <th>XYld</th>
+                    <th>XRev</th>
+                    <th class="bright">MI</th>
+                    <th>Acres</th>
+                    <th>Share</th>
+                    <th>Estimate</th>
+                </tr>
+                <tr ng-repeat="s in loan.supplements.policies">
+                    <td>
+                        {{s.crops.name}}
+                    </td>
+                    <td>
+                        {{s.counties.county}}
+                    </td>
+                    <td class="text-center">
+                        {{(s.harvest_price_exclusion ? 'Yes' : 'No')}}
+                    </td>
+                    <td class="text-right">
+                        {{s.aph|number:1}}
+                    </td>
+                    <td class="text-right">
+                        {{s.level|flexPercent:1}}
+                    </td>
+                    <td class="text-right bright">
+                        {{s.price|flexCurrency:2}}
+                    </td>
+                    <td class="text-center">
+                        <strong>{{s.supplement}}</strong>
+                    </td>
+                    <td class="text-right">
+                        {{s.expected_yield|number:1}}
+                    </td>
+                    <td class="text-right">
+                        {{s.desired_range|flexPercent:1}}
+                    </td>
+                    <td class="text-right">
+                        {{s.range|flexPercent:1}}
+                    </td>
+                    <td class="text-right">
+                        {{s.protection_factor|flexPercent:1}}
+                    </td>
+                    <td class="text-right">
+                        {{s.expected_yield|number:1}}
+                    </td>
+                    <td class="text-right">
+                        {{s.expected_revenue|flexCurrency:2}}
+                    </td>
+                    <td class="text-right bright">
+                        {{s.max_indemnity|flexCurrency:2}}
+                    </td>
+                    <td class="text-right">
+                        {{s.acres|number:1}}
+                    </td>
+                    <td class="text-right">
+                        {{s.share|flexPercent:1}}
+                    </td>
+                    <td class="text-right">
+                        {{s.value|flexCurrency:2}}
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td colspan="14" class="bright">
+                        Total
+                    </td>
+                    <td class="text-right">
+                        {{AppFactory.calcSuppInsTotalAcres(loan)|number:1}}
+                    </td>
+                    <td>&nbsp;</td>
+                    <td class="text-right">
+                        {{AppFactory.calcSuppInsTotalValue(loan)|flexCurrency:2}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="17">
+                        <span style="cursor: pointer;" ng-click="createSupplement()">
+                            <span class="glyphicon glyphicon-plus" ng-click="createSupplement()"></span> Add New
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <br/><br/>
+            <p class="small_txt">
+                Note that SCO can only be used with PLC farm program crops.
+            </p>
         </tab>
     </tabset>
 </fieldset>

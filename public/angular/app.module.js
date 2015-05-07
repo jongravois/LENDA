@@ -36,7 +36,7 @@
 
             function sumCollection(arr, val) {
                 return _.reduce(arr, function(sum, item){
-                    return sum += item[val];
+                    return sum += Number(item[val]);
                 }, 0);
             }
 

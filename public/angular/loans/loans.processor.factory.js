@@ -288,7 +288,8 @@
             });
         }
         function processCropTotals(arrCrop) {
-            var acres = 0, bkqty = 0, bkprice = 0, harvest = 0, irr = 0, mill_share = 0, ni = 0, percent_irrigated = 0, price = 0, rebate_price = 0, rebate_share = 0, prod_share = 0, value = 0, prod_yield = 0;
+            var tstActive = false;
+            var acres = 0, is_active = false, bkqty = 0, bkprice = 0, harvest = 0, irr = 0, mill_share = 0, ni = 0, percent_irrigated = 0, price = 0, rebate_price = 0, rebate_share = 0, prod_share = 0, value = 0, prod_yield = 0;
 
             angular.forEach(arrCrop, function(rows){
                 bkqty += Number(rows.bkqty);
@@ -304,6 +305,12 @@
                 prod_yield += Number(rows.prod_yield);
             });
 
+            if((Number(irr) + Number(ni)) > 0) {
+                tstActive = true;
+            } else {
+                tstActive = false;
+            } // end if
+
             var croptotals = {
                 acres: Number(irr) + Number(ni),
                 bkqty: Number(bkqty),
@@ -318,7 +325,8 @@
                 rebate_share: Number(rebate_share),
                 share: Number(prod_share)/(Number(irr) + Number(ni)),
                 prod_yield: Number(prod_yield),
-                value: (((Number(prod_share)/(Number(irr) + Number(ni)))/100)*(Number(irr) + Number(ni))*Number(prod_yield) * Number(price))+(((Number(prod_share)/(Number(irr) + Number(ni)))/100) * Number(bkqty) * (Number(bkprice) - Number(price)))+((Number(irr) + Number(ni))*Number(prod_yield) * Number(harvest))
+                value: (((Number(prod_share)/(Number(irr) + Number(ni)))/100)*(Number(irr) + Number(ni))*Number(prod_yield) * Number(price))+(((Number(prod_share)/(Number(irr) + Number(ni)))/100) * Number(bkqty) * (Number(bkprice) - Number(price)))+((Number(irr) + Number(ni))*Number(prod_yield) * Number(harvest)),
+                is_active: tstActive
             };
             return croptotals;
         }

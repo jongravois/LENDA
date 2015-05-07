@@ -82,7 +82,11 @@ body {
     transform: translateY(-50%);
 
 }
-
+.small_txt {
+    font-size: 10px;
+    font-weight: bold;
+    font-style: italic;
+}
 /* UTILITY CLASSES */
 
 /* CLASSES */

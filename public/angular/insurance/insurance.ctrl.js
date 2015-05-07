@@ -24,6 +24,10 @@
 
         }
 
+        $scope.createSupplement = function() {
+            alert('Creating new supplement');
+        };
+
         if($scope.loan.insurance.agencies.length !== 0){
             $scope.loan.insurance.agencies[0].is_open = true;
         }
