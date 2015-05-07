@@ -1,6 +1,23 @@
 <div>
     <fieldset>
         <legend>Prior Liens</legend>
+        <div class="container row form-group">
+            <div class="col-md-12">
+                <div class="col-md-9">
+                    <label>Are there any outstanding liens on the crops involved in this loan?</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="radio" name="liens" ng-value="true" ng-model="loan.quests.liens"/>
+                    &nbsp;<label>Yes</label>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="liens" ng-value="false" ng-model="loan.quests.liens"/>
+                    &nbsp;<label>No</label>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group" ng-if="loan.quests.liens">
+            <h3>FORM GOES HERE</h3>
+        </div>
     </fieldset>
     <br/><br/>
     <fieldset>
