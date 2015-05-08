@@ -1,7 +1,7 @@
 <?php
 
 class Othercollateral extends \Eloquent {
-	protected $fillable = ['loan_id', 'source', 'description', 'amount'];
+	protected $fillable = ['loan_id', 'type', 'source', 'description', 'amount'];
 
 	/* RELATIONSHIPS */
 	public function loan()

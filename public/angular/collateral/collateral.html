@@ -16,19 +16,135 @@
             </div>
         </div>
         <div class="row form-group" ng-if="loan.quests.liens">
-            <h3>FORM GOES HERE</h3>
+            <table class="table table-striped rowed"
+                   style="width: 96%; margin: 0 auto">
+                <tr>
+                    <th>Holder</th>
+                    <th>Crop Income</th>
+                    <th>Insurance</th>
+                    <th>Non RP</th>
+                    <th>Equipment</th>
+                    <th>Real Estate</th>
+                    <th>FSA</th>
+                    <th>Claims</th>
+                    <th>Other</th>
+                    <th>Total</th>
+                </tr>
+                <tr ng-if="loan.priorlien.length === 0">
+                    <td colspan="10">
+                        <strong>No Liens Recorded!</strong>
+                    </td>
+                </tr>
+                <tr ng-repeat="p in loan.priorlien">
+                    <td>
+                        {{p.lien_holder}}
+                    </td>
+                    <td class="text-right">
+                        {{p.projected_crops|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">
+                        {{p.ins_over_discount|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">
+                        {{p.nonrp_discount|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">
+                        {{p.equipment|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">
+                        {{p.realestate|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">
+                        {{p.fsa_payments|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">
+                        {{p.claims|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">
+                        {{p.other|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">
+                        {{p.lientotal|flexCurrency:0}}
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td colspan="9">Total</td>
+                    <td class="text-right">
+                        {{AppFactory.calcPriorLienTotal(loan)|flexCurrency:0}}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10">
+                        <span style="cursor: pointer;" ng-click="createPriorLien()">
+                            <span class="glyphicon glyphicon-plus" ng-click="createPriorLien()"></span> Add New
+                        </span>
+                    </td>
+                </tr>
+            </table>
         </div>
     </fieldset>
     <br/><br/>
     <fieldset>
         <legend>Equipment</legend>
+        <div class="container row form-group">
+            <div class="col-md-12">
+                <div class="col-md-9">
+                    <label>Is equipment being used as collateral for this loan?</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="radio" name="equipcol" ng-value="true" ng-model="loan.equipment_collateral"/>
+                    &nbsp;<label>Yes</label>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="equipcol" ng-value="false" ng-model="loan.equipment_collateral"/>
+                    &nbsp;<label>No</label>
+                </div>
+            </div>
+        </div>
+        <div class="container row form-group" ng-if="loan.equipment_collateral">
+            <h3>FORM GOES HERE</h3>
+        </div>
     </fieldset>
     <br/><br/>
     <fieldset>
         <legend>Real Estate</legend>
+        <div class="container row form-group">
+            <div class="col-md-12">
+                <div class="col-md-9">
+                    <label>Is real estate being used as collateral for this loan?</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="radio" name="realestatecol" ng-value="true" ng-model="loan.realestate_collateral"/>
+                    &nbsp;<label>Yes</label>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="realestatecol" ng-value="false" ng-model="loan.realestate_collateral"/>
+                    &nbsp;<label>No</label>
+                </div>
+            </div>
+        </div>
+        <div class="container row form-group" ng-if="loan.realestate_collateral">
+            <h3>FORM GOES HERE</h3>
+        </div>
     </fieldset>
     <br/><br/>
     <fieldset>
         <legend>Cross Collateral</legend>
+        <div class="container row form-group">
+            <div class="col-md-12">
+                <div class="col-md-9">
+                    <label>Cross Collateralized Loans</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="radio" name="xcol" ng-value="true" ng-model="loan.is_cross_collateralized"/>
+                    &nbsp;<label>Yes</label>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="xcol" ng-value="false" ng-model="loan.is_cross_collateralized"/>
+                    &nbsp;<label>No</label>
+                </div>
+            </div>
+        </div>
+        <div class="container row form-group" ng-if="loan.is_cross_collateralized">
+            <h3>FORM GOES HERE</h3>
+        </div>
+
     </fieldset>
 </div>

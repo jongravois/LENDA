@@ -8,6 +8,7 @@ class OthercollateralTransformer extends Transformer{
         return [
             'id' => $arr['id'],
             'loan_id' => (integer) $arr['loan_id'],
+            'type' => $arr['type'],
             'source' => $arr['source'],
             'description' => $arr['description'],
             'amount' => (double) $arr['amount']

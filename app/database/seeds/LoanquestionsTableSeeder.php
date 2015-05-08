@@ -17,7 +17,7 @@ class LoanquestionsTableSeeder extends Seeder {
 			'legal_defendant'	=>	0,
 			'judgements'		=>	0,
 			'bankruptcy'	=>	0,
-			'liens'			=>	0,
+			'liens'			=>	1,
 			'fsa_direct_pay'	=>	0,
 			'future_liabilities'	=>	1,
 			'credit_3p_available'	=>	0,

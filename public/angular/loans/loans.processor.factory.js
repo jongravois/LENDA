@@ -18,13 +18,13 @@
         }
         function updateLoanData(loan) {
             return $q.all({
+                collateral: processCollateral(loan.othercollateral),
                 crops: getCrops(loan),
                 expenses: processCropExpenses(loan.expenses),
                 has_comment: getPendingComments(loan),
                 insurance: getInsurance(loan),
                 loancrops: processLoanCrops(loan.loancrops),
                 need_vote: getPendingVotes(loan),
-                othercollateral: processOtherCollateral(loan.othercollateral),
                 priorlien: processPriorLien(loan.priorlien),
                 quests: getLoanQuestions(loan),
                 supplements: processSupInsurance(loan.suppins),
@@ -276,6 +276,10 @@
             }, byCrop);
             return byCrop;
         }
+        function processCollateral(obj) {
+            var all = _.chain(obj).groupBy('type').value();
+            return all;
+        }
         function processCropExpenses(expenses) {
             return getExpenses(expenses).then(function(prodata){
                 var proexp = prodata;
@@ -406,16 +410,6 @@
                 });
                 return lone;
             }
-        }
-        function processOtherCollateral(obj) {
-            var all = obj;
-
-            var others = {
-                sources: processOthers(all),
-                totals: processOthersTotals(all)
-            };
-
-            return (others);
         }
         function processOthers(obj) {
             if(!obj){ return; }

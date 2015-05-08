@@ -103,7 +103,7 @@
     <tr>
         <td>Equipment</td>
         <td class="text-right">
-            {{loan.fins.collateral_equipment | flexCurrency}}
+            {{AppFactory.calcEquipmentCollateralTotal(loan) | flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.equipment_percent|flexPercent:1}}
@@ -111,7 +111,7 @@
         <td class="text-right">
             {{loan.priorlien[0].equipment|flexCurrency:0}}
         </td>
-        <td class="text-right">
+        <td class="text-right" ng-class="AppFactory.calcEquipmentCollateralValue(loan)">
             {{AppFactory.calcEquipmentCollateralValue(loan)|flexCurrency:0}}
         </td>
     </tr>
@@ -119,7 +119,7 @@
     <tr>
         <td>Real Estate</td>
         <td class="text-right">
-            {{loan.fins.collateral_realestate | flexCurrency:0}}
+            {{AppFactory.calcRECollateralTotal(loan) | flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.realestate_percent|flexPercent:1}}
@@ -131,27 +131,11 @@
             {{AppFactory.calcRECollateralValue(loan)|flexCurrency:0}}
         </td>
     </tr>
-    <!--CLAIMS-->
-    <tr>
-        <td>Claims</td>
-        <td class="text-right">
-            {{loan.fins.total_claims|flexCurrency:0}}
-        </td>
-        <td class="text-right">
-            {{loan.fins.claims_percent|flexPercent:1}}
-        </td>
-        <td class="text-right">
-            {{loan.priorlien[0].claims | flexCurrency:1}}
-        </td>
-        <td class="text-right">
-            {{AppFactory.calcClaimsCollateralValue(loan)|flexCurrency:0}}
-        </td>
-    </tr>
     <!--OTHER COLLATERAL-->
     <tr>
         <td>Other</td>
         <td class="text-right">
-            {{loan.othercollateral.totals.value|flexCurrency:0}}
+            {{AppFactory.calcOtherCollateralTotal(loan)|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.other_discount_percent|flexPercent:1}}
