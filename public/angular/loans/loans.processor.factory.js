@@ -251,7 +251,7 @@
                 var calcer = {
                     level: _.pluckuniq(row, 'level'),
                     price: _.pluckuniq(row, 'price'),
-                    yield: _.pluckuniq(row, 'yield'),
+                    yield: _.weighted(row, 'yield', 'acres'),
                     premium: _.pluckuniq(row, 'premium'),
                     share: _.weighted(row, 'share', 'acres'),
                     acres: _.sumCollection(row, 'acres')
@@ -268,7 +268,7 @@
                     acres: _.sumCollection(row, 'acres'),
                     share: _.weighted(row, 'share', 'acres'),
                     level: _.pluckuniq(row, 'level'),
-                    ins_yield: _.pluckuniq(row, 'yield'),
+                    ins_yield: _.weighted(row, 'yield', 'acres'),
                     guarantee: Number(AppFactory.calcInsuranceGuaranty(calcer)),
                     value: AppFactory.calcInsuranceValue(calcer)
                 };
