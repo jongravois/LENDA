@@ -62,10 +62,10 @@
             });
         })
         .run(function ($rootScope, $location, $anchorScroll) {
-            $rootScope.$on('$routeChangeSuccess', function (event, currentRoute, previousRoute) {
-                $location.hash('top');
-                window.scrollTo(0, (top - 100));
-                $anchorScroll();
+            $rootScope.$on('$stateChangeSuccess', function() {
+                console.log('state change indicated');
+                //window.scrollTo(0, 0);
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
             });
         });
 })();
