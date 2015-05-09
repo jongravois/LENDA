@@ -8,7 +8,7 @@
 
     /* @ngInject */
     function AppFactory($http, API_URL, $state, $stateParams, toastr, Logger, ModalService) {
-        return {
+        var publicAPI = {
             agentsInAgency: agentsInAgency,
             averageArray: averageArray,
             calcAdjustedRiskMargin: calcAdjustedRiskMargin,
@@ -97,6 +97,7 @@
             returnColor: returnColor,
             sumThese: sumThese
         };
+        return publicAPI;
 
         //////////
         function agentsInAgency(id) {

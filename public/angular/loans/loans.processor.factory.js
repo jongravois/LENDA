@@ -9,9 +9,10 @@
 
     /* @ngInject */
     function LoansProcessor($http, $q, API_URL, AppFactory) {
-        return {
+        var publicAPI =  {
             getLoansWithExtraData: getLoansWithExtraData
         };
+        return publicAPI;
         //////////
         function getLoansWithExtraData() {
             return $http.get(API_URL + '/loans').then(updateLoansData);
