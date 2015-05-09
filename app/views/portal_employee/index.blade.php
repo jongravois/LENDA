@@ -144,7 +144,7 @@
 <script src="angular/loans/services/app.factory.js"></script>
 <script src="angular/loans/services/defaults.factory.js"></script>
 <script src="angular/loans/services/edit.loans.ctrl.js"></script>
-<script src="angular/loans/servicesloans/services/email.factory.js"></script>
+<script src="angular/loans/services/email.factory.js"></script>
 <script src="angular/loans/services/feeder.factory.js"></script>
 <script src="angular/loans/services/globals.factory.js"></script>
 <script src="angular/loans/services/grader.factory.js"></script>
