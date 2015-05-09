@@ -427,13 +427,31 @@
             });
             return lone;
         }
-        function processPriorLien(lien) {
-            if(!lien){ return; }
-            var lienplus = _.forEach([lien], function(obj){
-                obj.lientotal = parseFloat(obj.projected_crops) + parseFloat(obj.fsa_payments) + parseFloat(obj.ins_over_discount) + parseFloat(obj.nonrp_discount) + parseFloat(obj.supplemental_coverage) + parseFloat(obj.claims) + parseFloat(obj.equipment) + parseFloat(obj.realestate) + parseFloat(obj.other);
-                return obj;
+        function processPriorLien(liens) {
+            if(!liens){ return []; }
+            var lienplus = _.map(liens, function(item){
+                return _.extend({
+                    lientotal: Number(item.projected_crops) + Number(item.fsa_payments) + Number(item.ins_over_discount) + Number(item.nonrp_discount) + Number(item.equipment) + Number(item.realestate) + Number(item.other)
+                }, item);
             });
-            return lienplus;
+            return {
+                liens: lienplus,
+                totals: processPriorLiens(lienplus)
+            };
+        }
+        function processPriorLiens(liens) {
+            return {
+                lienholder: 'Total',
+                projected_crops: _.sumCollection(liens, 'projected_crops'),
+                fsa_payments: _.sumCollection(liens, 'fsa_payments'),
+                ins_over_discount: _.sumCollection(liens, 'ins_over_discount'),
+                nonrp_discount: _.sumCollection(liens, 'nonrp_discount'),
+                equipment: _.sumCollection(liens, 'equipment'),
+                realestate: _.sumCollection(liens, 'realestate'),
+                other: _.sumCollection(liens, 'other'),
+                supplemental_coverage: _.sumCollection(liens, 'supplemental_coverage'),
+                lientotal: _.sumCollection(liens, 'lientotal')
+            };
         }
         function processSupInsurance(obj) {
             var suppins = obj;

@@ -26,55 +26,74 @@
                     <th>Equipment</th>
                     <th>Real Estate</th>
                     <th>FSA</th>
-                    <th>Claims</th>
                     <th>Other</th>
                     <th>Total</th>
                 </tr>
-                <tr ng-if="loan.priorlien.length === 0">
-                    <td colspan="10">
+                <tr ng-if="loan.priorlien.liens.length === 0">
+                    <td colspan="9">
                         <strong>No Liens Recorded!</strong>
                     </td>
                 </tr>
-                <tr ng-repeat="p in loan.priorlien">
+                <tr ng-repeat="p in loan.priorlien.liens">
                     <td>
                         {{p.lien_holder}}
                     </td>
-                    <td class="text-right">
+                    <td class="text-right" ng-class="gtZero(p.projected_crops)">
                         {{p.projected_crops|flexCurrency:0}}
                     </td>
-                    <td class="text-right">
+                    <td class="text-right" ng-class="gtZero(p.ins_over_discount)">
                         {{p.ins_over_discount|flexCurrency:0}}
                     </td>
-                    <td class="text-right">
+                    <td class="text-right" ng-class="gtZero(p.nonrp_discount)">
                         {{p.nonrp_discount|flexCurrency:0}}
                     </td>
-                    <td class="text-right">
+                    <td class="text-right" ng-class="gtZero(p.equipment)">
                         {{p.equipment|flexCurrency:0}}
                     </td>
-                    <td class="text-right">
+                    <td class="text-right" ng-class="gtZero(p.realestate)">
                         {{p.realestate|flexCurrency:0}}
                     </td>
-                    <td class="text-right">
+                    <td class="text-right" ng-class="gtZero(p.fsa_payments)">
                         {{p.fsa_payments|flexCurrency:0}}
                     </td>
-                    <td class="text-right">
-                        {{p.claims|flexCurrency:0}}
-                    </td>
-                    <td class="text-right">
+                    <td class="text-right" ng-class="gtZero(p.other)">
                         {{p.other|flexCurrency:0}}
                     </td>
-                    <td class="text-right">
+                    <td class="text-right" ng-class="gtZero(p.lientotal)">
                         {{p.lientotal|flexCurrency:0}}
                     </td>
                 </tr>
                 <tr class="success">
-                    <td colspan="9">Total</td>
-                    <td class="text-right">
-                        {{AppFactory.calcPriorLienTotal(loan)|flexCurrency:0}}
+                    <td>
+                        {{loan.priorlien.totals.lien_holder}}
+                    </td>
+                    <td class="text-right" ng-class="gtZero(loan.priorlien.totals.projected_crops)">
+                        {{loan.priorlien.totals.projected_crops|flexCurrency:0}}
+                    </td>
+                    <td class="text-right" ng-class="gtZero(loan.priorlien.totals.ins_over_discount)">
+                        {{loan.priorlien.totals.ins_over_discount|flexCurrency:0}}
+                    </td>
+                    <td class="text-right" ng-class="gtZero(loan.priorlien.totals.nonrp_discount)">
+                        {{loan.priorlien.totals.nonrp_discount|flexCurrency:0}}
+                    </td>
+                    <td class="text-right" ng-class="gtZero(loan.priorlien.totals.equipment)">
+                        {{loan.priorlien.totals.equipment|flexCurrency:0}}
+                    </td>
+                    <td class="text-right" ng-class="gtZero(loan.priorlien.totals.realestate)">
+                        {{loan.priorlien.totals.realestate|flexCurrency:0}}
+                    </td>
+                    <td class="text-right" ng-class="gtZero(loan.priorlien.totals.fsa_payments)">
+                        {{loan.priorlien.totals.fsa_payments|flexCurrency:0}}
+                    </td>
+                    <td class="text-right" ng-class="gtZero(loan.priorlien.totals.other)">
+                        {{loan.priorlien.totals.other|flexCurrency:0}}
+                    </td>
+                    <td class="text-right" ng-class="gtZero(loan.priorlien.totals.lientotal)">
+                        {{loan.priorlien.totals.lientotal|flexCurrency:0}}
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="10">
+                    <td colspan="9">
                         <span style="cursor: pointer;" ng-click="createPriorLien()">
                             <span class="glyphicon glyphicon-plus" ng-click="createPriorLien()"></span> Add New
                         </span>
@@ -100,8 +119,35 @@
                 </div>
             </div>
         </div>
-        <div class="container row form-group" ng-if="loan.equipment_collateral">
-            <h3>FORM GOES HERE</h3>
+        <div class="row form-group" ng-if="loan.equipment_collateral">
+            <table class="table table-striped rowed"
+                   style="width: 96%; margin: 0 auto">
+                <tr>
+                    <th style="width:25%;">Holder</th>
+                    <th style="width:50%;">Description</th>
+                    <th style="width:25%;">Amount</th>
+                </tr>
+                <tr ng-repeat="q in loan.collateral.equipment">
+                    <td>{{q.source}}</td>
+                    <td>{{q.description}}</td>
+                    <td class="text-right" ng-class="gtZero(q.amount)">
+                        {{q.amount|flexCurrency:0}}
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td colspan="2">Total</td>
+                    <th class="text-right" ng-class="gtZero(AppFactory.calcTotalEquipmentCollateral(loan))">
+                        {{AppFactory.calcTotalEquipmentCollateral(loan)|flexCurrency:0}}
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <span style="cursor: pointer;" ng-click="createEquipmentCollateral()">
+                            <span class="glyphicon glyphicon-plus" ng-click="createEquipmentCollateral()"></span> Add New
+                        </span>
+                    </td>
+                </tr>
+            </table>
         </div>
     </fieldset>
     <br/><br/>
@@ -121,8 +167,35 @@
                 </div>
             </div>
         </div>
-        <div class="container row form-group" ng-if="loan.realestate_collateral">
-            <h3>FORM GOES HERE</h3>
+        <div class="row form-group" ng-if="loan.realestate_collateral">
+            <table class="table table-striped rowed"
+                   style="width: 96%; margin: 0 auto">
+                <tr>
+                    <th style="width:25%;">Holder</th>
+                    <th style="width:50%;">Description</th>
+                    <th style="width:25%;">Amount</th>
+                </tr>
+                <tr ng-repeat="q in loan.collateral.realestate">
+                    <td>{{q.source}}</td>
+                    <td>{{q.description}}</td>
+                    <td class="text-right" ng-class="gtZero(q.amount)">
+                        {{q.amount|flexCurrency:0}}
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td colspan="2">Total</td>
+                    <th class="text-right" ng-class="gtZero(AppFactory.calcTotalRECollateral(loan))">
+                        {{AppFactory.calcTotalRECollateral(loan)|flexCurrency:0}}
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <span style="cursor: pointer;" ng-click="createRECollateral()">
+                            <span class="glyphicon glyphicon-plus" ng-click="createRECollateral()"></span> Add New
+                        </span>
+                    </td>
+                </tr>
+            </table>
         </div>
     </fieldset>
     <br/><br/>

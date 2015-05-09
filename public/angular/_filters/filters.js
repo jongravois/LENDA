@@ -224,10 +224,7 @@
             decPlaces = decPlaces || 0;
 
             // Check for invalid inputs
-            if (isNaN(input)) {
-                return input;
-            }
-            if (!input) {
+            if (!Number(input)) {
                 return ' - ';
             }
             var out = input;

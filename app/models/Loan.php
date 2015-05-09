@@ -180,7 +180,7 @@ class Loan extends \Eloquent {
 
 	public function priorliens()
 	{
-		return $this->hasOne('Priorliens');
+		return $this->hasMany('Priorliens');
 	}
 
 	public function regions()

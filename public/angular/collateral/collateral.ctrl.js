@@ -27,5 +27,17 @@
             $scope.createPriorLien = function() {
                 alert('Creating new lien');
             };
+
+            $scope.createEquipmentCollateral = function() {
+                alert('Creating new equipment collateral');
+            };
+
+            $scope.createRECollateral = function() {
+                alert('Creating real estate collateral');
+            };
+
+            $scope.createOtherCollateral = function() {
+                alert('Creating other collateral');
+            };
         } // end controller
 })();

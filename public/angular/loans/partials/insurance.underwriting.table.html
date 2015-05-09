@@ -16,24 +16,54 @@
         <td colspan="9"><strong>No Insurance Information Found.</strong></td>
     </tr>
     <tr ng-repeat="c in loan.insurance.byCrop|orderBy:'crop_id'" ng-if="loan.insurance.byCrop.length !== 0">
-        <td>{{c.name}}</td>
-        <td class="text-center">{{c.type}}</td>
-        <td class="text-center">{{c.option}}</td>
-        <td class="text-right">{{c.price|flexCurrency:2}}</td>
-        <td class="text-right">{{c.level|flexPercent:1}}</td>
-        <td class="text-right">{{c.guarantee|flexCurrency:0}}</td>
-        <td class="text-right">{{c.premium|flexCurrency:2}}</td>
-        <td class="text-right">{{c.share|flexPercent:1}}</td>
-        <td class="text-right">{{c.value|flexCurrency:0}}</td>
-        <td class="text-right">{{AppFactory.calcInsOverDisc(c)|flexCurrency:0}}</td>
-        <td class="text-right">{{AppFactory.calcInsOverDiscNonRP(c)|flexCurrency:0}}</td>
+        <td>{{c.name}}
+        </td>
+        <td class="text-center">
+            {{c.type}}
+        </td>
+        <td class="text-center">
+            {{c.option}}
+        </td>
+        <td class="text-right" ng-class="gtZero(c.price)">
+            {{c.price|flexCurrency:2}}
+        </td>
+        <td class="text-right" ng-class="c.level">
+            {{c.level|flexPercent:1}}
+        </td>
+        <td class="text-right" ng-class="c.guarantee">
+            {{c.guarantee|flexCurrency:0}}
+        </td>
+        <td class="text-right" ng-class="c.premium">
+            {{c.premium|flexCurrency:2}}
+        </td>
+        <td class="text-right" ng-class="c.share">
+            {{c.share|flexPercent:1}}
+        </td>
+        <td class="text-right" ng-class="c.value">
+            {{c.value|flexCurrency:0}}
+        </td>
+        <td class="text-right" ng-class="gtZero(AppFactory.calcInsOverDisc(c))">
+            {{AppFactory.calcInsOverDisc(c)|flexCurrency:0}}
+        </td>
+        <td class="text-right" ng-class="gtZero(AppFactory.calcInsOverDiscNonRP(c))">
+            {{AppFactory.calcInsOverDiscNonRP(c)|flexCurrency:0}}
+        </td>
     </tr>
-    <tr class="success" ng-if="loan.insurance.byCrop.length !== 0">
+    <tr class="success" ng-if="loan.insurance.byCrop.length !== 0"
+        >
         <td>Total</td>
-        <!-- TODO: These calculations are wrong! -->
         <td colspan="7">&nbsp;</td>
-        <td class="text-right">{{AppFactory.calcTotalInsGuar(loan)|flexCurrency:0}}</td>
-        <td class="text-right">{{AppFactory.calcTotalOverDisc(loan)|flexCurrency:0}}</td>
-        <td class="text-right">{{AppFactory.calcTotalOverDiscNonRP(loan)|flexCurrency:0}}</td>
+        <td class="text-right"
+            ng-class="gtZero(AppFactory.calcTotalInsGuar(loan))">
+            {{AppFactory.calcTotalInsGuar(loan)|flexCurrency:0}}
+        </td>
+        <td class="text-right"
+            ng-class="gtZero(AppFactory.calcTotalOverDisc(loan))">
+            {{AppFactory.calcTotalOverDisc(loan)|flexCurrency:0}}
+        </td>
+        <td class="text-right"
+            ng-class="gtZero(AppFactory.calcTotalOverDiscNonRP(loan))">
+            {{AppFactory.calcTotalOverDiscNonRP(loan)|flexCurrency:0}}
+        </td>
     </tr>
 </table>

@@ -14,16 +14,18 @@
         <td colspan="5">
             {{e.expense}}
         </td>
-        <td class="text-right">
+        <td class="text-right" ng-class="gtZero(e.arm)">
             {{e.arm|flexCurrency:0}}
         </td>
-        <td class="text-right" ng-if="loan.has_distributor">
+        <td class="text-right"
+            ng-class="gtZero(e.dist)"
+            ng-if="loan.has_distributor">
             {{e.dist|flexCurrency:0}}
         </td>
-        <td class="text-right">
+        <td class="text-right" ng-class="gtZero(e.other)">
             {{e.other|flexCurrency:0}}
         </td>
-        <td class="text-right">
+        <td class="text-right" ng-class="gtZero(e.total)">
             {{e.total|flexCurrency:0}}
         </td>
     </tr>
@@ -46,12 +48,13 @@
     </tr>
     <tr>
         <td colspan="5">Fees and Other</td>
-        <td class="text-right">
+        <td class="text-right"
+            ng-class="gtZero(AppFactory.getFeesForArm(loan))">
             {{AppFactory.getFeesForArm(loan) | flexCurrency:0 }}
         </td>
-        <td class="text-right" ng-if="loan.has_distributor"> - </td>
-        <td class="text-right"> - </td>
-        <td class="text-right">
+        <td class="text-center" ng-if="loan.has_distributor"> - </td>
+        <td class="text-center"> - </td>
+        <td class="text-right" ng-class="gtZero(AppFactory.getFeesForArm(loan))">
             {{AppFactory.getFeesForArm(loan) | flexCurrency:0 }}
         </td>
     </tr>
@@ -59,29 +62,29 @@
         <td colspan="5" class="text-left">
             <strong>Total Expenses</strong>
         </td>
-        <td class="text-right">
+        <td class="text-right" ng-class="gtZero(AppFactory.getArmPrincipal(loan))">
             {{AppFactory.getArmPrincipal(loan)|flexCurrency:0}}
         </td>
-        <td class="text-right" ng-if="loan.has_distributor">
+        <td class="text-right" ng-class="gtZero(AppFactory.getDistPrincipal(loan))" ng-if="loan.has_distributor">
             {{AppFactory.getDistPrincipal(loan)|flexCurrency:0}}
         </td>
-        <td class="text-right">
+        <td class="text-right" ng-class="gtZero(AppFactory.getOtherPrincipal(loan))">
             {{AppFactory.getOtherPrincipal(loan)|flexCurrency:0}}
         </td>
-        <td class="text-right">
+        <td class="text-right" ng-class="gtZero(AppFactory.getTotalPrincipal(loan))">
             {{AppFactory.getTotalPrincipal(loan)|flexCurrency:0}}
         </td>
     </tr>
     <tr>
         <td colspan="5">Estimated Interest</td>
-        <td class="text-right">
+        <td class="text-right" ng-class="gtZero(AppFactory.getArmInterest(loan))">
             {{AppFactory.getArmInterest(loan)|flexCurrency:0}}
         </td>
-        <td class="text-right" ng-if="loan.has_distributor">
+        <td class="text-right" ng-class="gtZero(AppFactory.getDistInterest(loan))" ng-if="loan.has_distributor">
             {{AppFactory.getDistInterest(loan)|flexCurrency:0}}
         </td>
-        <td class="text-right"> - </td>
-        <td class="text-right">
+        <td class="text-center"> - </td>
+        <td class="text-right" ng-class="gtZero(AppFactory.getTotalInterest(loan))">
             {{AppFactory.getTotalInterest(loan)|flexCurrency:0}}
         </td>
     </tr>
@@ -92,7 +95,7 @@
         <td colspan="7" ng-if="!loan.has_distributor">
             Cash Flow (Deficit)
         </td>
-        <td class="text-right">
+        <td class="text-right" ng-class="gtZero(AppFactory.calcCashFlow(loan))">
             {{AppFactory.calcCashFlow(loan) | flexCurrency:0 }}
         </td>
     </tr>
