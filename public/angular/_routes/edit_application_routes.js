@@ -13,157 +13,157 @@
                 })
                 .state('edit.addendums', {
                     url: '/addendums',
-                    templateUrl: 'angular/addendums/addendums.html',
+                    templateUrl: 'angular/loans/addendums/addendums.html',
                     controller: 'AddendumsController',
                     data: {newapplication: false}
                 })
                 .state('edit.applicant', {
                     url: '/applicant',
-                    templateUrl: 'angular/applicants/applicant.html',
+                    templateUrl: 'angular/loans/applicants/applicant.html',
                     controller: 'ApplicantsController',
                     data: {newapplication: false}
                 })
                 .state('edit.audit', {
                     url: '/audit',
-                    templateUrl: 'angular/systemics/systemics.html',
+                    templateUrl: 'angular/loans/systemics/systemics.html',
                     controller: 'SystemicsController',
                     data: {newapplication: false}
                 })
                 .state('edit.budgets', {
                     url: '/budgets',
-                    templateUrl: 'angular/budgets/budgets.html',
+                    templateUrl: 'angular/loans/budgets/budgets.html',
                     controller: 'BudgetsController',
                     data: {newapplication: false}
                 })
                 .state('edit.closing', {
                     url: '/closing',
-                    templateUrl: 'angular/closing/closing.html',
+                    templateUrl: 'angular/loans/closing/closing.html',
                     controller: 'ClosingController',
                     data: {newapplication: false}
                 })
                 .state('edit.collateral', {
                     url: '/collateral',
-                    templateUrl: 'angular/collateral/collateral.html',
+                    templateUrl: 'angular/loans/collateral/collateral.html',
                     controller: 'CollateralController',
                     data: {newapplication: false}
                 })
                 .state('edit.comments', {
                     url: '/comments',
-                    templateUrl: 'angular/comments/comments.html',
+                    templateUrl: 'angular/loans/comments/comments.html',
                     controller: 'CommentsController',
                     data: {newapplication: false}
                 })
                 .state('edit.committee', {
                     url: '/committee',
-                    templateUrl: 'angular/committee/committee.html',
+                    templateUrl: 'angular/loans/committee/committee.html',
                     controller: 'CommitteeController',
                     data: {newapplication: false}
                 })
                 .state('edit.crops', {
                     url: '/crops',
-                    templateUrl: 'angular/crops/crops.html',
+                    templateUrl: 'angular/loans/crops/crops.html',
                     controller: 'CropsController',
                     data: {newapplication: false}
                 })
                 .state('edit.disbursement', {
                     url: '/disbursement',
-                    templateUrl: 'angular/disbursements/disbursement.html',
+                    templateUrl: 'angular/loans/disbursements/disbursement.html',
                     controller: 'DisbursementController',
                     data: {newapplication: false}
                 })
                 .state('edit.distributor', {
                     url: '/distributor',
-                    templateUrl: 'angular/distributors/distributor.html',
+                    templateUrl: 'angular/loans/distributors/distributor.html',
                     controller: 'DistributorsController',
                     data: {newapplication: false}
                 })
                 .state('edit.farmdetails', {
                     url: '/farmdetails',
-                    templateUrl: 'angular/farms/farmdetails.html',
+                    templateUrl: 'angular/loans/farms/farmdetails.html',
                     controller: 'EditFarmDetailsController',
                     data: {newapplication: false}
                 })
                 .state('edit.farmer', {
                     url: '/farmer',
-                    templateUrl: 'angular/farmers/farmer.html',
+                    templateUrl: 'angular/loans/farmers/farmer.html',
                     controller: 'FarmersController',
                     data: {newapplication: false}
                 })
                 .state('edit.farms', {
                     url: '/farms',
-                    templateUrl: 'angular/farms/farms.html',
+                    templateUrl: 'angular/loans/farms/farms.html',
                     controller: 'FarmsController',
                     data: {newapplication: false}
                 })
                 .state('edit.financials', {
                     url: '/financials',
-                    templateUrl: 'angular/financials/financials.html',
+                    templateUrl: 'angular/loans/financials/financials.html',
                     controller: 'FinancialsController',
                     data: {newapplication: false}
                 })
                 .state('edit.insurance', {
                     url: '/insurance',
-                    templateUrl: 'angular/insurance/insurance.html',
+                    templateUrl: 'angular/loans/insurance/insurance.html',
                     controller: 'InsuranceController',
                     data: {newapplication: false}
                 })
                 .state('edit.optimizer', {
                     url: '/optimizer',
-                    templateUrl: 'angular/optimizer/optimizer.html',
+                    templateUrl: 'angular/loans/optimizer/optimizer.html',
                     controller: 'OptimizerController',
                     data: {newapplication: false}
                 })
                 .state('edit.plannedcrops', {
                     url: '/plannedcrops',
-                    templateUrl: 'angular/crops/plannedcrops.html',
+                    templateUrl: 'angular/loans/crops/plannedcrops.html',
                     controller: 'PlannedCropsController',
                     data: {newapplication: false}
                 })
                 .state('edit.prerequisites', {
                     url: '/prerequisites',
-                    templateUrl: 'angular/documents/prerequisites.html',
+                    templateUrl: 'angular/loans/documents/prerequisites.html',
                     controller: 'PrerequisitesController',
                     data: {newapplication: false}
                 })
                 .state('edit.quests', {
                     url: '/quests',
-                    templateUrl: 'angular/quests/quests.html',
+                    templateUrl: 'angular/loans/quests/quests.html',
                     controller: 'QuestsController',
                     data: {newapplication: false}
                 })
                 .state('edit.reconciliation', {
                     url: '/reconciliation',
-                    templateUrl: 'angular/reconciliations/recon.html',
+                    templateUrl: 'angular/loans/reconciliations/recon.html',
                     controller: 'ReconciliationsController',
                     data: {newapplication: false}
                 })
                 .state('edit.references', {
                     url: '/references',
-                    templateUrl: 'angular/references/references.html',
+                    templateUrl: 'angular/loans/references/references.html',
                     controller: 'ReferencesController',
                     data: {newapplication: false}
                 })
                 .state('edit.storage', {
                     url: '/storage',
-                    templateUrl: 'angular/storage/storage.html',
+                    templateUrl: 'angular/loans/storage/storage.html',
                     controller: 'StorageController',
                     data: {newapplication: false}
                 })
                 .state('edit.summary', {
                     url: '/summary',
-                    templateUrl: 'angular/loans/summary.html',
+                    templateUrl: 'angular/loans/summary/summary.html',
                     controller: 'SummaryController',
                     data: {newapplication: false}
                 })
                 .state('edit.terms', {
                     url: '/terms',
-                    templateUrl: 'angular/terms/terms.html',
+                    templateUrl: 'angular/loans/terms/terms.html',
                     controller: 'TermsController',
                     data: {newapplication: false}
                 })
                 .state('edit.underwriting', {
                     url: '/underwriting',
-                    templateUrl: 'angular/underwriting/underwriting.html',
+                    templateUrl: 'angular/loans/underwriting/underwriting.html',
                     controller: 'UnderwritingController',
                     data: {newapplication: false}
                 })
@@ -175,7 +175,7 @@
                 })
                 .state('edit.yield', {
                     url: '/yield',
-                    templateUrl: 'angular/yield/yield.html',
+                    templateUrl: 'angular/loans/yield/yield.html',
                     controller: 'YieldController',
                     data: {newapplication: false}
                 });

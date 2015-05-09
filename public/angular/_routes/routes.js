@@ -20,7 +20,7 @@
                 })
                 .state('loans.management', {
                     url: '/management',
-                    templateUrl: 'angular/management/management.html',
+                    templateUrl: 'angular/loans/management/management.html',
                     controller: 'ManagementController'
                 })
                 .state('prefs', {

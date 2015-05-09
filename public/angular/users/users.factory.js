@@ -8,13 +8,15 @@
 
     /* @ngInject */
     function UsersFactory($http, $q, API_URL) {
-        return {
+        var publicAPI = {
             getCurrentUser: getCurrentUser,
             getNotifications: getNotifications,
             getUser: getUser,
             getUsers: getUsers
         };
+        return publicAPI;
 
+        ///////////
         function getCurrentUser(id){
             return $http.get(API_URL + '/users/' + id)
                 .then(function success(rsp){
