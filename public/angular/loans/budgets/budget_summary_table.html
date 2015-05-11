@@ -9,7 +9,7 @@
     <td class="text-center" style="width:10%;">Other</td>
     <td class="text-center" style="width:10%;">Total</td>
   </tr>
-  <tr ng-repeat="e in loan.expenses.byCat|orderBy: 'cat_id'" ng-if="e.expense != 'Total'">
+  <tr ng-repeat="e in cropuse|orderBy: 'cat_id'" ng-if="e.expense != 'Total'">
     <td colspan="5">{{e.expense}}</td>
     <td class="text-right">
       {{e.arm|flexCurrency:0}}
@@ -88,3 +88,4 @@
   </tr>
   </tbody>
 </table>
+<pre>{{cropuse|json}}</pre>

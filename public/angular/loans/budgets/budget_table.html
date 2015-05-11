@@ -64,28 +64,28 @@
 
   <tr class="success">
     <td>TOTAL</td>
-    <td class="text-right" ng-class=gtZero(loan.expenses.totals.byCrop[0].acre_arm)>
+    <td class="text-right" ng-class=gtZero(thistotal.acre_arm)>
       {{thistotal.acre_arm  | flexCurrency:2 }}
     </td>
-    <td class="text-right" ng-class=gtZero(loan.expenses.totals.byCrop[0].acre_dist)>
+    <td class="text-right" ng-class=gtZero(thistotal.acre_dist)>
       {{thistotal.acre_dist | flexCurrency:2 }}
     </td>
-    <td class="text-right" ng-class=gtZero(loan.expenses.totals.byCrop[0].acre_other)>
+    <td class="text-right" ng-class=gtZero(thistotal.acre_other)>
       {{thistotal.acre_other | flexCurrency:2 }}
     </td>
-    <td class="text-right bright" ng-class=gtZero(loan.expenses.totals.byCrop[0].acre_total)>
+    <td class="text-right bright" ng-class=gtZero(thistotal.acre_total)>
       {{thistotal.acre_total | flexCurrency:2 }}
     </td>
-    <td ng-class=gtZero(loan.expenses.totals.byCrop[0].calc_arm)>
+    <td ng-class=gtZero(thistotal.calc_arm)>
       {{thistotal.calc_arm | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(loan.expenses.totals.byCrop[0].calc_dist)>
+    <td ng-class=gtZero(thistotal.calc_dist)>
       {{thistotal.calc_dist | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(loan.expenses.totals.byCrop[0].calc_other)>
+    <td ng-class=gtZero(thistotal.calc_other)>
       {{thistotal.calc_other | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(loan.expenses.totals.byCrop[0].calc_total)>
+    <td ng-class=gtZero(thistotal.calc_total)>
       {{thistotal.calc_total | flexCurrency:0 }}
     </td>
   </tr>

@@ -353,7 +353,9 @@
             };
         }
         function processExpsTotalsByCat(expenses) {
-            return expenses;
+            var grped = _.chain(expenses).groupBy('crop').value();
+            console.log(grped);
+            return grped;
         }
         function processExpsTotalsByCrop(expenses) {
             var grped = _.chain(expenses).groupBy('crop').value();
