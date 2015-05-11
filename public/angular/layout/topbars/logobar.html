@@ -3,9 +3,7 @@
     <img src="images/LENDA_Logo.png" style="height:70px;"/>
   </a>
     <span class="sp_controls">
-        <span id="navbar-notifications" class="badge" ng-if="user.notifications.length > 0" tooltip-placement="bottom" tooltip-html-unsafe="{{tooltipNotifications}}" ng-click="clkNotificationBadge(user.id)">
-          {{user.notifications.length}}
-        </span>
+        <notificator counts="user.notificator" ng-if="user.notifications.length > 0"></notificator>
         Welcome, {{user.username}}
         &nbsp;&nbsp;|&nbsp;&nbsp;
         Location: {{user.loc_abr}}

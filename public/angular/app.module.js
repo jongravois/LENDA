@@ -63,7 +63,7 @@
         })
         .run(function ($rootScope, $location, $anchorScroll) {
             $rootScope.$on('$stateChangeSuccess', function() {
-                console.log('state change indicated');
+                //console.log('state change indicated');
                 //window.scrollTo(0, 0);
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
             });

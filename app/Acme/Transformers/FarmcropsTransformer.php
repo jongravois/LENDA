@@ -21,6 +21,7 @@ class FarmcropsTransformer extends Transformer{
             'fsn' => $arr['farms']['fsn'],
             'crop_id' => (integer) $arr['crop_id'],
             'crop' => $arr['crops']['crop'],
+            'name' => $arr['crops']['name'],
             'towhom_market' => $arr['towhom_market'],
 			'gin_mill' => $arr['gin_mill'],
 			'irr' =>  (double) $arr['farms']['irr'],

@@ -1,7 +1,7 @@
- [
-     {
-         "cat_id": 1,
-         "expense": "Fertilizer",
+[
+    {
+        "cat_id": 1,
+        "expense": "Fertilizer",
         "arm": 0,
         "dist": 72689,
         "other": 0,
@@ -55,14 +55,14 @@
         "other": 0,
         "total": 31305
     },
-     {
-         "cat_id": 8,
-         "expense": "Repairs",
-         "arm": 12751,
-         "dist": 0,
-         "other": 0,
-         "total": 12751
-     },
+    {
+        "cat_id": 8,
+        "expense": "Repairs",
+        "arm": 12751,
+        "dist": 0,
+        "other": 0,
+        "total": 12751
+    },
     {
         "cat_id": 9,
         "expense": "Labor",

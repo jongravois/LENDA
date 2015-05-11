@@ -62,6 +62,7 @@
 
 <!-- inject.js -->
 <script src="angular/app.module.js"></script>
+<script src="angular/loader.service.js"></script>
 <script src="angular/main.ctrl.js"></script>
 <script src="angular/main.loans.ctrl.js"></script>
 <script src="angular/_constants/constants.js"></script>
@@ -73,8 +74,13 @@
 <script src="angular/_routes/reports_routes.js"></script>
 <script src="angular/_filters/filters.js"></script>
 <script src="angular/_models/base.js"></script>
-<script src="angular/_directives/directives.js"></script>
+<script src="angular/_directives/decimals.directives.js"></script>
 <script src="angular/_directives/inPlaceDirectives.js"></script>
+<script src="angular/_directives/loan.progress.directive.js"></script>
+<script src="angular/_directives/loan.status.directive.js"></script>
+<script src="angular/_directives/notificator.directive.js"></script>
+<script src="angular/_directives/really.click.directive.js"></script>
+<script src="angular/_directives/single.click.directive.js"></script>
 
 
 <script src="angular/admin/admin.ctrl.js"></script>

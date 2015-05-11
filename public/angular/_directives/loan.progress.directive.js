@@ -1,81 +1,10 @@
 (function () {
+    'use strict';
 
     angular.module('ARM')
-        .directive('sglclick', SglClickDirective)
-        .directive('ngReallyClick', NgReallyClickDirective)
-        .directive('loanStatusIcon', LoanStatusIconDirective)
-        .directive('loanProgressIcon', LoanProgressIconDirective)
-        .directive('decimals', DecimalsDirective);
+        .directive('loanProgressIcon', LoanProgressIconDirective);
 
-    SglClickDirective.$inject = ['$parse', '$timeout'];
-    LoanStatusIconDirective.$inject = ['$compile'];
     LoanProgressIconDirective.$inject = ['$compile', '$timeout'];
-    DecimalsDirective.$inject = ['$filter'];
-
-    function SglClickDirective($parse, $timeout) {
-        return {
-            restrict: 'A',
-            link: function (scope, element, attr) {
-                var fn = $parse(attr['sglclick']);
-                var delay = 300,
-                    clicks = 0,
-                    timer = null;
-                element.on('click', function (event) {
-                    clicks++; //count clicks
-                    if (clicks === 1) {
-                        timer = $timeout(function () {
-                            fn(scope, {
-                                $event: event
-                            });
-                            clicks = 0;
-                        }, delay);
-                    } else {
-                        $timeout.cancel(timer); //prevent single-click action
-                        clicks = 0; //after action performed, reset counter
-                    }
-                });
-            }
-        };
-    }
-
-    function NgReallyClickDirective() {
-        return {
-            restrict: 'A',
-            link: function (scope, element, attrs) {
-                element.bind('click', function () {
-                    var message = attrs.ngReallyMessage;
-                    if (message && confirm(message)) {
-                        scope.$apply(attrs.ngReallyClick);
-                    }
-                });
-            }
-        };
-    }
-
-    function LoanStatusIconDirective($compile) {
-        var templateMap = {
-            '1': '<span class="staticon glyphicon glyphicon-wrench" tooltip="In_Progress" style="color: #009;"></span>',
-            '2': '<span class="staticon glyphicon glyphicon-ok" tooltip="Paid" style="color: #090;"></span>',
-            '3': '<span class="staticon glyphicon glyphicon-share-alt" tooltip="Recommended"></span>',
-            '4': '<span class="staticon glyphicon glyphicon-thumbs-up" tooltip="Approved"></span>',
-            '5': '<span class="staticon glyphicon glyphicon-thumbs-down" tooltip="Denied" style="color: #900;"></span>',
-            'default': '<span class="staticon glyphicon glyphicon-wrench" tooltip="In_Progress" style="color: #009;"></span>'
-        };
-
-        function linker(scope, element, attrs) {
-            var template = templateMap[scope.status] || templateMap.default;
-            element.append($compile(template)(scope));
-        }
-
-        return {
-            restrict: 'A',
-            link: linker,
-            scope: {
-                status: '@'
-            }
-        };
-
-    }
 
     function LoanProgressIconDirective($compile, $timeout) {
         var progressMarkers = [{
@@ -257,59 +186,6 @@
                 alert('Icon ' + scope.ngModel + ' was double clicked.');
             };
         }
-    }
-
-    function DecimalsDirective($filter) {
-        return {
-            restrict: 'A', // Only usable as an attribute of another HTML element
-            require: '?ngModel',
-            scope: {
-                decimals: '@',
-                decimalPoint: '@'
-            },
-            link: function (scope, element, attr, ngModel) {
-                var decimalCount = parseInt(scope.decimals) || 2;
-                var decimalPoint = scope.decimalPoint || '.';
-
-                // Run when the model is first rendered and when the model is changed from code
-                ngModel.$render = function () {
-                    if (ngModel.$modelValue != null && ngModel.$modelValue >= 0) {
-                        if (typeof decimalCount === 'number') {
-                            element.val(ngModel.$modelValue.toFixed(decimalCount).toString().replace('.', '.'));
-                        } else {
-                            element.val(ngModel.$modelValue.toString().replace('.', '.'));
-                        }
-                    }
-                };
-
-                // Run when the view value changes - after each keypress
-                // The returned value is then written to the model
-                ngModel.$parsers.unshift(function (newValue) {
-                    if (typeof decimalCount === 'number') {
-                        var floatValue = parseFloat(newValue.replace('.', '.'));
-                        if (decimalCount === 0) {
-                            return parseInt(floatValue);
-                        }
-                        return parseFloat(floatValue.toFixed(decimalCount));
-                    }
-
-                    return parseFloat(newValue.replace('.', '.'));
-                });
-
-                // Formats the displayed value when the input field loses focus
-                element.on('change', function (e) {
-                    var floatValue = parseFloat(element.val().replace(',', '.'));
-                    if (!isNaN(floatValue) && typeof decimalCount === 'number') {
-                        if (decimalCount === 0) {
-                            element.val(parseInt(floatValue));
-                        } else {
-                            var strValue = floatValue.toFixed(decimalCount);
-                            element.val(strValue.replace('.', decimalPoint));
-                        }
-                    }
-                });
-            }
-        };
     }
 
 })();

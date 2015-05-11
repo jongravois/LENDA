@@ -21,7 +21,7 @@
             return $q.all({
                 collateral: processCollateral(loan.othercollateral),
                 crops: getCrops(loan),
-                expenses: processCropExpenses(loan.expenses),
+                expenses: processCropExpenses(loan),
                 has_comment: getPendingComments(loan),
                 insurance: getInsurance(loan),
                 loancrops: processLoanCrops(loan.loancrops),
@@ -50,6 +50,9 @@
             });
             //console.log(filtered);
             return results;
+        }
+        function getAcresTotal(loan) {
+            return _.sumCollection(loan.loancrops, 'acres');
         }
         function getCropExpenses(crop) {
             if(crop.length < 1) { return; }
@@ -161,8 +164,11 @@
                 byFarm: []
             };
         }
-        function getExpenses(expenses) {
-            //TODO: Get from database rather than JSON
+        function getExpensesCategories(expenses) {
+            //TODO: Add to loan - Expense categories for this loan!
+            return _.uniq(_.pluck(expenses, 'expense'));
+        }
+        function getExpenses(loan) {
             return $http.get('angular/json/expenses.json')
                 .then(function(rsp){
                     //console.log(rsp.data);
@@ -281,16 +287,19 @@
             var all = _.chain(obj).groupBy('type').value();
             return all;
         }
-        function processCropExpenses(expenses) {
-            return getExpenses(expenses).then(function(prodata){
-                var proexp = prodata;
+        function processCropExpenses(loan) {
+            //expenses from DB via eager loading
+            var expenses = loan.expenses;
+            return getExpenses(loan)
+                .then(function(prodata){
+                    var proexp = prodata;
 
-                var processed = {
-                    data: proexp,
-                    totals: totalCropExpenses(proexp)
-                };
-                return processed;
-            });
+                    var processed = {
+                        data: proexp,
+                        totals: totalCropExpenses(proexp)
+                    };
+                    return processed;
+                });
         }
         function processCropTotals(arrCrop) {
             var tstActive = false;

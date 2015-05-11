@@ -4,15 +4,15 @@
         .module('ARM')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$state', '$q', '$filter', 'toastr', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersFactory', 'orderByFilter'];
+    MainController.$inject = ['$scope', '$state', '$q', '$filter', 'toastr', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersProcessorService', 'orderByFilter'];
 
-    function MainController($scope, $state, $q, $filter, toastr, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersFactory, orderByFilter) {
-        $scope.user_id = $('#user_id').data('id');
+    function MainController($scope, $state, $q, $filter, toastr, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersProcessorService, orderByFilter) {
         $scope.AppFactory = AppFactory;
         
         activate();
 
         function activate() {
+            $scope.user_id = $('#user_id').data('id');
             $scope.landing_view = 'settings';
             $scope.file_url = FILE_URL;
             $scope.inArray = AppFactory.inArray;
@@ -22,15 +22,15 @@
                 {id: 'SMS', name: 'Text'}
             ];
 
-            UsersFactory.getUsers()
+            UsersProcessorService.getUsersWithExtraData()
                 .then(function success(rsp){
-                    $scope.users = rsp.data.data;
-                    //toastr.success('Loaded All Users', 'Success!');
-                    $scope.user = _.find($scope.users, function(i) {
+                    var users = rsp;
+                    $scope.users = users;
+                    console.log('Users from Main', users);
+                    toastr.success('Loaded All Users', 'Success!');
+                    $scope.user = _.find(users, function(i) {
                         return i.id == $scope.user_id;
                     });
-                    $scope.tooltipNotifications = getTallies($scope.user.notifications);
-                    //console.log('user', $scope.user);
                 });
 
             GlobalsFactory.getGlobals()
@@ -189,33 +189,6 @@
         };
 
         /* METHODS */
-        function getTallies(arr){
-            var penAct = 0;
-            var manReq = 0;
-            var reqRep = 0;
-            var catNotify = _.chain(arr)
-                .groupBy('notification_type')
-                .value();
 
-            if(catNotify.report) {
-                penAct = catNotify.report.length;
-            }
-            if(catNotify.vote) {
-                manReq = catNotify.vote.length;
-            }
-            if(catNotify.office) {
-                reqRep = catNotify.office.length;
-            }
-
-            var retHTML = '<p style="text-align: left !important;">Pending Actions: (';
-            retHTML += penAct;
-            retHTML += ')</p><p style="text-align: left !important;">Management Required: (';
-            retHTML += manReq;
-            retHTML += ')</p><p style="text-align: left !important;">Review Reports: (';
-            retHTML += reqRep;
-            retHTML += ')</p>';
-
-            return retHTML;
-        }
     } // end controller
 })();
