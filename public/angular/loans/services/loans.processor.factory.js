@@ -175,7 +175,7 @@
                 totals: processExpsTotals(flattenExpenses(expenses))
             };
 
-            console.log('Expenses: ', exps);
+            //console.log('Expenses: ', exps);
             return (exps);
         }
         function getInsurance(loan) {
@@ -329,6 +329,7 @@
         }
         function processExpsByCat(expenses) {
             var grped = _.chain(expenses).groupBy('expense').value();
+            //corn.arm*corn.acres + bean.arm*bean.acres etc
             return grped;
         }
         function processExpsByCrop(expenses) {
@@ -345,7 +346,61 @@
             return byCrop;
         }
         function processExpsTotals(expenses) {
+            return {
+                byCat: processExpsTotalsByCat(expenses),
+                byCrop: processExpsTotalsByCrop(expenses),
+                byLoan: processExpsTotalsByLoan(expenses)
+            };
+        }
+        function processExpsTotalsByCat(expenses) {
             return expenses;
+        }
+        function processExpsTotalsByCrop(expenses) {
+            var grped = _.chain(expenses).groupBy('crop').value();
+            var crops = AppFactory.getAllCrops();
+
+            var totsByCrop = [];
+            angular.forEach(crops, function(crop){
+                if(!grped[crop]){
+                    totsByCrop.push([
+                        {
+                            acre_arm: 0,
+                            acre_dist: 0,
+                            acre_other: 0,
+                            acre_total: 0,
+                            calc_arm: 0,
+                            calc_dist: 0,
+                            calc_other: 0,
+                            calc_total: 0
+                        }
+                    ]);
+                } else {
+                    var col = grped[crop];
+                    //console.log(col);
+                    var colTots = [
+                        {
+                            acre_arm: _.sumCollection(col, 'arm'),
+                            acre_dist: _.sumCollection(col, 'dist'),
+                            acre_other: _.sumCollection(col, 'other'),
+                            acre_total: _.sumCollection(col, 'per_acre'),
+                            calc_arm: _.sumCollection(col, 'calc_arm'),
+                            calc_dist: _.sumCollection(col, 'calc_dist'),
+                            calc_other: _.sumCollection(col, 'calc_other'),
+                            calc_total: _.sumCollection(col, 'calc_total')
+                        }
+                    ];
+                    totsByCrop.push(colTots);
+                }
+            });
+            return totsByCrop;
+        }
+        function processExpsTotalsByLoan(expenses) {
+            return {
+                arm: 12000000,
+                dist: 8000000,
+                other: 4000000,
+                total: 24000000
+            };
         }
         function processForInsDB(policies) {
             var groupByPractice = _.partial(_.ary(_.groupBy, 2), _, 'practice');

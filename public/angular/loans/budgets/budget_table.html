@@ -32,64 +32,65 @@
     </td>
   </tr>
 
-  <tr ng-repeat="c in thiscrop.expenses">
+  <tr ng-repeat="c in thiscrop">
     <td>
       {{c.expense|capitalize}}
     </td>
     <td class="text-right">
-      {{c.arm_adj|flexCurrency:2}}
+      {{c.arm|flexCurrency:2}}
     </td>
     <td class="text-right">
-      {{c.dist_adj|flexCurrency:2}}
+      {{c.dist|flexCurrency:2}}
     </td>
     <td class="text-right">
-      {{c.other_adj|flexCurrency:2}}
+      {{c.other|flexCurrency:2}}
     </td>
     <td class="text-right bright">
       {{c.per_acre|flexCurrency:2}}
     </td>
     <td class="text-right">
-      {{c.calc_arm = Number(c.arm_adj) * Number(c.acres)|flexCurrency:0}}
+      {{c.calc_arm|flexCurrency:0}}
     </td>
     <td class="text-right">
-      {{Number(c.dist_adj) * Number(c.acres)|flexCurrency:0}}
+      {{c.calc_dist|flexCurrency:0}}
     </td>
     <td class="text-right">
-      {{Number(c.other_adj) * Number(c.acres)|flexCurrency:0}}
+      {{c.calc_other|flexCurrency:0}}
     </td>
     <td class="text-right">
-      {{Number(c.per_acre) * Number(c.acres) |flexCurrency:0}}
+      {{c.calc_total |flexCurrency:0}}
     </td>
   </tr>
 
   <tr class="success">
     <td>TOTAL</td>
-    <td ng-class=gtZero(c.arm_total)>
-      {{calc_arm_total(thiscrop)  | flexCurrency:2 }}
+    <td class="text-right" ng-class=gtZero(loan.expenses.totals.byCrop[0].acre_arm)>
+      {{thistotal.acre_arm  | flexCurrency:2 }}
     </td>
-    <td ng-class=gtZero(c.dist_total)>
-      {{calc_dist_total(thiscrop) | flexCurrency:2 }}
+    <td class="text-right" ng-class=gtZero(loan.expenses.totals.byCrop[0].acre_dist)>
+      {{thistotal.acre_dist | flexCurrency:2 }}
     </td>
-    <td ng-class=gtZero(c.other_total)>
-      {{calc_other_total(thiscrop) | flexCurrency:2 }}
+    <td class="text-right" ng-class=gtZero(loan.expenses.totals.byCrop[0].acre_other)>
+      {{thistotal.acre_other | flexCurrency:2 }}
     </td>
-    <td class="bright" ng-class=gtZero(c.peracre_total)>
-      {{calc_arm_total(thiscrop) + calc_dist_total(thiscrop) + calc_other_total(thiscrop) | flexCurrency:2 }}
+    <td class="text-right bright" ng-class=gtZero(loan.expenses.totals.byCrop[0].acre_total)>
+      {{thistotal.acre_total | flexCurrency:2 }}
     </td>
-    <td ng-class=gtZero(c.calc_arm_total)>
-      {{calc_arm_total(thiscrop) * thiscrop.totals.acres | flexCurrency:0 }}
+    <td ng-class=gtZero(loan.expenses.totals.byCrop[0].calc_arm)>
+      {{thistotal.calc_arm | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(c.calc_dist_total)>
-      {{calc_dist_total(thiscrop) * thiscrop.totals.acres | flexCurrency:0 }}
+    <td ng-class=gtZero(loan.expenses.totals.byCrop[0].calc_dist)>
+      {{thistotal.calc_dist | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(c.calc_other_total)>
-      {{calc_other_total(thiscrop) * thiscrop.totals.acres | flexCurrency:0 }}
+    <td ng-class=gtZero(loan.expenses.totals.byCrop[0].calc_other)>
+      {{thistotal.calc_other | flexCurrency:0 }}
     </td>
-    <td ng-class=gtZero(c.calc_total)>
-      {{(calc_arm_total(thiscrop) + calc_dist_total(thiscrop) + calc_other_total(thiscrop)) * thiscrop.totals.acres | flexCurrency:0 }}
+    <td ng-class=gtZero(loan.expenses.totals.byCrop[0].calc_total)>
+      {{thistotal.calc_total | flexCurrency:0 }}
     </td>
   </tr>
 
   </tbody>
 </table>
-<pre>{{thiscrop|json}}</pre>
+<!--<pre>{{thiscrop|json}}</pre>-->
+<!--<pre>{{thistotal|json}}</pre>-->

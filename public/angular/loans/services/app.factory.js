@@ -65,6 +65,7 @@
             countiesInState: countiesInState,
             createLenda: createLenda,
             diffInDates: diffInDates,
+            getAllCrops: getAllCrops,
             getArmDistCollateral: getArmDistCollateral,
             getArmInterest: getArmInterest,
             getArmPrincipal: getArmPrincipal,
@@ -800,6 +801,11 @@
             } else {
                 return intFirst - intSecond;
             } // end if
+        }
+
+        function getAllCrops() {
+            //TODO: Hard Coded
+            return ['corn', 'soybeans', 'beansFAC', 'sorghum', 'wheat', 'cotton', 'rice', 'peanuts', 'sugarcane'];
         }
 
         function fixDollars(num, digits) {
