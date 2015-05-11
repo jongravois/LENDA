@@ -26,7 +26,7 @@
                 .then(function success(rsp){
                     var users = rsp;
                     $scope.users = users;
-                    console.log('Users from Main', users);
+                    //console.log('Users from Main', users);
                     toastr.success('Loaded All Users', 'Success!');
                     $scope.user = _.find(users, function(i) {
                         return i.id == $scope.user_id;
