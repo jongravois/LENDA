@@ -9,6 +9,10 @@
     /* @ngInject */
     function FeederFactory($http, toastr, API_URL) {
         var data = {
+            comms: [
+             {id: 'email', name: 'Email'},
+             {id: 'SMS', name: 'Text'}
+             ],
             hpOpts: [
                 {id: 1, abr: 'll', option: 'Loan List'},
                 {id: 2, abr: 'lm', option: 'Loan Management'}

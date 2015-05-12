@@ -15,12 +15,6 @@
             $scope.user_id = $('#user_id').data('id');
             $scope.landing_view = 'settings';
             $scope.file_url = FILE_URL;
-            $scope.inArray = AppFactory.inArray;
-
-            $scope.comms = [
-                {id: 'email', name: 'Email'},
-                {id: 'SMS', name: 'Text'}
-            ];
 
             UsersProcessorService.getUsersWithExtraData()
                 .then(function success(rsp){

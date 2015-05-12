@@ -14,27 +14,31 @@
         return publicAPI;
 
         //////////
-        function getData() {
+        function getData() {}
+
+        function getUsers() {
             UsersProcessorService.getUsersWithExtraData()
-                .then(function success(rsp){
+                .then(function success(rsp) {
                     var users = rsp;
                     $scope.users = users;
                     //console.log('Users from Main', users);
                     toastr.success('Loaded All Users', 'Success!');
-                    $scope.user = _.find(users, function(i) {
-                        return i.id == $scope.user_id;
-                    });
                 });
+        }
+
+        function getGlobals() {
             GlobalsFactory.getGlobals()
                 .then(function success(rsp){
                     $scope.globals = rsp.data[0];
                     toastr.success('Loaded Global Values', 'Success!');
                 });
-            // defaults
-            // feeders
-            // loans
-            // farmers
-            // applicants
         }
+
+        // defaults
+        // feeders
+        // loans
+        // farmers
+        // applicants
+
     } // end factory
 })();
