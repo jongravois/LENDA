@@ -51,13 +51,6 @@
                     });
                     //TODO: Determine initial sort order
                     $scope.sortedLoanList = orderByFilter($scope.loanList, '+id');
-
-                    //if we are refreshing, get loan from URL
-                    if($stateParams.loanID){
-                        $scope.loan = _.find($scope.loans, function(i) {
-                            return i.id == $stateParams.loanID;
-                        });
-                    }
                 });
                 toastr.success('Loaded all loans', 'Success!');
 

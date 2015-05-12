@@ -4,18 +4,20 @@
         .module('ARM')
         .controller('EditLoansController', EditLoansController);
 
-    EditLoansController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'toastr', 'AppFactory', 'ApplicantsFactory', 'ExceptionsFactory', 'FarmersFactory', 'LoansFactory', 'LoansProcessor'];
+    EditLoansController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'toastr', 'AppFactory', 'ExceptionsFactory'];
 
     /* @ngInject */
-    function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, AppFactory, ApplicantsFactory, ExceptionsFactory, FarmersFactory, LoansFactory, LoansProcessor) {
+    function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, AppFactory, ExceptionsFactory) {
         $scope.AppFactory = AppFactory;
 
-        if(!$scope.loan) {
-            $scope.loan = _.find($scope.loans, function (i) {
-                return i.id == $stateParams.loanID;
-            });
+        $scope.loan = _.find($scope.loans, function(i) {
+            return i.id == $stateParams.loanID;
+        });
+
+        if($scope.loan){
+            toastr.success('Loaded active loan', 'Success!');
         }
-        
+
         activate();
 
         function activate() {
