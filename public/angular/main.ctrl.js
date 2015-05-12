@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$state', '$q', '$filter', 'toastr', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersProcessorService', 'orderByFilter'];
+    MainController.$inject = ['$scope', '$state', '$stateParams', '$q', '$filter', 'toastr', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersProcessorService', 'orderByFilter'];
 
-    function MainController($scope, $state, $q, $filter, toastr, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersProcessorService, orderByFilter) {
+    function MainController($scope, $state, $stateParams, $q, $filter, toastr, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersProcessorService, orderByFilter) {
         $scope.AppFactory = AppFactory;
         
         activate();
@@ -51,6 +51,13 @@
                     });
                     //TODO: Determine initial sort order
                     $scope.sortedLoanList = orderByFilter($scope.loanList, '+id');
+
+                    //if we are refreshing, get loan from URL
+                    if($stateParams.loanID){
+                        $scope.loan = _.find($scope.loans, function(i) {
+                            return i.id == $stateParams.loanID;
+                        });
+                    }
                 });
                 toastr.success('Loaded all loans', 'Success!');
 

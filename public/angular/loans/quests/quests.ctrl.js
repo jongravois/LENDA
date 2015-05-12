@@ -19,7 +19,11 @@
             });
         }// end if
 
-        $scope.loan = $scope.loan || InitialData.data.data[0];
+        if (!$scope.loan) {
+            $scope.loan = _.find($scope.loans, function(i) {
+                return i.id == $stateParams.loanID;
+            });
+        } // end if
 
         $scope.insertQuestions = function () {
             checkExceptions();

@@ -9,11 +9,7 @@
                     url: '/new/{loantypeID:\\d+}/{loanID:\\d+}',
                     templateUrl: 'angular/loans/new.loan.shell.html',
                     controller: 'NewLoansController',
-                    resolve: {
-                        InitialData: function ($stateParams, LoansFactory) {
-                            return LoansFactory.getLoan($stateParams.loanID);
-                        }
-                    }
+                    resolve: {}
                 })
                 .state('new.applicant', {
                     url: '/applicant',
@@ -56,11 +52,7 @@
                     templateUrl: 'angular/loans/farmers/farmer.html',
                     controller: 'FarmersController',
                     data: {newapplication: true},
-                    resolve: {
-                        Loan: function ($stateParams, LoansFactory) {
-                            return LoansFactory.getLoan($stateParams.loanID);
-                        }
-                    }
+                    resolve: {}
                 })
                 .state('new.farms', {
                     url: '/farms',

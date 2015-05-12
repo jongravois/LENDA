@@ -114,11 +114,15 @@
         }
 
         function calcAdjustedRiskMargin(loan) {
+            if(!loan) { return; }
+
             var old_adjusted_risk_margin = -999999;
             return -999999;
         }
 
         function calcCashFlow(loan) {
+            if(!loan) { return; }
+
             // TotalProjectedIncome - TotalExpenses
             /* TODO: Need to retain value and watch for changes to trigger an addendum */
             var old_cash_flow = '???';
@@ -126,15 +130,21 @@
         }
 
         function calcEquipmentCollateralTotal(loan) {
+            if(!loan) { return; }
+
             var col = loan.collateral.equipment;
             return _.sumCollection(col, 'amount');
         }
 
         function calcEquipmentCollateralValue(loan) {
+            if(!loan) { return; }
+
             return (Number(calcEquipmentCollateralTotal(loan)) * (1 - (Number(loan.fins.equipment_percent) / 100))) - Number(loan.priorlien.totals.equipment);
         }
 
         function calcFSACollateralValue(loan) {
+            if(!loan) { return; }
+
             return (Number(loan.fins.total_fsa_payment) * (1 - (Number(loan.fins.fsa_assignment_percent) / 100))) - Number(loan.priorlien.totals.fsa_payments);
         }
 
@@ -164,11 +174,15 @@
         }
 
         function calcInsuranceTotalGuarantee(loan) {
+            if(!loan) { return; }
+
             // TOTAL INSURANCE VALUE
             return calcTotalOverDisc(loan);
         }
 
         function calcInsuranceTotalValue(loan) {
+            if(!loan) { return; }
+
             var policies = loan.insurance.byCrop;
 
             return _.sumCollection(policies, 'value');
@@ -179,65 +193,93 @@
         }
 
         function calcMarketValueTotal(loan) {
+            if(!loan) { return; }
+
             return Number(loan.fins.adj_prod) + Number(loan.fins.total_fsa_payment) + Number(loan.fins.ins_disc_prod) + Number(loan.insurance.nonrp.value) + Number(loan.supplements.totals.value) + Number(calcEquipmentCollateralValue(loan)) + Number(calcRECollateralValue(loan)) + Number(calcOtherCollateralValue(loan));
         }
 
         function calcIODCollateralValue(loan) {
+            if(!loan) { return; }
+
             return (Number(loan.fins.ins_disc_prod) * (1 - (Number(loan.fins.disc_ins_percent) / 100))) - Number(loan.priorlien.totals.ins_over_discount);
         }
 
         function calcNRPCollateralValue(loan) {
+            if(!loan) { return; }
+
             return (Number(loan.insurance.nonrp.value) * (1 - (Number(loan.fins.non_rp_percent) / 100))) - Number(loan.priorlien.totals.nonrp_discount);
         }
 
         function calcOtherCollateralTotal(loan) {
+            if(!loan) { return; }
+
             var col = loan.collateral.other;
             return _.sumCollection(col, 'amount');
         }
 
         function calcOtherCollateralValue(loan) {
+            if(!loan) { return; }
+
             return (Number(calcOtherCollateralTotal(loan)) * (1 - Number(loan.fins.other_discount_percent) / 100)) - Number(loan.priorlien.totals.other);
         }
 
         function calcPlannedCropValue(loan) {
+            if(!loan) { return; }
+
             return (Number(loan.fins.adj_prod) * (1 - (Number(loan.fins.disc_prod_percent) / 100))) - Number(loan.priorlien.totals.projected_crops);
         }
 
         function calcPriorLienTotal(loan) {
+            if(!loan) { return; }
+
             var lean = loan.priorlien;
             return _.sumCollection(lean, 'lientotal');
         }
 
         function calcRECollateralTotal(loan) {
+            if(!loan) { return; }
+
             var col = loan.collateral.realestate;
             return _.sumCollection(col, 'amount');
         }
 
         function calcRECollateralValue(loan) {
+            if(!loan) { return; }
+
             return (Number(calcRECollateralTotal(loan)) * (1 - Number(loan.fins.realestate_percent) / 100)) - Number(loan.priorlien.totals.realestate);
         }
 
         function calcRiskMargin(loan) {
+            if(!loan) { return; }
+
             //TOTAL COLLATERAL - TOTAL COMMITMENT
             var old_risk_margin = -999999;
             return Number(calcTotalCollateral(loan)) - Number(calcTotalExpenses(loan));
         }
 
         function calcSuppInsTotalAcres(loan) {
+            if(!loan) { return; }
+
             var supps = loan.supplements.policies;
             return _.sumCollection(supps, 'acres');
         }
 
         function calcSuppInsTotalValue(loan) {
+            if(!loan) { return; }
+
             var supps = loan.supplements.policies;
             return _.sumCollection(supps, 'value');
         }
 
         function calcSuppInsValue(loan) {
+            if(!loan) { return; }
+
             return (Number(loan.supplements.totals.value) * (1 - (Number(loan.fins.supplement_insurance_discount_percent) / 100))) - Number(loan.priorlien.totals.supplemental_coverage);
         }
 
         function calcTotalCollateral(loan) {
+            if(!loan) { return; }
+
             return Number(calcPlannedCropValue(loan)) +
                    Number(calcFSACollateralValue(loan)) +
                    Number(calcIODCollateralValue(loan)) +
@@ -249,6 +291,8 @@
         }
 
         function calcTotalCropValue(loan) {
+            if(!loan) { return; }
+
             var allCropValue = _.reduce(loan.loancrops, function(sum, obj){
                 return sum + fixDollars(Number(obj.crop_total), 0);
             }, 0);
@@ -256,15 +300,21 @@
         }
 
         function calcTotalEquipmentCollateral(loan) {
+            if(!loan) { return; }
+
             var collection = loan.collateral.equipment;
             return _.sumCollection(collection, 'amount');
         }
 
         function calcTotalExpenses(loan) {
+            if(!loan) { return; }
+
             return getTotalPrincipal(loan);
         }
 
         function calcTotalInsGuar(loan) {
+            if(!loan) { return; }
+
             //insurance.byCrop
             var guar = _.reduce(loan.insurance.byCrop, function(sum, obj){
                 return sum + Number(obj.guarantee);
@@ -273,6 +323,8 @@
         }
 
         function calcTotalOverDisc(loan) {
+            if(!loan) { return; }
+
             var guarantee = _.reduce(loan.insurance.byCrop, function(sum, obj){
                 if(obj.type === 'RP') {
                     return sum + Number(obj.guarantee);
@@ -298,6 +350,8 @@
         }
 
         function calcTotalOverDiscNonRP(loan) {
+            if(!loan) { return; }
+
             var guarantee = _.reduce(loan.insurance.byCrop, function(sum, obj){
                 if(obj.type !== 'RP') {
                     return sum + Number(obj.guarantee);
@@ -329,12 +383,16 @@
         }
 
         function calcTotalRECollateral(loan) {
+            if(!loan) { return; }
+
             var collection = loan.collateral.realestate;
             return _.sumCollection(collection, 'amount');
         }
 
         function calcTotalRevenue(loan) {
+            if(!loan) { return; }
             //R/M == totalCollateral - commit_total
+
             return calcTotalCropValue(loan) + Number(loan.fins.total_fsa_payment) + Number(loan.fins.total_claims);
         }
 
@@ -816,34 +874,50 @@
         }
 
         function getArmDistCollateral(loan) {
+            if(!loan) { return; }
+
             return Number(getArmPrincipal(loan)) + Number(getDistPrincipal(loan));
         }
 
         function getArmInterest(loan) {
+            if(!loan) { return; }
+
             return Number(getArmPrincipal(loan)) * (Number(loan.fins.int_percent_arm)/100);
         }
 
         function getArmPrincipal(loan) {
+            if(!loan) { return; }
+
             return loan.expenses.totals.byLoan.arm;
         }
 
         function getDistInterest(loan) {
+            if(!loan) { return; }
+
             return Number(getDistPrincipal(loan)) * (Number(loan.fins.int_percent_dist)/100);
         }
 
         function getDistPrincipal(loan) {
+            if(!loan) { return; }
+
             return Number(loan.expenses.totals.byLoan.dist);
         }
 
         function getOtherPrincipal(loan) {
+            if(!loan) { return; }
+
             return Number(loan.expenses.totals.other);
         }
 
         function getTotalInterest(loan) {
+            if(!loan) { return; }
+
             return Number(getArmInterest(loan)) + Number(getDistInterest(loan));
         }
 
         function getTotalPrincipal(loan) {
+            if(!loan) { return; }
+            if(!loan.expenses){ return 0; }
             return Number(loan.expenses.totals.byLoan.total) + Number(getFeesForArm(loan));
         }
 
@@ -859,6 +933,8 @@
         }
 
         function getFeeForArmProc(loan) {
+            if(!loan) { return; }
+
             if(loan.fins.fee_processing_onTotal) {
                 var prFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_processing_percent)/100);
             } else {
@@ -869,6 +945,8 @@
         }
 
         function getFeeForArmSrvc(loan) {
+            if(!loan) { return; }
+
             if(loan.fins.fee_service_onTotal) {
                 var svcFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_service_percent)/100);
             } else {
@@ -879,6 +957,8 @@
         }
 
         function getFeesForArm(loan) {
+            if(!loan) { return; }
+
             if(loan.fins.fee_processing_onTotal) {
                 var prFee = (Number(loan.expenses.totals.byLoan.arm) + Number(loan.expenses.totals.byLoan.dist)) * (Number(loan.fins.fee_processing_percent)/100);
             } else {
@@ -894,22 +974,6 @@
             return prFee + svcFee;
         }
 
-        function getFeesForDist(loan) {
-            var prFee = Number(loan.expenses.totals.dist) * (Number(loan.fins.fee_processing_percent)/100);
-
-            var svcFee = Number(loan.expenses.totals.dist) * (Number(loan.fins.fee_service_percent)/100);
-
-            return prFee + svcFee;
-        }
-
-        function getFeesForOther(loan) {
-            var prFee = Number(loan.expenses.totals.othert) * (Number(loan.fins.fee_processing_percent)/100);
-
-            var svcFee = Number(loan.expenses.totals.other) * (Number(loan.fins.fee_service_percent)/100);
-
-            return prFee + svcFee;
-        }
-
         function getFullSeason(initial) {
             switch (initial) {
                 case 'F':
@@ -920,6 +984,8 @@
         }
 
         function getIrrPerString(loan) {
+            if(!loan) { return; }
+
             var IrrPer = '';
             var bEven = [];
             var lc = loan.loancrops;
@@ -973,6 +1039,8 @@
         }
 
         function income_totalCollateral(loan) {
+            if(!loan) { return; }
+
             //R/M == income_totalCollateral - commitment_total
             var allCropValue = _.reduce(loan.loancrops, function(sum, obj){
                 return sum + Number(obj.crop_total);
@@ -983,6 +1051,8 @@
         }
 
         function income_totalCropValue(loan) {
+            if(!loan) { return; }
+
             var allCropValue = _.reduce(loan.loancrops, function(sum, obj){
                 return sum + Number(obj.crop_total);
             }, 0);
@@ -1011,18 +1081,24 @@
         }
 
         function monitorAdjustedRisk(loan) {
+            if(!loan) { return; }
+
             var old_adj_risk = Number(loan.fins.risk_adj);
             var adj_risk = Number(loan.fins.risk_adj);
             return adj_risk;
         }
 
         function monitorCashFlow(loan) {
+            if(!loan) { return; }
+
             var old_cash_flow = Number(loan.fins.cash_flow);
             var cash_flow = Number(loan.fins.cash_flow);
             return cash_flow;
         }
 
         function monitorRiskMargin(loan) {
+            if(!loan) { return; }
+
             var old_risk_margin = Number(loan.fins.risk);
             var risk_margin = Number(loan.fins.risk);
             return risk_margin;

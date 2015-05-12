@@ -23,6 +23,12 @@
             }// end if
         }
 
+        if (!$scope.loan) {
+            $scope.loan = _.find($scope.loans, function(i) {
+                return i.id == $stateParams.loanID;
+            });
+        } // end if
+
         if (!$scope.loan.farmer_id) {
             $scope.farmer = {
                 new_client: true

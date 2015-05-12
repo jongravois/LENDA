@@ -10,14 +10,16 @@
     function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, AppFactory, ApplicantsFactory, ExceptionsFactory, FarmersFactory, LoansFactory, LoansProcessor) {
         $scope.AppFactory = AppFactory;
 
+        if(!$scope.loan) {
+            $scope.loan = _.find($scope.loans, function (i) {
+                return i.id == $stateParams.loanID;
+            });
+        }
+        
         activate();
 
         function activate() {
-            $scope.loan = _.find($scope.loans, function(i) {
-                return i.id == $stateParams.loanID;
-            });
             $scope.indicon_width = '140px';
-
         }
 
         $scope.uomChanged = function (id, uom) {
