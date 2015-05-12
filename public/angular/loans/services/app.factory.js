@@ -122,7 +122,7 @@
             // TotalProjectedIncome - TotalExpenses
             /* TODO: Need to retain value and watch for changes to trigger an addendum */
             var old_cash_flow = '???';
-            return Number(income_totalCollateral(loan)) - Number(getTotalPrincipal(loan)) - Number(getTotalInterest(loan));
+            return Number(calcTotalRevenue(loan)) - Number(getTotalPrincipal(loan)) - Number(getTotalInterest(loan));
         }
 
         function calcEquipmentCollateralTotal(loan) {
@@ -157,8 +157,6 @@
         }
 
         function calcInsuranceGuaranty(obj) {
-            //Level * Price * Yield
-            //(75/100) * 4.25 * 96
             if(!obj.yield){
                 obj.yield = obj.aph;
             }
@@ -177,9 +175,7 @@
         }
 
         function calcInsuranceValue(obj) {
-            /* acres: 347.4, level: 75, premium: 11.88, price: 42.5, share: 84.4, yield: 96 gcalc: 306 */
-            //(306 - 11.88) * (84.4/100) * 347.4
-            return (Number(calcInsuranceGuaranty(obj)) - Number(obj.premium)) * (Number(obj.share) / 100) * obj.acres;
+           return (Number(calcInsuranceGuaranty(obj)) - Number(obj.premium)) * (Number(obj.share) / 100) * obj.acres;
         }
 
         function calcMarketValueTotal(loan) {
@@ -828,7 +824,7 @@
         }
 
         function getArmPrincipal(loan) {
-            return Number(loan.expenses.totals.arm) + Number(getFeesForArm(loan));
+            return loan.expenses.totals.byLoan.arm;
         }
 
         function getDistInterest(loan) {
@@ -836,7 +832,7 @@
         }
 
         function getDistPrincipal(loan) {
-            return Number(loan.expenses.totals.dist);
+            return Number(loan.expenses.totals.byLoan.dist);
         }
 
         function getOtherPrincipal(loan) {
@@ -848,7 +844,7 @@
         }
 
         function getTotalPrincipal(loan) {
-            return (Number(loan.expenses.totals.arm) + Number(getFeesForArm(loan))) + (Number(loan.expenses.totals.dist)) + (Number(loan.expenses.totals.other));
+            return Number(loan.expenses.totals.byLoan.total) + Number(getFeesForArm(loan));
         }
 
         function getDefaultDueDate(type, year) {
@@ -884,15 +880,15 @@
 
         function getFeesForArm(loan) {
             if(loan.fins.fee_processing_onTotal) {
-                var prFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_processing_percent)/100);
+                var prFee = (Number(loan.expenses.totals.byLoan.arm) + Number(loan.expenses.totals.byLoan.dist)) * (Number(loan.fins.fee_processing_percent)/100);
             } else {
-                var prFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_processing_percent)/100);
+                var prFee = Number(loan.expenses.totals.byLoan.arm) * (Number(loan.fins.fee_processing_percent)/100);
             } // end if
 
             if(loan.fins.fee_service_onTotal) {
-                var svcFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_service_percent)/100);
+                var svcFee = (Number(loan.expenses.totals.byLoan.arm) + Number(loan.expenses.totals.byLoan.dist)) * (Number(loan.fins.fee_service_percent)/100);
             } else {
-                var svcFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_service_percent)/100);
+                var svcFee = Number(loan.expenses.totals.byLoan.arm) * (Number(loan.fins.fee_service_percent)/100);
             } //end if
 
             return prFee + svcFee;
