@@ -8,7 +8,5 @@
 
        function SessionsController(
            $scope
-       ){
-           // testing git
-       } // end function
+       ){} // end function
 })();
