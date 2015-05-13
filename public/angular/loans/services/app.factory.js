@@ -1049,7 +1049,7 @@
 
             //R/M == income_totalCollateral - commitment_total
             var allCropValue = _.reduce(loan.loancrops, function(sum, obj){
-                return sum + Number(obj.crop_total);
+                return sum + fixDollars(Number(obj.crop_total),0);
             }, 0);
 
             var totRev = allCropValue + Number(loan.fins.total_fsa_payment) + Number(loan.fins.total_claims);
