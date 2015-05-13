@@ -83,7 +83,7 @@
               tooltip="Attachments"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-class="{'clrOn': loan.has_attachments, 'clrOff': !loan.has_attachments}"></span>
+              ng-class="{'clrOn' : loan.attachments.length, 'clrOff': !loan.attachments.length }"></span>
         </td>
         <td colspan="3">&nbsp;</td>
         <td>

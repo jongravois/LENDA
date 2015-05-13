@@ -32,7 +32,6 @@ class CreateLoansTable extends Migration {
             $table->boolean('is_watched')->default(0);
             $table->boolean('is_stale')->default(1);
             $table->boolean('disbursement_issue')->default(0);
-            $table->boolean('has_attachments')->default(0);
             $table->boolean('has_rebates')->default(0);
             $table->boolean('has_distributor')->default(0);
             $table->string('distributor_id')->nullable();
