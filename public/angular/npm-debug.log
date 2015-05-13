@@ -1,0 +1,138 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'link', 'lodash' ]
+2 info using npm@2.7.4
+3 info using node@v0.12.2
+4 verbose install where, what [ '/usr/local/lib', [ 'lodash' ] ]
+5 silly cache add args [ 'lodash', null ]
+6 verbose cache add spec lodash
+7 silly cache add parsed spec { raw: 'lodash',
+7 silly cache add   scope: null,
+7 silly cache add   name: 'lodash',
+7 silly cache add   rawSpec: '',
+7 silly cache add   spec: '*',
+7 silly cache add   type: 'range' }
+8 verbose addNamed lodash@*
+9 silly addNamed semver.valid null
+10 silly addNamed semver.validRange *
+11 silly addNameRange { name: 'lodash', range: '*', hasData: false }
+12 silly mapToRegistry name lodash
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry uri https://registry.npmjs.org/lodash
+16 verbose addNameRange registry:https://registry.npmjs.org/lodash not in flight; fetching
+17 verbose request uri https://registry.npmjs.org/lodash
+18 verbose request no auth needed
+19 info attempt registry request try #1 at 4:16:06 PM
+20 verbose request id 9eda26c32167c9d8
+21 verbose etag "4C0MK947T2SADIYZ7T21RWWKB"
+22 http request GET https://registry.npmjs.org/lodash
+23 http 200 https://registry.npmjs.org/lodash
+24 silly get cb [ 200,
+24 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+24 silly get     etag: '"38SQ0I9GZIR7FR1JS0UMTGFJR"',
+24 silly get     'content-type': 'application/json',
+24 silly get     'cache-control': 'max-age=60',
+24 silly get     'content-length': '97070',
+24 silly get     'accept-ranges': 'bytes',
+24 silly get     date: 'Thu, 07 May 2015 21:16:07 GMT',
+24 silly get     via: '1.1 varnish',
+24 silly get     age: '34',
+24 silly get     connection: 'keep-alive',
+24 silly get     'x-served-by': 'cache-atl6225-ATL',
+24 silly get     'x-cache': 'HIT',
+24 silly get     'x-cache-hits': '5',
+24 silly get     'x-timer': 'S1431033367.150834,VS0,VE0',
+24 silly get     vary: 'Accept' } ]
+25 verbose get saving lodash to /Users/kennthompson/.npm/registry.npmjs.org/lodash/.cache.json
+26 silly addNameRange number 2 { name: 'lodash', range: '*', hasData: true }
+27 silly addNameRange versions [ 'lodash',
+27 silly addNameRange   [ '0.1.0',
+27 silly addNameRange     '0.2.0',
+27 silly addNameRange     '0.2.1',
+27 silly addNameRange     '0.2.2',
+27 silly addNameRange     '0.3.0',
+27 silly addNameRange     '0.3.1',
+27 silly addNameRange     '0.3.2',
+27 silly addNameRange     '0.4.0',
+27 silly addNameRange     '0.4.1',
+27 silly addNameRange     '0.4.2',
+27 silly addNameRange     '0.5.0-rc.1',
+27 silly addNameRange     '0.5.0',
+27 silly addNameRange     '0.5.1',
+27 silly addNameRange     '0.5.2',
+27 silly addNameRange     '0.6.0',
+27 silly addNameRange     '0.6.1',
+27 silly addNameRange     '0.7.0',
+27 silly addNameRange     '0.8.0',
+27 silly addNameRange     '0.8.1',
+27 silly addNameRange     '0.8.2',
+27 silly addNameRange     '0.9.0',
+27 silly addNameRange     '0.9.1',
+27 silly addNameRange     '0.9.2',
+27 silly addNameRange     '0.10.0',
+27 silly addNameRange     '1.0.0-rc.1',
+27 silly addNameRange     '1.0.0-rc.2',
+27 silly addNameRange     '1.0.0-rc.3',
+27 silly addNameRange     '1.0.0',
+27 silly addNameRange     '1.0.1',
+27 silly addNameRange     '1.1.0',
+27 silly addNameRange     '1.1.1',
+27 silly addNameRange     '1.2.0',
+27 silly addNameRange     '1.2.1',
+27 silly addNameRange     '1.3.0',
+27 silly addNameRange     '1.3.1',
+27 silly addNameRange     '2.0.0',
+27 silly addNameRange     '2.1.0',
+27 silly addNameRange     '2.2.0',
+27 silly addNameRange     '2.2.1',
+27 silly addNameRange     '2.3.0',
+27 silly addNameRange     '2.4.0',
+27 silly addNameRange     '2.4.1',
+27 silly addNameRange     '3.0.0',
+27 silly addNameRange     '3.0.1',
+27 silly addNameRange     '3.1.0',
+27 silly addNameRange     '3.2.0',
+27 silly addNameRange     '3.3.0',
+27 silly addNameRange     '3.3.1',
+27 silly addNameRange     '3.4.0',
+27 silly addNameRange     '3.5.0',
+27 silly addNameRange     '3.6.0',
+27 silly addNameRange     '1.0.2',
+27 silly addNameRange     '3.7.0',
+27 silly addNameRange     '2.4.2',
+27 silly addNameRange     '3.8.0' ] ]
+28 verbose addNamed lodash@3.8.0
+29 silly addNamed semver.valid 3.8.0
+30 silly addNamed semver.validRange 3.8.0
+31 silly mapToRegistry name lodash
+32 silly mapToRegistry using default registry
+33 silly mapToRegistry registry https://registry.npmjs.org/
+34 silly mapToRegistry uri https://registry.npmjs.org/lodash
+35 verbose addRemoteTarball https://registry.npmjs.org/lodash/-/lodash-3.8.0.tgz not in flight; adding
+36 verbose addRemoteTarball [ 'https://registry.npmjs.org/lodash/-/lodash-3.8.0.tgz',
+36 verbose addRemoteTarball   '376eb98bdcd9382a9365c33c4cb8250de1325b91' ]
+37 info retry fetch attempt 1 at 4:16:07 PM
+38 info attempt registry request try #1 at 4:16:07 PM
+39 http fetch GET https://registry.npmjs.org/lodash/-/lodash-3.8.0.tgz
+40 http fetch 200 https://registry.npmjs.org/lodash/-/lodash-3.8.0.tgz
+41 silly fetchAndShaCheck shasum 376eb98bdcd9382a9365c33c4cb8250de1325b91
+42 verbose addTmpTarball /var/folders/xv/g01wg6sn1dsd6dgs86zwqj900000gn/T/npm-9428-0bcbc107/registry.npmjs.org/lodash/-/lodash-3.8.0.tgz not in flight; adding
+43 verbose addTmpTarball already have metadata; skipping unpack for lodash@3.8.0
+44 verbose stack Error: EACCES, mkdir '/Users/kennthompson/.npm/lodash/3.8.0'
+44 verbose stack     at Error (native)
+45 verbose cwd /Users/kennthompson/Projects/ARM/public/angular
+46 error Darwin 14.3.0
+47 error argv "node" "/usr/local/bin/npm" "link" "lodash"
+48 error node v0.12.2
+49 error npm  v2.7.4
+50 error path /Users/kennthompson/.npm/lodash/3.8.0
+51 error code EACCES
+52 error errno -13
+53 error Error: EACCES, mkdir '/Users/kennthompson/.npm/lodash/3.8.0'
+53 error     at Error (native)
+53 error  { [Error: EACCES, mkdir '/Users/kennthompson/.npm/lodash/3.8.0']
+53 error   errno: -13,
+53 error   code: 'EACCES',
+53 error   path: '/Users/kennthompson/.npm/lodash/3.8.0' }
+54 error Please try running this command again as root/Administrator.
+55 verbose exit [ -13, true ]
