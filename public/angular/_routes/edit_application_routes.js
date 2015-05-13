@@ -121,7 +121,7 @@
                 })
                 .state('edit.prerequisites', {
                     url: '/prerequisites',
-                    templateUrl: 'angular/loans/documents/prerequisites.html',
+                    templateUrl: 'angular/loans/prereqs/prerequisites.html',
                     controller: 'PrerequisitesController',
                     data: {newapplication: false}
                 })

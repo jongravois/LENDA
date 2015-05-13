@@ -1,5 +1,6 @@
 <style>
     tr{ height: 46px; min-height: 46px; }
+    .lg-font{ font-size: 16px; }
     .acticon{ cursor: pointer; }
 </style>
 <fieldset>
@@ -19,7 +20,7 @@
       </td>
     </tr>
     <tr ng-repeat="d in docs">
-      <td>{{d.document}}</td>
+      <td class="lg-font">{{d.document}}</td>
       <td class="text-center">
             <span class="acticon glyphicon glyphicon-pushpin" ng-if="!d.date_requested"></span>
         <span ng-if="d.date_requested">

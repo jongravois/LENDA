@@ -62,31 +62,31 @@ class RequireddocumentsTableSeeder extends Seeder{
         ]);
 		Requireddocuments::create([
 			'loantype_id' =>	1,
-			'document'	  =>	"CPA Financials"
+			'document'	  =>	"Financials"
 		]);
 		Requireddocuments::create([
 			'loantype_id' =>	2,
-			'document'	  =>	"CPA Financials"
+			'document'	  =>	"Financials"
 		]);
 		Requireddocuments::create([
 			'loantype_id' =>	3,
-			'document'	  =>	"CPA Financials"
+			'document'	  =>	"Financials"
 		]);
 		Requireddocuments::create([
 			'loantype_id' =>	4,
-			'document'	  =>	"CPA Financials"
+			'document'	  =>	"Financials"
 		]);
 		Requireddocuments::create([
 			'loantype_id' =>	5,
-			'document'	  =>	"CPA Financials"
+			'document'	  =>	"Financials"
 		]);
 		Requireddocuments::create([
 			'loantype_id' =>	6,
-			'document'	  =>	"CPA Financials"
+			'document'	  =>	"Financials"
 		]);
         Requireddocuments::create([
           'loantype_id' =>	7,
-          'document'	  =>	"CPA Financials"
+          'document'	  =>	"Financials"
         ]);
 		Requireddocuments::create([
 			'loantype_id' =>	1,

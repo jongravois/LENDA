@@ -64,6 +64,6 @@
           tooltip="Attachments"
           tooltip-append-to-body="true"
           tooltip-placement="bottom"
-          ng-class="{ clrOn : row.getProperty('has_attachments'), clrOff: !row.getProperty('has_attachments') }"></span>
+          ng-class="{ clrOn : row.getProperty('attachments').length, clrOff: !row.getProperty('attachments').length }"></span>
     </a>
 </span>
