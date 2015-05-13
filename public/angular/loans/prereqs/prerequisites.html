@@ -27,7 +27,10 @@
         </span>
       </td>
       <td class="text-center">
-          <span ng-if="!d.date_received" pl-upload="" pl-progress-model="percent" pl-auto-upload="true" pl-files-model="files">
+          <span ng-if="!d.date_received"
+                ng-file-select
+                ng-model="files"
+                ng-multiple="multiple">
             <span class="acticon glyphicon glyphicon-cloud-upload"></span>
           </span>
         <span ng-if="d.date_received">

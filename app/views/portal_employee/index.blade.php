@@ -129,7 +129,6 @@
 <script src="angular/loans/crops/planned.crops.ctrl.js"></script>
 <script src="angular/loans/disbursements/disbursements.ctrl.js"></script>
 <script src="angular/loans/distributors/distributors.ctrl.js"></script>
-<script src="angular/loans/documents/uploads.ctrl.js"></script>
 <script src="angular/loans/farmers/farmers.ctrl.js"></script>
 <script src="angular/loans/farmers/farmers.factory.js"></script>
 <script src="angular/loans/farms/farms.ctrl.js"></script>
@@ -138,6 +137,7 @@
 <script src="angular/loans/insurance/insurance.ctrl.js"></script>
 <script src="angular/loans/insurance/insurance.factory.js"></script>
 <script src="angular/loans/prereqs/prerequisites.ctrl.js"></script>
+<script src="angular/loans/prereqs/uploads.ctrl.js"></script>
 <script src="angular/loans/summary/loan.summary.ctrl.js"></script>
 <script src="angular/loans/summary/summary.ctrl.js"></script>
 <script src="angular/loans/management/management.ctrl.js"></script>
