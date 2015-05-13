@@ -43,7 +43,7 @@
             {{loan.fins.total_acres|number:1}}
         </td>
         <td colspan="6">&nbsp;</td>
-        <td class="text-right">
+        <td class="text-right" ng-class="gtZero(AppFactory.calcTotalCropValue(loan))">
             {{AppFactory.calcTotalCropValue(loan)|flexCurrency:0}}
         </td>
     </tr>
