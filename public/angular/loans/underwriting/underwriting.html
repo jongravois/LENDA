@@ -57,7 +57,10 @@
   <legend>Loan History</legend>
   <div class="row">
     <div class="col-md-12">
-      <div ng-include="'angular/loans/underwriting/_loan.history.tbl.html'"></div>
+      <div ng-if="loan.has_distributor"
+           ng-include="'angular/loans/underwriting/_loan.history.tbl.html'"></div>
+      <div ng-if="!loan.has_distributor"
+           ng-include="'angular/loans/underwriting/_loan.history.nd.tbl.html'"></div>
     </div>
   </div>
 </fieldset>

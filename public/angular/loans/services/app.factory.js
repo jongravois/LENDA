@@ -886,9 +886,10 @@
         }
 
         function getArmPrincipal(loan) {
+            //crop inputs + fees
             if(!loan) { return; }
 
-            return loan.expenses.totals.byLoan.arm;
+            return Number(calcTotalCropValue(loan)) + Number(getFeesForArm(loan));
         }
 
         function getDistInterest(loan) {
@@ -970,6 +971,11 @@
             } else {
                 var svcFee = Number(loan.expenses.totals.byLoan.arm) * (Number(loan.fins.fee_service_percent)/100);
             } //end if
+
+            // TODO: use global for minimum prFee
+            if(prFee < 330) {
+                prFee = 330;
+            }
 
             return prFee + svcFee;
         }
