@@ -1,0 +1,9 @@
+<p class="lg-text"
+   ng-if="loan.loanconditions.length == 0">
+    This loan has no conditions.
+</p>
+<p class="lg-text"
+   ng-class="{'cRed': c.status == 'pending'}"
+   ng-repeat="c in loan.loanconditions">
+    {{c.condition}}
+</p>

@@ -20,7 +20,7 @@
           <th style="width:10%;">6yr Avg</th>
         </tr>
         <tr ng-repeat="c in loan.loancrops" ng-if="c.is_active == '1'">
-          <td>{{c.expenses.crop.name}}</td>
+          <td>{{c.crop.name}}</td>
           <td class="text-center">
             <select style="height:18px !important;" name="uom" ng-model="c.uom" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom)">
               <option value="">Please select ...</option>
@@ -54,7 +54,6 @@
       </table>
     </div>
   </div>
-  <!--<pre>{{loan.loancrops | json}}</pre>-->
   <div class="row">
     <div class="col-md-12 text-right">
       <button style="margin-right:10px;" class="btn btn-primary">UPDATE</button>

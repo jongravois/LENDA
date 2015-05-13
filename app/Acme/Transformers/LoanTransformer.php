@@ -75,6 +75,7 @@ class LoanTransformer extends Transformer
 
         return array(
             'id' => (integer) $arr['id'],
+            'uniqID' => $arr['crop_year'] . $arr['season'] . $arr['id'],
             'app_date' => $arr['app_date']->format('m/d/Y'),
             'distributor_approval_date' => $distDecision,
             'decision_date' => $decision,

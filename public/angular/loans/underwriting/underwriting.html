@@ -1,7 +1,5 @@
 <style>
-  th{ text-align: left; }
   .uline{ border-botton: 1px solid #333 !Important; }
-  .rowed td{border:1px solid #dddddd; }
   .lg-text{ font-size: 16px;}
 </style>
 <!--LOAN EXCEPTIONS-->
@@ -9,15 +7,7 @@
   <legend>Loan Exceptions</legend>
   <div class="row">
     <div class="form-group col-md-10 col-md-offset-1">
-
-    <!--<div class="col-md-12" style="padding-left:20px;">-->
-
-      <p class="lg-text" ng-if="loan.exceptions.length == 0">This loan has no exceptions.</p>
-      <p class="lg-text" ng-repeat="e in loan.exceptions">
-        <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>&nbsp;{{e.msg}}
-      </p>
-      <!--<button ng-click="createExceptions()">Exceptions</button>-->
-      <!--<button ng-click="createBankruptcy('99')">Bankruptcy</button>-->
+        <div ng-include="'angular/loans/underwriting/_loan.exceptions.html'"></div>
     </div>
   </div>
 </fieldset>
@@ -27,7 +17,7 @@
   <legend>Loan/Collateral Conditions</legend>
   <div class="row">
     <div class="form-group col-md-12">
-      <div ng-include="'angular/loans/partials/collateral_conditions.html'"></div>
+      <div ng-include="'angular/loans/underwriting/_collateral.conditions.html'"></div>
     </div>
   </div>
 </fieldset>
@@ -37,7 +27,7 @@
     <legend>Detailed Projected Income</legend>
     <div class="row">
         <div class="form-group col-md-12">
-            <div ng-include="'angular/loans/partials/income_underwriting_table.html'"></div>
+            <div ng-include="'angular/loans/underwriting/_income.table.html'"></div>
         </div>
     </div>
 </fieldset>
@@ -47,7 +37,7 @@
     <legend>Detailed Insurance Coverage</legend>
     <div class="row">
         <div class="form-group col-md-12">
-            <div ng-include="'angular/loans/partials/insurance.underwriting.table.html'"></div>
+            <div ng-include="'angular/loans/underwriting/_insurance.tbl.html'"></div>
         </div>
     </div>
 </fieldset>
@@ -57,106 +47,19 @@
   <legend>Collateral Summary</legend>
   <div class="row">
     <div class="form-group col-md-12">
-      <div ng-include="'angular/loans/partials/underwriting_collateral_table.html'"></div>
+      <div ng-include="'angular/loans/underwriting/_collateral.tbl.html'"></div>
     </div>
   </div>
 </fieldset>
 <br/><br/>
 
 <fieldset ng-if="loan.has_addendum">
-    <!--TODO: Extract to Partial-->
   <legend>Loan History</legend>
   <div class="row">
     <div class="col-md-12">
-      <table class="table table-striped rowed">
-        <tr>
-          <th style="width:3%;">&nbsp;</th>
-          <th class="text-center" style="width:10%;">Orig Date</th>
-          <th class="text-center" style="width:10%;">ARM</th>
-          <th class="text-center" style="width:10%;">{{loan.distributor}}</th>
-          <th class="text-center" style="width:10%;">Commitment</th>
-          <th class="text-center" style="width:10%;">Change</th>
-          <th class="text-center" style="width:10%;">Change</th>
-          <th class="text-center" style="width:10%;">Other</th>
-          <th class="text-center" style="width:10%;">Total</th>
-          <th class="text-center" style="width:10%;">Total Fees</th>
-        </tr>
-
-          <!--LOAN (Latest Addendum)-->
-        <tr>
-          <td class="text-center">
-              <span class="glyphicon glyphicon-record" tooltip="Original Loan" style="color: #333;" ng-if="loan.addendum_type === '1'"></span>
-              <span class="glyphicon glyphicon-plus" tooltip="Loan Addendum" style="color: #333;" ng-if="loan.addendum_type === '2'"></span>
-              <span class="glyphicon glyphicon-usd" tooltip="Reconciliation Addendum" style="color: #333;" ng-if="loan.addendum_type === '3'"></span>
-          </td>
-          <td class="text-right">
-            {{loan.app_date}}
-          </td>
-          <td class="text-right">
-            {{loan.fins.commit_arm|flexCurrency:0}}
-          </td>
-          <td class="text-right">
-            {{loan.fins.commit_dist|flexCurrency:0}}
-          </td>
-          <td class="text-right">
-              {{loan.fins.arm_and_dist|flexCurrency:0}}
-          </td>
-          <td class="text-right">
-              {{(loan.fins.arm_and_dist - addendums[0].fins.arm_and_dist)|flexCurrency:0}}
-          </td>
-          <td class="text-right">
-              {{(loan.fins.arm_and_dist/addendums[0].fins.arm_and_dist) * 100|flexPercent:1}}
-          </td>
-          <td class="text-right">
-            {{loan.fins.commit_other|flexCurrency:0}}
-          </td>
-          <td class="text-right">
-            {{loan.fins.commit_total|flexCurrency:0}}
-          </td>
-          <td class="text-right">
-              {{loan.fins.fee_total|flexCurrency:0}}
-          </td>
-        </tr>
-
-          <!--EARLIER ADDENDUMS AND ORIGINAL-->
-          <tr ng-repeat="a in addendums | orderBy: 'app_date':true">
-              <td class="text-center">
-                  <span class="glyphicon glyphicon-record" tooltip="Original Loan" style="color: #333;" ng-if="a.addendum_type_id === 1"></span>
-                  <span class="glyphicon glyphicon-plus" tooltip="Loan Addendum" style="color: #333;" ng-if="a.addendum_type_id === 2"></span>
-                  <span class="glyphicon glyphicon-usd" tooltip="Reconciliation Addendum" style="color: #333;" ng-if="a.addendum_type_id === 3"></span>
-              </td>
-              <td class="text-right">
-                  {{a.app_date}}
-              </td>
-              <td class="text-right">
-                  {{a.fins.commit_arm|flexCurrency:0}}
-              </td>
-              <td class="text-right">
-                  {{a.fins.commit_dist|flexCurrency:0}}
-              </td>
-              <td class="text-right">
-                  {{a.fins.arm_and_dist|flexCurrency:0}}
-              </td>
-              <td class="text-right">
-                  {{(a.fins.arm_and_dist - addendums[0].fins.arm_and_dist)|flexCurrency:0}}
-              </td>
-              <td class="text-right">
-                  {{(a.fins.arm_and_dist/addendums[0].fins.arm_and_dist) * 100|flexPercent:1}}
-              </td>
-              <td class="text-right">
-                  {{a.fins.commit_other|flexCurrency:0}}
-              </td>
-              <td class="text-right">
-                  {{a.fins.commit_total|flexCurrency:0}}
-              </td>
-              <td class="text-right">
-                  {{a.fins.fee_total|flexCurrency:0}}
-              </td>
-          </tr>
-      </table>
+      <div ng-include="'angular/loans/underwriting/_loan.history.tbl.html'"></div>
     </div>
   </div>
 </fieldset>
 <!--<pre>{{addendums|json}}</pre>-->
-
 <!--<pre>{{globals|json}}</pre>-->

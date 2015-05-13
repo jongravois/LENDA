@@ -41,7 +41,8 @@
         <edit-in-place value="c.rebates"></edit-in-place>
       </td>
       <td>
-        <select style="height:18px !important; width: 80px;" name="uom_rebate" ng-model="c.uom_rebate" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom_rebate)">
+          <!-- TODO: This should be c.uom_rebate -->
+        <select style="height:18px !important; width: 80px;" name="uom_rebate" ng-model="c.uom" ng-options="u.abr as u.unit for u in feeder.units" ng-change="uomChanged(c.id, c.uom_rebate)">
           <option value="">Please select ...</option>
         </select>
       </td>

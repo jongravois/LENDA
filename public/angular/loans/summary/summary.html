@@ -4,7 +4,7 @@
 <!--<pre>{{loan|json}}</pre>-->
 <fieldset>
 <legend>Loan Summary</legend>
-<div ng-include="'angular/loans/partials/summary_loaninfo.html'"></div>
+<div ng-include="'angular/loans/summary/_loaninfo.html'"></div>
 
 <!--LOAN SUMMARY-->
 <div ng-repeat="c in comments | filter:{type:'Loan'}">
@@ -20,15 +20,13 @@
 </div>
 
 <!--Collateral Conditions-->
+    <!-- TODO: Extract to external file -->
 <div class="row" style="padding-top: 20px;">
   <div class="form-group col-md-12 text-left">
     <b>Loan/Collateral Conditions</b>
     <div class="row">
       <div class="form-group col-md-6 col-md-offset-1">
-        <p class="lg-text" ng-if="loan.loanconditions.length == 0">
-          This loan has no conditions.
-        </p>
-        <p class="lg-text" ng-class="{'cRed': c.status == 'pending'}" ng-repeat="c in loan.loanconditions">{{c.condition}}</p>
+        <div ng-include="'angular/loans/summary/_loan.conditions.html'"></div>
       </div>
     </div>
   </div>
@@ -36,7 +34,7 @@
 
 <span ng-switch="loan.loan_type_id">
   <span ng-switch-when="7">
-    <div ng-include="'angular/loans/partials/storage_contract.html'"></div>
+    <div ng-include="'angular/loans/summary/_storage.contract.html'"></div>
   </span>
 
   <span ng-switch-default>
@@ -47,7 +45,7 @@
       </div>
       <div class="row">
         <div class="col-md-11" style="margin-left:20px;">
-          <div ng-include="'angular/loans/partials/income_summary_table.html'"></div>
+          <div ng-include="'angular/loans/summary/_income.tbl.html'"></div>
         </div>
       </div>
     </div>
@@ -59,7 +57,7 @@
       </div>
       <div class="row">
         <div class="col-md-11" style="margin-left:20px;">
-          <div ng-include="'angular/loans/partials/budget.summary.table.html'"></div>
+          <div ng-include="'angular/loans/summary/_budget.tbl.html'"></div>
         </div>
       </div>
     </div>
@@ -72,7 +70,7 @@
           </div>
           <div class="row">
               <div class="col-md-11" style="margin-left:20px;">
-                  <div ng-include="'angular/loans/partials/summary_insuranceanalysis.html'"></div>
+                  <div ng-include="'angular/loans/summary/_insurance.analysis.html'"></div>
               </div>
           </div>
       </div>
@@ -84,7 +82,7 @@
           </div>
           <div class="row">
               <div class="col-md-11" style="margin-left:20px;">
-                  <div ng-include="'angular/loans/partials/summary_breakevenanalysis.html'"></div>
+                  <div ng-include="'angular/loans/summary/_break.even.analysis.html'"></div>
               </div>
           </div>
       </div>
