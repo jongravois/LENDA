@@ -21,7 +21,7 @@
                 .then(function (results) {
                     var groups = _.chain(results).groupBy('type').value();
                     $scope.loan.comments = groups;
-                    //console.log($scope.comments);
+                    //console.log($scope.loan.comments);
                 });
             toastr.success('Loaded active loan', 'Success!');
         }

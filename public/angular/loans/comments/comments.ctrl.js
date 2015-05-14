@@ -14,8 +14,8 @@
             .then(CommentsLogic($scope.user.id))
             .then(function (results) {
                 var groups = _.chain(results).groupBy('type').value();
-                $scope.comments = groups;
-                //console.log($scope.comments);
+                $scope.loan.comments = groups;
+                //console.log('comments', $scope.comments);
             });
 
         $scope.cbCommentsAll = function () {

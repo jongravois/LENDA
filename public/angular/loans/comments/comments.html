@@ -56,7 +56,7 @@
     </div>
 
     <!--Loan/Addendum Comment-->
-    <div ng-repeat="c in comments.Loan">
+    <div ng-repeat="c in loan.comments.Loan">
         <div class="alert alert-warning" role="alert">
             <h4>
                 <span class="glyphicon glyphicon-pencil" ></span>
@@ -68,9 +68,9 @@
                 <i>{{c.dtCom | date:'MM/dd/yy'}}</i>
             </p>
             <p>{{c.comment}}</p>
-            <div ng-show="comments.Addendum">
+            <div ng-show="loan.comments.Addendum">
                 <hr/>
-                <div ng-repeat="c in comments.Addendum">
+                <div ng-repeat="c in loan.comments.Addendum">
                     <p style="font-size:11px;font-weight:bold; color:red;">
                         <i>{{c.user}}</i>
                         &nbsp;&nbsp;-&nbsp;&nbsp;
