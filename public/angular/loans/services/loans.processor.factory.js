@@ -514,7 +514,7 @@
                     level: _.pluckuniq(row, 'level'),
                     ins_yield: _.weighted(row, 'yield', 'acres'),
                     guarantee: Number(AppFactory.calcInsuranceGuaranty(calcer)),
-                    value: AppFactory.calcInsuranceValue(calcer)
+                    value: Number(AppFactory.calcInsuranceValue(calcer))
                 };
                 this.push(crop);
             }, byCrop);

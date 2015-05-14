@@ -230,6 +230,7 @@ class LoanTransformer extends Transformer
                 'collateral' => (double)$arr['financials']['collateral'],
             ],
             'analyst' => [
+                'id' => $arr['user']['id'],
                 'nick' => $arr['user']['nick'],
                 'name' => $arr['user']['username'],
                 'email' => $arr['user']['email']

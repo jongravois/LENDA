@@ -1,12 +1,15 @@
 <style>
   label{ font-weight:normal; color:#AAA; }
 </style>
-<!--<pre>{{loan|json}}</pre>-->
+<!--XColView-->
 <fieldset>
-<legend>Loan Summary</legend>
-<div ng-include="'angular/loans/summary/_loaninfo.html'"></div>
 
-<!--LOAN SUMMARY (COMMENT)-->
+    <div id="Loan Info" ng-if="!XColView">
+        <legend>Loan Summary</legend>
+        <div ng-include="'angular/loans/summary/_loaninfo.html'"></div>
+    </div>
+
+    <!--LOAN SUMMARY (COMMENT)-->
     <div ng-repeat="c in loan.comments.Loan">
         <div class="alert alert-warning" role="alert">
             <h4>

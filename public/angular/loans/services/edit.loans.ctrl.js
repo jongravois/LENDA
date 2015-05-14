@@ -30,6 +30,7 @@
 
         function activate() {
             $scope.indicon_width = '140px';
+            $scope.toggleComment = false;
         }
 
         $scope.uomChanged = function (id, uom) {

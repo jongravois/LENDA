@@ -40,6 +40,7 @@
             calcTotalEquipmentCollateral: calcTotalEquipmentCollateral,
             calcTotalExpenses: calcTotalExpenses,
             calcTotalInsGuar: calcTotalInsGuar,
+            calcTotalInsValue: calcTotalInsValue,
             calcTotalOverDisc: calcTotalOverDisc,
             calcTotalOverDiscNonRP: calcTotalOverDiscNonRP,
             calcTotalRECollateral: calcTotalRECollateral,
@@ -320,6 +321,15 @@
                 return sum + Number(obj.guarantee);
             }, 0);
             return guar;
+        }
+
+        function calcTotalInsValue(loan) {
+            if(!loan) { return; }
+
+            var value = _.reduce(loan.insurance.byCrop, function(sum, obj){
+                return sum + Number(obj.value);
+            }, 0);
+            return value;
         }
 
         function calcTotalOverDisc(loan) {
