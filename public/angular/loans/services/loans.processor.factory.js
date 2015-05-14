@@ -21,6 +21,7 @@
             return $q.all({
                 cats: getExpensesCategories(loan),
                 collateral: processCollateral(loan.othercollateral),
+                comments: getComments(loan),
                 crops: getCrops(loan),
                 expenses: getExpenses(loan),
                 fees: getFees(loan),
@@ -79,6 +80,7 @@
         function getAcresTotal(loan) {
             return _.sumCollection(loan.loancrops, 'acres');
         }
+        function getComments(loan) {}
         function getCropExpenses(crop) {
             if(crop.length < 1) { return; }
             return $http.get(API_URL + '/loans/' + crop[0].loan_id + '/expenses/' + crop[0].crop_id)
