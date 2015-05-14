@@ -4,7 +4,6 @@ class InsuranceTransformer extends Transformer{
 
 	public function transform($arr)
 	{
-		//TODO: Factor in RP and non-RP
 /*
 		$guaranty = (((double) $arr['aph'] * ((double) $arr['level']/100) * (double) $arr['price']) - (double) $arr['premium']) * ((double) $arr['acres'] * ((double) $arr['share']/100));
 

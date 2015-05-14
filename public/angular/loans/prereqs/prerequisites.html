@@ -26,7 +26,7 @@
         <a href="#"
            class="list-group-item"
            ng-class="{'list-group-item-danger': d.date_requested && !d.date_received, 'list-group-item-warning': d.date_requested && d.date_received}">
-            {{d.document}}
+            {{d.title}}
             <span class="pull-right"
                   ng-show="!d.date_requested"
                   ng-hide="d.date_requested">
