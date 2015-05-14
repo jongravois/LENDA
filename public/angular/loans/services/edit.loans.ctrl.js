@@ -4,10 +4,10 @@
         .module('ARM')
         .controller('EditLoansController', EditLoansController);
 
-    EditLoansController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'toastr', 'AppFactory', 'ExceptionsFactory'];
+    EditLoansController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'toastr', 'AppFactory', 'ExceptionsFactory', 'CommentsData', 'CommentsLogic'];
 
     /* @ngInject */
-    function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, AppFactory, ExceptionsFactory) {
+    function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, AppFactory, ExceptionsFactory, CommentsData, CommentsLogic) {
         $scope.AppFactory = AppFactory;
 
         $scope.loan = _.find($scope.loans, function(i) {
@@ -15,6 +15,14 @@
         });
 
         if($scope.loan){
+            CommentsData
+                .load($stateParams.loanID)
+                .then(CommentsLogic($scope.user.id))
+                .then(function (results) {
+                    var groups = _.chain(results).groupBy('type').value();
+                    $scope.loan.comments = groups;
+                    //console.log($scope.comments);
+                });
             toastr.success('Loaded active loan', 'Success!');
         }
 
