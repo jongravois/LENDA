@@ -11,6 +11,7 @@ class PrerequisiteTransformer extends Transformer{
 			'id' =>	$arr['id'],
 			'loan_id' => $arr['loan_id'],
 			'document' => $arr['document'],
+			'title' => $arr['title'],
 			'date_requested' => $arr['date_requested'] ? $arr['date_requested']->format('m/d/Y') : null,
 			'date_received' => $arr['date_received'] ? $arr['date_received']->format('m/d/Y') : null,
 			'path' => $arr['path'],

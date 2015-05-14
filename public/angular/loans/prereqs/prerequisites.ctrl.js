@@ -21,9 +21,15 @@
                     }
                 });
             }// end if
+
+            $scope.txtFilter = '';
         } // end activate
 
         $scope.files = [];
+
+        $scope.requestDocument = function(id) {
+          alert(id);
+        };
 
         LoansFactory.getPrerequisites($stateParams.loanID)
             .then(function success(rsp) {

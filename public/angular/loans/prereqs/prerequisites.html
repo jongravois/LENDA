@@ -7,15 +7,10 @@
     .list-group a{ min-height: 50px;}
 </style>
 <fieldset>
-  <!--<pre>{{screens | json}}</pre>-->
   <legend>Required Documents</legend>
-  <!--TODO: Rework this GUI and build upload functionality-->
-    <div ng-if="docs || docs.length != 0"
-         style="width:80%; margin:0 auto 10px 0;">
-        <input type="text"
-               ng-model="txtFilter"
-               placeholder="filter list"
-               autofocus/>
+  <!--TODO: build request and upload functionality-->
+    <div ng-if="docs || docs.length != 0" style="width:80%; margin:0 auto 10px 0;">
+        <input type="text" name="txtFilter" ng-model="txtFilter" placeholder="filter list" />
     </div>
     <br/>
 
@@ -26,7 +21,7 @@
     </div>
 
     <div class="list-group"
-         ng-repeat="d in docs|filter:txtFilter"
+         ng-repeat="d in docs | filter:txtFilter"
          style="width:80%; margin:10px auto 0 auto;">
         <a href="#"
            class="list-group-item"
@@ -35,17 +30,22 @@
             <span class="pull-right"
                   ng-show="!d.date_requested"
                   ng-hide="d.date_requested">
-                <span class="glyphicon glyphicon-envelope"></span>
+                <span class="glyphicon glyphicon-envelope" ng-click="requestDocument(d.id)"></span>
             </span>
             <span class="pull-right"
                   ng-show="!d.date_received && d.date_requested"
-                  ng-hide="d.date_received">
+                  ng-hide="d.date_received || !d.date_requested"
+                  ng-file-select
+                  ng-model="files"
+                  ng-multiple="multiple">
                 <span class="glyphicon glyphicon-upload"></span>
             </span>
             <span class="pull-right"
                   ng-show="d.filename"
                   ng-hide="!d.filename || d.filename == ''">
-                <span class="glyphicon glyphicon-paperclip"></span>
+                <a href="{{file_url + d.path + d.filename}}" target="_blank">
+                    <span class="glyphicon glyphicon-paperclip"></span>
+                </a>
             </span>
             <br/>
             <span class="tiny-txt">
@@ -53,26 +53,6 @@
             </span>
         </a>
     </div>
-    <br/><hr/><br/>
-  <table class="table table-striped">
-    <tr>
-      <th style="width:60%">Document</th>
-      <th style="width:20%;">Status</th>
-      <th style="width:20%;">Action</th>
-    </tr>
-    <tr>
-      <td colspan="3" ng-if="!docs || docs.length == 0">
-        <strong>No Documents Found.</strong>
-      </td>
-    </tr>
-    <tr ng-repeat="d in docs">
-      <td class="lg-font">
-          {{d.document}}
-      </td>
-      <td class="text-center"></td>
-      <td class="text-center"></td>
-    </tr>
-  </table>
     <!-- TODO: Refactor Add/Update to directive-->
     <div class="row">
         <div class="col-md-12 text-right" style="padding-top:25px;">
@@ -85,4 +65,4 @@
         </div>
     </div>
 </fieldset>
-<pre>{{docs | json}}</pre>
+<!--<pre>{{docs | json}}</pre>-->

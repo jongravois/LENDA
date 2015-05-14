@@ -5,7 +5,8 @@ class PrerequisitesTableSeeder extends Seeder {
 	{
 		Prerequisites::create([
 			'loan_id'	=>	1,
-			'document' => "Driver's License",
+			'document' => "DriversLicense",
+			'title' => "Driver's License",
 			'date_requested' => '2014-09-02',
 			'date_received' => '2014-09-02',
 			'path' => '2015_1/',
@@ -15,13 +16,15 @@ class PrerequisitesTableSeeder extends Seeder {
 		Prerequisites::create([
 			'loan_id'	=>	1,
 			'document' => "Financials",
+			'title' => "Financials",
 			'date_requested' => '2014-09-02',
 			'reason_pending' => 'Client unprepared'
 		]);
 
 		Prerequisites::create([
 			'loan_id'	=>	1,
-			'document' => "Equipment List",
+			'document' => "EquipmentList",
+			'title' => "Equipment List",
 			'date_requested' => '2014-09-02',
 			'date_received' => '2014-09-02',
 			'path' => '2015_1/',
@@ -30,32 +33,38 @@ class PrerequisitesTableSeeder extends Seeder {
 
 		Prerequisites::create([
 			'loan_id'	=>	1,
-			'document' => "Leases"
+			'document' => "Leases",
+			'title' => "Leases"
 		]);
 
 		Prerequisites::create([
 			'loan_id'	=>	1,
-			'document' => "FSA Information"
+			'document' => "FSAInformation",
+			'title' => "FSA Information"
 		]);
 
 		Prerequisites::create([
 			'loan_id'	=>	1,
-			'document' => "Insurance Information"
+			'document' => "InsuranceInformation",
+			'title' => "Insurance Information"
 		]);
 
 		Prerequisites::create([
 			'loan_id'	=>	1,
-			'document' => "Crop Insurance Info & Database"
+			'document' => "CropInsuranceInfoDatabase",
+			'title' => "Crop Insurance Info & Database"
 		]);
 
 		Prerequisites::create([
 			'loan_id'	=>	1,
-			'document' => "Grain Contracts"
+			'document' => "GrainContracts",
+			'title' => "Grain Contracts"
 		]);
 
 		Prerequisites::create([
 			'loan_id'	=>	2,
-            'document' => "Driver's License",
+            'document' => "DriversLicense",
+            'title' => "Driver's License",
             'path' => '2015_2/'
 		]);
 
