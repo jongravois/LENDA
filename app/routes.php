@@ -43,7 +43,7 @@ Route::get('emailtest', function () {
     });
 });
 
-Route::group(['prefix' => 'api', 'before' => 'auth', 'after' => 'allowOrigin'], function () {
+Route::group(['prefix' => 'api', 'before' => 'auth'], function () {
     Route::resource('addendums', 'AddLoansController');
     Route::resource('addendumtypes', 'AddendumtypesController');
     Route::resource('addfins', 'AddfinsController');

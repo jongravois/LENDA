@@ -1,12 +1,59 @@
 <style>
     tr{ height: 46px; min-height: 46px; }
     .lg-font{ font-size: 16px; }
+    .tiny-txt{ font-size: 11px;}
     .acticon{ cursor: pointer; }
+    .list-group-item {padding: 5px 10px 5px 5px !important;}
+    .list-group a{ min-height: 50px;}
 </style>
 <fieldset>
   <!--<pre>{{screens | json}}</pre>-->
   <legend>Required Documents</legend>
   <!--TODO: Rework this GUI and build upload functionality-->
+    <div ng-if="docs || docs.length != 0"
+         style="width:80%; margin:0 auto 10px 0;">
+        <input type="text"
+               ng-model="txtFilter"
+               placeholder="filter list"
+               autofocus/>
+    </div>
+    <br/>
+
+    <div class="list-group"
+         ng-if="!docs || docs.length == 0"
+         style="width:80%; margin:0 auto;">
+        No Attachments Found!
+    </div>
+
+    <div class="list-group"
+         ng-repeat="d in docs|filter:txtFilter"
+         style="width:80%; margin:10px auto 0 auto;">
+        <a href="#"
+           class="list-group-item"
+           ng-class="{'list-group-item-danger': d.date_requested && !d.date_received, 'list-group-item-warning': d.date_requested && d.date_received}">
+            {{d.document}}
+            <span class="pull-right"
+                  ng-show="!d.date_requested"
+                  ng-hide="d.date_requested">
+                <span class="glyphicon glyphicon-envelope"></span>
+            </span>
+            <span class="pull-right"
+                  ng-show="!d.date_received && d.date_requested"
+                  ng-hide="d.date_received">
+                <span class="glyphicon glyphicon-upload"></span>
+            </span>
+            <span class="pull-right"
+                  ng-show="d.filename"
+                  ng-hide="!d.filename || d.filename == ''">
+                <span class="glyphicon glyphicon-paperclip"></span>
+            </span>
+            <br/>
+            <span class="tiny-txt">
+                {{d.reason_pending}}
+            </span>
+        </a>
+    </div>
+    <br/><hr/><br/>
   <table class="table table-striped">
     <tr>
       <th style="width:60%">Document</th>
@@ -19,32 +66,14 @@
       </td>
     </tr>
     <tr ng-repeat="d in docs">
-      <td class="lg-font">{{d.document}}</td>
-      <td class="text-center">
-            <span class="acticon glyphicon glyphicon-pushpin" ng-if="!d.date_requested"></span>
-        <span ng-if="d.date_requested">
-            {{d.date_requested | date:'M/d/yy'}}
-        </span>
+      <td class="lg-font">
+          {{d.document}}
       </td>
-      <td class="text-center">
-          <span ng-if="!d.date_received"
-                ng-file-select
-                ng-model="files"
-                ng-multiple="multiple">
-            <span class="acticon glyphicon glyphicon-cloud-upload"></span>
-          </span>
-        <span ng-if="d.date_received">
-            {{d.date_received | date:'M/d/yy'}}
-        </span>
-      </td>
-      <td>
-        <input type="text" class="form-control" ng-model="d.reason_pending" ng-if="!d.date_received"/>
-          <a href="{{file_url + d.path + d.filename}}" target="_blank" ng-if="d.date_received">
-              <span class="glyphicon glyphicon-floppy-save"></span>
-          </a>
-      </td>
+      <td class="text-center"></td>
+      <td class="text-center"></td>
     </tr>
   </table>
+    <!-- TODO: Refactor Add/Update to directive-->
     <div class="row">
         <div class="col-md-12 text-right" style="padding-top:25px;">
         <span ng-if="newapplication">
@@ -56,4 +85,4 @@
         </div>
     </div>
 </fieldset>
-<!--<pre>{{docs | json}}</pre>-->
+<pre>{{docs | json}}</pre>
