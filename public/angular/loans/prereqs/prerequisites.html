@@ -9,13 +9,12 @@
   <!--TODO: Rework this GUI and build upload functionality-->
   <table class="table table-striped">
     <tr>
-      <th style="width:30%">Document</th>
-      <th style="width:12%;">Requested</th>
-      <th style="width:12%;">Received</th>
-      <th style="width:20%;"></th>
+      <th style="width:60%">Document</th>
+      <th style="width:20%;">Status</th>
+      <th style="width:20%;">Action</th>
     </tr>
     <tr>
-      <td colspan="4" ng-if="!docs || docs.length == 0">
+      <td colspan="3" ng-if="!docs || docs.length == 0">
         <strong>No Documents Found.</strong>
       </td>
     </tr>

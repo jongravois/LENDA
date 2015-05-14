@@ -935,11 +935,12 @@
 
         function getFeeForArmProc(loan) {
             if(!loan) { return; }
+            var prFee = 0;
 
             if(loan.fins.fee_processing_onTotal) {
-                var prFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_processing_percent)/100);
+                prFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_processing_percent)/100);
             } else {
-                var prFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_processing_percent)/100);
+                prFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_processing_percent)/100);
             } // end if
 
             return prFee;
@@ -947,11 +948,12 @@
 
         function getFeeForArmSrvc(loan) {
             if(!loan) { return; }
+            var svcFee = 0;
 
             if(loan.fins.fee_service_onTotal) {
-                var svcFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_service_percent)/100);
+                svcFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_service_percent)/100);
             } else {
-                var svcFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_service_percent)/100);
+                svcFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_service_percent)/100);
             } //end if
 
             return svcFee;
@@ -959,17 +961,19 @@
 
         function getFeesForArm(loan) {
             if(!loan) { return; }
+            var prFee = 0,
+                svcFee = 0;
 
             if(loan.fins.fee_processing_onTotal) {
-                var prFee = (Number(loan.expenses.totals.byLoan.arm) + Number(loan.expenses.totals.byLoan.dist)) * (Number(loan.fins.fee_processing_percent)/100);
+                prFee = (Number(loan.expenses.totals.byLoan.arm) + Number(loan.expenses.totals.byLoan.dist)) * (Number(loan.fins.fee_processing_percent)/100);
             } else {
-                var prFee = Number(loan.expenses.totals.byLoan.arm) * (Number(loan.fins.fee_processing_percent)/100);
+                prFee = Number(loan.expenses.totals.byLoan.arm) * (Number(loan.fins.fee_processing_percent)/100);
             } // end if
 
             if(loan.fins.fee_service_onTotal) {
-                var svcFee = (Number(loan.expenses.totals.byLoan.arm) + Number(loan.expenses.totals.byLoan.dist)) * (Number(loan.fins.fee_service_percent)/100);
+                svcFee = (Number(loan.expenses.totals.byLoan.arm) + Number(loan.expenses.totals.byLoan.dist)) * (Number(loan.fins.fee_service_percent)/100);
             } else {
-                var svcFee = Number(loan.expenses.totals.byLoan.arm) * (Number(loan.fins.fee_service_percent)/100);
+                svcFee = Number(loan.expenses.totals.byLoan.arm) * (Number(loan.fins.fee_service_percent)/100);
             } //end if
 
             // TODO: use global for minimum prFee

@@ -55,13 +55,13 @@ function getLoanCropAcres($loanID, $cropID)
         ->sum('ni');
     return (double) $acresIrr + $acresNi;
 }
-function getLoanTotalAcres($id)
+function getLoanTotalAcres($loanID)
 {
     $acresIrr = DB::table('farms')
-        ->where('loan_id', $id)
+        ->where('loan_id', $loanID)
         ->sum('irr');
     $acresNi = DB::table('farms')
-        ->where('loan_id', $id)
+        ->where('loan_id', $loanID)
         ->sum('ni');
     return (double) $acresIrr + $acresNi;
 }
