@@ -61,6 +61,11 @@
                 weighted: weighted
             });
         })
+        .run(function($window){
+            $window.onbeforeunload = function($window){
+                return 'You have requested a browser refresh. Any unsaved or unconfirmed changes will be lost.  Are you sure you want to exit this page?';
+            };
+        })
         .run(function ($rootScope, $location, $anchorScroll) {
             $rootScope.$on('$stateChangeSuccess', function() {
                 //console.log('state change indicated');

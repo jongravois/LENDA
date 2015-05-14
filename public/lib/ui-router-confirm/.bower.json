@@ -1,0 +1,45 @@
+{
+  "name": "ui-router-confirm",
+  "version": "0.0.1",
+  "authors": [
+    "Bogdan Alexe <bogdanalexe90@gmail.com>"
+  ],
+  "description": "UI-Router Confirmation: Utility for transition confirmation.",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "ui-router",
+    "ui-router-confirm",
+    "confirm",
+    "navigation"
+  ],
+  "license": "MIT",
+  "main": "./release/angular-ui-router-confirm.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "Gruntfile.js",
+    "files.js",
+    "package.json",
+    ".bower.json",
+    ".idea",
+    ".git"
+  ],
+  "dependencies": {
+    "angular": "~1.2.0",
+    "angular-ui-router": "~0.2.8"
+  },
+  "homepage": "https://github.com/bogdanalexe90/ui-router-confirm",
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.1",
+    "commit": "6300893b9f7c25804ffa46932d9ec572f095a9cc"
+  },
+  "_source": "git://github.com/bogdanalexe90/ui-router-confirm.git",
+  "_target": "~0.0.1",
+  "_originalSource": "ui-router-confirm",
+  "_direct": true
+}
