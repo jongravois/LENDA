@@ -11,7 +11,7 @@
                 })
                 .state('reports.accrecon', {
                     url: '/accrecon',
-                    templateUrl: 'angular/reports/views/account_reconciliation.html'
+                    templateUrl: 'angular/reports/account_reconciliation/account_reconciliation.html'
                 })
                 .state('reports.actdet', {
                     url: '/actdet',
@@ -19,47 +19,47 @@
                 })
                 .state('reports.actsum', {
                     url: '/actsum',
-                    templateUrl: 'angular/reports/views/activity_summary.html'
+                    templateUrl: 'angular/reports/activity_summary/activity_summary.html'
                 })
                 .state('reports.avcred', {
                     url: '/avcred',
-                    templateUrl: 'angular/reports/views/available_credit.html'
+                    templateUrl: 'angular/reports/available_credit/available_credit.html'
                 })
                 .state('reports.cfarm', {
                     url: '/cfarm',
-                    templateUrl: 'angular/reports/views/cfarm.html'
+                    templateUrl: 'angular/reports/flow_and_risk/cfarm.html'
                 })
                 .state('reports.comapp', {
                     url: '/comapp',
-                    templateUrl: 'angular/reports/views/committee_approval.html'
+                    templateUrl: 'angular/reports/committee_approval/committee_approval.html'
                 })
                 .state('reports.comcom', {
                     url: '/comcom',
-                    templateUrl: 'angular/reports/views/committee_comment.html'
+                    templateUrl: 'angular/reports/committee_comment/committee_comment.html'
                 })
                 .state('reports.crpmix', {
                     url: '/crpmix',
-                    templateUrl: 'angular/reports/views/crop_mix.html'
+                    templateUrl: 'angular/reports/crop_mix/crop_mix.html'
                 })
                 .state('reports.cusbud', {
                     url: '/cusbud',
-                    templateUrl: 'angular/reports/views/customer_budget.html'
+                    templateUrl: 'angular/reports/customer_budget/customer_budget.html'
                 })
                 .state('reports.fmrhis', {
                     url: '/fmrhis',
-                    templateUrl: 'angular/reports/views/farmer_history.html'
+                    templateUrl: 'angular/reports/farmer_history/farmer_history.html'
                 })
                 .state('reports.lnman', {
                     url: '/lnman',
-                    templateUrl: 'angular/reports/views/loan_management.html'
+                    templateUrl: 'angular/reports/loan_management/loan_management.html'
                 })
                 .state('reports.repcus', {
                     url: '/repcus',
-                    templateUrl: 'angular/reports/views/repeat_customer.html'
+                    templateUrl: 'angular/reports/repeat_customer/repeat_customer.html'
                 })
                 .state('reports.usradt', {
                     url: '/usradt',
-                    templateUrl: 'angular/reports/views/user_audit.html'
+                    templateUrl: 'angular/reports/user_audit/user_audit.html'
                 });
         });
 })();
