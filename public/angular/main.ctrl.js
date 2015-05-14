@@ -29,7 +29,11 @@
 
             GlobalsFactory.getGlobals()
                 .then(function success(rsp){
-                    $scope.globals = rsp.data[0];
+                    if(rsp.data[0]) {
+                        $scope.globals = rsp.data[0];
+                    } else {
+                        $scope.globals = rsp.data;
+                    }
                     toastr.success('Loaded Global Values', 'Success!');
                 });
 
