@@ -6,7 +6,7 @@
             $stateProvider
                 .state('reports', {
                     url: '/rpts',
-                    templateUrl: 'angular/reports/views/home.html',
+                    templateUrl: 'angular/reports/home.html',
                     controller: 'ReportsController'
                 })
                 .state('reports.accrecon', {
@@ -15,7 +15,7 @@
                 })
                 .state('reports.actdet', {
                     url: '/actdet',
-                    templateUrl: 'angular/reports/views/activity_detail.html'
+                    templateUrl: 'angular/reports/activity_detail/activity_detail.html'
                 })
                 .state('reports.actsum', {
                     url: '/actsum',

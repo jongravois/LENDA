@@ -24,11 +24,12 @@
         })
         .config(function(){
             function groupByMulti(obj, values, context) {
-                if (!values.length)
+                if (!values.length) {
                     return obj;
+                }
                 var byFirst = _.groupBy(obj, values[0], context),
                     rest = values.slice(1);
-                for (var prop in byFirst) {
+                for(var prop in byFirst) {
                     byFirst[prop] = _.groupByMulti(byFirst[prop], rest, context);
                 }
                 return byFirst;
@@ -63,7 +64,7 @@
         })
         .run(function($window){
             $window.onbeforeunload = function($window){
-                return 'You have requested a browser refresh. Any unsaved or unconfirmed changes will be lost.  Are you sure you want to exit this page?';
+                return 'You have requested a browser refresh. Any unsaved or unconfirmed changes will be lost.';
             };
         })
         .run(function ($rootScope, $location, $anchorScroll) {
