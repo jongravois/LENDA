@@ -1,7 +1,16 @@
 <div>
-    {{loan.comments.Loan}}
+    <div class="form-group">
+        <label>Loan Comment:</label>
+        <textarea class="form-control" rows="5" ng-model="loan.comments.Loan[0].comment"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Addendum Comment:</label>
+        <textarea class="form-control" rows="5" ng-model="loan.comments.Addendum[0].comment"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Watchlist Comment:</label>
+        <textarea class="form-control" rows="5" ng-model="loan.comments.Watch[0].comment"></textarea>
+    </div>
     <br/>
-    <hr/>
-    <br/>
-    {{loan.comments.Addendum}}
+    <button class="btn btn-primary" ng-click="updateComments()">UPDATE</button>
 </div>
