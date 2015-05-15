@@ -62,5 +62,12 @@
             $scope.loan.ventures.push($scope.newVenture);
             $scope.newVenture = {};
         };
+
+        $scope.onApplicantSelect = function ($item, $model, $label) {
+            if ($item) {
+                $scope.applicantID = $item.id;
+                $scope.loan.applicant = $item;
+            }
+        };
     }
 })();

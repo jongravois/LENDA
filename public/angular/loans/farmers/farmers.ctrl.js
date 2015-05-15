@@ -63,8 +63,9 @@
         $scope.onFarmerSelect = function ($item, $model, $label) {
             if ($item) {
                 $scope.farmerID = $item.id;
-                $scope.farmer = $item;
-                $scope.farmer.new_client = false;
+                $scope.loan.farmerID = $item.id;
+                $scope.loan.farmer = $item;
+                $scope.loan.farmer.new_client = false;
             }
         };
 

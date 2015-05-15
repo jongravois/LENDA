@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$state', '$stateParams', '$q', '$filter', 'toastr', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersProcessorService', 'orderByFilter'];
+    MainController.$inject = ['$scope', '$state', '$stateParams', '$q', '$filter', 'toastr', 'APP_URL', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersProcessorService', 'orderByFilter'];
 
-    function MainController($scope, $state, $stateParams, $q, $filter, toastr, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersProcessorService, orderByFilter) {
+    function MainController($scope, $state, $stateParams, $q, $filter, toastr, APP_URL, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersProcessorService, orderByFilter) {
         $scope.AppFactory = AppFactory;
         
         activate();

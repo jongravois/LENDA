@@ -15,11 +15,11 @@
             </label>
             <input type="text"
                    id="farmer"
-                   ng-model="loan.farmer.farmer"
-                   typeahead="f.farmer for f in farmers | filter:$viewValue | limitTo:8"
                    class="form-control"
-                   typeahead-on-select="onFarmerSelect($item, $model, $label)"
-                   autocomplete="false"/>
+                   autocomplete="false"
+                   ng-model="loan.farmer.farmer"
+                   typeahead="f.farmer for f in farmers|filter:$viewValue|limitTo:8"
+                   typeahead-on-select="onFarmerSelect($item, $model, $label)"/>
           </div>
           <div class="form-group col-sm-3">
             <label><span class="req">*</span>

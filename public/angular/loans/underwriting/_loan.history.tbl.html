@@ -56,7 +56,9 @@
             <span class="glyphicon glyphicon-usd" tooltip="Reconciliation Addendum" style="color: #333;" ng-if="a.addendum_type_id === 3"></span>
         </td>
         <td class="text-right">
-            {{a.app_date}}
+            <a href="#/edit/{{a.loan_type_id}}/{{a.id}}/summary">
+                {{a.app_date}}
+            </a>
         </td>
         <td class="text-right">
             {{a.fins.commit_arm|flexCurrency:0}}
