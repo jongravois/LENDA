@@ -203,15 +203,22 @@ class Loan extends \Eloquent {
 		return $this->hasMany('Systemics');
 	}
 
-  public function ventures()
-  {
-    return $this->hasMany('Jointventure');
-  }
-
 	public function user()
 	{
 		return $this->belongsTo('User');
 	}
+
+	public function ventures()
+	{
+		return $this->hasMany('Jointventure');
+	}
+
+    public function xcollaterals()
+    {
+        return $this->hasMany('Crosscollateral');
+    }
+
+
 	/* RELATIONSHIPS */
 
 }

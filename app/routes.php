@@ -66,6 +66,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth'], function () {
     Route::resource('cropexpenses', 'CropexpensesController');
     Route::resource('cropdetails', 'CropdetailsController');
     Route::resource('croppractices', 'CroppracticesController');
+    Route::resource('crosscollaterals', 'CrosscollateralsController');
     Route::resource('defaultexpenses', 'DefaultexpensesController');
     Route::resource('distributors', 'DistributorsController');
     Route::resource('entitytypes', 'EntitytypesController');

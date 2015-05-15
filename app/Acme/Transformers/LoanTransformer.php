@@ -294,7 +294,8 @@ class LoanTransformer extends Transformer
             'othercollateral' => $arr['othercollateral'],
             'priorlien' => $arr['priorliens'],
             'systemics' => $arr['systemics'],
-            'last_activity' => $arr['updated_at']
+            'last_activity' => $arr['updated_at'],
+            'xcols' => $arr['xcollaterals']
         );
     }
 

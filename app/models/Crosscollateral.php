@@ -6,6 +6,6 @@ class Crosscollateral extends \Eloquent {
     /* RELATIONSHIPS */
     public function loans()
     {
-        return $this->hasMany('Loan');
+        return $this->hasMany('Loan', 'id', 'collateral_id');
     }
 }

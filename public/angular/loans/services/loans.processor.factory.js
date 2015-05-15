@@ -32,7 +32,8 @@
                 priorlien: processPriorLien(loan.priorlien),
                 quests: getLoanQuestions(loan),
                 supplements: processSupInsurance(loan.suppins),
-                total_ins_value: getTotalInsValue(loan)
+                total_ins_value: getTotalInsValue(loan),
+                xcols: getCrossCollateralLoans(loan)
             })
                 .then(function (updatedData) {
                     angular.extend(loan, updatedData);
@@ -122,6 +123,9 @@
                         };
                     });
                 });
+        }
+        function getCrossCollateralLoans(loan) {
+            return _.uniq(_.pluck(loan.xcols, 'collateral_id'));
         }
         function getPendingComments(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/commentstatus')

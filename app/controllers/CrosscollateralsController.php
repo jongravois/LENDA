@@ -14,7 +14,7 @@ class CrosscollateralsController extends ApiController {
 
 	public function index()
 	{
-		$all = Crosscollateral::all();
+		$all = Crosscollateral::with('loans')->get();
 
 		return $this->respond([
 			'data' => $this->crosscollateralTransformer->transformCollection($all->all())
