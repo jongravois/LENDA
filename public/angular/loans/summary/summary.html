@@ -1,8 +1,9 @@
 <style>
-  label{ font-weight:normal; color:#AAA; }
+    label {
+        font-weight: normal;
+        color: #AAA;
+    }
 </style>
-<!--XColView-->
-<fieldset>
 
     <div id="Loan Info" ng-if="!XColView">
         <legend>Loan Summary</legend>
@@ -13,7 +14,7 @@
     <div ng-repeat="c in loan.comments.Loan">
         <div class="alert alert-warning" role="alert">
             <h4>
-                <span class="glyphicon glyphicon-pencil" ></span>
+                <span class="glyphicon glyphicon-pencil"></span>
                 Loan Summary
             </h4>
             <hr/>
@@ -21,7 +22,9 @@
                 &nbsp;&nbsp;-&nbsp;&nbsp;
                 <i>{{c.dtCom | date:'MM/dd/yy'}}</i>
             </p>
+
             <p>{{c.comment}}</p>
+
             <div ng-show="loan.comments.Addendum">
                 <hr/>
                 <div ng-repeat="c in loan.comments.Addendum">
@@ -30,6 +33,7 @@
                         &nbsp;&nbsp;-&nbsp;&nbsp;
                         <i>{{c.dtCom | date:'MM/dd/yy'}}</i>
                     </p>
+
                     <p style="color:red;">
                         {{c.comment}}
                     </p>
@@ -38,55 +42,57 @@
         </div>
     </div>
 
-<!--Collateral Conditions-->
-<div class="row" style="padding-top: 20px;">
-  <div class="form-group col-md-12 text-left">
-    <b>Loan/Collateral Conditions</b>
-    <div class="row">
-      <div class="form-group col-md-6 col-md-offset-1">
-        <div ng-include="'angular/loans/summary/_loan.conditions.html'"></div>
-      </div>
+    <!--Collateral Conditions-->
+    <div class="row" ng-if="!XColView"
+         style="padding-top: 20px;">
+        <div class="form-group col-md-12 text-left">
+            <b>Loan/Collateral Conditions</b>
+
+            <div class="row">
+                <div class="form-group col-md-6 col-md-offset-1">
+                    <div ng-include="'angular/loans/summary/_loan.conditions.html'"></div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<span ng-switch="loan.loan_type_id">
-  <span ng-switch-when="7">
-      <!-- GRAIN STORAGE LOANS ONLY -->
-    <div ng-include="'angular/loans/summary/_storage.contract.html'"></div>
-  </span>
+    <span ng-switch="loan.loan_type_id" ng-if="!XColView">
+      <span ng-switch-when="7">
+          <!-- GRAIN STORAGE LOANS ONLY -->
+        <div ng-include="'angular/loans/summary/_storage.contract.html'"></div>
+      </span>
 
-  <span ng-switch-default>
+      <span ng-switch-default>
       <!-- ALL LOANS BUT GRAIN STORAGE -->
 
-    <!--Projected Income-->
-    <div class="row" style="padding-top: 20px;">
-      <div class="form-group col-md-12 text-left">
-        <b>Projected Income</b>
-      </div>
-      <div class="row">
-        <div class="col-md-11" style="margin-left:20px;">
-          <div ng-include="'angular/loans/summary/_income.tbl.html'"></div>
+        <!--Projected Income-->
+        <div class="row" style="padding-top: 20px;">
+            <div class="form-group col-md-12 text-left">
+                <b>Projected Income</b>
+            </div>
+            <div class="row">
+                <div class="col-md-11" style="margin-left:20px;">
+                    <div ng-include="'angular/loans/summary/_income.tbl.html'"></div>
+                </div>
+            </div>
         </div>
-      </div>
+
+      <!--USE OF FUNDS ANALYSIS-->
+    <div class="row" style="padding-top: 20px;">
+        <div class="form-group col-md-12 text-left">
+            <b>Use of Funds Analysis</b>
+        </div>
+        <div class="row">
+            <div class="col-md-11" style="margin-left:20px;">
+                <div ng-if="loan.has_distributor"
+                     ng-include="'angular/loans/summary/_budget.tbl.html'"></div>
+                <div ng-if="!loan.has_distributor"
+                     ng-include="'angular/loans/summary/_budget.nd.tbl.html'"></div>
+            </div>
+        </div>
     </div>
 
-    <!--USE OF FUNDS ANALYSIS-->
-    <div class="row" style="padding-top: 20px;">
-      <div class="form-group col-md-12 text-left">
-        <b>Use of Funds Analysis</b>
-      </div>
-      <div class="row">
-        <div class="col-md-11" style="margin-left:20px;">
-          <div ng-if="loan.has_distributor"
-               ng-include="'angular/loans/summary/_budget.tbl.html'"></div>
-          <div ng-if="!loan.has_distributor"
-               ng-include="'angular/loans/summary/_budget.nd.tbl.html'"></div>
-        </div>
-      </div>
-    </div>
-
-    <!--INSURANCE ANALYSIS-->
+      <!--INSURANCE ANALYSIS-->
       <!--TODO: hide if loantypeid < 4-->
       <div class="row" style="padding-top: 20px;">
           <div class="form-group col-md-12 text-left">
@@ -112,7 +118,66 @@
       </div>
 
   </span>
-</span>
+    </span>
+
+    <!-- CROSS COLLATERAL VIEW -->
+
+    <!-- PROJECTED INCOME SUMMARY-->
+    <div class="row" ng-if="XColView"
+         style="padding-top: 20px;">
+        <div class="form-group col-md-12 text-left">
+            <b>Projected Income Summary</b>
+            <div class="row">
+                <div ng-include="'angular/loans/xcollateral/_projected.income.html'"></div>
+                </div>
+            </div>
+        </div>
+
+    <!-- IF DISTRIBUTOR, DISTRIBUTOR EXPENSES-->
+    <div class="row" ng-if="XColView && loan.has_distributor"
+         style="padding-top: 20px;">
+        <div class="form-group col-md-12 text-left">
+            <b>Distributor Use of Funds</b>
+            <div class="row">
+                <div ng-include="'angular/loans/xcollateral/_expenses.distributor.html'"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARM EXPENSES-->
+    <div class="row" ng-if="XColView"
+         style="padding-top: 20px;">
+        <div class="form-group col-md-12 text-left">
+            <b>ARM Use of Funds</b>
+            <div class="row">
+                <div ng-include="'angular/loans/xcollateral/_expenses.arm.html'"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTHER EXPENSES-->
+    <div class="row" ng-if="XColView"
+     style="padding-top: 20px;">
+        <div class="form-group col-md-12 text-left">
+        <b>Other Use of Funds</b>
+        <div class="row">
+            <div ng-include="'angular/loans/xcollateral/_expenses.other.html'"></div>
+        </div>
+    </div>
+    </div>
+
+    <!-- INSURANCE COVERAGE-->
+    <div class="row" ng-if="XColView"
+         style="padding-top: 20px;">
+        <div class="form-group col-md-12 text-left">
+            <b>Insurance Coverage</b>
+            <div class="row">
+                <div ng-include="'angular/loans/xcollateral/_insurance.coverage.html'"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /CROSS COLLATERAL VIEW -->
+
 </fieldset>
 <!--<pre>{{financials | json}}</pre>-->
 <!--<pre>{{loantypes | json}}</pre>-->

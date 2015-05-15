@@ -55,6 +55,7 @@
                     return sum += (current[val]) * (current[factor] / total_factor);
                 }, 0);
             }
+
             _.mixin({
                 groupByMulti: groupByMulti,
                 sumCollection: sumCollection,

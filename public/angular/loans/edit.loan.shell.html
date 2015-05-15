@@ -65,8 +65,7 @@
     <div class="row" ng-show="toggleComment">
         <div class="container">
             <div class="col-md-12">
-                {{loan.comments.Loan}}
-                {{loan.comments.Addendum}}
+                <div ng-include="'angular/loans/comments/loan.comment.form.html'"></div>
             </div>
         </div>
     </div>
