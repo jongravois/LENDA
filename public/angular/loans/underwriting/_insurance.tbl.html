@@ -16,7 +16,7 @@
         <td colspan="9"><strong>No Insurance Information Found.</strong></td>
     </tr>
     <tr ng-repeat="c in loan.insurance.byCrop|orderBy:'crop_id'" ng-if="loan.insurance.byCrop.length !== 0">
-        <td>{{c.name}}
+        <td>{{c.crop.name}}
         </td>
         <td class="text-center">
             {{c.type}}

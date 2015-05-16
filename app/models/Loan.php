@@ -118,7 +118,7 @@ class Loan extends \Eloquent {
 		return $this->hasMany('Funduses');
 	}
 
-  public function insurance()
+  public function inspols()
   {
     return $this->hasMany('Insurance');
   }

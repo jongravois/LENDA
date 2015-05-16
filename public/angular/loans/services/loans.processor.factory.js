@@ -190,24 +190,22 @@
 
         }
         function getInsurance(loan) {
-            return $http.get(API_URL + '/loans/' + loan.id + '/insurance')
-                .then(function (rsp) {
-                    var policyList = rsp.data.data;
-                    //console.log('List', policyList);
+            var policyList = loan.inspols;
+            //console.log('Fins', fins);
 
-                    var ins = {
-                        agencies: processAgencies(policyList),
-                        byCrop: processInsByCrop(policyList),
-                        database: processForInsDB(policyList),
-                        //not Working
-                        nonrp: processNonRPInsurance(policyList),
-                        policies: policyList,
-                        //not Working
-                        totals: processInsTotals(processInsByCrop(policyList))
-                    };
-                    //console.log('LoanInsurance: ', ins);
-                    return (ins);
-                });
+            var ins = {
+                agencies: processAgencies(policyList),
+                byCrop: processInsByCrop(loan),
+                database: processForInsDB(policyList),
+                //not Working
+                nonrp: processNonRPInsurance(policyList),
+                policies: policyList,
+                //not Working
+                totals: processInsTotals(processInsByCrop(policyList))
+            };
+            //console.log('LoanInsurance: ', ins);
+            return (ins);
+
         }
         function getLoanQuestions(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/quests')
@@ -492,9 +490,13 @@
             });
             return arrRedux;
         }
-        function processInsByCrop(policies) {
-            var grped = _.chain(policies).groupBy('crop').value();
+        function processInsByCrop(loan) {
+            var policies = loan.inspols;
+
+            var grped = _.chain(policies).groupBy('loancrop_id').value();
+            //console.log('grped', grped);
             var byCrop = [];
+
             angular.forEach(grped, function(row){
                 var calcer = {
                     level: _.pluckuniq(row, 'level'),
@@ -502,7 +504,8 @@
                     yield: _.weighted(row, 'yield', 'acres'),
                     premium: _.pluckuniq(row, 'premium'),
                     share: _.weighted(row, 'share', 'acres'),
-                    acres: _.sumCollection(row, 'acres')
+                    acres: _.sumCollection(row, 'acres'),
+                    disc_prod_percent: loan.fins.disc_prod_percent
                 };
 
                 var crop = {
@@ -517,8 +520,9 @@
                     share: _.weighted(row, 'share', 'acres'),
                     level: _.pluckuniq(row, 'level'),
                     ins_yield: _.weighted(row, 'yield', 'acres'),
+                    proj_crop_discount: Number(loan.fins.disc_prod_percent),
                     guarantee: Number(AppFactory.calcInsuranceGuaranty(calcer)),
-                    value: Number(AppFactory.calcInsuranceValue(calcer))
+                    value: Number(AppFactory.calcCropValue(calcer))
                 };
                 this.push(crop);
             }, byCrop);

@@ -288,6 +288,7 @@ class LoanTransformer extends Transformer
             'appfins' => $arr['appfins'],
             'committee' => $arr['committee'],
             'comments' => $arr['comments'],
+            'inspols' => $arr['inspols'],
             'loanconditions' => $arr['loanconditions'],
             'loancrops' => $arr['loancrop'],
             'suppins' => $arr['suppins'],

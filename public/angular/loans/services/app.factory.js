@@ -13,6 +13,7 @@
             averageArray: averageArray,
             calcAdjustedRiskMargin: calcAdjustedRiskMargin,
             calcCashFlow: calcCashFlow,
+            calcCropValue: calcCropValue,
             calcEquipmentCollateralTotal: calcEquipmentCollateralTotal,
             calcEquipmentCollateralValue: calcEquipmentCollateralValue,
             calcFSACollateralValue: calcFSACollateralValue,
@@ -114,6 +115,11 @@
             return avg;
         }
 
+        function calcCropValue(obj) {
+            //console.log('calcCropValue', obj);
+            return obj.acres * obj.yield * obj.price * (obj.share/100);
+        }
+
         function calcAdjustedRiskMargin(loan) {
             if(!loan) { return; }
 
@@ -150,9 +156,15 @@
         }
 
         function calcInsOverDisc(obj) {
-            //(Guarantee-Premium)*share/100*Acres
+            //console.log('calcInsOverDisc', obj);
+            //InsValue - (CropValue * (1 - ProjectedCropDiscount))
+            var insValue = Number(calcInsuranceValue(obj));
+            var cropValue = Number(calcCropValue(obj));
+            var projectedCropDiscount = Number(obj.disc_prod_percent);
+            var CIOD = insValue - (cropValue * (1 - projectedCropDiscount));
+
             if(obj.type == 'RP') {
-                return (obj.guarantee - obj.premium) * (obj.share/100) * obj.acres;
+                return _.max([CIOD, 0]);
             } else {
                 return 0;
             } //end if
