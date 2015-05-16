@@ -285,7 +285,7 @@
         function calcPlannedCropValue(loan) {
             if(!loan) { return; }
 
-            return (Number(loan.fins.adj_prod) * (1 - (Number(loan.fins.disc_prod_percent) / 100))) - Number(loan.priorlien.totals.projected_crops);
+            return (Number(calcLoanAdjProd(loan)) * (1 - (Number(loan.financials.disc_prod_percent) / 100))) - Number(loan.priorlien.totals.projected_crops);
         }
 
         function calcPriorLienTotal(loan) {
@@ -477,7 +477,7 @@
             if(!loan) { return; }
             //R/M == totalCollateral - commit_total
 
-            return calcTotalCropValue(loan) + Number(loan.fins.total_fsa_payment) + Number(loan.fins.total_claims);
+            return Number(calcTotalCropValue(loan)) + Number(getTotalFSAPayment(loan)) + Number(getTotalClaims(loan));
         }
 
         //TODO: REQUIRED UPLOAD
@@ -966,7 +966,7 @@
         function getArmInterest(loan) {
             if(!loan) { return; }
 
-            return Number(getArmPrincipal(loan)) * (Number(loan.fins.int_percent_arm)/100);
+            return Number(getArmPrincipal(loan)) * (Number(loan.financials.int_percent_arm)/100);
         }
 
         function getArmPrincipal(loan) {
@@ -979,19 +979,23 @@
         function getDistInterest(loan) {
             if(!loan) { return; }
 
-            return Number(getDistPrincipal(loan)) * (Number(loan.fins.int_percent_dist)/100);
+            return Number(getDistPrincipal(loan)) * (Number(loan.financials.int_percent_dist)/100);
         }
 
         function getDistPrincipal(loan) {
             if(!loan) { return; }
 
-            return Number(loan.expenses.totals.byLoan.dist);
+            var totalLoanExpensesDist = _.sumCollection(loan.expenses, 'dist_adj');
+
+            return Number(totalLoanExpensesDist);
         }
 
         function getOtherPrincipal(loan) {
             if(!loan) { return; }
 
-            return Number(loan.expenses.totals.other);
+            var totalLoanExpensesOther = _.sumCollection(loan.expenses, 'other_adj');
+
+            return Number(totalLoanExpensesOther);
         }
 
         function getTotalAcres(collection) {
@@ -1006,8 +1010,8 @@
 
         function getTotalPrincipal(loan) {
             if(!loan) { return; }
-            if(!loan.expenses){ return 0; }
-            return Number(loan.expenses.totals.byLoan.total) + Number(getFeesForArm(loan));
+
+            return Number(getArmPrincipal(loan)) + Number(getDistPrincipal(loan)) + Number(getOtherPrincipal(loan));
         }
 
         function getDefaultDueDate(type, year) {

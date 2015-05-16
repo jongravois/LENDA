@@ -160,6 +160,8 @@ class LoanTransformer extends Transformer
                 'int_percent_other' => (double)$arr['financials']['int_percent_other'],
                 'fee_service_percent' => (double)$arr['financials']['fee_service'],
                 'total_fee_percent' => (double)$arr['financials']['total_fee_percent'],
+                 'collateral_equipment' => (double)$arr['financials']['collateral_equipment'],
+                 'collateral_realestate' => (double)$arr['financials']['collateral_realestate'],
                 'remaining_balance' => (double)$arr['financials']['remaining_balance'],
                 'disc_ins_percent' => (double)$arr['financials']['disc_ins_percent']
                 // 'int_arm' => (double)$arr['financials']['int_arm'],
@@ -177,8 +179,6 @@ class LoanTransformer extends Transformer
                 // 'total_balance' => (double)$arr['financials']['total_balance'],
                 // 'cash_flow' => (double)$arr['financials']['cash_flow'],
                 // 'risk' => (double)$arr['financials']['risk'],
-                // 'collateral_equipment' => (double)$arr['financials']['collateral_equipment'],
-                // 'collateral_realestate' => (double)$arr['financials']['collateral_realestate'],
                 // 'guaranty' => (double)$arr['financials']['guaranty'],
                 // 'prod' => (double)$arr['financials']['prod'],
                 // 'adj_prod' => (double)$arr['financials']['adj_prod'],
