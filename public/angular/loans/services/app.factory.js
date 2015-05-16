@@ -12,6 +12,8 @@
             agentsInAgency: agentsInAgency,
             averageArray: averageArray,
             calcAdjustedRiskMargin: calcAdjustedRiskMargin,
+            calcArmRemainingBalance: calcArmRemainingBalance,
+            calcArmTotalBalance: calcArmTotalBalance,
             calcCashFlow: calcCashFlow,
             calcCropValue: calcCropValue,
             calcEquipmentCollateralTotal: calcEquipmentCollateralTotal,
@@ -24,6 +26,11 @@
             calcInsuranceTotalValue: calcInsuranceTotalValue,
             calcInsuranceValue: calcInsuranceValue,
             calcIODCollateralValue: calcIODCollateralValue,
+            calcLoanAdjProd: calcLoanAdjProd,
+            calcLoanDiscAdjProd: calcLoanDiscAdjProd,
+            calcLoanDiscIns: calcLoanDiscIns,
+            calcLoanInsDiscProd: calcLoanInsDiscProd,
+            calcLoanProd: calcLoanProd,
             calcMarketValueTotal: calcMarketValueTotal,
             calcNRPCollateralValue: calcNRPCollateralValue,
             calcOtherCollateralTotal: calcOtherCollateralTotal,
@@ -37,6 +44,10 @@
             calcSuppInsTotalValue: calcSuppInsTotalValue,
             calcSuppInsValue: calcSuppInsValue,
             calcTotalCollateral: calcTotalCollateral,
+            calcTotalCommitArm: calcTotalCommitArm,
+            calcTotalCommitDist: calcTotalCommitDist,
+            calcTotalCommitOther: calcTotalCommitOther,
+            calcTotalCommitTotal: calcTotalCommitTotal,
             calcTotalCropValue: calcTotalCropValue,
             calcTotalEquipmentCollateral: calcTotalEquipmentCollateral,
             calcTotalExpenses: calcTotalExpenses,
@@ -74,6 +85,8 @@
             getDistInterest: getDistInterest,
             getDistPrincipal: getDistPrincipal,
             getOtherPrincipal: getOtherPrincipal,
+            getTotalAcres: getTotalAcres,
+            getTotalClaims: getTotalClaims,
             getTotalInterest: getTotalInterest,
             getTotalPrincipal: getTotalPrincipal,
             getDefaultDueDate: getDefaultDueDate,
@@ -82,6 +95,7 @@
             getFeesForArm: getFeesForArm,
             getFullSeason: getFullSeason,
             getIrrPerString: getIrrPerString,
+            getTotalFSAPayment: getTotalFSAPayment,
             gtZero: gtZero,
             inArray: inArray,
             incomeBookValue: incomeBookValue,
@@ -113,6 +127,14 @@
             }, 0);
             var avg = sum / arr.length;
             return avg;
+        }
+
+        function calcArmRemainingBalance(loan) {
+            return 342262.767;
+        }
+
+        function calcArmTotalBalance(loan) {
+            return 342262.767;
         }
 
         function calcCropValue(obj) {
@@ -221,6 +243,26 @@
             return (Number(loan.fins.ins_disc_prod) * (1 - (Number(loan.fins.disc_ins_percent) / 100))) - Number(loan.priorlien.totals.ins_over_discount);
         }
 
+        function calcLoanAdjProd(loan) {
+            return 359237.87;
+        }
+
+        function calcLoanDiscAdjProd(loan) {
+            return 179618.94;
+        }
+
+        function calcLoanDiscIns(loan) {
+            return 64827.85;
+        }
+
+        function calcLoanInsDiscProd(loan) {
+            return 81034.82;
+        }
+
+        function calcLoanProd(loan) {
+            return 359237.87;
+        }
+
         function calcNRPCollateralValue(loan) {
             if(!loan) { return; }
 
@@ -305,6 +347,22 @@
                    Number(calcEquipmentCollateralValue(loan)) +
                    Number(calcRECollateralValue(loan)) +
                    Number(calcOtherCollateralValue(loan));
+        }
+
+        function calcTotalCommitArm(loan) {
+            return 50000; //Number(loan.expenses.totals.byLoan.arm)
+        }
+
+        function calcTotalCommitDist(loan) {
+            return 60000; //Number(loan.expenses.totals.byLoan.dist)
+        }
+
+        function calcTotalCommitOther(loan) {
+            return 40000; //Number(loan.expenses.totals.byLoan.other)
+        }
+
+        function calcTotalCommitTotal(loan) {
+            return 150000; //Number(loan.expenses.totals.byLoan.total)
         }
 
         function calcTotalCropValue(loan) {
@@ -936,6 +994,10 @@
             return Number(loan.expenses.totals.other);
         }
 
+        function getTotalAcres(collection) {
+            return Number(_.sumCollection(collection, 'acres'));
+        }
+
         function getTotalInterest(loan) {
             if(!loan) { return; }
 
@@ -960,19 +1022,21 @@
         }
 
         function getFeeForArmProc(loan) {
+            return 999999;
             if(!loan) { return; }
             var prFee = 0;
 
-            if(loan.fins.fee_processing_onTotal) {
-                prFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_processing_percent)/100);
+            if(loan.financials.fee_processing_onTotal) {
+                prFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.financials.fee_processing_percent)/100);
             } else {
-                prFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_processing_percent)/100);
+                prFee = Number(loan.expenses.totals.arm) * (Number(loan.financials.fee_processing_percent)/100);
             } // end if
 
             return prFee;
         }
 
         function getFeeForArmSrvc(loan) {
+            return 999999;
             if(!loan) { return; }
             var svcFee = 0;
 
@@ -986,6 +1050,7 @@
         }
 
         function getFeesForArm(loan) {
+            return 999999;
             if(!loan) { return; }
             var prFee = 0,
                 svcFee = 0;
@@ -1039,6 +1104,18 @@
             }
 
             return IrrPer;
+        }
+
+        function getTotalClaims(loan) {
+            if(!loan.loancrops) { return 0; }
+
+            return Number(_.sumCollection(loan.loancrops, 'claims'));
+        }
+
+        function getTotalFSAPayment(loan) {
+            if(!loan.loancrops) { return 0; }
+
+            return Number(_.sumCollection(loan.loancrops, 'fsa_payment'));
         }
 
         function gtZero(value) {
