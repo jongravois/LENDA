@@ -156,13 +156,17 @@
         }
 
         function calcInsOverDisc(obj) {
+            if(!obj.yield) {
+                obj.yield = obj.ins_yield;
+            }
+
             //console.log('calcInsOverDisc', obj);
             //InsValue - (CropValue * (1 - ProjectedCropDiscount))
             var insValue = Number(calcInsuranceValue(obj));
             var cropValue = Number(calcCropValue(obj));
             var projectedCropDiscount = Number(obj.disc_prod_percent);
             var CIOD = insValue - (cropValue * (1 - projectedCropDiscount));
-
+            CIOD = insValue;
             if(obj.type == 'RP') {
                 return _.max([CIOD, 0]);
             } else {
