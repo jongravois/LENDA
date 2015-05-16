@@ -26,6 +26,7 @@
                 crosses: processXCollateral(loan),
                 expenses: getExpenses(loan),
                 fees: getFees(loan),
+                financials: processFins(loan),
                 has_comment: getPendingComments(loan),
                 insurance: getInsurance(loan),
                 loancrops: processLoanCrops(loan.loancrops),
@@ -464,6 +465,9 @@
                 total: _.sumCollection(expenses, 'calc_total')
             };
         }
+        function processFins(loan) {
+            return loan.financials;
+        }
         function processForInsDB(policies) {
             var groupByPractice = _.partial(_.ary(_.groupBy, 2), _, 'practice');
 
@@ -506,7 +510,7 @@
                     premium: _.pluckuniq(row, 'premium'),
                     share: _.weighted(row, 'share', 'acres'),
                     acres: _.sumCollection(row, 'acres'),
-                    disc_prod_percent: loan.fins.disc_prod_percent
+                    disc_prod_percent: loan.financials.disc_prod_percent
                 };
 
                 var crop = {
@@ -521,7 +525,7 @@
                     share: _.weighted(row, 'share', 'acres'),
                     level: _.pluckuniq(row, 'level'),
                     ins_yield: _.weighted(row, 'yield', 'acres'),
-                    proj_crop_discount: Number(loan.fins.disc_prod_percent),
+                    proj_crop_discount: Number(loan.financials.disc_prod_percent),
                     guarantee: Number(AppFactory.calcInsuranceGuaranty(calcer)),
                     value: Number(AppFactory.calcCropValue(calcer))
                 };

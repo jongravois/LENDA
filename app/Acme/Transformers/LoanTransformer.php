@@ -142,7 +142,7 @@ class LoanTransformer extends Transformer
             'reconciliation' => (integer)$arr['reconciliation'],
             'account_classification' => (integer)$arr['account_classification'],
             'expenses' => $arr['cropexpenses'],
-            'fins' => [
+            'financials' => [
                 'amount_requested' => (double)$arr['financials']['amount_requested'],
                 'total_acres' => (double)getLoanTotalAcres($arr['id']),
                 'claims_percent' => (double)$arr['financials']['claims_percent'],
