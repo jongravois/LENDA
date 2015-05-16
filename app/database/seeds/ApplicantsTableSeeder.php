@@ -128,6 +128,26 @@ class ApplicantsTableSeeder extends Seeder {
       'spouse' => '',
       'spouse_ssn' => ''
     ]);
+
+    Applicant::create([
+        'loc_id' => 2,
+        'entity_id' => 2,
+        'farmer_id' => 9,
+        'applicant' => 'Blind Justice',
+        'grade' => 'A',
+        'ssn' => '555555555',
+        'email' => 'devil@farm.org',
+        'dob' => '01/01/2012',
+        'address' => '1 Law School',
+        'phone' => '7777777777',
+        'city' => 'Jackson',
+        'state_id' => 25,
+        'zip' => '99999',
+        'spouse' => '',
+        'spouse_ssn' => ''
+    ]);
+
+
   }
 
 }

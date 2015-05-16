@@ -23,6 +23,7 @@
                 collateral: processCollateral(loan.othercollateral),
                 comments: getComments(loan),
                 crops: getCrops(loan),
+                crosses: processXCollateral(loan),
                 expenses: getExpenses(loan),
                 fees: getFees(loan),
                 has_comment: getPendingComments(loan),
@@ -646,6 +647,12 @@
                 return obj;
             });
             return supplus;
+        }
+        function processXCollateral(loan) {
+            if(!loan.is_cross_collateralized) {
+                return [];
+            }
+            return loan;
         }
         function totalCropExpenses(exps) {
             //console.log('totalCropExpenses', exps);
