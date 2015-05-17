@@ -29,7 +29,7 @@
                 fins: processFins(loan),
                 has_comment: getPendingComments(loan),
                 insurance: getInsurance(loan),
-                loancrops: processLoanCrops(loan.loancrops),
+                loancrops: processLoanCrops(loan),
                 need_vote: getPendingVotes(loan),
                 priorlien: processPriorLien(loan.priorlien),
                 quests: getLoanQuestions(loan),
@@ -607,13 +607,16 @@
             });
             return lone;
         }
-        function processLoanCrops(crops) {
+        function processLoanCrops(loan) {
+            var crops = loan.loancrops;
             if(!crops){ return; }
+
             var cropplus = _.forEach(crops, function(obj){
                 obj.crop_value = AppFactory.incomeCropValue(obj);
                 obj.adj_book_value = AppFactory.incomeBookValue(obj);
                 obj.adj_harvest_value = AppFactory.incomeHarvestValue(obj);
                 obj.crop_total = AppFactory.incomeCropTotal(obj);
+                obj.break_even = (Number(AppFactory.getLoanBreakEvenPercent(loan))/100) * Number(obj.prod_yield);
                 return obj;
             });
             //console.log('LoanCrops', cropplus);

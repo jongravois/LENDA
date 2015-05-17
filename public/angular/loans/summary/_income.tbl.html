@@ -49,14 +49,14 @@
     </tr>
     <tr>
         <td colspan="8">FSA Payment</td>
-        <td ng-class=gtZero(loan.fins.total_fsa_payment)>
-            {{loan.fins.total_fsa_payment | flexCurrency:0}}
+        <td ng-class=gtZero(AppFactory.getTotalFSAPayment(loan))>
+            {{AppFactory.getTotalFSAPayment(loan) | flexCurrency:0}}
         </td>
     </tr>
     <tr>
         <td colspan="8">Other</td>
-        <td ng-class=gtZero(loan.fins.total_claims)>
-            {{loan.fins.total_claims | flexCurrency:0}}
+        <td ng-class=gtZero(AppFactory.getTotalClaims(loan))>
+            {{AppFactory.getTotalClaims(loan) | flexCurrency:0}}
         </td>
     </tr>
     <tr class="success">
