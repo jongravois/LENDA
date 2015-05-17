@@ -40,7 +40,7 @@
             {{c.share|flexPercent:1}}
         </td>
         <td class="text-right" ng-class="c.value">
-            {{c.value|flexCurrency:0}}
+            {{AppFactory.calcInsCropValue(c)|flexCurrency:0}}
         </td>
         <td class="text-right" ng-class="gtZero(AppFactory.calcInsOverDisc(c))">
             {{AppFactory.calcInsOverDisc(c)|flexCurrency:0}}

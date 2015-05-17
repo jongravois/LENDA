@@ -17,6 +17,7 @@
             calcEquipmentCollateralTotal: calcEquipmentCollateralTotal,
             calcEquipmentCollateralValue: calcEquipmentCollateralValue,
             calcFSACollateralValue: calcFSACollateralValue,
+            calcInsCropValue: calcInsCropValue,
             calcInsOverDisc: calcInsOverDisc,
             calcInsOverDiscNonRP: calcInsOverDiscNonRP,
             calcInsuranceGuaranty: calcInsuranceGuaranty,
@@ -67,12 +68,17 @@
             countiesInState: countiesInState,
             createLenda: createLenda,
             diffInDates: diffInDates,
+            getAllCommits: getAllCommits,
             getAllCrops: getAllCrops,
             getArmDistCollateral: getArmDistCollateral,
+            getArmCommit: getArmCommit,
             getArmInterest: getArmInterest,
             getArmPrincipal: getArmPrincipal,
+            getDistCommit: getDistCommit,
             getDistInterest: getDistInterest,
             getDistPrincipal: getDistPrincipal,
+            getOtherCommit: getOtherCommit,
+            getLoanBreakEvenPercent: getLoanBreakEvenPercent,
             getOtherPrincipal: getOtherPrincipal,
             getTotalInterest: getTotalInterest,
             getTotalPrincipal: getTotalPrincipal,
@@ -82,6 +88,9 @@
             getFeesForArm: getFeesForArm,
             getFullSeason: getFullSeason,
             getIrrPerString: getIrrPerString,
+            getTotalClaims: getTotalClaims,
+            getTotalCommit: getTotalCommit,
+            getTotalFSAPayment: getTotalFSAPayment,
             gtZero: gtZero,
             inArray: inArray,
             incomeBookValue: incomeBookValue,
@@ -116,6 +125,9 @@
         }
 
         function calcCropValue(obj) {
+            if(!obj.yield){
+                obj.yield = obj.ins_yield;
+            }
             //console.log('calcCropValue', obj);
             return obj.acres * obj.yield * obj.price * (obj.share/100);
         }
@@ -155,13 +167,20 @@
             return (Number(loan.fins.total_fsa_payment) * (1 - (Number(loan.fins.fsa_assignment_percent) / 100))) - Number(loan.priorlien.totals.fsa_payments);
         }
 
+        function calcInsCropValue(obj) {
+            //(Guarantee-Premium)*(Share/100)*Acres
+            return (Number(obj.guarantee) - Number(obj.premium)) * (Number(obj.share)/100) * Number(obj.acres);
+        }
+
         function calcInsOverDisc(obj) {
             //console.log('calcInsOverDisc', obj);
             //InsValue - (CropValue * (1 - ProjectedCropDiscount))
-            var insValue = Number(calcInsuranceValue(obj));
+            var insValue = Number(calcInsCropValue(obj));
             var cropValue = Number(calcCropValue(obj));
-            var projectedCropDiscount = Number(obj.disc_prod_percent);
-            var CIOD = insValue - (cropValue * (1 - projectedCropDiscount));
+            var projectedCropDiscount = Number(obj.proj_crop_discount);
+
+            //console.log(insValue, cropValue, projectedCropDiscount);
+            var CIOD = insValue - (cropValue * (1 - (projectedCropDiscount/100)));
 
             if(obj.type == 'RP') {
                 return _.max([CIOD, 0]);
@@ -202,7 +221,11 @@
         }
 
         function calcInsuranceValue(obj) {
-           return (Number(calcInsuranceGuaranty(obj)) - Number(obj.premium)) * (Number(obj.share) / 100) * obj.acres;
+            if(!obj.yield){
+                obj.yield = obj.ins_yield;
+            }
+
+            return (Number(calcInsuranceGuaranty(obj)) - Number(obj.premium)) * (Number(obj.share) / 100) * obj.acres;
         }
 
         function calcMarketValueTotal(loan) {
@@ -306,10 +329,7 @@
         function calcTotalCropValue(loan) {
             if(!loan) { return; }
 
-            var allCropValue = _.reduce(loan.loancrops, function(sum, obj){
-                return sum + fixDollars(Number(obj.crop_total), 0);
-            }, 0);
-            return allCropValue;
+            return _.sumCollection(loan.loancrops, 'crop_total');
         }
 
         function calcTotalEquipmentCollateral(loan) {
@@ -338,15 +358,6 @@
         function calcTotalInsValue(loan) {
             if(!loan) { return; }
 
-            var value = _.reduce(loan.insurance.byCrop, function(sum, obj){
-                return sum + Number(obj.value);
-            }, 0);
-            return value;
-        }
-
-        function calcTotalOverDisc(loan) {
-            if(!loan) { return; }
-
             var guarantee = _.reduce(loan.insurance.byCrop, function(sum, obj){
                 if(obj.type === 'RP') {
                     return sum + Number(obj.guarantee);
@@ -369,6 +380,17 @@
             }, 0);
 
             return (Number(guarantee) - Number(premium)) * (Number(share)/100) * Number(acres);
+        }
+
+        function calcTotalOverDisc(loan) {
+            //InsValue - (CropValue * (1 - ProjectedCropDiscount))
+            var insValue = Number(calcTotalInsValue(loan));
+            var cropValue = Number(calcTotalCropValue(loan));
+            var projectedCropDiscount = Number(_.pluckuniq(loan.insurance.byCrop, 'proj_crop_discount'));
+
+            var CIOD = insValue - (cropValue * (1 - (projectedCropDiscount/100)));
+
+            return _.max([CIOD, 0]);
         }
 
         function calcTotalOverDiscNonRP(loan) {
@@ -879,6 +901,54 @@
             } // end if
         }
 
+        function getAllCommits(loan) {
+            var exps = [],
+                calced = [];
+            if(loan.expenses.loancrops) {
+                exps = loan.expenses.loancrops.byEntry;
+            } else {
+                exps = loan.expenses;
+            }
+
+            var grped = _.chain(exps).groupBy('crop_id').value();
+
+            var byCrop = [];
+            angular.forEach(grped, function(crop) {
+                var byExp = [];
+                angular.forEach(crop, function(exp) {
+                    var acred = 0;
+                    if(exp.loancrops) {
+                        acred = Number(exp.loancrop.acres);
+                    } else {
+                        acred = Number(exp.acres);
+                    }
+                    var single = {
+                        expense: exp.expense,
+                        crop_id: exp.crop_id,
+                        acres: acred,
+                        arm: Number(exp.arm_adj),
+                        arm_total: acred * Number(exp.arm_adj),
+                        dist: Number(exp.dist_adj),
+                        dist_total: acred * Number(exp.dist_adj),
+                        other: Number(exp.other_adj),
+                        other_total: acred * Number(exp.other_adj)
+                    };
+                    this.push(single);
+                }, byExp);
+                this.push(byExp);
+            }, byCrop);
+
+            var armed = _.sumCollection(byCrop[0], 'arm_total');
+            var disted = _.sumCollection(byCrop[0], 'dist_total');
+            var othered = _.sumCollection(byCrop[0], 'other_total');
+            return {
+                arm: armed,
+                dist: disted,
+                other: othered,
+                total: Number(armed) + Number(disted) + Number(othered)
+            };
+        }
+
         function getAllCrops() {
             //TODO: Hard Coded
             return ['corn', 'soybeans', 'beansFAC', 'sorghum', 'wheat', 'cotton', 'rice', 'peanuts', 'sugarcane'];
@@ -901,6 +971,11 @@
             return Number(getArmPrincipal(loan)) + Number(getDistPrincipal(loan));
         }
 
+        function getArmCommit(loan) {
+            var comms = getAllCommits(loan);
+            return comms.arm;
+        }
+
         function getArmInterest(loan) {
             if(!loan) { return; }
 
@@ -914,6 +989,11 @@
             return Number(calcTotalCropValue(loan)) + Number(getFeesForArm(loan));
         }
 
+        function getDistCommit(loan) {
+            var comms = getAllCommits(loan);
+            return comms.dist;
+        }
+
         function getDistInterest(loan) {
             if(!loan) { return; }
 
@@ -923,13 +1003,38 @@
         function getDistPrincipal(loan) {
             if(!loan) { return; }
 
-            return Number(loan.expenses.totals.byLoan.dist);
+            return Number(getDistCommit(loan));
+        }
+
+        function getOtherCommit(loan) {
+            var comms = getAllCommits(loan);
+            return comms.other;
+        }
+
+        function getLoanBreakEvenPercent(loan) {
+            var armPrincipal = getArmPrincipal(loan);
+            var armInterest = getArmInterest(loan);
+            var distPrincipal = getDistPrincipal(loan);
+            var distInterest = getDistInterest(loan);
+            var totalFSAPayment = getTotalFSAPayment(loan);
+            var totalClaims = getTotalClaims(loan);
+            var projectedIncomeTotal = calcTotalRevenue(loan);
+
+            console.log('armPrincipal', armPrincipal);
+            console.log('armInterest', armInterest);
+            console.log('distPrincipal', distPrincipal);
+            console.log('distInterest', distInterest);
+            console.log('totalFSAPayment', totalFSAPayment);
+            console.log('totalClaims',totalClaims);
+            console.log('projectedIncomeTotal', projectedIncomeTotal);
+            //return 76;
+            return ((armPrincipal + armInterest) + (distPrincipal + distInterest) - totalFSAPayment - totalClaims)/(projectedIncomeTotal - totalFSAPayment - totalClaims);
         }
 
         function getOtherPrincipal(loan) {
             if(!loan) { return; }
 
-            return Number(loan.expenses.totals.other);
+            return Number(getOtherCommit(loan));
         }
 
         function getTotalInterest(loan) {
@@ -957,25 +1062,38 @@
 
         function getFeeForArmProc(loan) {
             if(!loan) { return; }
-            var prFee = 0;
+
+            var prFee = 0,
+                armCommit = getArmCommit(loan),
+                distCommit = getDistCommit(loan),
+                procFeePercent = loan.fins.fee_processing;
 
             if(loan.fins.fee_processing_onTotal) {
-                prFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_processing_percent)/100);
+                prFee = (armCommit + distCommit) * (procFeePercent/100);
             } else {
-                prFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_processing_percent)/100);
+                prFee = armCommit * (procFeePercent/100);
             } // end if
+
+            // TODO: use global for minimum prFee
+            if(prFee < 330) {
+                prFee = 330;
+            }
 
             return prFee;
         }
 
         function getFeeForArmSrvc(loan) {
             if(!loan) { return; }
-            var svcFee = 0;
+
+            var svcFee = 0,
+                armCommit = getArmCommit(loan),
+                distCommit = getDistCommit(loan),
+                srvcFeePercent = loan.fins.fee_service;
 
             if(loan.fins.fee_service_onTotal) {
-                svcFee = (Number(loan.expenses.totals.arm) + Number(loan.expenses.totals.dist)) * (Number(loan.fins.fee_service_percent)/100);
+                svcFee = (armCommit + distCommit) * (srvcFeePercent/100);
             } else {
-                svcFee = Number(loan.expenses.totals.arm) * (Number(loan.fins.fee_service_percent)/100);
+                svcFee = armCommit * (srvcFeePercent/100);
             } //end if
 
             return svcFee;
@@ -983,25 +1101,9 @@
 
         function getFeesForArm(loan) {
             if(!loan) { return; }
-            var prFee = 0,
-                svcFee = 0;
 
-            if(loan.fins.fee_processing_onTotal) {
-                prFee = (Number(loan.expenses.totals.byLoan.arm) + Number(loan.expenses.totals.byLoan.dist)) * (Number(loan.fins.fee_processing_percent)/100);
-            } else {
-                prFee = Number(loan.expenses.totals.byLoan.arm) * (Number(loan.fins.fee_processing_percent)/100);
-            } // end if
-
-            if(loan.fins.fee_service_onTotal) {
-                svcFee = (Number(loan.expenses.totals.byLoan.arm) + Number(loan.expenses.totals.byLoan.dist)) * (Number(loan.fins.fee_service_percent)/100);
-            } else {
-                svcFee = Number(loan.expenses.totals.byLoan.arm) * (Number(loan.fins.fee_service_percent)/100);
-            } //end if
-
-            // TODO: use global for minimum prFee
-            if(prFee < 330) {
-                prFee = 330;
-            }
+            var prFee = getFeeForArmProc(loan),
+                svcFee = getFeeForArmSrvc(loan);
 
             return prFee + svcFee;
         }
@@ -1035,6 +1137,24 @@
             }
 
             return IrrPer;
+        }
+
+        function getTotalClaims(loan) {
+            if(!loan) {return 0; }
+
+            var col = loan.loancrops;
+            return _.sumCollection(col, 'claims');
+        }
+
+        function getTotalCommit(loan){
+            return Number(getArmCommit(loan)) + Number(getDistCommit(loan)) + Number(getOtherCommit(loan));
+        }
+
+        function getTotalFSAPayment(loan) {
+            if(!loan) {return 0; }
+
+            var col = loan.loancrops;
+            return _.sumCollection(col, 'fsa_payment');
         }
 
         function gtZero(value) {
