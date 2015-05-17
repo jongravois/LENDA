@@ -15,7 +15,7 @@ class CreateApplicantsTable extends Migration {
       $table->integer('loc_id')->nullable();
       $table->integer('entity_id')->default(2);
       $table->integer('farmer_id')->nullable();
-      $table->string('ssn')->nullable()->unique();
+      $table->string('ssn')->nullable();
       $table->string('email')->nullable();
       $table->date('dob')->nullable();
       $table->string('address')->nullable();
