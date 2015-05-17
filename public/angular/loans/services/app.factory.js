@@ -328,9 +328,15 @@
 
         function calcTotalCropValue(loan) {
             if(!loan) { return; }
+            var col = loan.loancrops;
 
+            console.log('loan.loancrops', col);
+            console.log('pluck', _.pluck(col, 'crop_value') );
+            console.log('pluckNcompact', _.compact(_.pluck(col, 'crop_value')) );
+            console.log('pluckNcompactNsum', _.sum(_.compact(_.pluck(col, 'crop_value'))) );
             //return 555;
-            return _.sumCollection(loan.loancrops, 'crop_total');
+            //return _.sumCollection(col, 'crop_value');
+            return  _.sum(_.compact(_.pluck(col, 'crop_value')));
         }
 
         function calcTotalEquipmentCollateral(loan) {
@@ -438,6 +444,9 @@
             if(!loan) { return; }
             //R/M == totalCollateral - commit_total
 
+            console.log('calcTotalCropValue', calcTotalCropValue(loan));
+            console.log('FSA', loan.fins.total_fsa_payment);
+            console.log('Claims', loan.fins.total_claims);
             return calcTotalCropValue(loan) + Number(loan.fins.total_fsa_payment) + Number(loan.fins.total_claims);
         }
 
@@ -918,7 +927,7 @@
                 var byExp = [];
                 angular.forEach(crop, function(exp) {
                     var acred = 0;
-                    if(exp.loancrops) {
+                    if(exp.loancrop) {
                         acred = Number(exp.loancrop.acres);
                     } else {
                         acred = Number(exp.acres);
@@ -942,6 +951,7 @@
             var armed = _.sumCollection(byCrop[0], 'arm_total');
             var disted = _.sumCollection(byCrop[0], 'dist_total');
             var othered = _.sumCollection(byCrop[0], 'other_total');
+
             return {
                 arm: armed,
                 dist: disted,
@@ -974,6 +984,7 @@
 
         function getArmCommit(loan) {
             var comms = getAllCommits(loan);
+            //console.log('All Commits', comms);
             return comms.arm;
         }
 

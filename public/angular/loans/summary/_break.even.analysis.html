@@ -1,4 +1,8 @@
 <table class="table"  style="width:80%; margin:0 auto;">
+    <tr>
+        <td colspan="2">Break-Even</td>
+        <td class="text-right">{{AppFactory.getLoanBreakEvenPercent(loan)|flexPercent:1}}</td>
+    </tr>
     <tr ng-repeat="ac in loan.loancrops" ng-if="ac.break_even != 0">
         <td style="width:35%;">Loan payback break-even for ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}}</span>:</td>
         <td style="width:10%;">{{ac.crop.name}}</td>
