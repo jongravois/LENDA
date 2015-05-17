@@ -329,6 +329,7 @@
         function calcTotalCropValue(loan) {
             if(!loan) { return; }
 
+            //return 555;
             return _.sumCollection(loan.loancrops, 'crop_total');
         }
 
@@ -986,7 +987,7 @@
             //crop inputs + fees
             if(!loan) { return; }
 
-            return Number(calcTotalCropValue(loan)) + Number(getFeesForArm(loan));
+            return Number(getArmCommit(loan)); // + Number(getFeesForArm(loan));
         }
 
         function getDistCommit(loan) {

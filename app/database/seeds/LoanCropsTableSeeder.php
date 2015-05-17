@@ -175,7 +175,83 @@ class LoanCropsTableSeeder extends Seeder {
             'crop_id' => 8
         ]);
 
+		// Loan #9
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 9,
+			'crop_id' => 1,
+			'acres' => 1000,
+			'is_active' => 1,
+			'markettowhom' => 'CropsRUs',
+			'prod_price' => 4.00,
+			'prod_yield' => 200,
+			'prod_share' => 80,
+			'p1_yield' => null,
+			'p2_yield' => null,
+			'p3_yield' => null,
+			'p4_yield' => null,
+			'p5_yield' => null,
+			'p6_yield' => null
+		]);
 
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 9,
+			'crop_id' => 2,
+			'acres' => 1000,
+			'is_active' => 1,
+			'markettowhom' => 'CropsRUs',
+			'prod_price' => 9.25,
+			'prod_yield' => 50,
+			'prod_share' => 80,
+			'p1_yield' => null,
+			'p2_yield' => null,
+			'p3_yield' => null,
+			'p4_yield' => null,
+			'p5_yield' => null,
+			'p6_yield' => null
+		]);
 
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 9,
+			'crop_id' => 3
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 9,
+			'crop_id' => 4
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 9,
+			'crop_id' => 5
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 9,
+			'crop_id' => 6
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 9,
+			'crop_id' => 7
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 9,
+			'crop_id' => 8
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 9,
+			'crop_id' => 9
+		]);
     }
 }

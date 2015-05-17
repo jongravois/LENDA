@@ -250,5 +250,49 @@ class InsuranceTableSeeder extends Seeder
             'guaranty' => 3657.65,
             'value' => 64996.40
         ]);
+
+        // Richland 568 Corn NI
+        Insurance::create([
+            'loan_id' => 9,
+            'agency_id' => 2,
+            'agent_id' => 5,
+            'policy' => '4993002',
+            'fsn' => '123',
+            'loancounty_id' => 1337,
+            'loancrop_id' => 1,
+            'practice' => 'NI',
+            'type' => 'RP',
+            'option' => 'EU',
+            'acres' => 1000,
+            'yield' => 200,
+            'price' => 4.05,
+            'level' => 80,
+            'premium' => 20,
+            'share' => 80,
+            'guaranty' => 648,
+            'value' => 502400
+        ]);
+
+        // Richland 2088 Beans NI
+        Insurance::create([
+            'loan_id' => 9,
+            'agency_id' => 2,
+            'agent_id' => 5,
+            'policy' => '4993003',
+            'fsn' => '123',
+            'loancounty_id' => 1337,
+            'loancrop_id' => 2,
+            'practice' => 'NI',
+            'type' => 'RP',
+            'option' => 'EU',
+            'acres' => 1000,
+            'yield' => 50,
+            'price' => 9.62,
+            'level' => 80,
+            'premium' => 20,
+            'share' => 80,
+            'guaranty' => 384.80,
+            'value' => 291840
+        ]);
     }
 }

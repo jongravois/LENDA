@@ -72,5 +72,9 @@ class LoanquestionsTableSeeder extends Seeder {
 			'loan_id' 	=> 	8
 		]);
 
+		Loanquestions::create([
+			'loan_id' 	=> 	9
+		]);
+
 	}
 }

@@ -108,5 +108,20 @@ class FarmsTableSeeder extends Seeder
             'irr' => 53,
             'ni' => 412
         ]);
+
+        Farm::create([
+            'loan_id' => 9,
+            'county_id' => 1317,
+            'fsn' => '123',
+            'owner' => 'Matt Murdoch',
+            'share_rent' => 20,
+            'cash_rent' => 0,
+            'waived' => 0,
+            'when_due' => '',
+            'fsa_paid' => 0,
+            'percent_irrigated' => 0,
+            'irr' => 0,
+            'ni' => 2000
+        ]);
     }
 }
