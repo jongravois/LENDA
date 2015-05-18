@@ -33,6 +33,30 @@
             $scope.toggleComment = false;
         }
 
+        $scope.updateLoanComment = function() {
+            var loanID = $stateParams.loanID;
+            var comment = $scope.loan.comments.Loan[0].comment;
+            var commentID = $scope.loan.comments.Loan[0].id;
+            AppFactory.patchIt('/comments/', commentID, {comment: comment});
+            toastr.success('Your comment has been updated.', 'Success');
+        };
+
+        $scope.updateAddendumComment = function() {
+            var loanID = $stateParams.loanID;
+            var comment = $scope.loan.comments.Addendum[0].comment;
+            var commentID = $scope.loan.comments.Addendum[0].id;
+            AppFactory.patchIt('/comments/', commentID, {comment: comment});
+            toastr.success('Your comment has been updated.', 'Success');
+        };
+
+        $scope.updateWatchlistComment = function() {
+            var loanID = $stateParams.loanID;
+            var comment = $scope.loan.comments.Watch[0].comment;
+            var commentID = $scope.loan.comments.Watch[0].id;
+            AppFactory.patchIt('/comments/', commentID, {comment: comment});
+            toastr.success('Your comment has been updated.', 'Success');
+        };
+
         $scope.uomChanged = function (id, uom) {
             alert('Crop ID: ' + id + ' has been changed to ' + uom);
         };

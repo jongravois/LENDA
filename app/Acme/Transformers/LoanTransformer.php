@@ -1,6 +1,7 @@
 <?php namespace Acme\Transformers;
 
 use Carbon\Carbon;
+use Belt\_;
 use Illuminate\Support\Facades\DB;
 
 class LoanTransformer extends Transformer
@@ -73,7 +74,8 @@ class LoanTransformer extends Transformer
         //$agencies = DB::table('agencies')->get();
         //dd($agencies);
 
-        return array(
+        //FINAL RETURN
+        return [
             'id' => (integer) $arr['id'],
             'uniqID' => $arr['crop_year'] . $arr['season'] . $arr['id'],
             'app_date' => $arr['app_date']->format('m/d/Y'),
@@ -309,7 +311,7 @@ class LoanTransformer extends Transformer
             'systemics' => $arr['systemics'],
             'last_activity' => $arr['updated_at'],
             'xcols' => $arr['xcollaterals']
-        );
+        ];
     }
 
 }
