@@ -44,8 +44,8 @@ class FarmersController extends ApiController {
     } // end if
 
     $arr = Input::all();
-    $DOB = date("Y-m-d", strtotime($arr['dob']));
-    $arr['dob'] = $DOB;
+    //$DOB = date("Y-m-d", strtotime($arr['dob']));
+    //$arr['dob'] = $DOB;
     $farmer = Farmer::create($arr);
     //Add systemic
     $newInfo = [

@@ -7,6 +7,22 @@ class UserTransformer extends Transformer
   public function transform($arr)
   {
     //return $arr;
+      $pender = 0;
+      $manager = 0;
+      $reporter = 0;
+
+      foreach($arr['notifications'] as $notifs){
+          if($notifs['notification_type'] == 'vote'){
+              $pender++;
+          }
+          if($notifs['notification_type'] == 'office'){
+              $manager++;
+          }
+          if($notifs['notification_type'] == 'report'){
+              $reporter++;
+          }
+      }
+
     return [
         'id' => $arr['id'],
         'email' => $arr['email'],
@@ -110,7 +126,13 @@ class UserTransformer extends Transformer
             'view_icon_addedland' => (boolean) $arr['viewoptions']['view_icon_addedland'],
             'view_icon_disbursement' => (boolean) $arr['viewoptions']['view_icon_disbursement'],
             'view_icon_attachments' => (boolean) $arr['viewoptions']['view_icon_attachments']
-      ]
+      ],
+        'notificator' => [
+            'count' => count($arr['notifications']),
+            'pending_actions' => $pender,
+            'management_required' => $manager,
+            'review_reports' => $reporter
+        ]
     ];
 
   }

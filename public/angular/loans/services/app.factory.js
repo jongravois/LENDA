@@ -330,10 +330,10 @@
             if(!loan) { return; }
             var col = loan.loancrops;
 
-            console.log('loan.loancrops', col);
-            console.log('pluck', _.pluck(col, 'crop_value') );
-            console.log('pluckNcompact', _.compact(_.pluck(col, 'crop_value')) );
-            console.log('pluckNcompactNsum', _.sum(_.compact(_.pluck(col, 'crop_value'))) );
+            //console.log('loan.loancrops', col);
+            //console.log('pluck', _.pluck(col, 'crop_value') );
+            //console.log('pluckNcompact', _.compact(_.pluck(col, 'crop_value')) );
+            //console.log('pluckNcompactNsum', _.sum(_.compact(_.pluck(col, 'crop_value'))) );
             //return 555;
             //return _.sumCollection(col, 'crop_value');
             return  _.sum(_.compact(_.pluck(col, 'crop_value')));
@@ -444,9 +444,9 @@
             if(!loan) { return; }
             //R/M == totalCollateral - commit_total
 
-            console.log('calcTotalCropValue', calcTotalCropValue(loan));
-            console.log('FSA', loan.fins.total_fsa_payment);
-            console.log('Claims', loan.fins.total_claims);
+           // console.log('calcTotalCropValue', calcTotalCropValue(loan));
+            //console.log('FSA', loan.fins.total_fsa_payment);
+            //console.log('Claims', loan.fins.total_claims);
             return calcTotalCropValue(loan) + Number(loan.fins.total_fsa_payment) + Number(loan.fins.total_claims);
         }
 
@@ -1032,14 +1032,15 @@
             var totalClaims = getTotalClaims(loan);
             var projectedIncomeTotal = calcTotalRevenue(loan);
 
-            console.log('armPrincipal', armPrincipal);
-            console.log('armInterest', armInterest);
-            console.log('distPrincipal', distPrincipal);
-            console.log('distInterest', distInterest);
-            console.log('totalFSAPayment', totalFSAPayment);
-            console.log('totalClaims',totalClaims);
-            console.log('projectedIncomeTotal', projectedIncomeTotal);
-            //return 76;
+            //console.log('armPrincipal', armPrincipal);
+            //console.log('armInterest', armInterest);
+            //console.log('distPrincipal', distPrincipal);
+            //console.log('distInterest', distInterest);
+            //console.log('totalFSAPayment', totalFSAPayment);
+            //console.log('totalClaims',totalClaims);
+            //console.log('projectedIncomeTotal', projectedIncomeTotal);
+
+            //return 76.3;
             return ((armPrincipal + armInterest) + (distPrincipal + distInterest) - totalFSAPayment - totalClaims)/(projectedIncomeTotal - totalFSAPayment - totalClaims);
         }
 

@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$state', '$stateParams', '$q', '$filter', 'toastr', 'APP_URL', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersProcessorService', 'orderByFilter'];
+    MainController.$inject = ['$scope', '$state', '$stateParams', '$q', '$filter', 'toastr', 'APP_URL', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersFactory', 'orderByFilter'];
 
-    function MainController($scope, $state, $stateParams, $q, $filter, toastr, APP_URL, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersProcessorService, orderByFilter) {
+    function MainController($scope, $state, $stateParams, $q, $filter, toastr, APP_URL, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersFactory, orderByFilter) {
         $scope.AppFactory = AppFactory;
         
         activate();
@@ -16,9 +16,9 @@
             $scope.landing_view = 'settings';
             $scope.file_url = FILE_URL;
 
-            UsersProcessorService.getUsersWithExtraData()
+            UsersFactory.getUsers()
                 .then(function success(rsp){
-                    var users = rsp;
+                    var users = rsp.data.data;
                     $scope.users = users;
                     //console.log('Users from Main', users);
                     toastr.success('Loaded All Users', 'Success!');
@@ -92,8 +92,9 @@
                         }
                     });
                     var obj = {
-                        app_date: moment(new Date()).format('YYYY-MM-DD'),
-                        due_date: moment(new Date(AppFactory.getDefaultDueDate(types.id, $scope.globals.crop_year))).format('YYYY-MM-DD'),
+                        app_date: moment(new Date()).format('MM/DD/YYYY'),
+                        default_due_date: moment(new Date(AppFactory.getDefaultDueDate(types.id, $scope.globals.crop_year))).format('MM/DD/YYYY'),
+                        due_date: moment(new Date(AppFactory.getDefaultDueDate(types.id, $scope.globals.crop_year))).format('MM/DD/YYYY'),
                         loan_type_id: types.id,
                         crop_year: $scope.globals.crop_year,
                         season: $scope.globals.season,
@@ -101,9 +102,15 @@
                         region_id: $scope.user.region_id,
                         user_id: $scope.user.id
                     };
+                    //console.log('new loan', obj);
 
                     LoansFactory.insertLoan(obj)
                         .then(function success(response) {
+                            //console.log('Res', response.data.message);
+                            $scope.loan = obj;
+                            $scope.loan.id = response.data.message.id;
+                            $scope.loan.chosenLT = types.loantype;
+                            $scope.loan.chosenLT_id = types.id;
                             $state.go('new.farmer', {loantypeID: types.id, loanID: response.data.message.id});
                         });
                 });

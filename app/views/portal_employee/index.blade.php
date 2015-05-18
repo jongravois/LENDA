@@ -178,7 +178,6 @@
 <script src="angular/users/sessions.ctrl.js"></script>
 <script src="angular/users/settings.ctrl.js"></script>
 <script src="angular/users/users.factory.js"></script>
-<script src="angular/users/users.processor.factory.js"></script>
 <!-- endinject -->
 
 <!--JAVASCRIPT-->

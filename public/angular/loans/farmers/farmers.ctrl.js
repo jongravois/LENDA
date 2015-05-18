@@ -9,48 +9,40 @@
     function FarmersController($scope, $state, $stateParams, toastr, AppFactory, FarmersFactory, ExceptionsFactory, LoansFactory) {
         activate();
 
-        function activate() {
-            var curr = $state.current.url;
-            var currScreen = curr.substring(1, curr.length);
-            $scope.newapplication = $state.current.data.newapplication;
-
-            if ($scope.newapplication && $scope.screens) {
-                angular.forEach($scope.screens, function (obj) {
-                    if (obj.screen === currScreen) {
-                        obj.status = 1;
-                    }
-                });
-            }// end if
-        }
-
         if (!$scope.loan) {
-            $scope.loan = _.find($scope.loans, function(i) {
+            $scope.loan = _.find($scope.loans, function (i) {
                 return i.id == $stateParams.loanID;
             });
         } // end if
 
-        if (!$scope.loan.farmer_id) {
-            $scope.farmer = {
+        if($scope.loan && !$scope.loan.farmer_id) {
+            $scope.loan.farmer = {
                 new_client: true
             };
-        } // end if
+        }
 
         $scope.createFarmer = function (obj) {
-            var thisYear = new Date().getFullYear();
-            var exp = AppFactory.diffInDates(thisYear, parseInt(obj.first_year_farmer));
-            checkExceptions(exp);
-            AppFactory.patchIt('/loanfinancials/', $scope.loan.id, {experience: exp});
-
             // HANDLE CREATING/UPDATING FARMER
-            if (angular.isDefined($scope.farmerID) && obj.id === $scope.farmerID) {
-                AppFactory.patchIt('/loans/', $stateParams.loanID, {farmer_id: $scope.farmerID});
+            if (angular.isDefined($scope.loan.farmerID) && obj.id === $scope.loan.farmerID) {
+                AppFactory.patchIt('/loans/', $stateParams.loanID, {farmer_id: $scope.loan.farmerID});
                 AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
             } else {
+                var thisYear = new Date().getFullYear();
+                var exp = 0;
+                if($scope.loan.farmer) {
+                    exp = $scope.loan.farmer.farm_exp;
+                } else {
+                    exp = AppFactory.diffInDates(thisYear, parseInt(obj.first_year_farmer));
+                } // end if
+                console.log(exp);
+                checkExceptions(exp);
+               // AppFactory.patchIt('/loanfinancials/', $scope.loan.id, {experience: exp});
+
                 obj.farm_exp = exp;
                 return FarmersFactory.createFarmer(obj)
                     .then(function (res) {
                         AppFactory.patchIt('/loans/', $scope.loan.id, {farmer_id: res.data.message});
-                        AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
+                        //AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
                     });
             } // end if
         }; // end createFarmer function
@@ -76,6 +68,20 @@
             } else if (parseInt(experience) < 4) {
                 ExceptionsFactory.handler($stateParams.loanID, 'farmerHistory', false, {});
             } // end if
+        }
+
+        function activate() {
+            var curr = $state.current.url;
+            var currScreen = curr.substring(1, curr.length);
+            $scope.newapplication = $state.current.data.newapplication;
+
+            if ($scope.newapplication && $scope.screens) {
+                angular.forEach($scope.screens, function (obj) {
+                    if (obj.screen === currScreen) {
+                        obj.status = 1;
+                    }
+                });
+            }// end if
         }
     } // end controller
 })();
