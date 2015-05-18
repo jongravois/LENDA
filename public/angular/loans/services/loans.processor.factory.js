@@ -175,6 +175,7 @@
         }
         function getExpenses(loan) {
             var expenses = loan.expenses;
+            //var expenses = loan.expenses.byEntry;
 
             var exps = {
                 byCat: processExpsByCat(flattenExpenses(expenses)),

@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3e0c169c9dba3242d52ac6e3babdd76e",
+    "hash": "59a745e5305d0a378e50c7b11217a4ec",
     "packages": [
         {
             "name": "anchu/ftp",
@@ -16,7 +16,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harishanchu/Laravel-FTP/zipball/c0f06fd77f3bbfd0765f9d93df6387a67e94efa4",
+                "url": "https://api.github.com/repos/harishanchu/Laravel-FTP/zipball/e0fec2dae79123a7d993afcafa174eb88b45146e",
                 "reference": "c0f06fd77f3bbfd0765f9d93df6387a67e94efa4",
                 "shasum": ""
             },
@@ -137,16 +137,68 @@
             "time": "2014-06-11 07:05:53"
         },
         {
+            "name": "belt/underscore",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beltphp/underscore.git",
+                "reference": "220c2191480b3623526fcf8af729aaca4f519418"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beltphp/underscore/zipball/220c2191480b3623526fcf8af729aaca4f519418",
+                "reference": "220c2191480b3623526fcf8af729aaca4f519418",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "symfony/property-access": "~2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Belt\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ramon Kleiss",
+                    "email": "ramonkleiss@gmail.com",
+                    "homepage": "http://ramonkleiss.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pushing square things down round holes",
+            "homepage": "https://github.com/beltphp/underscore",
+            "keywords": [
+                "toolkit",
+                "underscore"
+            ],
+            "time": "2014-12-29 13:53:52"
+        },
+        {
             "name": "classpreloader/classpreloader",
             "version": "1.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mtdowling/ClassPreloader.git",
+                "url": "https://github.com/ClassPreloader/ClassPreloader.git",
                 "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mtdowling/ClassPreloader/zipball/2c9f3bcbab329570c57339895bd11b5dd3b00877",
+                "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/2c9f3bcbab329570c57339895bd11b5dd3b00877",
                 "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877",
                 "shasum": ""
             },
@@ -188,12 +240,12 @@
             "version": "v1.0.8",
             "source": {
                 "type": "git",
-                "url": "https://github.com/d11wtq/boris.git",
+                "url": "https://github.com/borisrepl/boris.git",
                 "reference": "125dd4e5752639af7678a22ea597115646d89c6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/d11wtq/boris/zipball/125dd4e5752639af7678a22ea597115646d89c6e",
+                "url": "https://api.github.com/repos/borisrepl/boris/zipball/125dd4e5752639af7678a22ea597115646d89c6e",
                 "reference": "125dd4e5752639af7678a22ea597115646d89c6e",
                 "shasum": ""
             },
@@ -485,7 +537,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/475bc70af1ca24f54963cd613368063950e95885",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/b12e0c0d940d2f6e9830bed807cd029c5f6a85d2",
                 "reference": "475bc70af1ca24f54963cd613368063950e95885",
                 "shasum": ""
             },
@@ -1909,6 +1961,66 @@
             "time": "2015-01-05 20:58:03"
         },
         {
+            "name": "symfony/property-access",
+            "version": "2.8.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/PropertyAccess.git",
+                "reference": "b352c590ffcff15e3dd57c581a4e3d4a590034dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/PropertyAccess/zipball/b352c590ffcff15e3dd57c581a4e3d4a590034dc",
+                "reference": "b352c590ffcff15e3dd57c581a4e3d4a590034dc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7|~3.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\PropertyAccess\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony PropertyAccess Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "access",
+                "array",
+                "extraction",
+                "index",
+                "injection",
+                "object",
+                "property",
+                "property path",
+                "reflection"
+            ],
+            "time": "2015-05-12 15:16:46"
+        },
+        {
             "name": "symfony/routing",
             "version": "v2.5.9",
             "target-dir": "Symfony/Component/Routing",
@@ -2195,10 +2307,11 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "itsgoingd/clockwork": 20,
-        "anchu/ftp": 20
+        "anchu/ftp": 20,
+        "belt/underscore": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

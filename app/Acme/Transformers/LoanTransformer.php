@@ -141,7 +141,19 @@ class LoanTransformer extends Transformer
             'crop_inspection' => (integer)$arr['crop_inspection'],
             'reconciliation' => (integer)$arr['reconciliation'],
             'account_classification' => (integer)$arr['account_classification'],
+
             'expenses' => $arr['cropexpenses'],
+            /*'expenses' => [
+                'byCat' => [],
+                'byCrop' => [],
+                'byEntry' => $arr['cropexpenses'],
+                'total' => [
+                    'byCat' => [],
+                    'byCrop' => [],
+                    'byLoan' => []
+                ]
+            ],*/
+
             'fins' => [
                 'amount_requested' => (double)$arr['financials']['amount_requested'],
                 'total_acres' => (double)getLoanTotalAcres($arr['id']),
@@ -156,25 +168,43 @@ class LoanTransformer extends Transformer
                 'int_percent_arm' => (double)$arr['financials']['int_percent_arm'],
                 'fee_processing_percent' => (double)$arr['financials']['fee_processing'],
                 'fee_processing_onTotal' => (boolean)$arr['financials']['fee_processing_onTotal'],
+                'int_percent_other' => (double)$arr['financials']['int_percent_other'],
+                'fee_service_percent' => (double)$arr['financials']['fee_service'],
+                // CALCULATION
+                'commit_arm' => (double)$arr['financials']['commit_arm'],
+                // CALCULATION
+                'commit_dist' => (double)$arr['financials']['commit_dist'],
+                // CALCULATION
+                'commit_other' => (double)$arr['financials']['commit_other'],
+                // CALCULATION
+                'commit_total' => (double)$arr['financials']['commit_total'],
+                // CALCULATION
+                'principal_arm' => (double)$arr['financials']['principal_arm'],
+                // CALCULATION
+                'principal_dist' => (double)$arr['financials']['principal_dist'],
+                // CALCULATION
+                'principal_other' => (double)$arr['financials']['principal_other'],
+                // CALCULATION
+                'principal' => (double)$arr['financials']['principal'],
+                // CALCULATION
+                'arm_and_dist' => (double)$arr['financials']['arm_and_dist'],
                 // CALCULATION
                 'int_arm' => (double)$arr['financials']['int_arm'],
-                'int_percent_dist' => (double)$arr['financials']['int_percent_dist'],
                 // CALCULATION
                 'int_dist' => (double)$arr['financials']['int_dist'],
-                'int_percent_other' => (double)$arr['financials']['int_percent_other'],
                 // CALCULATION
                 'int_other' => (double)$arr['financials']['int_other'],
                 // CALCULATION
                 'proc_fee' => (double)$arr['financials']['proc_fee'],
                 // CALCULATION
                 'proc_fee_arm_only' => (double)$arr['financials']['proc_fee_arm_only'],
-                'fee_service_percent' => (double)$arr['financials']['fee_service'],
                 // CALCULATION
                 'fee_service_onTotal' => (boolean)$arr['financials']['fee_service_onTotal'],
                 // CALCULATION
                 'srvc_fee' => (double)$arr['financials']['srvc_fee'],
                 // CALCULATION
                 'srvc_fee_arm_only' => (double)$arr['financials']['srvc_fee_arm_only'],
+                // CALCULATION
                 'total_fee_percent' => (double)$arr['financials']['total_fee_percent'],
                 // CALCULATION
                 'fee_total' => (double)$arr['financials']['fee_total'],
@@ -208,24 +238,6 @@ class LoanTransformer extends Transformer
                 // CALCULATION
                 'disc_ins' => (double)$arr['financials']['disc_ins'],
                 'disc_ins_percent' => (double)$arr['financials']['disc_ins_percent'],
-                // CALCULATION
-                'commit_arm' => (double)$arr['financials']['commit_arm'],
-                // CALCULATION
-                'commit_dist' => (double)$arr['financials']['commit_dist'],
-                // CALCULATION
-                'commit_other' => (double)$arr['financials']['commit_other'],
-                // CALCULATION
-                'commit_total' => (double)$arr['financials']['commit_total'],
-                // CALCULATION
-                'principal_arm' => (double)$arr['financials']['principal_arm'],
-                // CALCULATION
-                'principal_dist' => (double)$arr['financials']['principal_dist'],
-                // CALCULATION
-                'principal_other' => (double)$arr['financials']['principal_other'],
-                // CALCULATION
-                'principal' => (double)$arr['financials']['principal'],
-                // CALCULATION
-                'arm_and_dist' => (double)$arr['financials']['arm_and_dist'],
                 // CALCULATION
                 'collateral' => (double)$arr['financials']['collateral'],
             ],

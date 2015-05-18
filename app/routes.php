@@ -1,6 +1,6 @@
 <?php
 
-//TODO: All non-Laravel routes should be prefixed with 'api'
+use Belt\_;
 use Acme\Transformers\LoanTransformer;
 
 Route::get('/', 'AppController@index')->before('auth');
@@ -23,11 +23,17 @@ Route::get('env', function () {
 });
 
 Route::get('test', function () {
-    $retHTML = Cropexpenses::where('loan_id', '1')
-        ->orderBy('crop_id')
-        ->orderBy('cat_id')
-        ->get();
-    return $retHTML;
+    /*$seeker = _::create([1, 2, 3, 4, 5, 6, 7, 8])
+        ->reduce(function ($s, $n) {
+            return $s + $n;
+        }, 0);
+    return $seeker;*/
+    $seeker = _::create([1, 2, 3, 4, 5, 6, 7, 8])
+        ->select(function ($n) {
+            return ($n % 2) == 0;
+        });
+    return dd($seeker->toArray());
+
     //return View::make('hello');
 });
 
