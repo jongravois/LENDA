@@ -40,7 +40,6 @@ return array(
         'Laracasts\Utilities\UtilitiesServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
         'Clockwork\Support\Laravel\ClockworkServiceProvider',
-		'Anchu\Ftp\FtpServiceProvider'
 	),
 	'manifest' => storage_path().'/meta',
 	'aliases' => array(
@@ -83,7 +82,6 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-
 	),
 
 );

@@ -1,7 +1,7 @@
 <?php
 
-use Belt\_;
 use Acme\Transformers\LoanTransformer;
+use Underscore\Underscore as _;
 
 Route::get('/', 'AppController@index')->before('auth');
 Route::get('login', 'SessionsController@create');
@@ -23,17 +23,14 @@ Route::get('env', function () {
 });
 
 Route::get('test', function () {
-    /*$seeker = _::create([1, 2, 3, 4, 5, 6, 7, 8])
-        ->reduce(function ($s, $n) {
-            return $s + $n;
-        }, 0);
-    return $seeker;*/
-    $seeker = _::create([1, 2, 3, 4, 5, 6, 7, 8])
-        ->select(function ($n) {
-            return ($n % 2) == 0;
-        });
-    return dd($seeker->toArray());
-
+    //_::each([1,2,3,4,5,6], function ($i) { echo "{$i}\n"; });
+    /*$sum = _::reduce([1,12,3], function ($memo, $num) { return $memo + $num; }, 0);
+    return $sum;*/
+    $array = [
+        ['foo' => 'bar', 'bis' => 'ter'],
+        ['foo' => 'bar', 'bis' => 'ter']
+    ];
+    return _::pluck($array, 'bis');
     //return View::make('hello');
 });
 

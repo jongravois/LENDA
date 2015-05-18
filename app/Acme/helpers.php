@@ -1,5 +1,7 @@
 <?php
 
+use Underscore\Underscore as _;
+
 function getAcresForCrop($obj, $cropID)
 {
     $nCropID = (integer)$cropID-1;
@@ -64,5 +66,72 @@ function getLoanTotalAcres($loanID)
         ->where('loan_id', $loanID)
         ->sum('ni');
     return (double) $acresIrr + $acresNi;
+}
+
+function processAttachments($id) {
+    $attachments = Attachment::where('loan_id', $id)-> get();
+    return $attachments;
+}
+function processExpenses($id)
+{
+    $exps = Cropexpenses::where('loan_id', $id)->get();
+    $slim = []; //will be all cropexpense records - limited fields & calcs
+
+    foreach($exps as $exp){
+        $newed = [
+            'loancrop_id' => (integer) $exp['loancrop_id'],
+            'crop' => $exp['loancrop']['crop']['crop'],
+            'name' => $exp['loancrop']['crop']['name'],
+            'cat_id' => (integer) $exp['cat_id'],
+            'expense' => $exp['expense'],
+            'acres' => (double) $exp['loancrop']['acres'],
+            'arm' => (double) $exp['arm'],
+            'arm_adj' => (double) $exp['arm_adj'],
+            'dist' => (double) $exp['dist'],
+            'dist_adj' => (double) $exp['dist_adj'],
+            'other' => (double) $exp['other'],
+            'other_adj' => (double) $exp['other_adj'],
+            'per_acre' => (double) $exp['arm_adj'] + (double) $exp['dist_adj'] + (double) $exp['other_adj'],
+            'calc_arm' => (double) $exp['arm_adj'] * (double) $exp['loancrop']['acres'],
+            'calc_dist' => (double) $exp['dist_adj'] * (double) $exp['loancrop']['acres'],
+            'calc_other' => (double) $exp['other_adj'] * (double) $exp['loancrop']['acres'],
+            'calc_total' => ((double) $exp['arm_adj'] + (double) $exp['dist_adj'] + (double) $exp['other_adj']) * (double) $exp['loancrop']['acres']
+        ];
+        array_push($slim, $newed);
+    }
+
+    $cats = _::pluck($slim, 'expense');
+    $byCat = [];
+    $byCatGrpd = _::groupBy($slim, function($item){
+        return $item['expense'];
+    });
+    $byCat = $byCatGrpd;
+    //will be each cat's total acre_arm, acre_dist, acre_other, acre_total, calc_arm, calc_dist, calc_other, calc_total - groupBy('expense')
+
+    $byCrop = []; //will be each crop's total acres, expense, crop, name, arm, dist, other, per_acre, calc_arm, calc_dist, calc_other, calc_total
+    $total = [];
+    $totalCat = [];
+    $totalCrop = [];
+    $totalLoan = [];
+
+    $arrExp = [
+        'byCat' => $byCat, //$cats
+        'byCrop' => [],
+        'byEntry' => $slim,
+        'total' => [
+            'byCat' => [],
+            'byCrop' => [],
+            'byLoan' => []
+        ]
+    ];
+
+    return $arrExp;
+}
+function processPartners($id)
+{
+    $newPartners = [];
+    $partners = Partners::where('loan_id', $id)-> get();
+
+    return $partners;
 }
 

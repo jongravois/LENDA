@@ -15,8 +15,7 @@
         "barryvdh/laravel-cors": "0.2.x",
         "itsgoingd/clockwork": "dev-master",
         "guzzlehttp/guzzle": "~5.2",
-        "anchu/ftp": "dev-master",
-        "belt/underscore": "^1.0@dev"
+        "bdelespierre/underscore": "0.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4"
@@ -51,7 +50,7 @@
         ]
     },
     "config": {
-        "preferred-install": "dist"
-    },
-    "minimum-stability": "dev"
+        "preferred-install": "dev",
+        "prefer-stable": true
+    }
 }

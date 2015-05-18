@@ -1,7 +1,6 @@
 <?php namespace Acme\Transformers;
 
 use Carbon\Carbon;
-use Belt\_;
 use Illuminate\Support\Facades\DB;
 
 class LoanTransformer extends Transformer
@@ -145,16 +144,7 @@ class LoanTransformer extends Transformer
             'account_classification' => (integer)$arr['account_classification'],
 
             'expenses' => $arr['cropexpenses'],
-            /*'expenses' => [
-                'byCat' => [],
-                'byCrop' => [],
-                'byEntry' => $arr['cropexpenses'],
-                'total' => [
-                    'byCat' => [],
-                    'byCrop' => [],
-                    'byLoan' => []
-                ]
-            ],*/
+            'expensez' => processExpenses($arr['id']),
 
             'fins' => [
                 'amount_requested' => (double)$arr['financials']['amount_requested'],
@@ -283,10 +273,12 @@ class LoanTransformer extends Transformer
             ],
             'entity_type_id' => $arr['applicant']['entitytype']['id'],
             'entity_type' => $arr['applicant']['entitytype']['entitytype'],
-            'partners' => $arr['partners'],
+
+            'partners' => processPartners($arr['id']),
+            'partnerzzz' => $arr['partners'],
             'ventures' => $arr['ventures'],
             'corporations' => $arr['corporations'],
-            'attachments' => $arr['attachments'],
+            'attachments' => processAttachments($arr['id']),
             'conditions' => [
                 'asa' => (boolean)$arr['conditions_asa'],
                 'aci' => (boolean)$arr['conditions_aci'],
