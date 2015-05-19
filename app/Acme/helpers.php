@@ -101,11 +101,12 @@ function processExpenses($id)
     }
 
     $cats = _::pluck($slim, 'expense');
-    $byCat = [];
-    $byCatGrpd = _::groupBy($slim, function($item){
+    $byCat =  _::groupBy($slim, function($item){
         return $item['expense'];
     });
-    $byCat = $byCatGrpd;
+
+
+
     //will be each cat's total acre_arm, acre_dist, acre_other, acre_total, calc_arm, calc_dist, calc_other, calc_total - groupBy('expense')
 
     $byCrop = []; //will be each crop's total acres, expense, crop, name, arm, dist, other, per_acre, calc_arm, calc_dist, calc_other, calc_total

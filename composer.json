@@ -30,7 +30,8 @@
             "app/tests/TestCase.php"
         ],
         "files": [
-            "app/Acme/helpers.php"
+            "app/Acme/helpers.php",
+            "app/Acme/financials.php"
         ],
         "psr-4": {
             "Acme\\": "app/Acme"
