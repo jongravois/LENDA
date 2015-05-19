@@ -96,9 +96,9 @@ function calcCommits($loanID, $entity)
     return $commit;
 }
 
-function calcCropValue(acres, prod_share, prod_yield, price)
+function calcCropValue($acres, $prod_share, $prod_yield, $price)
 {
-    return (double)acres * ((double)prod_share/100) * (double) prod_yield * (double)price;
+    return (double)$acres * ((double)$prod_share/100) * (double)$prod_yield * (double)$price;
 }
 
 function calcInterest($principal, $percent)
