@@ -130,3 +130,24 @@ function getTotalClaims($loanID)
 {
     return Loancrop::where('loan_id', $loanID)->sum('claims');
 }
+
+function processCrops($loanID)
+{
+    return [
+        'corn' => [
+            'crop_id' => 1,
+            'crop' => 'corn',
+            'name' => 'Corn',
+            'is_active' => true,
+            'acres' => 999999
+        ],
+        'soybeans' => [],
+        'beansFAC' => [],
+        'sorghum' => [],
+        'wheat' => [],
+        'cotton' => [],
+        'rice' => [],
+        'peanuts' => [],
+        'sugarcane' => []
+    ];
+}

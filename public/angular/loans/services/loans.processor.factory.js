@@ -28,9 +28,7 @@
                 loancrops: processLoanCrops(loan),
                 need_vote: getPendingVotes(loan),
                 priorlien: processPriorLien(loan.priorlien),
-                supplements: processSupInsurance(loan.suppins),
-                total_ins_value: getTotalInsValue(loan),
-                xcols: getCrossCollateralLoans(loan)
+                supplements: processSupInsurance(loan.suppins)
             })
                 .then(function (updatedData) {
                     angular.extend(loan, updatedData);
@@ -120,9 +118,6 @@
                     });
                 });
         }
-        function getCrossCollateralLoans(loan) {
-            return _.uniq(_.pluck(loan.xcols, 'collateral_id'));
-        }
         function getPendingComments(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/commentstatus')
                 .then(function (response) {
@@ -199,12 +194,6 @@
             //console.log('LoanInsurance: ', ins);
             return (ins);
 
-        }
-        function getTotalInsValue(loan) {
-            return $http.get(API_URL + '/insurance/' + loan.id + '/value')
-                .then(function (response) {
-                    return response.data;
-                });
         }
         function makeCrop(id, list) {
             var crop_id = Number(id);

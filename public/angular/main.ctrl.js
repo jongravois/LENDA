@@ -40,7 +40,7 @@
             FeederFactory.init();
             $scope.feeder = FeederFactory.getObject();
 
-            LoansProcessor.getLoansWithExtraData()
+            /*LoansProcessor.getLoansWithExtraData()
                 .then(function (allLoans) {
                     $scope.loans = allLoans;
                     console.log('Loans from Main', allLoans);
@@ -50,7 +50,18 @@
                     //TODO: Determine initial sort order
                     $scope.sortedLoanList = orderByFilter($scope.loanList, '+id');
                 });
-                toastr.success('Loaded all loans', 'Success!');
+                toastr.success('Loaded all loans', 'Success!');*/
+
+            LoansFactory.getLoans()
+                .then(function(allLoans){
+                    $scope.loan = allLoans;
+                    console.log('Loans from Main', allLoans);
+                    $scope.loanList = _.filter(allLoans, function(i) {
+                        return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
+                    });
+                    //TODO: Determine initial sort order
+                    $scope.sortedLoanList = orderByFilter($scope.loanList, '+id');
+                });
 
             FarmersFactory.getFarmers()
                 .then(function(rsp){

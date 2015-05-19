@@ -220,7 +220,7 @@ class Loan extends \Eloquent {
 
     public function xcollaterals()
     {
-        return $this->hasMany('Crosscollateral');
+        return $this->hasMany('Crosscollateral', 'loan_id');
     }
 
 

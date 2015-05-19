@@ -143,6 +143,7 @@ class LoanTransformer extends Transformer
             'reconciliation' => (integer)$arr['reconciliation'],
             'account_classification' => (integer)$arr['account_classification'],
 
+            'crops' => processCrops($arr['id']),
             'cats' => getExpenseCategories($arr['id']),
             'expenses' => $arr['cropexpenses'],
             'expensez' => processExpenses($arr['id']),
@@ -189,11 +190,10 @@ class LoanTransformer extends Transformer
             'entity_type_id' => $arr['applicant']['entitytype']['id'],
             'entity_type' => $arr['applicant']['entitytype']['entitytype'],
             'quests' => $arr['quests'][0],
-
             'partners' => processPartners($arr['id']),
-
             'ventures' => $arr['ventures'],
             'corporations' => $arr['corporations'],
+            'xcols' => $arr['xcollaterals'],
             'attachments' => processAttachments($arr['id']),
             'conditions' => [
                 'asa' => (boolean)$arr['conditions_asa'],
@@ -217,8 +217,7 @@ class LoanTransformer extends Transformer
             'othercollateral' => $arr['othercollateral'],
             'priorlien' => $arr['priorliens'],
             'systemics' => $arr['systemics'],
-            'last_activity' => $arr['updated_at'],
-            'xcols' => $arr['xcollaterals']
+            'last_activity' => $arr['updated_at']
         ];
     }
 
