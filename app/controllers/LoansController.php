@@ -22,7 +22,7 @@ class LoansController extends ApiController
 
     public function index()
     {
-        $loans = Loan::with('appfins', 'applicant.entitytype', 'applicant.state', 'committee.user', 'corporations', 'comments.responses', 'comments.status', 'distributor', 'exceptions', 'cropexpenses.loancrop.crop', 'farmer.state', 'farms.county', 'loanconditions', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs', 'location', 'inspols.crop', 'othercollateral', 'priorliens', 'regions', 'suppins.counties', 'suppins.crops', 'systemics', 'user', 'ventures', 'xcollaterals')->where('applicant_id', '!=', 'null')->get();
+        $loans = Loan::with('appfins', 'applicant.entitytype', 'applicant.state', 'committee.user', 'corporations', 'comments.responses', 'comments.status', 'distributor', 'exceptions', 'cropexpenses.loancrop.crop', 'farmer.state', 'farms.county', 'loanconditions', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs', 'location', 'inspols.crop', 'othercollateral', 'priorliens', 'quests', 'regions', 'suppins.counties', 'suppins.crops', 'systemics', 'user', 'ventures', 'xcollaterals')->where('applicant_id', '!=', 'null')->get();
         //return $loans;  //REMOVE THIS
 
         return $this->respond([
@@ -32,7 +32,7 @@ class LoansController extends ApiController
 
     public function show($id)
     {
-        $loan = Loan::with('appfins', 'applicant.entitytype', 'applicant.state', 'committee.user', 'corporations', 'comments.responses', 'comments.status', 'distributor', 'exceptions', 'cropexpenses.loancrop.crop', 'farmer.state', 'farms.county', 'financials', 'loanconditions', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs', 'location', 'inspols.crop', 'othercollateral', 'partners', 'priorliens', 'regions', 'suppins.counties', 'suppins.crops', 'systemics', 'user', 'ventures', 'xcollaterals')->where('applicant_id', '!=', 'null')->where('id', $id)->get();
+        $loan = Loan::with('appfins', 'applicant.entitytype', 'applicant.state', 'committee.user', 'corporations', 'comments.responses', 'comments.status', 'distributor', 'exceptions', 'cropexpenses.loancrop.crop', 'farmer.state', 'farms.county', 'financials', 'loanconditions', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs', 'location', 'inspols.crop', 'othercollateral', 'partners', 'priorliens', 'quests', 'regions', 'suppins.counties', 'suppins.crops', 'systemics', 'user', 'ventures', 'xcollaterals')->where('applicant_id', '!=', 'null')->where('id', $id)->get();
         //return $loans;  //REMOVE THIS
 
         if ($loan->isEmpty()) {

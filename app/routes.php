@@ -26,11 +26,13 @@ Route::get('test', function () {
     //_::each([1,2,3,4,5,6], function ($i) { echo "{$i}\n"; });
     /*$sum = _::reduce([1,12,3], function ($memo, $num) { return $memo + $num; }, 0);
     return $sum;*/
-    $array = [
+    /*$array = [
         ['foo' => 'bar', 'bis' => 'ter'],
         ['foo' => 'bar', 'bis' => 'ter']
     ];
-    return _::pluck($array, 'bis');
+    return _::pluck($array, 'bis');*/
+    $cats = Cropexpenses::where('loan_id', 1)->get(['expense']);
+    return array_unique($cats->all());
     //return View::make('hello');
 });
 

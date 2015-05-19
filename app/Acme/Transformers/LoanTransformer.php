@@ -143,6 +143,7 @@ class LoanTransformer extends Transformer
             'reconciliation' => (integer)$arr['reconciliation'],
             'account_classification' => (integer)$arr['account_classification'],
 
+            'cats' => getExpenseCategories($arr['id']),
             'expenses' => $arr['cropexpenses'],
             'expensez' => processExpenses($arr['id']),
 
@@ -187,6 +188,7 @@ class LoanTransformer extends Transformer
             ],
             'entity_type_id' => $arr['applicant']['entitytype']['id'],
             'entity_type' => $arr['applicant']['entitytype']['entitytype'],
+            'quests' => $arr['quests'][0],
 
             'partners' => processPartners($arr['id']),
 

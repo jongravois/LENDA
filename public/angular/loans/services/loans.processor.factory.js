@@ -19,9 +19,7 @@
         }
         function updateLoanData(loan) {
             return $q.all({
-                cats: getExpensesCategories(loan),
-                collateral: processCollateral(loan.othercollateral),
-                comments: getComments(loan),
+               collateral: processCollateral(loan.othercollateral),
                 crops: getCrops(loan),
                 expenses: getExpenses(loan),
                 fees: getFees(loan),
@@ -30,7 +28,6 @@
                 loancrops: processLoanCrops(loan),
                 need_vote: getPendingVotes(loan),
                 priorlien: processPriorLien(loan.priorlien),
-                quests: getLoanQuestions(loan),
                 supplements: processSupInsurance(loan.suppins),
                 total_ins_value: getTotalInsValue(loan),
                 xcols: getCrossCollateralLoans(loan)
@@ -81,7 +78,6 @@
         function getAcresTotal(loan) {
             return _.sumCollection(loan.loancrops, 'acres');
         }
-        function getComments(loan) {}
         function getCropExpenses(crop) {
             if(crop.length < 1) { return; }
             return $http.get(API_URL + '/loans/' + crop[0].loan_id + '/expenses/' + crop[0].crop_id)
@@ -169,10 +165,6 @@
                 byFarm: []
             };
         }
-        function getExpensesCategories(loan) {
-            //TODO: Add to loan - Expense categories for this loan!
-            return _.uniq(_.pluck(loan.expenses, 'expense'));
-        }
         function getExpenses(loan) {
             var expenses = loan.expenses;
             //var expenses = loan.expenses.byEntry;
@@ -207,21 +199,6 @@
             //console.log('LoanInsurance: ', ins);
             return (ins);
 
-        }
-        function getLoanQuestions(loan) {
-            return $http.get(API_URL + '/loans/' + loan.id + '/quests')
-                .then(function (response) {
-                    if(response) {
-                        //console.log('LoanQuestions: ', response);
-                        if(response.data.data[0]) {
-                            return response.data.data[0];
-                        } else if(response.data.data) {
-                            return response.data.data;
-                        }
-                    } else {
-                        return {};
-                    }
-                });
         }
         function getTotalInsValue(loan) {
             return $http.get(API_URL + '/insurance/' + loan.id + '/value')
