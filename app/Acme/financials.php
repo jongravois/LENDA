@@ -25,7 +25,6 @@ function processFinancials($loan)
 
     return [
         'amount_requested' => (double)$fins['amount_requested'],
-        'total_acres' => (double)getLoanTotalAcres($loan['id']),
         'claims_percent' => (double)$fins['claims_percent'],
         'supplement_insurance_discount_percent' => (double) $fins['supplement_insurance_discount_percent'],
         'fsa_assignment_percent' => (double)$fins['fsa_assignment_percent'],
@@ -45,6 +44,8 @@ function processFinancials($loan)
         'total_fee_percent' => (double)$fins['total_fee_percent'],
         'collateral_equipment' => (double)$fins['collateral_equipment'],
         'collateral_realestate' => (double)$fins['collateral_realestate'],
+
+        'total_acres' => (double)getLoanTotalAcres($loan['id']),
         'total_fsa_payment' => (double)getTotalFSAPayment($loan['id']),
         'total_claims' => (double)getTotalClaims($loan['id']),
         'commit_arm' => $arm_commit,
