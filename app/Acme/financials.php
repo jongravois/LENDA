@@ -58,7 +58,7 @@ function processFinancials($loan)
         'srvc_fee_arm_only' => (double)$arm_commit * ((double)$fins['fee_service']/100),
         'fee_total' => (double)$procFee + (double)$srvcFee,
         'principal_arm' => calcPrincipal($arm_commit, $srvcFee, $procFee),
-        'principal_dist' => calcPrincipal($dist_commit, 0, 0), $fins['int_percent_dist'],
+        'principal_dist' => calcPrincipal($dist_commit, 0, 0),
         'principal_other' => calcPrincipal($other_commit, 0, 0),
         'principal' => (double)calcPrincipal($arm_commit, $srvcFee, $procFee) + (double)calcPrincipal($dist_commit, 0, 0) + (double)calcPrincipal($other_commit, 0, 0),
         'int_arm' => calcInterest(calcPrincipal($arm_commit, $srvcFee, $procFee), $fins['int_percent_arm']),
