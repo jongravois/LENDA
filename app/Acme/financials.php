@@ -64,8 +64,12 @@ function processFinancials($loan)
         'int_arm' => calcInterest(calcPrincipal($arm_commit, $srvcFee, $procFee), $fins['int_percent_arm']),
         'int_dist' => calcInterest(calcPrincipal($dist_commit, 0, 0), (double)$fins['int_percent_other']),
         'int_other' => calcInterest(calcPrincipal($other_commit, 0, 0), (double)$fins['int_percent_other']),
-        //'prod' => (double)$fins['prod'],
-        //'adj_prod' => (double)$fins['adj_prod'],
+
+        /* THESE MAY NOT BE NEEDED */
+        //'prod' => calcCropValue(getLoanTotalAcres($loan['id']), prod_share, prod_yield, price),
+        //'bkd_val' => 0, //(bkprice-price)*yield-(acres*harvest*yield)
+        //'rebate_val' => 0, // (rebates*yield*share/100*acres)
+        //'adj_prod' => (double)$fins['adj_prod'], //(prod+crops_bkd_val+crops_rebate_val
         //'collateral' => (double)$fins['collateral']
         //'guaranty' => (double)$fins['guaranty'],
         //'disc_adj_prod' => (double)$fins['disc_adj_prod'],
@@ -90,6 +94,11 @@ function calcCommits($loanID, $entity)
     } // end for
 
     return $commit;
+}
+
+function calcCropValue(acres, prod_share, prod_yield, price)
+{
+    return (double)acres * ((double)prod_share/100) * (double) prod_yield * (double)price;
 }
 
 function calcInterest($principal, $percent)
