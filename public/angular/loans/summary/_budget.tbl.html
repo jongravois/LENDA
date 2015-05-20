@@ -28,24 +28,6 @@
         </td>
     </tr>
 
-    <tr class="warning">
-        <td colspan="5" class="text-left">
-            <strong>Total Budgeted Expenses</strong>
-        </td>
-        <td class="text-right" ng-class=gtZero(loan.expenses.totals.byLoan.arm)>
-            {{loan.expenses.totals.byLoan.arm | flexCurrency:0 }}
-        </td>
-        <td class="text-right" ng-class=gtZero(loan.expenses.totals.byLoan.dist)>
-            {{loan.expenses.totals.byLoan.dist | flexCurrency:0 }}
-        </td>
-        <td class="text-right" ng-class=gtZero(loan.expenses.totals.byLoan.other)>
-            {{loan.expenses.totals.byLoan.other | flexCurrency:0 }}
-        </td>
-        <td class="text-right" ng-class=gtZero(loan.expenses.totals.byLoan.total)>
-            {{loan.expenses.totals.byLoan.total | flexCurrency:0 }}
-        </td>
-    </tr>
-
     <!-- FEES -->
     <tr>
         <td colspan="5">Fees and Other</td>
@@ -60,9 +42,9 @@
     </tr>
 
     <!-- PRINCIPAL -->
-    <tr class="success">
+    <tr>
         <td colspan="5" class="text-left">
-            <strong>Total Expenses</strong>
+            Total Expenses
         </td>
         <td class="text-right">
             {{loan.expenses.totals.byLoan.arm|flexCurrency:0}}
@@ -94,7 +76,7 @@
     </tr>
 
     <!-- CASH FLOW/DEFICIT -->
-    <tr class="warning">
+    <tr class="success">
         <td colspan="5">Cash Flow (Deficit)</td>
         <td colspan="3">&nbsp;</td>
         <td class="text-right">

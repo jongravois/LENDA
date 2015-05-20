@@ -48,6 +48,7 @@
             calcTotalExpenses: calcTotalExpenses,
             calcTotalInsGuar: calcTotalInsGuar,
             calcTotalInsValue: calcTotalInsValue,
+            calcTotalOtherCollateral: calcTotalOtherCollateral,
             calcTotalOverDisc: calcTotalOverDisc,
             calcTotalOverDiscNonRP: calcTotalOverDiscNonRP,
             calcTotalRECollateral: calcTotalRECollateral,
@@ -447,6 +448,13 @@
             var col = loan.insurance.byCrop;
 
             return _.sumCollection(col, 'value');
+        }
+
+        function calcTotalOtherCollateral(loan) {
+            if(!loan) { return; }
+
+            var collection = loan.collateral.other;
+            return _.sumCollection(collection, 'amount');
         }
 
         function calcTotalOverDisc(loan) {

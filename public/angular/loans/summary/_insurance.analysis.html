@@ -24,7 +24,7 @@
         <td class="text-right">{{c.share|flexPercent:1}}</td>
         <td class="text-right">{{c.value|flexCurrency:0}}</td>
     </tr>
-    <tr class="success" ng-if="loan.insurance.byCrop.length !== 0">
+    <tr ng-if="loan.insurance.byCrop.length !== 0">
         <td>Total</td>
         <td colspan="7">&nbsp;</td>
         <td class="text-right">

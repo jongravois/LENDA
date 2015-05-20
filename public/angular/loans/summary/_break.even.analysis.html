@@ -1,11 +1,10 @@
 <table class="table"  style="width:80%; margin:0 auto;">
-    <tr>
+    <tr style="display:none;">
         <td colspan="2">Break-Even</td>
         <td class="text-right">{{AppFactory.calcBreakEvenPercent(loan)|flexPercent:1}}</td>
     </tr>
     <tr ng-repeat="ac in loan.loancrops" ng-if="ac.break_even != 0">
-        <td style="width:35%;">Loan payback break-even for ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}}</span>:</td>
-        <td style="width:10%;">{{ac.crop.name}}</td>
+        <td style="width:40%;">{{ac.crop.name}}</td>
         <td class="text-right" style="width:10%;">
             {{ac.break_even | number:1}}
         </td>

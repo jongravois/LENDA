@@ -37,8 +37,8 @@
             {{c.crop_total | flexCurrency:0}}
         </td>
     </tr>
-    <tr class="warning">
-        <td>Subtotal: Crop Input</td>
+    <tr>
+        <td>Agriculture Input</td>
         <td class="text-right">
             {{loan.fins.total_acres|number:1}}
         </td>
@@ -59,10 +59,8 @@
             {{AppFactory.getTotalClaims(loan) | flexCurrency:0}}
         </td>
     </tr>
-    <tr class="success">
-        <td class="text-left"><strong>Total Revenue</strong></td>
-        <td class="text-right">{{loan.total_acres | number:1}}</td>
-        <td colspan="6">&nbsp;</td>
+    <tr>
+        <td class="text-left" colspan="8">Total Revenue</td>
         <td  class="text-right">
             {{AppFactory.calcTotalRevenue(loan) | flexCurrency:0}}
         </td>
