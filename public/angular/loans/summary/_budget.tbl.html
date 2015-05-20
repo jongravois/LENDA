@@ -50,12 +50,12 @@
     <tr>
         <td colspan="5">Fees and Other</td>
         <td class="text-right">
-            {{AppFactory.getFeesForArm(loan)|flexCurrency:0 }}
+            {{loan.fins.fee_total|flexCurrency:0 }}
         </td>
         <td class="text-center" ng-if="loan.has_distributor"> - </td>
         <td class="text-center"> - </td>
         <td class="text-right">
-            {{AppFactory.getFeesForArm(loan)|flexCurrency:0 }}
+            {{loan.fins.fee_total|flexCurrency:0 }}
         </td>
     </tr>
 
@@ -65,7 +65,7 @@
             <strong>Total Expenses</strong>
         </td>
         <td class="text-right">
-            {{AppFactory.getArmPrincipal(loan)|flexCurrency:0}}
+            {{loan.expenses.totals.byLoan.arm|flexCurrency:0}}
         </td>
         <td class="text-right" ng-class=gtZero(loan.expenses.totals.byLoan.dist)>
             {{loan.expenses.totals.byLoan.dist | flexCurrency:0 }}
@@ -74,7 +74,7 @@
             {{loan.expenses.totals.byLoan.other | flexCurrency:0 }}
         </td>
         <td class="text-right">
-            {{AppFactory.getTotalPrincipal(loan) | flexCurrency:0 }}
+            {{loan.expenses.totals.byLoan.total|flexCurrency:0}}
         </td>
     </tr>
 
@@ -82,21 +82,21 @@
     <tr>
         <td colspan="5">Estimated Interest</td>
         <td class="text-right">
-            {{AppFactory.getArmInterest(loan)|flexCurrency:0}}
+            {{loan.fins.int_arm|flexCurrency:0}}
         </td>
         <td class="text-right" ng-if="loan.has_distributor">
-            {{AppFactory.getDistInterest(loan)|flexCurrency:0}}
+            {{loan.fins.int_dist|flexCurrency:0}}
         </td>
         <td class="text-center"> - </td>
         <td class="text-right">
-            {{AppFactory.getTotalInterest(loan)|flexCurrency:0}}
+            {{loan.fins.int_total|flexCurrency:0}}
         </td>
     </tr>
 
     <!-- CASH FLOW/DEFICIT -->
     <tr class="warning">
-        <td>Cash Flow (Deficit)</td>
-        <td colspan="7">&nbsp;</td>
+        <td colspan="5">Cash Flow (Deficit)</td>
+        <td colspan="3">&nbsp;</td>
         <td class="text-right">
             {{AppFactory.calcCashFlow(loan) | flexCurrency:0 }}
         </td>

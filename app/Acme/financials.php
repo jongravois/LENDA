@@ -23,6 +23,14 @@ function processFinancials($loan)
     $other_commit = calcCommits($loan['id'], 'other_adj');
     $total_commit = (double)$arm_commit + (double)$dist_commit + (double)$other_commit;
 
+    $principalArm = calcPrincipal($arm_commit, $srvcFee, $procFee);
+    $principalDist = calcPrincipal($dist_commit, 0, 0);
+    $principalOther = calcPrincipal($other_commit, 0, 0);
+
+    $interestArm = calcInterest(calcPrincipal($arm_commit, $srvcFee, $procFee), $fins['int_percent_arm']/100);
+    $interestDist = calcInterest(calcPrincipal($dist_commit, 0, 0), (double)$fins['int_percent_other']/100);
+    $interestTotal = $interestArm + $interestDist;
+
     return [
         'amount_requested' => (double)$fins['amount_requested'],
         'claims_percent' => (double)$fins['claims_percent'],
@@ -57,13 +65,13 @@ function processFinancials($loan)
         'srvc_fee' => (double)$srvcFee,
         'srvc_fee_arm_only' => (double)$arm_commit * ((double)$fins['fee_service']/100),
         'fee_total' => (double)$procFee + (double)$srvcFee,
-        'principal_arm' => calcPrincipal($arm_commit, $srvcFee, $procFee),
-        'principal_dist' => calcPrincipal($dist_commit, 0, 0),
-        'principal_other' => calcPrincipal($other_commit, 0, 0),
+        'principal_arm' => $principalArm,
+        'principal_dist' => $principalDist,
+        'principal_other' => $principalOther,
         'principal' => (double)calcPrincipal($arm_commit, $srvcFee, $procFee) + (double)calcPrincipal($dist_commit, 0, 0) + (double)calcPrincipal($other_commit, 0, 0),
-        'int_arm' => calcInterest(calcPrincipal($arm_commit, $srvcFee, $procFee), $fins['int_percent_arm']),
-        'int_dist' => calcInterest(calcPrincipal($dist_commit, 0, 0), (double)$fins['int_percent_other']),
-        'int_other' => calcInterest(calcPrincipal($other_commit, 0, 0), (double)$fins['int_percent_other']),
+        'int_arm' => $interestArm,
+        'int_dist' => $interestDist,
+        'int_total' => $interestTotal,
         'cash_flow' => 999999,
         'risk' => 999999,
         'adjusted_risk' => 999999

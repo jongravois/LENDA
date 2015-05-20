@@ -10,9 +10,11 @@
     function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, AppFactory, ExceptionsFactory, CommentsData, CommentsLogic) {
         $scope.AppFactory = AppFactory;
 
-        $scope.loan = _.find($scope.loans, function(i) {
-            return i.id == $stateParams.loanID;
-        });
+        if(!$scope.loan){
+            $scope.loan = _.find($scope.loans, function(i) {
+                return i.id == $stateParams.loanID;
+            });
+        }
 
         if($scope.loan){
             CommentsData
@@ -26,19 +28,8 @@
             toastr.success('Loaded active loan', 'Success!');
         }
 
-        activate();
-
-        function activate() {
-            $scope.indicon_width = '140px';
-            $scope.toggleComment = false;
-
-            if(!$scope.loan){
-                $scope.loan = _.find($scope.loans, function(i) {
-                    return i.id == $stateParams.loanID;
-                });
-            }
-            //console.log('loan (from EditLoanCtrl', $scope.loan);
-        }
+        $scope.indicon_width = '140px';
+        $scope.toggleComment = false;
 
         $scope.updateLoanComment = function() {
             var loanID = $stateParams.loanID;

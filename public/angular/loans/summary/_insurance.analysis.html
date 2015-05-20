@@ -37,7 +37,7 @@
     <tr>
         <td style="width:60%;">ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}} </span>Loan secured by Collateral Conditions</td>
         <td style="width:40%;" colspan="3" class="text-right">
-            {{AppFactory.getArmDistCollateral(loan) | flexCurrency:0}}
+            {{loan.expenses.totals.byLoan.arm + loan.expenses.totals.byLoan.dist|flexCurrency:0}}
         </td>
     </tr>
     <tr>
@@ -49,7 +49,7 @@
     <tr>
         <td>Crop Insurance coverage in excess of ARM<span ng-if="loan.has_distributor"> and {{loan.distributor}}</span> Loan</td>
         <td colspan="3" class="text-right">
-            {{AppFactory.calcInsuranceTotalValue(loan) - AppFactory.getArmDistCollateral(loan) | flexCurrency:0}}
+            {{AppFactory.calcInsuranceTotalValue(loan) - (loan.expenses.totals.byLoan.arm + loan.expenses.totals.byLoan.dist) | flexCurrency:0}}
         </td>
     </tr>
 </table>

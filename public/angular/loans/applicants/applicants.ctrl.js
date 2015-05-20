@@ -4,34 +4,29 @@
         .module('ARM')
         .controller('ApplicantsController', ApplicantsController);
 
-    ApplicantsController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'AppFactory', 'ApplicantsFactory'];
+    ApplicantsController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'AppFactory', 'LoansFactory', 'ApplicantsFactory', 'orderByFilter'];
 
-    function ApplicantsController($scope, $rootScope, $state, $stateParams, AppFactory, ApplicantsFactory) {
-        activate();
+    function ApplicantsController($scope, $rootScope, $state, $stateParams, AppFactory, LoansFactory, ApplicantsFactory, orderByFilter) {
+        var curr = $state.current.url;
+        var currScreen = curr.substring(1, curr.length);
+        $scope.newapplication = $state.current.data.newapplication;
 
-        function activate() {
-            //console.log('Farmer: ', $rootScope.farmerID);
-            var curr = $state.current.url;
-            var currScreen = curr.substring(1, curr.length);
-            $scope.newapplication = $state.current.data.newapplication;
+        if ($scope.newapplication && $scope.screens) {
+            angular.forEach($scope.screens, function (obj) {
+                if (obj.screen === currScreen) {
+                    obj.status = 1;
+                }
+            });
+        }// end if
 
-            if ($scope.newapplication && $scope.screens) {
-                angular.forEach($scope.screens, function (obj) {
-                    if (obj.screen === currScreen) {
-                        obj.status = 1;
-                    }
-                });
-            }// end if
+        if (!$scope.loan) {
+            $scope.loan = $rootScope.loan;
+            $scope.loan.applicant = {entity_type_id: '2'};
+        } // end if
 
-            if (!$scope.loan) {
-                $scope.loan = $rootScope.loan;
-                $scope.loan.applicant = {entity_type_id: '2'};
-            } // end if
-
-            if ($scope.loan && !$scope.loan.applicant_id) {
-                $scope.loan.applicant = {entity_type_id: '2'};
-            } // end if
-        }
+        if ($scope.loan && !$scope.loan.applicant_id) {
+            $scope.loan.applicant = {entity_type_id: '2'};
+        } // end if
 
         $scope.newPartner = $scope.newPartner || {};
         $scope.newJoint = $scope.newJoint || {};
@@ -54,9 +49,8 @@
                 .then(function (rsp) {
                     AppFactory.patchIt('/loans/', $stateParams.loanID, {applicant_id: rsp.data.message});
                     $rootScope.loan = $scope.loan;
-                    //TODO: process loan???
                     $scope.loans.push($scope.loan);
-                    $state.go('edit.quests', $stateParams);
+                    AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
                 });
         };
 

@@ -95,11 +95,13 @@
                         default_due_date: moment(new Date(AppFactory.getDefaultDueDate(types.id, $scope.globals.crop_year))).format('MM/DD/YYYY'),
                         due_date: moment(new Date(AppFactory.getDefaultDueDate(types.id, $scope.globals.crop_year))).format('MM/DD/YYYY'),
                         loan_type_id: types.id,
+                        loan_type: $scope.chosenLT,
                         crop_year: $scope.globals.crop_year,
                         season: $scope.globals.season,
                         loc_id: $scope.user.loc_id,
                         region_id: $scope.user.region_id,
-                        user_id: $scope.user.id
+                        user_id: $scope.user.id,
+                        attachments: []
                     };
                     //console.log('new loan', obj);
 
