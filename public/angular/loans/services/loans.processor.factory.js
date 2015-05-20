@@ -544,20 +544,19 @@
                 premium: _.sum(arr, 'premium')
             };
         } // end function
+
         function processInsTotals(obj) {
             var lone = {acres: 0, value: 0};
-            var byLoan = _.forEach(obj, function (item, key) {
+            var byLoan = _.forEach(obj, function (item) {
                 lone.acres += Number(item.acres);
                 lone.value += Number(item.value);
             });
-            return lone;
+            return byLoan;
         }
 
         function processLoanCrops(loan) {
             var crops = loan.loancrops;
-            if (!crops) {
-                return;
-            }
+            if (!crops) { return; }
 
             var cropplus = _.forEach(crops, function (obj) {
                 obj.crop_value = AppFactory.incomeCropValue(obj);

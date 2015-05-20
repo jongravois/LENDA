@@ -13,6 +13,7 @@
             averageArray: averageArray,
             calcAdjustedProd: calcAdjustedProd,
             calcAdjustedRiskMargin: calcAdjustedRiskMargin,
+            calcAdjProd: calcAdjProd,
             calcArmAndDist: calcArmAndDist,
             calcBreakEvenPercent: calcBreakEvenPercent,
             calcCashFlow: calcCashFlow,
@@ -166,6 +167,11 @@
             return obj.acres * obj.yield * obj.price * (obj.share/100);
         }
 
+        function calcAdjProd(loan) {
+            var adj_prod = _.sumCollection(loan.loancrops, 'crop_total');
+            return adj_prod;
+        }
+
         function calcAdjustedRiskMargin(loan) {
             if(!loan) { return 0; }
 
@@ -270,15 +276,38 @@
         }
 
         function calcMarketValueTotal(loan) {
-            if(!loan) { return; }
+            if(!loan) { return 0; }
+
+            return calcPlannedCropValue(loan)
+                + calcFSACollateralValue(loan)
+                + calcIODCollateralValue(loan)
+                + calcNRPCollateralValue(loan)
+                + calcSuppInsValue(loan)
+                + calcEquipmentCollateralValue(loan)
+                + calcRECollateralTotal(loan)
+                + calcOtherCollateralValue(loan);
 
             return Number(loan.fins.adj_prod) + Number(loan.fins.total_fsa_payment) + Number(loan.fins.ins_disc_prod) + Number(loan.insurance.nonrp.value) + Number(loan.supplements.totals.value) + Number(calcEquipmentCollateralValue(loan)) + Number(calcRECollateralValue(loan)) + Number(calcOtherCollateralValue(loan));
         }
 
         function calcIODCollateralValue(loan) {
-            if(!loan) { return; }
+            if(!loan) { return 0; }
+            var li = loan.insurance.byCrop;
+            var lc = loan.loancrops;
 
-            return (Number(loan.fins.ins_disc_prod) * (1 - (Number(loan.fins.disc_ins_percent) / 100))) - Number(loan.priorlien.totals.ins_over_discount);
+            //MAX(InsuranceValue-(CropValue*(1-disc_ins_percent)),0)
+            var ins_val = _.sumCollection(li, 'value');
+            var crop_val = _.sumCollection(lc, 'crop_value');
+            var disc_ins_pc = Number(loan.fins.disc_ins_percent)/100;
+            var prior_lien_iod = Number(loan.priorlien.totals.ins_over_discount);
+
+            var formula = ins_val - (crop_val * (1 -  disc_ins_pc)) - prior_lien_iod;
+
+            if(Number(formula) > 0) {
+                return formula;
+            } else {
+                return 0;
+            }
         }
 
         function calcNRPCollateralValue(loan) {
@@ -301,9 +330,13 @@
         }
 
         function calcPlannedCropValue(loan) {
-            if(!loan) { return; }
+            if(!loan) { return 0; }
 
-            return (Number(loan.fins.adj_prod) * (1 - (Number(loan.fins.disc_prod_percent) / 100))) - Number(loan.priorlien.totals.projected_crops);
+            var adj_prod = calcAdjProd(loan);
+            var disc_prod_pc = Number(loan.fins.disc_prod_percent)/100;
+            var lien_projection = Number(loan.priorlien.totals.projected_crops);
+
+            return adj_prod * (1 - disc_prod_pc) - lien_projection;
         }
 
         function calcPriorLienTotal(loan) {
@@ -335,7 +368,7 @@
 
             var formula = Number(total_collateral) - Number(arm_and_dist);
 
-            console.log('R/M', total_collateral, arm_and_dist, formula );
+            //console.log('R/M', total_collateral, arm_and_dist, formula );
 
             return formula;
         }
@@ -362,15 +395,14 @@
 
         function calcTotalCollateral(loan) {
             if(!loan) { return; }
-            // (disc_adj_prod + disc_ins)
 
-            return Number(calcPlannedCropValue(loan)) +
-                   //Number(calcFSACollateralValue(loan)) +
-                   //Number(calcIODCollateralValue(loan)) +
-                   //Number(calcNRPCollateralValue(loan)) +
-                   //Number(calcSuppInsValue(loan)) +
-                   //Number(calcEquipmentCollateralValue(loan)) +
-                   //Number(calcRECollateralValue(loan)) +
+            return Number(calcAdjProd(loan)) +
+                   Number(calcFSACollateralValue(loan)) +
+                   Number(calcIODCollateralValue(loan)) +
+                   Number(calcNRPCollateralValue(loan)) +
+                   Number(calcSuppInsValue(loan)) +
+                   Number(calcEquipmentCollateralValue(loan)) +
+                   Number(calcRECollateralValue(loan)) +
                    Number(calcOtherCollateralValue(loan));
         }
 

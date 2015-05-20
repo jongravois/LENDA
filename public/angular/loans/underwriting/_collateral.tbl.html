@@ -20,7 +20,7 @@
     <tr>
         <td>Projected Crops</td>
         <td class="text-right" ng-class="gtZero(loan.fins.adj_prod)">
-            {{loan.fins.adj_prod|flexCurrency:0}}
+            {{AppFactory.calcAdjProd(loan)|flexCurrency:0}}
         </td>
         <td class="text-right" ng-class="gtZero(loan.fins.disc_prod_percent)">
             {{loan.fins.disc_prod_percent|flexPercent:1}}
@@ -51,8 +51,8 @@
     <!--INS OVER DISCOUNTED YIELD-->
     <tr>
         <td>Ins Over Discounted Yield</td>
-        <td class="text-right" ng-class="gtZero(loan.fins.ins_disc_prod)">
-            {{loan.fins.ins_disc_prod|flexCurrency:0}}
+        <td class="text-right" ng-class="gtZero(AppFactory.calcIODCollateralValue(loan))">
+            {{AppFactory.calcIODCollateralValue(loan)|flexCurrency:0}}
         </td>
         <td class="text-right" ng-class="gtZero(loan.fins.disc_ins_percent)">
             {{loan.fins.disc_ins_percent|flexPercent:1}}
