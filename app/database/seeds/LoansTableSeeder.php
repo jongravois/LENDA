@@ -42,6 +42,7 @@ class LoansTableSeeder extends Seeder
             'grade' => 'B',
             'equipment_collateral' => 1,
             'realestate_collateral' => 1,
+            'other_collateral' => 1,
             'conditions_asa' => 1,
             'conditions_aci' => 1,
             'conditions_areb' => 1,

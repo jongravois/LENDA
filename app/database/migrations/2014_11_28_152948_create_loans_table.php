@@ -38,6 +38,7 @@ class CreateLoansTable extends Migration {
             $table->string('grade')->default('F');
             $table->boolean('equipment_collateral')->default(0);
             $table->boolean('realestate_collateral')->default(0);
+            $table->boolean('other_collateral')->default(0);
             $table->boolean('has_addendum')->default(0);
             $table->integer('addendum_type')->nullable();
             $table->boolean('bankruptcy_history')->default(0);

@@ -6,7 +6,7 @@ class Othercollateral extends \Eloquent {
 	/* RELATIONSHIPS */
 	public function loan()
 	{
-		return $this->belongsTo('Loan', 'loan_id');
+		return $this->belongsTo('Loan', 'loan_id', 'description', 'mkt_value', 'prior-lien', 'amount');
 	}
 	/* RELATIONSHIPS */
 }
