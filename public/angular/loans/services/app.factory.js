@@ -443,30 +443,10 @@
         }
 
         function calcTotalInsValue(loan) {
-            if(!loan) { return; }
+            if(!loan) { return 0; }
+            var col = loan.insurance.byCrop;
 
-            var guarantee = _.reduce(loan.insurance.byCrop, function(sum, obj){
-                if(obj.type === 'RP') {
-                    return sum + Number(obj.guarantee);
-                } // end if
-            }, 0);
-            var premium = _.reduce(loan.insurance.byCrop, function(sum, obj){
-                if(obj.type === 'RP') {
-                    return sum + Number(obj.premium);
-                } //end if
-            }, 0);
-            var share = _.reduce(loan.insurance.byCrop, function(sum, obj){
-                if(obj.type === 'RP') {
-                    return Number(obj.share);
-                } // end if
-            }, 0);
-            var acres = _.reduce(loan.insurance.byCrop, function(sum, obj){
-                if(obj.type === 'RP') {
-                    return Number(obj.acres);
-                } // end if
-            }, 0);
-
-            return (Number(guarantee) - Number(premium)) * (Number(share)/100) * Number(acres);
+            return _.sumCollection(col, 'value');
         }
 
         function calcTotalOverDisc(loan) {

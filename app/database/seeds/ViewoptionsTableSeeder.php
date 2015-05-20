@@ -10,9 +10,9 @@ class ViewoptionsTableSeeder extends Seeder{
 
     Viewoptions::create([
       'user_id' => 2,
-      'view_commit_total' =>  1,
-      'view_commit_distributor' => 1,
-      'view_fee_total' => 1
+      'view_commit_arm' =>  1,
+      'view_acres_total' => 1,
+      'view_distributor' => 1
     ]);
 
     Viewoptions::create([

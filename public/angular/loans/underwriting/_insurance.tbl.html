@@ -31,7 +31,7 @@
             {{c.level|flexPercent:1}}
         </td>
         <td class="text-right" ng-class="c.guarantee">
-            {{c.guarantee|flexCurrency:0}}
+            {{c.guarantee|flexCurrency:2}}
         </td>
         <td class="text-right" ng-class="c.premium">
             {{c.premium|flexCurrency:2}}
@@ -40,7 +40,7 @@
             {{c.share|flexPercent:1}}
         </td>
         <td class="text-right" ng-class="c.value">
-            {{AppFactory.calcInsCropValue(c)|flexCurrency:0}}
+            {{c.value|flexCurrency:0}}
         </td>
         <td class="text-right" ng-class="gtZero(AppFactory.calcInsOverDisc(c))">
             {{AppFactory.calcInsOverDisc(c)|flexCurrency:0}}
@@ -52,12 +52,11 @@
     <tr class="success" ng-if="loan.insurance.byCrop.length !== 0"
         >
         <td>Total</td>
-        <td colspan="4">&nbsp;</td>
-        <td class="text-right"
+        <td colspan="7">&nbsp;</td>
+        <!--<td class="text-right"
             ng-class="gtZero(AppFactory.calcTotalInsGuar(loan))">
             {{AppFactory.calcTotalInsGuar(loan)|flexCurrency:0}}
-        </td>
-        <td colspan="2">&nbsp;</td>
+        </td>-->
         <td class="text-right"
             ng-class="gtZero(AppFactory.calcTotalInsValue(loan))">
             {{AppFactory.calcTotalInsValue(loan)|flexCurrency:0}}
