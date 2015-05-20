@@ -50,8 +50,8 @@ class ApplicantsController extends ApiController {
 		} // end if
 
 		$arr = Input::all();
-		$DOB = date("Y-m-d", strtotime($arr['dob']));
-		$arr['dob'] = $DOB;
+		//$DOB = date("m/d/Y", strtotime($arr['dob']));
+		//$arr['dob'] = $DOB;
 		$applicant = Applicant::create($arr);
 
 		return $this->respondCreated($applicant->id);

@@ -4,15 +4,15 @@
         .module('ARM')
         .controller('NewLoansController', NewLoansController);
 
-        NewLoansController.$inject = ['$scope', '$http', '$state', '$stateParams', 'API_URL', 'AppFactory', 'FarmersFactory', 'GlobalsFactory', 'LoansFactory',];
+        NewLoansController.$inject = ['$scope', '$rootScope', '$http', '$state', '$stateParams', 'API_URL', 'AppFactory', 'FarmersFactory', 'GlobalsFactory', 'LoansFactory',];
 
-        function NewLoansController($scope, $http, $state, $stateParams, API_URL, AppFactory, FarmersFactory, GlobalsFactory, LoansFactory) {
+        function NewLoansController($scope, $rootScope, $http, $state, $stateParams, API_URL, AppFactory, FarmersFactory, GlobalsFactory, LoansFactory) {
             $scope.newapplication = true; //flag for screen buttons
             $scope.currentScreen = 0;
 
-            $scope.loan = _.find($scope.loans, function(i) {
-                return i.id == $stateParams.loanID;
-            });
+            if(!$scope.loan){
+                $scope.loan = $rootScope.loan;
+            }
             //$scope.loan.season_full = AppFactory.getFullSeason($scope.loan.season);
             $scope.farmer = $scope.farmer || {};
 

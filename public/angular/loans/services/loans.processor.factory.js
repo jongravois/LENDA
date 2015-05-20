@@ -9,7 +9,7 @@
 
     /* @ngInject */
     function LoansProcessor($http, $q, API_URL, AppFactory) {
-        var publicAPI =  {
+        var publicAPI = {
             getLoansWithExtraData: getLoansWithExtraData
         };
         return publicAPI;
@@ -17,9 +17,10 @@
         function getLoansWithExtraData() {
             return $http.get(API_URL + '/loans').then(updateLoansData);
         }
+
         function updateLoanData(loan) {
             return $q.all({
-               collateral: processCollateral(loan.othercollateral),
+                collateral: processCollateral(loan.othercollateral),
                 crops: getCrops(loan),
                 expenses: getExpenses(loan),
                 fees: getFees(loan),
@@ -35,21 +36,24 @@
                     return loan;
                 });
         }
+
         function updateLoansData(response) {
             var allLoans = response.data.data;
             return $q.all(allLoans.map(updateLoanData));
         }
+
         //////////
         function filterByCropAndPractice(col, crop, practice) {
             var results = [];
-            var filtered = _.filter(col, function(row){
-                if(row.crop === crop && row.practice === practice){
+            var filtered = _.filter(col, function (row) {
+                if (row.crop === crop && row.practice === practice) {
                     results.push(row);
                 }
             });
             //console.log(filtered);
             return results;
         }
+
         function flattenExpenses(expenses) {
             var flattened = [];
             angular.forEach(expenses, function (exp) {
@@ -73,13 +77,17 @@
             }, flattened);
             return flattened;
         }
+
         function getAcresTotal(loan) {
             return _.sumCollection(loan.loancrops, 'acres');
         }
+
         function getCropExpenses(crop) {
-            if(crop.length < 1) { return; }
+            if (crop.length < 1) {
+                return;
+            }
             return $http.get(API_URL + '/loans/' + crop[0].loan_id + '/expenses/' + crop[0].crop_id)
-                .then(function(rsp){
+                .then(function (rsp) {
                     var dbRec = rsp.data.data;
 
                     var processed = dbRec;
@@ -87,6 +95,7 @@
                     return processed;
                 });
         }
+
         function getCrops(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/farmcrops')
                 .then(function (rsp) {
@@ -118,27 +127,30 @@
                     });
                 });
         }
+
         function getPendingComments(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/commentstatus')
                 .then(function (response) {
                     //console.log(response);
-                    if(response.data.data) {
+                    if (response.data.data) {
                         return (response.data.data.length !== 0);
                     } else {
                         return 0;
                     }
                 });
         }
+
         function getPendingVotes(loan) {
             return $http.get(API_URL + '/loans/' + loan.id + '/pendingvotes')
                 .then(function (response) {
-                    if(response.data.data) {
+                    if (response.data.data) {
                         return (response.data.data.length !== 0);
                     } else {
                         return 0;
                     }
                 });
         }
+
         function getEmptyCrop() {
             return {
                 totals: {
@@ -160,6 +172,7 @@
                 byFarm: []
             };
         }
+
         function getExpenses(loan) {
             var expenses = loan.expenses;
             //var expenses = loan.expenses.byEntry;
@@ -174,9 +187,9 @@
             //console.log('Expenses: ', exps);
             return (exps);
         }
-        function getFees(loan) {
 
-        }
+        function getFees(loan) {}
+
         function getInsurance(loan) {
             var policyList = loan.inspols;
             //console.log('Fins', fins);
@@ -195,16 +208,19 @@
             return (ins);
 
         }
+
         function makeCrop(id, list) {
             var crop_id = Number(id);
-            var crop = _.filter(list, function(item){
-                if(item.crop_id === crop_id){ return item; }
+            var crop = _.filter(list, function (item) {
+                if (item.crop_id === crop_id) {
+                    return item;
+                }
             });
-            if(!crop.length) {
+            if (!crop.length) {
                 return getEmptyCrop();
             } // end if
 
-            return getCropExpenses(crop).then(function(exp){
+            return getCropExpenses(crop).then(function (exp) {
                 //console.log('fromMakeCrop', exp);
 
                 var expenses = _.chain(exp)
@@ -221,25 +237,31 @@
                 return cropObj;
             });
         }
+
         function processAgencies(policies) {
             var result = [];
             var exists = {};
             var arrayOfFinalProduct = [];
             var agentExists = {};
 
-            var firstPass = _.forEach(policies, function(policy){
-                if(!exists[policy.agent_id]){
+            var firstPass = _.forEach(policies, function (policy) {
+                if (!exists[policy.agent_id]) {
                     result.push(policy);
                     exists[policy.agent_id] = true;
                 }
             });
 
-            var secondPass = _.forEach(result, function(policy){
+            var secondPass = _.forEach(result, function (policy) {
                 var idealProduct = {};
                 var allreadyHappend = _.find(arrayOfFinalProduct, {'id': policy.agency_id});
-                if(!_.isUndefined(allreadyHappend)){
-                    allreadyHappend.agents.push({id: policy.agent_id, agent: policy.agent, agent_email: policy.agent_email, agent_phone: policy.agent_phone});
-                }else if(!agentExists[policy.agent_id]){
+                if (!_.isUndefined(allreadyHappend)) {
+                    allreadyHappend.agents.push({
+                        id: policy.agent_id,
+                        agent: policy.agent,
+                        agent_email: policy.agent_email,
+                        agent_phone: policy.agent_phone
+                    });
+                } else if (!agentExists[policy.agent_id]) {
                     idealProduct.agents = [];
                     idealProduct.id = policy.agency_id;
                     idealProduct.agency = policy.agency;
@@ -249,22 +271,29 @@
                     idealProduct.agency_zip = policy.agency_zip;
                     idealProduct.agency_email = policy.agency_email;
                     idealProduct.agency_phone = policy.agency_phone;
-                    idealProduct.agents.push({id: policy.agent_id, agent: policy.agent, agent_email: policy.agent_email, agent_phone: policy.agent_phone});
+                    idealProduct.agents.push({
+                        id: policy.agent_id,
+                        agent: policy.agent,
+                        agent_email: policy.agent_email,
+                        agent_phone: policy.agent_phone
+                    });
                     arrayOfFinalProduct.push(idealProduct);
                     agentExists[policy.agent_id] = true;
                 }
             });
             return arrayOfFinalProduct;
         }
+
         function processCollateral(obj) {
             var all = _.chain(obj).groupBy('type').value();
             return all;
         }
+
         function processCropTotals(arrCrop) {
             var tstActive = false;
             var acres = 0, is_active = false, bkqty = 0, bkprice = 0, harvest = 0, irr = 0, mill_share = 0, ni = 0, percent_irrigated = 0, price = 0, rebate_price = 0, rebate_share = 0, prod_share = 0, value = 0, prod_yield = 0;
 
-            angular.forEach(arrCrop, function(rows){
+            angular.forEach(arrCrop, function (rows) {
                 bkqty += Number(rows.bkqty);
                 bkprice = Number(rows.bkprice);
                 harvest = Number(rows.harvest);
@@ -278,7 +307,7 @@
                 prod_yield += Number(rows.prod_yield);
             });
 
-            if((Number(irr) + Number(ni)) > 0) {
+            if ((Number(irr) + Number(ni)) > 0) {
                 tstActive = true;
             } else {
                 tstActive = false;
@@ -292,57 +321,60 @@
                 irr: Number(irr),
                 mill_share: Number(mill_share),
                 ni: Number(ni),
-                percent_irrigated: 100 * (Number(irr)/(Number(irr) + Number(ni))),
+                percent_irrigated: 100 * (Number(irr) / (Number(irr) + Number(ni))),
                 price: Number(price),
                 rebate_price: Number(rebate_price),
                 rebate_share: Number(rebate_share),
-                share: Number(prod_share)/(Number(irr) + Number(ni)),
+                share: Number(prod_share) / (Number(irr) + Number(ni)),
                 prod_yield: Number(prod_yield),
-                value: (((Number(prod_share)/(Number(irr) + Number(ni)))/100)*(Number(irr) + Number(ni))*Number(prod_yield) * Number(price))+(((Number(prod_share)/(Number(irr) + Number(ni)))/100) * Number(bkqty) * (Number(bkprice) - Number(price)))+((Number(irr) + Number(ni))*Number(prod_yield) * Number(harvest)),
+                value: (((Number(prod_share) / (Number(irr) + Number(ni))) / 100) * (Number(irr) + Number(ni)) * Number(prod_yield) * Number(price)) + (((Number(prod_share) / (Number(irr) + Number(ni))) / 100) * Number(bkqty) * (Number(bkprice) - Number(price))) + ((Number(irr) + Number(ni)) * Number(prod_yield) * Number(harvest)),
                 is_active: tstActive
             };
             return croptotals;
         }
+
         function processExpsByCat(expenses) {
             var grped = _.chain(expenses).groupBy('expense').value();
             var cats = _.uniq(_.pluck(expenses, 'expense'));
             //corn.arm*corn.acres + bean.arm*bean.acres etc
             var totsByCat = [];
-            angular.forEach(cats, function(cat){
-                if(!grped[cat]) {
+            angular.forEach(cats, function (cat) {
+                if (!grped[cat]) {
                     totsByCat.push([]);
                 } else {
                     var col = grped[cat];
                     //console.log(col);
                     var colTots = {
-                            cat_id: _.pluckuniq(col, 'cat_id'),
-                            expense: _.pluckuniq(col, 'expense'),
-                            acre_dist: _.sumCollection(col, 'dist'),
-                            acre_other: _.sumCollection(col, 'other'),
-                            acre_total: _.sumCollection(col, 'per_acre'),
-                            calc_arm: _.sumCollection(col, 'calc_arm'),
-                            calc_dist: _.sumCollection(col, 'calc_dist'),
-                            calc_other: _.sumCollection(col, 'calc_other'),
-                            calc_total: _.sumCollection(col, 'calc_total')
-                        };
+                        cat_id: _.pluckuniq(col, 'cat_id'),
+                        expense: _.pluckuniq(col, 'expense'),
+                        acre_dist: _.sumCollection(col, 'dist'),
+                        acre_other: _.sumCollection(col, 'other'),
+                        acre_total: _.sumCollection(col, 'per_acre'),
+                        calc_arm: _.sumCollection(col, 'calc_arm'),
+                        calc_dist: _.sumCollection(col, 'calc_dist'),
+                        calc_other: _.sumCollection(col, 'calc_other'),
+                        calc_total: _.sumCollection(col, 'calc_total')
+                    };
                     totsByCat.push(colTots);
                 }
             });
             return totsByCat;
         }
+
         function processExpsByCrop(expenses) {
             var grped = _.chain(expenses).groupBy('crop').value();
 
             var byCrop = [];
-            angular.forEach(grped, function(crop){
+            angular.forEach(grped, function (crop) {
                 var byExp = [];
-                angular.forEach(crop, function(exp){
+                angular.forEach(crop, function (exp) {
                     this.push(exp);
                 }, byExp);
                 this.push(byExp);
             }, byCrop);
             return byCrop;
         }
+
         function processExpsTotals(expenses) {
             return {
                 byCat: processExpsTotalsByCat(expenses),
@@ -350,13 +382,14 @@
                 byLoan: processExpsTotalsByLoan(expenses)
             };
         }
+
         function processExpsTotalsByCat(expenses) {
             var grped = _.chain(expenses).groupBy('expense').value();
             var cats = _.uniq(_.pluck(expenses, 'expense'));
 
             var totsByCat = [];
-            angular.forEach(cats, function(cat){
-                if(!grped[cat]){
+            angular.forEach(cats, function (cat) {
+                if (!grped[cat]) {
                     totsByCat.push([
                         {
                             arm: 0,
@@ -382,13 +415,14 @@
 
             return totsByCat;
         }
+
         function processExpsTotalsByCrop(expenses) {
             var grped = _.chain(expenses).groupBy('crop').value();
             var crops = AppFactory.getAllCrops();
 
             var totsByCrop = [];
-            angular.forEach(crops, function(crop){
-                if(!grped[crop]){
+            angular.forEach(crops, function (crop) {
+                if (!grped[crop]) {
                     totsByCrop.push([
                         {
                             acre_arm: 0,
@@ -421,6 +455,7 @@
             });
             return totsByCrop;
         }
+
         function processExpsTotalsByLoan(expenses) {
             //console.log(expenses);
             return {
@@ -430,6 +465,7 @@
                 total: _.sumCollection(expenses, 'calc_total')
             };
         }
+
         function processForInsDB(policies) {
             var groupByPractice = _.partial(_.ary(_.groupBy, 2), _, 'practice');
 
@@ -438,10 +474,10 @@
                 .mapValues(groupByPractice);
 
             var reduced = _(mapped).chain()
-                .map(function(cropGroup) {
-                    return _.mapValues(cropGroup, function(v){
+                .map(function (cropGroup) {
+                    return _.mapValues(cropGroup, function (v) {
                         var initial = _(v).chain().first().clone().value();
-                        return _.reduce(_.rest(v), function(result, n){
+                        return _.reduce(_.rest(v), function (result, n) {
                             result.acres += n.acres;
                             return result;
                         }, initial);
@@ -450,13 +486,14 @@
 
             var arrRedux = [];
             var redux = reduced.value();
-            _.each(redux, function(col){
-                _.each(col, function(row){
+            _.each(redux, function (col) {
+                _.each(col, function (row) {
                     arrRedux.push(row);
                 });
             });
             return arrRedux;
         }
+
         function processInsByCrop(loan) {
             var policies = loan.inspols;
 
@@ -464,7 +501,7 @@
             //console.log('grped', grped);
             var byCrop = [];
 
-            angular.forEach(grped, function(row){
+            angular.forEach(grped, function (row) {
                 var calcer = {
                     level: _.pluckuniq(row, 'level'),
                     price: _.pluckuniq(row, 'price'),
@@ -495,8 +532,11 @@
             }, byCrop);
             return byCrop;
         }
+
         function processInsPol(arr) {
-            if(arr.length < 1){ return false; }
+            if (arr.length < 1) {
+                return false;
+            }
             return {
                 crop: arr[0].crop,
                 practice: arr[0].practice,
@@ -505,68 +545,81 @@
             };
         } // end function
         function processInsTotals(obj) {
-            var lone = { acres: 0, value: 0 };
-            var byLoan = _.forEach(obj, function(item, key) {
+            var lone = {acres: 0, value: 0};
+            var byLoan = _.forEach(obj, function (item, key) {
                 lone.acres += Number(item.acres);
                 lone.value += Number(item.value);
             });
             return lone;
         }
+
         function processLoanCrops(loan) {
             var crops = loan.loancrops;
-            if(!crops){ return; }
+            if (!crops) {
+                return;
+            }
 
-            var cropplus = _.forEach(crops, function(obj){
+            var cropplus = _.forEach(crops, function (obj) {
                 obj.crop_value = AppFactory.incomeCropValue(obj);
                 obj.adj_book_value = AppFactory.incomeBookValue(obj);
                 obj.adj_harvest_value = AppFactory.incomeHarvestValue(obj);
                 obj.crop_total = AppFactory.incomeCropTotal(obj);
-                obj.break_even = (Number(AppFactory.getLoanBreakEvenPercent(loan))/100) * Number(obj.prod_yield);
+                obj.break_even = (Number(AppFactory.getLoanBreakEvenPercent(loan)) / 100) * Number(obj.prod_yield);
                 return obj;
             });
             //console.log('LoanCrops', cropplus);
             return cropplus;
         }
+
         function processNonRPInsurance(obj) {
-            var nonrp = _.filter(obj, function(item){
-                if( item.type !== 'RP'){
+            var nonrp = _.filter(obj, function (item) {
+                if (item.type !== 'RP') {
                     return item;
                 }
             });
-            if(!nonrp){
+            if (!nonrp) {
                 return {
                     acres: 0,
                     value: 0
                 };
             } else {
-                var lone = { acres: 0, value: 0 };
+                var lone = {acres: 0, value: 0};
                 // TODO: Does nonrp have value to accumulate?
-                var byLoan = _.forEach(nonrp, function(item, key) {
+                var byLoan = _.forEach(nonrp, function (item, key) {
                     lone.acres += Number(item.acres);
                     lone.value += Number(item.value);
                 });
                 return lone;
             }
         }
+
         function processOthers(obj) {
-            if(!obj){ return; }
-            var others = _.forEach(obj, function(obj){
+            if (!obj) {
+                return;
+            }
+            var others = _.forEach(obj, function (obj) {
                 obj.value = Number(obj.amount);
                 return obj;
             });
             return others;
         }
+
         function processOthersTotals(obj) {
-            if(!obj) { return; }
-            var lone = { value: 0 };
-            var bySource = _.forEach(obj, function(item, key) {
+            if (!obj) {
+                return;
+            }
+            var lone = {value: 0};
+            var bySource = _.forEach(obj, function (item, key) {
                 lone.value += Number(item.amount);
             });
             return lone;
         }
+
         function processPriorLien(liens) {
-            if(!liens){ return []; }
-            var lienplus = _.map(liens, function(item){
+            if (!liens) {
+                return [];
+            }
+            var lienplus = _.map(liens, function (item) {
                 return _.extend({
                     lientotal: Number(item.projected_crops) + Number(item.fsa_payments) + Number(item.ins_over_discount) + Number(item.nonrp_discount) + Number(item.equipment) + Number(item.realestate) + Number(item.other)
                 }, item);
@@ -576,6 +629,7 @@
                 totals: processPriorLiens(lienplus)
             };
         }
+
         function processPriorLiens(liens) {
             return {
                 lienholder: 'Total',
@@ -590,6 +644,7 @@
                 lientotal: _.sumCollection(liens, 'lientotal')
             };
         }
+
         function processSupInsurance(obj) {
             var suppins = obj;
 
@@ -600,32 +655,39 @@
 
             return (supp);
         }
+
         function processSuppInsTotals(obj) {
-            if(!obj) { return; }
-            var lone = { acres: 0, value: 0 };
-            var byPol = _.forEach(obj, function(item, key) {
+            if (!obj) {
+                return;
+            }
+            var lone = {acres: 0, value: 0};
+            var byPol = _.forEach(obj, function (item, key) {
                 lone.acres += Number(item.acres);
                 lone.value += Number(item.value);
             });
             return lone;
         }
+
         function processSupplements(obj) {
-            if(!obj){ return; }
-            var supplus = _.forEach(obj, function(obj){
-                obj.value = Number(obj.acres) * (Number(obj.share)/100) * Number(obj.max_indemnity);
+            if (!obj) {
+                return;
+            }
+            var supplus = _.forEach(obj, function (obj) {
+                obj.value = Number(obj.acres) * (Number(obj.share) / 100) * Number(obj.max_indemnity);
                 return obj;
             });
             return supplus;
         }
+
         function totalCropExpenses(exps) {
             //console.log('totalCropExpenses', exps);
-            var armtotal = _.reduce(exps, function(sum, obj) {
+            var armtotal = _.reduce(exps, function (sum, obj) {
                 return sum + Number(obj.arm);
             }, 0);
-            var disttotal = _.reduce(exps, function(sum, obj) {
+            var disttotal = _.reduce(exps, function (sum, obj) {
                 return sum + Number(obj.dist);
             }, 0);
-            var othertotal = _.reduce(exps, function(sum, obj) {
+            var othertotal = _.reduce(exps, function (sum, obj) {
                 return sum + Number(obj.other);
             }, 0);
             var totaltotal = Number(armtotal) + Number(disttotal) + Number(othertotal);

@@ -4,12 +4,13 @@
         .module('ARM')
         .controller('ApplicantsController', ApplicantsController);
 
-    ApplicantsController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'ApplicantsFactory'];
+    ApplicantsController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'AppFactory', 'ApplicantsFactory'];
 
-    function ApplicantsController($scope, $state, $stateParams, AppFactory, ApplicantsFactory) {
+    function ApplicantsController($scope, $rootScope, $state, $stateParams, AppFactory, ApplicantsFactory) {
         activate();
 
         function activate() {
+            //console.log('Farmer: ', $rootScope.farmerID);
             var curr = $state.current.url;
             var currScreen = curr.substring(1, curr.length);
             $scope.newapplication = $state.current.data.newapplication;
@@ -21,11 +22,16 @@
                     }
                 });
             }// end if
-        }
 
-        if (!$scope.loan.applicant_id) {
-            $scope.applicant = {entity_type_id: '2'};
-        } // end if
+            if (!$scope.loan) {
+                $scope.loan = $rootScope.loan;
+                $scope.loan.applicant = {entity_type_id: '2'};
+            } // end if
+
+            if ($scope.loan && !$scope.loan.applicant_id) {
+                $scope.loan.applicant = {entity_type_id: '2'};
+            } // end if
+        }
 
         $scope.newPartner = $scope.newPartner || {};
         $scope.newJoint = $scope.newJoint || {};
@@ -38,14 +44,19 @@
                 ApplicantsFactory.createCorporation($scope.corporations);
             }
 
-            $scope.applicant.loc_id = $scope.user.loc_id;
-            $scope.applicant.farmer_id = $scope.loan.farmer.id;
-            $scope.applicant.loan_id = $scope.loan.id;
+            $scope.loan.applicant.loc_id = $scope.user.loc_id;
+            $scope.loan.applicant.farmer_id = $rootScope.farmerID;
+            $scope.loan.applicant.loan_id = $stateParams.loanID;
+            var birth = $scope.loan.applicant.dob;
+            $scope.loan.applicant.dob = birth.substr(0,2) + '/' + birth.substr(2,2) + '/' + birth.substr(5,4);
 
-            ApplicantsFactory.createApplicant($scope.applicant)
+            ApplicantsFactory.createApplicant($scope.loan.applicant)
                 .then(function (rsp) {
                     AppFactory.patchIt('/loans/', $stateParams.loanID, {applicant_id: rsp.data.message});
-                    AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
+                    $rootScope.loan = $scope.loan;
+                    //TODO: process loan???
+                    $scope.loans.push($scope.loan);
+                    $state.go('edit.quests', $stateParams);
                 });
         };
 
@@ -66,6 +77,7 @@
         $scope.onApplicantSelect = function ($item, $model, $label) {
             if ($item) {
                 $scope.applicantID = $item.id;
+                $scope.loan.applicantID = $item.id;
                 $scope.loan.applicant = $item;
             }
         };

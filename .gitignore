@@ -9,3 +9,5 @@ bootstrap/environment.php
 .env.*.php
 .env.php
 public/angular/constants/constants.js
+
+public/angular/loans/services/app.factory.js

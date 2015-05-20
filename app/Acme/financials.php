@@ -64,6 +64,9 @@ function processFinancials($loan)
         'int_arm' => calcInterest(calcPrincipal($arm_commit, $srvcFee, $procFee), $fins['int_percent_arm']),
         'int_dist' => calcInterest(calcPrincipal($dist_commit, 0, 0), (double)$fins['int_percent_other']),
         'int_other' => calcInterest(calcPrincipal($other_commit, 0, 0), (double)$fins['int_percent_other']),
+        'cash_flow' => 999999,
+        'risk' => 999999,
+        'adjusted_risk' => 999999
 
         /* THESE MAY NOT BE NEEDED */
         //'prod' => calcCropValue(getLoanTotalAcres($loan['id']), prod_share, prod_yield, price),
@@ -77,9 +80,7 @@ function processFinancials($loan)
         //'disc_ins' => (double)$fins['disc_ins'],
         //'total_revenue' => (double)$fins['total_revenue'],
         //'total_balance' => (double)$fins['total_balance'],
-        //'remaining_balance' => (double)$fins['remaining_balance'],
-        //'cash_flow' => (double)$fins['cash_flow'],
-        //'risk' => (double)$fins['risk']
+        //'remaining_balance' => (double)$fins['remaining_balance']
     ];
 }
 

@@ -31,6 +31,13 @@
         function activate() {
             $scope.indicon_width = '140px';
             $scope.toggleComment = false;
+
+            if(!$scope.loan){
+                $scope.loan = _.find($scope.loans, function(i) {
+                    return i.id == $stateParams.loanID;
+                });
+            }
+            //console.log('loan (from EditLoanCtrl', $scope.loan);
         }
 
         $scope.updateLoanComment = function() {

@@ -9,6 +9,11 @@ class FarmerTransformer extends Transformer{
 
     $dtToday = Carbon::now();
     $dtDOB = $arr['dob'];
+    if(!$dtDOB){
+      $dob = null;
+    } else {
+      $dob = $arr['dob']->format('m/d/Y');
+    }
     $age_of_farmer = $dtToday->diffInYears($dtDOB);
 
     return [
@@ -23,7 +28,7 @@ class FarmerTransformer extends Transformer{
       'email' => $arr['email'],
       'phone' => $arr['phone'],
       'ssn' => $arr['ssn'],
-      'dob' => $arr['dob']->format('m/d/Y'),
+      'dob' => $dob,
       'age' => $age_of_farmer,
       'first_year_farmer' => $arr['first_year_farmer'],
       'farm_exp' =>	$arr['farm_exp'],

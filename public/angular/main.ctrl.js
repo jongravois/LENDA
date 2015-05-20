@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$state', '$stateParams', '$q', '$filter', 'toastr', 'APP_URL', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersFactory', 'orderByFilter'];
+    MainController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', '$q', '$filter', 'toastr', 'APP_URL', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersFactory', 'orderByFilter'];
 
-    function MainController($scope, $state, $stateParams, $q, $filter, toastr, APP_URL, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersFactory, orderByFilter) {
+    function MainController($scope, $rootScope, $state, $stateParams, $q, $filter, toastr, APP_URL, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersFactory, orderByFilter) {
         $scope.AppFactory = AppFactory;
         
         activate();
@@ -40,21 +40,9 @@
             FeederFactory.init();
             $scope.feeder = FeederFactory.getObject();
 
-            /*LoansProcessor.getLoansWithExtraData()
-                .then(function (allLoans) {
-                    $scope.loans = allLoans;
-                    console.log('Loans from Main', allLoans);
-                    $scope.loanList = _.filter(allLoans, function(i) {
-                        return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
-                    });
-                    //TODO: Determine initial sort order
-                    $scope.sortedLoanList = orderByFilter($scope.loanList, '+id');
-                });
-                toastr.success('Loaded all loans', 'Success!');*/
-
             LoansFactory.getLoans()
                 .then(function(allLoans){
-                    $scope.loan = allLoans;
+                    $scope.loans = allLoans;
                     console.log('Loans from Main', allLoans);
                     $scope.loanList = _.filter(allLoans, function(i) {
                         return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
@@ -122,6 +110,7 @@
                             $scope.loan.id = response.data.message.id;
                             $scope.loan.chosenLT = types.loantype;
                             $scope.loan.chosenLT_id = types.id;
+                            $rootScope.loan = $scope.loan;
                             $state.go('new.farmer', {loantypeID: types.id, loanID: response.data.message.id});
                         });
                 });

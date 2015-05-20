@@ -1,0 +1,36 @@
+<div class="col-md-5">
+    <h6>{{loan.loan_type}} - {{loan.crop_year}} - {{loan.season_full}}: {{loan.applicant.applicant}} ({{loan.farmer.farmer|displayname}} )</h6>
+</div>
+<div class="col-md-1 text-center">&nbsp;</div>
+<div class="col-md-1 text-center">
+    <div style="margin-top: 8px; cursor:pointer;"
+         ng-class="{'enabled': XColView, 'disabled': !XColView}"
+         ng-show="loan.is_cross_collateralized"
+         ng-model="XColView"
+         ng-click="XColView = !XColView">
+        <span class="glyphicon glyphicon-random"></span>
+    </div>
+</div>
+<div class="col-md-1 text-center">
+    <div style="margin-top: 8px; cursor:pointer;"
+         ng-class="{'enabled': toggleComment, 'disabled': !toggleComment}"
+         ng-show="loan.analyst.id === user.id"
+         ng-model="toggleComment"
+         ng-click="toggleComment = !toggleComment">
+        <span class="glyphicon glyphicon-file"></span>
+    </div>
+</div>
+<div class="col-md-4 text-right" style="color:white;margin-top:5px;">
+    <!-- TODO: DIRECTIVES LIKE PLUNKER-->
+    <span ng-if="loan.loan_type_id != 7">
+        CF: {{AppFactory.calcCashFlow(loan)|flexCurrency:0}}
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+    </span>
+    <span ng-if="loan.loan_type_id != 3 && loan.loan_type_id != 4">
+        RM: {{AppFactory.calcRiskMargin(loan)|flexCurrency:0}}
+    </span>
+    <span ng-if="loan.loan_type_id == 3 || loan.loan_type_id == 4">
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <sub>adj</sub>RM: {{AppFactory.calcAdjustedRiskMargin(loan)|flexCurrency:0}}
+    </span>
+</div>

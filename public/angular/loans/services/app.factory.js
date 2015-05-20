@@ -11,7 +11,9 @@
         var publicAPI = {
             agentsInAgency: agentsInAgency,
             averageArray: averageArray,
+            calcAdjustedProd: calcAdjustedProd,
             calcAdjustedRiskMargin: calcAdjustedRiskMargin,
+            calcArmAndDist: calcArmAndDist,
             calcCashFlow: calcCashFlow,
             calcCropValue: calcCropValue,
             calcEquipmentCollateralTotal: calcEquipmentCollateralTotal,
@@ -70,27 +72,27 @@
             diffInDates: diffInDates,
             getAllCommits: getAllCommits,
             getAllCrops: getAllCrops,
-            getArmDistCollateral: getArmDistCollateral,
             getArmCommit: getArmCommit,
+            getArmDistCollateral: getArmDistCollateral,
             getArmInterest: getArmInterest,
             getArmPrincipal: getArmPrincipal,
+            getDefaultDueDate: getDefaultDueDate,
             getDistCommit: getDistCommit,
             getDistInterest: getDistInterest,
             getDistPrincipal: getDistPrincipal,
-            getOtherCommit: getOtherCommit,
-            getLoanBreakEvenPercent: getLoanBreakEvenPercent,
-            getOtherPrincipal: getOtherPrincipal,
-            getTotalInterest: getTotalInterest,
-            getTotalPrincipal: getTotalPrincipal,
-            getDefaultDueDate: getDefaultDueDate,
             getFeeForArmProc: getFeeForArmProc,
             getFeeForArmSrvc: getFeeForArmSrvc,
             getFeesForArm: getFeesForArm,
             getFullSeason: getFullSeason,
             getIrrPerString: getIrrPerString,
+            getLoanBreakEvenPercent: getLoanBreakEvenPercent,
+            getOtherCommit: getOtherCommit,
+            getOtherPrincipal: getOtherPrincipal,
             getTotalClaims: getTotalClaims,
             getTotalCommit: getTotalCommit,
             getTotalFSAPayment: getTotalFSAPayment,
+            getTotalInterest: getTotalInterest,
+            getTotalPrincipal: getTotalPrincipal,
             gtZero: gtZero,
             inArray: inArray,
             incomeBookValue: incomeBookValue,
@@ -99,10 +101,11 @@
             incomeHarvestValue: incomeHarvestValue,
             income_totalCollateral: income_totalCollateral,
             income_totalCropValue: income_totalCropValue,
-            moveToNextNewLoanScreen: moveToNextNewLoanScreen,
             monitorAdjustedRisk: monitorAdjustedRisk,
             monitorCashFlow: monitorCashFlow,
             monitorRiskMargin: monitorRiskMargin,
+            moveToNextNewLoanScreen: moveToNextNewLoanScreen,
+            nullOrNot: nullOrNot,
             patchIt: patchIt,
             postIt: postIt,
             putIt: putIt,
@@ -124,6 +127,29 @@
             return avg;
         }
 
+        function calcAdjustedProd(loan) {
+            if(!loan){ return 0; }
+
+            var prod = incomeCropValue(loan);
+            var bkd_val = incomeBookedValue(loan);
+            var rebate_val = incomeRebateValue(loan);
+
+            var formula = Number(prod) + Number(bkd_val) + Number(rebate_val);
+            return formula;
+        }
+
+        function calcArmAndDist(loan) {
+            if(!loan) { return 0;}
+
+            var arm_principal = getArmPrincipal(loan);
+            var dist_principal = getDistPrincipal(loan);
+            var arm_interest = getArmInterest(loan);
+            var dist_interest = getDistInterest(loan);
+
+            var formula = Number(arm_principal) + Number(dist_principal) + Number(arm_interest) + Number(dist_interest);
+            return formula;
+        }
+
         function calcCropValue(obj) {
             if(!obj.yield){
                 obj.yield = obj.ins_yield;
@@ -133,19 +159,24 @@
         }
 
         function calcAdjustedRiskMargin(loan) {
-            if(!loan) { return; }
+            if(!loan) { return 0; }
 
-            var old_adjusted_risk_margin = -999999;
-            return -999999;
+            var old_adjusted_risk_margin = loan.fins.adjusted_risk;
+            return -999999; //TODO: find out formula
         }
 
         function calcCashFlow(loan) {
             if(!loan) { return; }
 
-            // TotalProjectedIncome - TotalExpenses
-            /* TODO: Need to retain value and watch for changes to trigger an addendum */
-            var old_cash_flow = '???';
-            return Number(calcTotalRevenue(loan)) - Number(getTotalPrincipal(loan)) - Number(getTotalInterest(loan));
+            // adj_prod - (principal + interest)
+            var old_cash_flow = loan.fins.cash_flow;
+            var adj_prod = calcAdjustedProd(loan);
+            var principal = getTotalPrincipal(loan);
+            var interest = getTotalInterest(loan);
+
+            var formula = Number(adj_prod) - (Number(principal) - Number(interest));
+            //console.log('CF', adj_prod, principal, interest, formula);
+            return formula;
         }
 
         function calcEquipmentCollateralTotal(loan) {
@@ -288,9 +319,14 @@
         function calcRiskMargin(loan) {
             if(!loan) { return; }
 
-            //TOTAL COLLATERAL - TOTAL COMMITMENT
-            var old_risk_margin = -999999;
-            return Number(calcTotalCollateral(loan)) - Number(calcTotalExpenses(loan));
+            var old_risk_margin = loan.fins.risk;
+            var total_collateral = calcTotalCollateral(loan);
+            var arm_and_dist = calcArmAndDist(loan);
+
+            var formula = Number(total_collateral) - Number(arm_and_dist);
+
+
+            return formula;
         }
 
         function calcSuppInsTotalAcres(loan) {
@@ -315,6 +351,7 @@
 
         function calcTotalCollateral(loan) {
             if(!loan) { return; }
+            // (disc_adj_prod + disc_ins)
 
             return Number(calcPlannedCropValue(loan)) +
                    Number(calcFSACollateralValue(loan)) +
@@ -901,8 +938,8 @@
         }
 
         function diffInDates(first, second) {
-            var intFirst = parseInt(first);
-            var intSecond = parseInt(second);
+            var intFirst = Number(first);
+            var intSecond = Number(second);
 
             if (intFirst < intSecond) {
                 return intSecond - intFirst;
@@ -998,7 +1035,7 @@
             //crop inputs + fees
             if(!loan) { return; }
 
-            return Number(getArmCommit(loan)); // + Number(getFeesForArm(loan));
+            return Number(getArmCommit(loan)) + Number(getFeesForArm(loan));
         }
 
         function getDistCommit(loan) {
@@ -1057,8 +1094,9 @@
         }
 
         function getTotalPrincipal(loan) {
-            if(!loan) { return; }
+            if(!loan) { return 0; }
             if(!loan.expenses){ return 0; }
+
             return Number(loan.expenses.totals.byLoan.total) + Number(getFeesForArm(loan));
         }
 
@@ -1187,6 +1225,21 @@
             return true;
         }
 
+        function incomeBookedValue(loan) {
+            if(!loan){ return 0; }
+
+            //TODO: Get values
+            var bkprice = 0;
+            var bkqty = 0;
+            var price = 0;
+            var harvest = 0;
+            var prod_yield = 0;
+            var acres = 0;
+
+            var formula = ((Number(bkprice) - Number(price)) * Number(bkqty)) - (Number(harvest) * Number(prod_yield) * Number(acres));
+            return formula;
+        }
+
         function incomeBookValue(o) {
             return (Number(o.bkprice) - Number(o.prod_price)) * Number(o.bkqty);
         }
@@ -1201,6 +1254,16 @@
 
         function incomeHarvestValue(o) {
             return Number(o.acres) * Number(o.prod_yield) * Number(o.harvest);
+        }
+
+        function incomeRebateValue(loan) {
+            var rebate = 999999;
+            var prod_yield = 999999;
+            var prod_share = 999999;
+            var acres = 999999;
+
+            var formula = Number(rebate) * Number(prod_yield) * Number(prod_share) * Number(acres);
+            return formula;
         }
 
         function income_totalCollateral(loan) {
@@ -1243,6 +1306,10 @@
                         $state.go('edit.summary', $stateParams);
                     }
                 });
+        }
+
+        function nullOrNot(obj) {
+            return !angular.isDefined(obj) || obj===null;
         }
 
         function monitorAdjustedRisk(loan) {
