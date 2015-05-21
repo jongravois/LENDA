@@ -7,7 +7,7 @@
         NewLoansController.$inject = ['$scope', '$rootScope', '$http', '$state', '$stateParams', 'API_URL', 'AppFactory', 'FarmersFactory', 'GlobalsFactory', 'LoansFactory',];
 
         function NewLoansController($scope, $rootScope, $http, $state, $stateParams, API_URL, AppFactory, FarmersFactory, GlobalsFactory, LoansFactory) {
-            $scope.newapplication = true; //flag for screen buttons
+            $scope.newapplication = $state.current.data.newapplication;
             $scope.currentScreen = 0;
 
             if(!$scope.loan){

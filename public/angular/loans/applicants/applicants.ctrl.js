@@ -21,12 +21,15 @@
 
         if (!$scope.loan) {
             $scope.loan = $rootScope.loan;
-            $scope.loan.applicant = {entity_type_id: '2'};
+            if($scope.newapplication){
+                $scope.loan.applicant = {entity_type_id: '2'};
+            }
         } // end if
 
         if ($scope.loan && !$scope.loan.applicant_id) {
-            $scope.loan.applicant = {entity_type_id: '2'};
-        } // end if
+            if($scope.newapplication){
+                $scope.loan.applicant = {entity_type_id: '2'};
+            }        } // end if
 
         $scope.newPartner = $scope.newPartner || {};
         $scope.newJoint = $scope.newJoint || {};
