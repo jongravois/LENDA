@@ -1,13 +1,13 @@
 <table class="table table-striped rowed">
     <tbody>
     <tr>
-        <td colspan="5" style="width: 50%;">&nbsp</td>
-        <td class="text-center" style="width:10%;">ARM</td>
-        <td class="text-center" style="width:10%;" ng-if="loan.has_distributor">
+        <th colspan="5" style="width: 50%;">&nbsp</th>
+        <th class="text-center" style="width:10%;">ARM</th>
+        <th class="text-center" style="width:10%;" ng-if="loan.has_distributor">
             {{loan.distributor}}
-        </td>
-        <td class="text-center" style="width:10%;">Other</td>
-        <td class="text-center" style="width:10%;">Total</td>
+        </th>
+        <th class="text-center" style="width:10%;">Other</th>
+        <th class="text-center" style="width:10%;">Total</th>
     </tr>
 
     <tr ng-repeat="e in loan.expenses.byCat|orderBy: 'cat_id'" ng-if="e.expense != 'Total'">

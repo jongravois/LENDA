@@ -8,8 +8,7 @@
         <th class="text-center" style="width:10%;">Change</th>
         <th class="text-center" style="width:10%;">Change</th>
         <th class="text-center" style="width:10%;">Other</th>
-        <th class="text-center" style="width:10%;">Total</th>
-        <th class="text-center" style="width:10%;">Total Fees</th>
+        <th class="text-center" style="width:10%;">Fees</th>
     </tr>
 
     <!--LOAN (Latest Addendum)-->
@@ -39,9 +38,6 @@
         </td>
         <td class="text-right">
             {{loan.fins.commit_other|flexCurrency:0}}
-        </td>
-        <td class="text-right">
-            {{loan.fins.commit_total|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{loan.fins.fee_total|flexCurrency:0}}
@@ -77,9 +73,6 @@
         </td>
         <td class="text-right">
             {{a.fins.commit_other|flexCurrency:0}}
-        </td>
-        <td class="text-right">
-            {{a.fins.commit_total|flexCurrency:0}}
         </td>
         <td class="text-right">
             {{a.fins.fee_total|flexCurrency:0}}

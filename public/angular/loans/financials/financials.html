@@ -18,32 +18,32 @@
 
     <div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12">
                 <table class="table table-striped">
                     <tr>
-                        <td style="width:20%;">
+                        </td>
+                        <td style="width:8%;">
+                            <label>Grade</label>
+                            &nbsp;&nbsp;
+                            <label>{{loan.appfins.grade}}</label>
+                        </td>
+                        <td style="width:12%;">
                             <label>Credit Score</label>
-                            &nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;
                             <text-edit-in-place value="loan.appfins.credit_score"></text-edit-in-place>
                         </td>
-                        <td style="width:20%;">
+                        <td style="width:15%;">
                             <label>
                                 <input type="checkbox" name="cpa_financials" ng-value="true" ng-model="loan.appfins.cpa_financials"/>&nbsp;
-                                Financials Received
+                                CPA Financials Received
                             </label>
                         </td>
-                        <td style="width:40%">
+                        <td>
               <span ng-if="loan.loan_type_id == 3 || loan.loan_type_id == 4 || loan.loan_type_id == 6 || loan.loan_type_id == 7">
                 <label>Amount Requested</label>
                 &nbsp;&nbsp;&nbsp;
                 <edit-in-place value="loan.appfins.amount_requested"></edit-in-place>
               </span>
-                        </td>
-                        <td style="width:20%;">
-                            <label>Grade</label>
-                            &nbsp;&nbsp;&nbsp;
-                            <label>{{loan.appfins.grade}}</label>
-                        </td>
                     </tr>
                 </table>
             </div>
@@ -104,13 +104,13 @@
 
         <!-- INCOME CONSTRAINTS-->
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <table class="table table-striped rowed">
                     <tr>
-                        <th style="width:25%;"><!--Income Constraints--></th>
-                        <th style="width:25%;">Revenue</th>
-                        <th style="width:25%;">Expenses</th>
-                        <th style="width:25%;">Income</th>
+                        <th><!--Income Constraints--></th>
+                        <th>Revenue</th>
+                        <th>Expenses</th>
+                        <th>Income</th>
                     </tr>
                     <tr>
                         <td>Year 1</td>
@@ -165,14 +165,14 @@
             <!-- INCOME CONSTRAINTS-->
 
             <!-- BALANCE SHEET CONSTRAINTS-->
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <table class="table table-striped rowed">
                     <tr>
                         <th><!--Balance Sheet Constraint--></th>
-                        <th style="width:16%;">Asset</th>
-                        <th style="width:16%;">Discount</th>
-                        <th style="width:16%;">Adj Value</th>
-                        <th style="width:16%;">Liability</th>
+                        <th>Asset</th>
+                        <th>Discount</th>
+                        <th>Adj Value</th>
+                        <th>Liability</th>
                         <th>Reserve</th>
                     </tr>
                     <tr>
@@ -289,22 +289,22 @@
                     <tr>
                         <td>Current Ratio [>=]</td>
                         <td class="text-center" ng-class=gtZero(loan.appfins.ratio_current)>
-                            {{loan.appfins.ratio_current|flexPercent:1}}
+                            {{loan.appfins.ratio_current/100|number:2}}
                         </td>
                         <td class="bright text-center" ng-class=gtZero(loan.appfins.ratio_current_adj)>
-                            {{loan.appfins.ratio_current_adj|flexPercent:1}}
+                            {{loan.appfins.ratio_current_adj/100|number:2}}
                         </td>
                         <td class="text-center" ng-class="{red: loan.appfins.ratio_current_adj < grads[0].current_ratio }">
-                            {{grads[0].current_ratio|flexPercent:1}}
+                            {{grads[0].current_ratio/100|number:2}}
                         </td>
                         <td class="text-center" ng-class="{red: loan.appfins.ratio_current_adj < grads[1].current_ratio }">
-                            {{grads[1].current_ratio|flexPercent:1}}
+                            {{grads[1].current_ratio/100|number:2}}
                         </td>
                         <td class="text-center" ng-class="{red: loan.appfins.ratio_current_adj < grads[2].current_ratio }">
-                            {{grads[2].current_ratio|flexPercent:1}}
+                            {{grads[2].current_ratio/100|number:2}}
                         </td>
                         <td class="text-center" ng-class="{red: loan.appfins.ratio_current_adj < grads[3].current_ratio }">
-                            {{grads[3].current_ratio|flexPercent:1}}
+                            {{grads[3].current_ratio/100|number:2}}
                         </td>
                     </tr>
                     <tr>
