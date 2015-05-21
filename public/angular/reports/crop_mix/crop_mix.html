@@ -2,12 +2,135 @@
     <tabset justified="true">
         <tab heading="Report">
             <h2>Crop Mix Report</h2>
+            <table class="table table-striped rowed">
+                <tr>
+                    <th>Farmer</th>
+                    <th>Applicant</th>
+                    <th style="width: 8%;">Corn</th>
+                    <th style="width: 8%;">Soybeans</th>
+                    <th style="width: 8%;">Soybeans FAC</th>
+                    <th style="width: 8%;">Sorghum</th>
+                    <th style="width: 8%;">Wheat</th>
+                    <th style="width: 8%;">Cotton</th>
+                    <th style="width: 8%;">Rice</th>
+                    <th style="width: 8%;">Peanuts</th>
+                    <th style="width: 8%;">Sugar Cane</th>
+                </tr>
+                <tr>
+                    <td>Wayne, John</td>
+                    <td>Duke Farms</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">200</td>
+                    <td class="text-right">800</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">500000</td>
+                    <td class="text-right">0</td>
+                </tr>
+                <tr>
+                    <td>Wayne, John</td>
+                    <td>Imadeadman</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">450</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                </tr>
+                <tr>
+                    <td>Rogers, Roy</td>
+                    <td>Trigger</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">50</td>
+                    <td class="text-right">1200</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                </tr>
+            </table>
         </tab>
         <tab heading="Options">
             <h2>Settings</h2>
+            <fieldset ng-init="togRecipients = false; togFields = false">
+                <legend>Crop Mix</legend>
+                <table class="table table-striped rowed" style="width:60%; margin: 0 auto;">
+                    <tr ng-click="togRecipients = !togRecipients" style="cursor:pointer;">
+                        <td>
+                            <strong>RECIPIENTS</strong>
+                        </td>
+                    </tr>
+                    <tr ng-show="togRecipients">
+                        <td>
+                            <input type="checkbox" name="required"/> ARM
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="required"/> MGR
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="required"/> AMA
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="required"/> CLE
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="required"/> CRO
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="required"/> DEX
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="required"/> JON
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="required"/> RAY
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="required"/> VIC
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="required"/> Analysts Only
+                            &nbsp;&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                    <tr ng-repeat="u in users" ng-show="togRecipients">
+                        <td>
+                            <input type="checkbox" name="required" checked="checked"/>
+                            &nbsp;
+                            {{u.username}} ({{u.loc_abr}})
+                        </td>
+                    </tr>
+                </table>
+                <br/><br/>
+                <table class="table table-striped rowed" style="width:60%; margin: 0 auto;">
+                    <tr ng-click="togFields = !togFields" style="cursor:pointer;">
+                        <td><strong>SELECT FIELDS</strong></td>
+                    </tr>
+                    <tr ng-repeat="c in feeder.crops" ng-show="togFields">
+                        <td>
+                            <input type="checkbox" name="required" checked="checked"/>&nbsp;
+                            {{c.name}}
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
         </tab>
         <tab heading="Required">
+            <!-- TODO: hide this tab if report not required-->
             <h2>Activity Log</h2>
+            <table class="table table-striped rowed" id="users">
+                <tr>
+                    <th>User</th>
+                    <th>Status</th>
+                </tr>
+                <tr ng-if="!feeder.notifications">
+                    <td colspan="2">
+                        <strong>No User found!</strong>
+                    </td>
+                </tr>
+                <tr ng-repeat="n in feeder.notifications | filter:{notification_type: 'report', report_id: 9, status: 'pending'}" ng-if="feeder.notifications">
+                    <td>{{n.user}}</td>
+                    <td>{{n.status}}</td>
+                </tr>
+            </table>
         </tab>
     </tabset>
 </div>

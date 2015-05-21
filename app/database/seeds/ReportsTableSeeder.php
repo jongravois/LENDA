@@ -55,7 +55,7 @@ class ReportsTableSeeder extends Seeder {
         Report::create([
             'report' => 'Crop Mix',
             'rptPath' => 'crpmix',
-            'is_required' => 0
+            'is_required' => 1
         ]);
 
         Report::create([

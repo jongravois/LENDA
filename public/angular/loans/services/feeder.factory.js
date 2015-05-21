@@ -28,6 +28,7 @@
             instypes: [],
             loantypes: [],
             locations: [],
+            notifications: [],
             regions: [],
             reports: [],
             roles: [],
@@ -91,6 +92,13 @@
                 });
         }
 
+        function getNotifications() {
+            return $http.get(API_URL + '/notifications')
+                .then(function (response) {
+                    data.notifications = response.data.data;
+                });
+        }
+
         function getRegions() {
             return $http.get(API_URL + '/regions')
                 .then(function (response) {
@@ -141,6 +149,7 @@
             getInsTypes();
             getLoanTypes();
             getLocations();
+            getNotifications();
             getRegions();
             getReports();
             getRoles();
@@ -157,6 +166,7 @@
             getRegions: getRegions,
             getLocations: getLocations,
             getLoanTypes: getLoanTypes,
+            getNotifications: getNotifications,
             getInsTypes: getInsTypes,
             getEntityTypes: getEntityTypes,
             getDistributors: getDistributors,
