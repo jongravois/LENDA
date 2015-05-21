@@ -9,6 +9,8 @@
     /* @ngInject */
     function EditLoansController($scope, $state, $stateParams, $filter, $timeout, toastr, AppFactory, ExceptionsFactory, CommentsData, CommentsLogic) {
         $scope.AppFactory = AppFactory;
+        $scope.newapplication = $state.current.data.newapplication;
+
 
         if(!$scope.loan){
             $scope.loan = _.find($scope.loans, function(i) {

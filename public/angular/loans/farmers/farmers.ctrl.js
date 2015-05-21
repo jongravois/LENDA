@@ -16,9 +16,11 @@
         } // end if
 
         if ($scope.loan && !$scope.loan.farmer_id) {
-            $scope.loan.farmer = {
-                new_client: true
-            };
+            if($scope.newapplication){
+                $scope.loan.farmer = {
+                    new_client: true
+                };
+            }
         }
 
         $scope.createFarmer = function (obj) {
