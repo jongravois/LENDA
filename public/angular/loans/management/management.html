@@ -207,7 +207,7 @@
           tooltip-append-to-body="true"
           tooltip-placement="bottom"
           class="pendicon glyphicon glyphicon-sunglasses"
-          ng-class="{'cGreen': l.is_watched, 'cGray': !l.is_watched}"></span>
+          ng-class="{'cBlack': l.is_watched, 'cGray': !l.is_watched}"></span>
           </a>
 
           <a href="#/edit/{{l.loan_type_id}}/{{l.id}}/disbursement">
@@ -215,7 +215,7 @@
           tooltip-append-to-body="true"
           tooltip-placement="bottom"
           class="pendicon glyphicon glyphicon-usd"
-          ng-class="{'cOrange': l.disbursement_issue, 'cGray': !l.disbursement_issue}"></span>
+          ng-class="{'cGreen': l.disbursement_issue, 'cGray': !l.disbursement_issue}"></span>
           </a>
 
       </td>
@@ -232,7 +232,7 @@
 
           <!--CROSS COLLATERAL-->
           <span ng-if="user.viewoptions.view_icon_cross">
-            <span class="indicon glyphicon glyphicon-retweet"
+            <span class="indicon glyphicon glyphicon-random"
                 tooltip="Cross Collateralized"
                 tooltip-append-to-body="true"
                 tooltip-placement="bottom"

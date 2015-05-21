@@ -27,7 +27,7 @@
       tooltip-append-to-body="true"
       tooltip-placement="bottom"
       class="pendicon glyphicon glyphicon-sunglasses"
-      ng-class="{'cGreen': row.getProperty('is_watched'), 'cGray': !row.getProperty('is_watched')}"></span>
+      ng-class="{'cBlack': row.getProperty('is_watched'), 'cGray': !row.getProperty('is_watched')}"></span>
 </a>
 
 <a href="#/edit/{{row.getProperty('loan_type_id')}}/{{row.getProperty('id')}}/disbursement">
@@ -35,5 +35,5 @@
       tooltip-append-to-body="true"
       tooltip-placement="bottom"
       class="pendicon glyphicon glyphicon-usd"
-      ng-class="{'cOrange': row.getProperty('disbursement_issue'), 'cGray': !row.getProperty('disbursement_issue')}"></span>
+      ng-class="{'cGreen': row.getProperty('disbursement_issue'), 'cGray': !row.getProperty('disbursement_issue')}"></span>
 </a>
