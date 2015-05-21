@@ -38,13 +38,12 @@
       <th rowspan="2" style="width:140px !important;">&nbsp;</th>
       <th style="width:9%;" rowspan="2" data-ng-click="sortBy='farmer';reverse=!reverse">Farmer</th>
       <th style="width:9%;" rowspan="2" data-ng-click="sortBy='applicant';reverse=!reverse">Applicant</th>
-      <th style="width:4%;" rowspan="2" data-ng-click="sortBy='crop_year';reverse=!reverse">Year</th>
+        <th style="width:9%;" rowspan="2" data-ng-click="sortBy='loan_type';reverse=!reverse">Type</th>
+        <th style="width:4%;" rowspan="2" data-ng-click="sortBy='crop_year';reverse=!reverse">Year</th>
       <th style="width:4%;" rowspan="2" data-ng-click="sortBy='location';reverse=!reverse">Loc</th>
-      <th style="width:9%;" rowspan="2" data-ng-click="sortBy='loan_type';reverse=!reverse">Type</th>
       <th style="width:4%;" rowspan="2" data-ng-click="sortBy='loanStatus';reverse=!reverse">Status</th>
       <th colspan="21" style="text-align: center">Progress</th>
     </tr>
-
     <tr class="landing_header_row">
       <th style="width:2%;">
         <span class="glyphicon glyphicon-list-alt"
@@ -290,11 +289,11 @@
 
       <td><a href="#/edit/{{l.loan_type_id}}/{{l.id}}/summary">{{l.applicant.applicant}}</a></td>
 
-      <td class="text-center">{{l.crop_year}}</td>
+        <td class="text-left">{{l.loan_type}}</td>
+
+        <td class="text-center">{{l.crop_year}}</td>
 
       <td class="text-center">{{l.loc_abr}}</td>
-
-      <td class="text-left">{{l.loan_type}}</td>
 
       <td style="text-align:center;">
         <span loan-status-icon status="{{l.status_id}}"></span>
