@@ -1,12 +1,10 @@
 <table class="table table-striped rowed">
-    <tbody>
     <tr>
-        <td colspan="5" style="width: 50%;">&nbsp</td>
-        <td class="text-center" style="width:10%;">ARM</td>
-        <td class="text-center" style="width:15%;">Other</td>
-        <td class="text-center" style="width:15%;">Total</td>
+        <th colspan="5" style="width:50%;">&nbsp</th>
+        <th class="text-center" style="width:15%;">ARM</th>
+        <th class="text-center" style="width:15%;">Other</th>
+        <th class="text-center" style="width:15%;">Total</th>
     </tr>
-
     <tr ng-repeat="e in loan.expenses.byCat|orderBy: 'cat_id'" ng-if="e.expense != 'Total'">
         <td colspan="5">
             {{e.expense}}
@@ -70,5 +68,4 @@
             {{AppFactory.calcCashFlow(loan) | flexCurrency:0 }}
         </td>
     </tr>
-    </tbody>
 </table>
