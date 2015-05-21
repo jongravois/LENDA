@@ -1,10 +1,90 @@
 <div>
-    <fieldset>
-        <legend>Prior Liens</legend>
+    <fieldset ng-init="loan.discount_overrides = false">
+        <legend>Discount Rates</legend>
         <div class="container row form-group">
             <div class="col-md-12">
                 <div class="col-md-9">
-                    <label>Are there any outstanding liens on the crops involved in this loan?</label>
+                    <label>Change standard discounts?</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="radio" name="percents" ng-value="true" ng-model="loan.discount_overrides"/>
+                    &nbsp;<label>Yes</label>
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="percents" ng-value="false" ng-model="loan.discount_overrides"/>
+                    &nbsp;<label>No</label>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group" ng-if="loan.discount_overrides">
+            <table class="table table-striped rowed" style="width: 30%; margin: 0 auto;">
+                <tr>
+                    <th style="width: 70%;">Category</th>
+                    <th style="width: 30%;">Discount</th>
+                </tr>
+                <tr>
+                    <td>Crops</td>
+                    <td class="text-right">
+                        <input class="form-control" type="text" value="50" style="width:60px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>FSA Assignment</td>
+                    <td class="text-right">
+                        <input class="form-control" type="text" value="20" style="width:60px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Insurance Over Discounted Yield</td>
+                    <td class="text-right">
+                        <input class="form-control" type="text" value="20" style="width:60px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Additional Non RP Discount</td>
+                    <td class="text-right">
+                        <input class="form-control" type="text" value="20" style="width:60px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Supplemental Coverage</td>
+                    <td class="text-right">
+                        <input class="form-control" type="text" value="50" style="width:60px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Equipment</td>
+                    <td class="text-right">
+                        <input class="form-control" type="text" value="50" style="width:60px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Real Estate</td>
+                    <td class="text-right">
+                        <input class="form-control" type="text" value="20" style="width:60px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Other</td>
+                    <td class="text-right">
+                        <input class="form-control" type="text" value="100" style="width:60px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a ng-click="createReference()" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign" style="color:#006837;"></span> Update</a>
+                    </td>
+                </tr>
+            </table>
+            <br/><br/>
+            </div>
+    </fieldset>
+    <br/><br/>
+    <fieldset>
+        <legend>Crops</legend>
+        <div class="container row form-group">
+            <div class="col-md-12">
+                <div class="col-md-9">
+                    <label>Prior liens on crops?</label>
                 </div>
                 <div class="col-md-3">
                     <input type="radio" name="liens" ng-value="true" ng-model="loan.quests.liens"/>
@@ -20,9 +100,9 @@
                    style="width: 96%; margin: 0 auto">
                 <tr>
                     <th>Holder</th>
-                    <th>Crop Income</th>
+                    <th>Crop</th>
                     <th>Insurance</th>
-                    <th>FSA</th>
+                    <th>FSA Payment</th>
                     <th>Total</th>
                 </tr>
                 <tr ng-if="loan.priorlien.liens.length === 0">
@@ -80,7 +160,7 @@
         <div class="container row form-group">
             <div class="col-md-12">
                 <div class="col-md-9">
-                    <label>Is equipment being used as collateral for this loan?</label>
+                    <label>Equipment used as collateral?</label>
                 </div>
                 <div class="col-md-3">
                     <input type="radio" name="equipcol" ng-value="true" ng-model="loan.equipment_collateral"/>
@@ -136,7 +216,7 @@
         <div class="container row form-group">
             <div class="col-md-12">
                 <div class="col-md-9">
-                    <label>Is real estate being used as collateral for this loan?</label>
+                    <label>Real Estate used as collateral?</label>
                 </div>
                 <div class="col-md-3">
                     <input type="radio" name="realestatecol" ng-value="true" ng-model="loan.realestate_collateral"/>
@@ -192,7 +272,7 @@
         <div class="container row form-group">
             <div class="col-md-12">
                 <div class="col-md-9">
-                    <label>Are the any other sources                 being used as collateral for this loan?</label>
+                    <label>Other sources used as collateral?</label>
                 </div>
                 <div class="col-md-3">
                     <input type="radio" name="othercol" ng-value="true" ng-model="loan.other_collateral"/>
