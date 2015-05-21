@@ -5,8 +5,8 @@ class LocationsTableSeeder extends Seeder{
   public function run()
   {
     Location::create([
-      'location' =>  'Unassigned',
-      'loc_abr' =>  'UNA',
+      'location' =>  'ARM Corporate',
+      'loc_abr' =>  'ARM',
       'address' =>  '',
       'city' =>  '',
       'state' =>  '',
@@ -65,15 +65,39 @@ class LocationsTableSeeder extends Seeder{
     ]);
 
     Location::create([
-      'location' =>  'Memphis',
-      'loc_abr' =>  'MEM',
-      'address' =>  '7247 Rose Trail Drive',
-      'city' =>  'Memphis',
-      'state' =>  'TN',
-      'zip'=>  '38133',
-      'phone' =>  '9012870209',
+      'location' =>  'Dexter',
+      'loc_abr' =>  'DEX',
+      'address' =>  'address',
+      'city' =>  'Dexter',
+      'state' =>  'MO',
+      'zip'=>  '99999',
+      'phone' =>  '9999999999',
       'manager_id' =>  2,
       'region_id' =>	3
+    ]);
+
+    Location::create([
+        'location' =>  'Amarillo',
+        'loc_abr' =>  'AMA',
+        'address' =>  'address',
+        'city' =>  'Amarillo',
+        'state' =>  'TX',
+        'zip'=>  '99999',
+        'phone' =>  '9999999999',
+        'manager_id' =>  2,
+        'region_id' =>	3
+    ]);
+
+    Location::create([
+        'location' =>  'Victoria',
+        'loc_abr' =>  'VIC',
+        'address' =>  'address',
+        'city' =>  'Victoria',
+        'state' =>  'TX',
+        'zip'=>  '99999',
+        'phone' =>  '9999999999',
+        'manager_id' =>  2,
+        'region_id' =>	3
     ]);
   }
 

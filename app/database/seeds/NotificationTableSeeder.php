@@ -6,8 +6,66 @@ class NotificationTableSeeder extends Seeder {
   {
     Notification::create([
       'user_id' => 2,
+      'loan_id' => 1,
       'notification_type' => 'report',
+      'report_id' => 1,
       'task' => 'Confirm Activity Detail Report'
+    ]);
+
+    Notification::create([
+        'user_id' => 2,
+        'loan_id' => 1,
+        'report_id' => 2,
+        'notification_type' => 'report',
+        'task' => 'Confirm Customer Budget Report'
+    ]);
+
+    Notification::create([
+        'user_id' => 2,
+        'loan_id' => 1,
+        'report_id' => 3,
+        'notification_type' => 'report',
+        'task' => 'Confirm Account Reconciliation Report'
+    ]);
+
+    Notification::create([
+        'user_id' => 2,
+        'loan_id' => 1,
+        'report_id' => 9,
+        'notification_type' => 'report',
+        'task' => 'Confirm Crop Mix Report'
+    ]);
+
+    Notification::create([
+        'user_id' => 8,
+        'loan_id' => 1,
+        'notification_type' => 'report',
+        'report_id' => 1,
+        'task' => 'Confirm Activity Detail Report'
+    ]);
+
+    Notification::create([
+        'user_id' => 8,
+        'loan_id' => 1,
+        'report_id' => 2,
+        'notification_type' => 'report',
+        'task' => 'Confirm Customer Budget Report'
+    ]);
+
+    Notification::create([
+        'user_id' => 8,
+        'loan_id' => 1,
+        'report_id' => 3,
+        'notification_type' => 'report',
+        'task' => 'Confirm Account Reconciliation Report'
+    ]);
+
+    Notification::create([
+        'user_id' => 8,
+        'loan_id' => 1,
+        'report_id' => 9,
+        'notification_type' => 'report',
+        'task' => 'Confirm Crop Mix Report'
     ]);
 
     Notification::create([
@@ -15,18 +73,6 @@ class NotificationTableSeeder extends Seeder {
       'loan_id' => 1,
       'notification_type' => 'vote',
       'task' => 'Review Loan: Tony Stark - Glass Towers'
-    ]);
-
-    Notification::create([
-      'user_id' => 2,
-      'notification_type' => 'report',
-      'task' => 'Confirm Customer Budget Report'
-    ]);
-
-    Notification::create([
-      'user_id' => 2,
-      'notification_type' => 'report',
-      'task' => 'Confirm Account Reconciliation Report'
     ]);
 
     Notification::create([

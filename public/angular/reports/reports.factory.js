@@ -8,7 +8,8 @@
 
     /* @ngInject */
     function ReportsFactory($http, API_URL) {
-        return {};
+        return {
 
+        };
     } // end factory
 })();

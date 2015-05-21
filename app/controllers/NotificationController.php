@@ -13,7 +13,7 @@ class NotificationController extends ApiController {
 
   public function index()
   {
-    $notes = Notification::all();
+    $notes = Notification::with('user')->get();
     return $this->respond([
       'data' => $this->notificationTransformer->transformCollection($notes->all())
     ]);
