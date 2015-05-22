@@ -54,14 +54,12 @@ class LoansController extends ApiController
         $crop_year = Globals::pluck('crop_year');
 
         $loan = Loan::create(Input::all());
-        $newLoan = Loan::find($loan->id);
 
         $path = public_path('files_loans/') . $crop_year . '_' . $loan->id;
         if (!File::exists($path)) {
             $result = File::makeDirectory($path, 0775);
         }
 
-        //TODO: Add file_url to $scope.loans -- LOOK AT STAPLER
         //Add systemic
         $newInfo = [
             'loan_id' => $loan->id,
@@ -90,14 +88,18 @@ class LoansController extends ApiController
 
         for ($l = 1; $l < 9; $l++) {
             $newCrop = [
-                'crop_year' => getCropYear(),
+                'crop_year' => $crop_year,
                 'loan_id' => $loan->id,
                 'crop_id' => $l
             ];
             Loancrop::create($newCrop);
         } // end for
 
-        return $this->respondCreated($newLoan);
+        $newLoan = Loan::with('applicant.entitytype', 'applicant.state', 'corporations', 'distributor', 'farmer.state', 'loancrop.crop', 'location', 'quests', 'regions', 'systemics', 'user', 'ventures')->where('id', $loan->id)->get();
+
+        return $this->respond([
+            'data' => $this->loanTransformer->transform($newLoan[0])
+        ]);
     }
 
     public function update($id)

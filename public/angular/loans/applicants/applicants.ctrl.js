@@ -19,17 +19,13 @@
             });
         }// end if
 
-        if (!$scope.loan) {
-            $scope.loan = $rootScope.loan;
+        if (!$scope.loan && $stateParams.loanID == 0) {
             if($scope.newapplication){
-                $scope.loan.applicant = {entity_type_id: '2'};
+                $scope.loan = {
+                    entity_type_id: '2'
+                };
             }
         } // end if
-
-        if ($scope.loan && !$scope.loan.applicant_id) {
-            if($scope.newapplication){
-                $scope.loan.applicant = {entity_type_id: '2'};
-            }        } // end if
 
         $scope.newPartner = $scope.newPartner || {};
         $scope.newJoint = $scope.newJoint || {};
@@ -37,23 +33,41 @@
 
         $scope.createApplicant = function () {
             //Have to create a corporation, if applicable
-            if ($scope.loan.entity_type_id === 1) {
+            /*if ($scope.loan.entity_type_id === 1) {
                 $scope.corporations.loan_id = $scope.loan.id;
                 ApplicantsFactory.createCorporation($scope.corporations);
-            }
+            }*/
 
             $scope.loan.applicant.loc_id = $scope.user.loc_id;
-            $scope.loan.applicant.farmer_id = $rootScope.farmerID;
-            $scope.loan.applicant.loan_id = $stateParams.loanID;
+            $scope.loan.applicant.farmer_id = $rootScope.newlyCreated.farmerID;
+            //$scope.loan.applicant.loan_id = $stateParams.loanID;
             var birth = $scope.loan.applicant.dob;
             $scope.loan.applicant.dob = birth.substr(0,2) + '/' + birth.substr(2,2) + '/' + birth.substr(5,4);
 
             ApplicantsFactory.createApplicant($scope.loan.applicant)
                 .then(function (rsp) {
-                    AppFactory.patchIt('/loans/', $stateParams.loanID, {applicant_id: rsp.data.message});
-                    $rootScope.loan = $scope.loan;
-                    $scope.loans.push($scope.loan);
-                    AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);
+                    $rootScope.newlyCreated.applicantID = rsp.data.message;
+                    console.log($rootScope.newlyCreated);
+                    var newLoan = {
+                        app_date: moment(new Date()).format('MM/DD/YYYY'),
+                        default_due_date: moment(new Date(AppFactory.getDefaultDueDate($rootScope.newlyCreated.type_id, $scope.globals.crop_year))).format('MM/DD/YYYY'),
+                        due_date: moment(new Date(AppFactory.getDefaultDueDate($rootScope.newlyCreated.type_id, $scope.globals.crop_year))).format('MM/DD/YYYY'),
+                        loan_type_id: $rootScope.newlyCreated.type_id,
+                        loan_type: $rootScope.newlyCreated.chosenLT,
+                        crop_year: $scope.globals.crop_year,
+                        season: $scope.globals.season,
+                        loc_id: $scope.user.loc_id,
+                        region_id: $scope.user.region_id,
+                        user_id: $scope.user.id,
+                        farmer_id: $rootScope.newlyCreated.farmerID,
+                        applicant_id: $rootScope.newlyCreated.applicantID
+                    };
+                    LoansFactory.insertLoan(newLoan)
+                        .then(function success(response) {
+                            console.log('NewLoan', response);
+                            $scope.loans.push(response.data.data);
+                            $state.go('edit.quests', {loantypeID:  response.data.data.loan_type_id, loanID: response.data.data.id});
+                        });
                 });
         };
 

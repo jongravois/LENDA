@@ -77,45 +77,13 @@
             var types = _.find($scope.feeder.loantypes, function(item){
                 return item.id === type_id;
             });
-            $scope.chosenLT = types.loantype;
-            $scope.chosenLT_id = types.id;
+            $rootScope.newlyCreated = {
+                type_id: type_id,
+                chosenLT: types.loantype,
+                chosenLT_id: types.id
+            };
 
-            LoansFactory.getScreens(types.id)
-                .then(function success(rsp) {
-                    $scope.screens = rsp.data.data;
-                    angular.forEach(rsp.data.data, function (res) {
-                        if (res.screen === 'farmer') {
-                            res.status = 1;
-                        } else {
-                            res.status = 0;
-                        }
-                    });
-                    var obj = {
-                        app_date: moment(new Date()).format('MM/DD/YYYY'),
-                        default_due_date: moment(new Date(AppFactory.getDefaultDueDate(types.id, $scope.globals.crop_year))).format('MM/DD/YYYY'),
-                        due_date: moment(new Date(AppFactory.getDefaultDueDate(types.id, $scope.globals.crop_year))).format('MM/DD/YYYY'),
-                        loan_type_id: types.id,
-                        loan_type: $scope.chosenLT,
-                        crop_year: $scope.globals.crop_year,
-                        season: $scope.globals.season,
-                        loc_id: $scope.user.loc_id,
-                        region_id: $scope.user.region_id,
-                        user_id: $scope.user.id,
-                        attachments: []
-                    };
-                    //console.log('new loan', obj);
-
-                    LoansFactory.insertLoan(obj)
-                        .then(function success(response) {
-                            //console.log('Res', response.data.message);
-                            $scope.loan = obj;
-                            $scope.loan.id = response.data.message.id;
-                            $scope.loan.chosenLT = types.loantype;
-                            $scope.loan.chosenLT_id = types.id;
-                            $rootScope.loan = $scope.loan;
-                            $state.go('new.farmer', {loantypeID: types.id, loanID: response.data.message.id});
-                        });
-                });
+            $state.go('new.farmer', {loantypeID: types.id, loanID: 0});
         }; // end newLoan fn
         $scope.getColor = AppFactory.returnColor;
         $scope.getReport = function (val) {
