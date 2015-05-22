@@ -54,13 +54,6 @@ class CommentsTableSeeder extends Seeder {
 		]);
 
         Comment::create([
-            'loan_id'	=>	1,
-            'type'		=>	'Addendum',
-            'user_id' => 5,
-            'comment'	=>	'[ADDENDUM] The additional funds requested are needed to offset unanticipated medical expenses but are easily covered by the 32% increase in yield expectation. The crop collateral is 100% insured and the request is less than the max amount of available value.'
-        ]);
-
-        Comment::create([
             'loan_id' => 1,
             'type' => 'Watch',
             'user_id' => 5,
