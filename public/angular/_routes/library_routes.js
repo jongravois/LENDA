@@ -9,17 +9,6 @@
                     templateUrl: 'angular/library/home.html',
                     controller: 'LibraryController'
                 })
-                .state('library.calendar', {
-                    url: '/calendar',
-                    templateUrl: 'angular/library/calendar/calendar.html',
-                    controller: 'CalendarController',
-                    controllerAs: 'vm',
-                    resolve: {
-                        InitialData: function(LibraryFactory){
-                            return LibraryFactory.getCalendarEvents();
-                        }
-                    }
-                })
                 .state('library.classroom', {
                     url: '/classroom',
                     templateUrl: 'angular/library/classroom/classroom.html',
