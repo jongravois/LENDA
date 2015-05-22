@@ -7,7 +7,7 @@
     HomeController.$inject = ['$scope', '$filter', 'orderByFilter'];
 
     function HomeController($scope, $filter, orderByFilter) {
-        $scope.pending_view = 0;
+        $scope.pending_view = 1;
         $scope.orderOptions = ['applicant', '-categoryOrder'];
         $scope.orderOption = "['applicant']";
 

@@ -439,13 +439,26 @@
   <!-- INCOME PERCENTAGE [income_percent] {LOAN}-->
 
   <!-- RESTRICTED USE PESTICIDE [pesticide_number] {} -->
-  <div class="row form-group" ng-if="chosenLT == 'Ag-Input' || chosenLT == 'Ag-Vest'">
+  <div class="row form-group" ng-if="loan.loan_type_id == '2' || loan.loan_type_id == '6'">
     <div class="col-md-8 col-lg-offset-2">
       <div class="col-md-9">
-        <label>Restricted Use Pesticide Number?</label>
+        <label>Restricted Use Pesticide Number</label>
       </div>
       <div class="col-md-3">
         <input type="text" name="pesticide_number" ng_model="loan.quests.pesticide_number" class="form-control"/>
+      </div>
+    </div>
+  </div>
+  <!-- RESTRICTED USE PESTICIDE [pesticide_number] {} -->
+
+  <!-- RESTRICTED USE PESTICIDE EXPIRATION [pesticide_number] {} -->
+  <div class="row form-group" ng-if="loan.loan_type_id == '2' || loan.loan_type_id == '6'">
+    <div class="col-md-8 col-lg-offset-2">
+      <div class="col-md-9">
+        <label>Restricted Use Pesticide Expiration Date</label>
+      </div>
+      <div class="col-md-3">
+        <input type="text" name="pest_num_expiration" ng_model="loan.quests.pest_num_expiration" class="form-control"/>
       </div>
     </div>
   </div>

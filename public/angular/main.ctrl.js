@@ -14,6 +14,7 @@
         function activate() {
             $scope.user_id = $('#user_id').data('id');
             $scope.landing_view = 'settings';
+            $scope.pending_view = 1;
             $scope.file_url = FILE_URL;
 
             UsersFactory.getUsers()

@@ -48,6 +48,7 @@ class CreateLoanquestionsTable extends Migration {
       $table->string('distributor')->nullable();
       $table->integer('agency')->nullable();
       $table->string('pesticide_number', 20)->nullable();
+      $table->string('pest_num_expiration', 20)->nullable();
       $table->integer('credit_score')->default(0);
       $table->boolean('affiliates')->default(0);
       $table->text('affiliated_entities')->nullable();

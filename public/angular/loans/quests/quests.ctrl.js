@@ -47,20 +47,20 @@
         };
 
         function checkExceptions() {
-            ExceptionsFactory.handler($stateParams.loanID, 'bankruptcyHistory', !$scope.quests.bankruptcy, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'bankruptcyOrder', !$scope.quests.bankruptcyOrder, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'cashOutlayProvisions', $scope.quests.other_cash, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'contractualObligations', !$scope.quests.future_liabilities, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'equipmentObligations', $scope.quests.equip_obligations, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'fmaGoodStanding', $scope.quests.fci_good, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'fsaGoodStanding', $scope.quests.fsa_good, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'harvestOwn', $scope.quests.harvest_own, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'isDefendant', !$scope.quests.legal_defendant, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'outstandingJudgement', !$scope.quests.judgements, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'outstandingLiens', !$scope.quests.liens, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'pastDuePremiums', $scope.quests.premiums_past, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'plantOwn', $scope.quests.plant_own, {});
-            ExceptionsFactory.handler($stateParams.loanID, 'thirdPartyCredit', !$scope.quests.credit_3p_available, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'bankruptcyHistory', !$scope.loan.quests.bankruptcy, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'bankruptcyOrder', !$scope.loan.quests.bankruptcyOrder, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'cashOutlayProvisions', $scope.loan.quests.other_cash, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'contractualObligations', !$scope.loan.quests.future_liabilities, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'equipmentObligations', $scope.loan.quests.equip_obligations, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'fmaGoodStanding', $scope.loan.quests.fci_good, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'fsaGoodStanding', $scope.loan.quests.fsa_good, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'harvestOwn', $scope.loan.quests.harvest_own, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'isDefendant', !$scope.loan.quests.legal_defendant, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'outstandingJudgement', !$scope.loan.quests.judgements, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'outstandingLiens', !$scope.loan.quests.liens, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'pastDuePremiums', $scope.loan.quests.premiums_past, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'plantOwn', $scope.loan.quests.plant_own, {});
+            ExceptionsFactory.handler($stateParams.loanID, 'thirdPartyCredit', !$scope.loan.quests.credit_3p_available, {});
         }
     } // end function
 })();

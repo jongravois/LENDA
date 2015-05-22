@@ -43,6 +43,7 @@ class LoanquestionsTransformer extends Transformer{
 			'income_distribution_details' =>	$arr['income_distribution_details'],
 			'distributor'	=>	$arr['distributor'],
 			'pesticide_number'	=>	$arr['pesticide_number'],
+			'pest_num_expiration'	=>	$arr['pest_num_expiration'],
 			'credit_score'	=>	$arr['credit_score'],
 			'affiliates' =>	(boolean) $arr['affiliates'],
 			'affiliated_entities'	=>	$arr['affiliated_entities'],

@@ -26,6 +26,7 @@ class LoanquestionsTableSeeder extends Seeder {
 			'distributor'		=>	'JSI',
 			'agency'			=>	'State Farm of Monroe',
 			'pesticide_number'	=>	'2T23765',
+			'pest_num_expiration'	=>	'02/14/2018',
 			'credit_score'	=>	730,
 			'affiliates' => 1,
 			'affiliated_entities'	=>	'Rutrum mi libero hymenaeos dolor posuere montes tristique litora cubilia.',

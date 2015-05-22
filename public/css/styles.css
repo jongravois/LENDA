@@ -939,3 +939,15 @@ div.editable-click {
     text-align: left;
 }
 /* btn-black */
+
+/* Display Tables Font Size Adj */
+table.disp-sm th{
+    font-size: 10px;
+    font-style: bold;
+}
+table.disp_sm tbody>tr>td{
+    font-size: 13px !important;
+}
+table.disp_sm tr>td{
+    font-size: 13px !important;
+}
