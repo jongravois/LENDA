@@ -25,7 +25,7 @@
         <td class="text-right">{{c.value|flexCurrency:0}}</td>
     </tr>
     <tr ng-if="loan.insurance.byCrop.length !== 0">
-        <td class="success">Total</td>
+        <td class="success">Total Insurance</td>
         <td class="success" colspan="7">&nbsp;</td>
         <td class="text-right success">
             {{AppFactory.calcInsuranceTotalValue(loan)|flexCurrency:0}}

@@ -102,7 +102,6 @@
                     <th>Holder</th>
                     <th>Crop</th>
                     <th>Insurance</th>
-                    <th>FSA Payment</th>
                     <th>Total</th>
                 </tr>
                 <tr ng-if="loan.priorlien.liens.length === 0">
@@ -120,9 +119,6 @@
                     <td class="text-right" ng-class="gtZero(p.ins_over_discount)">
                         {{p.ins_over_discount|flexCurrency:0}}
                     </td>
-                    <td class="text-right" ng-class="gtZero(p.fsa_payments)">
-                        {{p.fsa_payments|flexCurrency:0}}
-                    </td>
                     <td class="text-right" ng-class="gtZero(p.lientotal)">
                         {{p.lientotal|flexCurrency:0}}
                     </td>
@@ -136,9 +132,6 @@
                     </td>
                     <td class="text-right" ng-class="gtZero(loan.priorlien.totals.ins_over_discount)">
                         {{loan.priorlien.totals.ins_over_discount|flexCurrency:0}}
-                    </td>
-                    <td class="text-right" ng-class="gtZero(loan.priorlien.totals.fsa_payments)">
-                        {{loan.priorlien.totals.fsa_payments|flexCurrency:0}}
                     </td>
                     <td class="text-right" ng-class="gtZero(loan.priorlien.totals.lientotal)">
                         {{loan.priorlien.totals.lientotal|flexCurrency:0}}
