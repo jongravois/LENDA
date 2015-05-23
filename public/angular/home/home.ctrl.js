@@ -11,6 +11,8 @@
         $scope.orderOptions = ['applicant', '-categoryOrder'];
         $scope.orderOption = "['applicant']";
 
+        $scope.indWid = getIndicatorWidth();
+
         $scope.gridOptions = {
             data: 'sortedLoanList',
             rowHeight: 40,
@@ -27,13 +29,17 @@
                 displayName: ' ',
                 cellTemplate: 'angular/layout/grid_tmpl/pending.icons.html',
                 headerCellTemplate: 'angular/layout/grid_tmpl/pending.header.cell.html',
-                headerClass: 'text-center'
+                headerClass: 'text-center',
+                cellClass: 'text-center',
+                width: '95'
             },
             {
                 field: 'notification',
                 displayName: ' ',
                 cellTemplate: 'angular/layout/grid_tmpl/indicators.html',
-                cellClass: 'text-center'
+                cellClass: 'text-center',
+                width: $scope.indWid.width,
+                visible: $scope.indWid.visible
             },
             {
                 field: 'farmer.farmer',
@@ -258,5 +264,36 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_acres_other : false)
             }
         ];
+
+        function getIndicatorWidth(){
+            var cnt = 0;
+
+            if($scope.user.viewopts.view_icon_addendum) {
+                cnt += 1;
+            }
+            if($scope.user.viewopts.view_icon_cross) {
+                cnt += 1;
+            }
+            if($scope.user.viewopts.view_icon_bankruptcy) {
+                cnt += 1;
+            }
+            if($scope.user.viewopts.view_icon_3pcredit) {
+                cnt += 1;
+            }
+            if($scope.user.viewopts.view_icon_addedland) {
+                cnt += 1;
+            }
+            if($scope.user.viewopts.view_icon_disbursement) {
+                cnt += 1;
+            }
+            if($scope.user.viewopts.view_icon_attachments) {
+                cnt += 1;
+            }
+
+            return {
+                visible: (cnt === 0 ? false : true),
+                width: cnt * 19
+            }; //133;
+        }
     } // end controller
 })();
