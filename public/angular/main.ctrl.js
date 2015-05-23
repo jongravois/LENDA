@@ -48,8 +48,7 @@
                     $scope.loanList = _.filter(allLoans, function(i) {
                         return (i.status_id === '1' || i.status_id === 1) && i.crop_year == $scope.globals.crop_year;
                     });
-                    //TODO: Determine initial sort order
-                    $scope.sortedLoanList = orderByFilter($scope.loanList, '+id');
+                   $scope.sortedLoanList = orderByFilter($scope.loanList, ['-need_vote', '-has_comment', '-is_stale', '-is_watched', '-disbursement_issue', '+farmer.farmer']);
                 });
 
             FarmersFactory.getFarmers()
