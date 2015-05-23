@@ -27,88 +27,75 @@
                 displayName: ' ',
                 cellTemplate: 'angular/layout/grid_tmpl/pending.icons.html',
                 headerCellTemplate: 'angular/layout/grid_tmpl/pending.header.cell.html',
-                headerClass: 'text-center',
-                width: 'auto'
+                headerClass: 'text-center'
             },
             {
                 field: 'notification',
                 displayName: ' ',
                 cellTemplate: 'angular/layout/grid_tmpl/indicators.html',
-                cellClass: 'text-center',
-                width: 'auto'
+                cellClass: 'text-center'
             },
             {
                 field: 'farmer.farmer',
                 displayName: 'Farmer',
-                headerClass: 'text-center',
-                width: 'auto'
+                headerClass: 'text-center'
             },
             {
                 field: 'applicant',
                 displayName: 'Applicant',
                 headerClass: 'text-center',
-                width: 'auto',
                 cellTemplate: 'angular/layout/grid_tmpl/applicant.html'
             },
             {
                 field: 'loan_type_abr',
                 displayName: 'Type',
-                headerClass: 'text-center',
-                width: 'auto',
+                headerClass: 'text-center'
             },
             {
                 field: 'crop_year',
                 displayName: 'Crop Yr',
-                headerClass: 'text-center',
-                width: 'auto',
+                headerClass: 'text-center'
             },
             {
                 field: 'app_date',
                 displayName: 'App Date',
-                headerClass: 'text-center',
-                width: 'auto',
+                headerClass: 'text-center'
             },
             {
                 field: 'loc_abr',
                 displayName: 'Loc',
-                headerClass: 'text-center',
-                width: 'auto',
+                headerClass: 'text-center'
             },
             {
                 field: 'status_id',
                 displayName: 'Status',
                 cellClass: 'text-center',
                 headerClass: 'text-center',
-                cellTemplate: 'angular/layout/grid_tmpl/status.html',
-                width: 'auto',
+                cellTemplate: 'angular/layout/grid_tmpl/status.html'
             },
             {
                 field: 'region',
                 displayName: 'Reg',
                 headerClass: 'text-center',
-                visible: ($scope.user ? $scope.user.viewopts.view_region : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_region : false)
             },
             {
                 field: 'season',
                 displayName: 'Season',
                 headerClass: 'text-center',
-                visible: ($scope.user ? $scope.user.viewopts.view_season : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_season : false)
             },
             {
                 field: 'distributor',
                 displayName: 'Dist',
                 headerClass: 'text-center',
-                visible: ($scope.user ? $scope.user.viewopts.view_distributor : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_distributor : false)
             },
             {
                 field: 'insurance.agency',
                 displayName: 'Agency',
                 headerClass: 'text-center',
-                visible: ($scope.user ? $scope.user.viewopts.view_agency : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_agency : false)
             },
             {
                 field: 'fins.commit_total',
@@ -116,8 +103,7 @@
                 headerClass: 'text-center',
                 cellFilter: 'noCentsCurrency',
                 cellClass: 'text-right',
-                visible: ($scope.user ? $scope.user.viewopts.view_commit_total : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_commit_total : false)
             },
             {
                 field: 'fins.commit_arm',
@@ -125,8 +111,7 @@
                 headerClass: 'text-center',
                 cellFilter: 'noCentsCurrency',
                 cellClass: 'text-right',
-                visible: ($scope.user ? $scope.user.viewopts.view_commit_arm : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_commit_arm : false)
             },
             {
                 field: 'fins.commit_dist',
@@ -134,8 +119,7 @@
                 headerClass: 'text-center',
                 cellFilter: 'noCentsCurrency',
                 cellClass: 'text-right',
-                visible: ($scope.user ? $scope.user.viewopts.view_commit_distributor : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_commit_distributor : false)
             },
             {
                 field: 'fins.commit_other',
@@ -143,8 +127,7 @@
                 headerClass: 'text-center',
                 cellFilter: 'noCentsCurrency',
                 cellClass: 'text-right',
-                visible: ($scope.user ? $scope.user.viewopts.view_commit_other : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_commit_other : false)
             },
             {
                 field: 'fins.total_fee_percent',
@@ -152,8 +135,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'displaypercent',
-                visible: ($scope.user ? $scope.user.viewopts.view_fee_percentage : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_fee_percentage : false)
             },
             {
                 field: 'fins.fee_total',
@@ -161,8 +143,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'currency',
-                visible: ($scope.user ? $scope.user.viewopts.view_fee_total : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_fee_total : false)
             },
             {
                 field: 'fins.int_percent_arm',
@@ -170,8 +151,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'displaypercent',
-                visible: ($scope.user ? $scope.user.viewopts.view_rate_arm : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_rate_arm : false)
             },
             {
                 field: 'fins.int_percent_dist',
@@ -179,8 +159,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'displaypercent',
-                visible: ($scope.user ? $scope.user.viewopts.view_rate_dist : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_rate_dist : false)
             },
             {
                 field: 'fins.remaining_balance',
@@ -188,8 +167,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'currency',
-                visible: ($scope.user ? $scope.user.viewopts.view_balance_due : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_balance_due : false)
             },
             {
                 field: 'fins.total_acres',
@@ -197,8 +175,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_total : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_acres_total : false)
             },
             {
                 field: 'crops[0].acres',
@@ -206,8 +183,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_corn : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_acres_corn : false)
             },
             {
                 field: 'crops[1].acres',
@@ -215,8 +191,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_soybeans : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_acres_soybeans : false)
             },
             {
                 field: 'crops[2].acres',
@@ -224,8 +199,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_beansFAC : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_acres_beansFAC : false)
             },
             {
                 field: 'crops[3].acres',
@@ -233,8 +207,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_sorghum : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_acres_sorghum : false)
             },
             {
                 field: 'crops[4].acres',
@@ -242,8 +215,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_wheat : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_acres_wheat : false)
             },
             {
                 field: 'crops[5].acres',
@@ -251,8 +223,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_cotton : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_acres_cotton : false)
             },
             {
                 field: 'crops[6].acres',
@@ -260,8 +231,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_rice : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_acres_rice : false)
             },
             {
                 field: 'crops[7].acres',
@@ -269,8 +239,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_peanuts : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_acres_peanuts : false)
             },
             {
                 field: 'crops[8].acres',
@@ -278,8 +247,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_sugar_cane : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_acres_sugar_cane : false)
             },
             {
                 field: 'crops[9].acres',
@@ -287,8 +255,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_other : false),
-                width: 'auto',
+                visible: ($scope.user ? $scope.user.viewopts.view_acres_other : false)
             }
         ];
     } // end controller
