@@ -88,6 +88,7 @@ class LoanTransformer extends Transformer
             'loan_days' => $diff,
             'loan_type_id' => $arr['loan_type_id'],
             'loan_type' => $arr['loantype']['loantype'],
+            'loan_type' => $arr['loantype']['loantype'],
             'crop_year' => $arr['crop_year'],
             'season' => $arr['season'],
             'season_full' => $fullSeason,
@@ -144,10 +145,10 @@ class LoanTransformer extends Transformer
             'reconciliation' => (integer)$arr['reconciliation'],
             'account_classification' => (integer)$arr['account_classification'],
 
-            'crops' => processCrops($arr['id']),
+            //'crops' => proccessCrops($arr['id']),
             'cats' => getExpenseCategories($arr['id']),
-            'expenses' => $arr['cropexpenses'],
-            'expensez' => processExpenses($arr['id']),
+            'expensez' => $arr['cropexpenses'],
+            'expenses' => processExpenses($arr['id']),
 
             'fins' => processFinancials($arr),
             'analyst' => [

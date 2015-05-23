@@ -114,6 +114,8 @@ Route::group(['prefix' => 'api', 'before' => 'auth'], function () {
     Route::resource('requireddocuments', 'RequireddocumentsController');
     Route::resource('roles', 'RolesController');
     Route::resource('responses', 'ResponsesController');
+    Route::resource('reportfilters', 'ReportfiltersController');
+    Route::resource('reportoptions', 'ReportoptionsController');
     Route::resource('screens', 'ScreensController');
     Route::resource('spendcats', 'SpendcatController');
     Route::resource('states', 'StatesController');

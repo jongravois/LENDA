@@ -10,6 +10,7 @@ class CreateDefaultexpensesTable extends Migration
       {
             Schema::create('defaultexpenses', function (Blueprint $table) {
                   $table->increments('id');
+                  $table->integer('region_id')->default(0);
                   $table->integer('location_id');
                   $table->integer('crop_id');
                   $table->integer('loancrop_id');

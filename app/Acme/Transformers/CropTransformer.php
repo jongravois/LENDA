@@ -10,6 +10,7 @@ class CropTransformer extends Transformer
             'id' => (integer)$arr['id'],
             'crop' => $arr['crop'],
             'name' => $arr['name'],
+            'sort_order' => $arr['sort_order'],
             'tea' => $arr['tea'],
             'arm_default_price' => (double)$arr['arm_default_price'],
             'arm_default_ins_price' => (double)$arr['arm_default_ins_price'],

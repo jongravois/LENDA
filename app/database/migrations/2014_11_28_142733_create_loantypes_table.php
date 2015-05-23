@@ -11,6 +11,8 @@ class CreateLoantypesTable extends Migration {
 		{
 			$table->increments('id');
             $table->string('loantype');
+			$table->string('abr');
+			$table->integer('sort_order');
             $table->string('default_due_date')->default('-12-15');
 		});
 	}

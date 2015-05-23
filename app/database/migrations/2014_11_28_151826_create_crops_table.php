@@ -12,6 +12,7 @@ class CreateCropsTable extends Migration {
 			$table->increments('id');
             $table->string('crop');
             $table->string('name');
+			$table->integer('sort_order');
             $table->double('tea');
             $table->double('arm_default_price');
             $table->double('arm_default_ins_price');

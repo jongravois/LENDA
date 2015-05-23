@@ -39,6 +39,7 @@ class CreateViewoptionsTable extends Migration {
 			$table->boolean('view_acres_rice')->default(0);
 			$table->boolean('view_acres_peanuts')->default(0);
 			$table->boolean('view_acres_sugar_cane')->default(0);
+			$table->boolean('view_acres_other')->default(0);
 			$table->boolean('view_icon_addendum')->default(1);
 			$table->boolean('view_icon_cross')->default(1);
 			$table->boolean('view_icon_bankruptcy')->default(1);

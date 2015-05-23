@@ -32,6 +32,7 @@ class ViewoptionTransformer extends Transformer{
       'view_acres_rice' => (boolean) $arr['view_acres_rice'],
       'view_acres_peanuts' => (boolean) $arr['view_acres_peanuts'],
       'view_acres_sugar_cane' => (boolean) $arr['view_acres_sugar_cane'],
+      'view_acres_other' => (boolean) $arr['view_acres_other'],
       'view_icon_addendum' => (boolean) $arr['view_icon_addendum'],
       'view_icon_cross' => (boolean) $arr['view_icon_cross'],
       'view_icon_bankruptcy' => (boolean) $arr['view_icon_bankruptcy'],

@@ -25,7 +25,7 @@ class LocationsTableSeeder extends Seeder{
       'zip' =>  '38732',
       'phone' =>  '6628430944',
       'manager_id' =>  3,
-      'region_id' =>	1
+      'region_id' =>	2
     ]);
 
     Location::create([
@@ -37,7 +37,7 @@ class LocationsTableSeeder extends Seeder{
       'zip' =>  '70526',
       'phone' =>  '3372504488',
       'manager_id' =>  3,
-      'region_id' =>	2
+      'region_id' =>	3
     ]);
 
     Location::create([
@@ -61,7 +61,7 @@ class LocationsTableSeeder extends Seeder{
       'zip' =>  '71269',
       'phone' =>  '3187285770',
       'manager_id' =>  3,
-      'region_id'=>	2
+      'region_id'=>	3
     ]);
 
     Location::create([
