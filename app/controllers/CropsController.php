@@ -14,7 +14,7 @@ class CropController extends ApiController {
 
 	public function index()
 	{
-		$crops = Crop::all();
+		$crops = Crop::orderBy('sort_order')->get();
 		return $this->respond([
 			'data' => $this->cropTransformer->transformCollection($crops->all())
 		]);

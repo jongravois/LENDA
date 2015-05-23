@@ -15,7 +15,7 @@ class UsersController extends ApiController {
 
   public function index()
   {
-    $users = User::with('closer', 'location', 'manager', 'notifications', 'profile', 'region', 'role', 'viewoptions')->get();
+    $users = User::with('closer', 'location.region', 'manager', 'notifications', 'profile', 'reportoptions', 'reportfilters', 'role', 'viewfilters', 'viewoptions')->get();
 
     return $this->respond([
       'data' => $this->userTransformer->transformCollection($users->all())

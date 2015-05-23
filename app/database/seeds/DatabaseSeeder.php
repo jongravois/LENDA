@@ -69,6 +69,8 @@ class DatabaseSeeder extends Seeder {
       'ratioconstraints',
       'references',
       'regions',
+      'reportfilters',
+      'reportoptions',
       'reports',
       'requireddocuments',
       'responses',
@@ -80,6 +82,7 @@ class DatabaseSeeder extends Seeder {
       'systemics',
       'units',
       'users',
+      'viewfilters',
       'viewoptions',
       'vote',
       'votestatus'
@@ -163,6 +166,9 @@ class DatabaseSeeder extends Seeder {
       'SystemicsTableSeeder',
       'UnitsTableSeeder',
       'UsersTableSeeder',
+      'ReportfiltersTableSeeder',
+      'ReportoptionsTableSeeder',
+      'ViewfiltersTableSeeder',
       'ViewoptionsTableSeeder',
       'VotesTableSeeder',
       'VotestatusTableSeeder'

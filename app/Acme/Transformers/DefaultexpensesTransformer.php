@@ -8,6 +8,7 @@ class DefaultexpensesTransformer extends Transformer
     //return $arr;
     return [
         'id' => (integer)$arr['id'],
+        'region_id' => (double)$arr['region_id'],
         'location_id' => (double)$arr['location_id'],
         'crop_id' => (double)$arr['crop_id'],
         'loancrop_id' => (double)$arr['loancrop_id'],

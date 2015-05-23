@@ -76,6 +76,27 @@ function processAttachments($id) {
     $attachments = Attachment::where('loan_id', $id)-> get();
     return $attachments;
 }
+function processCrops($loanID)
+{
+    return [
+        'corn' => [
+            'crop_id' => 1,
+            'crop' => 'corn',
+            'name' => 'Corn',
+            'is_active' => true,
+            'acres' => 999999
+        ],
+        'soybeans' => [],
+        'beansFAC' => [],
+        'sorghum' => [],
+        'wheat' => [],
+        'cotton' => [],
+        'rice' => [],
+        'peanuts' => [],
+        'sugarcane' => [],
+        'other' => []
+    ];
+}
 function processExpenses($loanID)
 {
     $slim = trimExpenseCategories($loanID);

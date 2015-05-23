@@ -8,6 +8,8 @@ class LoantypeTransformer extends Transformer{
 		return [
 			'id' =>	$arr['id'],
 			'loantype' => $arr['loantype'],
+			'abr' => $arr['abr'],
+			'sort_order' => $arr['sort_order'],
             'default_due_date' => $arr['default_due_date']
 		];
 	}
