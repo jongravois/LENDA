@@ -951,3 +951,8 @@ table.disp_sm tbody>tr>td{
 table.disp_sm tr>td{
     font-size: 13px !important;
 }
+
+/* Landscape */
+table.ls-sm td{
+    font-size: 13px;
+}

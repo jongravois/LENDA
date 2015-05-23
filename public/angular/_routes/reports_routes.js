@@ -53,10 +53,6 @@
                     url: '/lnman',
                     templateUrl: 'angular/reports/loan_management/loan_management.html'
                 })
-                .state('reports.repcus', {
-                    url: '/repcus',
-                    templateUrl: 'angular/reports/repeat_customer/repeat_customer.html'
-                })
                 .state('reports.usradt', {
                     url: '/usradt',
                     templateUrl: 'angular/reports/user_audit/user_audit.html'

@@ -1,5 +1,23 @@
 <?php
 
+/**
+ * Class ReportsTableSeeder
+ *
+ * Source: Brad's Worksheet of May 22, 2015
+ *
+ * Activity Detail Report
+ * Customer Budget Report
+ * Account Reconciliation Report
+ * Loan Management Report
+ * Revenue Summary Report
+ * Available Credit Report
+ * Cash Flow & Risk/(Margin) Report
+ * Farmer History Report
+ * Crop Loan Acre Mix Report
+ * Committee Approval Report
+ * Committee Comment
+ * User Access Log
+ */
 class ReportsTableSeeder extends Seeder {
 
 	public function run()
@@ -28,6 +46,7 @@ class ReportsTableSeeder extends Seeder {
             'is_required' => 0
         ]);
 
+        /* Revenue Summary Report */
         Report::create([
             'report' => 'Activity Summary',
             'rptPath' => 'actsum',
@@ -52,6 +71,7 @@ class ReportsTableSeeder extends Seeder {
             'is_required' => 0
         ]);
 
+        /* Crop Loan Acre Mix Report */
         Report::create([
             'report' => 'Crop Mix',
             'rptPath' => 'crpmix',
@@ -67,12 +87,6 @@ class ReportsTableSeeder extends Seeder {
         Report::create([
             'report' => 'Committee Comment',
             'rptPath' => 'comcom',
-            'is_required' => 0
-        ]);
-
-        Report::create([
-            'report' => 'Repeat Customer',
-            'rptPath' => 'repcus',
             'is_required' => 0
         ]);
 
