@@ -5,7 +5,7 @@ class LocationsTableSeeder extends Seeder{
   public function run()
   {
     Location::create([
-      'location' =>  'ARM Corporate',
+      'location' =>  'Corporate',
       'loc_abr' =>  'ARM',
       'address' =>  '',
       'city' =>  '',

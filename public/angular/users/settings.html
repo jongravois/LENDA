@@ -13,793 +13,804 @@
 
     <!--<pre>{{user.viewopts|json}}</pre>-->
 
-    <!--USER INFO-->
-    <div class="row">
-        <fieldset id="userInfo" class="col-md-12" style="margin-top:18px;">
-            <legend>USER INFORMATION</legend>
+    <tabset>
+        <!-- USER -->
+        <tab heading="User">
+            <!--USER INFO-->
             <div class="row">
-                <div class="form-group col-xs-2">
-                <label>Username:</label>
-                <input type="text" class="form-control" name="username" ng-model="user.username"/>
-            </div>
-                <div class="form-group col-xs-2">
-                    <label>Email:</label>
-                    <input type="text" class="form-control" name="email" ng-model="user.email"/>
-                </div>
-                <div class="form-group col-xs-2">
-                    <label>Default Location:</label>
-                    <select class="form-control" name="loc_id" ng-model="user.loc_id" ng-options="loc.id as loc.location for loc in feeder.locations">
-                        <option value="">Please select ...</option>
-                    </select>
-                </div>
-                <div class="form-group col-xs-2">
-                    <label>Loan Closer:</label>
-                    <select class="form-control" name="closer_id" ng-model="user.closer_id" ng-options="u.id as u.username for u in users">
-                        <option value="">Please select ...</option>
-                    </select>
-                </div>
-                <div class="form-group col-xs-2">
-                    <label>Communication Preference:</label>
-                    <select class="form-control" name="comms" ng-model="user.comms" ng-options="c.id as c.name for c in feeder.comms">
-                        <option value="">Please select ...</option>
-                    </select>
-                </div>
-                <div class="form-group col-xs-2 text-right">
-                    <button class="btn btn-large btn-primary"
-                            style="margin-top: 20px;"
-                            ng-click="updateUserInfo()">
-                        Update User Info
-                    </button>
-                </div>
-            </div>
-        </fieldset>
-    </div>
-    <!--USER INFO-->
-
-    <!--OPTIONAL FIELDS-->
-    <div class="row">
-        <fieldset id="opt_fields" class="col-md-12" style="margin-top:18px;">
-            <legend>OPTIONAL DISPLAY FIELDS</legend>
-
-            <table class="table table-striped">
-                <tr>
-                    <td colspan="3">
-                        <label>Loan Indicators: </label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconAddendum" ng-model="user.viewopts.view_icon_addendum"> <span class="glyphicon glyphicon-plus" tooltip="Addendums" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconCross" ng-model="user.viewopts.view_icon_cross"> <span class="glyphicon glyphicon-retweet" tooltip="Cross Collateralized Loans" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconBankruptcy" ng-model="user.viewopts.view_icon_bankruptcy"> <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy History" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconThirdPartyCredit" ng-model="user.viewopts.view_icon_3pcredit"> <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconAddedLand" ng-model="user.viewopts.view_icon_addedland"> <span class="glyphicon glyphicon-flag" tooltip="Added Land" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconDisbursements" ng-model="user.viewopts.view_icon_disbursement"> <span class="glyphicon glyphicon-lock" tooltip="Controlled Disbursements" style="color: #333;"></span>
-                        &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="iconAttachments" ng-model="user.viewopts.view_icon_attachments"> <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" style="color: #333;"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <div class="alert alert-danger" role="alert">
-                            <p>You may only choose up to four optional fields</p>
+                <fieldset id="userInfo" class="col-md-12" style="margin-top:18px;">
+                    <legend>USER INFORMATION</legend>
+                    <div class="row">
+                        <div class="form-group col-xs-2">
+                            <label>Username:</label>
+                            <input type="text" class="form-control" name="username" ng-model="user.username"/>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="view_region" ng-model="user.viewopts.view_region"/>
-                        Region
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_commit_total" ng-model="user.viewopts.view_commit_total"/>
-                        Commit-Total
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_total" ng-model="user.viewopts.view_acres_total"/>
-                        Acres -- Total
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="view_season" ng-model="user.viewopts.view_season"/>
-                        Season
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_commit_arm" ng-model="user.viewopts.view_commit_arm"/>
-                        Commit-ARM
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_corn" ng-model="user.viewopts.view_acres_corn"/>
-                        Acres -- Corn
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="view_distributor" ng-model="user.viewopts.view_distributor"/>
-                        Distributor
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_commit_distributor" ng-model="user.viewopts.view_commit_distributor"/>
-                        Commit-Distributor
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_soybeans" ng-model="user.viewopts.view_acres_soybeans"/>
-                        Acres -- Soybeans
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="view_agency" ng-model="user.viewopts.view_agency"/>
-                        Agency
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_commit_other" ng-model="user.viewopts.view_commit_other"/>
-                        Commit-Other
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_sorghum" ng-model="user.viewopts.view_acres_sorghum"/>
-                        Acres -- Sorghum
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="checkbox" name="view_fee_percentage" ng-model="user.viewopts.view_fee_percentage"/>
-                        Fee Percentage
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_wheat" ng-model="user.viewopts.view_acres_wheat"/>
-                        Acres -- Wheat
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="checkbox" name="view_fee_total" ng-model="user.viewopts.view_fee_total"/>
-                        Fee Total
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_cotton" ng-model="user.viewopts.view_acres_cotton"/>
-                        Acres -- Cotton
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="checkbox" name="view_rate_arm" ng-model="user.viewopts.view_rate_arm"/>
-                        Rate - ARM
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_rice" ng-model="user.viewopts.view_acres_rice"/>
-                        Acres -- Rice
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="checkbox" name="view_rate_dist" ng-model="user.viewopts.view_rate_dist"/>
-                        Rate - Distributor
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_peanuts" ng-model="user.viewopts.view_acres_peanuts"/>
-                        Acres -- Peanuts
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>
-                        <input type="checkbox" name="view_balance_due" ng-model="user.viewopts.view_balance_due"/>
-                        Balance Due
-                    </td>
-                    <td>
-                        <input type="checkbox" name="view_acres_sugar_cane" ng-model="user.viewopts.view_acres_sugar_cane"/>
-                        Acres -- Sugar Cane
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-right">
-                        <button class="btn btn-large btn-primary" ng-click="updateViewPrefs(user.viewopts)">Update View Preferences</button>
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-    </div>
-    <!--OPTIONAL FIELDS-->
+                        <div class="form-group col-xs-2">
+                            <label>Email:</label>
+                            <input type="text" class="form-control" name="email" ng-model="user.email"/>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label>Default Location:</label>
+                            <select class="form-control" name="loc_id" ng-model="user.loc_id" ng-options="loc.id as loc.location for loc in feeder.locations">
+                                <option value="">Please select ...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label>Loan Closer:</label>
+                            <select class="form-control" name="closer_id" ng-model="user.closer_id" ng-options="u.id as u.username for u in users">
+                                <option value="">Please select ...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label>Communication Preference:</label>
+                            <select class="form-control" name="comms" ng-model="user.comms" ng-options="c.id as c.name for c in feeder.comms">
+                                <option value="">Please select ...</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2 text-right">
+                            <button class="btn btn-large btn-primary"
+                                    style="margin-top: 20px;"
+                                    ng-click="updateUserInfo()">
+                                Update User Info
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <!--USER INFO-->
+        </tab>
 
-    <!--FILTERS-->
-    <div class="row">
-        <fieldset id="filtered" class="col-md-12" style="margin-top:18px;">
-            <legend>FILTERS</legend>
+        <!-- VIEW -->
+        <tab heading="View">
+            <!--OPTIONAL FIELDS-->
             <div class="row">
-                <!--STATUS-->
-                <div class="form-group col-md-2">
-                    <label>Status:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="checkbox" name="In-Progress" ng-model="user.cbStatusInProgress"> <span class="glyphicon glyphicon-wrench" tooltip="In_Progress" style="color: #000099;"></span>
-                    &nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="Recommended" ng-model="user.cbStatusRecommended"> <span class="glyphicon glyphicon-share-alt" tooltip="Recommended"></span>
-                    &nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="Withdrawn" ng-model="user.cbStatusWithdrawn"> <span class="glyphicon glyphicon-remove-sign" tooltip="Withdrawn" style="color: #E0A02D;"></span>
-                    &nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="Approved" ng-model="user.cbStatusApproved"> <span class="glyphicon glyphicon-thumbs-up" tooltip="Approved" style="color: #009900;"></span>
-                    &nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="Denied" ng-model="user.cbStatusDenied"> <span class="glyphicon glyphicon-thumbs-down" tooltip="Denied" style="color: #990000;"></span>
-                    &nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="Paid" ng-model="user.cbStatusPaid"> <span class="glyphicon glyphicon-ok" tooltip="Paid" style="color: #009900;"></span>
-                </div>
-                <!--APP DATE-->
-                <div class="form-group col-md-2">
-                    <label>Application Date:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" ng-model="user.togAppDate" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" ng-model="user.togAppDate" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" ng-model="user.togAppDate" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" ng-model="user.togAppDate" value="after" />
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="user.appDate" placeholder="Set Filter" ng-hide="user.togAppDate == 'all'"/>
-                </div>
+                <fieldset id="opt_fields" class="col-md-12" style="margin-top:18px;">
+                    <legend>OPTIONAL DISPLAY FIELDS</legend>
+
+                    <table class="table table-striped">
+                        <tr>
+                            <td colspan="3">
+                                <label>Loan Indicators: </label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="iconAddendum" ng-model="user.viewopts.view_icon_addendum"> <span class="glyphicon glyphicon-plus" tooltip="Addendums" style="color: #333;"></span>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="iconCross" ng-model="user.viewopts.view_icon_cross"> <span class="glyphicon glyphicon-retweet" tooltip="Cross Collateralized Loans" style="color: #333;"></span>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="iconBankruptcy" ng-model="user.viewopts.view_icon_bankruptcy"> <span class="glyphicon glyphicon-fire" tooltip="Bankruptcy History" style="color: #333;"></span>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="iconThirdPartyCredit" ng-model="user.viewopts.view_icon_3pcredit"> <span class="glyphicon glyphicon-stats" tooltip="Third Party Credit" style="color: #333;"></span>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="iconAddedLand" ng-model="user.viewopts.view_icon_addedland"> <span class="glyphicon glyphicon-flag" tooltip="Added Land" style="color: #333;"></span>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="iconDisbursements" ng-model="user.viewopts.view_icon_disbursement"> <span class="glyphicon glyphicon-lock" tooltip="Controlled Disbursements" style="color: #333;"></span>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="iconAttachments" ng-model="user.viewopts.view_icon_attachments"> <span class="glyphicon glyphicon-paperclip" tooltip="Attachments" style="color: #333;"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="alert alert-danger" role="alert">
+                                    <p>You may only choose up to four optional fields</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="view_region" ng-model="user.viewopts.view_region"/>
+                                Region
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_commit_total" ng-model="user.viewopts.view_commit_total"/>
+                                Commit-Total
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_acres_total" ng-model="user.viewopts.view_acres_total"/>
+                                Acres -- Total
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="view_season" ng-model="user.viewopts.view_season"/>
+                                Season
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_commit_arm" ng-model="user.viewopts.view_commit_arm"/>
+                                Commit-ARM
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_acres_corn" ng-model="user.viewopts.view_acres_corn"/>
+                                Acres -- Corn
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="view_distributor" ng-model="user.viewopts.view_distributor"/>
+                                Distributor
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_commit_distributor" ng-model="user.viewopts.view_commit_distributor"/>
+                                Commit-Distributor
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_acres_soybeans" ng-model="user.viewopts.view_acres_soybeans"/>
+                                Acres -- Soybeans
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="view_agency" ng-model="user.viewopts.view_agency"/>
+                                Agency
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_commit_other" ng-model="user.viewopts.view_commit_other"/>
+                                Commit-Other
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_acres_sorghum" ng-model="user.viewopts.view_acres_sorghum"/>
+                                Acres -- Sorghum
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <input type="checkbox" name="view_fee_percentage" ng-model="user.viewopts.view_fee_percentage"/>
+                                Fee Percentage
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_acres_wheat" ng-model="user.viewopts.view_acres_wheat"/>
+                                Acres -- Wheat
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <input type="checkbox" name="view_fee_total" ng-model="user.viewopts.view_fee_total"/>
+                                Fee Total
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_acres_cotton" ng-model="user.viewopts.view_acres_cotton"/>
+                                Acres -- Cotton
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <input type="checkbox" name="view_rate_arm" ng-model="user.viewopts.view_rate_arm"/>
+                                Rate - ARM
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_acres_rice" ng-model="user.viewopts.view_acres_rice"/>
+                                Acres -- Rice
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <input type="checkbox" name="view_rate_dist" ng-model="user.viewopts.view_rate_dist"/>
+                                Rate - Distributor
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_acres_peanuts" ng-model="user.viewopts.view_acres_peanuts"/>
+                                Acres -- Peanuts
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <input type="checkbox" name="view_balance_due" ng-model="user.viewopts.view_balance_due"/>
+                                Balance Due
+                            </td>
+                            <td>
+                                <input type="checkbox" name="view_acres_sugar_cane" ng-model="user.viewopts.view_acres_sugar_cane"/>
+                                Acres -- Sugar Cane
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-right">
+                                <button class="btn btn-large btn-primary" ng-click="updateViewPrefs(user.viewopts)">Update View Preferences</button>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
             </div>
+            <!--OPTIONAL FIELDS-->
+
+            <!--FILTERS-->
             <div class="row">
-                <!--REGION-->
-                <div class="form-group col-md-2">
-                    <label>Region:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <select class="form-control" name="filterRegions" ng-model="user.filterRegions" ng-options="r.id as r.region for r in feeder.regions">
-                        <option value="">All</option>
-                    </select>
-                </div>
-                <!--CLOSE DATE-->
-                <div class="form-group col-md-2">
-                    <label>Close Date:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" ng-model="user.togCloseDate" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" ng-model="user.togCloseDate" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" ng-model="user.togCloseDate" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" ng-model="user.togCloseDate" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="user.closeDate" placeholder="Set Filter" ng-hide="user.togCloseDate == 'all'"/>
-                </div>
+                <fieldset id="filtered" class="col-md-12" style="margin-top:18px;">
+                    <legend>FILTERS</legend>
+                    <div class="row">
+                        <!--STATUS-->
+                        <div class="form-group col-md-2">
+                            <label>Status:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="checkbox" name="In-Progress" ng-model="user.cbStatusInProgress"> <span class="glyphicon glyphicon-wrench" tooltip="In_Progress" style="color: #000099;"></span>
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="Recommended" ng-model="user.cbStatusRecommended"> <span class="glyphicon glyphicon-share-alt" tooltip="Recommended"></span>
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="Withdrawn" ng-model="user.cbStatusWithdrawn"> <span class="glyphicon glyphicon-remove-sign" tooltip="Withdrawn" style="color: #E0A02D;"></span>
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="Approved" ng-model="user.cbStatusApproved"> <span class="glyphicon glyphicon-thumbs-up" tooltip="Approved" style="color: #009900;"></span>
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="Denied" ng-model="user.cbStatusDenied"> <span class="glyphicon glyphicon-thumbs-down" tooltip="Denied" style="color: #990000;"></span>
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="Paid" ng-model="user.cbStatusPaid"> <span class="glyphicon glyphicon-ok" tooltip="Paid" style="color: #009900;"></span>
+                        </div>
+                        <!--APP DATE-->
+                        <div class="form-group col-md-2">
+                            <label>Application Date:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" ng-model="user.togAppDate" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" ng-model="user.togAppDate" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" ng-model="user.togAppDate" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" ng-model="user.togAppDate" value="after" />
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="user.appDate" placeholder="Set Filter" ng-hide="user.togAppDate == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--REGION-->
+                        <div class="form-group col-md-2">
+                            <label>Region:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select class="form-control" name="filterRegions" ng-model="user.filterRegions" ng-options="r.id as r.region for r in feeder.regions">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                        <!--CLOSE DATE-->
+                        <div class="form-group col-md-2">
+                            <label>Close Date:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" ng-model="user.togCloseDate" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" ng-model="user.togCloseDate" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" ng-model="user.togCloseDate" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" ng-model="user.togCloseDate" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="user.closeDate" placeholder="Set Filter" ng-hide="user.togCloseDate == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--LOCATION-->
+                        <div class="form-group col-md-2">
+                            <label>Location:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select class="form-control" name="filterLocations" ng-model="user.filterLocations" ng-options="l.id as l.location for l in feeder.locations">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                        <!--TOTAL COMMIT-->
+                        <div class="form-group col-md-2">
+                            <label>Commit - Total:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togCommitTotal" ng-model="user.togCommitTotal" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitTotal" ng-model="user.togCommitTotal" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitTotal" ng-model="user.togCommitTotal" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitTotal" ng-model="user.togCommitTotal" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="commitTotal" ng-model="user.commitTotal" placeholder="Set Filter" ng-hide="user.togCommitTotal == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--ANALYST-->
+                        <div class="form-group col-md-2">
+                            <label>Analyst:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select class="form-control" name="filterAnalysts" ng-model="user.filterAnalysts" ng-options="u.id as u.username for u in users">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                        <!--TOTAL ARM-->
+                        <div class="form-group col-md-2">
+                            <label>Commit - ARM:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togCommitArm" ng-model="user.togCommitArm" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitArm" ng-model="user.togCommitArm" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitArm" ng-model="user.togCommitArm" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitArm" ng-model="user.togCommitArm" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="commitArm" ng-model="user.commitArm" placeholder="Set Filter" ng-hide="user.togCommitArm == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--FARMER-->
+                        <div class="form-group col-md-2">
+                            <label>Farmers:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select class="form-control" name="filterFarmers" ng-model="user.filterFarmers" ng-options="f.id as f.farmer for f in farmers">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                        <!--DIST COMMIT-->
+                        <div class="form-group col-md-2">
+                            <label>Commit - Distributor:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togCommitDist" ng-model="user.togCommitDist" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitDist" ng-model="user.togCommitDist" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitDist" ng-model="user.togCommitDist" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitDist" ng-model="user.togCommitDist" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="commitDist" ng-model="user.commitDist" placeholder="Set Filter" ng-hide="user.togCommitDist == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--CROP YEARS-->
+                        <div class="form-group col-md-2">
+                            <label>Crop Years:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select class="form-control" name="filterCropYears" ng-model="user.filterCropYears" ng-options="y.id as y.year for y in cropYears">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                        <!--OTHER COMMIT-->
+                        <div class="form-group col-md-2">
+                            <label>Commit - Other:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togCommitOther" ng-model="user.togCommitOther" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitOther" ng-model="user.togCommitOther" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitOther" ng-model="user.togCommitOther" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togCommitOther" ng-model="user.togCommitOther" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="commitOther" ng-model="user.commitOther" placeholder="Set Filter" ng-hide="user.togCommitOther == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--SEASONS-->
+                        <div class="form-group col-md-2">
+                            <label>Seasons:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select class="form-control" name="filterSeasons" ng-model="user.filterSeasons" ng-options="s.abr as s.season for s in feeder.seasons">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                        <!--FEE-->
+                        <div class="form-group col-md-2">
+                            <label>Fee:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togFee" ng-model="user.togFee" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togFee" ng-model="user.togFee" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togFee" ng-model="user.togFee" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togFee" ng-model="user.togFee" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="fee" ng-model="user.fee" placeholder="Set Filter" ng-hide="user.togFee == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--LOAN TYPE-->
+                        <div class="form-group col-md-2">
+                            <label>Loan Types:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select class="form-control" name="filterLoanTypes" ng-model="user.filterLoanTypes" ng-options="l.id as l.loantype for l in feeder.loantypes">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                        <!--ARM RATE-->
+                        <div class="form-group col-md-2">
+                            <label>Rate - ARM:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togRateArm" ng-model="user.togRateArm" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togRateArm" ng-model="user.togRateArm" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togRateArm" ng-model="user.togRateArm" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togRateArm" ng-model="user.togRateArm" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="rateArm" ng-model="user.rateArm" placeholder="Set Filter" ng-hide="user.togRateArm == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--DISTRIBUTOR-->
+                        <div class="form-group col-md-2">
+                            <label>Distributors:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select class="form-control" name="filterRateDist" ng-model="user.filterRateDist" ng-options="d.id as d.distributor for d in feeder.distributors">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                        <!--DIST RATE-->
+                        <div class="form-group col-md-2">
+                            <label>Rate - Distributor:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togRateDist" ng-model="user.togRateDist" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togRateDist" ng-model="user.togRateDist" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togRateDist" ng-model="user.togRateDist" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togRateDist" ng-model="user.togRateDist" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="rateDist" ng-model="user.rateDist" placeholder="Set Filter" ng-hide="user.togRateDist == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--AGENCY-->
+                        <div class="form-group col-md-2">
+                            <label>Agencies:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select class="form-control" name="filterAgencies" ng-model="user.filterAgencies" ng-options="a.id as a.name for a in feeder.agencies">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                        <!--TOTAL ACRES-->
+                        <div class="form-group col-md-2">
+                            <label>Acres - Total:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togAcresTotal" ng-model="user.togAcresTotal" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresTotal" ng-model="user.togAcresTotal" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresTotal" ng-model="user.togAcresTotal" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresTotal" ng-model="user.togAcresTotal" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="acresTotal" ng-model="user.acresTotal" placeholder="Set Filter" ng-hide="user.togAcresTotal == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--ADDENDUM-->
+                        <div class="form-group col-md-2">
+                            <label>Addendums:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="radio" name="filterAddendum" ng-model="user.filterAddendums" value = "1"> Yes
+                            &nbsp;&nbsp;
+                            <input type="radio" name="filterAddendum" ng-model="user.filterAddendums" value = "0"> No
+                        </div>
+                        <!--ACRES - CORN-->
+                        <div class="form-group col-md-2">
+                            <label>Acres - Corn:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togAcresCorn" ng-model="user.togAcresCorn" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresCorn" ng-model="user.togAcresCorn" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresCorn" ng-model="user.togAcresCorn" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresCorn" ng-model="user.togAcresCorn" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="acresCorn" ng-model="user.acresCorn" placeholder="Set Filter" ng-hide="user.togAcresCorn == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--COMMENTS-->
+                        <div class="form-group col-md-2">
+                            <label>Comments:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="radio" name="filterComments" ng-model="user.filterComments" value = "1"> Yes
+                            &nbsp;&nbsp;
+                            <input type="radio" name="filterComments" ng-model="user.filterComments" value = "0"> No
+                        </div>
+                        <!--ACRES - BEANS-->
+                        <div class="form-group col-md-2">
+                            <label>Acres - Soybeans:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togAcresBeans" ng-model="user.togAcresBeans" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresBeans" ng-model="user.togAcresBeans" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresBeans" ng-model="user.togAcresBeans" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresBeans" ng-model="user.togAcresBeans" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="acresBeans" ng-model="user.acresBeans" placeholder="Set Filter" ng-hide="user.togAcresBeans == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--BANKRUPTCY-->
+                        <div class="form-group col-md-2">
+                            <label>Bankruptcy:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="radio" name="filterBankruptcy" ng-model="user.filterBankruptcy" value = "1"> Yes
+                            &nbsp;&nbsp;
+                            <input type="radio" name="filterComments" ng-model="user.filterComments" value = "0"> No
+                        </div>
+                        <!--ACRES - SORGHUM-->
+                        <div class="form-group col-md-2">
+                            <label>Acres - Sorghum:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togAcresSorghum" ng-model="user.togAcresSorghum" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresSorghum" ng-model="user.togAcresSorghum" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresSorghum" ng-model="user.togAcresSorghum" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresSorghum" ng-model="user.togAcresSorghum" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="acresSorghum" ng-model="user.acresSorghum" placeholder="Set Filter" ng-hide="user.togAcresSorghum == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--THIRD PARTY-->
+                        <div class="form-group col-md-2">
+                            <label>Third Party:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="radio" name="filterThirdParty" ng-model="user.filterThirdParty" value = "1"> Yes
+                            &nbsp;&nbsp;
+                            <input type="radio" name="filterThirdParty" ng-model="user.filterThirdParty" value = "0"> No
+                        </div>
+                        <!--ACRES - WHEAT-->
+                        <div class="form-group col-md-2">
+                            <label>Acres - Wheat:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togAcresWheat" ng-model="user.togAcresWheat" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresWheat" ng-model="user.togAcresWheat" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresWheat" ng-model="user.togAcresWheat" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresWheat" ng-model="user.togAcresWheat" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="acresWheat" ng-model="user.acresWheat" placeholder="Set Filter" ng-hide="user.togAcresWheat == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--ADDED LAND-->
+                        <div class="form-group col-md-2">
+                            <label>Added Land:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="radio" name="filterAddedLand" ng-model="user.filterAddedLand" value = "1"> Yes
+                            &nbsp;&nbsp;
+                            <input type="radio" name="filterAddedLand" ng-model="user.filterAddedLand" value = "0"> No
+                        </div>
+                        <!--ACRES - COTTON-->
+                        <div class="form-group col-md-2">
+                            <label>Acres - Cotton:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togAcresCotton" ng-model="user.togAcresCotton" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresCotton" ng-model="user.togAcresCotton" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresCotton" ng-model="user.togAcresCotton" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresCotton" ng-model="user.togAcresCotton" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="acresCotton" ng-model="user.acresCotton" placeholder="Set Filter" ng-hide="user.togAcresCotton == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--CONTROLLED DISBURSEMENT-->
+                        <div class="form-group col-md-2">
+                            <label>Controlled Disb:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="radio" name="filterControlledDisbursements" ng-model="user.filterControlledDisbursements" value = "1"> Yes
+                            &nbsp;&nbsp;
+                            <input type="radio" name="filterControlledDisbursements" ng-model="user.filterControlledDisbursements" value = "0"> No
+                        </div>
+                        <!--ACRES - RICE-->
+                        <div class="form-group col-md-2">
+                            <label>Acres - Rice:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togAcresRice" ng-model="user.togAcresRice" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresRice" ng-model="user.togAcresRice" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresRice" ng-model="user.togAcresRice" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresRice" ng-model="user.togAcresRice" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="acresRice" ng-model="user.acresRice" placeholder="Set Filter" ng-hide="user.togAcresRice == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--ATTACHMENTS-->
+                        <div class="form-group col-md-2">
+                            <label>Attachments:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="radio" name="filterAttachments" ng-model="user.filterAttachments" value = "1"> Yes
+                            &nbsp;&nbsp;
+                            <input type="radio" name="filterAttachments" ng-model="user.filterAttachments" value = "0"> No
+                        </div>
+                        <!--ACRES - PEANUTS-->
+                        <div class="form-group col-md-2">
+                            <label>Acres - Peanuts:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togAcresPeanuts" ng-model="user.togAcresPeanuts" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresPeanuts" ng-model="user.togAcresPeanuts" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresPeanuts" ng-model="user.togAcresPeanuts" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresPeanuts" ng-model="user.togAcresPeanuts" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="acresPeanuts" ng-model="user.acresPeanuts" placeholder="Set Filter" ng-hide="user.togAcresPeanuts == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--LIMIT CLOSE-->
+                        <div class="form-group col-md-2">
+                            <label>Limit Close:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="radio" name="filterLimitClose" ng-model="user.filterLimitClose" value = "1"> Yes
+                            &nbsp;&nbsp;
+                            <input type="radio" name="filterLimitClose" ng-model="user.filterLimitClose" value = "0"> No
+                        </div>
+                        <!--ACRES - CANE-->
+                        <div class="form-group col-md-2">
+                            <label>Acres - Sugar Cane:</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="togAcresCane" ng-model="user.togAcresCane" value="all"/>
+                            <span style="font:normal 12px sans-serif">All</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresCane" ng-model="user.togAcresCane" value="equal" />
+                            <span style="font:normal 12px sans-serif">=</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresCane" ng-model="user.togAcresCane" value="before"/>
+                            <span style="font:normal 12px sans-serif"><</span>
+                            &nbsp;
+                            <input type="radio" name="togAcresCane" ng-model="user.togAcresCane" value="after"/>
+                            <span style="font:normal 12px sans-serif">> </span>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input class="form-control" type="text" name="acresCane" ng-model="user.acresCane" placeholder="Set Filter" ng-hide="user.togAcresCane == 'all'"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--LIMIT EXCEEDED-->
+                        <div class="form-group col-md-2">
+                            <label>Limit Exceeded:</label>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="radio" name="filterLimitExceeded" ng-model="user.filterLimitExceeded" value = "1"> Yes
+                            &nbsp;&nbsp;
+                            <input type="radio" name="filterLimitExceeded" ng-model="user.filterLimitExceeded" value = "0"> No
+                        </div>
+                        <!-- -->
+                        <div class="form-group col-md-6">&nbsp;</div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12 text-right">
+                            <button class="btn btn-large btn-primary" ng-click="updateFilterPrefs()">Update Filters</button>
+                        </div>
+                    </div>
+                </fieldset>
             </div>
-            <div class="row">
-                <!--LOCATION-->
-                <div class="form-group col-md-2">
-                    <label>Location:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <select class="form-control" name="filterLocations" ng-model="user.filterLocations" ng-options="l.id as l.location for l in feeder.locations">
-                        <option value="">All</option>
-                    </select>
-                </div>
-                <!--TOTAL COMMIT-->
-                <div class="form-group col-md-2">
-                    <label>Commit - Total:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togCommitTotal" ng-model="user.togCommitTotal" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitTotal" ng-model="user.togCommitTotal" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitTotal" ng-model="user.togCommitTotal" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitTotal" ng-model="user.togCommitTotal" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="commitTotal" ng-model="user.commitTotal" placeholder="Set Filter" ng-hide="user.togCommitTotal == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--ANALYST-->
-                <div class="form-group col-md-2">
-                    <label>Analyst:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <select class="form-control" name="filterAnalysts" ng-model="user.filterAnalysts" ng-options="u.id as u.username for u in users">
-                      <option value="">All</option>
-                    </select>
-                </div>
-                <!--TOTAL ARM-->
-                <div class="form-group col-md-2">
-                    <label>Commit - ARM:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togCommitArm" ng-model="user.togCommitArm" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitArm" ng-model="user.togCommitArm" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitArm" ng-model="user.togCommitArm" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitArm" ng-model="user.togCommitArm" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="commitArm" ng-model="user.commitArm" placeholder="Set Filter" ng-hide="user.togCommitArm == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--FARMER-->
-                <div class="form-group col-md-2">
-                    <label>Farmers:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <select class="form-control" name="filterFarmers" ng-model="user.filterFarmers" ng-options="f.id as f.farmer for f in farmers">
-                        <option value="">All</option>
-                    </select>
-                </div>
-                <!--DIST COMMIT-->
-                <div class="form-group col-md-2">
-                    <label>Commit - Distributor:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togCommitDist" ng-model="user.togCommitDist" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitDist" ng-model="user.togCommitDist" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitDist" ng-model="user.togCommitDist" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitDist" ng-model="user.togCommitDist" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="commitDist" ng-model="user.commitDist" placeholder="Set Filter" ng-hide="user.togCommitDist == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--CROP YEARS-->
-                <div class="form-group col-md-2">
-                    <label>Crop Years:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <select class="form-control" name="filterCropYears" ng-model="user.filterCropYears" ng-options="y.id as y.year for y in cropYears">
-                        <option value="">All</option>
-                    </select>
-                </div>
-                <!--OTHER COMMIT-->
-                <div class="form-group col-md-2">
-                    <label>Commit - Other:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togCommitOther" ng-model="user.togCommitOther" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitOther" ng-model="user.togCommitOther" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitOther" ng-model="user.togCommitOther" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togCommitOther" ng-model="user.togCommitOther" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="commitOther" ng-model="user.commitOther" placeholder="Set Filter" ng-hide="user.togCommitOther == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--SEASONS-->
-                <div class="form-group col-md-2">
-                    <label>Seasons:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <select class="form-control" name="filterSeasons" ng-model="user.filterSeasons" ng-options="s.abr as s.season for s in feeder.seasons">
-                        <option value="">All</option>
-                    </select>
-                </div>
-                <!--FEE-->
-                <div class="form-group col-md-2">
-                    <label>Fee:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togFee" ng-model="user.togFee" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togFee" ng-model="user.togFee" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togFee" ng-model="user.togFee" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togFee" ng-model="user.togFee" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="fee" ng-model="user.fee" placeholder="Set Filter" ng-hide="user.togFee == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--LOAN TYPE-->
-                <div class="form-group col-md-2">
-                    <label>Loan Types:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <select class="form-control" name="filterLoanTypes" ng-model="user.filterLoanTypes" ng-options="l.id as l.loantype for l in feeder.loantypes">
-                        <option value="">All</option>
-                    </select>
-                </div>
-                <!--ARM RATE-->
-                <div class="form-group col-md-2">
-                    <label>Rate - ARM:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togRateArm" ng-model="user.togRateArm" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togRateArm" ng-model="user.togRateArm" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togRateArm" ng-model="user.togRateArm" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togRateArm" ng-model="user.togRateArm" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="rateArm" ng-model="user.rateArm" placeholder="Set Filter" ng-hide="user.togRateArm == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--DISTRIBUTOR-->
-                <div class="form-group col-md-2">
-                    <label>Distributors:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <select class="form-control" name="filterRateDist" ng-model="user.filterRateDist" ng-options="d.id as d.distributor for d in feeder.distributors">
-                        <option value="">All</option>
-                    </select>
-                </div>
-                <!--DIST RATE-->
-                <div class="form-group col-md-2">
-                    <label>Rate - Distributor:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togRateDist" ng-model="user.togRateDist" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togRateDist" ng-model="user.togRateDist" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togRateDist" ng-model="user.togRateDist" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togRateDist" ng-model="user.togRateDist" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="rateDist" ng-model="user.rateDist" placeholder="Set Filter" ng-hide="user.togRateDist == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--AGENCY-->
-                <div class="form-group col-md-2">
-                    <label>Agencies:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <select class="form-control" name="filterAgencies" ng-model="user.filterAgencies" ng-options="a.id as a.name for a in feeder.agencies">
-                        <option value="">All</option>
-                    </select>
-                </div>
-                <!--TOTAL ACRES-->
-                <div class="form-group col-md-2">
-                    <label>Acres - Total:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togAcresTotal" ng-model="user.togAcresTotal" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresTotal" ng-model="user.togAcresTotal" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresTotal" ng-model="user.togAcresTotal" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresTotal" ng-model="user.togAcresTotal" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="acresTotal" ng-model="user.acresTotal" placeholder="Set Filter" ng-hide="user.togAcresTotal == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--ADDENDUM-->
-                <div class="form-group col-md-2">
-                    <label>Addendums:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="radio" name="filterAddendum" ng-model="user.filterAddendums" value = "1"> Yes
-                    &nbsp;&nbsp;
-                    <input type="radio" name="filterAddendum" ng-model="user.filterAddendums" value = "0"> No
-                </div>
-                <!--ACRES - CORN-->
-                <div class="form-group col-md-2">
-                    <label>Acres - Corn:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togAcresCorn" ng-model="user.togAcresCorn" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresCorn" ng-model="user.togAcresCorn" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresCorn" ng-model="user.togAcresCorn" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresCorn" ng-model="user.togAcresCorn" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="acresCorn" ng-model="user.acresCorn" placeholder="Set Filter" ng-hide="user.togAcresCorn == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--COMMENTS-->
-                <div class="form-group col-md-2">
-                    <label>Comments:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="radio" name="filterComments" ng-model="user.filterComments" value = "1"> Yes
-                    &nbsp;&nbsp;
-                    <input type="radio" name="filterComments" ng-model="user.filterComments" value = "0"> No
-                </div>
-                <!--ACRES - BEANS-->
-                <div class="form-group col-md-2">
-                    <label>Acres - Soybeans:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togAcresBeans" ng-model="user.togAcresBeans" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresBeans" ng-model="user.togAcresBeans" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresBeans" ng-model="user.togAcresBeans" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresBeans" ng-model="user.togAcresBeans" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="acresBeans" ng-model="user.acresBeans" placeholder="Set Filter" ng-hide="user.togAcresBeans == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--BANKRUPTCY-->
-                <div class="form-group col-md-2">
-                    <label>Bankruptcy:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="radio" name="filterBankruptcy" ng-model="user.filterBankruptcy" value = "1"> Yes
-                    &nbsp;&nbsp;
-                    <input type="radio" name="filterComments" ng-model="user.filterComments" value = "0"> No
-                </div>
-                <!--ACRES - SORGHUM-->
-                <div class="form-group col-md-2">
-                    <label>Acres - Sorghum:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togAcresSorghum" ng-model="user.togAcresSorghum" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresSorghum" ng-model="user.togAcresSorghum" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresSorghum" ng-model="user.togAcresSorghum" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresSorghum" ng-model="user.togAcresSorghum" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="acresSorghum" ng-model="user.acresSorghum" placeholder="Set Filter" ng-hide="user.togAcresSorghum == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--THIRD PARTY-->
-                <div class="form-group col-md-2">
-                    <label>Third Party:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="radio" name="filterThirdParty" ng-model="user.filterThirdParty" value = "1"> Yes
-                    &nbsp;&nbsp;
-                    <input type="radio" name="filterThirdParty" ng-model="user.filterThirdParty" value = "0"> No
-                </div>
-                <!--ACRES - WHEAT-->
-                <div class="form-group col-md-2">
-                    <label>Acres - Wheat:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togAcresWheat" ng-model="user.togAcresWheat" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresWheat" ng-model="user.togAcresWheat" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresWheat" ng-model="user.togAcresWheat" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresWheat" ng-model="user.togAcresWheat" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="acresWheat" ng-model="user.acresWheat" placeholder="Set Filter" ng-hide="user.togAcresWheat == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--ADDED LAND-->
-                <div class="form-group col-md-2">
-                    <label>Added Land:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="radio" name="filterAddedLand" ng-model="user.filterAddedLand" value = "1"> Yes
-                    &nbsp;&nbsp;
-                    <input type="radio" name="filterAddedLand" ng-model="user.filterAddedLand" value = "0"> No
-                </div>
-                <!--ACRES - COTTON-->
-                <div class="form-group col-md-2">
-                    <label>Acres - Cotton:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togAcresCotton" ng-model="user.togAcresCotton" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresCotton" ng-model="user.togAcresCotton" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresCotton" ng-model="user.togAcresCotton" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresCotton" ng-model="user.togAcresCotton" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="acresCotton" ng-model="user.acresCotton" placeholder="Set Filter" ng-hide="user.togAcresCotton == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--CONTROLLED DISBURSEMENT-->
-                <div class="form-group col-md-2">
-                    <label>Controlled Disb:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="radio" name="filterControlledDisbursements" ng-model="user.filterControlledDisbursements" value = "1"> Yes
-                    &nbsp;&nbsp;
-                    <input type="radio" name="filterControlledDisbursements" ng-model="user.filterControlledDisbursements" value = "0"> No
-                </div>
-                <!--ACRES - RICE-->
-                <div class="form-group col-md-2">
-                    <label>Acres - Rice:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togAcresRice" ng-model="user.togAcresRice" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresRice" ng-model="user.togAcresRice" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresRice" ng-model="user.togAcresRice" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresRice" ng-model="user.togAcresRice" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="acresRice" ng-model="user.acresRice" placeholder="Set Filter" ng-hide="user.togAcresRice == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--ATTACHMENTS-->
-                <div class="form-group col-md-2">
-                    <label>Attachments:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="radio" name="filterAttachments" ng-model="user.filterAttachments" value = "1"> Yes
-                    &nbsp;&nbsp;
-                    <input type="radio" name="filterAttachments" ng-model="user.filterAttachments" value = "0"> No
-                </div>
-                <!--ACRES - PEANUTS-->
-                <div class="form-group col-md-2">
-                    <label>Acres - Peanuts:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togAcresPeanuts" ng-model="user.togAcresPeanuts" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresPeanuts" ng-model="user.togAcresPeanuts" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresPeanuts" ng-model="user.togAcresPeanuts" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresPeanuts" ng-model="user.togAcresPeanuts" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="acresPeanuts" ng-model="user.acresPeanuts" placeholder="Set Filter" ng-hide="user.togAcresPeanuts == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--LIMIT CLOSE-->
-                <div class="form-group col-md-2">
-                    <label>Limit Close:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="radio" name="filterLimitClose" ng-model="user.filterLimitClose" value = "1"> Yes
-                    &nbsp;&nbsp;
-                    <input type="radio" name="filterLimitClose" ng-model="user.filterLimitClose" value = "0"> No
-                </div>
-                <!--ACRES - CANE-->
-                <div class="form-group col-md-2">
-                    <label>Acres - Sugar Cane:</label>
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="togAcresCane" ng-model="user.togAcresCane" value="all"/>
-                    <span style="font:normal 12px sans-serif">All</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresCane" ng-model="user.togAcresCane" value="equal" />
-                    <span style="font:normal 12px sans-serif">=</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresCane" ng-model="user.togAcresCane" value="before"/>
-                    <span style="font:normal 12px sans-serif"><</span>
-                    &nbsp;
-                    <input type="radio" name="togAcresCane" ng-model="user.togAcresCane" value="after"/>
-                    <span style="font:normal 12px sans-serif">> </span>
-                </div>
-                <div class="form-group col-md-2">
-                    <input class="form-control" type="text" name="acresCane" ng-model="user.acresCane" placeholder="Set Filter" ng-hide="user.togAcresCane == 'all'"/>
-                </div>
-            </div>
-            <div class="row">
-                <!--LIMIT EXCEEDED-->
-                <div class="form-group col-md-2">
-                    <label>Limit Exceeded:</label>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="radio" name="filterLimitExceeded" ng-model="user.filterLimitExceeded" value = "1"> Yes
-                    &nbsp;&nbsp;
-                    <input type="radio" name="filterLimitExceeded" ng-model="user.filterLimitExceeded" value = "0"> No
-                </div>
-                <!-- -->
-                <div class="form-group col-md-6">&nbsp;</div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-12 text-right">
-                    <button class="btn btn-large btn-primary" ng-click="updateFilterPrefs()">Update Filters</button>
-                </div>
-            </div>
-        </fieldset>
-    </div>
-    <!--FILTERS-->
+            <!--FILTERS-->
+        </tab>
+
+        <!-- REPORTS -->
+        <tab heading="Reports"></tab>
+    </tabset>
 
     <!--<pre>{{user.viewopts | json}}</pre>-->
     <br><br><br><br>

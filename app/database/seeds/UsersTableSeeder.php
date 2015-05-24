@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
             'username' => 'Brad Terral',
             'nick' => 'TBT',
             'email' => 'bterral@armlend.com',
-            'password' => 'changeme',
+            'password' => 'test2015',
             'phone' => '3182824037',
             'loc_id' => '5',
             'region_id' => '2',
