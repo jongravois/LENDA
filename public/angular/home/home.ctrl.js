@@ -292,8 +292,8 @@
 
             return {
                 visible: (cnt === 0 ? false : true),
-                width: cnt * 19
-            }; //133;
+                width: cnt * 20
+            }; //140;
         }
     } // end controller
 })();

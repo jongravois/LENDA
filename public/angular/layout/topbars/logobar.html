@@ -26,7 +26,7 @@
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <span class="dropdown" dropdown on-toggle="toggled(open)">
             <a href class="dropdown-toggle" dropdown-toggle>
-              New Loan Application
+              New Loan Application <span class="glyphicon glyphicon-menu-down" style="font-size: 10px;"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
               <li ng-repeat="l in feeder.loantypes">
@@ -79,9 +79,201 @@
 
         <span ng-show="user.is_admin">
             &nbsp;&nbsp;|&nbsp;&nbsp;
-            <a ui-sref="admin.users.list">
-              Admin
-            </a>
+            <span class="dropdown" dropdown on-toggle="toggled(open)">
+                <a href class="dropdown-toggle" dropdown-toggle>Admin <span class="glyphicon glyphicon-menu-down" style="font-size: 10px;"></span></a>
+               <ul class="dropdown-menu" role="menu">
+                   <li class="dropdown-submenu">
+                       <a ui-sref-active="active">Feeders</a>
+                       <ul class="dropdown-menu">
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.agents.list">
+                                   Agents &amp; Agencies
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.crops.list">
+                                   Crops
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.distributors.list">
+                                   Distributors
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.entitytypes.list">
+                                   Entity Types
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.instypes.list">
+                                   Insurance Types
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.loantypes.list">
+                                   Loan Types
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.locations.list">
+                                   Locations
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.regions.list">
+                                   Regions
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.roles.list">
+                                   Roles
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.units.list">
+                                   UoM
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="dropdown-submenu">
+                       <a ui-sref-active="active">Library</a>
+                       <ul class="dropdown-menu">
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.pdfapps.list">
+                                   Applications
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.resources.list">
+                                   Employee
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.legal.docs.list">
+                                   Legal
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.pols.and.procs.list">
+                                   Policies
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.loan.products.list">
+                                   Products
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.matrix.list">
+                                   Resp Matrix
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="dropdown-submenu">
+                       <a ui-sref-active="active">System</a>
+                       <ul class="dropdown-menu">
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.crops.list">
+                                   Archive Loans
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.quickbooks.list">
+                                   QB Sync
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.crops.list">
+                                   Req Reconciles
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="dropdown-submenu">
+                       <a ui-sref-active="active">Loans</a>
+                       <ul class="dropdown-menu">
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.grader.specs.list">
+                                   Budgets
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.closings.list">
+                                   Closing
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.committeespecs.list">
+                                   Committee
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.loans.list">
+                                   Data
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.globals.list">
+                                   Globals
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.grader.specs.list">
+                                   Grade
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.grader.specs.list">
+                                   Insurance
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.newloan.screens.list">
+                                   New Screens
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.docs.list">
+                                   Prerequisites
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.crops.list">
+                                   UoM Conversions
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li>
+                       <a ui-sref-active="active" ui-sref="admin.reports.list">
+                           Reports
+                       </a>
+                   </li>
+                   <li class="dropdown-submenu">
+                       <a ui-sref-active="active">Users</a>
+                       <ul class="dropdown-menu">
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.applicants.list">
+                                   Applicants
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.farmers.list">
+                                   Farmers
+                               </a>
+                           </li>
+                           <li>
+                               <a ui-sref-active="active" ui-sref="admin.users.list">
+                                   Staff
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+               </ul>
+            </span>
         </span>
     </span>
     <span class="search_box" style="display:none;"></span>
