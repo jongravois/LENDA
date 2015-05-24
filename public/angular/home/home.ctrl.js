@@ -8,8 +8,12 @@
 
     function HomeController($scope, $filter, orderByFilter) {
         $scope.pending_view = 1;
+        $scope.landing_view = 'settings';
         $scope.orderOptions = "['applicant', '-categoryOrder']";
         $scope.orderOption = "['applicant']";
+
+        $scope.changeLandingView('settings');
+        $scope.nextOrder(1);
 
         $scope.indWid = getIndicatorWidth();
 

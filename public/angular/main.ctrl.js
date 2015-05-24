@@ -120,6 +120,8 @@
         $scope.status = { isopen: false };
 
         $scope.changeLandingView = function (val) {
+            //alert(val);
+            //console.log($scope.loans);
             switch (val) {
                 case 'all':
                     $scope.loanList = $scope.loans;
@@ -161,6 +163,7 @@
                     });
                     break;
             } // end switch
+            $scope.sortedLoanList = $scope.loanList;
         };
 
         /* METHODS */

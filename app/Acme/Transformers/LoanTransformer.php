@@ -143,7 +143,7 @@ class LoanTransformer extends Transformer
             'limit_warning_message' => $arr['limit_warning_message'],
             'crop_inspection' => (integer)$arr['crop_inspection'],
             'reconciliation' => (integer)$arr['reconciliation'],
-            'account_classification' => (integer)$arr['account_classification'],
+            'account_classification' => $arr['account_classification'],
 
             //'crops' => proccessCrops($arr['id']),
             'cats' => getExpenseCategories($arr['id']),
