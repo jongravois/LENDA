@@ -1,0 +1,98 @@
+[
+  {
+    "region": "W",
+    "location": "AMR",
+    "farmer": "Erstine, Johan",
+    "applicant": "Tender Leaf Co., Inc.",
+    "crop_year": 2015,
+    "loan_type": "ALL",
+    "commit_arm": 2500000,
+    "commit_dist": 0,
+    "fee_total": 22500,
+    "arm_rate": 9
+  },
+  {
+    "region": "W",
+    "location": "AMR",
+    "farmer": "Berger, Keith",
+    "applicant": "Berger Farms",
+    "crop_year": 2015,
+    "loan_type": "ALL",
+    "commit_arm": 2500000,
+    "commit_dist": 0,
+    "fee_total": 22500,
+    "arm_rate": 9
+  },
+  {
+    "region": "W",
+    "location": "CLE",
+    "farmer": "Lacky, Joseph",
+    "applicant": "Lacky Brothers Partnership",
+    "crop_year": 2015,
+    "loan_type": "ALL",
+    "commit_arm": 1075000,
+    "commit_dist": 0,
+    "fee_total": 86000,
+    "arm_rate": 8
+  },
+  {
+    "region": "W",
+    "location": "CRO",
+    "farmer": "Brunner, John A.",
+    "applicant": "Brunner Farms",
+    "crop_year": 2015,
+    "loan_type": "ALL",
+    "commit_arm": 875000,
+    "commit_dist": 0,
+    "fee_total": 61250,
+    "arm_rate": 7
+  },
+  {
+    "region": "W",
+    "location": "DEX",
+    "farmer": "Dixon, Conner",
+    "applicant": "Dixon Farms Joint Venture",
+    "crop_year": 2015,
+    "loan_type": "ALL",
+    "commit_arm": 2300000,
+    "commit_dist": 0,
+    "fee_total": 184000,
+    "arm_rate": 8
+  },
+  {
+    "region": "W",
+    "location": "JON",
+    "farmer": "Conners, Billy Bob",
+    "applicant": "Conners Enterprises, Inc.",
+    "crop_year": 2015,
+    "loan_type": "ALL",
+    "commit_arm": 750000,
+    "commit_dist": 0,
+    "fee_total": 52500,
+    "arm_rate": 7
+  },
+  {
+    "region": "W",
+    "location": "VIC",
+    "farmer": "Cooper, Jonathan",
+    "applicant": "Cooper Farms",
+    "crop_year": 2015,
+    "loan_type": "ALL",
+    "commit_arm": 1250000,
+    "commit_dist": 0,
+    "fee_total": 62500,
+    "arm_rate": 5
+  },
+  {
+    "region": "E",
+    "location": "WIL",
+    "farmer": "Walsh, Joe",
+    "applicant": "Remington Farm & Ranch",
+    "crop_year": 2015,
+    "loan_type": "AGP",
+    "commit_arm": 1250000,
+    "commit_dist": 75000,
+    "fee_total": 12000,
+    "arm_rate": 6
+  }
+]

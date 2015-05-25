@@ -2,44 +2,16 @@
     'use strict';
     angular
         .module('ARM')
-        .controller('ReportsController', ReportsController);
+        .controller('ActivityDetailController', ActivityDetailController);
 
-    ReportsController.$inject = ['$scope', '$http'];
+    ActivityDetailController.$inject = ['$scope', '$http'];
 
-    function ReportsController ($scope, $http) {
+    function ActivityDetailController ($scope, $http) {
         $scope.mySelections = [];
         $scope.refresh = function () {
-            return $http.get('./crop_mix.json').success(function (data) {
+            return $http.get('./activity.detail.json').success(function (data) {
                 $scope.myData = data;
                 var len = $scope.myData.length;
-                for (var i = 0; i < len; i++) {
-                    /* Horizontal Sum */
-                    $scope.myData[i].total = $scope.myData[i].corn 
-                    + $scope.myData[i].soybeans
-                    + $scope.myData[i].soybeansFAC
-                    + $scope.myData[i].sorghum
-                    + $scope.myData[i].cotton
-                    + $scope.myData[i].rice
-                    + $scope.myData[i].peanuts
-                    + $scope.myData[i].cane
-                    + $scope.myData[i].wheat
-                    + $scope.myData[i].other;
-                }
-
-                /* Vertical Sum */
-                for (var i = 0; i < len-1; i++) {
-                    $scope.myData[len-1].corn += $scope.myData[i].corn;
-                    $scope.myData[len-1].soybeans += $scope.myData[i].soybeans;
-                    $scope.myData[len-1].soybeansFAC += $scope.myData[i].soybeansFAC;
-                    $scope.myData[len-1].sorghum += $scope.myData[i].sorghum;
-                    $scope.myData[len-1].cotton += $scope.myData[i].cotton;
-                    $scope.myData[len-1].rice += $scope.myData[i].rice;
-                    $scope.myData[len-1].peanuts += $scope.myData[i].peanuts;
-                    $scope.myData[len-1].cane += $scope.myData[i].cane;
-                    $scope.myData[len-1].wheat += $scope.myData[i].wheat;
-                    $scope.myData[len-1].other += $scope.myData[i].other;
-                    $scope.myData[len-1].total += $scope.myData[i].total;
-                }
             });
         };
         $scope.refresh();
@@ -82,11 +54,11 @@
                     visible: true
                 },
                 {
-                    field: 'corn',
-                    displayName: 'Corn',
+                    field: 'crop_year',
+                    displayName: 'Crop Year',
                     headerClass: 'text-center',
-                    cellClass: 'text-right',
-                    cellFilter: 'number:0',
+                    cellClass: 'text-center',
+                    cellFilter: '',
                     // width: 75,
                     // maxWidth: 75,
                     groupable: true,
@@ -96,11 +68,11 @@
                     visible: true
                 },
                 {
-                    field: 'soybeans',
-                    displayName: 'Soybeans',
+                    field: 'season',
+                    displayName: 'Season',
                     headerClass: 'text-center',
-                    cellClass: 'text-right',
-                    cellFilter: 'number:0',
+                    cellClass: 'text-center',
+                    cellFilter: '',
                     // width: 75,
                     // maxWidth: 75,
                     groupable: true,
@@ -110,11 +82,11 @@
                     visible: true
                 },
                 {
-                    field: 'soybeansFAC',
-                    displayName: 'SB FAC',
+                    field: 'analyst',
+                    displayName: 'Analyst',
                     headerClass: 'text-center',
-                    cellClass: 'text-right',
-                    cellFilter: 'number:0',
+                    cellClass: 'text-left',
+                    cellFilter: '',
                     // width: 75,
                     // maxWidth: 75,
                     groupable: true,
@@ -124,11 +96,11 @@
                     visible: true
                 },
                 {
-                    field: 'sorghum',
-                    displayName: 'Sorghum',
+                    field: 'farmer',
+                    displayName: 'Farmer',
                     headerClass: 'text-center',
-                    cellClass: 'text-right',
-                    cellFilter: 'number:0',
+                    cellClass: 'text-left',
+                    cellFilter: '',
                     // width: 75,
                     // maxWidth: 75,
                     groupable: true,
@@ -138,11 +110,11 @@
                     visible: true
                 },
                 {
-                    field: 'cotton',
-                    displayName: 'Cotton',
+                    field: 'applicant',
+                    displayName: 'Applicant',
                     headerClass: 'text-center',
-                    cellClass: 'text-right',
-                    cellFilter: 'number:0',
+                    cellClass: 'text-left',
+                    cellFilter: '',
                     // width: 75,
                     // maxWidth: 75,
                     groupable: true,
@@ -152,11 +124,11 @@
                     visible: true
                 },
                 {
-                    field: 'rice',
-                    displayName: 'Rice',
+                    field: 'loan_type',
+                    displayName: 'Loan Type',
                     headerClass: 'text-center',
-                    cellClass: 'text-right',
-                    cellFilter: 'number:0',
+                    cellClass: 'text-center',
+                    cellFilter: '',
                     // width: 75,
                     // maxWidth: 75,
                     groupable: true,
@@ -166,11 +138,11 @@
                     visible: true
                 },
                 {
-                    field: 'peanuts',
-                    displayName: 'Peanuts',
+                    field: 'qb_date',
+                    displayName: 'QB Date',
                     headerClass: 'text-center',
-                    cellClass: 'text-right',
-                    cellFilter: 'number:0',
+                    cellClass: 'text-center',
+                    cellFilter: "date:'shortDate'",
                     // width: 75,
                     // maxWidth: 75,
                     groupable: true,
@@ -180,11 +152,11 @@
                     visible: true
                 },
                 {
-                    field: 'cane',
-                    displayName: 'Cane',
+                    field: 'qb_type',
+                    displayName: 'QB Type',
                     headerClass: 'text-center',
-                    cellClass: 'text-right',
-                    cellFilter: 'number:0',
+                    cellClass: 'text-center',
+                    cellFilter: '',
                     // width: 75,
                     // maxWidth: 75,
                     groupable: true,
@@ -194,11 +166,11 @@
                     visible: true
                 },
                 {
-                    field: 'wheat',
-                    displayName: 'Wheat',
+                    field: 'qb_code',
+                    displayName: 'QB Code',
                     headerClass: 'text-center',
-                    cellClass: 'text-right',
-                    cellFilter: 'number:0',
+                    cellClass: 'text-center',
+                    cellFilter: '',
                     // width: 75,
                     // maxWidth: 75,
                     groupable: true,
@@ -208,22 +180,8 @@
                     visible: true
                 },
                 {
-                    field: 'other',
-                    displayName: 'Other',
-                    headerClass: 'text-center',
-                    cellClass: 'text-right',
-                    cellFilter: 'number:0',
-                    // width: 75,
-                    // maxWidth: 75,
-                    groupable: true,
-                    pinnable: true,
-                    resizable: true,
-                    sortable: true,
-                    visible: true
-                },
-                {
-                    field: 'total',
-                    displayName: 'Total',
+                    field: 'qb_amount',
+                    displayName: 'QB Amount',
                     headerClass: 'text-center',
                     cellClass: 'text-right',
                     cellFilter: 'number:0',
@@ -236,22 +194,6 @@
                     visible: true
                 }
             ]
-        };
-        $scope.addItem = function () {
-            $scope.myData.push({});
-        };
-        $scope.allItems = function () {
-            var dataLength = $scope.myData.length;
-            alert($scope.myData[dataLength - 1].name);
-        };
-        $scope.remove = function () {
-            _.each($scope.mySelections, function (person) {
-                //Real remove (i.e from datastore)
-                $scope.myData = _.filter($scope.myData, function (element) {
-                    return element.name != person.name;
-                });
-            });
-            $scope.mySelections.splice(0, $scope.mySelections.length);
         };
     }
 
