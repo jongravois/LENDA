@@ -2,14 +2,14 @@
     'use strict';
     angular
         .module('ARM')
-        .controller('ReportsController', ReportsController);
+        .controller('CropMixController', CropMixController);
 
-    ReportsController.$inject = ['$scope', '$http'];
+    CropMixController.$inject = ['$scope', '$http'];
 
-    function ReportsController ($scope, $http) {
+    function CropMixController ($scope, $http) {
         $scope.mySelections = [];
         $scope.refresh = function () {
-            return $http.get('./crop_mix.json').success(function (data) {
+            return $http.get('./crop.mix.json').success(function (data) {
                 $scope.myData = data;
                 var len = $scope.myData.length;
                 for (var i = 0; i < len; i++) {
@@ -25,34 +25,24 @@
                     + $scope.myData[i].wheat
                     + $scope.myData[i].other;
                 }
-
-                /* Vertical Sum */
-                for (var i = 0; i < len-1; i++) {
-                    $scope.myData[len-1].corn += $scope.myData[i].corn;
-                    $scope.myData[len-1].soybeans += $scope.myData[i].soybeans;
-                    $scope.myData[len-1].soybeansFAC += $scope.myData[i].soybeansFAC;
-                    $scope.myData[len-1].sorghum += $scope.myData[i].sorghum;
-                    $scope.myData[len-1].cotton += $scope.myData[i].cotton;
-                    $scope.myData[len-1].rice += $scope.myData[i].rice;
-                    $scope.myData[len-1].peanuts += $scope.myData[i].peanuts;
-                    $scope.myData[len-1].cane += $scope.myData[i].cane;
-                    $scope.myData[len-1].wheat += $scope.myData[i].wheat;
-                    $scope.myData[len-1].other += $scope.myData[i].other;
-                    $scope.myData[len-1].total += $scope.myData[i].total;
-                }
             });
         };
         $scope.refresh();
         $scope.gridOptions = {
             data: 'myData',
             showFilter: true,
-            // showColumnMenu: true,
-            // enableCellSelection: true,
+            showColumnMenu: true,
+            enableCellSelection: true,
             // enableCellEdit: true,
             // showSelectionCheckbox: true,
             // selectWithCheckboxOnly: true,
             // selectedItems: $scope.mySelections,
             // showFooter: true,
+            sortInfo:
+            {
+                fields:['location'],
+                directions:['asc']
+            },
             columnDefs: [
                 {
                     field: 'region',
@@ -236,22 +226,6 @@
                     visible: true
                 }
             ]
-        };
-        $scope.addItem = function () {
-            $scope.myData.push({});
-        };
-        $scope.allItems = function () {
-            var dataLength = $scope.myData.length;
-            alert($scope.myData[dataLength - 1].name);
-        };
-        $scope.remove = function () {
-            _.each($scope.mySelections, function (person) {
-                //Real remove (i.e from datastore)
-                $scope.myData = _.filter($scope.myData, function (element) {
-                    return element.name != person.name;
-                });
-            });
-            $scope.mySelections.splice(0, $scope.mySelections.length);
         };
     }
 

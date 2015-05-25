@@ -101,6 +101,7 @@
 <script src="angular/admin/users/farmers/admin.farmers.ctrl.js"></script>
 
 <script src="angular/home/home.ctrl.js"></script>
+
 <script src="angular/library/calendar/calendar.ctrl.js"></script>
 <script src="angular/library/classroom/classroom.ctrl.js"></script>
 <script src="angular/library/legal-docs/legal.docs.ctrl.js"></script>
@@ -112,6 +113,7 @@
 <script src="angular/library/pdf-apps/pdf.apps.ctrl.js"></script>
 <script src="angular/library/policies/pol.procs.ctrl.js"></script>
 <script src="angular/library/resources/resources.ctrl.js"></script>
+
 <script src="angular/loans/addendums/addendums.ctrl.js"></script>
 <script src="angular/loans/addendums/addendum.factory.js"></script>
 <script src="angular/loans/applicants/applicants.ctrl.js"></script>
@@ -169,12 +171,41 @@
 <script src="angular/loans/terms/terms.ctrl.js"></script>
 <script src="angular/loans/underwriting/underwriting.ctrl.js"></script>
 <script src="angular/loans/yield/yield.ctrl.js"></script>
+
 <script src="angular/modals/modal.ctrl.js"></script>
 <script src="angular/modals/modals.service.js"></script>
+
+<script src="angular/reports/account_reconciliation/account.reconciliation.ctrl.js"></script>
+<script src="angular/reports/account_reconciliation/account.reconciliation.factory.js"></script>
+<script src="angular/reports/activity_detail/activity.detail.ctrl.js"></script>
+<script src="angular/reports/activity_detail/activity.detail.factory.js"></script>
+<script src="angular/reports/activity_summary/activity.summary.ctrl.js"></script>
+<script src="angular/reports/activity_summary/activity.summary.factory.js"></script>
+<script src="angular/reports/available_credit/available.credit.ctrl.js"></script>
+<script src="angular/reports/available_credit/available.credit.factory.js"></script>
+<script src="angular/reports/committee_approval/committee.approval.ctrl.js"></script>
+<script src="angular/reports/committee_approval/committee.approval.factory.js"></script>
+<script src="angular/reports/committee_comment/committee.comment.ctrl.js"></script>
+<script src="angular/reports/committee_comment/committee.comment.factory.js"></script>
+<script src="angular/reports/crop_mix/crop.mix.ctrl.js"></script>
+<script src="angular/reports/crop_mix/crop.mix.factory.js"></script>
+<script src="angular/reports/customer_budget/customer.budget.ctrl.js"></script>
+<script src="angular/reports/customer_budget/customer.budget.factory.js"></script>
+<script src="angular/reports/farmer_history/farmer.history.ctrl.js"></script>
+<script src="angular/reports/farmer_history/farmer.history.factory.js"></script>
+<script src="angular/reports/flow_and_risk/cfarm.ctrl.js"></script>
+<script src="angular/reports/flow_and_risk/cfarm.factory.js"></script>
+<script src="angular/reports/loan_management/loan.management.ctrl.js"></script>
+<script src="angular/reports/loan_management/loan.management.factory.js"></script>
 <script src="angular/reports/reports.ctrl.js"></script>
 <script src="angular/reports/reports.factory.js"></script>
+<script src="angular/reports/user_audit/user.audit.ctrl.js"></script>
+<script src="angular/reports/user_audit/user.audit.factory.js"></script>
+
 <script src="angular/layout/topbars/progress-bar.ctrl.js"></script>
+
 <script src="angular/uploads/uploads.ctrl.js"></script>
+
 <script src="angular/users/sessions.ctrl.js"></script>
 <script src="angular/users/settings.ctrl.js"></script>
 <script src="angular/users/users.factory.js"></script>

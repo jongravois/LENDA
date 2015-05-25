@@ -1,0 +1,16 @@
+[
+  {
+    "region": "W",
+    "location": "AMR",
+    "crop_year": "2015",
+    "season": "1",
+    "analyst": "Jones, Tim",
+    "farmer": "Barns, Alex",
+    "applicant": "Brunner Farms",
+    "loan_type": "ALL",
+    "commit_arm": 1250000,
+    "commit_dist": 250000,
+    "arm_rate": 6,
+    "fee_total":24000
+  }
+]
