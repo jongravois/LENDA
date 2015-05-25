@@ -28,7 +28,7 @@
             columnDefs: [
                 {
                     field: 'committee_member',
-                    displayName: 'Committee Member',
+                    displayName: 'Member',
                     headerClass: 'text-center',
                     cellClass: 'text-left',
                     // width: 75,
@@ -41,7 +41,7 @@
                 },
                 {
                     field: 'analyst',
-                    displayName: 'Analyst',
+                    displayName: 'EID',
                     headerClass: 'text-center',
                     cellClass: 'text-left',
                     cellFilter: '',
@@ -69,12 +69,12 @@
                 },
                 {
                     field: 'crop_year',
-                    displayName: 'Crop Year',
+                    displayName: 'Year',
                     headerClass: 'text-center',
                     cellClass: 'text-center',
                     cellFilter: '',
-                    // width: 75,
-                    // maxWidth: 75,
+                    width: 50,
+                    // maxWidth: 50,
                     groupable: true,
                     pinnable: true,
                     resizable: true,
@@ -83,12 +83,12 @@
                 },
                 {
                     field: 'loan_type',
-                    displayName: 'Loan Type',
+                    displayName: 'Type',
                     headerClass: 'text-center',
                     cellClass: 'text-center',
                     cellFilter: '',
-                    // width: 75,
-                    // maxWidth: 75,
+                    width: 50,
+                    // maxWidth: 50,
                     groupable: true,
                     pinnable: true,
                     resizable: true,
@@ -111,7 +111,7 @@
                 },
                 {
                     field: 'committee_vote',
-                    displayName: 'Committee Vote',
+                    displayName: 'Vote',
                     headerClass: 'text-center',
                     cellClass: 'text-center',
                     cellFilter: '',
