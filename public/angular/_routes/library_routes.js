@@ -4,11 +4,6 @@
         .module('ARM')
         .config(function ($stateProvider, $urlRouterProvider) {
             $stateProvider
-                .state('library', {
-                    url: '/library',
-                    templateUrl: 'angular/library/home.html',
-                    controller: 'LibraryController'
-                })
                 .state('library.classroom', {
                     url: '/classroom',
                     templateUrl: 'angular/library/classroom/classroom.html',

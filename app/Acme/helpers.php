@@ -72,6 +72,15 @@ function getLoanTotalAcres($loanID)
         ->sum('ni');
     return (double) $acresIrr + $acresNi;
 }
+function getUniqueAgencies($loanID)
+{
+    $ags = Agency::select('agency')->whereIn('id', function($q) use ($loanID){
+        $q->from('insurance')
+            ->selectRaw('DISTINCT(agency_id)')
+            ->where('loan_id', $loanID);
+    })->get();
+    return implode(array_pluck($ags->all(), 'agency'), ', ');
+}
 function processAttachments($id) {
     $attachments = Attachment::where('loan_id', $id)-> get();
     return $attachments;

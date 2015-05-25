@@ -116,7 +116,13 @@ class LoanCropsTableSeeder extends Seeder {
             'crop_id' => 9
         ]);
 
-        //LOAN #2
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 1,
+			'crop_id' => 10
+		]);
+
+		//LOAN #2
 		Loancrop::create([
 			'crop_year' => 2015,
 			'loan_id' => 2,
@@ -172,8 +178,14 @@ class LoanCropsTableSeeder extends Seeder {
         Loancrop::create([
             'crop_year' => 2015,
             'loan_id' => 2,
-            'crop_id' => 8
+            'crop_id' => 9
         ]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 2,
+			'crop_id' => 10
+		]);
 
 		// Loan #9
 		Loancrop::create([
@@ -252,6 +264,12 @@ class LoanCropsTableSeeder extends Seeder {
 			'crop_year' => 2015,
 			'loan_id' => 9,
 			'crop_id' => 9
+		]);
+
+		Loancrop::create([
+			'crop_year' => 2015,
+			'loan_id' => 9,
+			'crop_id' => 10
 		]);
     }
 }

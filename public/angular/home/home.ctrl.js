@@ -48,13 +48,15 @@
             {
                 field: 'farmer.farmer',
                 displayName: 'Farmer',
-                headerClass: 'text-center'
+                headerClass: 'text-center',
+                width: '140'
             },
             {
                 field: 'applicant',
                 displayName: 'Applicant',
                 headerClass: 'text-center',
-                cellTemplate: 'angular/layout/grid_tmpl/applicant.html'
+                cellTemplate: 'angular/layout/grid_tmpl/applicant.html',
+                width: '140'
             },
             {
                 field: 'loan_type_abr',
@@ -102,7 +104,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_distributor : false)
             },
             {
-                field: 'insurance.agency',
+                field: 'agency',
                 displayName: 'Agency',
                 headerClass: 'text-center',
                 visible: ($scope.user ? $scope.user.viewopts.view_agency : false)
@@ -144,7 +146,7 @@
                 displayName: 'Fee %',
                 cellClass: 'text-right',
                 headerClass: 'text-center',
-                cellFilter: 'displaypercent',
+                cellFilter: 'flexPercent:1',
                 visible: ($scope.user ? $scope.user.viewopts.view_fee_percentage : false)
             },
             {
@@ -172,7 +174,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_rate_dist : false)
             },
             {
-                field: 'fins.remaining_balance',
+                field: 'fins.balance_remaining',
                 displayName: 'Balance',
                 cellClass: 'text-right',
                 headerClass: 'text-center',
@@ -188,7 +190,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_acres_total : false)
             },
             {
-                field: 'crops[0].acres',
+                field: 'loancrops[0].acres',
                 displayName: 'Acres: Corn',
                 cellClass: 'text-right',
                 headerClass: 'text-center',
@@ -196,7 +198,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_acres_corn : false)
             },
             {
-                field: 'crops[1].acres',
+                field: 'loancrops[1].acres',
                 displayName: 'Acres: Soybeans',
                 cellClass: 'text-right',
                 headerClass: 'text-center',
@@ -204,7 +206,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_acres_soybeans : false)
             },
             {
-                field: 'crops[2].acres',
+                field: 'loancrops[2].acres',
                 displayName: 'Acres: Soybeans FAC',
                 cellClass: 'text-right',
                 headerClass: 'text-center',
@@ -212,7 +214,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_acres_beansFAC : false)
             },
             {
-                field: 'crops[3].acres',
+                field: 'loancrops[3].acres',
                 displayName: 'Acres: Sorghum',
                 cellClass: 'text-right',
                 headerClass: 'text-center',
@@ -220,7 +222,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_acres_sorghum : false)
             },
             {
-                field: 'crops[4].acres',
+                field: 'loancrops[4].acres',
                 displayName: 'Acres: Wheat',
                 cellClass: 'text-right',
                 headerClass: 'text-center',
@@ -228,7 +230,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_acres_wheat : false)
             },
             {
-                field: 'crops[5].acres',
+                field: 'loancrops[5].acres',
                 displayName: 'Acres: Cotton',
                 cellClass: 'text-right',
                 headerClass: 'text-center',
@@ -236,7 +238,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_acres_cotton : false)
             },
             {
-                field: 'crops[6].acres',
+                field: 'loancrops[6].acres',
                 displayName: 'Acres: Rice',
                 cellClass: 'text-right',
                 headerClass: 'text-center',
@@ -244,7 +246,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_acres_rice : false)
             },
             {
-                field: 'crops[7].acres',
+                field: 'loancrops[7].acres',
                 displayName: 'Acres: Peanuts',
                 cellClass: 'text-right',
                 headerClass: 'text-center',
@@ -252,7 +254,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_acres_peanuts : false)
             },
             {
-                field: 'crops[8].acres',
+                field: 'loancrops[8].acres',
                 displayName: 'Acres: Cane',
                 cellClass: 'text-right',
                 headerClass: 'text-center',
@@ -260,7 +262,7 @@
                 visible: ($scope.user ? $scope.user.viewopts.view_acres_sugar_cane : false)
             },
             {
-                field: 'crops[9].acres',
+                field: 'loancrops[9].acres',
                 displayName: 'Acres: Other',
                 cellClass: 'text-right',
                 headerClass: 'text-center',

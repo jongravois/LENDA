@@ -76,6 +76,14 @@ class LoanTransformer extends Transformer
         //FINAL RETURN
         return [
             'id' => (integer) $arr['id'],
+            'cats' => getExpenseCategories($arr['id']),
+            'agency' => getUniqueAgencies($arr['id']),
+
+            //'crops' => proccessCrops($arr['id']),
+            'expenses' => $arr['cropexpenses'],
+            'expensez' => processExpenses($arr['id']),
+
+            'fins' => processFinancials($arr),
             'uniqID' => $arr['crop_year'] . $arr['season'] . $arr['id'],
             'app_date' => $arr['app_date']->format('m/d/Y'),
             'distributor_approval_date' => $distDecision,
@@ -144,13 +152,7 @@ class LoanTransformer extends Transformer
             'crop_inspection' => (integer)$arr['crop_inspection'],
             'reconciliation' => (integer)$arr['reconciliation'],
             'account_classification' => $arr['account_classification'],
-            'cats' => getExpenseCategories($arr['id']),
 
-            //'crops' => proccessCrops($arr['id']),
-            'expenses' => $arr['cropexpenses'],
-            'expensez' => processExpenses($arr['id']),
-
-            'fins' => processFinancials($arr),
             'analyst' => [
                 'id' => $arr['user']['id'],
                 'nick' => $arr['user']['nick'],

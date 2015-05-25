@@ -19,8 +19,8 @@ function processFinancials($loan)
     }
 
     $arm_commit = (double)calcCommits($loan['id'], 'arm_adj');
-    $dist_commit = calcCommits($loan['id'], 'dist_adj');
-    $other_commit = calcCommits($loan['id'], 'other_adj');
+    $dist_commit = (double)calcCommits($loan['id'], 'dist_adj');
+    $other_commit = (double)calcCommits($loan['id'], 'other_adj');
     $total_commit = (double)$arm_commit + (double)$dist_commit + (double)$other_commit;
 
     $principalArm = calcPrincipal($arm_commit, $srvcFee, $procFee);
@@ -33,6 +33,8 @@ function processFinancials($loan)
 
     return [
         'amount_requested' => (double)$fins['amount_requested'],
+        'total_balance' => (double)$fins['total_balance'],
+        'balance_remaining' => (double)$fins['remaining_balance'],
         'claims_percent' => (double)$fins['claims_percent'],
         'supplement_insurance_discount_percent' => (double) $fins['supplement_insurance_discount_percent'],
         'fsa_assignment_percent' => (double)$fins['fsa_assignment_percent'],
@@ -86,9 +88,7 @@ function processFinancials($loan)
         //'disc_adj_prod' => (double)$fins['disc_adj_prod'],
         //'ins_disc_prod' => (double)$fins['ins_disc_prod'],
         //'disc_ins' => (double)$fins['disc_ins'],
-        //'total_revenue' => (double)$fins['total_revenue'],
-        //'total_balance' => (double)$fins['total_balance'],
-        //'remaining_balance' => (double)$fins['remaining_balance']
+        //'total_revenue' => (double)$fins['total_revenue']
     ];
 }
 

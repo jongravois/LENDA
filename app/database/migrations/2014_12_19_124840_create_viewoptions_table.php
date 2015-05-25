@@ -33,6 +33,7 @@ class CreateViewoptionsTable extends Migration {
 			$table->boolean('view_acres_total')->default(0);
 			$table->boolean('view_acres_corn')->default(0);
 			$table->boolean('view_acres_soybeans')->default(0);
+			$table->boolean('view_acres_beansFAC')->default(0);
 			$table->boolean('view_acres_sorghum')->default(0);
 			$table->boolean('view_acres_wheat')->default(0);
 			$table->boolean('view_acres_cotton')->default(0);
