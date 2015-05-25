@@ -103,10 +103,19 @@
                     width: '28'
                 },
                 {
-                    field: 'prior_lean',
+                    field: 'prior_lien',
                     displayName: ' ',
                     cellTemplate: 'angular/layout/grid_tmpl/lien.html',
                     headerCellTemplate: 'angular/layout/grid_tmpl/lien.hdr.html',
+                    headerClass: 'text-center',
+                    cellClass: 'text-center',
+                    width: '28'
+                },
+                {
+                    field: 'leases_valid',
+                    displayName: ' ',
+                    cellTemplate: 'angular/layout/grid_tmpl/lease.html',
+                    headerCellTemplate: 'angular/layout/grid_tmpl/lease.hdr.html',
                     headerClass: 'text-center',
                     cellClass: 'text-center',
                     width: '28'

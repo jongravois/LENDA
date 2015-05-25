@@ -144,9 +144,9 @@ class LoanTransformer extends Transformer
             'crop_inspection' => (integer)$arr['crop_inspection'],
             'reconciliation' => (integer)$arr['reconciliation'],
             'account_classification' => $arr['account_classification'],
+            'cats' => getExpenseCategories($arr['id']),
 
             //'crops' => proccessCrops($arr['id']),
-            'cats' => getExpenseCategories($arr['id']),
             'expenses' => $arr['cropexpenses'],
             'expensez' => processExpenses($arr['id']),
 

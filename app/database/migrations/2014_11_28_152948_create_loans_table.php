@@ -35,7 +35,6 @@ class CreateLoansTable extends Migration {
             $table->boolean('has_rebates')->default(0);
             $table->boolean('has_distributor')->default(0);
             $table->string('distributor_id')->nullable();
-            $table->string('grade')->default('F');
             $table->boolean('equipment_collateral')->default(0);
             $table->boolean('realestate_collateral')->default(0);
             $table->boolean('other_collateral')->default(0);
@@ -67,7 +66,8 @@ class CreateLoansTable extends Migration {
             $table->text('limit_warning_message')->nullable();
             $table->integer('crop_inspection')->default(0);
             $table->integer('reconciliation')->default(0);
-            $table->integer('account_classification')->default(0);
+            $table->string('account_classification')->default('-');
+            $table->string('grade')->default('-');
             $table->boolean('conditions_asa')->default(0);
             $table->boolean('conditions_aci')->default(0);
             $table->boolean('conditions_areb')->default(0);

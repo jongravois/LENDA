@@ -21,6 +21,7 @@
 
         function mapItems(user_id) {
             return function (items) {
+                if(!items){ return []; }
                 return items.map(checkItemStatus(user_id));
             };
         }

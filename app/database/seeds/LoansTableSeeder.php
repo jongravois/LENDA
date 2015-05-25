@@ -6,7 +6,7 @@ class LoansTableSeeder extends Seeder
 {
     public function run()
     {
-        // Tony Stark(1) @ Glass Towers(1) | Partnership(4)--Ag-Input 2015
+        //[1] Tony Stark(1) @ Glass Towers(1) | Partnership(4)--Ag-Input 2015
         Loan::create([
             'applicant_id' => 1,
             'app_date' => '01/03/2015',
@@ -38,7 +38,8 @@ class LoansTableSeeder extends Seeder
             'limit_warning' => 3,
             'limit_warning_message' => 'Warning: 97% of budget exceeded.',
             'crop_inspection' => 0,
-            'reconciliation' => 1,
+            'reconciliation' => 2,
+            'account_classification' => '-',
             'grade' => '-',
             'equipment_collateral' => 1,
             'realestate_collateral' => 1,
@@ -71,6 +72,7 @@ class LoansTableSeeder extends Seeder
             'bankruptcy_history' => 1,
             'limit_warning' => 2,
             'limit_warning_message' => 'Caution: 76% of budget exceeded.',
+            'account_classification' => 'B',
             'grade' => 'B'
         ]);
 
@@ -93,7 +95,9 @@ class LoansTableSeeder extends Seeder
             'conditions_aci' => 1,
             'conditions_areb' => 1,
             'conditions_afsa' => 1,
-            'conditions_adis' => 1
+            'conditions_adis' => 1,
+            'account_classification' => 'B',
+            'grade' => 'B'
         ]);
 
         // Steve Rogers(12) @ Shielded Farms(4) | Corporation -- Ag-Vest 2015
@@ -110,7 +114,10 @@ class LoansTableSeeder extends Seeder
             'loan_type_id' => 6,
             'farmer_id' => 12,
             'limit_warning' => 0,
-            'its_list' => 1
+            'its_list' => 1,
+            'account_classification' => 'A',
+            'grade' => 'A'
+
         ]);
 
         // Clint Barton(5) @ Nested Row(2) | Spousal--Ag-Pro 2015
@@ -131,7 +138,9 @@ class LoansTableSeeder extends Seeder
             'conditions_aci' => 1,
             'conditions_areb' => 1,
             'conditions_afsa' => 1,
-            'conditions_adis' => 1
+            'conditions_adis' => 1,
+            'account_classification' => 'C',
+            'grade' => 'C'
         ]);
 
         // Matt Murdoch(9) @ Dark World(5) | Individual -- All-in 2015
@@ -154,7 +163,10 @@ class LoansTableSeeder extends Seeder
             'conditions_aci' => 1,
             'conditions_areb' => 1,
             'conditions_afsa' => 1,
-            'conditions_adis' => 1
+            'conditions_adis' => 1,
+            'reconciliation' => 2,
+            'account_classification' => '-',
+            'grade' => '-'
         ]);
 
         // Diana Prince(7) @ Kingdom Plains(7) | Spousal -- Grain Storage 2015
@@ -173,7 +185,9 @@ class LoansTableSeeder extends Seeder
             'limit_warning' => 3,
             'limit_warning_message' => 'Warning: 100% of budget exceeded.',
             'its_list' => 1,
-            'fsa_compliant' => 1
+            'fsa_compliant' => 1,
+            'account_classification' => 'A',
+            'grade' => 'A'
         ]);
 
         // Tony Stark(1) @ Glass Towers(1) | Partnership | Ag-Input 2014
@@ -278,8 +292,9 @@ class LoansTableSeeder extends Seeder
             'limit_warning' => 1,
             //'limit_warning_message' => '',
             'crop_inspection' => 0,
-            'reconciliation' => 0,
-            'account_classification' => 0,
+            'reconciliation' => 1,
+            'account_classification' => 'C',
+            'grade' => 'C',
             'conditions_asa' => 1,
             'conditions_aci' => 1,
             'conditions_areb' => 1,

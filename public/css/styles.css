@@ -1000,3 +1000,5 @@ table.disp_sm tr>td{
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
+
+.nggrid-nudgedown { margin-top: 5px; }
