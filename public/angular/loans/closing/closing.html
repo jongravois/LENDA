@@ -1,27 +1,75 @@
+<style>
+    .rqdoc li{
+        line-height: 2.4em;
+    }
+    .panel-default>.panel-heading{
+        color: white;
+        background-color: #006837;
+        border-color: #333333;
+    }
+</style>
 <fieldset>
-  <legend>Loan Closing</legend>
-  <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-          <pre>{{loans[0] | json}}</pre>
-      </div>
-  </div>
-  <div class="row">
-    <div class="col-md-10 col-lg-offset-1">
-      <div class="row">
-        <fieldset>
-          <legend>Generate Invoice for Fees</legend>
-        </fieldset>
-      </div>
-      <!--<pre>{{loan.insurance | json}}</pre>-->
-      <br/><br/>
-      <div class="row">
-        <fieldset>
-          <legend>Loan Documents</legend>
-        </fieldset>
-      </div>
-      <br/>
+    <legend>Loan Closing</legend>
+    <div class="row">
+        <div class="col-md-10 col-lg-offset-1">
+            <div class="row">
+                <accordion close-others="oneAtATime">
+                    <accordion-group
+                        is-open="status.isFirstOpen"
+                        is-disabled="status.isFirstDisabled">
+                        <accordion-heading>
+                            Outstanding Loan Condition(s)
+                            <span class="pull-right badge">1</span>
+                        </accordion-heading>
+                        <ul class="list-unstyled" style="margin-left:20px;">
+                            <li>Personal Guarantee by Bo Gwin</li>
+                        </ul>
+                    </accordion-group>
+                    <accordion-group>
+                        <accordion-heading>
+                            Required Documents
+                            <span class="pull-right badge">0</span>
+                        </accordion-heading>
+                        <ul class="rqdoc list-unstyled" style="margin-left:20px;">
+                            <li><input type="checkbox" checked/>Complete Crop Loan Application Form</li>
+                            <li><input type="checkbox" checked/>Tax ID Number (for partnerships or corporations include owners SSN)</li>
+                            <li><input type="checkbox" checked/>All agricultural lease agreements with legal land descriptions</li>
+                            <li><input type="checkbox" checked/>Crop Insurance APH Databases with Coverage Levels</li>
+                            <li><input type="checkbox" checked/>Historical whole farm yields by crop for each of the last 6 years</li>
+                            <li><input type="checkbox" checked/>FSA payment information</li>
+                            <li><input type="checkbox" checked/>Financial statement</li>
+                            <li><input type="checkbox" checked/>Equipment list with values and location of equipment</li>
+                            <li><input type="checkbox" checked/>Legal land description for real estate mortgages</li>
+                            <li><input type="checkbox" checked/>All notes and liens with statements reflecting current balances</li>
+                            <li><input type="checkbox" checked/>Any outstanding pricing contracts</li>
+                            <li><input type="checkbox" checked/>Verification of any other sources of income</li>
+                            <li><input type="checkbox" checked/>Expected crop mix and budgets</li>
+                        </ul>
+                    </accordion-group>
+                    <accordion-group>
+                        <accordion-heading>
+                            Closing Documents
+                        </accordion-heading>
+                        <ul class="rqdoc list-unstyled" style="margin-left:20px;">
+                            <li><input type="checkbox"/>&nbsp;ARM Fees Invoice</li>
+                            <li><input type="checkbox"/>&nbsp;Bo Gwin Guarantor Agreement</li>
+                            <li><input type="checkbox"/>&nbsp;Sharon Gwin Guarantor Agreement</li>
+                            <li><input type="checkbox"/>&nbsp;Loan Document</li>
+                        </ul>
+                    </accordion-group>
+                </accordion>
+            </div>
+
+            <div class="row"></div>
+
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button style="margin-right:10px;" class="btn btn-primary">CLOSE</button>
+                </div>
+            </div>
+            <br/>
+        </div>
     </div>
-  </div>
 </fieldset>
 
 <!--<pre>{{loan|json}}</pre>-->

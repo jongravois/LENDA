@@ -9,14 +9,19 @@ class ViewoptionsTableSeeder extends Seeder{
     ]);
 
     Viewoptions::create([
-      'user_id' => 2,
-      'view_commit_arm' =>  1,
-      'view_acres_total' => 1,
-      'view_distributor' => 1
+        'user_id' => 2,
+        'view_commit_distributor' => 1,
+        'view_commit_arm' =>  1,
+        'view_acres_total' => 1,
+        'view_balance_due' => 1
     ]);
 
     Viewoptions::create([
-      'user_id' => 3
+        'user_id' => 3,
+        'view_commit_distributor' => 1,
+        'view_commit_arm' =>  1,
+        'view_acres_total' => 1,
+        'view_balance_due' => 1
     ]);
 
     Viewoptions::create([
@@ -36,7 +41,11 @@ class ViewoptionsTableSeeder extends Seeder{
       ]);
 
       Viewoptions::create([
-          'user_id' => 8
+          'user_id' => 8,
+          'view_commit_distributor' => 1,
+          'view_commit_arm' =>  1,
+          'view_acres_total' => 1,
+          'view_balance_due' => 1
       ]);
 
       Viewoptions::create([
