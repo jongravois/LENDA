@@ -26,6 +26,7 @@
                 fees: getFees(loan),
                 has_comment: getPendingComments(loan),
                 insurance: getInsurance(loan),
+                loanconditions: getLoanconditions(loan),
                 loancrops: processLoanCrops(loan),
                 need_vote: getPendingVotes(loan),
                 priorlien: processPriorLien(loan.priorlien),
@@ -126,6 +127,18 @@
                         };
                     });
                 });
+        }
+
+        function getLoanconditions(loan) {
+            var conds = loan['loanconditions'];
+            angular.forEach(conds, function(c){
+                if(!c.action_date) {
+                    c.action_date = null;
+                } else {
+                    c.action_date = moment(c.action_date).format('L');
+                }
+            });
+            return conds;
         }
 
         function getPendingComments(loan) {
