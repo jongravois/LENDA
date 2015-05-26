@@ -944,12 +944,7 @@
         function clickREC(obj, user) {
             if(Number(obj.recommended) == 1){
                 recordREC(user, 3, obj);
-            } else {
-                recordREC(user, 1, obj);
-                if(!obj.has_distributor) {
-                    recordDISTAPP(user, 1, obj);
-                }
-            } // end if
+            }
 
             return obj;
         }

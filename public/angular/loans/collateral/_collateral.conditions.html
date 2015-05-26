@@ -25,7 +25,7 @@
         </td>
         <td ng-show="c.status == 'verified'">{{c.action_date|date:'MM/dd/yyyy'}}</td>
         <td ng-show="c.status == 'pending'" class="text-center">
-            <button class="btn btn-xs btn-error" ng-click="verifyCondition($index)">Fulfill</button>
+            <span class="glyphicon glyphicon-paperclip"></span>
         </td>
     </tr>
     <tr class="default"><td colspan="2">&nbsp;</td></tr>
