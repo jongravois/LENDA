@@ -851,7 +851,7 @@
                 document: 'Leases Verified',
                 filename: 'leasesVerified.pdf',
                 title: 'Leases Verified',
-                buttons: ['no upload', 'cancel']
+                buttons: ['ok', 'cancel']
             };
             ModalService.optionalUpload(data)
                 .then(function () {

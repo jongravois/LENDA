@@ -1,22 +1,18 @@
 <div class="modal-header">
-    <div class="modal-header">
-        <h3>Optional File Upload</h3>
-        <h5>{{properties.title}}</h5>
-    </div>
+    <h3>Optional File Upload</h3>
+    <h5>{{properties.title}}</h5>
 </div>
 
 <div class="modal-body">
-    <p>The file upload is optional. Click "choose file" to upload, "no upload" to continue without upload, or, "cancel" to take no action.</p>
-    <br/>
     <input type="hidden" name="loan_id" value="{{properties.loanID}}"/>
     <input type="hidden" name="document" value="{{properties.document}}"/>
     <input type="hidden" name="filename" value="{{properties.filename}}"/>
-    <label>Please select file to upload!</label><br/>
+    <label>Select file to upload! (Optional)</label><br/>
     <div class="btn btn-primary"
          ng-file-select
          ng-model="files"
          ng-multiple="multiple">
-        choose file
+        select file
     </div>
 </div>
 
