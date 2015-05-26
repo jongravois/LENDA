@@ -84,6 +84,8 @@ class LoanTransformer extends Transformer
             'expensez' => processExpenses($arr['id']),
 
             'fins' => processFinancials($arr),
+            'loanconditions' => $arr['loanconditions'],
+
             'uniqID' => $arr['crop_year'] . $arr['season'] . $arr['id'],
             'app_date' => $arr['app_date']->format('m/d/Y'),
             'distributor_approval_date' => $distDecision,
@@ -215,7 +217,6 @@ class LoanTransformer extends Transformer
             'committee' => $arr['committee'],
             'comments' => $arr['comments'],
             'inspols' => $arr['inspols'],
-            'loanconditions' => $arr['loanconditions'],
             'loancrops' => $arr['loancrop'],
             'suppins' => $arr['suppins'],
             'othercollateral' => $arr['othercollateral'],
