@@ -9,7 +9,13 @@
     /* @ngInject */
     function CropMixFactory($http, API_URL) {
         return {
-
+            getCropMix: getCropMix
         };
+
+        /* @ngInject */
+        function getCropMix() {
+            return $http.get('./crop.mix.json');
+        }
+
     } // end factory
 })();

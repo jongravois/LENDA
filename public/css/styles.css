@@ -957,7 +957,6 @@ table.disp_sm tr>td{
     font-size: 13px !important;
 }
 
-<<<<<<< HEAD
 /* FOR TWO-LEVEL MENU */
 .dropdown-submenu {
     position: relative;
@@ -1008,6 +1007,18 @@ table.disp_sm tr>td{
 }
 
 .nggrid-nudgedown { margin-top: 5px; }
+
+.progress {
+    height: 3em;
+}
+.progress i {
+    line-height: 3.5em;
+}
+
+.progress-bar {
+    -webkit-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
 
 table.ls-sm td{
     font-size: 13px;
