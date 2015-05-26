@@ -1,4 +1,4 @@
-<table class="table" ng-controller="ProgressBarCtrl">
+<table class="table">
     <tr>
         <td>
         <span tooltip="Vote Needed"
@@ -48,7 +48,14 @@
               tooltip="Cross Collateral"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
-              ng-class="{'clrOn': loan.is_cross_collateralized, 'clrOff': !loan.is_cross_collateralized}"></span>
+              ng-click="toggleCrossColateral()"
+              ng-class="{'clrOn': loan.is_cross_collateralized, 'clrOff': !loan.is_cross_collateralized }" style="color: #990000;" ng-if="XColView"></span>
+            <span class="progicon glyphicon glyphicon-random"
+                  tooltip="Cross Collateral"
+                  tooltip-append-to-body="true"
+                  tooltip-placement="bottom"
+                  ng-click="toggleCrossColateral()"
+                  ng-class="{'cRed': XColView, 'clrOn': loan.is_cross_collateralized, 'clrOff': !loan.is_cross_collateralized }" style="color: #333333;" ng-if="!XColView"></span>
         </td>
         <td>
         <span class="progicon glyphicon glyphicon-fire"

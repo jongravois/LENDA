@@ -11,7 +11,6 @@
         $scope.AppFactory = AppFactory;
         $scope.newapplication = $state.current.data.newapplication;
 
-
         if(!$scope.loan){
             $scope.loan = _.find($scope.loans, function(i) {
                 return i.id == $stateParams.loanID;
@@ -32,6 +31,12 @@
 
         $scope.indicon_width = '140px';
         $scope.toggleComment = false;
+        $scope.XColView = false;
+
+        $scope.toggleCrossColateral = function() {
+            if(!$scope.loan.is_cross_collateralized) { return; }
+            $scope.XColView = !$scope.XColView;
+        };
 
         $scope.updateLoanComment = function() {
             var loanID = $stateParams.loanID;
