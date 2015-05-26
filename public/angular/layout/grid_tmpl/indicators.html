@@ -59,11 +59,11 @@
 </span>
 
 <span ng-if="user.viewopts.view_icon_attachments">
-    <a href="#/edit/{{row.getProperty('loan_type_id')}}/{{row.getProperty('id')}}/prerequisites">
-        <span class="indicon glyphicon glyphicon-paperclip"
+    <!--<a href="#/edit/{{row.getProperty('loan_type_id')}}/{{row.getProperty('id')}}/prerequisites">-->
+        <span class="glyphicon glyphicon-paperclip"
           tooltip="Attachments"
           tooltip-append-to-body="true"
           tooltip-placement="bottom"
           ng-class="{ clrOn : row.getProperty('attachments').length, clrOff: !row.getProperty('attachments').length }"></span>
-    </a>
+    <!--</a>-->
 </span>

@@ -17,6 +17,14 @@
 
             $scope.indWid = getIndicatorWidth();
 
+            $scope.requestAllRecon = function() {
+                angular.forEach($scope.sortedLoanList, function(i){
+                    // persist
+                    i.reconciliation = 3;
+                    i.grade = '-';
+                });
+            };
+
             $scope.gridOptions = {
                 data: 'sortedLoanList',
                 rowHeight: 40,
