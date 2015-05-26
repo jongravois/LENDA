@@ -14,7 +14,7 @@ class LoanconditionTransformer extends Transformer{
 			'id' => $arr['id'],
 			'crop_year' => $arr['crop_year'],
 			'loan_id' => $arr['loan_id'],
-			'condition_id' => $arr['condition_id'],
+			'category' => $arr['category'],
 			'condition' => $arr['condition'],
 			'status' => $arr['status'],
 			'action_date' => $action_date

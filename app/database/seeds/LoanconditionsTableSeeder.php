@@ -7,7 +7,7 @@ class LoanconditionsTableSeeder extends Seeder {
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
-			'condition_id'	=>	1,
+			'category'	=>	'loan',
 			'condition'	=>	'Agricultural Security Agreement on Crops and Equipment',
 			'status' => 'verified',
 			'action_date' => '2015-02-01'
@@ -15,7 +15,7 @@ class LoanconditionsTableSeeder extends Seeder {
 		Loanconditions::create([
 			'crop_year'	=>	'2015',
 			'loan_id'	=>	'1',
-			'condition_id'	=>	2,
+			'category'	=>	'loan',
 			'condition'	=>	'Assignment of Crop Insurance',
 			'status' => 'verified',
 			'action_date' => '2015-02-03'
@@ -23,7 +23,7 @@ class LoanconditionsTableSeeder extends Seeder {
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
-			'condition_id'	=>	5,
+			'category'	=>	'loan',
 			'condition'	=>	'Approval by Participating Distributor - JSI',
 			'status' => 'verified',
 			'action_date' => '2015-02-05'
@@ -31,13 +31,13 @@ class LoanconditionsTableSeeder extends Seeder {
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
-			'condition_id'	=>	6,
+			'category'	=>	'guar',
 			'condition'	=>	'Personal Guarantee by Bo Gwin'
 		]);
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
-			'condition_id'	=>	6,
+			'category'	=>	'guar',
 			'condition'	=>	'Personal Guarantee by Sharon Gwin',
 			'status' => 'verified',
 			'action_date' => '2015-02-01'
@@ -45,7 +45,7 @@ class LoanconditionsTableSeeder extends Seeder {
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
-			'condition_id'	=>	4,
+			'category'	=>	'loan',
 			'condition'	=>	'Assignment of FSA Direct and LDP Payment',
 			'status' => 'verified',
 			'action_date' => '2015-02-03'
@@ -53,7 +53,7 @@ class LoanconditionsTableSeeder extends Seeder {
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	1,
-			'condition_id'	=>	10,
+			'category'	=>	'free',
 			'condition'	=>	'PHI Credit Limit of 82K',
 			'status' => 'verified',
 			'action_date' => '2015-02-06'
@@ -62,7 +62,7 @@ class LoanconditionsTableSeeder extends Seeder {
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	7,
-			'condition_id'	=>	1,
+			'category'	=>	'loan',
 			'condition'	=>	'Agricultural Security Agreement on Crops and Equipment',
 			'status' => 'verified',
 			'action_date' => '2015-02-01'
@@ -70,7 +70,7 @@ class LoanconditionsTableSeeder extends Seeder {
 		Loanconditions::create([
 			'crop_year'	=>	2015,
 			'loan_id'	=>	7,
-			'condition_id'	=>	9,
+			'category'	=>	'loan',
 			'condition'	=>	'Grain Storage Agreement',
 			'status' => 'verified',
 			'action_date' => '2015-02-01'
