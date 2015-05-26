@@ -69,7 +69,7 @@
                 },
                 {
                     field: 'crop_year',
-                    displayName: 'Crop Yr',
+                    displayName: 'Year',
                     headerClass: 'text-center'
                 },
                 {

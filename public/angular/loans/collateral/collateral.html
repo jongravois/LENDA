@@ -1,4 +1,13 @@
 <div>
+    <fieldset>
+        <legend>Collateral Conditions</legend>
+        <div class="container row form-group">
+            <div class="col-md-12">
+                <div ng-include="'angular/loans/collateral/_collateral.conditions.html'"></div>
+            </div>
+        </div>
+    </fieldset>
+    <br/><br/>
     <fieldset ng-init="loan.discount_overrides = false">
         <legend>Discount Rates</legend>
         <div class="container row form-group">
