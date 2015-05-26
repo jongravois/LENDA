@@ -74,6 +74,7 @@
 <script src="angular/_routes/reports_routes.js"></script>
 <script src="angular/_filters/filters.js"></script>
 <script src="angular/_models/base.js"></script>
+<script src="angular/_directives/clip.upload.directive.js"></script>
 <script src="angular/_directives/decimals.directives.js"></script>
 <script src="angular/_directives/inPlaceDirectives.js"></script>
 <script src="angular/_directives/loan.progress.directive.js"></script>
