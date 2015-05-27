@@ -206,7 +206,7 @@
 
         function getInsurance(loan) {
             var policyList = loan.inspols;
-            //console.log('Fins', fins);
+            //console.log('Fins', policyList);
 
             var ins = {
                 agencies: processAgencies(policyList),

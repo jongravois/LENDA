@@ -17,6 +17,7 @@
         .filter('ssnum', ssnumFilter)
         .filter('justtext', justtextFilter)
         .filter('flexCurrency', flexCurrencyFilter)
+        .filter('flexZeroCurrency', flexZeroCurrencyFilter)
         .filter('flexNACurrency', flexNACurrencyFilter)
         .filter('flexPercent', flexPercentFilter)
         .filter('flexNAPercent', flexNAPercentFilter)
@@ -38,13 +39,30 @@
         };
     }
 
-    function capitalizeFilter() {
-        return function (input) {
-            return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function (txt) {
-                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            }) : '';
-        };
-    }
+        function capitalizeFilter () {
+            return function (input, format) {
+                if (!input) {
+                    return input;
+                }
+                format = format || 'all';
+                if (format === 'first') {
+                    // Capitalize the first letter of a sentence
+                    return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+                } else {
+                    var words = input.split(' ');
+                    var result = [];
+                    words.forEach(function(word) {
+                        if (word.length === 2 && format === 'team') {
+                            // Uppercase team abbreviations like FC, CD, SD
+                            result.push(word.toUpperCase());
+                        } else {
+                            result.push(word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+                        }
+                    });
+                    return result.join(' ');
+                }
+            };
+        }
 
     function capitalizeFirstFilter() {
         return function (input) {
@@ -225,6 +243,30 @@
 
             // Check for invalid inputs
             if (!Number(input)) {
+                return ' - ';
+            }
+            var out = input;
+
+            //Deal with the minus (negative numbers)
+            var minus = out < 0;
+            out = Math.abs(out);
+            out = $filter('number')(out, decPlaces);
+
+            // Add the minus and the symbol
+            if (minus) {
+                return '( $' + out + ')';
+            } else {
+                return '$' + out;
+            }
+        };
+    }
+
+    function flexZeroCurrencyFilter($filter) {
+        return function (input, decPlaces) {
+            decPlaces = decPlaces || 0;
+
+            // Check for invalid inputs
+            if (isNaN(input)) {
                 return ' - ';
             }
             var out = input;

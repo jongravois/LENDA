@@ -1,7 +1,6 @@
 <style></style>
 <fieldset>
   <legend>Fund Disbursement</legend>
-  <!--TODO: This form needs to be created/completed-->
   <div class="row">
   <div class="col-md-12">
   <table class="table table-striped rowed">
@@ -13,214 +12,34 @@
     <td class="text-center" style="width:18%;">Remaining</td>
     <td class="text-center" style="width:18%;">Requested</td>
   </tr>
-  <tr>
-    <td>Fertilizer</td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-  </tr>
-  <tr>
-    <td>Seed</td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-  </tr>
-  <tr>
-    <td>Fungicide</td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-  </tr>
-  <tr>
-    <td>Herbicide</td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-  </tr>
-  <tr>
-    <td>Insecticide</td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-  </tr>
-  <tr>
-    <td>Custom</td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{19019.80 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{19019.80 | displaynullcurrency }}
-    </td>
-    <td>
-      <input type="text" class="form-control text-right" name="custom" ng-model="disburse.custom"/>
-    </td>
-  </tr>
-  <tr>
-    <td>Fuel</td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{31305.00 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{31305 | displaynullcurrency }}
-    </td>
-    <td>
-      <input type="text" class="form-control text-right" ng-model="disburse.fuel"/>
-    </td>
-  </tr>
-  <tr>
-    <td>Labor</td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{18554.00 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{18554.00 | displaynullcurrency }}
-    </td>
-    <td>
-      <input type="text" class="form-control text-right" ng-model="disburse.labor"/>
-    </td>
-  </tr>
-  <tr>
-    <td>Repairs</td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{12751.00 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{12751.00 | displaynullcurrency }}
-    </td>
-    <td>
-      <input type="text" class="form-control text-right" ng-model="disburse.repairs"/>
-    </td>
-  </tr>
-  <tr>
-    <td>Insurance</td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-  </tr>
-  <tr>
-    <td>Harvesting</td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-  </tr>
-  <tr>
-    <td>Misc_acre</td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{18554.00 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{18554.00 | displaynullcurrency }}
-    </td>
-    <td>
-      <input type="text" class="form-control text-right" ng-model="disburse.misc_acre"/>
-    </td>
-  </tr>
-  <tr>
-    <td>Equipment</td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{23196.00 | displaynullcurrency }}
-    </td>
-    <td class="text-center">
-      {{0 | displaynullcurrency }}
-    </td>
-    <td ng-class=gtZero(loan.totalExpenses.custom.arm)>
-      {{23196.00 | displaynullcurrency }}
-    </td>
-    <td>
-      <input type="text" class="form-control text-right" ng-model="disburse.equipment"/>
-    </td>
+  <tr ng-repeat="exp in loan.expenses.byCat">
+      <td>
+          {{exp.expense}}
+      </td>
+      <td class="text-right">
+          {{exp.calc_arm|flexZeroCurrency:2}}
+      </td>
+      <td class="text-right">
+          {{0|flexZeroCurrency:2}}
+      </td>
+      <td class="text-right">
+          {{exp.calc_arm|flexZeroCurrency:2}}
+      </td>
+      <td></td>
   </tr>
   <tr class="success">
     <td>Total</td>
     <td class="text-right">
-      {{123379.80 | displaynullcurrency }}
+      {{disburse_arm_total() | flexZeroCurrency:2 }}
     </td>
     <td class="text-center">
-      {{0 | displaynullcurrency }}
+      {{disburse_rem_total()| flexZeroCurrency:2 }}
     </td>
     <td class="text-right">
-      {{123379.80 | displaynullcurrency }}
+      {{disburse_spent_total() | flexZeroCurrency:2 }}
     </td>
     <td class="text-center">
-      {{disburse.total = disburse.custom * 1 + disburse.fuel * 1 + disburse.labor * 1 + disburse.repairs * 1 + disburse.misc_acres * 1 + disburse.equipment * 1 | displaynullcurrency }}
+      {{calc_disburse.total()| flexZeroCurrency:2 }}
       <br />
       <button class="btn btn-success btn-xs" ng-click="requestDisbursement(disburse.total)">Request</button>
     </td>

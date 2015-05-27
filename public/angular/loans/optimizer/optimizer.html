@@ -15,47 +15,7 @@
     <div class="col-md-12">
       <table class="table table-striped rowed">
         <tr class="warning">
-          <td colspan="7">
-            <span style="font-size:10px;">
-              <b>Add Crop:</b>
-              &nbsp;
-              <input type="checkbox" ng-model="loan.crops.corn.totals.is_active"/>
-              &nbsp;
-              Corn
-              &nbsp;&nbsp;
-              <input type="checkbox" ng-model="loan.crops.soybeans.totals.is_active"/>
-              &nbsp;
-              Soybeans
-              &nbsp;&nbsp;
-              <input type="checkbox" ng-model="loan.crops.beansFAC.totals.is_active"/>
-              &nbsp;
-              BeansFAC
-              &nbsp;&nbsp;
-              <input type="checkbox" ng-model="loan.crops.sorghum.totals.is_active"/>
-              &nbsp;
-              Sorghum
-              &nbsp;&nbsp;
-              <input type="checkbox" ng-model="loan.crops.wheat.totals.is_active"/>
-              &nbsp;
-              Wheat
-              &nbsp;&nbsp;
-              <input type="checkbox" ng-model="loan.crops.cotton.totals.is_active"/>
-              &nbsp;
-              Cotton
-              &nbsp;&nbsp;
-              <input type="checkbox" ng-model="loan.crops.rice.totals.is_active"/>
-              &nbsp;
-              Rice
-              &nbsp;&nbsp;
-              <input type="checkbox" ng-model="loan.crops.peanuts.totals.is_active"/>
-              &nbsp;
-              Peanuts
-              &nbsp;&nbsp;
-              <input type="checkbox" ng-model="loan.crops.sugarcane.totals.is_active"/>
-              &nbsp;
-              Sugarcane
-            </span>
-          </td>
+          <td colspan="7">&nbsp;</td>
           <td class="text-right">
             {{loan.fins.total_acres | number:1}}
           </td>
@@ -71,10 +31,10 @@
           <th style="width:12%;">ST | CO</th>
           <th style="width:8%;">FSN</th>
           <th style="width:10%;">Landlord</th>
-          <th style="width:8%;">Share</th>
           <th style="width:8%;">Practice</th>
           <th style="width:10%;">Crop</th>
           <th style="width:10%;">APH</th>
+          <th style="width:8%;">Share</th>
           <th style="width:8%;">Acres</th>
           <th style="width:12%;">Cash Flow</th>
           <th style="width:12%;">Risk</th>
@@ -90,9 +50,6 @@
           <td>
             {{lp.owner}}
           </td>
-          <td class="text-right">
-            <input type="text" class="text-right" style="width:100%" ng-model="lp.ins_share"/>
-          </td>
           <td class="text-center">
             {{lp.practice}}
           </td>
@@ -103,14 +60,17 @@
             {{lp.aph | number:1}}
           </td>
           <td class="text-right">
+            <input type="text" class="text-right" style="width:100%" ng-model="lp.ins_share"/>
+          </td>
+          <td class="text-right">
             <input type="text" class="text-right" style="width:100%;" ng-model="lp.acres"/>
           </td>
           <td class="text-right">
             <!--{{lp.cash_flow | number:1}}-->
-            {{lp.margin | displaynullcurrency}}
+            {{lp.margin | flexCurrency:2}}
           </td>
           <td class="text-right">
-            {{lp.risk | displaynullcurrency}}
+            {{lp.risk | flexCurrency:2}}
           </td>
         </tr>
       </table>

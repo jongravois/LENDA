@@ -76,6 +76,7 @@ class LoanTransformer extends Transformer
         //FINAL RETURN
         return [
             'id' => (integer) $arr['id'],
+            'inspols' => $arr['inspols'],
             'cats' => getExpenseCategories($arr['id']),
             'agency' => getUniqueAgencies($arr['id']),
 
@@ -213,11 +214,11 @@ class LoanTransformer extends Transformer
             ],
             'references' => $arr['references'],
             'exceptions' => $arr['exceptions'],
+            'farms' => $arr['farms'],
             'farmcrops' => $arr['farmcrops'],
             'appfins' => $arr['appfins'],
             'committee' => $arr['committee'],
             'comments' => $arr['comments'],
-            'inspols' => $arr['inspols'],
             'loancrops' => $arr['loancrop'],
             'suppins' => $arr['suppins'],
             'othercollateral' => $arr['othercollateral'],

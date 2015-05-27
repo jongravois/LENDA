@@ -2,104 +2,25 @@
     'use strict';
     angular
         .module('ARM')
-        .controller('DisbursementController', function ($scope) {
+        .controller('DisbursementsController', DisbursementsController);
 
-            $scope.requestDisbursement = function (data) {
-                console.log(data);
+        DisbursementsController.$inject = ['$scope'];
+
+        function DisbursementsController($scope){
+
+
+            $scope.disburse_arm_total = function() {
+                return 999999;
             };
-
-            $scope.$watch(
-                function ($scope) {
-                    var total = 0;
-                    angular.forEach($scope.data, function (item, index) {
-                        if (angular.isDefined(item.req)) {
-                            total = total + parseInt(item.req);
-                        }
-                    });
-                    $scope.total = total;
-                }
-            );
-
-            $scope.total = 0;
-            $scope.data = {
-                'fertilizer': {
-                    'budget': 0,
-                    'spent': 0,
-                    'balance': 0,
-                    'req': 0
-                },
-                'seed': {
-                    'budget': 0,
-                    'spent': 0,
-                    'balance': 0,
-                    'req': 0
-                },
-                'fungicide': {
-                    'budget': 0,
-                    'spent': 0,
-                    'balance': 0,
-                    'req': 0
-                },
-                'herbicide': {
-                    'budget': 0,
-                    'spent': 0,
-                    'balance': 0,
-                    'req': 0
-                },
-                'insecticide': {
-                    'budget': 0,
-                    'spent': 0,
-                    'balance': 0,
-                    'req': 0
-                },
-                'custom': {
-                    'budget': 19019.80,
-                    'spent': 0,
-                    'balance': 19019.80,
-                    'req': 0
-                },
-                'fuel': {
-                    'budget': 31305.00,
-                    'spent': 0,
-                    'balance': 31305.00,
-                    'req': 0
-                },
-                'labor': {
-                    'budget': 18554,
-                    'spent': 0,
-                    'balance': 18554,
-                    'req': 0
-                },
-                'repairs': {
-                    'budget': 12751.00,
-                    'spent': 0,
-                    'balance': 12751.00,
-                    'req': 0
-                },
-                'insurance': {
-                    'budget': 0,
-                    'spent': 0,
-                    'balance': 0,
-                    'req': 0
-                },
-                'harvesting': {
-                    'budget': 0,
-                    'spent': 0,
-                    'balance': 0,
-                    'req': 0
-                },
-                'misc_acres': {
-                    'budget': 18554.00,
-                    'spent': 0,
-                    'balance': 18554.00,
-                    'req': 0
-                },
-                'equipment': {
-                    'budget': 23196.00,
-                    'spent': 0,
-                    'balance': 23196.00,
-                    'req': 0
-                }
+            $scope.disburse_rem_total = function() {
+                return 888888;
             };
-        });
+            $scope.disburse_spent_total =function() {
+                return 111111;
+            };
+            $scope.calc_disburse.total = function() {
+                // = disburse.custom * 1 + disburse.fuel * 1 + disburse.labor * 1 + disburse.repairs * 1 + disburse.misc_acres * 1 + disburse.equipment * 1
+                return 393102;
+            };
+        } // end controller
 })();

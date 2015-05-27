@@ -16,6 +16,8 @@ class CreateLoancropsTable extends Migration
             $table->boolean('is_active')->default(0);
             $table->double('acres')->default(0);
             $table->string('uom')->default('bu');
+            $table->string('uom_harvest')->default('bu');
+            $table->string('uom_rebate')->default('bu');
             $table->string('markettowhom')->nullable();
             $table->double('prod_price')->default(0);
             $table->double('prod_yield')->default(0);

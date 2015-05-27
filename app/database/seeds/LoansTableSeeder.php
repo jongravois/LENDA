@@ -9,9 +9,9 @@ class LoansTableSeeder extends Seeder
         //[1] Tony Stark(1) @ Glass Towers(1) | Partnership(4)--Ag-Input 2015
         Loan::create([
             'applicant_id' => 1,
-            'app_date' => '01/03/2015',
-            'distributor_approval_date' => '01/14/2015',
-            'decision_date' => '01/19/2015',
+            'app_date' => '04/03/2015',
+            'distributor_approval_date' => '04/14/2015',
+            'decision_date' => '04/19/2015',
             'default_due_date' => '12/15/2015',
             'due_date' => '12/15/2015',
             'loan_type_id' => 2,
@@ -51,7 +51,9 @@ class LoansTableSeeder extends Seeder
             'conditions_adis' => 1,
             'conditions_pg' => 1,
             'conditions_ccl' => 0,
-            'conditions_cd' => 0
+            'conditions_cd' => 0,
+            'its_list' => 1,
+            'fsa_compliant' => 1
         ]);
 
         // Blake Donald(10) @ Rainbow Bridge(6) | Individual--Capital Bridge 2015
@@ -301,7 +303,8 @@ class LoansTableSeeder extends Seeder
             'conditions_adis' => 1,
             'conditions_pg' => 1,
             'conditions_ccl' => 1,
-            'conditions_cd' => 1
+            'conditions_cd' => 1,
+            'its_list' => 1
         ]);
     }
 }
