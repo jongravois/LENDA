@@ -849,13 +849,7 @@ label {
 .reportGridStyle {
     border: 1px solid #d4d4d4;
     width: 100%;
-    height: 580px;
-}
-
-.reportGridStyle500 {
-    border: 1px solid #d4d4d4;
-    width: 100%;
-    height: 500px;
+    height: 1000px;
 }
 
 /* NG-GRID ADDITION */
@@ -1028,5 +1022,5 @@ table.disp_sm tr>td{
 }
 
 table.ls-sm td{
-    font-size: 13px;
+    font-size: 14px;
 }
