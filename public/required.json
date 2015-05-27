@@ -1,0 +1,74 @@
+[
+  {
+    "region": "W",
+    "location": "ARM",
+    "name": "McDowell, Malcom",
+    "admin": true,
+    "analyst": false,
+    "updated": "2015-05-22",
+    "viewed": "2015-05-22"
+  },
+  {
+    "region": "W",
+    "location": "AMR",
+    "name": "Magee, Patrick",
+    "admin": false,
+    "analyst": true,
+    "updated": "2015-05-22",
+    "viewed": "2015-05-24"
+  },
+  {
+    "region": "W",
+    "location": "CLE",
+    "name": "Bates, Michael",
+    "admin": false,
+    "analyst": true,
+    "updated": "2015-05-22",
+    "viewed": "2015-05-23"
+  },
+  {
+    "region": "W",
+    "location": "CRO",
+    "name": "Clarke, Warren",
+    "admin": false,
+    "analyst": true,
+    "updated": "2015-05-22",
+    "viewed": "2015-05-22"
+  },
+  {
+    "region": "W",
+    "location": "DEX",
+    "name": "Clive, John",
+    "admin": false,
+    "analyst": true,
+    "updated": "2015-05-22",
+    "viewed": "2015-05-23"
+  },
+  {
+    "region": "W",
+    "location": "JON",
+    "name": "Ferrell, Paul",
+    "admin": false,
+    "analyst": true,
+    "updated": "2015-05-22",
+    "viewed": "2015-05-22"
+  },
+  {
+    "region": "W",
+    "location": "VIC",
+    "name": "Glover, Michael",
+    "admin": false,
+    "analyst": true,
+    "updated": "2015-05-22",
+    "viewed": "2015-05-26"
+  },
+  {
+    "region": "W",
+    "location": "WIL",
+    "name": "Sharp, Phillip",
+    "admin": false,
+    "analyst": true,
+    "updated": "2015-05-22",
+    "viewed": "2015-05-22"
+  }
+]

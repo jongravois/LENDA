@@ -199,6 +199,7 @@
 <script src="angular/reports/loan_management/loan.management.factory.js"></script>
 <script src="angular/reports/reports.ctrl.js"></script>
 <script src="angular/reports/reports.factory.js"></script>
+<script src="angular/reports/required.ctrl.js"></script>
 <script src="angular/reports/user_audit/user.audit.ctrl.js"></script>
 <script src="angular/reports/user_audit/user.audit.factory.js"></script>
 
