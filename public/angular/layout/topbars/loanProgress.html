@@ -238,13 +238,14 @@
         </td>
         <!--<td class="bleft">-->
         <td>
-            <a href="#/edit/{{l.loan_type_id}}/{{l.id}}/disbursement">
-                <img ng-src="images/dot_{{getColor(loan.limit_warning)}}.png"
+            <!--<a href="#/edit/{{l.loan_type_id}}/{{l.id}}/disbursement">-->
+                <span class="glyphicon glyphicon-warning-sign"
                      alt=""
                      tooltip="{{loan.limit_warning_message}}"
                      tooltip-append-to-body="true"
-                     tooltip-placement="bottom"/>
-            </a>
+                     tooltip-placement="bottom"
+                     ng-class="{'cGray': loan.limit_warning < 2, 'cYellow': loan.limit_warning == 2, 'cRed': loan.limit_warning == 3, 'cGray': loan.limit_warning > 3}"></span>
+            <!--</a>-->
         </td>
         <td>
       <span class="progicon glyphicon glyphicon-retweet"
