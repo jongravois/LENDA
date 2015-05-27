@@ -567,6 +567,20 @@
                     resizable: true,
                     sortable: true,
                     visible: true
+                },
+                {
+                    field: 'blank',
+                    displayName: '',
+                    headerClass: 'text-center',
+                    cellClass: 'text-center',
+                    cellFilter: "",
+                    width: 4,
+                    maxWidth: 4,
+                    groupable: true,
+                    pinnable: false,
+                    resizable: true,
+                    sortable: true,
+                    visible: true
                 }
             ]
         };
