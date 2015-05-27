@@ -11,7 +11,7 @@
 
     <!--LOAN SUMMARY (COMMENT)-->
     <div ng-repeat="c in loan.comments.Loan">
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-info" role="alert">
             <h4>
                 <span class="glyphicon glyphicon-pencil"></span>
                 Loan Summary
@@ -28,6 +28,7 @@
                 <hr/>
                 <div ng-repeat="c in loan.comments.Addendum">
                     <p style="font-size:11px;font-weight:bold; color:red;">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp;
                         <i>{{c.user}}</i>
                         &nbsp;&nbsp;-&nbsp;&nbsp;
                         <i>{{c.dtCom | date:'MM/dd/yy'}}</i>

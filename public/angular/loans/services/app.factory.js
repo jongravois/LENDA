@@ -203,13 +203,25 @@
         function calcEquipmentCollateralValue(loan) {
             if(!loan) { return; }
 
-            return (Number(calcEquipmentCollateralTotal(loan)) * (1 - (Number(loan.fins.equipment_percent) / 100))) - Number(loan.priorlien.totals.equipment);
+            var formula = (Number(calcEquipmentCollateralTotal(loan)) * (1 - (Number(loan.fins.equipment_percent) / 100))) - Number(loan.priorlien.totals.equipment);
+
+            if(Number(formula) > 0) {
+                return Number(formula);
+            } else {
+                return 0;
+            }
         }
 
         function calcFSACollateralValue(loan) {
             if(!loan) { return; }
 
-            return (Number(loan.fins.total_fsa_payment) * (1 - (Number(loan.fins.fsa_assignment_percent) / 100))) - Number(loan.priorlien.totals.fsa_payments);
+            var formula = (Number(loan.fins.total_fsa_payment) * (1 - (Number(loan.fins.fsa_assignment_percent) / 100))) - Number(loan.priorlien.totals.fsa_payments);
+
+            if(Number(formula) > 0) {
+                return Number(formula);
+            } else {
+                return 0;
+            }
         }
 
         function calcInsCoverageExcess(loan) {
@@ -229,13 +241,13 @@
             var projectedCropDiscount = Number(obj.proj_crop_discount);
 
             //console.log(insValue, cropValue, projectedCropDiscount);
-            var CIOD = insValue - (cropValue * (1 - (projectedCropDiscount/100)));
+            var formula = insValue - (cropValue * (1 - (projectedCropDiscount/100)));
 
-            if(obj.type == 'RP') {
-                return _.max([CIOD, 0]);
+            if(Number(formula) > 0) {
+                return Number(formula);
             } else {
                 return 0;
-            } //end if
+            }
         }
 
         function calcInsOverDiscNonRP(obj) {
@@ -279,14 +291,7 @@
         function calcMarketValueTotal(loan) {
             if(!loan) { return 0; }
 
-            return calcPlannedCropValue(loan)
-                + calcFSACollateralValue(loan)
-                + calcIODCollateralValue(loan)
-                + calcNRPCollateralValue(loan)
-                + calcSuppInsValue(loan)
-                + calcEquipmentCollateralValue(loan)
-                + calcRECollateralTotal(loan)
-                + calcOtherCollateralValue(loan);
+            //formula: calcPlannedCropValue(loan) + calcFSACollateralValue(loan) + calcIODCollateralValue(loan) + calcNRPCollateralValue(loan) + calcSuppInsValue(loan) + calcEquipmentCollateralValue(loan) + calcRECollateralTotal(loan) + calcOtherCollateralValue(loan);
 
             return Number(loan.fins.adj_prod) + Number(loan.fins.total_fsa_payment) + Number(loan.fins.ins_disc_prod) + Number(loan.insurance.nonrp.value) + Number(loan.supplements.totals.value) + Number(calcEquipmentCollateralValue(loan)) + Number(calcRECollateralValue(loan)) + Number(calcOtherCollateralValue(loan));
         }
@@ -305,7 +310,7 @@
             var formula = ins_val - (crop_val * (1 -  disc_ins_pc)) - prior_lien_iod;
 
             if(Number(formula) > 0) {
-                return formula;
+                return Number(formula);
             } else {
                 return 0;
             }
@@ -314,7 +319,13 @@
         function calcNRPCollateralValue(loan) {
             if(!loan) { return; }
 
-            return (Number(loan.insurance.nonrp.value) * (1 - (Number(loan.fins.non_rp_percent) / 100))) - Number(loan.priorlien.totals.nonrp_discount);
+            var formula = (Number(loan.insurance.nonrp.value) * (1 - (Number(loan.fins.non_rp_percent) / 100))) - Number(loan.priorlien.totals.nonrp_discount);
+
+            if(Number(formula) > 0) {
+                return Number(formula);
+            } else {
+                return 0;
+            }
         }
 
         function calcOtherCollateralTotal(loan) {
@@ -327,7 +338,13 @@
         function calcOtherCollateralValue(loan) {
             if(!loan) { return; }
 
-            return (Number(calcOtherCollateralTotal(loan)) * (1 - Number(loan.fins.other_discount_percent) / 100)) - Number(loan.priorlien.totals.other);
+            var formula = (Number(calcOtherCollateralTotal(loan)) * (1 - Number(loan.fins.other_discount_percent) / 100)) - Number(loan.priorlien.totals.other);
+
+            if(Number(formula) > 0) {
+                return Number(formula);
+            } else {
+                return 0;
+            }
         }
 
         function calcPlannedCropValue(loan) {
@@ -337,7 +354,13 @@
             var disc_prod_pc = Number(loan.fins.disc_prod_percent)/100;
             var lien_projection = Number(loan.priorlien.totals.projected_crops);
 
-            return adj_prod * (1 - disc_prod_pc) - lien_projection;
+            var formula = adj_prod * (1 - disc_prod_pc) - lien_projection;
+
+            if(Number(formula) > 0) {
+                return Number(formula);
+            } else {
+                return 0;
+            }
         }
 
         function calcPriorLienTotal(loan) {
@@ -357,7 +380,13 @@
         function calcRECollateralValue(loan) {
             if(!loan) { return; }
 
-            return (Number(calcRECollateralTotal(loan)) * (1 - Number(loan.fins.realestate_percent) / 100)) - Number(loan.priorlien.totals.realestate);
+            var formula = (Number(calcRECollateralTotal(loan)) * (1 - Number(loan.fins.realestate_percent) / 100)) - Number(loan.priorlien.totals.realestate);
+
+            if(Number(formula) > 0) {
+                return Number(formula);
+            } else {
+                return 0;
+            }
         }
 
         function calcRiskMargin(loan) {
@@ -391,13 +420,19 @@
         function calcSuppInsValue(loan) {
             if(!loan) { return; }
 
-            return (Number(loan.supplements.totals.value) * (1 - (Number(loan.fins.supplement_insurance_discount_percent) / 100))) - Number(loan.priorlien.totals.supplemental_coverage);
+            var formula = (Number(loan.supplements.totals.value) * (1 - (Number(loan.fins.supplement_insurance_discount_percent) / 100))) - Number(loan.priorlien.totals.supplemental_coverage);
+
+            if(Number(formula) > 0) {
+                return Number(formula);
+            } else {
+                return 0;
+            }
         }
 
         function calcTotalCollateral(loan) {
             if(!loan) { return; }
 
-            return Number(calcAdjProd(loan)) +
+            var formula = Number(calcAdjProd(loan)) +
                    Number(calcFSACollateralValue(loan)) +
                    Number(calcIODCollateralValue(loan)) +
                    Number(calcNRPCollateralValue(loan)) +
@@ -405,6 +440,12 @@
                    Number(calcEquipmentCollateralValue(loan)) +
                    Number(calcRECollateralValue(loan)) +
                    Number(calcOtherCollateralValue(loan));
+
+            if(Number(formula) > 0) {
+                return Number(formula);
+            } else {
+                return 0;
+            }
         }
 
         function calcTotalCropValue(loan) {
@@ -463,9 +504,13 @@
             var cropValue = Number(calcTotalCropValue(loan));
             var projectedCropDiscount = Number(_.pluckuniq(loan.insurance.byCrop, 'proj_crop_discount'));
 
-            var CIOD = insValue - (cropValue * (1 - (projectedCropDiscount/100)));
+            var formula = insValue - (cropValue * (1 - (projectedCropDiscount/100)));
 
-            return _.max([CIOD, 0]);
+            if(Number(formula) > 0) {
+                return Number(formula);
+            } else {
+                return 0;
+            }
         }
 
         function calcTotalOverDiscNonRP(loan) {

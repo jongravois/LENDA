@@ -37,30 +37,30 @@
         <td class="text-right" ng-class="gtZero(c.adj_harvest_value)">
             {{c.adj_harvest_value | flexCurrency:0}}
         </td>
-        <td class="text-right bright" ng-class="gtZero(c.crop_total)">
+        <td class="text-right bright" ng-class="gtZero(c.adj_total_value)">
             {{c.adj_total_value | flexCurrency:0}}
         </td>
         <td class="text-right" ng-class="gtZero(c.ins_value)">
             {{c.ins_value | flexCurrency:0}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.disc_value)">
+        <td class="text-right" ng-class="gtZero(c.ins_value)">
             {{c.ins_value | flexCurrency:0}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.over_disc)">
+        <td class="text-right" ng-class="gtZero(c.ins_value)">
             {{c.ins_value | flexCurrency:0}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.nrp)">
+        <td class="text-right" ng-class="gtZero(c.ins_value)">
             {{c.ins_value | flexCurrency:0}}
         </td>
     </tr>
     <tr>
-        <td colspan="13">FSA Payment</td>
+        <td colspan="12">FSA Payment</td>
         <td class="text-right" ng-class="gtZero(loan.fins.total_fsa_payment)">
             {{loan.fins.total_fsa_payment | flexCurrency:0}}
         </td>
     </tr>
     <tr>
-        <td colspan="13">Other</td>
+        <td colspan="12">Other</td>
         <td ng-class=gtZero(loan.fins.total_claims)>
             {{loan.fins.total_claims | flexCurrency:0}}
         </td>
@@ -72,7 +72,7 @@
         <td class="text-right" ng-class="gtZero(AppFactory.income_totalCollateral(loan))">
             {{AppFactory.income_totalCollateral(loan) | flexCurrency:0}}
         </td>
-        <td colspan="5">&nbsp;</td>
+        <td colspan="4">&nbsp;</td>
     </tr>
 </table>
 <!--<pre>{{loan.loancrops | json}}</pre>-->
