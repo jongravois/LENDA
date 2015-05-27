@@ -4,24 +4,20 @@
         .module('ARM')
         .controller('FarmsController', FarmsController);
 
-    FarmsController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
+    FarmsController.$inject = ['$scope', '$state', '$stateParams', '$filter', 'AppFactory', 'LoansFactory'];
 
-    function FarmsController($scope, $state, $stateParams,  AppFactory, LoansFactory) {
-        activate();
+    function FarmsController($scope, $state, $stateParams, $filter,  AppFactory, LoansFactory) {
+        var curr = $state.current.url;
+        var currScreen = curr.substring(1, curr.length);
+        $scope.newapplication = $state.current.data.newapplication;
 
-        function activate() {
-            var curr = $state.current.url;
-            var currScreen = curr.substring(1, curr.length);
-            $scope.newapplication = $state.current.data.newapplication;
-
-            if ($scope.newapplication && $scope.screens) {
-                angular.forEach($scope.screens, function (obj) {
-                    if (obj.screen === currScreen) {
-                        obj.status = 1;
-                    }
-                });
-            }// end if
-        }
+        if ($scope.newapplication && $scope.screens) {
+            angular.forEach($scope.screens, function (obj) {
+                if (obj.screen === currScreen) {
+                    obj.status = 1;
+                }
+            });
+        }// end if
 
         $scope.newFarm = $scope.newFarm || {};
         $scope.stateCounties = [];
@@ -37,6 +33,106 @@
                     $scope.farms = rsp.data.data;
                 });
         }
+
+        $scope.gridOptions = {
+            data: 'loan.farms',
+            rowHeight: 40,
+            showFilter: true,
+            enableCellSelection: true,
+            enableCellEditOnFocus: true,
+            enableRowSelection: false,
+            columnDefs: 'columnDefs',
+            plugins: [new ngGridFlexibleHeightPlugin()]
+        };
+
+        $scope.columnDefs = [
+            {
+                field: 'county.locale',
+                displayName: 'St | County',
+                headerClass: 'text-center',
+                cellClass: 'text-left'
+            },
+            {
+                field: 'fsn',
+                displayName: 'FSN',
+                enableCellEdit: true,
+                cellClass: 'text-left cBlue'
+            },
+            {
+                field: 'owner',
+                displayName: 'Landlord',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-left cBlue'
+            },
+            {
+                field: 'share_rent',
+                displayName: 'Share',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-right cBlue',
+                cellFilter: 'flexPercent:0'
+            },
+            {
+                field: 'irr',
+                displayName: 'AC-IR',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-right cBlue',
+                cellFilter: 'number:1'
+            },
+            {
+                field: 'ni',
+                displayName: 'AC-NI',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-right cBlue',
+                cellFilter: 'number:1'
+            },
+            {
+                field: 'acres',
+                displayName: 'Acres',
+                headerClass: 'text-center',
+                cellClass: 'text-right',
+                cellFilter: 'number:1',
+                cellTemplate: '<div class="padd black">{{getTotal(row.entity.irr,row.entity.ni)}}<div>'
+            },
+            {
+                field: 'cash_rent',
+                displayName: 'Cash Rent',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-right cBlue',
+                cellFilter: 'flexZeroCurrency:2'
+            },
+            {
+                field: 'when_due',
+                displayName: 'When Due',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-left cBlue'
+            },
+            {
+                field: 'waived',
+                displayName: 'Waived',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-right cBlue',
+                cellFilter: 'flexZeroCurrency:2'
+            },
+            {
+                field: 'fsa_paid',
+                displayName: 'FSA',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-right cBlue',
+                cellFilter: 'flexZeroCurrency:2'
+            }
+        ];
+
+        $scope.getTotal = function(a, b) {
+            return $filter('number')(Number(a) + Number(b), 1);
+        };
 
         $scope.moveFromFarms = function () {
             AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);

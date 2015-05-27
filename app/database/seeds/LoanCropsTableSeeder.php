@@ -113,7 +113,10 @@ class LoanCropsTableSeeder extends Seeder {
         Loancrop::create([
             'crop_year' => 2015,
             'loan_id' => 1,
-            'crop_id' => 9
+            'crop_id' => 9,
+			'uom' => 'ton',
+			'uom_harvest' => 'ton',
+			'uom_rebate' => 'ton'
         ]);
 
 		Loancrop::create([
@@ -158,7 +161,10 @@ class LoanCropsTableSeeder extends Seeder {
 		Loancrop::create([
 			'crop_year' => 2015,
 			'loan_id' => 2,
-			'crop_id' => 6
+			'crop_id' => 6,
+			'uom' => 'lb',
+			'uom_harvest' => 'lb',
+			'uom_rebate' => 'lb'
 		]);
 
 		Loancrop::create([
@@ -178,7 +184,10 @@ class LoanCropsTableSeeder extends Seeder {
         Loancrop::create([
             'crop_year' => 2015,
             'loan_id' => 2,
-            'crop_id' => 9
+            'crop_id' => 9,
+			'uom' => 'ton',
+			'uom_harvest' => 'ton',
+			'uom_rebate' => 'ton'
         ]);
 
 		Loancrop::create([
@@ -245,7 +254,10 @@ class LoanCropsTableSeeder extends Seeder {
 		Loancrop::create([
 			'crop_year' => 2015,
 			'loan_id' => 9,
-			'crop_id' => 6
+			'crop_id' => 6,
+			'uom' => 'lb',
+			'uom_harvest' => 'lb',
+			'uom_rebate' => 'lb'
 		]);
 
 		Loancrop::create([
@@ -263,7 +275,10 @@ class LoanCropsTableSeeder extends Seeder {
 		Loancrop::create([
 			'crop_year' => 2015,
 			'loan_id' => 9,
-			'crop_id' => 9
+			'crop_id' => 9,
+			'uom' => 'ton',
+			'uom_harvest' => 'ton',
+			'uom_rebate' => 'ton'
 		]);
 
 		Loancrop::create([

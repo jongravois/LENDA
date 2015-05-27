@@ -68,7 +68,7 @@
                 .state('edit.disbursement', {
                     url: '/disbursement',
                     templateUrl: 'angular/loans/disbursements/disbursement.html',
-                    controller: 'DisbursementController',
+                    controller: 'DisbursementsController',
                     data: {newapplication: false}
                 })
                 .state('edit.distributor', {

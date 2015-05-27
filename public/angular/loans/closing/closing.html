@@ -45,6 +45,7 @@
                             <li><input type="checkbox" checked/>Verification of any other sources of income</li>
                             <li><input type="checkbox" checked/>Expected crop mix and budgets</li>
                         </ul>
+                        <p ng-if="loan.is_addendum">I certify that only the above documents are required to process this addendum</p>
                     </accordion-group>
                     <accordion-group>
                         <accordion-heading>
@@ -53,7 +54,7 @@
                         <ul class="rqdoc list-unstyled" style="margin-left:20px;">
                             <li><input type="checkbox"/>&nbsp;ARM Fees Invoice</li>
                             <li><input type="checkbox"/>&nbsp;Bo Gwin Guarantor Agreement</li>
-                            <li><input type="checkbox"/>&nbsp;Sharon Gwin Guarantor Agreement</li>
+                            <li><input type="checkbox" checked="checked"/>&nbsp;Sharon Gwin Guarantor Agreement</li>
                             <li><input type="checkbox"/>&nbsp;Promissory Note</li>
                             <li><input type="checkbox"/>&nbsp;Agriculture Security Agreement</li>
                             <li><input type="checkbox"/>&nbsp;Assignment of FSA Payment</li>

@@ -8,25 +8,119 @@
         'AppFactory', 'LoansFactory'];
 
     function CropsController($scope, $state, $stateParams, AppFactory, LoansFactory) {
-        activate();
+        var curr = $state.current.url;
+        var currScreen = curr.substring(1, curr.length);
+        $scope.newapplication = $state.current.data.newapplication;
 
-        function activate() {
-            var curr = $state.current.url;
-            var currScreen = curr.substring(1, curr.length);
-            $scope.newapplication = $state.current.data.newapplication;
+        $scope.AppFactory = AppFactory;
 
-            if ($scope.newapplication && $scope.screens) {
-                angular.forEach($scope.screens, function (obj) {
-                    if (obj.screen === currScreen) {
-                        obj.status = 1;
-                    }
-                });
-            }// end if
-        }
+        if ($scope.newapplication && $scope.screens) {
+            angular.forEach($scope.screens, function (obj) {
+                if (obj.screen === currScreen) {
+                    obj.status = 1;
+                }
+            });
+        }// end if
 
         if ($scope.newapplication) {
             init();
         }
+
+        $scope.activeCrops = [];
+        $scope.inactiveCrops = [];
+        angular.forEach($scope.loan.loancrops, function(i){
+            if(Number(i.acres) > 0) {
+                $scope.activeCrops.push(i);
+            } else {
+                $scope.inactiveCrops.push(i);
+            }
+        });
+
+        $scope.gridOptions = {
+            data: 'activeCrops',
+            rowHeight: 40,
+            showFilter: true,
+            enableCellSelection: true,
+            enableCellEditOnFocus: true,
+            enableRowSelection: false,
+            columnDefs: 'columnDefs',
+            plugins: [new ngGridFlexibleHeightPlugin()]
+        };
+
+        $scope.columnDefs = [
+            {
+                field: 'crop.name',
+                displayName: 'Crop',
+                headerClass: 'text-center',
+                cellClass: 'text-left'
+            },
+            {
+                field: 'markettowhom',
+                displayName: 'Market',
+                enableCellEdit: true,
+                cellClass: 'text-left cBlue'
+            },
+            {
+                field: 'bkqty',
+                displayName: 'BkQty',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-right cBlue',
+                cellFilter: 'number:1'
+            },
+            {
+                field: 'bkprice',
+                displayName: 'BkPrice',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-right cBlue',
+                cellFilter: 'flexZeroCurrency:4'
+            },
+            {
+                field: 'uom',
+                displayName: 'UoM',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-center cBlue'
+            },
+            {
+                field: 'harvest',
+                displayName: 'Var Hvst',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-right cBlue',
+                cellFilter: 'flexZeroCurrency:4'
+            },
+            {
+                field: 'uom_harvest',
+                displayName: 'UoM',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-center cBlue'
+            },
+            {
+                field: 'gin_mill',
+                displayName: 'Gin/Mill',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-left cBlue'
+            },
+            {
+                field: 'rebates',
+                displayName: 'Rebates',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-right cBlue',
+                cellFilter: 'flexZeroCurrency:4'
+            },
+            {
+                field: 'uom_rebate',
+                displayName: 'UoM',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-center cBlue'
+            }
+        ];
 
         $scope.createLoanCrops = function () {
             //TODO: Prevent multiple submission
