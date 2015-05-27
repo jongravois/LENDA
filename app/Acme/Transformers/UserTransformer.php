@@ -13,13 +13,19 @@ class UserTransformer extends Transformer
 
       foreach($arr['notifications'] as $notifs){
           if($notifs['notification_type'] == 'vote'){
-              $pender++;
+              if($notifs['status'] == 'pending') {
+                  $pender++;
+              }
           }
           if($notifs['notification_type'] == 'office'){
-              $manager++;
+              if($notifs['status'] == 'pending') {
+                  $manager++;
+              }
           }
           if($notifs['notification_type'] == 'report'){
-              $reporter++;
+              if($notifs['status'] == 'pending') {
+                  $reporter++;
+              }
           }
       }
 
@@ -62,7 +68,7 @@ class UserTransformer extends Transformer
         ],
         'notifications' => $arr['notifications'],
         'notificator' => [
-            'count' => count($arr['notifications']),
+            'count' => $pender + $manager + $reporter,
             'pending_actions' => $pender,
             'management_required' => $manager,
             'review_reports' => $reporter

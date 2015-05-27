@@ -12,10 +12,9 @@ class CommitteeTransformer extends Transformer{
 			'username' => $arr['user']['username'],
 			'role_id' => (integer) $arr['role_id'],
 			'role' => $arr['role']['role'],
-			'vote_status_id' => (integer) $arr['vote_status_id'],
-			'vote_status' => $arr['vote_status']['status'],
+			'vote_status' => $arr['vote_status'],
 			'vote_id' => (integer) $arr['vote_id'],
-			'vote' => $arr['vote']['vote'],
+			'vote' => $arr['vote'],
 			'vote_request_date' => $arr['vote_request_date'],
 			'vote_received_date' => $arr['vote_received_date']
 		];

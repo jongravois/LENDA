@@ -194,6 +194,11 @@ class Loan extends \Eloquent
         return $this->hasMany('Loanquestions');
     }
 
+    public function references()
+    {
+        return $this->hasMany('Reference');
+    }
+
     public function regions()
     {
         return $this->belongsTo('Region', 'region_id');

@@ -19,12 +19,58 @@
             });
         }// end if
 
-        if (!$scope.references) {
+        if (!$scope.loan.references) {
             LoansFactory.getReferences($stateParams.loanID)
                 .then(function success(rsp) {
                     $scope.references = rsp.data.data;
                 });
         }
+
+        $scope.gridOptions = {
+            data: 'loan.references',
+            rowHeight: 40,
+            showFilter: true,
+            enableCellSelection: true,
+            enableCellEditOnFocus: true,
+            enableRowSelection: false,
+            columnDefs: 'columnDefs',
+            plugins: [new ngGridFlexibleHeightPlugin()]
+        };
+
+        $scope.columnDefs = [
+            {
+                field: 'creditor',
+                displayName: 'Creditor',
+                enableCellEdit: true,
+                headerClass: 'text-center',
+                cellClass: 'text-left'
+            },
+            {
+                field: 'city_state',
+                enableCellEdit: true,
+                displayName: 'City, St',
+                cellClass: 'text-left'
+            },
+            {
+                field: 'contact',
+                enableCellEdit: true,
+                displayName: 'Contact',
+                headerClass: 'text-center'
+            },
+            {
+                field: 'phone',
+                enableCellEdit: true,
+                displayName: 'Phone',
+                headerClass: 'text-center',
+                cellFilter: 'phone'
+            },
+            {
+                field: 'email',
+                enableCellEdit: true,
+                displayName: 'Email',
+                headerClass: 'text-center'
+            }
+        ];
 
         $scope.moveFromReferences = function () {
             AppFactory.moveToNextNewLoanScreen(currScreen, $stateParams);

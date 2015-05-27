@@ -61,11 +61,13 @@
             {
                 field: 'loan_type_abr',
                 displayName: 'Type',
+                cellClass: 'text-center',
                 headerClass: 'text-center'
             },
             {
                 field: 'crop_year',
                 displayName: 'Year',
+                cellClass: 'text-center',
                 headerClass: 'text-center'
             },
             {
@@ -76,6 +78,7 @@
             {
                 field: 'loc_abr',
                 displayName: 'Loc',
+                cellClass: 'text-center',
                 headerClass: 'text-center'
             },
             {
@@ -113,7 +116,7 @@
                 field: 'fins.commit_total',
                 displayName: 'Total Commit',
                 headerClass: 'text-center',
-                cellFilter: 'noCentsCurrency',
+                cellFilter: 'flexCurrency:0',
                 cellClass: 'text-right',
                 visible: ($scope.user ? $scope.user.viewopts.view_commit_total : false)
             },

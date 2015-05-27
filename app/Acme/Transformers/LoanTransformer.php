@@ -211,6 +211,7 @@ class LoanTransformer extends Transformer
                 'afsa' => (boolean)$arr['conditions_afsa'],
                 'cd' => (boolean)$arr['conditions_cd']
             ],
+            'references' => $arr['references'],
             'exceptions' => $arr['exceptions'],
             'farmcrops' => $arr['farmcrops'],
             'appfins' => $arr['appfins'],

@@ -1,4 +1,3 @@
-<!-- TODO: Trigger a LENDA if percents not default-->
 <!--<pre>{{loan.priorlien|json}}</pre>-->
 <table class="table table-striped rowed disp-sm" style="width:96%; margin: 0 auto;">
     <tr>
@@ -44,7 +43,7 @@
         <td class="text-right" ng-class="gtZero(loan.priorlien.totals.fsa_payments)">
             {{loan.priorlien.totals.fsa_payments|flexCurrency:0}}
         </td>
-        <td class="text-right"> <!--ng-class="gtZero(AppFactory.calcFSACollateralValue(loan))">-->
+        <td class="text-right" ng-class="gtZero(AppFactory.calcFSACollateralValue(loan))">
             {{AppFactory.calcFSACollateralValue(loan)|flexCurrency:0}}
         </td>
     </tr>

@@ -30,6 +30,7 @@
                 loancrops: processLoanCrops(loan),
                 need_vote: getPendingVotes(loan),
                 priorlien: processPriorLien(loan.priorlien),
+                quests: processQuests(loan.quests),
                 supplements: processSupInsurance(loan.suppins)
             })
                 .then(function (updatedData) {
@@ -655,6 +656,27 @@
                 supplemental_coverage: _.sumCollection(liens, 'supplemental_coverage'),
                 lientotal: _.sumCollection(liens, 'lientotal')
             };
+        }
+
+        function processQuests(quests) {
+            quests.plant_own = !!quests.plant_own;
+            quests.harvest_own = !!quests.harvest_own;
+            quests.equip_obligations = !!quests.equip_obligations;
+            quests.other_cash = !!quests.other_cash;
+            quests.fsa_good = !!quests.fsa_good;
+            quests.fsa_direct_pay = !!quests.fsa_direct_pay;
+            quests.insInPlace = !!quests.insInPlace;
+            quests.fci_good = !!quests.fci_good;
+            quests.premiums_past = !!quests.premiums_past;
+            quests.legal_defendant = !!quests.legal_defendant;
+            quests.judgements = !!quests.judgements;
+            quests.bankruptcy = !!quests.bankruptcy;
+            quests.liens = !!quests.liens;
+            quests.future_liabilities = !!quests.future_liabilities;
+            quests.credit_3p_available = !!quests.credit_3p_available;
+            quests.affiliates = !!quests.affiliates;
+
+            return quests;
         }
 
         function processSupInsurance(obj) {
