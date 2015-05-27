@@ -30,23 +30,10 @@
         $scope.refresh();
         $scope.gridOptions = {
             data: 'myData',
-            // enableCellEdit: true,
-            // enableCellSelection: true,
             enableColumnReordering: true,
-            enableHighlighting: true,
-            enablePaging: true,
-            enableRowReordering: true,
-            enableRowSelection: true,
             enableSorting: true,
-            pagingOptions: { pageSizes: [250, 500, 1000], pageSize: 250, totalServerItems: 0, currentPage: 1 },
-            selectedItems: $scope.mySelections,
-            // selectWithCheckboxOnly: true,
-            showColumnMenu: true,
-            showFilter: true,
-            // showFooter: true,
-            showGroupPanel: true,
-            // showSelectionCheckbox: true,
             sortInfo: { fields: ['days', 'updated', 'viewed'], directions: ['desc', 'desc', 'desc']},
+            plugins: [new ngGridFlexibleHeightPlugin()],
             columnDefs: [
                 /* Visible Report Data */
                 {
@@ -55,12 +42,7 @@
                     headerClass: 'text-center',
                     cellClass: 'text-center',
                     width: 50,
-                    // maxWidth: 50,
-                    groupable: true,
-                    pinnable: false,
-                    resizable: false,
-                    sortable: true,
-                    visible: true
+                    sortable: true
                 },
                 {
                     field: 'location',
@@ -69,12 +51,7 @@
                     cellClass: 'text-center',
                     cellFilter: '',
                     width: 50,
-                    // maxWidth: 50,
-                    groupable: true,
-                    pinnable: false,
-                    resizable: false,
-                    sortable: true,
-                    visible: true
+                    sortable: true
                 },
                 {
                     field: 'admin',
@@ -84,12 +61,7 @@
                     cellFilter: '',
                     cellTemplate: '<div class="getData" my-data="{{row.getProperty(col.field)}}"></div>',
                     width: 50,
-                    // maxWidth: 50,
-                    groupable: true,
-                    pinnable: false,
-                    resizable: false,
-                    sortable: true,
-                    visible: true
+                    sortable: false
                 },
                 {
                     field: 'analyst',
@@ -99,12 +71,7 @@
                     cellFilter: '',
                     cellTemplate: '<div class="getData" my-data="{{row.getProperty(col.field)}}"></div>',
                     width: 50,
-                    // maxWidth: 50,
-                    groupable: true,
-                    pinnable: false,
-                    resizable: false,
-                    sortable: true,
-                    visible: true
+                    sortable: false
                 },
                 {
                     field: 'name',
@@ -113,68 +80,42 @@
                     cellClass: 'text-left',
                     cellFilter: '',
                     // width: 75,
-                    // maxWidth: 75,
-                    groupable: true,
-                    pinnable: false,
-                    resizable: false,
-                    sortable: true,
-                    visible: true
+                    sortable: true
                 },
+                /*
                 {
                     field: 'updated',
                     displayName: 'Updated',
                     headerClass: 'text-center',
                     cellClass: 'text-center',
                     cellFilter: "date:'shortDate'",
-                    width: 80,
-                    // maxWidth: 80,
-                    groupable: true,
-                    pinnable: false,
-                    resizable: true,
-                    sortable: true,
-                    visible: true
+                    width: 75,
+                    sortable: true
                 },
+                */
                 {
                     field: 'viewed',
                     displayName: 'Viewed',
                     headerClass: 'text-center',
                     cellClass: 'text-center',
                     cellFilter: "date:'shortDate'",
-                    width: 80,
-                    // maxWidth: 80,
-                    groupable: true,
-                    pinnable: false,
-                    resizable: true,
-                    sortable: true,
-                    visible: true
+                    width: 75,
+                    sortable: true
                 },
                 {
                     field: 'days',
                     displayName: 'Days',
                     headerClass: 'text-center',
-                    cellClass: 'text-right',
+                    cellClass: 'text-center',
                     cellFilter: "",
-                    width: 80,
-                    // maxWidth: 80,
-                    groupable: true,
-                    pinnable: false,
-                    resizable: true,
-                    sortable: true,
-                    visible: true
+                    width: 75,
+                    sortable: true
                 },
                 {
                     field: 'blank',
                     displayName: '',
                     headerClass: 'text-center',
-                    cellClass: 'text-center',
-                    cellFilter: "",
-                    width: 4,
-                    maxWidth: 4,
-                    groupable: true,
-                    pinnable: false,
-                    resizable: true,
-                    sortable: true,
-                    visible: true
+                    width: 1
                 }
             ]
         };
