@@ -944,11 +944,27 @@
 
         // PERINS COMPLETE
         function clickPERINS(obj, user) {
-            if(Number(obj.permission_to_insure_verified) == 1){
-                recordPERINS(user, 3, obj);
+            var data = {
+                loanID: obj.id,
+                document: 'Permission to Insure',
+                filename: 'permissionToInsure.pdf',
+                title: 'Permission To Insure',
+                buttons: ['ok', 'cancel']
+            };
+
+            if(Number(obj.permission_to_insure_verified) !== 1){
+                ModalService.requiredUpload(data)
+                    .then(function() {
+                        if(Number(obj.permission_to_insure_verified) == 1){
+                            recordPERINS(user, 3, obj);
+                        } else {
+                            recordPERINS(user, 1, obj);
+                        }
+                    }, function() {
+                        toastr.warning('No data saved.', 'User Cancelled Action');
+                    });
             } else {
-                recordPERINS(user, 1, obj);
-                // TODO: Other Actions??
+               // Update Existing Document
             } // end if
 
             return obj;
