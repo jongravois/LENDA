@@ -3,46 +3,49 @@
   <legend>Fund Disbursement</legend>
   <div class="row">
   <div class="col-md-12">
-  <table class="table table-striped rowed">
+  <table class="table table-striped rowed disp-sm">
   <tbody>
   <tr>
     <td style="width:28%;">Category</td>
     <td class="text-center" style="width:18%;">Budget</td>
     <td class="text-center" style="width:18%;">Spent</td>
     <td class="text-center" style="width:18%;">Remaining</td>
-    <td class="text-center" style="width:18%;">Requested</td>
+    <td class="text-center" style="width:18%;">Request</td>
   </tr>
-  <tr ng-repeat="exp in loan.expenses.byCat">
+  <tr ng-repeat="exp in loan.disbursements" ng-if="exp.arm_budget != 0">
       <td>
           {{exp.expense}}
       </td>
       <td class="text-right">
-          {{exp.calc_arm|flexZeroCurrency:2}}
+          {{exp.arm_budget|flexZeroCurrency:2}}
       </td>
       <td class="text-right">
-          {{0|flexZeroCurrency:2}}
+          {{exp.spent|flexZeroCurrency:2}}
       </td>
       <td class="text-right">
-          {{exp.calc_arm|flexZeroCurrency:2}}
+          {{exp.remaining|flexZeroCurrency:2}}
       </td>
-      <td></td>
+      <td>
+          <input type="number" class="form-control text-right" ng-model="exp.requested"/>
+      </td>
   </tr>
   <tr class="success">
     <td>Total</td>
     <td class="text-right">
       {{disburse_arm_total() | flexZeroCurrency:2 }}
     </td>
-    <td class="text-center">
+    <td class="text-right">
       {{disburse_rem_total()| flexZeroCurrency:2 }}
     </td>
     <td class="text-right">
       {{disburse_spent_total() | flexZeroCurrency:2 }}
     </td>
-    <td class="text-center">
-      {{calc_disburse.total()| flexZeroCurrency:2 }}
-      <br />
-      <button class="btn btn-success btn-xs" ng-click="requestDisbursement(disburse.total)">Request</button>
-    </td>
+      <td class="text-center" ng-if="!disbursed">
+          <button class="btn btn-success btn-xs" ng-click="requestDisbursement()">Request</button>
+      </td>
+      <td class="text-right" ng-if="disbursed">
+          <span>{{newDisb|flexZeroCurrency:2}}</span>
+      </td>
   </tr>
   </tbody>
   </table>
