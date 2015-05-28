@@ -62,6 +62,7 @@ function processFinancials($loan)
         'commit_dist' => $dist_commit,
         'commit_other' => $other_commit,
         'commit_total' => $total_commit,
+        'arm_and_dist' => $arm_commit + $dist_commit,
         'proc_fee' => (double)$procFee,
         'proc_fee_arm_only' => (double)$arm_commit * ((double)$fins['fee_processing']/100),
         'srvc_fee' => (double)$srvcFee,

@@ -14,55 +14,55 @@
         <th style="width:7%">Over Disc</th>
         <th style="width:7%">NRP</th>
     </tr>
-    <tr ng-repeat="c in loan.loancrops" ng-if="c.is_active == '1'">
-        <td>{{c.crop.name}}</td>
+    <tr ng-repeat="c in hot_springs">
+        <td>{{c.crop}}</td>
         <td class="text-right" ng-class="gtZero(c.acres)">
             {{c.acres | number:1}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.prod_yield)">
-            {{c.prod_yield | number:1}}
+        <td class="text-right" ng-class="gtZero(c.aph)">
+            {{c.aph | number:1}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.prod_price)">
-            {{c.prod_price | flexCurrency:4}}
+        <td class="text-right" ng-class="gtZero(c.price)">
+            {{c.price | flexCurrency:4}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.prod_share)">
-            {{c.prod_share | flexPercent:1}}
+        <td class="text-right" ng-class="gtZero(c.share)">
+            {{c.share | flexPercent:1}}
         </td>
-        <td class="text-right bright" ng-class="gtZero(c.crop_value)">
-            {{c.crop_value | flexCurrency:0}}
+        <td class="text-right bright" ng-class="gtZero(c.crops)">
+            {{c.crops | flexCurrency:0}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.adj_book_value)">
-            {{c.adj_book_value | flexCurrency:0}}
+        <td class="text-right" ng-class="gtZero(c.bkadj)">
+            {{c.bkadj | flexCurrency:0}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.adj_harvest_value)">
-            {{c.adj_harvest_value | flexCurrency:0}}
+        <td class="text-right" ng-class="gtZero(c.hrvadj)">
+            {{c.hrvadj | flexCurrency:0}}
         </td>
-        <td class="text-right bright" ng-class="gtZero(c.adj_total_value)">
-            {{c.adj_total_value | flexCurrency:0}}
+        <td class="text-right bright" ng-class="gtZero(c.totaladj)">
+            {{c.totaladj | flexCurrency:0}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.ins_value)">
-            {{c.ins_value | flexCurrency:0}}
+        <td class="text-right" ng-class="gtZero(c.insurance)">
+            {{c.insurance | flexCurrency:0}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.ins_value)">
-            {{c.ins_value | flexCurrency:0}}
+        <td class="text-right" ng-class="gtZero(c.ins_disc)">
+            {{c.ins_disc | flexCurrency:0}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.ins_value)">
-            {{c.ins_value | flexCurrency:0}}
+        <td class="text-right" ng-class="gtZero(c.ins_over_disc)">
+            {{c.ins_over_disc | flexCurrency:0}}
         </td>
-        <td class="text-right" ng-class="gtZero(c.ins_value)">
-            {{c.ins_value | flexCurrency:0}}
+        <td class="text-right" ng-class="gtZero(c.non_rp)">
+            {{c.non_rp | flexCurrency:0}}
         </td>
     </tr>
     <tr>
         <td colspan="12">FSA Payment</td>
         <td class="text-right" ng-class="gtZero(loan.fins.total_fsa_payment)">
-            {{loan.fins.total_fsa_payment | flexCurrency:0}}
+            {{AppFactory.getTotalFSAPayment(loan) | flexCurrency:0}}
         </td>
     </tr>
     <tr>
         <td colspan="12">Other</td>
         <td ng-class=gtZero(loan.fins.total_claims)>
-            {{loan.fins.total_claims | flexCurrency:0}}
+            {{AppFactory.getTotalClaims(loan) | flexCurrency:0}}
         </td>
     </tr>
     <tr class="success">

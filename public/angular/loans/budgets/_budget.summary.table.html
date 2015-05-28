@@ -12,13 +12,13 @@
 
   <tr ng-repeat="e in cropuse|orderBy: 'cat_id'" ng-if="e.expense != 'Total'">
     <td colspan="5">{{e.expense}}</td>
-      <td class="text-right" ng-class=gtZero(e.calc_arm)>
+      <td class="text-right cBlue" ng-class=gtZero(e.calc_arm)>
           {{e.calc_arm | flexCurrency:0 }}
       </td>
-      <td class="text-right" ng-class=gtZero(e.calc_dist) ng-if="loan.has_distributor">
+      <td class="text-right cBlue" ng-class=gtZero(e.calc_dist) ng-if="loan.has_distributor">
           {{e.calc_dist | flexCurrency:0 }}
       </td>
-      <td class="text-right" ng-class=gtZero(e.calc_other)>
+      <td class="text-right cBlue" ng-class=gtZero(e.calc_other)>
           {{e.calc_other | flexCurrency:0 }}
       </td>
       <td class="text-right" ng-class=gtZero(e.calc_total)>

@@ -71,6 +71,7 @@
             clickPERINS: clickPERINS,
             clickREBA: clickREBA,
             clickREC: clickREC,
+            clickRECON: clickRECON,
             countiesInState: countiesInState,
             createLenda: createLenda,
             diffInDates: diffInDates,
@@ -1008,6 +1009,14 @@
             }
 
             return obj;
+        }
+
+        function clickRECON(obj) {
+            if(obj.reconciliation != 3){ return; }
+
+            if(obj.reconciliation == 3) {
+                $state.go('edit.reconciliation', {loantypeID: obj.loantype_id, loanID: obj.id});
+            }
         }
 
         function countiesInState(id) {

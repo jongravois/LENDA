@@ -6,7 +6,7 @@
     </th>
     <th class="text-left bright" colspan="4">BY ACRE</th>
     <th class="text-left" colspan="4">
-      {{thiscrop.totals.acres || 0|number:1}} ACRE TOTALS
+      {{thisacres || 0|number:1}} ACRE TOTALS
     </th>
   </tr>
 
@@ -36,13 +36,13 @@
     <td>
       {{c.expense|capitalize}}
     </td>
-    <td class="text-right">
+    <td class="text-right cBlue">
       {{c.arm|flexCurrency:2}}
     </td>
-    <td class="text-right">
+    <td class="text-right cBlue">
       {{c.dist|flexCurrency:2}}
     </td>
-    <td class="text-right">
+    <td class="text-right cBlue">
       {{c.other|flexCurrency:2}}
     </td>
     <td class="text-right bright">

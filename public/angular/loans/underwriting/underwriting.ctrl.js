@@ -8,6 +8,57 @@
 
     function UnderwritingController($scope, $state, $stateParams, AppFactory, InsuranceFactory, AddendumsFactory, LoansFactory) {
 
+        $scope.hot_springs = [
+            {
+                crop: 'Corn',
+                acres: 347.4,
+                aph: 152.3,
+                price: 4.2000,
+                share: 84.4,
+                crops: 187552,
+                bkadj: 0,
+                hrvadj: 0,
+                totaladj: 187552,
+                insurance: 169018,
+                ins_disc: 775421,
+                ins_over_disc: 38771,
+                non_rp: 0
+
+            },
+            {
+                crop: 'Soybeans',
+                acres: 558,
+                aph: 36.7,
+                price: 11.250,
+                share: 80.7,
+                crops: 165242,
+                bkadj: 0,
+                hrvadj: 0,
+                totaladj: 165242,
+                insurance: 180990,
+                ins_disc: 78142,
+                ins_over_disc: 39071,
+                non_rp: 0
+
+            },
+            {
+                crop: 'Soybeans FAC',
+                acres: 22.3,
+                aph: 36.7,
+                price: 10,
+                share: 80.7,
+                crops: 6604,
+                bkadj: 0,
+                hrvadj: 0,
+                totaladj: 6604,
+                insurance: 10062,
+                ins_disc: 3944,
+                ins_over_disc: 1972,
+                non_rp: 0
+
+            }
+        ];
+
         $scope.newCondition = {
             crop_year: $scope.loan.crop_year,
             loan_id: $stateParams.loanID,

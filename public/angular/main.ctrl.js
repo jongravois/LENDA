@@ -67,7 +67,7 @@
         //SCOPE FUNCTIONS
         $scope.nextOrder = function(stat){
             if( Number(stat) === 1) {
-                $scope.sortedLoanList = orderByFilter($scope.loanList, ['-need_vote', '-has_comment', '-is_stale', '-on_watch', '-disbursement_issue', '+farmer.farmer']);
+                $scope.sortedLoanList = orderByFilter($scope.loanList, ['-need_vote', '-has_comment', '-is_stale', '-is_watched', '-disbursement_issue', '+farmer.farmer']);
             } else {
                 $scope.sortedLoanList = orderByFilter($scope.loanList, '-app_date');
             }
