@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('PrerequisitesController', PrerequisitesController);
 
-    PrerequisitesController.$inject = ['$scope', '$state', '$stateParams', '$window', 'AppFactory', 'LoansFactory', 'FILE_URL'];
+    PrerequisitesController.$inject = ['$scope', '$state', '$stateParams', '$window', 'AppFactory', 'LoansFactory', 'FILE_URL', 'ModalService'];
 
-    function PrerequisitesController($scope, $state, $stateParams,$window, AppFactory, LoansFactory, FILE_URL) {
+    function PrerequisitesController($scope, $state, $stateParams,$window, AppFactory, LoansFactory, FILE_URL, ModalService) {
         activate();
 
         $scope.files = [];
@@ -34,7 +34,26 @@
             });
 
         $scope.requestDocument = function(id) {
-            alert(id);
+            ModalService
+        };
+
+        $scope.requestDocument = function(id) {
+            var data = {
+                title: 'Request Document from Applicant',
+                message: 'I can send an email or a text message for you or just record today as when you made this request.',
+                buttons: ['ok', 'cancel']
+            };
+            ModalService.confirm(data)
+                .then(function() {
+                    // EMail Button Clicked
+                    // pop-up to confirm email and send
+                }, function() {
+                    // SMS Button Clicked
+                    // pop-up to confirm phone and send;
+                }, function() {
+                    // None Button Clicked
+                    //persist request
+                });
         };
 
         $scope.showDocument = function(obj) {

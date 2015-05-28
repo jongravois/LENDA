@@ -20,10 +20,10 @@
             {{loan.fins.total_acres | number:1}}
           </td>
           <td class="text-right">
-            {{loan.fins.cash_flow | noCentsCurrency}}
+            {{AppFactory.calcCashFlow(loan)|flexCurrency:0}}
           </td>
           <td class="text-right">
-            {{loan.fins.risk | noCentsCurrency}}
+            {{AppFactory.calcRiskMargin(loan)|flexCurrency:0}}
           </td>
 
         </tr>

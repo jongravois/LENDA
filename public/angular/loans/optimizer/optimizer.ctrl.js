@@ -7,6 +7,7 @@
     OptimizerController.$inject = ['$scope', '$state', '$stateParams', 'AppFactory', 'LoansFactory'];
 
     function OptimizerController($scope, $state, $stateParams, AppFactory, LoansFactory) {
+        $scope.AppFactory = AppFactory;
         activate();
 
         function activate() {

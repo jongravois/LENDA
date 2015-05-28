@@ -13,6 +13,7 @@
             confirm: confirm,
             confirmDelete: confirmDelete,
             optionalUpload: optionalUpload,
+            requestDocument: requestDocument,
             requiredUpload: requiredUpload
         };
 
@@ -71,6 +72,27 @@
         function optionalUpload(data) {
             var modalInstance = $modal.open({
                 templateUrl: 'angular/modals/upload.optional.modal.html',
+                controller: 'ModalController',
+                resolve: {
+                    data: function(){
+                        return {
+                            loanID: data.loanID,
+                            document: data.document,
+                            filename: data.filename,
+                            title: data.title,
+                            buttons: data.buttons
+                        };
+                    }
+                },
+                size: 'sm'
+            });
+
+            return modalInstance.result;
+        }
+
+        function requestDocument(data) {
+            var modalInstance = $modal.open({
+                templateUrl: 'angular/modals/request.document.html',
                 controller: 'ModalController',
                 resolve: {
                     data: function(){
