@@ -89,6 +89,11 @@ class Loan extends \Eloquent
         return $this->hasMany('Cropyields');
     }
 
+    public function disbursements()
+    {
+        return $this->hasMany('Disbursement');
+    }
+
     public function distributor()
     {
         return $this->belongsTo('Distributor', 'distributor_id');

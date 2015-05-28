@@ -76,6 +76,7 @@ class LoanTransformer extends Transformer
         //FINAL RETURN
         return [
             'id' => (integer) $arr['id'],
+            'disbursements' => $arr['disbursements'],
             'inspols' => $arr['inspols'],
             'cats' => getExpenseCategories($arr['id']),
             'agency' => getUniqueAgencies($arr['id']),

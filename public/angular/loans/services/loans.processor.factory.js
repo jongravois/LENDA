@@ -22,6 +22,7 @@
             return $q.all({
                 collateral: processCollateral(loan.othercollateral),
                 crops: getCrops(loan),
+                disbursements: processDisbursements(loan),
                 expenses: getExpenses(loan),
                 fees: getFees(loan),
                 has_comment: getPendingComments(loan),
@@ -373,6 +374,17 @@
                 }
             });
             return totsByCat;
+        }
+
+        function processDisbursements(loan) {
+            var dsp = loan.disbursements;
+            angular.forEach(dsp, function(i){
+                i.arm_budget = Number(i.arm_budget);
+                i.requested = Number(i.requested);
+                i.spent = Number(i.spent);
+                i.remaining = Number(i.arm_budget) - Number(i.spent);
+            });
+            return dsp;
         }
 
         function processExpsByCrop(expenses) {
