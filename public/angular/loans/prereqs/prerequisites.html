@@ -8,7 +8,6 @@
 </style>
 <fieldset>
   <legend>Required Documents</legend>
-  <!--TODO: build request and upload functionality-->
     <div ng-if="docs || docs.length != 0" style="width:80%; margin:0 auto 10px 0;">
         <input type="text" name="txtFilter" ng-model="txtFilter" placeholder="filter list" />
     </div>
@@ -24,14 +23,14 @@
          ng-repeat="d in docs | filter:txtFilter"
          style="width:80%; margin:10px auto 0 auto;">
         <a href="#"
-           class="list-group-item"
-           ng-class="{'list-group-item-danger': d.date_requested && !d.date_received, 'list-group-item-warning': d.date_requested && d.date_received}">
+           class="list-group-item">
             {{d.title}}
             <span class="pull-right"
                   ng-show="!d.date_requested"
                   ng-hide="d.date_requested"
                   ng-click="requestDocument(d.id)">
                 <span class="glyphicon glyphicon-envelope"
+                      style="font-size: 16px;"
                       tooltip="Request Document"
                       tooltip-append-to-body="true"
                       tooltip-placement="bottom"></span>
@@ -43,6 +42,7 @@
                   ng-model="files"
                   ng-multiple="multiple">
                 <span class="glyphicon glyphicon-upload"
+                      style="font-size: 16px;"
                       tooltip="Upload File"
                       tooltip-append-to-body="true"
                       tooltip-placement="bottom"></span>
@@ -52,6 +52,7 @@
                   ng-hide="!d.filename || d.filename == ''"
                   ng-click="showDocument(d)">
                     <span class="glyphicon glyphicon-paperclip"
+                          style="font-size: 16px;"
                           tooltip="View Document"
                           tooltip-append-to-body="true"
                           tooltip-placement="bottom"></span>
