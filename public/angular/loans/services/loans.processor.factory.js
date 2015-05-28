@@ -588,7 +588,12 @@
                 obj.crop_value = AppFactory.incomeCropValue(obj);
                 obj.adj_book_value = AppFactory.incomeBookValue(obj);
                 obj.adj_harvest_value = AppFactory.incomeHarvestValue(obj);
+                obj.adj_total_value = Number(obj.adj_book_value) + Number(obj.adj_harvest_value);
                 obj.crop_total = AppFactory.incomeCropTotal(obj);
+                obj.ins_value = 0;
+                obj.ins_disc = 0;
+                obj.ins_over_disc = 0;
+                obj.non_rp = 0;
                 obj.break_even = (AppFactory.calcBreakEvenPercent(loan) / 100) * Number(obj.prod_yield);
                 return obj;
             });
