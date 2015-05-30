@@ -25,6 +25,10 @@
             });
         } // end if
 
+        $scope.loan.quests.legal_defendant = false;
+        $scope.loan.quests.judgements = false;
+        $scope.loan.quests.bankruptcy = false;
+
         $scope.insertQuestions = function () {
             checkExceptions();
             QuestsFactory.update($scope.quests.id, $scope.quests)
