@@ -16,7 +16,7 @@
     {{ HTML::style('lib/bootstrap/dist/css/bootstrap.min.css') }}
     {{ HTML::style('lib/angular-loading-bar/build/loading-bar.min.css') }}
     {{ HTML::style('lib/ng-grid/ng-grid.min.css') }}
-    {{ HTML::style('lib/fullcalendar/fullcalendar.css') }}
+    {{ HTML::style('lib/font-awesome-4.3.0/css/font-awesome.min.css') }}
     {{ HTML::style('lib/angular-toastr/angular-toastr.min.css') }}
     <!-- endbower -->
 
