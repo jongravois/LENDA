@@ -300,13 +300,13 @@
                                 <label>Close Date:</label>
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="radio" ng-model="user.togCloseDate" value="all"/>
+                                <input type="radio" ng-model="user.viewfltr.vfCloseDate" value="all"/>
                                 <span style="font:normal 12px sans-serif">All</span>
                                 &nbsp;
-                                <input type="radio" ng-model="user.togCloseDate" value="equal"/>
+                                <input type="radio" ng-model="user.viewfltr.vfCloseDate" value="equal"/>
                                 <span style="font:normal 12px sans-serif">=</span>
                                 &nbsp;
-                                <input type="radio" ng-model="user.viewfltr.vfCloseDate" value="before"/>
+                                <input type="radio" ng-model="user.viewfltr.voCloseDate" value="before"/>
                                 <span style="font:normal 12px sans-serif"><</span>
                                 &nbsp;
                                 <input type="radio" ng-model="user.viewfltr.vfCloseDate" value="after"/>
@@ -499,20 +499,20 @@
                                 <label>Rate - ARM:</label>
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="radio" name="vfRateArm" ng-model="user.viewftr.vfRateArm" value="all"/>
+                                <input type="radio" name="vfRateArm" ng-model="user.viewfltr.vfRateArm" value="all"/>
                                 <span style="font:normal 12px sans-serif">All</span>
                                 &nbsp;
-                                <input type="radio" name="vfRateArm" ng-model="user.viewftr.vfRateArm" value="equal" />
+                                <input type="radio" name="vfRateArm" ng-model="user.viewfltr.vfRateArm" value="equal" />
                                 <span style="font:normal 12px sans-serif">=</span>
                                 &nbsp;
-                                <input type="radio" name="vfRateArm" ng-model="user.viewftr.vfRateArm" value="before"/>
+                                <input type="radio" name="vfRateArm" ng-model="user.viewfltr.vfRateArm" value="before"/>
                                 <span style="font:normal 12px sans-serif"><</span>
                                 &nbsp;
-                                <input type="radio" name="vfRateArm" ng-model="user.viewftr.vfRateArm" value="after"/>
+                                <input type="radio" name="vfRateArm" ng-model="user.viewfltr.vfRateArm" value="after"/>
                                 <span style="font:normal 12px sans-serif">> </span>
                             </div>
                             <div class="form-group col-md-2">
-                                <input class="form-control" type="text" name="vfRateArmFilter" ng-model="user.viewftr.vfRateArmFilter" placeholder="Set Filter" ng-hide="user.viewftr.vfRateArm == 'all'"/>
+                                <input class="form-control" type="text" name="vfRateArmFilter" ng-model="user.viewfltr.vfRateArmFilter" placeholder="Set Filter" ng-hide="user.viewfltr.vfRateArm == 'all'"/>
                             </div>
                         </div>
 
@@ -862,7 +862,7 @@
                                 <label>Acres - Sugar Cane:</label>
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="radio" name="togAcresCane" ng-model="user.togAcresCane" value="all"/>
+                                <input type="radio" name="vfAcresCane" ng-model="user.viewfltr.vfAcresCane" value="all"/>
                                 <span style="font:normal 12px sans-serif">All</span>
                                 &nbsp;
                                 <input type="radio" name="vfAcresCane" ng-model="user.viewfltr.vfAcresCane" value="equal" />
@@ -882,12 +882,12 @@
                         <!-- - / Acres Other-->
                         <div class="row">
                             <div class="form-group col-md-6">&nbsp;</div>
-                            <!--ACRES - CANE-->
+                            <!--ACRES - OTHER-->
                             <div class="form-group col-md-2">
                                 <label>Acres - Other:</label>
                             </div>
                             <div class="form-group col-md-2">
-                                <input type="radio" name="vfAcresOther" ng-model="user.vfAcresOther" value="all"/>
+                                <input type="radio" name="vfAcresOther" ng-model="user.viewfltr.vfAcresOther" value="all"/>
                                 <span style="font:normal 12px sans-serif">All</span>
                                 &nbsp;
                                 <input type="radio" name="vfAcresOther" ng-model="user.viewfltr.vfAcresOther" value="equal" />

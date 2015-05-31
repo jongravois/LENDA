@@ -162,10 +162,11 @@ class UserTransformer extends Transformer
             'vfCommitDist' => $arr['viewfilters']['vfCommitDist'],
             'vfCommitOther' => $arr['viewfilters']['vfCommitOther'],
             'vfFee' => $arr['viewfilters']['vfFee'],
-            'vfRateArm' => $arr['viewfilters']['viewfilters'],
+            'vfRateArm' => $arr['viewfilters']['vfRateArm'],
             'vfRateDist' => $arr['viewfilters']['vfRateDist'],
             'vfRateOther' => $arr['viewfilters']['vfRateOther'],
             'vfAcresTotal' => $arr['viewfilters']['vfAcresTotal'],
+            'vfAcresBeansFAC' => $arr['viewfilters']['vfAcresBeansFAC'],
             'vfAcresCorn' => $arr['viewfilters']['vfAcresCorn'],
             'vfAcresBeans' => $arr['viewfilters']['vfAcresBeans'],
             'vfAcresSorghum' => $arr['viewfilters']['vfAcresSorghum'],
@@ -173,7 +174,8 @@ class UserTransformer extends Transformer
             'vfAcresCotton' => $arr['viewfilters']['vfAcresCotton'],
             'vfAcresRice' => $arr['viewfilters']['vfAcresRice'],
             'vfAcresPeanuts' => $arr['viewfilters']['vfAcresPeanuts'],
-            'vfAcresCane' => $arr['viewfilters']['vfAcresCane']
+            'vfAcresCane' => $arr['viewfilters']['vfAcresCane'],
+            'vfAcresOther' => $arr['viewfilters']['vfAcresOther']
         ],
         'viewopts' => [
             'voDueDate' => (boolean) $arr['viewoptions']['voDueDate'],
