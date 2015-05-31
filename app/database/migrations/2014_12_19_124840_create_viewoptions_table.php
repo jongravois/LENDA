@@ -30,12 +30,12 @@ class CreateViewoptionsTable extends Migration {
 			$table->boolean('voAgency')->default(0);
 			$table->boolean('voBalanceDue')->default(0);
 			$table->boolean('voCloseDate')->default(0);
+			$table->boolean('voDueDate')->default(0);
 			$table->boolean('voCommitArm')->default(1);
 			$table->boolean('voCommitDistributor')->default(0);
 			$table->boolean('voCommitOther')->default(0);
 			$table->boolean('voCommitTotal')->default(0);
 			$table->boolean('voDistributor')->default(0);
-			$table->boolean('voDueDate')->default(0);
 			$table->boolean('voFeePercentage')->default(0);
 			$table->boolean('voFeeTotal')->default(0);
 			$table->boolean('voIcon3pcredit')->default(1);

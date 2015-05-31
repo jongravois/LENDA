@@ -156,7 +156,11 @@ class UserTransformer extends Transformer
             'vfLimitClose' => (boolean) $arr['viewfilters']['vfLimitClose'],
             'vfLimitExceeded' => (boolean) $arr['viewfilters']['vfLimitExceeded'],
             'vfAppDate' => $arr['viewfilters']['vfAppDate'],
+            'vfAppDateFilter' => $arr['viewfilters']['vfAppDateFilter'],
             'vfCloseDate' => $arr['viewfilters']['vfCloseDate'],
+            'vfCloseDateFilter' => $arr['viewfilters']['vfCloseDateFilter'],
+            'vfDueDate' => $arr['viewfilters']['vfDueDate'],
+            'vfDueDateFilter' => $arr['viewfilters']['vfDueDateFilter'],
             'vfCommitTotal' => $arr['viewfilters']['vfCommitTotal'],
             'vfCommitArm' => $arr['viewfilters']['vfCommitArm'],
             'vfCommitDist' => $arr['viewfilters']['vfCommitDist'],
@@ -175,7 +179,13 @@ class UserTransformer extends Transformer
             'vfAcresRice' => $arr['viewfilters']['vfAcresRice'],
             'vfAcresPeanuts' => $arr['viewfilters']['vfAcresPeanuts'],
             'vfAcresCane' => $arr['viewfilters']['vfAcresCane'],
-            'vfAcresOther' => $arr['viewfilters']['vfAcresOther']
+            'vfAcresOther' => $arr['viewfilters']['vfAcresOther'],
+            'vfStatusApproved' => (boolean)$arr['viewfilters']['vfStatusApproved'],
+            'vfStatusDenied' => (boolean)$arr['viewfilters']['vfStatusDenied'],
+            'vfStatusInProgress' => (boolean)$arr['viewfilters']['vfStatusInProgress'],
+            'vfStatusPaid' => (boolean)$arr['viewfilters']['vfStatusPaid'],
+            'vfStatusRecommended' => (boolean)$arr['viewfilters']['vfStatusRecommended'],
+            'vfStatusWithdrawn' => (boolean)$arr['viewfilters']['vfStatusWithdrawn']
         ],
         'viewopts' => [
             'voDueDate' => (boolean) $arr['viewoptions']['voDueDate'],

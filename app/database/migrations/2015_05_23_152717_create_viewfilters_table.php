@@ -48,6 +48,8 @@ class CreateViewfiltersTable extends Migration {
 			$table->boolean('vfBankruptcy')->default(0);
 			$table->string('vfCloseDate')->default('all');
 			$table->string('vfCloseDateFilter')->nullable();
+			$table->string('vfDueDate')->default('all');
+			$table->string('vfDueDateFilter')->nullable();
             $table->boolean('vfCommentAccount')->default(1);
             $table->boolean('vfCommentAnalyst')->default(1);
             $table->boolean('vfCommentCommittee')->default(1);
