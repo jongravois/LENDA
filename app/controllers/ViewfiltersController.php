@@ -1,14 +1,14 @@
 <?php
 
-use Acme\Transformers\ViewfiltersTransformer;
+use Acme\Transformers\ViewfilterTransformer;
 
 class ViewfiltersController extends ApiController {
 
-	protected $viewfiltersTransformer;
+	protected $viewfilterTransformer;
 
-	function __construct(ViewfiltersTransformer $viewfiltersTransformer)
+	function __construct(ViewfilterTransformer $viewfilterTransformer)
 	{
-		$this->viewfiltersTransformer = $viewfiltersTransformer;
+		$this->viewfilterTransformer = $viewfilterTransformer;
 	}
 
 
@@ -17,7 +17,7 @@ class ViewfiltersController extends ApiController {
 		$all = Viewfilters::all();
 
 		return $this->respond([
-			'data' => $this->viewfiltersTransformer->transformCollection($all->all())
+			'data' => $this->viewfilterTransformer->transformCollection($all->all())
 		]);
 	}
 
@@ -30,7 +30,7 @@ class ViewfiltersController extends ApiController {
 		} // end if
 
 		return $this->respond([
-			'data' => $this->viewfiltersTransformer->transform($single[0])
+			'data' => $this->viewfilterTransformer->transform($single[0])
 		]);
 	}
 

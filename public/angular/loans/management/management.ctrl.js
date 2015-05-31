@@ -295,25 +295,25 @@
             function getIndicatorWidth(){
                 var cnt = 0;
 
-                if($scope.user.viewopts.view_icon_addendum) {
+                if($scope.user.viewopts.voIconAddendum) {
                     cnt += 1;
                 }
-                if($scope.user.viewopts.view_icon_cross) {
+                if($scope.user.viewopts.voIconCross) {
                     cnt += 1;
                 }
-                if($scope.user.viewopts.view_icon_bankruptcy) {
+                if($scope.user.viewopts.voIconBankruptcy) {
                     cnt += 1;
                 }
-                if($scope.user.viewopts.view_icon_3pcredit) {
+                if($scope.user.viewopts.voIcon3pcredit) {
                     cnt += 1;
                 }
-                if($scope.user.viewopts.view_icon_addedland) {
+                if($scope.user.viewopts.voIconAddedland) {
                     cnt += 1;
                 }
-                if($scope.user.viewopts.view_icon_disbursement) {
+                if($scope.user.viewopts.voIconDisbursement) {
                     cnt += 1;
                 }
-                if($scope.user.viewopts.view_icon_attachments) {
+                if($scope.user.viewopts.voIconAttachments) {
                     cnt += 1;
                 }
 
