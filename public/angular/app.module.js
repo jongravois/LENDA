@@ -11,6 +11,7 @@
         'ui.bootstrap',
         'ui.calendar',
         'ui.utils',
+        'ui.sortable',
         'angular-loading-bar',
         'toastr',
         'ngGrid',

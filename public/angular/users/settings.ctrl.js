@@ -16,6 +16,48 @@
                 toastr.success('User settings have been updated.', 'Success');
             };
 
+            $scope.views = [
+                {txt: 'Farmer', i: 1},
+                {txt: 'Applicant', i: 2},
+                {txt: 'Loan Type', i: 3},
+                {txt: 'Crop Year', i: 4},
+                {txt: 'App Date', i: 5},
+                {txt: 'Location', i: 6},
+                {txt: 'Status', i: 7}
+            ];
+
+            $scope.rpts = [
+                {txt: 'Farmer', i: 1},
+                {txt: 'Applicant', i: 2},
+                {txt: 'Loan Type', i: 3},
+                {txt: 'Crop Year', i: 4},
+                {txt: 'App Date', i: 5},
+                {txt: 'Location', i: 6},
+                {txt: 'Status', i: 7}
+            ];
+
+            $scope.views.sort(function (a, b) {
+                return a.i > b.i;
+            });
+
+            $scope.sortableOptions = {
+                stop: function(e, ui) {
+                    for (var index in $scope.views) {
+                        $scope.views[index].i = index;
+                    }
+
+                    logModels();
+                }
+            };
+
+            $scope.sortingLog = [];
+
+            function logModels () {
+                var logEntry = $scope.views.map(function(i){
+                    return i.txt+'(pos:'+i.i+')';
+                }).join(', ');
+                $scope.sortingLog.push('Stop: ' + logEntry);
+            }
             //////////
             function updateUserInfo() {
                 var oUpd = {

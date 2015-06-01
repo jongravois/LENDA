@@ -41,6 +41,7 @@
 
 <!-- bower:js -->
 {{ HTML::script('lib/jquery/dist/jquery.min.js'); }}
+{{ HTML::script('lib/jquery-ui/ui/jquery-ui.js'); }}
 {{ HTML::script('lib/lodash/lodash.min.js'); }}
 {{ HTML::script('lib/moment/min/moment.min.js'); }}
 {{ HTML::script('lib/angular-1.3.14/angular.js'); }}
@@ -59,6 +60,7 @@
 {{ HTML::script('lib/ng-grid/plugins/ng-grid-flexible-height.js'); }}
 {{ HTML::script('lib/ng-file-upload/angular-file-upload-shim.js'); }}
 {{ HTML::script('lib/ng-file-upload/angular-file-upload.js'); }}
+{{ HTML::script('lib/angular-ui-sortable/sortable.min.js'); }}
 <!-- endbower -->
 
 <!-- inject.js -->

@@ -43,7 +43,8 @@
     "ng-grid": "~2.0.14",
     "angular-cache": "~3.2.5",
     "spin.js": "~2.0.1",
-    "csv-js": "*"
+    "csv-js": "*",
+    "angular-ui-sortable": "~0.13.3"
   },
   "resolutions": {
     "angular-ui-router": "~0.2.13",
