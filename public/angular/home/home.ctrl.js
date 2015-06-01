@@ -89,28 +89,34 @@
                 cellTemplate: 'angular/layout/grid_tmpl/status.html'
             },
             {
+                field: 'due_date',
+                displayName: 'Due',
+                headerClass: 'text-center',
+                visible: ($scope.user ? $scope.user.viewopts.voDueDate : false)
+            },
+            {
                 field: 'region',
                 displayName: 'Reg',
                 headerClass: 'text-center',
-                visible: ($scope.user ? $scope.user.viewopts.view_region : false)
+                visible: ($scope.user ? $scope.user.viewopts.voRegion : false)
             },
             {
                 field: 'season',
                 displayName: 'Season',
                 headerClass: 'text-center',
-                visible: ($scope.user ? $scope.user.viewopts.view_season : false)
+                visible: ($scope.user ? $scope.user.viewopts.voSeason : false)
             },
             {
                 field: 'distributor',
                 displayName: 'Dist',
                 headerClass: 'text-center',
-                visible: ($scope.user ? $scope.user.viewopts.view_distributor : false)
+                visible: ($scope.user ? $scope.user.viewopts.voDistributor : false)
             },
             {
                 field: 'agency',
                 displayName: 'Agency',
                 headerClass: 'text-center',
-                visible: ($scope.user ? $scope.user.viewopts.view_agency : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAgency : false)
             },
             {
                 field: 'fins.commit_total',
@@ -118,7 +124,7 @@
                 headerClass: 'text-center',
                 cellFilter: 'flexCurrency:0',
                 cellClass: 'text-right',
-                visible: ($scope.user ? $scope.user.viewopts.view_commit_total : false)
+                visible: ($scope.user ? $scope.user.viewopts.voCommitTotal : false)
             },
             {
                 field: 'fins.commit_arm',
@@ -126,7 +132,7 @@
                 headerClass: 'text-center',
                 cellFilter: 'noCentsCurrency',
                 cellClass: 'text-right',
-                visible: ($scope.user ? $scope.user.viewopts.view_commit_arm : false)
+                visible: ($scope.user ? $scope.user.viewopts.voCommitArm : false)
             },
             {
                 field: 'fins.commit_dist',
@@ -134,7 +140,7 @@
                 headerClass: 'text-center',
                 cellFilter: 'noCentsCurrency',
                 cellClass: 'text-right',
-                visible: ($scope.user ? $scope.user.viewopts.view_commit_distributor : false)
+                visible: ($scope.user ? $scope.user.viewopts.voCommitDistributor : false)
             },
             {
                 field: 'fins.commit_other',
@@ -142,7 +148,7 @@
                 headerClass: 'text-center',
                 cellFilter: 'noCentsCurrency',
                 cellClass: 'text-right',
-                visible: ($scope.user ? $scope.user.viewopts.view_commit_other : false)
+                visible: ($scope.user ? $scope.user.viewopts.voCommitOther : false)
             },
             {
                 field: 'fins.total_fee_percent',
@@ -150,7 +156,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'flexPercent:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_fee_percentage : false)
+                visible: ($scope.user ? $scope.user.viewopts.voFeePercentage : false)
             },
             {
                 field: 'fins.fee_total',
@@ -158,7 +164,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'currency',
-                visible: ($scope.user ? $scope.user.viewopts.view_fee_total : false)
+                visible: ($scope.user ? $scope.user.viewopts.voFeeTotal : false)
             },
             {
                 field: 'fins.int_percent_arm',
@@ -166,7 +172,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'displaypercent',
-                visible: ($scope.user ? $scope.user.viewopts.view_rate_arm : false)
+                visible: ($scope.user ? $scope.user.viewopts.voRateArm : false)
             },
             {
                 field: 'fins.int_percent_dist',
@@ -174,7 +180,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'displaypercent',
-                visible: ($scope.user ? $scope.user.viewopts.view_rate_dist : false)
+                visible: ($scope.user ? $scope.user.viewopts.voRateDist : false)
             },
             {
                 field: 'fins.balance_remaining',
@@ -182,7 +188,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'currency',
-                visible: ($scope.user ? $scope.user.viewopts.view_balance_due : false)
+                visible: ($scope.user ? $scope.user.viewopts.voBalanceDue : false)
             },
             {
                 field: 'fins.total_acres',
@@ -190,7 +196,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_total : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAcresTotal : false)
             },
             {
                 field: 'loancrops[0].acres',
@@ -198,7 +204,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_corn : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAcresCorn : false)
             },
             {
                 field: 'loancrops[1].acres',
@@ -206,7 +212,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_soybeans : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAcresSoybeans : false)
             },
             {
                 field: 'loancrops[2].acres',
@@ -214,7 +220,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_beansFAC : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAcresBeansFAC : false)
             },
             {
                 field: 'loancrops[3].acres',
@@ -222,7 +228,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_sorghum : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAcresSorghum : false)
             },
             {
                 field: 'loancrops[4].acres',
@@ -230,7 +236,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_wheat : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAcresWheat : false)
             },
             {
                 field: 'loancrops[5].acres',
@@ -238,7 +244,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_cotton : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAcresCotton : false)
             },
             {
                 field: 'loancrops[6].acres',
@@ -246,7 +252,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_rice : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAcresRice : false)
             },
             {
                 field: 'loancrops[7].acres',
@@ -254,7 +260,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_peanuts : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAcresPeanuts : false)
             },
             {
                 field: 'loancrops[8].acres',
@@ -262,7 +268,7 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_sugar_cane : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAcresSugarcane : false)
             },
             {
                 field: 'loancrops[9].acres',
@@ -270,38 +276,38 @@
                 cellClass: 'text-right',
                 headerClass: 'text-center',
                 cellFilter: 'number:1',
-                visible: ($scope.user ? $scope.user.viewopts.view_acres_other : false)
+                visible: ($scope.user ? $scope.user.viewopts.voAcresOther : false)
             }
         ];
 
         function getIndicatorWidth(){
             var cnt = 0;
 
-            if($scope.user.viewopts.view_icon_addendum) {
+            if($scope.user.viewopts.voIconAddendum) {
                 cnt += 1;
             }
-            if($scope.user.viewopts.view_icon_cross) {
+            if($scope.user.viewopts.voIconCross) {
                 cnt += 1;
             }
-            if($scope.user.viewopts.view_icon_bankruptcy) {
+            if($scope.user.viewopts.voIconBankruptcy) {
                 cnt += 1;
             }
-            if($scope.user.viewopts.view_icon_3pcredit) {
+            if($scope.user.viewopts.voIcon3pcredit) {
                 cnt += 1;
             }
-            if($scope.user.viewopts.view_icon_addedland) {
+            if($scope.user.viewopts.voIconAddedland) {
                 cnt += 1;
             }
-            if($scope.user.viewopts.view_icon_disbursement) {
+            if($scope.user.viewopts.voIconDisbursement) {
                 cnt += 1;
             }
-            if($scope.user.viewopts.view_icon_attachments) {
+            if($scope.user.viewopts.voIconAttachments) {
                 cnt += 1;
             }
 
             return {
                 visible: (cnt === 0 ? false : true),
-                width: cnt * 20
+                width: cnt * 17
             }; //140;
         }
     } // end controller

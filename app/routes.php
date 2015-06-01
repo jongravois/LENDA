@@ -125,6 +125,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth'], function () {
     Route::resource('systemics', 'SystemicsController');
     Route::resource('units', 'UnitsController');
     Route::resource('users', 'UsersController');
+    Route::resource('viewfilters', 'ViewfiltersController');
     Route::resource('viewoptions', 'ViewoptionsController');
 
     Route::get('agencies/{id}/agents', 'AgentsController@byAgency');
