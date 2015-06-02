@@ -194,7 +194,7 @@ a {
 .downloadables li > a:link,
 .downloadables li > a:active,
 .downloadables li > a:visited {
-    font: regular 11pt Arial;
+    font: normal 11pt Arial;
     color: #3366AA;
     text-decoration: underline;
 }
@@ -466,7 +466,7 @@ h3.divider_title {
     width: 60px;
     height: 30px;
     /*text-indent: -9999px;*/
-    background: url(../../Images/close_circle.png) no-repeat right top;
+    /*background: url(../../Images/close_circle.png) no-repeat right top;*/
 }
 
 .wModal .close-modal a {
@@ -765,7 +765,7 @@ label {
 
 .alert-other {
     color: #333333;
-    background-color: FFA34D;
+    background-color: #FFA34D;
     border-color: #FF7B00;
 }
 
@@ -948,7 +948,7 @@ div.editable-click {
 /* Display Tables Font Size Adj */
 table.disp-sm th{
     font-size: 10px;
-    font-style: bold;
+    font-weight: bold;
 }
 table.disp_sm tbody>tr>td{
     font-size: 13px !important;
@@ -957,7 +957,6 @@ table.disp_sm tr>td{
     font-size: 13px !important;
 }
 
-<<<<<<< HEAD
 /* FOR TWO-LEVEL MENU */
 .dropdown-submenu {
     position: relative;
@@ -1011,4 +1010,10 @@ table.disp_sm tr>td{
 
 table.ls-sm td{
     font-size: 13px;
+}
+
+.instructions{
+    font-size: 11px;
+    color: #aaaaaa;
+    margin: -10px 0 20px 0;
 }
