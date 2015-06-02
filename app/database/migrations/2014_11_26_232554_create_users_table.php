@@ -24,7 +24,10 @@ class CreateUsersTable extends Migration {
 			$table->boolean('is_manager')->default(0);
 			$table->integer('role_id')->default(5);
             $table->boolean('active')->default(1);
-            $table->enum('comms', ['SMS', 'email'])->default('email');
+            $table->boolean('comms_email')->default(1);
+            $table->boolean('comms_sms')->default(1);
+            $table->boolean('comms_outlook')->default(1);
+            $table->boolean('comms_online')->default(1);
             $table->string('remember_token', 100)->nullable();
 			$table->timestamps();
 		});

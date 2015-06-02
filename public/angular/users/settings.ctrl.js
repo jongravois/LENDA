@@ -7,6 +7,32 @@
         SettingsController.$inject = ['$scope', 'toastr', 'AppFactory'];
 
         function SettingsController($scope, toastr, AppFactory){
+            $scope.showViewOpts = false;
+            $scope.showViewFltrs = false;
+            $scope.showViewSorter = false;
+            $scope.showRptOpts = false;
+            $scope.showRptFltrs = false;
+            $scope.showRptSorter = false;
+
+            $scope.togShowViewOpts = function() {
+                $scope.showViewOpts = $scope.showViewOpts? false : true;
+            };
+            $scope.togShowViewFltrs = function() {
+                $scope.showViewFltrs = $scope.showViewFltrs ? false : true;
+            };
+            $scope.togShowViewSorter = function() {
+                $scope.showViewSorter = $scope.showViewSorter ? false : true;
+            };
+            $scope.togShowRptOpts = function() {
+                $scope.showRptOpts = $scope.showRptOpts? false : true;
+            };
+            $scope.togShowRptFltrs = function() {
+                $scope.showRptFltrs = $scope.showRptFltrs ? false : true;
+            };
+            $scope.togShowRptSorter = function() {
+                $scope.showRptSorter = $scope.showRptSorter ? false : true;
+            };
+
             $scope.mySettingsUpdate = function() {
                 updateUserInfo();
                 updateViewPrefs();
