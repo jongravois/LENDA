@@ -43,6 +43,7 @@ class UserTransformer extends Transformer
         'manager_id' => $arr['manager_id'],
         'manager' => $arr['manager']['username'],
         'manager_email' => $arr['manager']['email'],
+        'full_sidebar' => (boolean)$arr['full_sidebar'],
         'comms_email' => (boolean)$arr['comms_email'],
         'comms_sms' => (boolean)$arr['comms_sms'],
         'comms_outlook' => (boolean)$arr['comms_outlook'],

@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration {
 			$table->boolean('is_manager')->default(0);
 			$table->integer('role_id')->default(5);
             $table->boolean('active')->default(1);
+            $table->boolean('full_sidebar')->default(1);
             $table->boolean('comms_email')->default(1);
             $table->boolean('comms_sms')->default(1);
             $table->boolean('comms_outlook')->default(1);
