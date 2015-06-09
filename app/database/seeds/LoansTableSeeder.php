@@ -128,6 +128,7 @@ class LoansTableSeeder extends Seeder
             'app_date' => Carbon::now()->subDays(3)->format('m/d/Y'),
             'default_due_date' => '12/15/2015',
             'due_date' => '12/15/2015',
+            'decision_date' => Carbon::now()->format('m/d/Y'),
             'loc_id' => 5,
             'user_id' => 2,
             'region_id' => 3,
