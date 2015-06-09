@@ -18,6 +18,8 @@
     {{ HTML::style('lib/ng-grid/ng-grid.min.css') }}
     {{ HTML::style('lib/font-awesome-4.3.0/css/font-awesome.min.css') }}
     {{ HTML::style('lib/angular-toastr/angular-toastr.min.css') }}
+    {{ HTML::style('lib/ag-grid/dist/angular-grid.min.css') }}
+    {{ HTML::style('lib/ag-grid/dist/theme-fresh.min.css') }}
     <!-- endbower -->
 
     <!-- inject:css -->
@@ -61,6 +63,7 @@
 {{ HTML::script('lib/ng-file-upload/angular-file-upload-shim.js'); }}
 {{ HTML::script('lib/ng-file-upload/angular-file-upload.js'); }}
 {{ HTML::script('lib/angular-ui-sortable/sortable.min.js'); }}
+{{ HTML::script('lib/ag-grid/dist/angular-grid.min.js'); }}
 <!-- endbower -->
 
 <!-- inject.js -->
@@ -120,8 +123,6 @@
 
 <script src="angular/loans/addendums/addendums.ctrl.js"></script>
 <script src="angular/loans/addendums/addendum.factory.js"></script>
-<script src="angular/loans/applicants/applicants.ctrl.js"></script>
-<script src="angular/loans/applicants/applicants.factory.js"></script>
 <script src="angular/loans/budgets/budgets.ctrl.js"></script>
 <script src="angular/loans/budgets/expenses.factory.js"></script>
 <script src="angular/loans/closing/closing.ctrl.js"></script>

@@ -4,9 +4,9 @@
         .module('ARM')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', '$q', '$filter', 'toastr', 'APP_URL', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'ApplicantsFactory', 'FarmersFactory', 'LoansFactory', 'UsersFactory', 'orderByFilter'];
+    MainController.$inject = ['$scope', '$rootScope', '$state', '$stateParams', '$q', '$filter', 'toastr', 'APP_URL', 'FILE_URL', 'AppFactory', 'FeederFactory', 'GlobalsFactory', 'LendaFactory', 'LoansProcessor', 'FarmersFactory', 'LoansFactory', 'UsersFactory', 'orderByFilter'];
 
-    function MainController($scope, $rootScope, $state, $stateParams, $q, $filter, toastr, APP_URL, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, ApplicantsFactory, FarmersFactory, LoansFactory, UsersFactory, orderByFilter) {
+    function MainController($scope, $rootScope, $state, $stateParams, $q, $filter, toastr, APP_URL, FILE_URL, AppFactory, FeederFactory, GlobalsFactory, LendaFactory, LoansProcessor, FarmersFactory, LoansFactory, UsersFactory, orderByFilter) {
         $scope.AppFactory = AppFactory;
         
         activate();
@@ -57,7 +57,7 @@
                     toastr.success('Loaded all farmers', 'Success!');
                 });
 
-            ApplicantsFactory.getApplicants()
+            FarmersFactory.getApplicants()
                 .then(function(rsp){
                     $scope.applicants = rsp.data.data;
                     toastr.success('Loaded all applicants', 'Success!');

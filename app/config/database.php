@@ -2,61 +2,61 @@
 
 return array(
 
-	'fetch' => PDO::FETCH_CLASS,
-	'default' => 'mysql',
-	'connections' => array(
+    'fetch' => PDO::FETCH_CLASS,
+    'default' => 'mysql',
+    'connections' => array(
 
-		'sqlite' => array(
-			'driver'   => 'sqlite',
-			'database' => __DIR__.'/../database/production.sqlite',
-			'prefix'   => '',
-		),
+        'sqlite' => array(
+            'driver' => 'sqlite',
+            'database' => __DIR__ . '/../database/production.sqlite',
+            'prefix' => '',
+        ),
 
-		'mysql' => array(
-			'driver'    => 'mysql',
-      'host'      => getenv('DB_HOST'),
-      'database'  => getenv('DB_NAME'),
-      'username'  => getenv('DB_USER'),
-      'password'  => getenv('DB_PASSWORD'),
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-		),
+        'mysql' => array(
+            'driver' => 'mysql',
+            'host' => getenv('DB_HOST'),
+            'database' => getenv('DB_NAME'),
+            'username' => getenv('DB_USER'),
+            'password' => getenv('DB_PASSWORD'),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+        ),
 
-		'pgsql' => array(
-			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'forge',
-			'username' => 'forge',
-			'password' => '',
-			'charset'  => 'utf8',
-			'prefix'   => '',
-			'schema'   => 'public',
-		),
+        'pgsql' => array(
+            'driver' => 'pgsql',
+            'host' => 'localhost',
+            'database' => 'forge',
+            'username' => 'forge',
+            'password' => '',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+        ),
 
-		'sqlsrv' => array(
-			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'prefix'   => '',
-		),
+        'sqlsrv' => array(
+            'driver' => 'sqlsrv',
+            'host' => 'localhost',
+            'database' => 'database',
+            'username' => 'root',
+            'password' => '',
+            'prefix' => '',
+        ),
 
-	),
+    ),
 
-	'migrations' => 'migrations',
+    'migrations' => 'migrations',
 
-	'redis' => array(
+    'redis' => array(
 
-		'cluster' => false,
+        'cluster' => false,
 
-		'default' => array(
-			'host'     => '127.0.0.1',
-			'port'     => 6379,
-			'database' => 0,
-		),
+        'default' => array(
+            'host' => '127.0.0.1',
+            'port' => 6379,
+            'database' => 0,
+        ),
 
-	),
+    ),
 
 );
