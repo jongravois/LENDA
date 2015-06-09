@@ -1,83 +1,21 @@
 <style>
-  .rowed td {
-    border: 1px solid #dddddd;
-  }
+    .rowed td {
+        border: 1px solid #dddddd;
+    }
 
-  .totaline td {
-    border-top: 1px solid #333333 !important;
-    border-bottom: 1px solid #333333 !important;
-  }
+    .totaline td {
+        border-top: 1px solid #333333 !important;
+        border-bottom: 1px solid #333333 !important;
+    }
 </style>
 <fieldset>
-  <!--<pre>{{loan.selectedCrops | json}}</pre>-->
-  <legend>Loan Optimizer</legend>
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table table-striped rowed">
-        <tr class="warning">
-          <td colspan="7">&nbsp;</td>
-          <td class="text-right">
-            {{loan.fins.total_acres | number:1}}
-          </td>
-          <td class="text-right">
-            {{AppFactory.calcCashFlow(loan)|flexCurrency:0}}
-          </td>
-          <td class="text-right">
-            {{AppFactory.calcRiskMargin(loan)|flexCurrency:0}}
-          </td>
+    <legend>Loan Optimizer</legend>
+    <div class="row">
+        <div class="col-md-12">
 
-        </tr>
-        <tr>
-          <th style="width:12%;">ST | CO</th>
-          <th style="width:8%;">FSN</th>
-          <th style="width:10%;">Landlord</th>
-          <th style="width:8%;">Practice</th>
-          <th style="width:10%;">Crop</th>
-          <th style="width:10%;">APH</th>
-          <th style="width:8%;">Share</th>
-          <th style="width:8%;">Acres</th>
-          <th style="width:12%;">Cash Flow</th>
-          <th style="width:12%;">Risk</th>
-        </tr>
-        <tr ng-repeat="lp in farmPractices">
-          <!--  | filterBy: ['county']: 1337 -->
-          <td>
-            {{lp.locale}}
-          </td>
-          <td>
-            {{lp.fsn}}
-          </td>
-          <td>
-            {{lp.owner}}
-          </td>
-          <td class="text-center">
-            {{lp.practice}}
-          </td>
-          <td class="text-left">
-            {{lp.crop}}
-          </td>
-          <td class="text-right">
-            {{lp.aph | number:1}}
-          </td>
-          <td class="text-right">
-            <input type="text" class="text-right" style="width:100%" ng-model="lp.ins_share"/>
-          </td>
-          <td class="text-right">
-            <input type="text" class="text-right" style="width:100%;" ng-model="lp.acres"/>
-          </td>
-          <td class="text-right">
-            <!--{{lp.cash_flow | number:1}}-->
-            {{lp.margin | flexCurrency:2}}
-          </td>
-          <td class="text-right">
-            {{lp.risk | flexCurrency:2}}
-          </td>
-        </tr>
-      </table>
-
-      <br/><br/>
-
+            <br/><br/>
+        </div>
     </div>
-  </div>
 </fieldset>
+<!--<pre>{{loan.selectedCrops | json}}</pre>-->
 <!--<pre>{{farmPractices | json}}</pre>-->
