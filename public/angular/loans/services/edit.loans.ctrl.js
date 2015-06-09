@@ -11,6 +11,12 @@
         $scope.AppFactory = AppFactory;
         $scope.newapplication = $state.current.data.newapplication;
 
+        $scope.showSidebar = $scope.user.full_sidebar;
+        $scope.toggleSidebar = function() {
+            AppFactory.patchIt('/users/', $scope.user.id, {full_sidebar: !$scope.showSidebar});
+            $scope.showSidebar = !$scope.showSidebar;
+        };
+
         if(!$scope.loan){
             $scope.loan = _.find($scope.loans, function(i) {
                 return i.id == $stateParams.loanID;
@@ -36,6 +42,10 @@
         $scope.toggleCrossColateral = function() {
             if(!$scope.loan.is_cross_collateralized) { return; }
             $scope.XColView = !$scope.XColView;
+        };
+
+        $scope.ngcLink = function(dest) {
+            $state.go('^.' + dest);
         };
 
         $scope.updateLoanComment = function() {
