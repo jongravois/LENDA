@@ -17,12 +17,6 @@
                     controller: 'AddendumsController',
                     data: {newapplication: false}
                 })
-                .state('edit.applicant', {
-                    url: '/applicant',
-                    templateUrl: 'angular/loans/applicants/applicant.html',
-                    controller: 'ApplicantsController',
-                    data: {newapplication: false}
-                })
                 .state('edit.audit', {
                     url: '/audit',
                     templateUrl: 'angular/loans/systemics/systemics.html',
