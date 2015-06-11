@@ -135,9 +135,9 @@ class FarmsTableSeeder extends Seeder
             'cash_rent' => 0,
             'waived' => 0,
             'when_due' => '',
-            'fsa_paid' => 0,
+            'fsa_paid' => 50000,
             'percent_irrigated' => 0,
-            'irr' => 0,
+            'irr' => 1000,
             'ni' => 2350
         ]);
 

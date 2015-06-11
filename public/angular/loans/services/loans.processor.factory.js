@@ -134,7 +134,7 @@
 
         function getFarmByPractice(loan) {
             var farms = loan.farms;
-            //console.log('Farms', farms);
+            console.log('Farms', farms);
             var practiced = [];
             var byPractice = [];
 
