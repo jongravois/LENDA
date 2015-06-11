@@ -19,6 +19,7 @@ class FarmcropsTransformer extends Transformer{
 			'loan_id' => (integer) $arr['loan_id'],
 			'farm_id' => (integer) $arr['farm_id'],
             'fsn' => $arr['farms']['fsn'],
+            'perm_ins' => (boolean)$arr['perm_ins'],
             'crop_id' => (integer) $arr['crop_id'],
             'crop' => $arr['crops']['crop'],
             'name' => $arr['crops']['name'],
