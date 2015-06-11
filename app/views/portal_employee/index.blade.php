@@ -13,6 +13,8 @@
     </style>
 
     <!-- bower:css -->
+    {{ HTML::style('css/glyphicons.css') }}
+    {{ HTML::style('css/glyphicons-bootstrap.css') }}
     {{ HTML::style('lib/bootstrap/dist/css/bootstrap.min.css') }}
     {{ HTML::style('lib/angular-loading-bar/build/loading-bar.min.css') }}
     {{ HTML::style('lib/ng-grid/ng-grid.min.css') }}
