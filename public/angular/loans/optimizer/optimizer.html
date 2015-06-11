@@ -12,7 +12,307 @@
     <legend>Loan Optimizer</legend>
     <div class="row">
         <div class="col-md-12">
-
+            <table class="table table-striped">
+                <tr>
+                    <td>
+                        FARM LEVEL DETAIL
+                    </td>
+                </tr>
+            </table>
+            <table class="table table-striped rowed disp-sm">
+                <tr>
+                    <td style="width:120px;">State</td>
+                    <td class="text-center cBlue"
+                        ng-repeat="f in loan.practices">
+                        {{f.state}}
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>County</td>
+                    <td class="text-center cBlue"
+                        ng-repeat="f in loan.practices">
+                        {{f.county}}
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>FSN</td>
+                    <td class="text-center cBlue"
+                        ng-repeat="f in loan.practices">
+                        {{f.fsn}}
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Practice</td>
+                    <td class="text-center cBlue"
+                        ng-repeat="f in loan.practices">
+                        {{f.practice}}
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Landlord</td>
+                    <td class="text-center cBlue"
+                        ng-repeat="f in loan.practices">
+                        {{f.owner}}
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Total Acres</td>
+                    <td class="text-center cBlue"
+                        ng-repeat="f in loan.practices">
+                        {{f.acres}}
+                    </td>
+                    <td class="text-right">
+                        {{loan.fins.total_acres|number:1}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Share Rent</td>
+                    <td class="text-center"
+                        ng-repeat="f in loan.practices">
+                        {{f.share_rent|flexPercent:1}}
+                    </td>
+                    <td class="text-right cBlue">
+                        {{loan.fins.share_rent|flexPercent:1}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Perm to Ins</td>
+                    <td class="text-center"
+                        ng-repeat="f in loan.practices">
+                        {{f.perm_ins}}
+                    </td>
+                    <td class="text-right">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Cash Rent</td>
+                    <td class="text-center cBlue"
+                        ng-repeat="f in loan.practices">
+                        {{f.cash_rent|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">
+                        {{loan.fins.cash_rent|flexCurrency:0}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Waived</td>
+                    <td class="text-center cBlue"
+                        ng-repeat="f in loan.practices">
+                        {{f.waived|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">
+                        {{loan.fins.waived|flexCurrency:0}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>When Due</td>
+                    <td class="text-center cBlue"
+                        ng-repeat="f in loan.practices">
+                        {{f.when_due}}
+                    </td>
+                    <td class="text-right">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>FSA Pymt</td>
+                    <td class="text-center cBlue"
+                        ng-repeat="f in loan.practices">
+                        {{f.fsa_paid|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">
+                        {{loan.fins.total_fsa_payment|flexCurrency:0}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>ARM Rent/Ac</td>
+                    <td class="text-center"
+                        ng-repeat="f in loan.practices">
+                        {{f.cash_rent_acre_ARM|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Dist Rent/Ac</td>
+                    <td class="text-center"
+                        ng-repeat="f in loan.practices">
+                        {{f.cash_rent_acre_dist|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>3P Rent/Ac</td>
+                    <td class="text-center"
+                        ng-repeat="f in loan.practices">
+                        {{f.cash_rent_acre_other|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>FSA/Ac</td>
+                    <td class="text-center"
+                        ng-repeat="f in loan.practices">
+                        {{f.fsa_acre|flexCurrency:0}}
+                    </td>
+                    <td class="text-right">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="{{loan.practices.length + 2}}">
+                        <image src="images/close_btn.png"/>&nbsp;
+                        <!-- <image src="images/open_btn.png"/>&nbsp; -->
+                        Corn
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>APH</td>
+                </tr>
+                <tr class="success">
+                    <td>CF</td>
+                </tr>
+                <tr class="warning">
+                    <td>RM</td>
+                </tr>
+                <tr>
+                    <td colspan="{{loan.practices.length + 2}}">
+                        <image src="images/close_btn.png"/>&nbsp;
+                        Soybeans
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>APH</td>
+                </tr>
+                <tr class="success">
+                    <td>CF</td>
+                </tr>
+                <tr class="warning">
+                    <td>RM</td>
+                </tr>
+                <tr>
+                    <td colspan="{{loan.practices.length + 2}}">
+                        <image src="images/close_btn.png"/>&nbsp;
+                        Soybeans FAC
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>APH</td>
+                </tr>
+                <tr class="success">
+                    <td>CF</td>
+                </tr>
+                <tr class="warning">
+                    <td>RM</td>
+                </tr>
+                <tr>
+                    <td colspan="{{loan.practices.length + 2}}">
+                        <image src="images/close_btn.png"/>&nbsp;
+                        Sorghum
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>APH</td>
+                </tr>
+                <tr class="success">
+                    <td>CF</td>
+                </tr>
+                <tr class="warning">
+                    <td>RM</td>
+                </tr>
+                <tr>
+                    <td colspan="{{loan.practices.length + 2}}">
+                        <image src="images/close_btn.png"/>&nbsp;
+                        Wheat
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>APH</td>
+                </tr>
+                <tr class="success">
+                    <td>CF</td>
+                </tr>
+                <tr class="warning">
+                    <td>RM</td>
+                </tr>
+                <tr>
+                    <td colspan="{{loan.practices.length + 2}}">
+                        <image src="images/close_btn.png"/>&nbsp;
+                        Cotton
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>APH</td>
+                </tr>
+                <tr class="success">
+                    <td>CF</td>
+                </tr>
+                <tr class="warning">
+                    <td>RM</td>
+                </tr>
+                <tr>
+                    <td colspan="{{loan.practices.length + 2}}">
+                        <image src="images/close_btn.png"/>&nbsp;
+                        Rice
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>APH</td>
+                </tr>
+                <tr class="success">
+                    <td>CF</td>
+                </tr>
+                <tr class="warning">
+                    <td>RM</td>
+                </tr>
+                <tr>
+                    <td colspan="{{loan.practices.length + 2}}">
+                        <image src="images/close_btn.png"/>&nbsp;
+                        Peanuts
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>APH</td>
+                </tr>
+                <tr class="success">
+                    <td>CF</td>
+                </tr>
+                <tr class="warning">
+                    <td>RM</td>
+                </tr>
+                <tr>
+                    <td colspan="{{loan.practices.length + 2}}">
+                        <image src="images/close_btn.png"/>&nbsp;
+                        Sugar Cane
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>APH</td>
+                </tr>
+                <tr class="success">
+                    <td>CF</td>
+                </tr>
+                <tr class="warning">
+                    <td>RM</td>
+                </tr>
+                <tr>
+                    <td colspan="{{loan.practices.length + 2}}">
+                        <image src="images/close_btn.png"/>&nbsp;
+                        Other
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>APH</td>
+                </tr>
+                <tr class="success">
+                    <td>CF</td>
+                </tr>
+                <tr class="warning">
+                    <td>RM</td>
+                </tr>
+                <tr>
+                    <td>TOTAL</td>
+                </tr>
+            </table>
             <br/><br/>
         </div>
     </div>

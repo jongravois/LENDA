@@ -80,6 +80,7 @@ class LoanTransformer extends Transformer
             'inspols' => $arr['inspols'],
             'cats' => getExpenseCategories($arr['id']),
             'agency' => getUniqueAgencies($arr['id']),
+            'farms' => $arr['farms'],
 
             //'crops' => proccessCrops($arr['id']),
             'expenses' => $arr['cropexpenses'],
@@ -215,7 +216,6 @@ class LoanTransformer extends Transformer
             ],
             'references' => $arr['references'],
             'exceptions' => $arr['exceptions'],
-            'farms' => $arr['farms'],
             'farmcrops' => $arr['farmcrops'],
             'appfins' => $arr['appfins'],
             'committee' => $arr['committee'],

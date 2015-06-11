@@ -14,6 +14,7 @@ class CreateFarmsTable extends Migration
             $table->integer('county_id');
             $table->string('fsn')->nullable();
             $table->string('owner')->nullable();
+            $table->boolean('perm_ins')->default(0);
             $table->double('share_rent')->default(0);
             $table->double('cash_rent')->default(0);
             $table->double('waived')->default(0);

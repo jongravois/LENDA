@@ -15,7 +15,8 @@
         'angular-loading-bar',
         'toastr',
         'ngGrid',
-        'angularFileUpload'
+        'angularFileUpload',
+        'angularGrid'
     ])
         .config(function(toastrConfig) {
             angular.extend(toastrConfig, {

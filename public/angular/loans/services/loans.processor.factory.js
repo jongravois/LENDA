@@ -30,6 +30,7 @@
                 loanconditions: getLoanconditions(loan),
                 loancrops: processLoanCrops(loan),
                 need_vote: getPendingVotes(loan),
+                practices: getFarmByPractice(loan),
                 priorlien: processPriorLien(loan.priorlien),
                 quests: processQuests(loan.quests),
                 supplements: processSupInsurance(loan.suppins)
@@ -129,6 +130,74 @@
                         };
                     });
                 });
+        }
+
+        function getFarmByPractice(loan) {
+            var farms = loan.farms;
+            console.log('Farms', farms);
+            var practiced = [];
+            var byPractice = [];
+
+            _.each(farms, function(item){
+                var splitIR = {
+                    state: item.county.states.abr,
+                    county: item.county.county,
+                    fsn: item.fsn,
+                    owner: item.owner,
+                    acres: Number(item.irr),
+                    practice: 'IR',
+                    cash_rent: Number(item.cash_rent),
+                    waived: Number(item.waived),
+                    share_rent: Number(item.share_rent),
+                    perm_ins: item.perm_ins,
+                    when_due: item.when_due,
+                    fsa_paid: Number(item.fsa_paid) * Number(item.irr) / (Number(item.irr) + Number(item.ni)),
+                    cash_rent_acre_dist: 0,
+                    fsa_acre: (Number(item.fsa_paid) * Number(item.ni) / (Number(item.irr) + Number(item.ni)) / item.irr)
+                };
+                var splitNI = {
+                    state: item.county.states.abr,
+                    county: item.county.county,
+                    fsn: item.fsn,
+                    owner: item.owner,
+                    acres: Number(item.ni),
+                    practice: 'NI',
+                    cash_rent: Number(item.cash_rent),
+                    waived: Number(item.waived),
+                    share_rent: Number(item.share_rent),
+                    perm_ins: item.perm_ins,
+                    when_due: item.when_due,
+                    fsa_paid: Number(item.fsa_paid) * Number(item.ni) / (Number(item.irr) + Number(item.ni)),
+                    fsa_acre: (Number(item.fsa_paid) * Number(item.ni) / (Number(item.irr) + Number(item.ni)) / item.ni)
+                };
+                practiced.push(splitIR);
+                practiced.push(splitNI);
+            });
+            console.log('Practiced', practiced);
+
+            _.each(practiced, function(item){
+                var processed = {
+                    state: item.state,
+                    county: item.county,
+                    fsn: item.fsn,
+                    practice: item.practice,
+                    owner: item.owner,
+                    acres: item.acres,
+                    share_rent: item.share_rent,
+                    perm_ins: (item.perm_ins == '1' ? 'Y' : 'N'),
+                    cash_rent: Number(item.cash_rent),
+                    waived: Number(item.waived),
+                    when_due: item.when_due,
+                    fsa_paid: item.fsa_paid,
+                    cash_rent_acre_ARM: (Number(item.cash_rent) - Number(item.waived)) /Number(item.acres),
+                    cash_rent_acre_dist: 0,
+                    cash_rent_acre_other: Number(item.waived) / Number(item.acres),
+                    fsa_acre: Number(item.fsa_paid) / Number(item.acres)
+                };
+                byPractice.push(processed);
+            });
+            console.log('byPractice', byPractice);
+            return byPractice;
         }
 
         function getLoanconditions(loan) {

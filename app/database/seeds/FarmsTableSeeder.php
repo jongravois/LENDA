@@ -31,7 +31,8 @@ class FarmsTableSeeder extends Seeder
             'when_due' => '',
             'fsa_paid' => 0,
             'percent_irrigated' => 0,
-            'irr' => 0
+            'irr' => 0,
+            'ni' => 36
         ]);
 
         Farm::create([
@@ -40,9 +41,9 @@ class FarmsTableSeeder extends Seeder
             'fsn' => '568',
             'owner' => 'Lee',
             'share_rent' => 20,
-            'cash_rent' => 0,
-            'waived' => 0,
-            'when_due' => '',
+            'cash_rent' => 60000,
+            'waived' => 40000,
+            'when_due' => '33% 4/1/15',
             'fsa_paid' => 12000,
             'percent_irrigated' => 0,
             'irr' => 0,
@@ -56,9 +57,9 @@ class FarmsTableSeeder extends Seeder
             'owner' => 'Cobb',
             'share_rent' => 20,
             'cash_rent' => 0,
-            'waived' => 500.50,
+            'waived' => 0,
             'when_due' => '',
-            'fsa_paid' => 0,
+            'fsa_paid' => 100000,
             'percent_irrigated' => 20,
             'irr' => 200,
             'ni' => 124
@@ -72,8 +73,8 @@ class FarmsTableSeeder extends Seeder
             'share_rent' => 0,
             'cash_rent' => 5000,
             'waived' => 0,
-            'when_due' => 'July 1',
-            'fsa_paid' => 0,
+            'when_due' => '100% July 1',
+            'fsa_paid' => 7500,
             'percent_irrigated' => 100,
             'irr' => 22.3,
             'ni' => 0

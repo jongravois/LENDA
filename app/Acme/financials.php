@@ -133,7 +133,7 @@ function fetchExpTotal($loanID, $cropID, $entity)
 
 function getTotalFSAPayment($loanID)
 {
-    return Loancrop::where('loan_id', $loanID)->sum('fsa_payment');
+    return Farm::where('loan_id', $loanID)->sum('fsa_paid');
 }
 
 function getTotalClaims($loanID)
