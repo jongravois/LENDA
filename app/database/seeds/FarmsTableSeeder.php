@@ -6,7 +6,7 @@ class FarmsTableSeeder extends Seeder
     public function run()
     {
         Farm::create([
-            'loan_id' => 1,
+            'loan_id' => 2,
             'county_id' => 1317,
             'fsn' => '409',
             'owner' => 'B Goliher',
@@ -21,7 +21,7 @@ class FarmsTableSeeder extends Seeder
         ]);
 
         Farm::create([
-            'loan_id' => 1,
+            'loan_id' => 2,
             'county_id' => 1317,
             'fsn' => '560',
             'owner' => 'N Gohlier',
@@ -36,7 +36,7 @@ class FarmsTableSeeder extends Seeder
         ]);
 
         Farm::create([
-            'loan_id' => 1,
+            'loan_id' => 2,
             'county_id' => 1317,
             'fsn' => '568',
             'owner' => 'Lee',
@@ -51,7 +51,7 @@ class FarmsTableSeeder extends Seeder
         ]);
 
         Farm::create([
-            'loan_id' => 1,
+            'loan_id' => 2,
             'county_id' => 1317,
             'fsn' => '2088',
             'owner' => 'Cobb',
@@ -66,7 +66,7 @@ class FarmsTableSeeder extends Seeder
         ]);
 
         Farm::create([
-            'loan_id' => 1,
+            'loan_id' => 2,
             'county_id' => 1337,
             'fsn' => '3097',
             'owner' => 'Vallery',
@@ -81,7 +81,7 @@ class FarmsTableSeeder extends Seeder
         ]);
 
         Farm::create([
-            'loan_id' => 1,
+            'loan_id' => 2,
             'county_id' => 1337,
             'fsn' => '3098',
             'owner' => 'B Gwin',
@@ -96,7 +96,7 @@ class FarmsTableSeeder extends Seeder
         ]);
 
         Farm::create([
-            'loan_id' => 1,
+            'loan_id' => 2,
             'county_id' => 1337,
             'fsn' => '4719',
             'owner' => 'D Gwin',
@@ -124,5 +124,67 @@ class FarmsTableSeeder extends Seeder
             'irr' => 0,
             'ni' => 2000
         ]);
+
+        ////NEW LOAN #1
+        Farm::create([
+            'loan_id' => 1,
+            'county_id' => 1317,
+            'fsn' => '123',
+            'owner' => 'John Doe',
+            'share_rent' => 20,
+            'cash_rent' => 0,
+            'waived' => 0,
+            'when_due' => '',
+            'fsa_paid' => 0,
+            'percent_irrigated' => 0,
+            'irr' => 0,
+            'ni' => 2350
+        ]);
+
+        Farm::create([
+            'loan_id' => 1,
+            'county_id' => 1310,
+            'fsn' => '456',
+            'owner' => 'Jim Smith',
+            'share_rent' => 0,
+            'cash_rent' => 0,
+            'waived' => 0,
+            'when_due' => '',
+            'fsa_paid' => 0,
+            'percent_irrigated' => 0,
+            'irr' => 0,
+            'ni' => 1050
+        ]);
+
+        Farm::create([
+            'loan_id' => 1,
+            'county_id' => 1310,
+            'fsn' => '567',
+            'owner' => 'Elroy Tate',
+            'share_rent' => 20,
+            'cash_rent' => 0,
+            'waived' => 0,
+            'when_due' => '',
+            'fsa_paid' => 0,
+            'percent_irrigated' => 100,
+            'irr' => 200,
+            'ni' => 0
+        ]);
+
+        Farm::create([
+            'loan_id' => 1,
+            'county_id' => 1310,
+            'fsn' => '789',
+            'owner' => 'Elroy Tate',
+            'share_rent' => 0,
+            'cash_rent' => 60000,
+            'waived' => 40000,
+            'when_due' => '33% 4/1/15',
+            'fsa_paid' => 30000,
+            'percent_irrigated' => 100,
+            'irr' => 400,
+            'ni' => 0
+        ]);
+
     }
 }
