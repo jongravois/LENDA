@@ -134,12 +134,13 @@
 
         function getFarmByPractice(loan) {
             var farms = loan.farms;
-            console.log('Farms', farms);
+            //console.log('Farms', farms);
             var practiced = [];
             var byPractice = [];
 
             _.each(farms, function(item){
                 var splitIR = {
+                    id: item.id,
                     state: item.county.states.abr,
                     county: item.county.county,
                     fsn: item.fsn,
@@ -156,6 +157,7 @@
                     fsa_acre: (Number(item.fsa_paid) * Number(item.ni) / (Number(item.irr) + Number(item.ni)) / item.irr)
                 };
                 var splitNI = {
+                    id: item.id,
                     state: item.county.states.abr,
                     county: item.county.county,
                     fsn: item.fsn,
@@ -177,6 +179,7 @@
 
             _.each(practiced, function(item){
                 var processed = {
+                    id: item.id,
                     state: item.state,
                     county: item.county,
                     fsn: item.fsn,
@@ -192,7 +195,12 @@
                     cash_rent_acre_ARM: (Number(item.cash_rent) - Number(item.waived)) /Number(item.acres),
                     cash_rent_acre_dist: 0,
                     cash_rent_acre_other: Number(item.waived) / Number(item.acres),
-                    fsa_acre: Number(item.fsa_paid) / Number(item.acres)
+                    fsa_acre: Number(item.fsa_paid) / Number(item.acres),
+                    crops: [
+                        {},{},{},{},{},{
+                            acres: Number(item.acres) * Number(item.fsn) /1950
+                        },{},{},{},{}
+                    ]
                 };
                 byPractice.push(processed);
             });

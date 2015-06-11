@@ -23,5 +23,10 @@ class Farm extends \Eloquent {
 	{
 		return $this->hasMany('Loanpractice');
 	}
+
+	public function crops()
+    {
+        return $this->hasMany('Farmcrops');
+    }
 	/* METHODS */
 }
