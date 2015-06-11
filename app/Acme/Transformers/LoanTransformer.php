@@ -8,7 +8,7 @@ class LoanTransformer extends Transformer
 
     public function transform($arr)
     {
-        return $arr;
+        //return $arr;
 
         $dtToday = Carbon::now();
 
