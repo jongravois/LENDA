@@ -189,6 +189,22 @@ class FarmcropsTableSeeder extends Seeder {
             'crop_id' => 5,
             'towhom_market' => 'CropsRUs',
             'ins_price' => 0.6300,
+            'ins_yield' => 925,
+            'ins_premium' => 19.82,
+            'ins_level' => 70,
+            'irr' => 1000,
+            'ni' => 350,
+            'prod_yield' =>	1200,
+            'prod_price' =>	0.70
+        ]);
+
+        Farmcrops::create([
+            'crop_year' => 2015,
+            'loan_id' => 1,
+            'farm_id' => 9,
+            'crop_id' => 5,
+            'towhom_market' => 'CropsRUs',
+            'ins_price' => 0.6300,
             'ins_yield' => 850,
             'ins_premium' => 19.82,
             'ins_level' => 70,
