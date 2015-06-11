@@ -27,5 +27,35 @@
             });
 
         //console.log($scope.loan.practices);
+        $scope.tggl = {
+            showRentRows: false,
+            showOverRentRows: false,
+            showInsuranceRows: false,
+            showCashFlowRows: false,
+            showRiskMarginRows: false,
+            tcropCorn: false,
+            tcropSoybeans: false,
+            tcropBeansFAC: false,
+            tcropSorghum: false,
+            tcropWheat: false,
+            tcropCotton: true,
+            tcropRice: false,
+            tcropPeanuts: false,
+            tcropSugarcane: false,
+            tcropOther: false
+        };
+
+        $scope.loan.crop_totals = [
+            {crop: 'Corn', acres: 2000},
+            {crop: 'Soybeans', acres: 1000},
+            {crop: 'Soybeans FAC', acres: 0},
+            {crop: 'Sorghum', acres: 0},
+            {crop: 'Wheat', acres: 0},
+            {crop: 'Cotton', acres: 1400},
+            {crop: 'Rice', acres: 0},
+            {crop: 'Peanuts', acres: 0},
+            {crop: 'Sugar Cane', acres: 0},
+            {crop: 'Other', acres: 0}
+        ];
     } // end function
 })();

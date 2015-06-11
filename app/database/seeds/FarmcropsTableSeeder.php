@@ -4,7 +4,6 @@ class FarmcropsTableSeeder extends Seeder {
 
 	public function run()
 	{
-		// corn
 		Farmcrops::create([
 			'crop_year' => 2015,
 			'loan_id' => 1,
