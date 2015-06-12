@@ -74,6 +74,7 @@
                     </td>
                 </tr>
             </table>
+
             <table class="table rowed disp-sm">
                 <tbody id="farms">
                     <tr>
@@ -128,17 +129,17 @@
                     </tr>
                     <tr style="background-color: #f2f2f2;" ng-if="tggl.showRentRows">
                         <td>Share Rent</td>
-                        <td class="text-center"
+                        <td class="cBlue" ng-class="gtZero(f.share_rent)"
                             ng-repeat="f in loan.practices">
                             {{f.share_rent|flexPercent:1}}
                         </td>
-                        <td class="text-right cBlue">
+                        <td ng-class="gtZero(loan.fins.share_rent)">
                             {{loan.fins.share_rent|flexPercent:1}}
                         </td>
                     </tr>
                     <tr style="background-color: #f2f2f2;" ng-if="tggl.showRentRows">
                         <td>Perm to Ins</td>
-                        <td class="text-center"
+                        <td class="text-center cBlue"
                             ng-repeat="f in loan.practices">
                             {{f.perm_ins}}
                         </td>
@@ -146,27 +147,27 @@
                     </tr>
                     <tr style="background-color: #f2f2f2;" ng-if="tggl.showRentRows">
                         <td>Cash Rent</td>
-                        <td class="text-center cBlue"
+                        <td class="cBlue" ng-class="gtZero(f.cash_rent)"
                             ng-repeat="f in loan.practices">
                             {{f.cash_rent|flexCurrency:0}}
                         </td>
-                        <td class="text-right">
+                        <td ng-class="gtZero(loans.fins.cash_rent)">
                             {{loan.fins.cash_rent|flexCurrency:0}}
                         </td>
                     </tr>
                     <tr style="background-color: #f2f2f2;" ng-if="tggl.showRentRows">
                         <td>Waived</td>
-                        <td class="text-center cBlue"
+                        <td class="cBlue" ng-class="gtZero(f.waived)"
                             ng-repeat="f in loan.practices">
                             {{f.waived|flexCurrency:0}}
                         </td>
-                        <td class="text-right">
+                        <td ng-class="gtZero(loans.fins.waived)">
                             {{loan.fins.waived|flexCurrency:0}}
                         </td>
                     </tr>
                     <tr style="background-color: #f2f2f2;" ng-if="tggl.showRentRows">
                         <td>When Due</td>
-                        <td class="text-center cBlue"
+                        <td class="text-right cBlue"
                             ng-repeat="f in loan.practices">
                             {{f.when_due}}
                         </td>
@@ -174,43 +175,43 @@
                     </tr>
                     <tr style="background-color: #f2f2f2;" ng-if="tggl.showRentRows">
                         <td>FSA Pymt</td>
-                        <td class="text-center cBlue"
+                        <td class="cBlue" ng-class="gtZero(f.fsa_paid)"
                             ng-repeat="f in loan.practices">
                             {{f.fsa_paid|flexCurrency:0}}
                         </td>
-                        <td class="text-right">
+                        <td ng-class="gtZero(loan.fins.total_fsa_payment)">
                             {{loan.fins.total_fsa_payment|flexCurrency:0}}
                         </td>
                     </tr>
                     <tr style="background-color: #f2f2f2;" ng-if="tggl.showRentRows">
                         <td>ARM Rent/Ac</td>
-                        <td class="text-center"
+                        <td ng-class="gtZero(f.cash_rent_acre_ARM)"
                             ng-repeat="f in loan.practices">
-                            {{f.cash_rent_acre_ARM|flexCurrency:0}}
+                            {{f.cash_rent_acre_ARM|flexCurrency:2}}
                         </td>
                         <td class="text-right">&nbsp;</td>
                     </tr>
                     <tr style="background-color: #f2f2f2;" ng-if="tggl.showRentRows">
                         <td>Dist Rent/Ac</td>
-                        <td class="text-center"
+                        <td ng-class="gtZero(f.cash_rent_acre_dist)"
                             ng-repeat="f in loan.practices">
-                            {{f.cash_rent_acre_dist|flexCurrency:0}}
+                            {{f.cash_rent_acre_dist|flexCurrency:2}}
                         </td>
                         <td class="text-right">&nbsp;</td>
                     </tr>
                     <tr style="background-color: #f2f2f2;" ng-if="tggl.showRentRows">
                         <td>3P Rent/Ac</td>
-                        <td class="text-center"
+                        <td ng-class="gtZero(f.cash_rent_acre_other)"
                             ng-repeat="f in loan.practices">
-                            {{f.cash_rent_acre_other|flexCurrency:0}}
+                            {{f.cash_rent_acre_other|flexCurrency:2}}
                         </td>
                         <td class="text-right">&nbsp;</td>
                     </tr>
                     <tr style="background-color: #f2f2f2;" ng-if="tggl.showRentRows">
                         <td>FSA/Ac</td>
-                        <td class="text-center"
+                        <td ng-class="gtZero(f.fsa_acre)"
                             ng-repeat="f in loan.practices">
-                            {{f.fsa_acre|flexCurrency:0}}
+                            {{f.fsa_acre|flexCurrency:2}}
                         </td>
                         <td class="text-right">&nbsp;</td>
                     </tr>
@@ -249,323 +250,323 @@
                         <!-- <image src="images/close_btn.png"/>&nbsp; --><!-- <image src="images/open_btn.png"/>&nbsp; -->
                         Cotton
                     </td>
-                    <td class="text-center cBlue"
+                    <td class="text-right cBlue"
                         ng-repeat="f in loan.practices">
-                        {{f.crops[5].acres|number:1}}
+                        {{f.crops[5].c_acres|number:1}}
                     </td>
-                    <td>
-                        {{loan.crop_totals[5].acres}}
+                    <td class="text-right">
+                        {{loan.crop_totals[5].acres|number:1}}
                     </td>
                 </tr>
                 <tr style="background-color: #fee9db" ng-if="tggl.showOverRentRows">
                     <td>Rent Override</td>
-                    <td class="text-center cBlue"
+                    <td class="text-right cBlue"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_share_rent|flexPercent:1}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #d9eef2" ng-if="tggl.showInsuranceRows">
                     <td>APH</td>
-                    <td class="text-center cBlue"
+                    <td class="cBlue" ng-class="gtZero(f.crops[5].c_aph)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_aph|number:1}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #d9eef2" ng-if="tggl.showInsuranceRows">
                     <td>Ins Share</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_ins_share)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_ins_share|flexPercent:1}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #d9eef2" ng-if="tggl.showInsuranceRows">
                     <td>Ins Price</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_ins_price)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_ins_price|flexCurrency:4}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #d9eef2" ng-if="tggl.showInsuranceRows">
                     <td>Ins Level</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_ins_level)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_ins_level|flexPercent:1}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #d9eef2" ng-if="tggl.showInsuranceRows">
                     <td>Ins Guarantee</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_ins_guar)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_ins_guar|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #d9eef2" ng-if="tggl.showInsuranceRows">
                     <td>Ins Premium</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_ins_premium)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_ins_premium|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #d9eef2" ng-if="tggl.showInsuranceRows">
                     <td>Ins Value</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_ins_value)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_ins_value|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #d9eef2" ng-if="tggl.showInsuranceRows">
                     <td>Ins Type</td>
-                    <td class="text-center cBlue"
+                    <td class="text-center"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_ins_type}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #d9eef2" ng-if="tggl.showInsuranceRows">
                     <td>SCO Max</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_sco_max)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_sco_max|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>Prod Yield</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_prod_yield)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_prod_yield|number:1}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>Prod Share</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_prod_share)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_prod_share|flexPercent:1}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>Prod Price</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_prod_price)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_prod_price|flexCurrency:4}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>Var Harvest</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_var_harv)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_var_harv|flexCurrency:4}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>Rebate</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_rebate)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_rebate|flexCurrency:4}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>Prod Rev</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_prod_rev)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_prod_rev|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>Prod Rev Adj</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_prod_rev_adj)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_prod_rev_adj|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>ARM Budget</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_budget_arm)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_budget_arm|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>Dist Budget</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_budget_dist)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_budget_dist|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>3P Budget</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_budget_other)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_budget_other|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>ARM Fee</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_arm_fee)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_arm_fee|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>ARM Commit</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_commit_arm)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_commit_arm|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>Dist Commit</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_commit_dist)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_commit_dist|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>ARM Est Int</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_interest_arm)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_interest_arm|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>Dist Est Int</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_interest_dist)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_interest_dist|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0" ng-if="tggl.showCashFlowRows">
                     <td>3P Est Int</td>
-                    <td class="text-center cBlue"
+                    <td class="text-center"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{0|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #ebf1e0">
                     <td>CF</td>
-                    <td class="text-center cBlue"
+                    <td class="text-right"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_cf|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1" ng-if="tggl.showRiskMarginRows">
                     <td>Crop Disc</td>
-                    <td class="text-center cBlue"
+                    <td class="text-right"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_crop_disc|flexPercent:1}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1" ng-if="tggl.showRiskMarginRows">
                     <td>FSA Disc</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="text-right"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_fsa_disc|flexPercent:1}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1" ng-if="tggl.showRiskMarginRows">
                     <td>Crop Ins Disc</td>
-                    <td class="text-center cBlue"
+                    <td class="text-right"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_cropins_disc|flexPercent:1}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1" ng-if="tggl.showRiskMarginRows">
                     <td>Non-RP Disc</td>
-                    <td class="text-center cBlue"
+                    <td class="text-right"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_nonrp_disc|flexPercent:1}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1" ng-if="tggl.showRiskMarginRows">
                     <td>SCO Disc</td>
-                    <td class="text-center cBlue"
+                    <td class="text-right"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_sco_disc|flexPercent:1}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1" ng-if="tggl.showRiskMarginRows">
                     <td>Disc Crop</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_disc_crop)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_disc_crop|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1" ng-if="tggl.showRiskMarginRows">
                     <td>Disc FSA</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_disc_fsa)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_disc_fsa|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1" ng-if="tggl.showRiskMarginRows">
                     <td>Ins>Disc Crop</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_ins_disc_crop)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_ins_disc_crop|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1" ng-if="tggl.showRiskMarginRows">
                     <td>Disc Ins</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_disc_ins)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_disc_ins|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1" ng-if="tggl.showRiskMarginRows">
                     <td>Disc SCO</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_disc_sco)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_disc_sco|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1" ng-if="tggl.showRiskMarginRows">
                     <td>Disc Collateral</td>
-                    <td class="text-center cBlue"
+                    <td ng-class="gtZero(f.crops[5].c_disc_collateral)"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_disc_collateral|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr style="background-color: #fffed1">
                     <td>RM</td>
-                    <td class="text-center cBlue"
+                    <td class="text-right"
                         ng-repeat="f in loan.practices">
-                        {{f.state}}
+                        {{f.crops[5].c_rm|flexCurrency:2}}
                     </td>
                     <td>&nbsp;</td>
                 </tr>
