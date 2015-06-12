@@ -134,7 +134,7 @@
 
         function getFarmByPractice(loan) {
             var farms = loan.farms;
-            console.log('Farms', farms);
+            //console.log('Farms', farms);
             var practiced = [];
             var withZero = [];
             var byPractice = [];
@@ -155,8 +155,10 @@
                     when_due: item.when_due,
                     fsa_paid: Number(item.fsa_paid) * Number(item.irr) / (Number(item.irr) + Number(item.ni)),
                     cash_rent_acre_dist: 0,
-                    fsa_acre: (Number(item.fsa_paid) * Number(item.ni) / (Number(item.irr) + Number(item.ni)) / item.irr)
+                    fsa_acre: (Number(item.fsa_paid) * Number(item.ni) / (Number(item.irr) + Number(item.ni)) / item.irr),
+                    practices: []
                 };
+
                 var splitNI = {
                     id: item.id,
                     state: item.county.states.abr,
@@ -171,8 +173,18 @@
                     perm_ins: item.perm_ins,
                     when_due: item.when_due,
                     fsa_paid: Number(item.fsa_paid) * Number(item.ni) / (Number(item.irr) + Number(item.ni)),
-                    fsa_acre: (Number(item.fsa_paid) * Number(item.ni) / (Number(item.irr) + Number(item.ni)) / item.ni)
+                    fsa_acre: (Number(item.fsa_paid) * Number(item.ni) / (Number(item.irr) + Number(item.ni)) / item.ni),
+                    practices: []
                 };
+
+                _.each(item.farmpractices, function(crop){
+                    if(crop.irrigated === '1') {
+                        splitIR.practices.push(crop);
+                    } else {
+                        splitNI.practices.push(crop);
+                    }
+                });
+
                 practiced.push(splitIR);
                 practiced.push(splitNI);
             });
@@ -197,49 +209,7 @@
                     cash_rent_acre_dist: 0,
                     cash_rent_acre_other: (item.acres !== 0 ? Number(item.waived) / Number(item.acres) : 0),
                     fsa_acre: (item.acres !== 0 ? Number(item.fsa_paid) / Number(item.acres) : 0),
-                    crops: [
-                        {},{},{},{},{},{
-                            c_acres: 350,
-                            c_share_rent: 20,
-                            c_aph: 850,
-                            c_ins_share: 80,
-                            c_ins_price: .6300,
-                            c_ins_level: 70,
-                            c_ins_guar: 374.85,
-                            c_ins_premium: 19.82,
-                            c_ins_value: 284.02,
-                            c_ins_type: 'RP',
-                            c_sco_max: 89.92,
-                            c_prod_yield: 1050,
-                            c_prod_share: 80,
-                            c_prod_price: .6000,
-                            c_var_harv: .9000,
-                            c_rebate: .1000,
-                            c_prod_rev: 504,
-                            c_prod_rev_adj: 8.40,
-                            c_budget_arm: 228,
-                            c_budget_dist: 309.45,
-                            c_budget_other: 20,
-                            c_arm_fee: 13.44,
-                            c_commit_arm: 241.44,
-                            c_commit_dist: 309.45,
-                            c_interest_arm: 8.15,
-                            c_interest_dist: 10.44,
-                            c_cf: -77.08,
-                            c_crop_disc: 50,
-                            c_fsa_disc: 20,
-                            c_cropins_disc: 20,
-                            c_nonrp_disc: 50,
-                            c_sco_disc: 50,
-                            c_disc_crop: 252,
-                            c_disc_fsa: 11.94,
-                            c_ins_disc_crop: 32.02,
-                            c_disc_ins: 25.62,
-                            c_disc_sco: 44.91,
-                            c_disc_collateral: 366.94,
-                            c_rm: -202.99
-                        },{},{},{},{}
-                    ]
+                    crops: processFarmCrops(item.practices)
                 };
                 withZero.push(processed);
             });
@@ -375,6 +345,50 @@
                 };
                 return cropObj;
             });
+        }
+
+        function makePractice(crop_id) {
+            return {
+                c_acres: 0,
+                c_aph: 0,
+                c_arm_fee: 0,
+                c_budget_arm: 0,
+                c_budget_dist: 0,
+                c_budget_other: 0,
+                c_cf: 0,
+                c_commit_arm: 0,
+                c_commit_dist: 0,
+                c_crop_disc: 0,
+                c_cropins_disc: 0,
+                c_disc_collateral: 0,
+                c_disc_crop: 0,
+                c_disc_fsa: 0,
+                c_disc_ins: 0,
+                c_disc_sco: 0,
+                c_fsa_disc: 0,
+                c_ins_disc_crop: 0,
+                c_ins_guarantee: 0,
+                c_ins_level: 0,
+                c_ins_premium: 0,
+                c_ins_price: 0,
+                c_ins_share: 0,
+                c_ins_type: "RP",
+                c_ins_value: 0,
+                c_interest_arm: 0,
+                c_interest_dist: 0,
+                c_nonrp_disc: 0,
+                c_prod_price: 0,
+                c_prod_rev: 0,
+                c_prod_rev_adj: 0,
+                c_prod_share: 0,
+                c_prod_yield: 0,
+                c_rebate: 0,
+                c_rm: 0,
+                c_sco_disc: 0,
+                c_sco_max: 0,
+                c_share_rent: 0,
+                c_var_harv: 0
+            };
         }
 
         function processAgencies(policies) {
@@ -614,6 +628,61 @@
                 other: _.sumCollection(expenses, 'calc_other'),
                 total: _.sumCollection(expenses, 'calc_total')
             };
+        }
+
+        function processFarmCrops(cps) {
+            return [
+                makePractice(1),
+                makePractice(2),
+                makePractice(3),
+                makePractice(4),
+                makePractice(5),
+                {
+                    c_acres: 350,
+                    c_share_rent: 20,
+                    c_aph: 850,
+                    c_ins_share: 80,
+                    c_ins_price: 0.6300,
+                    c_ins_level: 70,
+                    c_ins_guarantee: 374.85,
+                    c_ins_premium: 19.82,
+                    c_ins_value: 284.02,
+                    c_ins_type: 'RP',
+                    c_sco_max: 89.92,
+                    c_prod_yield: 1050,
+                    c_prod_share: 80,
+                    c_prod_price: 0.6000,
+                    c_var_harv: 0.9000,
+                    c_rebate: 0.1000,
+                    c_prod_rev: 504,
+                    c_prod_rev_adj: 8.40,
+                    c_budget_arm: 228,
+                    c_budget_dist: 309.45,
+                    c_budget_other: 20,
+                    c_arm_fee: 13.44,
+                    c_commit_arm: 241.44,
+                    c_commit_dist: 309.45,
+                    c_interest_arm: 8.15,
+                    c_interest_dist: 10.44,
+                    c_cf: -77.08,
+                    c_crop_disc: 50,
+                    c_fsa_disc: 20,
+                    c_cropins_disc: 20,
+                    c_nonrp_disc: 50,
+                    c_sco_disc: 50,
+                    c_disc_crop: 252,
+                    c_disc_fsa: 11.94,
+                    c_ins_disc_crop: 32.02,
+                    c_disc_ins: 25.62,
+                    c_disc_sco: 44.91,
+                    c_disc_collateral: 366.94,
+                    c_rm: -202.99
+                },
+                makePractice(7),
+                makePractice(8),
+                makePractice(9),
+                makePractice(10)
+            ];
         }
 
         function processForInsDB(policies) {

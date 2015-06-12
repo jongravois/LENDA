@@ -27,24 +27,6 @@
             });
 
         //console.log($scope.loan.practices);
-        $scope.tggl = {
-            showRentRows: false,
-            showOverRentRows: false,
-            showInsuranceRows: false,
-            showCashFlowRows: false,
-            showRiskMarginRows: false,
-            tcropCorn: false,
-            tcropSoybeans: false,
-            tcropBeansFAC: false,
-            tcropSorghum: false,
-            tcropWheat: false,
-            tcropCotton: true,
-            tcropRice: false,
-            tcropPeanuts: false,
-            tcropSugarcane: false,
-            tcropOther: false
-        };
-
         $scope.loan.crop_totals = [
             {crop: 'Corn', acres: 2000},
             {crop: 'Soybeans', acres: 1000},
@@ -57,5 +39,22 @@
             {crop: 'Sugar Cane', acres: 0},
             {crop: 'Other', acres: 0}
         ];
+        $scope.tggl = {
+            showRentRows: false,
+            showOverRentRows: false,
+            showInsuranceRows: false,
+            showCashFlowRows: false,
+            showRiskMarginRows: false,
+            tcropCorn: ($scope.loan.crop_totals[0].acres > 0 ? true : false),
+            tcropSoybeans: ($scope.loan.crop_totals[1].acres > 0 ? true : false),
+            tcropBeansFAC: ($scope.loan.crop_totals[2].acres > 0 ? true : false),
+            tcropSorghum: ($scope.loan.crop_totals[3].acres > 0 ? true : false),
+            tcropWheat: ($scope.loan.crop_totals[4].acres > 0 ? true : false),
+            tcropCotton: ($scope.loan.crop_totals[5].acres > 0 ? true : false),
+            tcropRice: ($scope.loan.crop_totals[6].acres > 0 ? true : false),
+            tcropPeanuts: ($scope.loan.crop_totals[7].acres > 0 ? true : false),
+            tcropSugarcane: ($scope.loan.crop_totals[8].acres > 0 ? true : false),
+            tcropOther: ($scope.loan.crop_totals[9].acres > 0 ? true : false)
+        };
     } // end function
 })();

@@ -3,591 +3,214 @@
 class FarmpracticesTableSeeder extends Seeder {
 	public function run()
 	{
-		// 409 Corn i
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 1,
-			'practice' => 'irr',
-			'crop_id' => 1,
-			'ins_price' => 4.25,
-			'aph' => 96.0,
-			'ins_premium' => 11.88,
-			'ins_share' => 100,
-			'prod_share' => 100,
-			'prod_yield' => 152.3,
-			'prod_price' => 4.2000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 102.8,
-			'margin' => 353.67,
-			'risk' => -33.84
+		//123 - Cotton NI
+        Farmpractices::create([
+            'crop_year' => '2015',
+            'loan_id' => 1,
+            'farm_id' => 9,
+            'crop_id' => 5,
+            'towhom_market' => 'CropsRUs',
+            'gin_mill' => '',
+            'acres' => 350,
+            'irrigated' => 0,
+            'ins_price' => 0.6300,
+            'ins_level' => 70,
+            'aph' => 850,
+            'ins_premium' => -19.82,
+            'ins_share' => 80,
+            'prod_share' => 80,
+            'mill_share' => 80,
+            'prod_yield' => 1050,
+            'prod_price' => 0.6000,
+            'bkqty' => 0,
+            'bkprice' => 0,
+            'harvest' => -0.0900,
+            'rebates' => 0.1000,
+            'crop_disc' => 50,
+            'fsa_disc' => 20,
+            'cropins_disc' => 20,
+            'nonrp_disc' => 20,
+            'sco_disc' => 50
 		]);
 
-		// *409 Corn ni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 1,
-			'practice' => 'ni',
-			'crop_id' => 1,
-			'ins_price' => 4.25,
-			'aph' => 96.0,
-			'ins_premium' => 11.88,
-			'acres' => 28,
-			'ins_share' => 100,
-			'prod_share' => 100,
-			'prod_yield' => 152.3,
-			'prod_price' => 4.2000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 102.8,
-			'margin' => 353.67,
-			'risk' => -33.84
-		]);
+        //123 - Cotton I
+        Farmpractices::create([
+            'crop_year' => '2015',
+            'loan_id' => 1,
+            'farm_id' => 9,
+            'crop_id' => 5,
+            'towhom_market' => 'CropsRUs',
+            'gin_mill' => '',
+            'acres' => 1000,
+            'irrigated' => 1,
+            'ins_price' => 0.6300,
+            'ins_level' => 70,
+            'aph' => 925,
+            'ins_premium' => -19.82,
+            'ins_share' => 80,
+            'prod_share' => 80,
+            'mill_share' => 80,
+            'prod_yield' => 1200,
+            'prod_price' => 0.6000,
+            'bkqty' => 0,
+            'bkprice' => 0,
+            'harvest' => -0.0900,
+            'rebates' => 0.1000,
+            'crop_disc' => 50,
+            'fsa_disc' => 20,
+            'cropins_disc' => 20,
+            'nonrp_disc' => 20,
+            'sco_disc' => 50
+        ]);
 
-		// 560 Beans i
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 2,
-			'practice' => 'irr',
-			'crop_id' => 2,
-			'ins_price' => 11.25,
-			'aph' => 21.0,
-			'ins_premium' => 14.35,
-			'acres' => 0,
-			'ins_share' => 100,
-			'prod_share' => 100,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
+        //123 - Corn NI
+        Farmpractices::create([
+            'crop_year' => '2015',
+            'loan_id' => 1,
+            'farm_id' => 9,
+            'crop_id' => 1,
+            'towhom_market' => 'CropsRUs',
+            'gin_mill' => '',
+            'acres' => 1000,
+            'irrigated' => 0,
+            'ins_price' => 4.05,
+            'ins_level' => 75,
+            'aph' => 150,
+            'ins_premium' => -20.00,
+            'ins_share' => 100,
+            'prod_share' => 100,
+            'mill_share' => 100,
+            'prod_yield' => 200,
+            'prod_price' => 4.0000,
+            'bkqty' => 0,
+            'bkprice' => 0,
+            'harvest' => 0,
+            'rebates' => 0,
+            'crop_disc' => 50,
+            'fsa_disc' => 20,
+            'cropins_disc' => 20,
+            'nonrp_disc' => 20,
+            'sco_disc' => 50
+        ]);
 
-		// *560 Beans ni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 2,
-			'practice' => 'ni',
-			'crop_id' => 2,
-			'ins_price' => 11.25,
-			'aph' => 21.0,
-			'ins_premium' => 14.35,
-			'acres' => 20,
-			'ins_share' => 100,
-			'prod_share' => 100,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
+        //123 - Soybeans NI
+        Farmpractices::create([
+            'crop_year' => '2015',
+            'loan_id' => 1,
+            'farm_id' => 9,
+            'crop_id' => 2,
+            'towhom_market' => 'CropsRUs',
+            'gin_mill' => '',
+            'acres' => 1000,
+            'irrigated' => 0,
+            'ins_price' => 9.6200,
+            'ins_level' => 80,
+            'aph' => 50,
+            'ins_premium' => -20.00,
+            'ins_share' => 80,
+            'prod_share' => 80,
+            'mill_share' => 80,
+            'prod_yield' => 50,
+            'prod_price' => 9.25,
+            'bkqty' => 0,
+            'bkprice' => 0,
+            'harvest' => 0,
+            'rebates' => 0,
+            'crop_disc' => 50,
+            'fsa_disc' => 20,
+            'cropins_disc' => 20,
+            'nonrp_disc' => 20,
+            'sco_disc' => 50
+        ]);
 
-		// *560 Beans faci
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 2,
-			'practice' => 'irr',
-			'crop_id' => 3,
-			'ins_price' => 11.25,
-			'aph' => 21.0,
-			'ins_premium' => 14.35,
-			'acres' => 20,
-			'ins_share' => 100,
-			'prod_share' => 100,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
+        //456 - Cotton NI
+        Farmpractices::create([
+            'crop_year' => '2015',
+            'loan_id' => 1,
+            'farm_id' => 10,
+            'crop_id' => 5,
+            'towhom_market' => 'CropsRUs',
+            'gin_mill' => '',
+            'acres' => 50,
+            'irrigated' => 0,
+            'ins_price' => 0.6300,
+            'ins_level' => 75,
+            'aph' => 900,
+            'ins_premium' => -21,
+            'ins_share' => 100,
+            'prod_share' => 100,
+            'mill_share' => 100,
+            'prod_yield' => 1050,
+            'prod_price' => 0.6000,
+            'bkqty' => 0,
+            'bkprice' => 0,
+            'harvest' => -0.0900,
+            'rebates' => 0.1000,
+            'crop_disc' => 50,
+            'fsa_disc' => 20,
+            'cropins_disc' => 20,
+            'nonrp_disc' => 20,
+            'sco_disc' => 50
+        ]);
 
-		// 560 Beans facni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 2,
-			'practice' => 'ni',
-			'crop_id' => 3,
-			'ins_price' => 11.25,
-			'aph' => 21.0,
-			'ins_premium' => 14.35,
-			'acres' => 0,
-			'ins_share' => 100,
-			'prod_share' => 100,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
+        //567 - Cotton I
+        Farmpractices::create([
+            'crop_year' => '2015',
+            'loan_id' => 1,
+            'farm_id' => 11,
+            'crop_id' => 5,
+            'towhom_market' => 'CropsRUs',
+            'gin_mill' => '',
+            'acres' => 200,
+            'irrigated' => 1,
+            'ins_price' => 0.6300,
+            'ins_level' => 75,
+            'aph' => 950,
+            'ins_premium' => -21,
+            'ins_share' => 100,
+            'prod_share' => 80,
+            'mill_share' => 80,
+            'prod_yield' => 1050,
+            'prod_price' => 0.6000,
+            'bkqty' => 0,
+            'bkprice' => 0,
+            'harvest' => -0.0900,
+            'rebates' => 0.1000,
+            'crop_disc' => 50,
+            'fsa_disc' => 20,
+            'cropins_disc' => 20,
+            'nonrp_disc' => 20,
+            'sco_disc' => 50
+        ]);
 
-		// 568 Beans i
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 3,
-			'practice' => 'irr',
-			'crop_id' => 2,
-			'ins_price' => 11.25,
-			'aph' => 22.0,
-			'ins_premium' => 14.35,
-			'acres' => 0,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// *568 Beans ni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 3,
-			'practice' => 'ni',
-			'crop_id' => 2,
-			'ins_price' => 11.25,
-			'aph' => 23.0,
-			'ins_premium' => 14.35,
-			'acres' => 20,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// 568 Beans faci
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 3,
-			'practice' => 'irr',
-			'crop_id' => 3,
-			'ins_price' => 11.25,
-			'aph' => 23.0,
-			'ins_premium' => 14.35,
-			'acres' => 0,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// *568 Beans facni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 3,
-			'practice' => 'ni',
-			'crop_id' => 3,
-			'ins_price' => 11.25,
-			'aph' => 23.0,
-			'ins_premium' => 14.35,
-			'acres' => 20,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// *2088 Corn i
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 4,
-			'practice' => 'irr',
-			'crop_id' => 1,
-			'ins_price' => 4.25,
-			'aph' => 130.0,
-			'ins_premium' => 11.88,
-			'acres' => 90,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 152.3,
-			'prod_price' => 4.2000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 102.8,
-			'margin' => 353.67,
-			'risk' => -33.84
-		]);
-
-		// 2088 Corn ni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 4,
-			'practice' => 'ni',
-			'crop_id' => 1,
-			'ins_price' => 4.25,
-			'aph' => 130.0,
-			'ins_premium' => 11.88,
-			'acres' => 90,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 152.3,
-			'prod_price' => 4.2000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 102.8,
-			'margin' => 353.67,
-			'risk' => -33.84
-		]);
-
-		// *2088 Beans i
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 4,
-			'practice' => 'irr',
-			'crop_id' => 2,
-			'ins_price' => 11.25,
-			'aph' => 33.0,
-			'ins_premium' => 14.35,
-			'acres' => 234,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// 2088 Beans ni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 4,
-			'practice' => 'ni',
-			'crop_id' => 2,
-			'ins_price' => 11.25,
-			'aph' => 33.0,
-			'ins_premium' => 14.35,
-			'acres' => 0,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// 2088 Beans faci
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 4,
-			'practice' => 'irr',
-			'crop_id' => 3,
-			'ins_price' => 11.25,
-			'aph' => 33.0,
-			'ins_premium' => 14.35,
-			'acres' => 0,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// *2088 Beans facni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 4,
-			'practice' => 'ni',
-			'crop_id' => 3,
-			'ins_price' => 11.25,
-			'aph' => 33.0,
-			'ins_premium' => 14.35,
-			'acres' => 234.0,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// *3097 Beans i
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 5,
-			'practice' => 'irr',
-			'crop_id' => 2,
-			'ins_price' => 11.25,
-			'aph' => 26.0,
-			'ins_premium' => 14.35,
-			'acres' => 22.3,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// 3097 Beans ni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 5,
-			'practice' => 'ni',
-			'crop_id' => 2,
-			'ins_price' => 11.25,
-			'aph' => 26.0,
-			'ins_premium' => 14.35,
-			'acres' => 0,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// *3097 Beans faci
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 5,
-			'practice' => 'irr',
-			'crop_id' => 3,
-			'ins_price' => 11.25,
-			'aph' => 26.0,
-			'ins_premium' => 14.35,
-			'acres' => 22.3,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// 3097 Beans facni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 5,
-			'practice' => 'ni',
-			'crop_id' => 3,
-			'ins_price' => 11.25,
-			'aph' => 26.0,
-			'ins_premium' => 14.35,
-			'acres' => 0,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// *3098 Corn i
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 6,
-			'practice' => 'irr',
-			'crop_id' => 1,
-			'ins_price' => 4.25,
-			'aph' => 149.0,
-			'ins_premium' => 11.88,
-			'acres' => 48.4,
-			'ins_share' => 100,
-			'prod_share' => 100,
-			'prod_yield' => 152.3,
-			'prod_price' => 4.2000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 102.8,
-			'margin' => 353.67,
-			'risk' => -33.84
-		]);
-
-		// 3098 Corn ni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 6,
-			'practice' => 'ni',
-			'crop_id' => 1,
-			'ins_price' => 4.25,
-			'aph' => 149.0,
-			'ins_premium' => 11.88,
-			'acres' => 0,
-			'ins_share' => 100,
-			'prod_share' => 100,
-			'prod_yield' => 152.3,
-			'prod_price' => 4.2000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 102.8,
-			'margin' => 353.67,
-			'risk' => -33.84
-		]);
-
-		// *4719 Corn i
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 7,
-			'practice' => 'irr',
-			'crop_id' => 1,
-			'ins_price' => 4.25,
-			'aph' => 141.0,
-			'ins_premium' => 11.88,
-			'acres' => 181,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 152.3,
-			'prod_price' => 4.2000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 102.8,
-			'margin' => 353.67,
-			'risk' => -33.84
-		]);
-
-		// 4719 Corn ni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 7,
-			'practice' => 'ni',
-			'crop_id' => 1,
-			'ins_price' => 4.25,
-			'aph' => 141.0,
-			'ins_premium' => 11.88,
-			'acres' => 0,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 152.3,
-			'prod_price' => 4.2000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 102.8,
-			'margin' => 353.67,
-			'risk' => -33.84
-		]);
-
-		// *4719 Beans i
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 7,
-			'practice' => 'irr',
-			'crop_id' => 2,
-			'ins_price' => 11.25,
-			'aph' => 42.0,
-			'ins_premium' => 14.35,
-			'acres' => 284,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// 4719 Beans ni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 7,
-			'practice' => 'ni',
-			'crop_id' => 2,
-			'ins_price' => 11.25,
-			'aph' => 42.0,
-			'ins_premium' => 14.35,
-			'acres' => 0,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// 4719 Beans faci
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 7,
-			'practice' => 'irr',
-			'crop_id' => 3,
-			'ins_price' => 11.25,
-			'aph' => 42.0,
-			'ins_premium' => 14.35,
-			'acres' => 0,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 100,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
-
-		// *4719 Beans facni
-		Farmpractices::create([
-			'loan_id' => 1,
-			'farm_id' => 7,
-			'practice' => 'ni',
-			'crop_id' => 3,
-			'ins_price' => 11.25,
-			'aph' => 42.0,
-			'ins_premium' => 14.35,
-			'acres' => 284,
-			'ins_share' => 80,
-			'prod_share' => 80,
-			'prod_yield' => 36.7,
-			'prod_price' => 10.0000,
-			'disc_non_rp' => 0,
-			'percent_irrigated' => 0,
-			'break_even' => 26.1,
-			'margin' => 214.55,
-			'risk' => -31.21
-		]);
+        //789 - Cotton I
+        Farmpractices::create([
+            'crop_year' => '2015',
+            'loan_id' => 1,
+            'farm_id' => 12,
+            'crop_id' => 5,
+            'towhom_market' => 'CropsRUs',
+            'gin_mill' => '',
+            'acres' => 400,
+            'irrigated' => 1,
+            'ins_price' => 0.6300,
+            'ins_level' => 75,
+            'aph' => 1000,
+            'ins_premium' => -21,
+            'ins_share' => 100,
+            'prod_share' => 100,
+            'mill_share' => 100,
+            'prod_yield' => 1050,
+            'prod_price' => 0.6000,
+            'bkqty' => 0,
+            'bkprice' => 0,
+            'harvest' => -0.0900,
+            'rebates' => 0.1000,
+            'crop_disc' => 50,
+            'fsa_disc' => 20,
+            'cropins_disc' => 20,
+            'nonrp_disc' => 20,
+            'sco_disc' => 50
+        ]);
 	}
 }
