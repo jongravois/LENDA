@@ -136,6 +136,7 @@
             var farms = loan.farms;
             console.log('Farms', farms);
             var practiced = [];
+            var withZero = [];
             var byPractice = [];
 
             _.each(farms, function(item){
@@ -192,18 +193,64 @@
                     waived: Number(item.waived),
                     when_due: item.when_due,
                     fsa_paid: item.fsa_paid,
-                    cash_rent_acre_ARM: (Number(item.cash_rent) - Number(item.waived)) /Number(item.acres),
+                    cash_rent_acre_ARM: (item.acres !== 0 ? (Number(item.cash_rent) - Number(item.waived)) /Number(item.acres) : 0),
                     cash_rent_acre_dist: 0,
-                    cash_rent_acre_other: Number(item.waived) / Number(item.acres),
-                    fsa_acre: Number(item.fsa_paid) / Number(item.acres),
+                    cash_rent_acre_other: (item.acres !== 0 ? Number(item.waived) / Number(item.acres) : 0),
+                    fsa_acre: (item.acres !== 0 ? Number(item.fsa_paid) / Number(item.acres) : 0),
                     crops: [
                         {},{},{},{},{},{
-                            acres: Number(item.acres) * Number(item.fsn) /1950
+                            c_acres: 350,
+                            c_share_rent: 20,
+                            c_aph: 850,
+                            c_ins_share: 80,
+                            c_ins_price: .6300,
+                            c_ins_level: 70,
+                            c_ins_guar: 374.85,
+                            c_ins_premium: 19.82,
+                            c_ins_value: 284.02,
+                            c_ins_type: 'RP',
+                            c_sco_max: 89.92,
+                            c_prod_yield: 1050,
+                            c_prod_share: 80,
+                            c_prod_price: .6000,
+                            c_var_harv: .9000,
+                            c_rebate: .1000,
+                            c_prod_rev: 504,
+                            c_prod_rev_adj: 8.40,
+                            c_budget_arm: 228,
+                            c_budget_dist: 309.45,
+                            c_budget_other: 20,
+                            c_arm_fee: 13.44,
+                            c_commit_arm: 241.44,
+                            c_commit_dist: 309.45,
+                            c_interest_arm: 8.15,
+                            c_interest_dist: 10.44,
+                            c_cf: -77.08,
+                            c_crop_disc: 50,
+                            c_fsa_disc: 20,
+                            c_cropins_disc: 20,
+                            c_nonrp_disc: 50,
+                            c_sco_disc: 50,
+                            c_disc_crop: 252,
+                            c_disc_fsa: 11.94,
+                            c_ins_disc_crop: 32.02,
+                            c_disc_ins: 25.62,
+                            c_disc_sco: 44.91,
+                            c_disc_collateral: 366.94,
+                            c_rm: -202.99
                         },{},{},{},{}
                     ]
                 };
-                byPractice.push(processed);
+                withZero.push(processed);
             });
+            console.log('With Zero', withZero);
+
+            _.each(withZero, function(item){
+                if(item.acres > 0) {
+                    byPractice.push(item);
+                }
+            });
+
             console.log('byPractice', byPractice);
             return byPractice;
         }
