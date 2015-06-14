@@ -16,6 +16,7 @@ class CreateFarmpracticesTable extends Migration
             $table->integer('crop_id');
             $table->string('towhom_market')->nullable();
             $table->string('gin_mill')->nullable();
+            $table->double('share_rent')->default(0);
             $table->double('acres')->default(0);
             $table->boolean('irrigated');
             $table->string('ins_type')->default('RP');

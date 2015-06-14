@@ -15,6 +15,7 @@ class FarmpracticeTransformer extends Transformer
 			'name' => $arr['crop']['name'],
 			'towhom_market' => $arr['towhom_market'],
 			'gin_mill' => $arr['gin_mill'],
+            'share_rent' => $arr['share_rent'],
 			'acres' => (double) $arr['acres'],
 			'irrigated' => (boolean) $arr['irrigated'],
 			'ins_type' => $arr['ins_type'],

@@ -89,7 +89,26 @@ class LoanCropsTableSeeder extends Seeder {
 		Loancrop::create([
 			'crop_year' => 2015,
 			'loan_id' => 1,
-			'crop_id' => 5
+			'crop_id' => 5,
+			'acres' => 2400,
+			'is_active' => 1,
+			'markettowhom' => 'CropsRUs',
+			'prod_price' => 0.60,
+			'prod_yield' => 1050,
+			'prod_share' => 37,
+			'bkqty' => 0,
+			'bkprice' => 0,
+			'overbook' => 0,
+			'harvest' => -0.0900,
+			'rebates' => 0.1000,
+			'fsa_payment' => 80000,
+			'percent_irrigated' => 83,
+			'break_even' => 1000,
+			'p1_yield' => 1050,
+			'p2_yield' => 1000,
+			'p3_yield' => 1000,
+			'p4_yield' => 950,
+			'p5_yield' => 950
 		]);
 
 		Loancrop::create([

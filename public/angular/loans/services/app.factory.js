@@ -11,9 +11,11 @@
         var publicAPI = {
             agentsInAgency: agentsInAgency,
             averageArray: averageArray,
+            calcAcresCrop: calcAcresCrop,
             calcAdjustedProd: calcAdjustedProd,
             calcAdjustedRiskMargin: calcAdjustedRiskMargin,
             calcAdjProd: calcAdjProd,
+            calcAPHCrop: calcAPHCrop,
             calcArmAndDist: calcArmAndDist,
             calcBreakEvenPercent: calcBreakEvenPercent,
             calcCashFlow: calcCashFlow,
@@ -132,6 +134,19 @@
             return avg;
         }
 
+        function calcAcresCrop(cropID, loan) {
+            var crop_id = Number(cropID);
+            var farmpractices = loan.farmpractices;
+
+            var crop = _.filter(farmpractices, function(i) {
+                if (i.crop_id == crop_id) {
+                    return i;
+                }
+            });
+
+            return _.sumCollection(crop, 'acres');
+        }
+
         function calcAdjustedProd(loan) {
             if(!loan){ return 0; }
 
@@ -172,6 +187,19 @@
         function calcAdjProd(loan) {
             var adj_prod = _.sumCollection(loan.loancrops, 'crop_total');
             return adj_prod;
+        }
+
+        function calcAPHCrop(cropID, loan) {
+            var crop_id = Number(cropID);
+            var farmpractices = loan.farmpractices;
+
+            var crop = _.filter(farmpractices, function(i) {
+                if (i.crop_id == crop_id) {
+                    return i;
+                }
+            });
+
+            return _.weighted(crop, 'aph', 'acres');
         }
 
         function calcAdjustedRiskMargin(loan) {
@@ -1300,7 +1328,7 @@
         }
 
         function gtZero(value) {
-            if (value <= 0) {
+            if (value === 0) {
                 return 'text-center';
             }
             else {
