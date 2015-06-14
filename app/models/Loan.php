@@ -119,6 +119,11 @@ class Loan extends \Eloquent
         return $this->hasMany('Farmexpense');
     }
 
+    public function farmpractices()
+    {
+        return $this->hasMany('Farmpractices');
+    }
+
     public function financials()
     {
         return $this->hasOne('Loanfinancials');

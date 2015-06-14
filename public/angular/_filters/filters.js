@@ -6,7 +6,7 @@
         .filter('capitalizeFirst', capitalizeFirstFilter)
         .filter('displayname', displaynameFilter)
         .filter('displaynull', displaynullFilter)
-        .filter('displaynNA', displaynNAFilter)
+        .filter('displaynNA', displayNAFilter)
         .filter('displaynullcurrency', displaynullcurrencyFilter)
         .filter('displaynullpercent', displaynullpercentFilter)
         .filter('displaynullsingle', displaynullsingleFilter)
@@ -16,10 +16,12 @@
         .filter('phone', phoneFilter)
         .filter('ssnum', ssnumFilter)
         .filter('justtext', justtextFilter)
+        .filter('flexNumber', flexNumberFilter)
         .filter('flexCurrency', flexCurrencyFilter)
         .filter('flexZeroCurrency', flexZeroCurrencyFilter)
         .filter('flexNACurrency', flexNACurrencyFilter)
         .filter('flexPercent', flexPercentFilter)
+        .filter('flexZeroPercent', flexZeroPercentFilter)
         .filter('flexNAPercent', flexNAPercentFilter)
         .filter('orderObjectBy', orderObjectBy);
 
@@ -84,7 +86,7 @@
         };
     }
 
-    function displaynNAFilter() {
+    function displayNAFilter() {
         return function (input) {
             if (!input) {
                 return 'N/A';
@@ -208,6 +210,33 @@
         };
     }
 
+    function flexNumberFilter($filter) {
+        return function (input, decPlaces) {
+            decPlaces = decPlaces || 0;
+
+            // Check for invalid inputs
+            if (isNaN(input)) {
+                return input;
+            }
+            if (input === '' || input === null || input === 0 || input === -0) {
+                return ' - ';
+            }
+            var out = input;
+
+            //Deal with the minus (negative numbers)
+            var minus = input < 0;
+            out = Math.abs(out);
+            out = $filter('number')(out, decPlaces);
+
+            // Add the minus and the symbol
+            if (minus) {
+                return '( ' + out + ')';
+            } else {
+                return out;
+            }
+        };
+    }
+
     function flexNACurrencyFilter($filter) {
         return function (input, decPlaces) {
             decPlaces = decPlaces || 0;
@@ -321,6 +350,33 @@
                 return input;
             }
             if (input === '' || input === null || input === 0 || input === -0) {
+                return ' - ';
+            }
+            var out = input;
+
+            //Deal with the minus (negative numbers)
+            var minus = input < 0;
+            out = Math.abs(out);
+            out = $filter('number')(out, decPlaces);
+
+            // Add the minus and the symbol
+            if (minus) {
+                return '( ' + out + '%)';
+            } else {
+                return out + '%';
+            }
+        };
+    }
+
+    function flexZeroPercentFilter($filter) {
+        return function (input, decPlaces) {
+            decPlaces = decPlaces || 0;
+
+            // Check for invalid inputs
+            if (isNaN(input)) {
+                return input;
+            }
+            if (input === '' || input === null) {
                 return ' - ';
             }
             var out = input;

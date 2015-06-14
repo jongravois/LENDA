@@ -130,7 +130,7 @@
                 field: 'fins.commit_arm',
                 displayName: 'ARM Commit',
                 headerClass: 'text-center',
-                cellFilter: 'noCentsCurrency',
+                cellFilter: 'flexCurrency:0',
                 cellClass: 'text-right',
                 visible: ($scope.user ? $scope.user.viewopts.voCommitArm : false)
             },
@@ -138,7 +138,7 @@
                 field: 'fins.commit_dist',
                 displayName: 'Dist Commit',
                 headerClass: 'text-center',
-                cellFilter: 'noCentsCurrency',
+                cellFilter: 'flexCurrency:0',
                 cellClass: 'text-right',
                 visible: ($scope.user ? $scope.user.viewopts.voCommitDistributor : false)
             },
@@ -146,7 +146,7 @@
                 field: 'fins.commit_other',
                 displayName: 'Other Commit',
                 headerClass: 'text-center',
-                cellFilter: 'noCentsCurrency',
+                cellFilter: 'flexCurrency:0',
                 cellClass: 'text-right',
                 visible: ($scope.user ? $scope.user.viewopts.voCommitOther : false)
             },
