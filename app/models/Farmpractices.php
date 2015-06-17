@@ -12,4 +12,9 @@ class Farmpractices extends \Eloquent {
 	{
 		return $this->belongsTo('Crop', 'crop_id');
 	}
+
+	public function farmpractices()
+	{
+		return $this->belongsTo('Farmpractices', 'crop_id');
+	}
 }

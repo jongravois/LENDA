@@ -27,6 +27,7 @@
             calcInsCropValue: calcInsCropValue,
             calcInsOverDisc: calcInsOverDisc,
             calcInsOverDiscNonRP: calcInsOverDiscNonRP,
+            calcInsShareCrop: calcInsShareCrop,
             calcInsuranceGuaranty: calcInsuranceGuaranty,
             calcInsuranceTotalGuarantee: calcInsuranceTotalGuarantee,
             calcInsuranceTotalValue: calcInsuranceTotalValue,
@@ -286,6 +287,19 @@
             } else {
                 return (obj.guarantee - obj.premium) * (obj.share/100) * obj.acres * 20/100;
             } //end if
+        }
+
+        function calcInsShareCrop(cropID, loan) {
+            var crop_id = Number(cropID);
+            var farmpractices = loan.farmpractices;
+
+            var crop = _.filter(farmpractices, function(i) {
+                if (i.crop_id == crop_id) {
+                    return i;
+                }
+            });
+
+            return _.weighted(crop, 'ins_share', 'acres');
         }
 
         function calcInsuranceGuaranty(obj) {
