@@ -19,13 +19,6 @@ class CreateFarmpracticesTable extends Migration
             $table->double('share_rent')->default(0);
             $table->double('acres')->default(0);
             $table->boolean('irrigated');
-            $table->string('ins_type')->default('RP');
-            $table->string('ins_option')->default('EU');
-            $table->double('ins_price')->nullable();
-            $table->double('ins_level')->default(75);
-            $table->double('aph')->default(0);
-            $table->double('ins_premium')->default(0);
-            $table->double('ins_share')->default(100);
             $table->double('prod_share')->default(100);
             $table->double('mill_share')->default(0);
             $table->double('prod_yield')->default(0);
