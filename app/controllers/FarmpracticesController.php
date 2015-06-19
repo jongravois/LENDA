@@ -13,7 +13,7 @@ class FarmpracticesController extends ApiController {
 
 	public function index()
 	{
-		$farmpractices = Farmpractices::all();
+		$farmpractices = Farmpractices::with('crop')->get();
 
 		return $this->respond([
 			'data' => $this->farmpracticeTransformer->transformCollection($farmpractices->all())
@@ -22,7 +22,7 @@ class FarmpracticesController extends ApiController {
 
 	public function show($id)
 	{
-		$farmpractice = Farmpractices::where('id', $id)->get();
+		$farmpractice = Farmpractices::with('crop')->where('id', $id)->get();
 
 		if( $farmpractice->isEmpty() ){
 			return $this->respondNotFound('Farmpractice does not exist.');
@@ -61,7 +61,7 @@ class FarmpracticesController extends ApiController {
 
 	public function byLoan($id)
 	{
-		$farmpractices = Farmpractices::where('loan_id', $id)->get();
+		$farmpractices = Farmpractices::with('crop')->where('loan_id', $id)->get();
 
 		return $this->respond([
 			'data' => $this->farmpracticeTransformer->transformCollection($farmpractices->all())
