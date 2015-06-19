@@ -25,6 +25,7 @@ class FarmcropsTransformer extends Transformer{
             'name' => $arr['crops']['name'],
             'towhom_market' => $arr['towhom_market'],
 			'gin_mill' => $arr['gin_mill'],
+			'insurance' =>  $arr['insurance'],
 			'irr' =>  (double) $arr['farms']['irr'],
 			'ni' => (double) $arr['farms']['ni'],
             'acres' => (double) $acres,

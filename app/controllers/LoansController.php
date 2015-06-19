@@ -22,7 +22,7 @@ class LoansController extends ApiController
 
     public function index()
     {
-        $loans = Loan::with('appfins', 'applicant.entitytype', 'applicant.state', 'committee.user', 'corporations', 'comments.responses', 'comments.status', 'disbursements', 'distributor', 'exceptions', 'cropexpenses.loancrop.crop', 'farmer.state', 'farmpractices', 'farms.county.states', 'farms.farmpractices.crop', 'loanconditions', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs', 'location', 'inspols.agent', 'inspols.agency', 'inspols.county', 'inspols.crop', 'othercollateral', 'priorliens', 'quests', 'references', 'regions', 'suppins.counties', 'suppins.crops', 'systemics', 'user', 'ventures', 'xcollaterals')->where('applicant_id', '!=', 'null')->get();
+        $loans = Loan::with('appfins', 'applicant.entitytype', 'applicant.state', 'committee.user', 'corporations', 'comments.responses', 'comments.status', 'disbursements', 'distributor', 'exceptions', 'cropexpenses.loancrop.crop', 'farmer.state', 'farms.county.states', 'farms.farmpractices.crop', 'farms.farmpractices.insurance.suppins', 'loanconditions', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs', 'location', 'inspols.agent', 'inspols.agency', 'inspols.county', 'inspols.crop', 'inspols.suppins', 'othercollateral', 'priorliens', 'quests', 'references', 'regions', 'suppins.counties', 'suppins.crops', 'systemics', 'user', 'ventures', 'xcollaterals')->where('applicant_id', '!=', 'null')->get();
         //return $loans;  //REMOVE THIS
 
         return $this->respond([
@@ -32,7 +32,8 @@ class LoansController extends ApiController
 
     public function show($id)
     {
-        $loan = Loan::with('appfins', 'applicant.entitytype', 'applicant.state', 'committee.user', 'corporations', 'comments.responses', 'comments.status', 'disbursements', 'distributor', 'exceptions', 'cropexpenses.loancrop.crop', 'farmer.state','farms.county.states', 'farms.farmpractices.crop', 'farmpractices.insurance.supplementalinsurance', 'loanconditions', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs', 'location', 'othercollateral', 'priorliens', 'quests', 'references', 'regions', 'suppins.counties', 'suppins.crops', 'systemics', 'user', 'ventures', 'xcollaterals')->where('id', $id)->get();
+        $loan = Loan::with('appfins', 'applicant.entitytype', 'applicant.state', 'committee.user', 'corporations', 'comments.responses', 'comments.status', 'disbursements', 'distributor', 'exceptions', 'cropexpenses.loancrop.crop', 'farmer.state', 'farms.county.states', 'farms.farmpractices.crop', 'farms.farmpractices.insurance.suppins', 'loanconditions', 'loancrop.crop', 'loanstatus', 'loantype.reqdocs', 'location', 'inspols.agent', 'inspols.agency', 'inspols.county', 'inspols.crop', 'inspols.suppins', 'othercollateral', 'priorliens', 'quests', 'references', 'regions', 'suppins.counties', 'suppins.crops', 'systemics', 'user', 'ventures', 'xcollaterals')->where('id', $id)->get();
+        //$loan = Loan::with()->where('id', $id)->get();
         //return $loans;  //REMOVE THIS
 
         if ($loan->isEmpty()) {

@@ -18,6 +18,11 @@ class Farmcrops extends \Eloquent {
         return $this->hasMany('Expenses');
     }
 
+	public function insurance()
+    {
+        return $this->hasMany('Insurance');
+    }
+
 	/* METHODS */
 
 }

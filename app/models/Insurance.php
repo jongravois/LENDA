@@ -15,5 +15,15 @@ class Insurance extends \Eloquent {
     {
         return $this->belongsTo('Farmpractices', 'farmpractice_id');
     }
+
+    public function farmpractices()
+    {
+        return $this->belongsTo('Farmpractices', 'farmpractice_id');
+    }
+
+    public function suppins()
+    {
+        return $this->hasMany('Supplementalinsurance');
+    }
     /* RELATIONSHIPS */
 }
