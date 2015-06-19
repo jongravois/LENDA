@@ -5,184 +5,153 @@ class InsuranceTableSeeder extends Seeder
 
     public function run()
     {
-        // Richland 409 Corn NI
+        //LOAN 1 - Practice #1 - Cotton NI
         Insurance::create([
             'loan_id' => 1,
             'agency_id' => 1,
             'agent_id' => 1,
             'policy' => '2100391LA800',
-            'fsn' => '409',
+            'fsn' => '123',
             'loancounty_id' => 1317,
+            'farmpractice_id' => 1,
+            'loancrop_id' => 6,
+            'practice' => 'NI',
+            'type' => 'RP',
+            'option' => 'EU',
+            'acres' => 350,
+            'yield' => 850,
+            'price' => 0.6300,
+            'level' => 70,
+            'premium' => 19.82,
+            'share' => 80
+        ]);
+
+        //LOAN 1 - Practice #2 - Cotton I
+        Insurance::create([
+            'loan_id' => 1,
+            'agency_id' => 1,
+            'agent_id' => 1,
+            'policy' => '2100391LA800',
+            'fsn' => '123',
+            'loancounty_id' => 1317,
+            'farmpractice_id' => 2,
+            'loancrop_id' => 6,
+            'practice' => 'IR',
+            'type' => 'RP',
+            'option' => 'EU',
+            'acres' => 1000,
+            'yield' => 925,
+            'price' => 0.6300,
+            'level' => 75,
+            'premium' => 19.82,
+            'share' => 80
+        ]);
+
+        //LOAN 1 - Practice #3 - Corn NI
+        Insurance::create([
+            'loan_id' => 1,
+            'agency_id' => 1,
+            'agent_id' => 1,
+            'policy' => '2100391LA800',
+            'fsn' => '123',
+            'loancounty_id' => 1317,
+            'farmpractice_id' => 3,
             'loancrop_id' => 1,
             'practice' => 'NI',
             'type' => 'RP',
             'option' => 'EU',
-            'acres' => 28,
-            'yield' => 96,
+            'acres' => 1000,
+            'yield' => 200,
             'price' => 4.25,
             'level' => 75,
             'premium' => 11.88,
             'share' => 100
         ]);
 
-        // Richland 2088 Corn Irr
-        Insurance::create([
-            'loan_id' => 1,
-            'agency_id' => 1,
-            'agent_id' => 1,
-            'policy' => '2100391LA801',
-            'fsn' => '2088',
-            'loancounty_id' => 1317,
-            'loancrop_id' => 1,
-            'practice' => 'IR',
-            'type' => 'RP',
-            'option' => 'EU',
-            'acres' => 90,
-            'yield' => 130,
-            'price' => 4.25,
-            'level' => 75,
-            'premium' => 11.88,
-            'share' => 80
-        ]);
-
-        // W Carroll 3098 Corn Irr
-        Insurance::create([
-            'loan_id' => 1,
-            'agency_id' => 1,
-            'agent_id' => 1,
-            'policy' => '2100391LA802',
-            'fsn' => '3098',
-            'loancounty_id' => 1317,
-            'loancrop_id' => 1,
-            'practice' => 'IR',
-            'type' => 'RP',
-            'option' => 'EU',
-            'acres' => 48.4,
-            'yield' => 149,
-            'price' => 4.25,
-            'level' => 75,
-            'premium' => 11.88,
-            'share' => 100
-        ]);
-
-        // W. Carroll 4719 Corn Irr
-        Insurance::create([
-            'loan_id' => 1,
-            'agency_id' => 1,
-            'agent_id' => 1,
-            'policy' => '2100391LA803',
-            'fsn' => '4719',
-            'loancounty_id' => 1317,
-            'loancrop_id' => 1,
-            'practice' => 'IR',
-            'type' => 'RP',
-            'option' => 'EU',
-            'acres' => 181,
-            'yield' => 141,
-            'price' => 4.25,
-            'level' => 75,
-            'premium' => 11.88,
-            'share' => 80
-        ]);
-
-        // Richland 560 Beans FACNI
-        Insurance::create([
-            'loan_id' => 1,
-            'agency_id' => 1,
-            'agent_id' => 1,
-            'policy' => '2100391LA804',
-            'fsn' => '560',
-            'loancounty_id' => 1337,
-            'loancrop_id' => 3,
-            'practice' => 'NI',
-            'type' => 'RP',
-            'option' => 'EU',
-            'acres' => 20,
-            'yield' => 21,
-            'price' => 11.25,
-            'level' => 75,
-            'premium' => 14.35,
-            'share' => 100
-        ]);
-
-        // Richland 568 Beans NI
+        //Loan 1 - Practice #4 Beans NI
         Insurance::create([
             'loan_id' => 1,
             'agency_id' => 1,
             'agent_id' => 1,
             'policy' => '2100391LA805',
-            'fsn' => '568',
-            'loancounty_id' => 1337,
+            'fsn' => '123',
+            'loancounty_id' => 1317,
+            'farmpractice_id' => 4,
             'loancrop_id' => 2,
             'practice' => 'NI',
             'type' => 'RP',
             'option' => 'EU',
-            'acres' => 20,
-            'yield' => 23,
+            'acres' => 1000,
+            'yield' => 50,
             'price' => 11.25,
-            'level' => 75,
+            'level' => 70,
             'premium' => 14.35,
-            'share' => 80
+            'share' => 80,
+            'guaranty' => 2875.40,
+            'value' => 45776.80
         ]);
 
-        // Richland 2088 Beans Irr
+        //Loan 1 - Practice #5 Cotton NI
         Insurance::create([
             'loan_id' => 1,
             'agency_id' => 1,
             'agent_id' => 1,
-            'policy' => '2100391LA806',
-            'fsn' => '2088',
+            'policy' => '2100391LA800',
+            'fsn' => '456',
             'loancounty_id' => 1337,
-            'loancrop_id' => 2,
-            'practice' => 'IR',
+            'farmpractice_id' => 5,
+            'loancrop_id' => 6,
+            'practice' => 'NI',
             'type' => 'RP',
             'option' => 'EU',
-            'acres' => 234,
-            'yield' => 33,
-            'price' => 11.25,
+            'acres' => 50,
+            'yield' => 900,
+            'price' => 0.6300,
             'level' => 75,
-            'premium' => 14.35,
-            'share' => 80
+            'premium' => 21.00,
+            'share' => 100
         ]);
 
-        // W Carroll 3097 Beans FACI
+        //Loan 1 - Practice #6 Cotton IR
         Insurance::create([
             'loan_id' => 1,
             'agency_id' => 1,
             'agent_id' => 1,
-            'policy' => '2100391LA807',
-            'fsn' => '3097',
+            'policy' => '2100391LA800',
+            'fsn' => '567',
             'loancounty_id' => 1337,
-            'loancrop_id' => 3,
+            'farmpractice_id' => 6,
+            'loancrop_id' => 6,
             'practice' => 'IR',
             'type' => 'RP',
             'option' => 'EU',
-            'acres' => 22.3,
-            'yield' => 26,
-            'price' => 11.25,
+            'acres' => 200,
+            'yield' => 950,
+            'price' => 0.6300,
             'level' => 75,
-            'premium' => 14.35,
+            'premium' => 21.00,
             'share' => 80
         ]);
 
-        // W Carroll 4719 Beans Irr
+        //Loan 1 - Practice #7 Cotton IR
         Insurance::create([
             'loan_id' => 1,
             'agency_id' => 1,
             'agent_id' => 1,
-            'policy' => '2100391LA808',
-            'fsn' => '4719',
+            'policy' => '2100391LA800',
+            'fsn' => '789',
             'loancounty_id' => 1337,
-            'loancrop_id' => 2,
+            'farmpractice_id' => 7,
+            'loancrop_id' => 6,
             'practice' => 'IR',
             'type' => 'RP',
             'option' => 'EU',
-            'acres' => 284,
-            'yield' => 42,
-            'price' => 11.25,
+            'acres' => 400,
+            'yield' => 1000,
+            'price' => 0.6300,
             'level' => 75,
-            'premium' => 14.35,
-            'share' => 80
+            'premium' => 21.00,
+            'share' => 100
         ]);
 
         // Richland 568 Beans NI

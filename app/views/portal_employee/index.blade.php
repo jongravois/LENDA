@@ -150,6 +150,7 @@
 <script src="angular/loans/summary/loan.summary.ctrl.js"></script>
 <script src="angular/loans/summary/summary.ctrl.js"></script>
 <script src="angular/loans/management/management.ctrl.js"></script>
+<script src="angular/loans/optimizer/optimizer.factory.js"></script>
 <script src="angular/loans/optimizer/optimizer.ctrl.js"></script>
 <script src="angular/loans/purgatory/purgatory.ctrl.js"></script>
 <script src="angular/loans/quests/quests.ctrl.js"></script>

@@ -10,6 +10,11 @@ class Farmpractices extends \Eloquent {
 
 	public function crop()
 	{
-		return $this->belongsTo('Crop', 'crop_id');
+		return $this->hasMany('Crop', 'id');
 	}
+
+    public function insurance()
+    {
+        return $this->hasMany('Insurance', 'id');
+    }
 }

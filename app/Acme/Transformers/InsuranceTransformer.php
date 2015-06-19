@@ -27,6 +27,7 @@ class InsuranceTransformer extends Transformer{
 			'agent_email' => $arr['agent']['agent_email'],
 			'policy' => $arr['policy'],
 			'is_assigned' => (boolean) $arr['is_assigned'],
+			'farmpractices' => $arr['farmpractices'],
 			'fsn' => $arr['fsn'],
             'owner' => $arr['farm']['owner'],
 			'loancounty_id' => $arr['loancounty_id'],

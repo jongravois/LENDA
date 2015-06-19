@@ -13,11 +13,14 @@ class CreateSupplementalinsurancesTable extends Migration {
 			$table->integer('loan_id')->unsigned();
 			$table->integer('crop_id')->unsigned();
 			$table->integer('county_id')->unsigned();
+			$table->integer('insurance_id')->unsigned();
 			$table->string('supplement')->default('STAX');
 			$table->boolean('harvest_price_exclusion')->default(0);
+			$table->double('acres')->default(0);
 			$table->double('aph')->default(0);
-			$table->double('level')->default(0);
 			$table->double('price')->default(0);
+			$table->double('share')->default(100);
+			$table->double('level')->default(0);
 			$table->double('loss_trigger')->default(86);
 			$table->double('desired_range')->default(0);
 			$table->double('range')->default(11);
@@ -25,8 +28,6 @@ class CreateSupplementalinsurancesTable extends Migration {
 			$table->double('expected_yield')->default(0);
 			$table->double('expected_revenue')->default(0);
 			$table->double('max_indemnity')->default(0);
-			$table->double('acres')->default(0);
-			$table->double('share')->default(100);
 			$table->timestamps();
 		});
 	}
