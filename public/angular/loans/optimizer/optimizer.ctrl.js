@@ -8,6 +8,7 @@
 
     function OptimizerController($scope, $state, $stateParams, AppFactory, LoansFactory, OptimizerFactory) {
         $scope.AppFactory = AppFactory;
+        $scope.OptimizerFactory = OptimizerFactory;
 
         var curr = $state.current.url;
         var currScreen = curr.substring(1, curr.length);
@@ -20,6 +21,30 @@
                 }
             });
         }// end if
+
+        //////////////////////////
+        if($scope.loan) {
+            OptimizerFactory.getOptimizedLoan($scope.loan)
+                .then(function success(rsp) {
+                    //console.log('RSP', rsp);
+                    var farms = rsp.farms;
+                    //console.log('OptFarms', rsp);
+                    $scope.loan.optimized = rsp;
+                });
+        } else {
+            alert('No Loan Loaded!');
+/*            LoansFactory.getLoan($stateParams.loanID)
+                .then(function success(res){
+                    console.log('RES', res);
+                    $scope.loan = res.data.data;
+                    OptimizerFactory.getOptimizedLoan($scope.loan)
+                        .then(function success(rsp) {
+                            console.log('RSP', rsp);
+                        });
+                });
+*/
+        }
+        //////////////////////////
 
         //console.log($scope.loan.practices);
         $scope.loan.crop_totals = [
@@ -35,76 +60,6 @@
             {crop: 'Other', acres: AppFactory.calcAcresCrop('10', $scope.loan)}
         ];
         //console.log('crop_totals', $scope.loan.crop_totals);
-
-        var farms = [];
-        var dbFarms = $scope.loan.farms;
-        console.log('dbFarms', $scope.loan.farms);
-
-        _.each(dbFarms, function(f){
-            var thisIrFarm = {
-                id: f.id,
-                farm_id: f.farm_id,
-                county_id: f.county_id,
-                county: f.county.county,
-                state_abr: f.county.states.abr,
-                fsn: f.fsn,
-                owner: f.owner,
-                perm_ins: (f.perm_ins === '1' ? 'Y' : 'N'),
-                irr: Number(f.irr),
-                ni: Number(f.ni),
-                acres: Number(f.irr),
-                total_acres: Number(f.irr) + Number(f.ni),
-                practice: 'IR',
-                share_rent: Number(f.share_rent),
-                cash_rent: Number(f.cash_rent),
-                waived: Number(f.waived),
-                cash_rent_acre_ARM: (Number(f.irr) > 0 ? (Number(f.cash_rent) - Number(f.waived))/Number(f.irr) : 0),
-                cash_rent_acre_dist: 0,
-                cash_rent_acre_other: (Number(f.irr) > 0 ? Number(f.waived)/Number(f.irr) : 0),
-                when_due: f.when_due,
-                total_fsa_paid: Number(f.fsa_paid),
-                fsa_paid: Number(f.fsa_paid) * Number(f.irr)/(Number(f.irr) + Number(f.ni)) || 0,
-                fsa_acre: (Number(f.fsa_paid) * Number(f.irr) / (Number(f.irr) + Number(f.ni)) / f.irr) || 0,
-                percent_irrigated: Number(f.irr)/(Number(f.irr) + Number(f.ni)),
-                farmpractices: f.farmpractices,
-                cotton: OptimizerFactory.makeFarmPractice('6', _.where(f.farmpractices, {'crop_id': '6', 'irrigated': '1'}), $scope.loan),
-
-            };
-            var thisNiFarm = {
-                id: f.id,
-                farm_id: f.farm_id,
-                county_id: f.county_id,
-                county: f.county.county,
-                state_abr: f.county.states.abr,
-                fsn: f.fsn,
-                owner: f.owner,
-                perm_ins: (f.perm_ins === '1' ? 'Y' : 'N'),
-                irr: Number(f.irr),
-                ni: Number(f.ni),
-                acres: Number(f.ni),
-                total_acres: Number(f.irr) + Number(f.ni),
-                practice: 'NI',
-                share_rent: Number(f.share_rent),
-                cash_rent: Number(f.cash_rent),
-                waived: Number(f.waived),
-                cash_rent_acre_ARM: (Number(f.ni) > 0 ? (Number(f.cash_rent)-Number(f.waived))/Number(f.ni) : 0),
-                cash_rent_acre_dist: 0,
-                cash_rent_acre_other: (Number(f.ni) > 0 ? Number(f.waived)/Number(f.ni) : 0),
-                when_due: f.when_due,
-                total_fsa_paid: Number(f.fsa_paid),
-                fsa_paid: Number(f.fsa_paid) * Number(f.ni)/(Number(f.irr) + Number(f.ni)) || 0,
-                fsa_acre: (Number(f.fsa_paid) * Number(f.ni) / (Number(f.irr) + Number(f.ni)) / f.ni) || 0,
-                percent_irrigated: Number(f.irr)/(Number(f.irr) + Number(f.ni)),
-                farmpractices: f.farmpractices,
-                cotton: OptimizerFactory.makeFarmPractice('6', _.where(f.farmpractices, {'crop_id': '6', 'irrigated': '0'}), $scope.loan),
-            };
-
-            farms.push(thisIrFarm);
-            farms.push(thisNiFarm);
-        });
-
-        $scope.loan.optifarms = farms;
-        console.log('Optifarms', $scope.loan.optifarms);
 
         $scope.tggl = {
             showRentRows: false,
@@ -124,50 +79,97 @@
             tcropOther: (AppFactory.calcAcresCrop('10', $scope.loan) > 0 ? true : false)
         };
 
-        $scope.calcInsGuarantee = function(crop) {
-            //console.log('Guar Crop', crop);
-            if(crop){
-                return Number(crop.c_aph) * Number(crop.c_ins_price) * (Number(crop.c_ins_level)/100);
-            } else {
-                return 0;
-            }
+        $scope.addFarm = function() {
+            alert('Adding a Farm.');
         };
-
-        $scope.calcInsValue = function(crop) {
-            //console.log('Value Crop', crop);
-            if(crop){
-                var guar = $scope.calcInsGuarantee(crop),
-                    premium = Number(crop.c_ins_premium),
-                    share = (crop.c_ins_share ? Number(crop.c_ins_share)/100 : 1);
-
-                return (guar + premium) / share;
-            } else {
-                return 0;
-            }
+        $scope.showCrop = function() {
+            alert('Showing another crop.');
         };
 
         $scope.calcScoMax = function(crop) {
-            return 89.82;
+            var supplements = crop.insurance[0].suppins;
+            //console.log('SCOMAX CROP', crop);
+            //console.log('SCOMAX SUP', supplements);
+            if(supplements.length === 0) {
+                return 0;
+            } else {
+                var supplemental = [];
+                _.each(supplements, function(i){
+                    var harvestPriceRecalc = 0;
+                    var adjustedClaim = 0;
+                    var coverageRange = 0;
+                    /* listed as second Harvest Price Recalculated */
+                    var expCountyRevenueAdj = 0;
+                    /* listed as second Harvest Price Recalculated */
+
+                    var HPEO = (i.harvest_price_exclusion === '1' ? true : false);
+                    var aph = Number(crop.c_aph);
+                    var coverageLevel = Number(crop.c_ins_level);
+                    var basePrice = Number(crop.c_ins_price);
+                    var harvestPrice = Number(crop.c_ins_price) + Number(crop.c_var_harv);
+                    var revenueCoverage = aph * (coverageLevel/100) * basePrice;
+                    if(HPEO) {
+                        harvestPriceRecalc = aph * (coverageLevel/100) * basePrice;
+                    } else {
+                        if(basePrice > harvestPrice) {
+                            harvestPriceRecalc = aph * (coverageLevel/100) * basePrice;
+                        } else {
+                            harvestPriceRecalc = aph * (coverageLevel/100) * harvestPrice;
+                        }
+                    }
+                    var harvestYield = Number(crop.c_prod_yield);
+                    var calcRevenue = harvestYield * harvestPrice;
+                    if((revenueCoverage + (calcRevenue * -1)) < 0 ) {
+                        adjustedClaim = 0;
+                    } else {
+                        adjustedClaim = (revenueCoverage + (calcRevenue * -1));
+                    }
+
+                    var supplement = i.supplement;
+                    var lossTrigger = Number(i.loss_trigger);
+                    var desiredRange =  Number(i.range);
+
+                    if(desiredRange < (lossTrigger - coverageLevel)) {
+                        coverageRange = desiredRange;
+                    } else {
+                        coverageRange = (lossTrigger - coverageLevel);
+                    }
+
+                    var protectionFactor = Number(i.protection_factor);
+                    var expCountyYield = Number(i.expected_yield);
+                    var expCountyRevenue = expCountyYield * basePrice;
+
+                    if(HPEO) {
+                        expCountyRevenueAdj = expCountyYield * basePrice;
+                    } else {
+                        if( basePrice > harvestPrice) {
+                            expCountyRevenueAdj = expCountyYield * basePrice;
+                        } else {
+                            expCountyRevenueAdj = expCountyYield * harvestPrice;
+                        }
+                    }
+
+                    var finalCountyYield = Number(i.final_county_yield);
+                    var finalCountyRevenue = harvestPrice * finalCountyYield;
+                    var maxIndemnity = (coverageRange/100) * expCountyRevenueAdj * (protectionFactor/100);
+
+                    supplemental.push({'maxIdemnity': maxIndemnity});
+                });
+                return _.average(supplemental, 'maxIdemnity');
+            }
         };
 
         $scope.calcProdRevenue = function(crop) {
             //console.log('ProdRev Crop', crop);
-            if(crop){
-                return Number(crop.c_prod_yield) * Number(crop.c_prod_price) * (Number(crop.c_prod_share)/100);
-            } else {
-                return 0;
-            }
+            return Number(crop.c_prod_yield) * Number(crop.c_prod_price) * (Number(crop.c_prod_share)/100);
         };
 
         $scope.calcProdRevenueAdj = function(crop) {
-            if(!crop) { return 0; }
-
+            //console.log('ProdRev Crop', crop);
             return Number(crop.c_prod_yield) * (Number(crop.c_prod_share)/100) * (Number(crop.c_var_harv) + Number(crop.c_rebate));
         };
 
         $scope.calcFee = function(crop) {
-            if(!crop) { return 0; }
-
             var fee = 0;
             if($scope.loan.fee_processing_onTotal) {
                 fee += (Number(crop.expenses.arm) + Number(crop.expenses.dist)) * (Number($scope.loan.fins.fee_processing_percent)/100);
@@ -183,43 +185,27 @@
         };
 
         $scope.calcArmCommit = function(crop) {
-            if(!crop) { return 0; }
-
-            if (crop.expenses) {
-                return crop.expenses.arm + $scope.calcFee(crop);
-            } else {
-                return 0;
-            }
+            return crop.expenses.arm + $scope.calcFee(crop);
         };
 
         $scope.calcInterestARM = function(crop) {
-            if(!crop) { return 0; }
-
             return (Number($scope.loan.fins.int_percent_arm)/100) * 0.375 * $scope.calcArmCommit(crop);
         };
 
         $scope.calcInterestDist = function(crop) {
-            if(!crop) { return 0; }
-
             return (Number($scope.loan.fins.int_percent_dist)/100) * 0.375 * crop.expenses.dist;
         };
 
         $scope.calcDiscCrop = function(crop) {
-            if(!crop){ return 0; }
-
             return Number($scope.calcProdRevenue(crop)) * (1 - (Number(crop.c_crop_disc)/100));
         };
 
         $scope.calcDiscFSA = function(crop, acreFSA) {
-            if(!crop){ return 0; }
-
             return Number(acreFSA) * (1 - (Number(crop.c_fsa_disc)/100));
         };
 
-        $scope.calcInsOverCropDisc = function(crop) {
-            if(!crop) {  return 0; }
-
-            var insval = Number($scope.calcInsValue(crop));
+        $scope.calcDiscInsOverCrop = function(crop) {
+            var insval = Number(OptimizerFactory.calcInsValue(crop));
             var disccrop = Number($scope.calcDiscCrop(crop));
             var iocd = insval - disccrop;
             if(iocd < 0) {
@@ -230,46 +216,22 @@
         };
 
         $scope.calcDiscIns = function(crop) {
-            if(!crop) { return 0; }
-
             if(crop.c_ins_type === 'RP') {
-                return Number($scope.calcInsOverCropDisc(crop)) * (1 - (Number(crop.c_cropins_disc)/100));
+                return Number($scope.calcDiscInsOverCrop(crop)) * (1 - (Number(crop.c_cropins_disc)/100));
             } else {
-                return Number($scope.calcInsOverCropDisc(crop)) * (1 - ((Number(crop.c_cropins_disc)/100)) + (Number(crop.c_nonrp_disc)/100));
+                return Number($scope.calcDiscInsOverCrop(crop)) * (1 - ((Number(crop.c_cropins_disc)/100)) + (Number(crop.c_nonrp_disc)/100));
             }
         };
 
         $scope.calcDiscSCO = function(crop) {
-            if(!crop) { return 0; }
-
             return Number($scope.calcScoMax(crop)) * (1 - (Number(crop.c_sco_disc)/100));
         };
 
-        $scope.calcDiscCollateral = function(crop, acreFSA) {
-            if(!crop) { return 0; }
-
-            return Number($scope.calcDiscCrop(crop)) + Number($scope.calcDiscFSA(crop, acreFSA)) + Number($scope.calcInsOverCropDisc(crop)) + Number($scope.calcDiscIns(crop)) + Number($scope.calcDiscSCO(crop));
-        };
-
-        $scope.getTotalCashRent = function(practices) {
-            return _.sumCollection(practices, 'cash_rent');
-        };
-
-        $scope.getTotalWaived = function(practices) {
-            return _.sumCollection(practices, 'waived');
-        };
-
-        $scope.getTotalRentOvr = function(practices) {
-            return _.weighted(practices, 'share_rent', 'acres');
-        };
-
-        $scope.getTotalAPH = function(practices) {
-            return 999999;
+        $scope.calcDiscCollateral = function(crop, acre_fsa) {
+            return Number($scope.calcDiscCrop(crop)) + Number($scope.calcDiscFSA(crop, acre_fsa)) + Number($scope.calcDiscInsOverCrop(crop)) + Number($scope.calcDiscIns(crop)) + Number($scope.calcDiscSCO(crop));
         };
 
         $scope.calcRelativeCF = function(crop, acre_fsa) {
-            if(!crop){ return 0; }
-
           var revenue = Number($scope.calcProdRevenue(crop)) + Number($scope.calcProdRevenueAdj(crop)) + acre_fsa;
           var expenses = Number($scope.calcArmCommit(crop)) + Number(crop.expenses.dist) + Number(crop.expenses.other) + Number($scope.calcInterestARM(crop)) + Number($scope.calcInterestDist(crop));
 
@@ -277,7 +239,6 @@
         };
 
         $scope.calcRelativeRM = function(crop, acre_fsa) {
-            if(!crop){ return 0; }
             var discountedCollateral = Number($scope.calcDiscCollateral(crop, acre_fsa));
             var fullCommittment = Number($scope.calcArmCommit(crop)) + Number(crop.expenses.dist) + Number($scope.calcInterestARM(crop)) + Number($scope.calcInterestDist(crop));
             return discountedCollateral - fullCommittment;
