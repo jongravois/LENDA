@@ -16,9 +16,6 @@ class CreateSupplementalinsurancesTable extends Migration {
 			$table->integer('loan_id')->unsigned();
 			$table->integer('crop_id')->unsigned();
 			$table->integer('county_id')->unsigned();
-			$table->integer('insurance_id')->unsigned();
-			$table->string('supplement')->default('STAX');
-			$table->boolean('harvest_price_exclusion')->default(0);
 			$table->double('acres')->default(0);
 			$table->double('aph')->default(0);
 			$table->double('price')->default(0);

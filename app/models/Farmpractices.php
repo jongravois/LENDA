@@ -13,15 +13,8 @@ class Farmpractices extends \Eloquent {
 		return $this->hasMany('Crop', 'id');
 	}
 
-<<<<<<< HEAD
-	public function farmpractices()
-	{
-		return $this->belongsTo('Farmpractices', 'crop_id');
-	}
-=======
-    public function insurance()
+	public function insurance()
     {
         return $this->hasMany('Insurance', 'id');
     }
->>>>>>> work
 }

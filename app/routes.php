@@ -103,6 +103,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth'], function () {
     Route::resource('matrix', 'MatrixController');
     Route::resource('notifications', 'NotificationController');
     Route::resource('othercollaterals', 'OthercollateralsController');
+    Route::resource('optimizerviewoptions', 'OptimizerviewoptionsController');
     Route::resource('partners', 'PartnersController');
     Route::resource('pdfapps', 'PdfAppsController');
     Route::resource('practices', 'PracticesController');

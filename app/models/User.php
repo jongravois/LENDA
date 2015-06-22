@@ -81,6 +81,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         return $this->belongsTo('Viewoptions', 'id', 'user_id');
     }
 
+    public function optimizeroptions()
+    {
+        return $this->belongsTo('Optimizerviewoption', 'id', 'user_id');
+    }
+
     /* METHODS */
     public function setPasswordAttribute($value)
     {
