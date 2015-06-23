@@ -58,11 +58,20 @@
                 }, 0);
             }
 
+            function average(col, cb) {
+                return _(col)
+                    .map(cb)
+                    .reduce(function(result, item){
+                            return result + item;
+                        }) / _.size(col);
+            }
+
             _.mixin({
                 groupByMulti: groupByMulti,
                 sumCollection: sumCollection,
                 pluckuniq: pluckuniq,
-                weighted: weighted
+                weighted: weighted,
+                average: average
             });
         })
         .run(function($window){

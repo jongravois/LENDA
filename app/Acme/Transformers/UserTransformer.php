@@ -12,7 +12,7 @@ class UserTransformer extends Transformer
       $reporter = 0;
 
       foreach($arr['notifications'] as $notifs){
-          if($notifs['notification_type'] == 'vote'){
+          if($notifs['notification_type'] == 'vote' || $notifs['notification_type'] == 'comment'){
               if($notifs['status'] == 'pending') {
                   $pender++;
               }
@@ -32,6 +32,7 @@ class UserTransformer extends Transformer
     return [
         'id' => $arr['id'],
         'email' => $arr['email'],
+        'outlook' => $arr['outlook'],
         'username' => $arr['username'],
         'nick' => $arr['nick'],
         'phone' => $arr['phone'],
@@ -226,6 +227,47 @@ class UserTransformer extends Transformer
             'voIconDisbursement' => (boolean) $arr['viewoptions']['voIconDisbursement'],
             'voIconAttachments' => (boolean) $arr['viewoptions']['voIconAttachments']
       ],
+        'optimopts' => [
+            'rent_per_acre_ARM' => (boolean)$arr['optimizeroptions']['rent_per_acre_ARM'],
+            'rent_per_acre_dist' => (boolean)$arr['optimizeroptions']['rent_per_acre_dist'],
+            'rent_per_acre_other' => (boolean)$arr['optimizeroptions']['rent_per_acre_other'],
+            'fsa_per_acre' => (boolean)$arr['optimizeroptions']['fsa_per_acre_other'],
+            'ins_share' => (boolean)$arr['optimizeroptions']['ins_share'],
+            'ins_price' => (boolean)$arr['optimizeroptions']['ins_price'],
+            'ins_level' => (boolean)$arr['optimizeroptions']['ins_level'],
+            'ins_guarantee' => (boolean)$arr['optimizeroptions']['ins_guarantee'],
+            'ins_premium' => (boolean)$arr['optimizeroptions']['ins_premium'],
+            'ins_value' => (boolean)$arr['optimizeroptions']['ins_value'],
+            'ins_type' => (boolean)$arr['optimizeroptions']['ins_type'],
+            'sco_max' => (boolean)$arr['optimizeroptions']['sco_max'],
+            'prod_yield' => (boolean)$arr['optimizeroptions']['prod_yield'],
+            'prod_share' => (boolean)$arr['optimizeroptions']['prod_share'],
+            'prod_price' => (boolean)$arr['optimizeroptions']['prod_price'],
+            'var_harvest' => (boolean)$arr['optimizeroptions']['var_harvest'],
+            'rebate' => (boolean)$arr['optimizeroptions']['rebate'],
+            'prod_rev' => (boolean)$arr['optimizeroptions']['prod_rev'],
+            'prod_rev_adj' => (boolean)$arr['optimizeroptions']['prod_rev_adj'],
+            'budget_ARM' => (boolean)$arr['optimizeroptions']['budget_ARM'],
+            'budget_dist' => (boolean)$arr['optimizeroptions']['budget_dist'],
+            'budget_other' => (boolean)$arr['optimizeroptions']['budget_other'],
+            'fee_ARM' => (boolean)$arr['optimizeroptions']['fee_ARM'],
+            'commit_ARM' => (boolean)$arr['optimizeroptions']['commit_ARM'],
+            'commit_dist' => (boolean)$arr['optimizeroptions']['commit_dist'],
+            'interest_ARM' => (boolean)$arr['optimizeroptions']['interest_ARM'],
+            'interest_dist' => (boolean)$arr['optimizeroptions']['interest_dist'],
+            'interest_other' => (boolean)$arr['optimizeroptions']['interest_other'],
+            'percent_disc_crop' => (boolean)$arr['optimizeroptions']['percent_disc_crop'],
+            'percent_disc_fsa' => (boolean)$arr['optimizeroptions']['percent_disc_fsa'],
+            'percent_disc_cropins' => (boolean)$arr['optimizeroptions']['percent_disc_cropins'],
+            'percent_disc_nonrp' => (boolean)$arr['optimizeroptions']['percent_disc_nonrp'],
+            'percent_disc_sco' => (boolean)$arr['optimizeroptions']['percent_disc_sco'],
+            'disc_crop' => (boolean)$arr['optimizeroptions']['disc_crop'],
+            'disc_fsa' => (boolean)$arr['optimizeroptions']['disc_fsa'],
+            'disc_insovercrop' => (boolean)$arr['optimizeroptions']['disc_insovercrop'],
+            'disc_ins' => (boolean)$arr['optimizeroptions']['disc_ins'],
+            'disc_sco' => (boolean)$arr['optimizeroptions']['disc_sco'],
+            'disc_collateral' => (boolean)$arr['optimizeroptions']['disc_collateral']
+        ]
     ];
 
   }

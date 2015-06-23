@@ -56,6 +56,8 @@
             calcTotalOverDiscNonRP: calcTotalOverDiscNonRP,
             calcTotalRECollateral: calcTotalRECollateral,
             calcTotalRevenue: calcTotalRevenue,
+            checkUserComments: checkUserComments,
+            checkUserVoting: checkUserVoting,
             click3PC: click3PC,
             clickADDLAND: clickADDLAND,
             clickAOI: clickAOI,
@@ -604,6 +606,38 @@
             //console.log('FSA', loan.fins.total_fsa_payment);
             //console.log('Claims', loan.fins.total_claims);
             return calcTotalCropValue(loan) + Number(loan.fins.total_fsa_payment) + Number(loan.fins.total_claims);
+        }
+
+        function checkUserVoting(loan, userID) {
+            //console.log('loan', loan, 'User', userID);
+            var committee = loan.committee;
+            if(committee.length === 0) {
+                return false;
+            }
+
+            var cheked = false;
+            _.each(committee, function(i){
+                if(Number(i.user_id) === Number(userID) && Number(i.user_id) === Number(loan.id) &&  i.vote_status === 'pending') {
+                    cheked = true;
+                }
+            });
+            return cheked;
+        }
+
+        function checkUserComments(loan, user) {
+            if(loan.comments.length === 0) {
+                return false;
+            }
+
+            var cheked = false;
+            _.each(user.notifications, function(i){
+                if(i.notification_type === 'comment') {
+                    if(Number(i.loan_id) === Number(loan.id) && i.status === 'pending'){
+                        cheked = true;
+                    }
+                }
+            });
+            return cheked;
         }
 
         //TODO: REQUIRED UPLOAD

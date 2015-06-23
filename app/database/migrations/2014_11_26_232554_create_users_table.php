@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration {
 			$table->string('username')->unique();
 			$table->string('nick')->nullable();
             $table->string('email')->unique();
+            $table->string('outlook')->nullable();
             $table->string('password', 60);
 			$table->string('phone')->nullable();
 			$table->integer('loc_id')->nullable();

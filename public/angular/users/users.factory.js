@@ -22,7 +22,7 @@
                 .then(function success(rsp){
                     var cuser = rsp.data.data;
                     cuser.badged = cuser.notifications.length;
-                    cuser.tooltipNotifications = '<p>Pending Actions: (3)</p><p>Management Required: (2)</p><p>Review Reports: (3)</p>';
+                    cuser.tooltipNotifications = '<p>Pending Actions: ()</p><p>Management Required: ()</p><p>Review Reports: ()</p>';
                     return cuser;
                 });
         }
@@ -32,7 +32,7 @@
         }
 
         function getNotificationText(array) {
-            return '<p>Pending Actions: (3)</p><p>Management Required: (2)</p><p>Review Reports: (3)</p>';
+            return '<p>Pending Actions: ()</p><p>Management Required: ()</p><p>Review Reports: ()</p>';
         }
 
         function getUser(id) {

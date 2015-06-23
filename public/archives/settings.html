@@ -1074,35 +1074,35 @@
                                 <table class="table table-striped">
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="comms_email" ng-model="user.comms_email"/>&nbsp;
+                                            <input type="checkbox"/>&nbsp;
                                             Email
                                         </td>
                                         <td>
-                                            <input class="form-control" type="text" name="email" ng-model="user.email"/>
+                                            <input class="form-control" type="text" value="jongravois@gmail.com"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="comms_sms" ng-model="user.comms_sms"/>&nbsp;
+                                            <input type="checkbox" ng-model=""/>&nbsp;
                                             Text Message
                                         </td>
                                         <td>
-                                            <input class="form-control" type="text" ng-model="user.phone" ui-mask="(999) 999.9999"/>
+                                            <input class="form-control" type="text" value="(901) 287.0209"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="comms_outlook" ng-model="comms_outlook"/>&nbsp;
+                                            <input type="checkbox" ng-model=""/>&nbsp;
                                             Outlook Notification (via Email)
                                         </td>
                                         <td>
-                                            <input class="form-control" type="text" name="email" ng-model="user.outlook"/>
+                                            <input class="form-control" type="text" value="jongravois@gmail.com"/>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="comms_online" ng-model="user.comms_online"/>&nbsp;
+                                            <input type="checkbox" ng-model=""/>&nbsp;
                                             Online Notification Badge
                                         </td>
                                         <td>&nbsp;</td>
@@ -1122,6 +1122,37 @@
                 -->
 
                 <!--USER INFO-->
+            </tab>
+
+            <!-- REPORTS -->
+            <tab heading="Reports">
+
+                <!-- OptCols and Sort-->
+                <div class="row">
+                    <fieldset class="col-md-12" style="margin-top:18px;">
+                        <legend>
+                            &nbsp;
+                            <span class="pendicon glyphicon glyphicon-chevron-right" ng-click="togShowRptSorter()" ng-if="!showRptSorter"></span>
+                            <span class="pendicon glyphicon glyphicon-chevron-down" ng-click="togShowRptSorter()" ng-if="showRptSorter"></span>
+                            &nbsp;
+                            PREFERRED COLUMN ORDER
+                        </legend>
+                        <p class="instructions" ng-if="showRptSorter">
+                            Drag the columns into the order you prefer.
+                        </p>
+                        <div ng-if="showRptSorter">
+                            <div class="col-md-2">&nbsp;</div>
+                            <div class="col-md-3">
+                                <p class="sort-label">Reports</p>
+                                <ul ui-sortable="sortableOptions" ng-model="rpts" class="list">
+                                    <li ng-repeat="item in rpts" class="item">
+                                        {{item.txt}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-7">&nbsp;</div>
+                        </div>
+                    </fieldset></div>
             </tab>
 
         </tabset>

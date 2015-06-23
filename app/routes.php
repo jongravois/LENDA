@@ -133,6 +133,7 @@ Route::group(['prefix' => 'api', 'before' => 'auth'], function () {
     Route::get('counties/{id}/defaults', 'CountiesController@getDefaults');
     Route::get('counties/{id}/locale', 'CountiesController@getLocale');
     Route::get('defaultexpenses/{id}/bycrop', 'DefaultexpensesController@byCrop');
+    Route::get('defaultexpenses/{id}/bylocation', 'DefaultexpensesController@byLocation');
     Route::get('exceptions/title/{title}', 'ExceptionsController@byTitle');
     Route::get('farmers/{id}/loans', 'FarmersController@allLoans');
     Route::get('insurance/{id}/value', 'InsuranceController@totalValueByLoan');

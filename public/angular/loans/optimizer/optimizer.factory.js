@@ -22,6 +22,7 @@
         function getOptimizedLoan(loan) {
             var deferred = $q.defer();
             var splitFarms = splitFarmsByPractice(loan);
+            //splitFarms contains crops with 0 acres
             deferred.resolve(splitFarms);
             return deferred.promise;
         }
@@ -98,7 +99,7 @@
                 c_ins_price: obj.ins_price,
                 c_ins_level: obj.ins_level,
                 c_ins_premium: obj.ins_premium,
-                c_ins_type: obj.ins_type,
+                c_ins_type: obj.insurance[0].type,
                 c_prod_yield: obj.prod_yield,
                 c_prod_share: obj.prod_share,
                 c_prod_price: obj.prod_price,
@@ -354,6 +355,8 @@
             _.each(withZero, function (item) {
                 if (item.acres > 0) {
                     byPractice.push(item);
+                } else {
+                    // handle "potential" farms (acres = 0)
                 }
             });
 

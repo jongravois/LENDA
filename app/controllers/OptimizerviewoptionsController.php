@@ -42,7 +42,7 @@ class OptimizerviewoptionsController extends ApiController {
 
 	public function update($id)
 	{
-		$optimizerviewoption = Optimizerviewoption::find($id);
+		$optimizerviewoption = Optimizerviewoption::where('loan_id', $id)->get();
 
 		if(!$optimizerviewoption){
 			Optimizerviewoption::create(Input::all());

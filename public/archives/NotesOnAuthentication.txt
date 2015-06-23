@@ -1,0 +1,32 @@
+22:18 icfantv: jesmith: you will still always have to check on the server.  usually this means wrapping your REST endpoints with some level of checking.
+22:18 jesmith: But the server side is easy. I am just talking about the user expereience (hiding buttons they should see, etc...)
+22:18 icfantv: right.
+22:19 icfantv: what we do is when the user logs in, we send down their authorizations and have an authorization service.
+22:19 icfantv: we wrap pages and modification functionality with ng-ifs
+22:20 mmitchell: jesmith: i use a directive for that. <div when-allowed="foo.bar">hi</div> -- the directive uses session info, which contains ui-permissions on the current user. If the user has the permissions, the html is kept, else it's removed.
+22:20 icfantv: you could do any $http calls in an interceptor, but any UI stuff has to be done manually
+22:21 icfantv: mmitchell's solution is also good - and it allows you to not create a watch (if the directive is created correctly)
+22:21 jesmith: So the question is more about how do I actually implement these options.
+22:21 icfantv: using ng-if would create an unnecessary watch
+22:22 icfantv: jesmith: depends on what route you want to go
+22:22 jesmith: the directive is probably cleaner in hte templates.
+22:23 icfantv: agreed - and it provides a write once use everywhere implementaiton
+22:24 icfantv: mmitchell: do you have a template parameter on your directive?
+22:25 mmitchell: hmm no. Just a single attribute value for the ui component name, which maps to the "ui permissions" stored in the backend
+22:26 mmitchell: the hardest part (for me anyway) was figuring out the main authentication part of the app. I couldn't have any "page" accessible if the user was not logged-in. ui-router "resolve" + parent states made that all possible. It provided synchronous handling based on a valid user session. Once the user was logged-in, session state is stored on $rootScope. Then the directive can use that session state to make decisions (show/hide
+22:26 mmitchell: elements)
+22:26 mmitchell: the actual directive was super simple
+22:27 icfantv: so you actually leave the HTML in your page and just remove it if the user has the right permission?
+22:28 icfantv: jesmith: if i were starting from scratch, i might go the other way - that is, don't inject the HTML in the DOM unless the user has permission.
+22:28 mmitchell: yes. All of the backend authorizations are in place too of course, so even if the html was shown, unauthorized data would never be shown anyway
+22:28 jesmith: mmitchell: got any code examples to help me out/
+22:29 icfantv: jesmith: lemme sanitize what we have
+22:31 jesmith: that would be great.
+22:31 icfantv: i don't like what we did on a page-by-page basis.  i like the idea of a directive using a service or something
+22:32 mmitchell: sure i can try to throw something together too
+22:33 icfantv: jesmith: https://gist.github.com/icfantv/c839963d9f9c0f66fbbf
+22:35 icfantv: again, with the caveat I don't like what we wound up doing, we added our auth service on the root controller's scope so it's accessible in the entire app without having to inject $rootScope everywhere.  this would be mitigated by using a directive and injecting the service into the directive.
+22:40 mmitchell: jesmith: this is the basic idea - http://plnkr.co/edit/gFuCYQ4oqHKuCu5mA41J?p=preview
+22:41 jesmith: mmitchell: so you just stored the current user in the rootScope after you retrieve it?
+22:41 mmitchell: yes
+22:43 mmitchell: I _think_ I got the original authentication idea (ui-router resolve) form this blog post? http://blog.thejsj.com/angular-js-authentication-with-ui-router/

@@ -42,7 +42,7 @@ class ViewoptionsController extends ApiController {
 
 	public function update($id)
 	{
-		$viewoption = Viewoptions::find($id);
+		$viewoption = Viewoptions::where('user_id', $id)->get();
 
 		if(!$viewoption){
 			Viewoptions::create(Input::all());

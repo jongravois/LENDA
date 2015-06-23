@@ -67,4 +67,13 @@ class DefaultexpensesController extends ApiController {
       'data' => $this->defaultexpensesTransformer->transformCollection($defaultexpenses->all())
     ]);
   }
+
+  public function byLocation($id)
+  {
+      $defaultexpenses = Defaultexpenses::where('location_id', $id)->get();
+
+      return $this->respond([
+          'data' => $this->defaultexpensesTransformer->transformCollection($defaultexpenses->all())
+      ]);
+  }
 }

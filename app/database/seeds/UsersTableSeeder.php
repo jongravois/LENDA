@@ -24,6 +24,7 @@ class UsersTableSeeder extends Seeder
             'username' => 'Jonathan Gravois',
             'nick' => 'JWG',
             'email' => 'jongravois@gmail.com',
+            'outlook' => 'jgravois@rht.com',
             'password' => 'password',
             'phone' => '9012870209',
             'loc_id' => '1',

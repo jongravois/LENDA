@@ -42,7 +42,13 @@
             $scope.feeder = FeederFactory.getObject();
 
             LoansFactory.getLoans()
-                .then(function(allLoans){
+                .then(function(rsp){
+                    var allLoans = [];
+                    _.each(rsp, function(i){
+                        i.need_vote = AppFactory.checkUserVoting(i, $scope.user.id);
+                        i.has_comment = AppFactory.checkUserComments(i, $scope.user);
+                        allLoans.push(i);
+                    });
                     $scope.loans = allLoans;
                     console.log('Loans from Main', allLoans);
                     $scope.loanList = _.filter(allLoans, function(i) {

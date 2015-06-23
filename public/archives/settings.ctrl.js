@@ -38,6 +38,8 @@
                 updateViewPrefs();
                 updateViewFilters();
                 updateOptimizerFields();
+                //updateReportPrefs();
+                //updateReportFilters();
                 toastr.success('User settings have been updated.', 'Success');
             };
 
@@ -87,16 +89,11 @@
             function updateUserInfo() {
                 var oUpd = {
                     username: $scope.user.username,
-                    phone: $scope.user.phone,
                     email: $scope.user.email,
-                    outlook: $scope.user.outlook,
                     loc_id: parseInt($scope.user.loc_id),
                     manager_id: parseInt($scope.user.manager_id),
                     closer_id: $scope.user.closer_id,
-                    comms_email: $scope.user.comms_email,
-                    comms_sms: $scope.user.comms_sms,
-                    comms_outlook: $scope.user.comms_outlook,
-                    comms_online: $scope.user.comms_online
+                    comms: $scope.user.comms
                 };
                 AppFactory.putIt('/users/', $scope.user.id, oUpd);
             }
@@ -111,6 +108,14 @@
             function updateOptimizerFields() {
                 var obj = $scope.user.optimopts;
                 AppFactory.putIt('/optimizerviewoptions/', $scope.user.id, obj);
+            }
+            function updateReportPrefs() {
+                var obj = $scope.user.rptopts;
+                AppFactory.putIt('/reportoptions/', $scope.user.id, obj);
+            }
+            function updateReportFilters() {
+                var obj = $scope.user.rptfltrs;
+                AppFactory.putIt('/reportfilters/', $scope.user.id, obj);
             }
         } // end controller
 })();

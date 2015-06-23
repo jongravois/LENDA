@@ -13,7 +13,7 @@ class DefaultexpensesTransformer extends Transformer
         'crop_id' => (double)$arr['crop_id'],
         'loancrop_id' => (double)$arr['loancrop_id'],
         'cat_id' => (double)$arr['cat_id'],
-        'expense' => (double)$arr['expense'],
+        'expense' => $arr['expense'],
         'arm' => (double)$arr['arm'],
         'arm_adj' => (double)$arr['arm_adj'],
         'dist' => (double)$arr['dist'],

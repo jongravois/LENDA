@@ -29,6 +29,7 @@
                 insurance: getInsurance(loan),
                 loanconditions: getLoanconditions(loan),
                 loancrops: processLoanCrops(loan),
+                //if no pending votes and approved is sufficient, mark for close
                 need_vote: getPendingVotes(loan),
                 priorlien: processPriorLien(loan.priorlien),
                 quests: processQuests(loan.quests),
