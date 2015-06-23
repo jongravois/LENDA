@@ -26,20 +26,20 @@ class CommitteeTableSeeder extends Seeder {
 			'loan_id' => 1,
 			'role_id' => 4,
 			'user_id' => 5,
-			'vote_status' => 'pending',
+			'vote_status' => 'voted',
+			'vote' => 1,
 			'vote_request_date' => '2014-09-11',
-            'committee_role' => 'Branch Manager'
+			'vote_received_date' => '2014-09-12',
+			'committee_role' => 'Branch Manager'
 
 		]);
 		Committee::create([
 			'loan_id' => 1,
 			'role_id' => 3,
 			'user_id' => 2,
-			'vote_status' => 'voted',
-			'vote' => 1,
+			'vote_status' => 'pending',
 			'vote_request_date' => '2014-09-11',
-			'vote_received_date' => '2014-09-12',
-            'committee_role' => 'Tester'
+			'committee_role' => 'Tester'
 		]);
 	}
 }

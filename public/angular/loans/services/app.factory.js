@@ -617,7 +617,7 @@
 
             var cheked = false;
             _.each(committee, function(i){
-                if(Number(i.user_id) === Number(userID) && Number(i.user_id) === Number(loan.id) &&  i.vote_status === 'pending') {
+                if(Number(i.user_id) === Number(userID) && Number(i.loan_id) === Number(loan.id) &&  i.vote_status === 'pending') {
                     cheked = true;
                 }
             });

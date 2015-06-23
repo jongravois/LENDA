@@ -6,44 +6,33 @@
               tooltip-placement="bottom"
               class="progicon glyphicon glyphicon-exclamation-sign"
               ng-class="{'cBlue': loan.need_vote, 'cGray': !loan.need_vote}"></span>
-        </td>
-        <td>
         <span tooltip="Comments"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               class="progicon glyphicon glyphicon-exclamation-sign"
               ng-class="{'cYellow': loan.has_comment, 'cGray': !loan.has_comment}"></span>
-        </td>
-        <td>
         <span tooltip="Stale Application"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               class="progicon glyphicon glyphicon-exclamation-sign"
               ng-class="{'cRed': loan.is_stale, 'cGray': !loan.is_stale}"></span>
-        </td>
-        <td>
         <span tooltip="WatchList"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               class="progicon glyphicon glyphicon-sunglasses"
               ng-class="{'cBlack': loan.is_watched, 'cGray': !loan.is_watched}"></span>
-        </td>
-        <td>
         <span tooltip="Disbursement"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               class="progicon glyphicon glyphicon-usd"
               ng-class="{'cGreen': loan.disbursement_issue, 'cGray': !loan.disbursement_issue}"></span>
         </td>
-        <td colspan="3">&nbsp;</td>
         <td>
         <span class="progicon glyphicon glyphicon-plus"
               tooltip="Addendum"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               ng-class="{'clrOn': loan.has_addendum, 'clrOff': !loan.has_addendum}"></span>
-        </td>
-        <td>
         <span class="progicon glyphicon glyphicon-random"
               tooltip="Cross Collateral"
               tooltip-append-to-body="true"
@@ -56,43 +45,32 @@
                   tooltip-placement="bottom"
                   ng-click="toggleCrossColateral()"
                   ng-class="{'cRed': XColView, 'clrOn': loan.is_cross_collateralized, 'clrOff': !loan.is_cross_collateralized }" style="color: #333333;" ng-if="!XColView"></span>
-        </td>
-        <td>
         <span class="progicon glyphicon glyphicon-fire"
               tooltip="Bankruptcy History"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               ng-class="{'clrOn': loan.bankruptcy_history, 'clrOff': !loan.bankruptcy_history}"></span>
-        </td>
-        <td>
         <span class="progicon glyphicon glyphicon-stats"
               tooltip="Third Party Credit Required"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               ng-class="{'clrOn': loan.required_3party, 'clrOff': !loan.required_3party}"></span>
-        </td>
-        <td>
         <span class="progicon glyphicon glyphicon-flag"
               tooltip="Added Land in Database"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               ng-class="{'clrOn': loan.added_land, 'clrOff': !loan.added_land}"></span>
-        </td>
-        <td>
         <span class="progicon glyphicon glyphicon-lock"
               tooltip="Controlled Disbursement"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               ng-class="{'clrOn': loan.controlled_disbursement, 'clrOff': !loan.controlled_disbursement}"></span>
-        </td>
-        <td>
         <span class="progicon glyphicon glyphicon-paperclip"
               tooltip="Attachments"
               tooltip-append-to-body="true"
               tooltip-placement="bottom"
               ng-class="{'clrOn' : loan.attachments.length, 'clrOff': !loan.attachments.length }"></span>
         </td>
-        <td colspan="3">&nbsp;</td>
         <td>
       <span class="progicon glyphicon glyphicon-list-alt"
             tooltip="ITS List Verfified"
@@ -258,9 +236,7 @@
         <td>
             <span style="font-size:18px;">{{loan.account_classification}}</span>
         </td>
-        <td>
-            &nbsp;
-        </td>
+        <td colspan="5">&nbsp;</td>
         <td>
             <span loan-status-icon status="loan.status_id"></span>
         </td>
