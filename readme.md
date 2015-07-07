@@ -1,5 +1,7 @@
 ## LENDA
 
+[![Join the chat at https://gitter.im/jongravois/LENDA](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jongravois/LENDA?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is an AngularJS/Laravel 4.2 application
 
 ## Installation
